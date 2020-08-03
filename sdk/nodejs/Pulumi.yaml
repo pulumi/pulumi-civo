@@ -1,0 +1,3 @@
+name: civo
+description: A Pulumi resource provider for civo.
+language: nodejs

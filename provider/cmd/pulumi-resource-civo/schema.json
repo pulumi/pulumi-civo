@@ -1,0 +1,3494 @@
+{
+    "name": "civo",
+    "description": "A Pulumi package for creating and managing Civo cloud resources.",
+    "keywords": [
+        "pulumi",
+        "civo"
+    ],
+    "homepage": "https://pulumi.io",
+    "license": "Apache-2.0",
+    "attribution": "This Pulumi package is based on the [`civo` Terraform Provider](https://github.com/civo/terraform-provider-civo).",
+    "repository": "https://github.com/pulumi/pulumi-civo",
+    "meta": {
+        "moduleFormat": "(.*)(?:/[^/]*)"
+    },
+    "config": {
+        "variables": {
+            "token": {
+                "type": "string"
+            }
+        }
+    },
+    "types": {
+        "civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication": {
+            "properties": {
+                "application": {
+                    "type": "string",
+                    "description": "The name of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "category": {
+                    "type": "string",
+                    "description": "The category of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "installed": {
+                    "type": "boolean",
+                    "description": "if installed or not\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "application",
+                        "category",
+                        "installed",
+                        "version"
+                    ]
+                }
+            }
+        },
+        "civo:/KubernetesClusterInstance:KubernetesClusterInstance": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date where the Kubernetes cluster was create.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The firewall id assigned to the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicIp": {
+                    "type": "string",
+                    "description": "The public ip of the instances, only available if the instances is the master\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where instance are.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A space separated list of tags, to be used freely as required.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "cpuCores",
+                        "createdAt",
+                        "diskGb",
+                        "firewallId",
+                        "hostname",
+                        "publicIp",
+                        "ramMb",
+                        "region",
+                        "size",
+                        "status",
+                        "tags"
+                    ]
+                }
+            }
+        },
+        "civo:/LoadBalancerBackend:LoadBalancerBackend": {
+            "properties": {
+                "instanceId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "instanceId",
+                "port",
+                "protocol"
+            ]
+        },
+        "civo:/getInstancesFilter:getInstancesFilter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,\n`pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of values to match against the `key` field. Only retrieves Instances\nwhere the `key` field takes on one or more of the values provided here.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:/getInstancesInstance:getInstancesInstance": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date of creation of the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The ID of the firewall used.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The Instance hostname.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the Instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initialPassword": {
+                    "type": "string",
+                    "description": "Instance initial password\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "initialUser": {
+                    "type": "string",
+                    "description": "The name of the initial user created on the server.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "This will be the ID of the network.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "The notes of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "privateIp": {
+                    "type": "string",
+                    "description": "The private ip.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "pseudoIp": {
+                    "type": "string",
+                    "description": "Is the ip that is used to route the public ip from the internet to the instance using NAT\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicIp": {
+                    "type": "string",
+                    "description": "The public ip.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "reverseDns": {
+                    "type": "string",
+                    "description": "A fully qualified domain name.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "script": {
+                    "type": "string",
+                    "description": "the contents of a script uploaded\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The name of the size.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sshkeyId": {
+                    "type": "string",
+                    "description": "The ID SSH.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An optional list of tags\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The ID for the template to used to build the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpuCores",
+                "createdAt",
+                "diskGb",
+                "firewallId",
+                "hostname",
+                "id",
+                "initialPassword",
+                "initialUser",
+                "networkId",
+                "notes",
+                "privateIp",
+                "pseudoIp",
+                "publicIp",
+                "ramMb",
+                "reverseDns",
+                "script",
+                "size",
+                "sshkeyId",
+                "status",
+                "tags",
+                "template"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getInstancesSizeFilter:getInstancesSizeFilter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:/getInstancesSizeSize:getInstancesSizeSize": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "niceName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "selectable": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpuCores",
+                "description",
+                "diskGb",
+                "name",
+                "niceName",
+                "ramMb",
+                "selectable"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getInstancesSizeSort:getInstancesSizeSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
+        "civo:/getInstancesSort:getInstancesSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,\n`pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
+        "civo:/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication": {
+            "properties": {
+                "application": {
+                    "type": "string",
+                    "description": "The name of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "category": {
+                    "type": "string",
+                    "description": "The category of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "installed": {
+                    "type": "boolean",
+                    "description": "if installed or not\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the application\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "application",
+                "category",
+                "installed",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getKubernetesClusterInstance:getKubernetesClusterInstance": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date where the Kubernetes cluster was create.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The firewall id assigned to the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "publicIp": {
+                    "type": "string",
+                    "description": "The public ip of the instances, only available if the instances is the master\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where instance are.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tag of the instances\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpuCores",
+                "createdAt",
+                "diskGb",
+                "firewallId",
+                "hostname",
+                "publicIp",
+                "ramMb",
+                "region",
+                "size",
+                "status",
+                "tags"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getKubernetesVersionFilter:getKubernetesVersionFilter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "Filter the sizes by this key. This may be one of `version`,\n`label`, `type`, `default`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only retrieves the version which keys has value that matches\none of the values provided here.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:/getKubernetesVersionSort:getKubernetesVersionSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort the sizes by this key. This may be one of `version`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
+        "civo:/getKubernetesVersionVersion:getKubernetesVersionVersion": {
+            "properties": {
+                "default": {
+                    "type": "boolean",
+                    "description": "If is the default version used in all cluster.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "description": "The label of this version.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The type of the version can be `stable`, `legacy` etc...\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "A version of the kubernetes.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "default",
+                "label",
+                "type",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getLoadBalancerBackend:getLoadBalancerBackend": {
+            "properties": {
+                "instanceId": {
+                    "type": "string",
+                    "description": "The instance id\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "The port set in the configuration.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "The protocol used in the configuration.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "instanceId",
+                "port",
+                "protocol"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:/getTemplateFilter:getTemplateFilter": {
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "description": "Filter the sizes by this key. This may be one of `code`,\n`name`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only retrieves the template which keys has value that matches\none of the values provided here.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:/getTemplateSort:getTemplateSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort the sizes by this key. This may be one of `code`, \n`name`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
+        "civo:/getTemplateTemplate:getTemplateTemplate": {
+            "properties": {
+                "cloudConfig": {
+                    "type": "string",
+                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "code": {
+                    "type": "string",
+                    "description": "A unqiue, alphanumerical, short, human readable code for the template.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultUsername": {
+                    "type": "string",
+                    "description": "The default username to suggest that the user creates\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A multi-line description of the template, in Markdown format\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The id of the template\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "imageId": {
+                    "type": "string",
+                    "description": "The Image ID of any default template or the ID of another template.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A short human readable name for the template\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "description": "A one line description of the template\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "The ID of a bootable volume, either owned by you or global.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cloudConfig",
+                "code",
+                "defaultUsername",
+                "description",
+                "id",
+                "imageId",
+                "name",
+                "shortDescription",
+                "volumeId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        }
+    },
+    "provider": {
+        "description": "The provider type for the civo package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
+        "inputProperties": {
+            "token": {
+                "type": "string"
+            }
+        }
+    },
+    "resources": {
+        "civo:index/dnsDomainName:DnsDomainName": {
+            "description": "Provides a Civo dns domain name resource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\n// Create a new domain name\nconst main = new civo.DnsDomainName(\"main\", {});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\n# Create a new domain name\nmain = civo.DnsDomainName(\"main\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Create a new domain name\n        var main = new Civo.DnsDomainName(\"main\", new Civo.DnsDomainNameArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewDnsDomainName(ctx, \"main\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "The id account of the domain\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the domain\n"
+                }
+            },
+            "required": [
+                "accountId",
+                "name"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the domain\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsDomainName resources.\n",
+                "properties": {
+                    "accountId": {
+                        "type": "string",
+                        "description": "The id account of the domain\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the domain\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/dnsDomainRecord:DnsDomainRecord": {
+            "description": "Provides a Civo dns domain record resource.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\n// Create a new domain record\nconst www = new civo.DnsDomainRecord(\"www\", {\n    domainId: civo_dns_domain_name.main.id,\n    type: \"a\",\n    value: civo_instance.foo.public_ip,\n    ttl: 600,\n}, {\n    dependsOn: [\n        civo_dns_domain_name.main,\n        civo_instance.foo,\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\n# Create a new domain record\nwww = civo.DnsDomainRecord(\"www\",\n    domain_id=civo_dns_domain_name[\"main\"][\"id\"],\n    type=\"a\",\n    value=civo_instance[\"foo\"][\"public_ip\"],\n    ttl=600,\n    opts=ResourceOptions(depends_on=[\n            civo_dns_domain_name[\"main\"],\n            civo_instance[\"foo\"],\n        ]))\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Create a new domain record\n        var www = new Civo.DnsDomainRecord(\"www\", new Civo.DnsDomainRecordArgs\n        {\n            DomainId = civo_dns_domain_name.Main.Id,\n            Type = \"a\",\n            Value = civo_instance.Foo.Public_ip,\n            Ttl = 600,\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                civo_dns_domain_name.Main,\n                civo_instance.Foo,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewDnsDomainRecord(ctx, \"www\", \u0026civo.DnsDomainRecordArgs{\n\t\t\tDomainId: pulumi.Any(civo_dns_domain_name.Main.Id),\n\t\t\tType:     pulumi.String(\"a\"),\n\t\t\tValue:    pulumi.Any(civo_instance.Foo.Public_ip),\n\t\t\tTtl:      pulumi.Int(600),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tcivo_dns_domain_name.Main,\n\t\t\tcivo_instance.Foo,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "accountId": {
+                    "type": "string",
+                    "description": "The id account of the domain\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date when it was created in UTC format\n"
+                },
+                "domainId": {
+                    "type": "string",
+                    "description": "The id of the domain\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Useful for MX records only, the priority mail should be attempted it (defaults to 10)\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The choice of record type from a, cname, mx or txt\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "The date when it was updated in UTC format\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record\n"
+                }
+            },
+            "required": [
+                "accountId",
+                "createdAt",
+                "domainId",
+                "name",
+                "ttl",
+                "type",
+                "updatedAt",
+                "value"
+            ],
+            "inputProperties": {
+                "domainId": {
+                    "type": "string",
+                    "description": "The id of the domain\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)\n"
+                },
+                "priority": {
+                    "type": "integer",
+                    "description": "Useful for MX records only, the priority mail should be attempted it (defaults to 10)\n"
+                },
+                "ttl": {
+                    "type": "integer",
+                    "description": "How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "The choice of record type from a, cname, mx or txt\n"
+                },
+                "value": {
+                    "type": "string",
+                    "description": "The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record\n"
+                }
+            },
+            "requiredInputs": [
+                "domainId",
+                "ttl",
+                "type",
+                "value"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering DnsDomainRecord resources.\n",
+                "properties": {
+                    "accountId": {
+                        "type": "string",
+                        "description": "The id account of the domain\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date when it was created in UTC format\n"
+                    },
+                    "domainId": {
+                        "type": "string",
+                        "description": "The id of the domain\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "Useful for MX records only, the priority mail should be attempted it (defaults to 10)\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The choice of record type from a, cname, mx or txt\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date when it was updated in UTC format\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/firewall:Firewall": {
+            "description": "Provides a Civo Cloud Firewall resource. This can be used to create,\nmodify, and delete Firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst www = new civo.Firewall(\"www\", {});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nwww = civo.Firewall(\"www\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewFirewall(ctx, \"www\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The Firewall name\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the firewall was create.\n"
+                }
+            },
+            "required": [
+                "name",
+                "region"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The Firewall name\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Firewall resources.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "The Firewall name\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the firewall was create.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/firewallRule:FirewallRule": {
+            "description": "Provides a Civo Cloud Firewall Rule resource. \nThis can be used to create, modify, and delete Firewalls Rules.\nThis resource don't have an update option because the backend don't have the\nsupport for that, so in this case we use ForceNew for all object in the resource.\n",
+            "properties": {
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                },
+                "direction": {
+                    "type": "string",
+                    "description": "will this rule affect ingress traffic\n"
+                },
+                "endPort": {
+                    "type": "string",
+                    "description": "The end port where traffic to be allowed.\n"
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The Firewall id\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "a string that will be the displayed name/reference for this rule (optional)\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                },
+                "startPort": {
+                    "type": "string",
+                    "description": "The start port where traffic to be allowed.\n"
+                }
+            },
+            "required": [
+                "cidrs",
+                "direction",
+                "endPort",
+                "firewallId",
+                "protocol",
+                "startPort"
+            ],
+            "inputProperties": {
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                },
+                "direction": {
+                    "type": "string",
+                    "description": "will this rule affect ingress traffic\n"
+                },
+                "endPort": {
+                    "type": "string",
+                    "description": "The end port where traffic to be allowed.\n"
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The Firewall id\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "a string that will be the displayed name/reference for this rule (optional)\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                },
+                "startPort": {
+                    "type": "string",
+                    "description": "The start port where traffic to be allowed.\n"
+                }
+            },
+            "requiredInputs": [
+                "cidrs",
+                "direction",
+                "endPort",
+                "firewallId",
+                "protocol",
+                "startPort"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering FirewallRule resources.\n",
+                "properties": {
+                    "cidrs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                    },
+                    "direction": {
+                        "type": "string",
+                        "description": "will this rule affect ingress traffic\n"
+                    },
+                    "endPort": {
+                        "type": "string",
+                        "description": "The end port where traffic to be allowed.\n"
+                    },
+                    "firewallId": {
+                        "type": "string",
+                        "description": "The Firewall id\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "a string that will be the displayed name/reference for this rule (optional)\n"
+                    },
+                    "protocol": {
+                        "type": "string",
+                        "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                    },
+                    "startPort": {
+                        "type": "string",
+                        "description": "The start port where traffic to be allowed.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/instance:Instance": {
+            "description": "Provides a Civo Instance resource. This can be used to create,\nmodify, and delete Instances.\n",
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date of creation of the instance\n"
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n"
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The Instance hostname.\n"
+                },
+                "initialPassword": {
+                    "type": "string",
+                    "description": "Instance initial password\n"
+                },
+                "initialUser": {
+                    "type": "string",
+                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).\n"
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "This must be the ID of the network from the network listing (optional; default network used when not specified).\n"
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Add some notes to the instance.\n"
+                },
+                "privateIp": {
+                    "type": "string",
+                    "description": "The private ip.\n"
+                },
+                "pseudoIp": {
+                    "type": "string",
+                    "description": "Is the ip that is used to route the public ip from the internet to the instance using NAT\n"
+                },
+                "publicIp": {
+                    "type": "string",
+                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                },
+                "publicIpRequiered": {
+                    "type": "string",
+                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance.\n"
+                },
+                "reverseDns": {
+                    "type": "string",
+                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                },
+                "sshkeyId": {
+                    "type": "string",
+                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the instance\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An optional list of tags, represented as a key, value pair.\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The ID for the template to use to build the instance.\n"
+                }
+            },
+            "required": [
+                "cpuCores",
+                "createdAt",
+                "diskGb",
+                "hostname",
+                "initialPassword",
+                "privateIp",
+                "pseudoIp",
+                "publicIp",
+                "ramMb",
+                "status"
+            ],
+            "inputProperties": {
+                "firewallId": {
+                    "type": "string",
+                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The Instance hostname.\n"
+                },
+                "initialUser": {
+                    "type": "string",
+                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).\n"
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "This must be the ID of the network from the network listing (optional; default network used when not specified).\n"
+                },
+                "notes": {
+                    "type": "string",
+                    "description": "Add some notes to the instance.\n"
+                },
+                "publicIpRequiered": {
+                    "type": "string",
+                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                },
+                "reverseDns": {
+                    "type": "string",
+                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).\n"
+                },
+                "script": {
+                    "type": "string",
+                    "description": "the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                },
+                "sshkeyId": {
+                    "type": "string",
+                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).\n"
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "An optional list of tags, represented as a key, value pair.\n"
+                },
+                "template": {
+                    "type": "string",
+                    "description": "The ID for the template to use to build the instance.\n"
+                }
+            },
+            "requiredInputs": [
+                "hostname"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Instance resources.\n",
+                "properties": {
+                    "cpuCores": {
+                        "type": "integer",
+                        "description": "Total cpu of the inatance.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date of creation of the instance\n"
+                    },
+                    "diskGb": {
+                        "type": "integer",
+                        "description": "The size of the disk.\n"
+                    },
+                    "firewallId": {
+                        "type": "string",
+                        "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The Instance hostname.\n"
+                    },
+                    "initialPassword": {
+                        "type": "string",
+                        "description": "Instance initial password\n"
+                    },
+                    "initialUser": {
+                        "type": "string",
+                        "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).\n"
+                    },
+                    "networkId": {
+                        "type": "string",
+                        "description": "This must be the ID of the network from the network listing (optional; default network used when not specified).\n"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "description": "Add some notes to the instance.\n"
+                    },
+                    "privateIp": {
+                        "type": "string",
+                        "description": "The private ip.\n"
+                    },
+                    "pseudoIp": {
+                        "type": "string",
+                        "description": "Is the ip that is used to route the public ip from the internet to the instance using NAT\n"
+                    },
+                    "publicIp": {
+                        "type": "string",
+                        "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    },
+                    "publicIpRequiered": {
+                        "type": "string",
+                        "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    },
+                    "ramMb": {
+                        "type": "integer",
+                        "description": "Total ram of the instance.\n"
+                    },
+                    "reverseDns": {
+                        "type": "string",
+                        "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    },
+                    "sshkeyId": {
+                        "type": "string",
+                        "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the instance\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An optional list of tags, represented as a key, value pair.\n"
+                    },
+                    "template": {
+                        "type": "string",
+                        "description": "The ID for the template to use to build the instance.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/kubernetesCluster:KubernetesCluster": {
+            "properties": {
+                "apiEndpoint": {
+                    "type": "string",
+                    "description": "The base URL of the API server on the Kubernetes master node.\n"
+                },
+                "applications": {
+                    "type": "string",
+                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                },
+                "builtAt": {
+                    "type": "string",
+                    "description": "The date where the Kubernetes cluster was build.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date where the Kubernetes cluster was create.\n"
+                },
+                "dnsEntry": {
+                    "type": "string",
+                    "description": "The unique dns entry for the cluster in this case point to the master.\n"
+                },
+                "installedApplications": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
+                    },
+                    "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
+                },
+                "instances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:/KubernetesClusterInstance:KubernetesClusterInstance"
+                    },
+                    "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                },
+                "kubeconfig": {
+                    "type": "string",
+                    "description": "A representation of the Kubernetes cluster's kubeconfig in yaml format.\n"
+                },
+                "kubernetesVersion": {
+                    "type": "string",
+                    "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                },
+                "masterIp": {
+                    "type": "string",
+                    "description": "The Ip of the Kubernetes master node.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the Kubernetes cluster.\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                },
+                "ready": {
+                    "type": "boolean"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n"
+                },
+                "tags": {
+                    "type": "string",
+                    "description": "A space separated list of tags, to be used freely as required.\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "The size of each node (optional, the default is currently g2.small)\n"
+                }
+            },
+            "required": [
+                "apiEndpoint",
+                "builtAt",
+                "createdAt",
+                "dnsEntry",
+                "installedApplications",
+                "instances",
+                "kubeconfig",
+                "masterIp",
+                "name",
+                "ready",
+                "status"
+            ],
+            "inputProperties": {
+                "applications": {
+                    "type": "string",
+                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                },
+                "kubernetesVersion": {
+                    "type": "string",
+                    "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the Kubernetes cluster.\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                },
+                "tags": {
+                    "type": "string",
+                    "description": "A space separated list of tags, to be used freely as required.\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "The size of each node (optional, the default is currently g2.small)\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KubernetesCluster resources.\n",
+                "properties": {
+                    "apiEndpoint": {
+                        "type": "string",
+                        "description": "The base URL of the API server on the Kubernetes master node.\n"
+                    },
+                    "applications": {
+                        "type": "string",
+                        "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                    },
+                    "builtAt": {
+                        "type": "string",
+                        "description": "The date where the Kubernetes cluster was build.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date where the Kubernetes cluster was create.\n"
+                    },
+                    "dnsEntry": {
+                        "type": "string",
+                        "description": "The unique dns entry for the cluster in this case point to the master.\n"
+                    },
+                    "installedApplications": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
+                        },
+                        "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
+                    },
+                    "instances": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/KubernetesClusterInstance:KubernetesClusterInstance"
+                        },
+                        "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                    },
+                    "kubeconfig": {
+                        "type": "string",
+                        "description": "A representation of the Kubernetes cluster's kubeconfig in yaml format.\n"
+                    },
+                    "kubernetesVersion": {
+                        "type": "string",
+                        "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                    },
+                    "masterIp": {
+                        "type": "string",
+                        "description": "The Ip of the Kubernetes master node.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A name for the Kubernetes cluster.\n"
+                    },
+                    "numTargetNodes": {
+                        "type": "integer",
+                        "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                    },
+                    "ready": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n"
+                    },
+                    "tags": {
+                        "type": "string",
+                        "description": "A space separated list of tags, to be used freely as required.\n"
+                    },
+                    "targetNodesSize": {
+                        "type": "string",
+                        "description": "The size of each node (optional, the default is currently g2.small)\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/loadBalancer:LoadBalancer": {
+            "properties": {
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                    },
+                    "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
+                },
+                "failTimeout": {
+                    "type": "integer",
+                    "description": "how long to wait in seconds before determining a backend has failed, defaults to 30\n"
+                },
+                "healthCheckPath": {
+                    "type": "string",
+                    "description": "what URL should be used on the backends to determine if it's OK (2xx/3xx status), defaults to /\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "the hostname to receive traffic for, e.g. www.example.com (optional: sets hostname to loadbalancer-uuid.civo.com if\nblank)\n"
+                },
+                "ignoreInvalidBackendTls": {
+                    "type": "boolean",
+                    "description": "should self-signed/invalid certificates be ignored from the backend servers, defaults to true\n"
+                },
+                "maxConns": {
+                    "type": "integer",
+                    "description": "how many concurrent connections can each backend handle, defaults to 10\n"
+                },
+                "maxRequestSize": {
+                    "type": "integer",
+                    "description": "the size in megabytes of the maximum request content that will be accepted, defaults to 20\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "one of: least_conn (sends new requests to the least busy server), random (sends new requests to a random backend),\nround_robin (sends new requests to the next backend in order), ip_hash (sends requests from a given IP address to the\nsame backend), default is random\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here\n(commonly 80 for HTTP or 443 for HTTPS)\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "either http or https. If you specify https then you must also provide the next two fields, the default is http\n"
+                },
+                "tlsCertificate": {
+                    "type": "string",
+                    "description": "if your protocol is https then you should send the TLS certificate in Base64-encoded PEM format\n"
+                },
+                "tlsKey": {
+                    "type": "string",
+                    "description": "if your protocol is https then you should send the TLS private key in Base64-encoded PEM format\n"
+                }
+            },
+            "required": [
+                "backends",
+                "failTimeout",
+                "hostname",
+                "maxConns",
+                "maxRequestSize",
+                "policy",
+                "port",
+                "protocol"
+            ],
+            "inputProperties": {
+                "backends": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                    },
+                    "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
+                },
+                "failTimeout": {
+                    "type": "integer",
+                    "description": "how long to wait in seconds before determining a backend has failed, defaults to 30\n"
+                },
+                "healthCheckPath": {
+                    "type": "string",
+                    "description": "what URL should be used on the backends to determine if it's OK (2xx/3xx status), defaults to /\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "the hostname to receive traffic for, e.g. www.example.com (optional: sets hostname to loadbalancer-uuid.civo.com if\nblank)\n"
+                },
+                "ignoreInvalidBackendTls": {
+                    "type": "boolean",
+                    "description": "should self-signed/invalid certificates be ignored from the backend servers, defaults to true\n"
+                },
+                "maxConns": {
+                    "type": "integer",
+                    "description": "how many concurrent connections can each backend handle, defaults to 10\n"
+                },
+                "maxRequestSize": {
+                    "type": "integer",
+                    "description": "the size in megabytes of the maximum request content that will be accepted, defaults to 20\n"
+                },
+                "policy": {
+                    "type": "string",
+                    "description": "one of: least_conn (sends new requests to the least busy server), random (sends new requests to a random backend),\nround_robin (sends new requests to the next backend in order), ip_hash (sends requests from a given IP address to the\nsame backend), default is random\n"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here\n(commonly 80 for HTTP or 443 for HTTPS)\n"
+                },
+                "protocol": {
+                    "type": "string",
+                    "description": "either http or https. If you specify https then you must also provide the next two fields, the default is http\n"
+                },
+                "tlsCertificate": {
+                    "type": "string",
+                    "description": "if your protocol is https then you should send the TLS certificate in Base64-encoded PEM format\n"
+                },
+                "tlsKey": {
+                    "type": "string",
+                    "description": "if your protocol is https then you should send the TLS private key in Base64-encoded PEM format\n"
+                }
+            },
+            "requiredInputs": [
+                "backends",
+                "failTimeout",
+                "hostname",
+                "maxConns",
+                "maxRequestSize",
+                "policy",
+                "port",
+                "protocol"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering LoadBalancer resources.\n",
+                "properties": {
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                        },
+                        "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
+                    },
+                    "failTimeout": {
+                        "type": "integer",
+                        "description": "how long to wait in seconds before determining a backend has failed, defaults to 30\n"
+                    },
+                    "healthCheckPath": {
+                        "type": "string",
+                        "description": "what URL should be used on the backends to determine if it's OK (2xx/3xx status), defaults to /\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "the hostname to receive traffic for, e.g. www.example.com (optional: sets hostname to loadbalancer-uuid.civo.com if\nblank)\n"
+                    },
+                    "ignoreInvalidBackendTls": {
+                        "type": "boolean",
+                        "description": "should self-signed/invalid certificates be ignored from the backend servers, defaults to true\n"
+                    },
+                    "maxConns": {
+                        "type": "integer",
+                        "description": "how many concurrent connections can each backend handle, defaults to 10\n"
+                    },
+                    "maxRequestSize": {
+                        "type": "integer",
+                        "description": "the size in megabytes of the maximum request content that will be accepted, defaults to 20\n"
+                    },
+                    "policy": {
+                        "type": "string",
+                        "description": "one of: least_conn (sends new requests to the least busy server), random (sends new requests to a random backend),\nround_robin (sends new requests to the next backend in order), ip_hash (sends requests from a given IP address to the\nsame backend), default is random\n"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here\n(commonly 80 for HTTP or 443 for HTTPS)\n"
+                    },
+                    "protocol": {
+                        "type": "string",
+                        "description": "either http or https. If you specify https then you must also provide the next two fields, the default is http\n"
+                    },
+                    "tlsCertificate": {
+                        "type": "string",
+                        "description": "if your protocol is https then you should send the TLS certificate in Base64-encoded PEM format\n"
+                    },
+                    "tlsKey": {
+                        "type": "string",
+                        "description": "if your protocol is https then you should send the TLS private key in Base64-encoded PEM format\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/network:Network": {
+            "description": "Provides a Civo Network resource. This can be used to create,\nmodify, and delete Networks.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst customNet = new civo.Network(\"custom_net\", {\n    label: \"test_network\",\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ncustom_net = civo.Network(\"customNet\", label=\"test_network\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var customNet = new Civo.Network(\"customNet\", new Civo.NetworkArgs\n        {\n            Label = \"test_network\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewNetwork(ctx, \"customNet\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"test_network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "cidr": {
+                    "type": "string",
+                    "description": "The block ip assigned to the network.\n"
+                },
+                "default": {
+                    "type": "boolean",
+                    "description": "If is the default network.\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "The Network label\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the network.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the network was create.\n"
+                }
+            },
+            "required": [
+                "cidr",
+                "default",
+                "label",
+                "name",
+                "region"
+            ],
+            "inputProperties": {
+                "label": {
+                    "type": "string",
+                    "description": "The Network label\n"
+                }
+            },
+            "requiredInputs": [
+                "label"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Network resources.\n",
+                "properties": {
+                    "cidr": {
+                        "type": "string",
+                        "description": "The block ip assigned to the network.\n"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "description": "If is the default network.\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "The Network label\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the network.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the network was create.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/snapshot:Snapshot": {
+            "description": "Provides a resource which can be used to create a snapshot from an existing Civo Instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst myinstance_backup = new civo.Snapshot(\"myinstance-backup\", {instanceId: civo_instance.myinstance.id});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmyinstance_backup = civo.Snapshot(\"myinstance-backup\", instance_id=civo_instance[\"myinstance\"][\"id\"])\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myinstance_backup = new Civo.Snapshot(\"myinstance-backup\", new Civo.SnapshotArgs\n        {\n            InstanceId = civo_instance.Myinstance.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewSnapshot(ctx, \"myinstance_backup\", \u0026civo.SnapshotArgs{\n\t\t\tInstanceId: pulumi.Any(civo_instance.Myinstance.Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "completedAt": {
+                    "type": "string",
+                    "description": "The date where the snapshot was completed.\n"
+                },
+                "cronTiming": {
+                    "type": "string",
+                    "description": "If a valid cron string is passed, the snapshot will be saved as an automated snapshot \ncontinuing to automatically update based on the schedule of the cron sequence provided\nThe default is nil meaning the snapshot will be saved as a one-off snapshot.\n"
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the instance.\n"
+                },
+                "instanceId": {
+                    "type": "string",
+                    "description": "The ID of the Instance from which the snapshot will be taken.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the instance snapshot.\n"
+                },
+                "nextExecution": {
+                    "type": "string",
+                    "description": "if cron was define this date will be the next execution date.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the snapshot was take.\n"
+                },
+                "requestedAt": {
+                    "type": "string",
+                    "description": "The date where the snapshot was requested.\n"
+                },
+                "safe": {
+                    "type": "boolean",
+                    "description": "If `true` the instance will be shut down during the snapshot to ensure all files \nare in a consistent state (e.g. database tables aren't in the middle of being optimised\nand hence risking corruption). The default is `false` so you experience no interruption\nof service, but a small risk of corruption.\n"
+                },
+                "sizeGb": {
+                    "type": "integer",
+                    "description": "The size of the snapshot in GB.\n"
+                },
+                "state": {
+                    "type": "string",
+                    "description": "The status of the snapshot.\n"
+                },
+                "templateId": {
+                    "type": "string",
+                    "description": "The template id.\n"
+                }
+            },
+            "required": [
+                "completedAt",
+                "hostname",
+                "instanceId",
+                "name",
+                "nextExecution",
+                "region",
+                "requestedAt",
+                "sizeGb",
+                "state",
+                "templateId"
+            ],
+            "inputProperties": {
+                "cronTiming": {
+                    "type": "string",
+                    "description": "If a valid cron string is passed, the snapshot will be saved as an automated snapshot \ncontinuing to automatically update based on the schedule of the cron sequence provided\nThe default is nil meaning the snapshot will be saved as a one-off snapshot.\n"
+                },
+                "instanceId": {
+                    "type": "string",
+                    "description": "The ID of the Instance from which the snapshot will be taken.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name for the instance snapshot.\n"
+                },
+                "safe": {
+                    "type": "boolean",
+                    "description": "If `true` the instance will be shut down during the snapshot to ensure all files \nare in a consistent state (e.g. database tables aren't in the middle of being optimised\nand hence risking corruption). The default is `false` so you experience no interruption\nof service, but a small risk of corruption.\n"
+                }
+            },
+            "requiredInputs": [
+                "instanceId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Snapshot resources.\n",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "description": "The date where the snapshot was completed.\n"
+                    },
+                    "cronTiming": {
+                        "type": "string",
+                        "description": "If a valid cron string is passed, the snapshot will be saved as an automated snapshot \ncontinuing to automatically update based on the schedule of the cron sequence provided\nThe default is nil meaning the snapshot will be saved as a one-off snapshot.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The hostname of the instance.\n"
+                    },
+                    "instanceId": {
+                        "type": "string",
+                        "description": "The ID of the Instance from which the snapshot will be taken.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A name for the instance snapshot.\n"
+                    },
+                    "nextExecution": {
+                        "type": "string",
+                        "description": "if cron was define this date will be the next execution date.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the snapshot was take.\n"
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "description": "The date where the snapshot was requested.\n"
+                    },
+                    "safe": {
+                        "type": "boolean",
+                        "description": "If `true` the instance will be shut down during the snapshot to ensure all files \nare in a consistent state (e.g. database tables aren't in the middle of being optimised\nand hence risking corruption). The default is `false` so you experience no interruption\nof service, but a small risk of corruption.\n"
+                    },
+                    "sizeGb": {
+                        "type": "integer",
+                        "description": "The size of the snapshot in GB.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The status of the snapshot.\n"
+                    },
+                    "templateId": {
+                        "type": "string",
+                        "description": "The template id.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/sshKey:SshKey": {
+            "description": "Provides a Civo SSH key resource to allow you to manage SSH\nkeys for Instance access. Keys created with this resource\ncan be referenced in your instance configuration via their ID.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\nimport * from \"fs\";\n\nconst my_user = new civo.SshKey(\"my-user\", {publicKey: fs.readFileSync(\"~/.ssh/id_rsa.pub\")});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_user = civo.SshKey(\"my-user\", public_key=(lambda path: open(path).read())(\"~/.ssh/id_rsa.pub\"))\n```\n```csharp\nusing System.IO;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_user = new Civo.SshKey(\"my-user\", new Civo.SshKeyArgs\n        {\n            PublicKey = File.ReadAllText(\"~/.ssh/id_rsa.pub\"),\n        });\n    }\n\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "fingerprint": {
+                    "type": "string",
+                    "description": "The fingerprint of the SSH key\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it\ncan be read using the file interpolation function.\n"
+                }
+            },
+            "required": [
+                "fingerprint",
+                "name",
+                "publicKey"
+            ],
+            "inputProperties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the SSH key for identification\n"
+                },
+                "publicKey": {
+                    "type": "string",
+                    "description": "The public key. If this is a file, it\ncan be read using the file interpolation function.\n"
+                }
+            },
+            "requiredInputs": [
+                "publicKey"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering SshKey resources.\n",
+                "properties": {
+                    "fingerprint": {
+                        "type": "string",
+                        "description": "The fingerprint of the SSH key\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the SSH key for identification\n"
+                    },
+                    "publicKey": {
+                        "type": "string",
+                        "description": "The public key. If this is a file, it\ncan be read using the file interpolation function.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/template:Template": {
+            "description": "Provides a Civo Template resource.\nThis can be used to create, modify, and delete Templates.\n",
+            "properties": {
+                "cloudConfig": {
+                    "type": "string",
+                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
+                },
+                "defaultUsername": {
+                    "type": "string",
+                    "description": "The default username to suggest that the user creates\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A multi-line description of the template, in Markdown format\n"
+                },
+                "imageId": {
+                    "type": "string",
+                    "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "This is a short human readable name for the template\n"
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "description": "A one line description of the template\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
+                }
+            },
+            "required": [
+                "code",
+                "name"
+            ],
+            "inputProperties": {
+                "cloudConfig": {
+                    "type": "string",
+                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
+                },
+                "code": {
+                    "type": "string",
+                    "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
+                },
+                "defaultUsername": {
+                    "type": "string",
+                    "description": "The default username to suggest that the user creates\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "A multi-line description of the template, in Markdown format\n"
+                },
+                "imageId": {
+                    "type": "string",
+                    "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "This is a short human readable name for the template\n"
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "description": "A one line description of the template\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
+                }
+            },
+            "requiredInputs": [
+                "code"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Template resources.\n",
+                "properties": {
+                    "cloudConfig": {
+                        "type": "string",
+                        "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
+                    },
+                    "code": {
+                        "type": "string",
+                        "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
+                    },
+                    "defaultUsername": {
+                        "type": "string",
+                        "description": "The default username to suggest that the user creates\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "A multi-line description of the template, in Markdown format\n"
+                    },
+                    "imageId": {
+                        "type": "string",
+                        "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "This is a short human readable name for the template\n"
+                    },
+                    "shortDescription": {
+                        "type": "string",
+                        "description": "A one line description of the template\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/volume:Volume": {
+            "description": "Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    bootable: false,\n    sizeGb: 60,\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ndb = civo.Volume(\"db\",\n    bootable=False,\n    size_gb=60)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Civo.Volume(\"db\", new Civo.VolumeArgs\n        {\n            Bootable = false,\n            SizeGb = 60,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewVolume(ctx, \"db\", \u0026civo.VolumeArgs{\n\t\t\tBootable: pulumi.Bool(false),\n\t\t\tSizeGb:   pulumi.Int(60),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "bootable": {
+                    "type": "boolean",
+                    "description": "Mark the volume as bootable.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "The date of the creation of the volume.\n"
+                },
+                "mountPoint": {
+                    "type": "string",
+                    "description": "The mount point of the volume.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name that you wish to use to refer to this volume .\n"
+                },
+                "sizeGb": {
+                    "type": "integer",
+                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                }
+            },
+            "required": [
+                "bootable",
+                "createdAt",
+                "mountPoint",
+                "name",
+                "sizeGb"
+            ],
+            "inputProperties": {
+                "bootable": {
+                    "type": "boolean",
+                    "description": "Mark the volume as bootable.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A name that you wish to use to refer to this volume .\n"
+                },
+                "sizeGb": {
+                    "type": "integer",
+                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                }
+            },
+            "requiredInputs": [
+                "bootable",
+                "sizeGb"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering Volume resources.\n",
+                "properties": {
+                    "bootable": {
+                        "type": "boolean",
+                        "description": "Mark the volume as bootable.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date of the creation of the volume.\n"
+                    },
+                    "mountPoint": {
+                        "type": "string",
+                        "description": "The mount point of the volume.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "A name that you wish to use to refer to this volume .\n"
+                    },
+                    "sizeGb": {
+                        "type": "integer",
+                        "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/volumeAttachment:VolumeAttachment": {
+            "description": "Manages attaching a Volume to a Instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    sizeGb: 60,\n    bootable: false,\n});\nconst foobar = new civo.VolumeAttachment(\"foobar\", {\n    instanceId: civo_instance[\"my-test-instance\"].id,\n    volumeId: db.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ndb = civo.Volume(\"db\",\n    size_gb=60,\n    bootable=False)\nfoobar = civo.VolumeAttachment(\"foobar\",\n    instance_id=civo_instance[\"my-test-instance\"][\"id\"],\n    volume_id=db.id)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Civo.Volume(\"db\", new Civo.VolumeArgs\n        {\n            SizeGb = 60,\n            Bootable = false,\n        });\n        var foobar = new Civo.VolumeAttachment(\"foobar\", new Civo.VolumeAttachmentArgs\n        {\n            InstanceId = civo_instance.My_test_instance.Id,\n            VolumeId = db.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdb, err := civo.NewVolume(ctx, \"db\", \u0026civo.VolumeArgs{\n\t\t\tSizeGb:   pulumi.Int(60),\n\t\t\tBootable: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewVolumeAttachment(ctx, \"foobar\", \u0026civo.VolumeAttachmentArgs{\n\t\t\tInstanceId: pulumi.Any(civo_instance.My - test - instance.Id),\n\t\t\tVolumeId:   db.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "instanceId": {
+                    "type": "string",
+                    "description": "ID of the instance to attach the volume to.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "ID of the Volume to be attached to the instance.\n"
+                }
+            },
+            "required": [
+                "instanceId",
+                "volumeId"
+            ],
+            "inputProperties": {
+                "instanceId": {
+                    "type": "string",
+                    "description": "ID of the instance to attach the volume to.\n"
+                },
+                "volumeId": {
+                    "type": "string",
+                    "description": "ID of the Volume to be attached to the instance.\n"
+                }
+            },
+            "requiredInputs": [
+                "instanceId",
+                "volumeId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering VolumeAttachment resources.\n",
+                "properties": {
+                    "instanceId": {
+                        "type": "string",
+                        "description": "ID of the instance to attach the volume to.\n"
+                    },
+                    "volumeId": {
+                        "type": "string",
+                        "description": "ID of the Volume to be attached to the instance.\n"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "functions": {
+        "civo:index/getDnsDomainName:getDnsDomainName": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDnsDomainName.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The id of the domain.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the domain.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDnsDomainName.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "A unique ID that can be used to identify and reference a domain.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the domain.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/getDnsDomainRecord:getDnsDomainRecord": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getDnsDomainRecord.\n",
+                "properties": {
+                    "domainId": {
+                        "type": "string",
+                        "description": "The domain id of the record.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the record.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "domainId",
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDnsDomainRecord.\n",
+                "properties": {
+                    "accountId": {
+                        "type": "string",
+                        "description": "The id account of the domain.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date when it was created in UTC format\n"
+                    },
+                    "domainId": {
+                        "type": "string",
+                        "description": "The id of the domain\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)\n"
+                    },
+                    "priority": {
+                        "type": "integer",
+                        "description": "The priority of the record.\n"
+                    },
+                    "ttl": {
+                        "type": "integer",
+                        "description": "How long caching DNS servers should cache this record.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "The choice of record type from a, cname, mx or txt\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "The date when it was updated in UTC format\n"
+                    },
+                    "value": {
+                        "type": "string",
+                        "description": "The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accountId",
+                    "createdAt",
+                    "domainId",
+                    "name",
+                    "priority",
+                    "ttl",
+                    "type",
+                    "updatedAt",
+                    "value",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getInstance:getInstance": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getInstance.\n",
+                "properties": {
+                    "hostname": {
+                        "type": "string",
+                        "description": "The hostname of the Instance.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Instance\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInstance.\n",
+                "properties": {
+                    "cpuCores": {
+                        "type": "integer",
+                        "description": "Total cpu of the inatance.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date of creation of the instance\n"
+                    },
+                    "diskGb": {
+                        "type": "integer",
+                        "description": "The size of the disk.\n"
+                    },
+                    "firewallId": {
+                        "type": "string",
+                        "description": "The ID of the firewall used.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The Instance hostname.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Instance.\n"
+                    },
+                    "initialPassword": {
+                        "type": "string",
+                        "description": "Instance initial password\n"
+                    },
+                    "initialUser": {
+                        "type": "string",
+                        "description": "The name of the initial user created on the server.\n"
+                    },
+                    "networkId": {
+                        "type": "string",
+                        "description": "This will be the ID of the network.\n"
+                    },
+                    "notes": {
+                        "type": "string",
+                        "description": "The notes of the instance.\n"
+                    },
+                    "privateIp": {
+                        "type": "string",
+                        "description": "The private ip.\n"
+                    },
+                    "pseudoIp": {
+                        "type": "string",
+                        "description": "Is the ip that is used to route the public ip from the internet to the instance using NAT\n"
+                    },
+                    "publicIp": {
+                        "type": "string",
+                        "description": "The public ip.\n"
+                    },
+                    "ramMb": {
+                        "type": "integer",
+                        "description": "Total ram of the instance.\n"
+                    },
+                    "reverseDns": {
+                        "type": "string",
+                        "description": "A fully qualified domain name.\n"
+                    },
+                    "script": {
+                        "type": "string",
+                        "description": "the contents of a script uploaded\n"
+                    },
+                    "size": {
+                        "type": "string",
+                        "description": "The name of the size.\n"
+                    },
+                    "sshkeyId": {
+                        "type": "string",
+                        "description": "The ID SSH.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the instance\n"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "An optional list of tags\n"
+                    },
+                    "template": {
+                        "type": "string",
+                        "description": "The ID for the template to used to build the instance.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cpuCores",
+                    "createdAt",
+                    "diskGb",
+                    "firewallId",
+                    "initialPassword",
+                    "initialUser",
+                    "networkId",
+                    "notes",
+                    "privateIp",
+                    "pseudoIp",
+                    "publicIp",
+                    "ramMb",
+                    "reverseDns",
+                    "script",
+                    "size",
+                    "sshkeyId",
+                    "status",
+                    "tags",
+                    "template"
+                ]
+            }
+        },
+        "civo:index/getInstances:getInstances": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getInstances.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesFilter:getInstancesFilter"
+                        },
+                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSort:getInstancesSort"
+                        },
+                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInstances.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesFilter:getInstancesFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "instances": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesInstance:getInstancesInstance"
+                        },
+                        "description": "A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSort:getInstancesSort"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "instances",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getInstancesSize:getInstancesSize": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getInstancesSize.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSizeFilter:getInstancesSizeFilter"
+                        }
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSizeSort:getInstancesSizeSort"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getInstancesSize.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSizeFilter:getInstancesSizeFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "sizes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSizeSize:getInstancesSizeSize"
+                        }
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getInstancesSizeSort:getInstancesSizeSort"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sizes",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getKubernetesCluster:getKubernetesCluster": {
+            "description": "Provides a Civo Kubernetes cluster data source.\n\n**Note:** This data source returns a single kubernetes cluster. When specifying a `name`, an\nerror is triggered if more than one kubernetes Cluster is found.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nGet the Kubernetes Cluster by name:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst my-cluster = civo.getKubernetesCluster({\n    name: \"my-super-cluster\",\n});\nexport const kubernetesClusterOutput = my_cluster.then(my_cluster =\u003e my_cluster.masterIp);\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_cluster = civo.get_kubernetes_cluster(name=\"my-super-cluster\")\npulumi.export(\"kubernetesClusterOutput\", my_cluster.master_ip)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs\n        {\n            Name = \"my-super-cluster\",\n        }));\n        this.KubernetesClusterOutput = my_cluster.Apply(my_cluster =\u003e my_cluster.MasterIp);\n    }\n\n    [Output(\"kubernetesClusterOutput\")]\n    public Output\u003cstring\u003e KubernetesClusterOutput { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"my-super-cluster\"\n\t\tmy_cluster, err := civo.LookupKubernetesCluster(ctx, \u0026civo.LookupKubernetesClusterArgs{\n\t\t\tName: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"kubernetesClusterOutput\", my_cluster.MasterIp)\n\t\treturn nil\n\t})\n}\n```\n\nGet the Kubernetes Cluster by id:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst my_cluster = pulumi.output(civo.getKubernetesCluster({\n    name: \"40ac97ee-b82b-4231-9b60-079c7e2e5d79\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_cluster = civo.get_kubernetes_cluster(name=\"40ac97ee-b82b-4231-9b60-079c7e2e5d79\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs\n        {\n            Name = \"40ac97ee-b82b-4231-9b60-079c7e2e5d79\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"40ac97ee-b82b-4231-9b60-079c7e2e5d79\"\n\t\t_, err := civo.LookupKubernetesCluster(ctx, \u0026civo.LookupKubernetesClusterArgs{\n\t\t\tName: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKubernetesCluster.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the kubernetes Cluster\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the kubernetes Cluster.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKubernetesCluster.\n",
+                "properties": {
+                    "apiEndpoint": {
+                        "type": "string",
+                        "description": "The base URL of the API server on the Kubernetes master node.\n"
+                    },
+                    "applications": {
+                        "type": "string",
+                        "description": "A list of application installed.\n"
+                    },
+                    "builtAt": {
+                        "type": "string",
+                        "description": "The date where the Kubernetes cluster was build.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date where the Kubernetes cluster was create.\n"
+                    },
+                    "dnsEntry": {
+                        "type": "string",
+                        "description": "The unique dns entry for the cluster in this case point to the master.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
+                    },
+                    "installedApplications": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication"
+                        },
+                        "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
+                    },
+                    "instances": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesClusterInstance:getKubernetesClusterInstance"
+                        },
+                        "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                    },
+                    "kubeconfig": {
+                        "type": "string",
+                        "description": "A representation of the Kubernetes cluster's kubeconfig in yaml format.\n"
+                    },
+                    "kubernetesVersion": {
+                        "type": "string",
+                        "description": "The version of Kubernetes.\n"
+                    },
+                    "masterIp": {
+                        "type": "string",
+                        "description": "The Ip of the Kubernetes master node.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of your cluster,.\n"
+                    },
+                    "numTargetNodes": {
+                        "type": "integer",
+                        "description": "The size of the Kubernetes cluster.\n"
+                    },
+                    "ready": {
+                        "type": "boolean"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n"
+                    },
+                    "tags": {
+                        "type": "string",
+                        "description": "The tag of the instances\n"
+                    },
+                    "targetNodesSize": {
+                        "type": "string",
+                        "description": "The size of each node.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "apiEndpoint",
+                    "applications",
+                    "builtAt",
+                    "createdAt",
+                    "dnsEntry",
+                    "installedApplications",
+                    "instances",
+                    "kubeconfig",
+                    "kubernetesVersion",
+                    "masterIp",
+                    "numTargetNodes",
+                    "ready",
+                    "status",
+                    "tags",
+                    "targetNodesSize"
+                ]
+            }
+        },
+        "civo:index/getKubernetesVersion:getKubernetesVersion": {
+            "description": "Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst stable = pulumi.output(civo.getKubernetesVersion({\n    filters: [{\n        key: \"type\",\n        values: [\"stable\"],\n    }],\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nstable = civo.get_kubernetes_version(filters=[{\n    \"key\": \"type\",\n    \"values\": [\"stable\"],\n}])\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var stable = Output.Create(Civo.GetKubernetesVersion.InvokeAsync(new Civo.GetKubernetesVersionArgs\n        {\n            Filters = \n            {\n                new Civo.Inputs.GetKubernetesVersionFilterArgs\n                {\n                    Key = \"type\",\n                    Values = \n                    {\n                        \"stable\",\n                    },\n                },\n            },\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.GetKubernetesVersion(ctx, \u0026civo.GetKubernetesVersionArgs{\n\t\t\tFilters: []civo.GetKubernetesVersionFilter{\n\t\t\t\tcivo.GetKubernetesVersionFilter{\n\t\t\t\t\tKey: \"type\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"stable\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Pin a Kubernetes cluster to a specific minor version\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst minorVersion = pulumi.output(civo.getKubernetesVersion({\n    filters: [{\n        key: \"version\",\n        values: [\"0.9.1\"],\n    }],\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nminor_version = civo.get_kubernetes_version(filters=[{\n    \"key\": \"version\",\n    \"values\": [\"0.9.1\"],\n}])\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var minorVersion = Output.Create(Civo.GetKubernetesVersion.InvokeAsync(new Civo.GetKubernetesVersionArgs\n        {\n            Filters = \n            {\n                new Civo.Inputs.GetKubernetesVersionFilterArgs\n                {\n                    Key = \"version\",\n                    Values = \n                    {\n                        \"0.9.1\",\n                    },\n                },\n            },\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.GetKubernetesVersion(ctx, \u0026civo.GetKubernetesVersionArgs{\n\t\t\tFilters: []civo.GetKubernetesVersionFilter{\n\t\t\t\tcivo.GetKubernetesVersionFilter{\n\t\t\t\t\tKey: \"version\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"0.9.1\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getKubernetesVersion.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesVersionFilter:getKubernetesVersionFilter"
+                        },
+                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesVersionSort:getKubernetesVersionSort"
+                        },
+                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getKubernetesVersion.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesVersionFilter:getKubernetesVersionFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesVersionSort:getKubernetesVersionSort"
+                        }
+                    },
+                    "versions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getKubernetesVersionVersion:getKubernetesVersionVersion"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "versions",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getLoadBalancer:getLoadBalancer": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getLoadBalancer.\n",
+                "properties": {
+                    "hostname": {
+                        "type": "string",
+                        "description": "The hostname of the Load Balancer.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Load Balancer.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getLoadBalancer.\n",
+                "properties": {
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getLoadBalancerBackend:getLoadBalancerBackend"
+                        },
+                        "description": "A list of backend instances\n"
+                    },
+                    "failTimeout": {
+                        "type": "integer",
+                        "description": "The wait time until the backend is marked as a failure\n"
+                    },
+                    "healthCheckPath": {
+                        "type": "string",
+                        "description": "The path to check the health of the backend\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The hostname of the Load Balancer\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Load Balancer\n"
+                    },
+                    "ignoreInvalidBackendTls": {
+                        "type": "boolean",
+                        "description": "Should self-signed/invalid certificates be ignored from the backend servers\n"
+                    },
+                    "maxConns": {
+                        "type": "integer",
+                        "description": "How many concurrent connections can each backend handle\n"
+                    },
+                    "maxRequestSize": {
+                        "type": "integer",
+                        "description": "The max request size set in the configuration\n"
+                    },
+                    "policy": {
+                        "type": "string",
+                        "description": "The policy set in the Load Balancer\n"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "The port set in the configuration.\n"
+                    },
+                    "protocol": {
+                        "type": "string",
+                        "description": "The protocol used in the configuration.\n"
+                    },
+                    "tlsCertificate": {
+                        "type": "string",
+                        "description": "If is set will be returned\n"
+                    },
+                    "tlsKey": {
+                        "type": "string",
+                        "description": "If is set will be returned\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "backends",
+                    "failTimeout",
+                    "healthCheckPath",
+                    "ignoreInvalidBackendTls",
+                    "maxConns",
+                    "maxRequestSize",
+                    "policy",
+                    "port",
+                    "protocol",
+                    "tlsCertificate",
+                    "tlsKey"
+                ]
+            }
+        },
+        "civo:index/getNetwork:getNetwork": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getNetwork.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier of an existing Network.\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "The name of an existing Network.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getNetwork.\n",
+                "properties": {
+                    "cidr": {
+                        "type": "string",
+                        "description": "The block ip assigned to the network.\n"
+                    },
+                    "default": {
+                        "type": "boolean",
+                        "description": "If is the default network.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "A unique ID that can be used to identify and reference a Network.\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "The label used in the configuration.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the network.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the network was create.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "cidr",
+                    "default",
+                    "name",
+                    "region"
+                ]
+            }
+        },
+        "civo:index/getSnapshot:getSnapshot": {
+            "description": "Snapshots are saved instances of a block storage volume. Use this data\nsource to retrieve the ID of a Civo snapshot for use in other\nresources.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\nGet the snapshot:\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst mysql_vm = pulumi.output(civo.getSnapshot({\n    name: \"mysql-vm\",\n}, { async: true }));\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmysql_vm = civo.get_snapshot(name=\"mysql-vm\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var mysql_vm = Output.Create(Civo.GetSnapshot.InvokeAsync(new Civo.GetSnapshotArgs\n        {\n            Name = \"mysql-vm\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v2/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"mysql-vm\"\n\t\t_, err := civo.LookupSnapshot(ctx, \u0026civo.LookupSnapshotArgs{\n\t\t\tName: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSnapshot.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the snapshot.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the snapshot.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSnapshot.\n",
+                "properties": {
+                    "completedAt": {
+                        "type": "string",
+                        "description": "The date where the snapshot was completed.\n"
+                    },
+                    "cronTiming": {
+                        "type": "string",
+                        "description": "A string with the cron format.\n"
+                    },
+                    "hostname": {
+                        "type": "string",
+                        "description": "The hostname of the instance.\n"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "instanceId": {
+                        "type": "string",
+                        "description": "The ID of the Instance from which the snapshot was be taken.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the snapshot.\n"
+                    },
+                    "nextExecution": {
+                        "type": "string",
+                        "description": "if cron was define this date will be the next execution date.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the snapshot was take.\n"
+                    },
+                    "requestedAt": {
+                        "type": "string",
+                        "description": "The date where the snapshot was requested.\n"
+                    },
+                    "safe": {
+                        "type": "boolean",
+                        "description": "If is `true` the instance will be shut down during the snapshot if id `false` them not.\n"
+                    },
+                    "sizeGb": {
+                        "type": "integer",
+                        "description": "The size of the snapshot in GB.\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The status of the snapshot.\n"
+                    },
+                    "templateId": {
+                        "type": "string",
+                        "description": "The template id.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "completedAt",
+                    "cronTiming",
+                    "hostname",
+                    "instanceId",
+                    "nextExecution",
+                    "region",
+                    "requestedAt",
+                    "safe",
+                    "sizeGb",
+                    "state",
+                    "templateId"
+                ]
+            }
+        },
+        "civo:index/getSshKey:getSshKey": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getSshKey.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the ssh key.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the ssh key.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSshKey.\n",
+                "properties": {
+                    "fingerprint": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "fingerprint"
+                ]
+            }
+        },
+        "civo:index/getTemplate:getTemplate": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getTemplate.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getTemplateFilter:getTemplateFilter"
+                        },
+                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getTemplateSort:getTemplateSort"
+                        },
+                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getTemplate.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getTemplateFilter:getTemplateFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getTemplateSort:getTemplateSort"
+                        }
+                    },
+                    "templates": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:/getTemplateTemplate:getTemplateTemplate"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "templates",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getVolume:getVolume": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getVolume.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier for the volume.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the volume.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getVolume.\n",
+                "properties": {
+                    "bootable": {
+                        "type": "boolean",
+                        "description": "if is bootable or not.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "The date of the creation of the volume.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The unique identifier for the volume.\n"
+                    },
+                    "mountPoint": {
+                        "type": "string",
+                        "description": "The mount point of the volume.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the volume.\n"
+                    },
+                    "sizeGb": {
+                        "type": "integer",
+                        "description": "The size of the volume.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "bootable",
+                    "createdAt",
+                    "mountPoint",
+                    "sizeGb"
+                ]
+            }
+        }
+    },
+    "language": {
+        "csharp": {
+            "namespaces": {
+                "civo": "Civo"
+            },
+            "packageReferences": {
+                "Pulumi": "2.*",
+                "System.Collections.Immutable": "1.6.0"
+            }
+        },
+        "nodejs": {
+            "dependencies": {
+                "@pulumi/pulumi": "^2.0.0"
+            },
+            "devDependencies": {
+                "@types/mime": "^2.0.0",
+                "@types/node": "^8.0.25"
+            },
+            "disableUnionOutputTypes": true,
+            "packageDescription": "A Pulumi package for creating and managing Civo cloud resources.",
+            "packageName": "",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`civo/terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
+            "typescriptVersion": ""
+        },
+        "python": {
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`civo/terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
+            "requires": {
+                "pulumi": "\u003e=2.0.0,\u003c3.0.0"
+            }
+        }
+    }
+}
