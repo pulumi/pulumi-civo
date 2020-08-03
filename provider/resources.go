@@ -74,15 +74,15 @@ func Provider() tfbridge.ProviderInfo {
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
-		Name:        "civo",
-		Description: "A Pulumi package for creating and managing Civo cloud resources.",
-		Keywords:    []string{"pulumi", "civo"},
-		License:     "Apache-2.0",
-		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-civo",
-		GitHubOrg:   "civo",
-		Config: map[string]*tfbridge.SchemaInfo{},
+		P:                    p,
+		Name:                 "civo",
+		Description:          "A Pulumi package for creating and managing Civo cloud resources.",
+		Keywords:             []string{"pulumi", "civo"},
+		License:              "Apache-2.0",
+		Homepage:             "https://pulumi.io",
+		Repository:           "https://github.com/pulumi/pulumi-civo",
+		GitHubOrg:            "civo",
+		Config:               map[string]*tfbridge.SchemaInfo{},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"civo_instance":           {Tok: makeResource(mainMod, "Instance")},
