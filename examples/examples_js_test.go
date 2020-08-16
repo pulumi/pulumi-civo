@@ -19,11 +19,61 @@ func TestAccNetworkTs(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
+func TestKubernetesMinimalTs(t *testing.T) {
+	skipIfShort(t)
+	test := getJSKubernetesOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func TestKubernetesMediumTs(t *testing.T) {
+	skipIfShort(t)
+	test := getJSKubernetesOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "kubernetes", "ts", "medium"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+func TestKubernetesComplexTs(t *testing.T) {
+	skipIfShort(t)
+	test := getJSKubernetesOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: path.Join(getCwd(t), "kubernetes", "ts", "complex"),
+			Config: map[string]string{
+				"kubernetes-ts-complex:useAmbassadorIngress": "true",
+				"minio:exposeWithIngress":                    "true",
+				"minio:persistenceEnabled":                   "false",
+			},
+			Secrets: map[string]string{
+				"minio:accessKey": "pulumicivo",
+				"minio:secretKey": "abrakadabra",
+			},
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"@pulumi/civo",
+		},
+	})
+
+	return baseJS
+}
+
+func getJSKubernetesOptions(t *testing.T) integration.ProgramTestOptions {
+	base := getJSBaseOptions(t)
+	baseJS := base.With(integration.ProgramTestOptions{
+		Dependencies: []string{
+			"@pulumi/kubernetes",
 		},
 	})
 

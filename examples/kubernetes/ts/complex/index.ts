@@ -32,7 +32,8 @@ if (useAmbassadorIngress) {
         {
             providers: {
                 kubernetes: k8sProvider
-            }
+            },
+            dependsOn: [ k8sProvider ]
         }
     );
 
