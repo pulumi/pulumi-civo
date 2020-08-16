@@ -1,0 +1,3 @@
+name: kubernetes-ts-complex
+runtime: nodejs
+description: A more complex TypeScript Pulumi program that creates a Civo Kubernetes cluster and deploys Minio.
