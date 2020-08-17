@@ -54,11 +54,13 @@ export class MinioDeployment extends pulumi.ComponentResource {
 
         const minioChart = new k8s.helm.v2.Chart("minio",
             {
-                repo: "minio",
                 chart: "minio",
                 version: "6.0.2",
                 namespace: "minio",
                 values: configValues,
+                fetchOpts: {
+                    repo: "https://helm.min.io/"
+                },
                 transformations: [
                     (obj: any) => {
                         if (!minioConfig.persistenceStorageClassInstalled) {
