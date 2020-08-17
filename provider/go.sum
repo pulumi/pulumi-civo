@@ -131,6 +131,8 @@ github.com/civo/terraform-provider-civo v0.9.8 h1:aFj6qfEkMy+4aPd4Sq9j2F1pvi5dKP
 github.com/civo/terraform-provider-civo v0.9.8/go.mod h1:tnkgT1lLktAynFHdjOyjwygULflaIE6pfUv9h7n8Sok=
 github.com/civo/terraform-provider-civo v0.9.14 h1:eb38a7ZnSDbCByY7HBcyTW3czCCH+27I6KQq4hbeHZM=
 github.com/civo/terraform-provider-civo v0.9.14/go.mod h1:Bq4ZHTIF/qDTX8sCJZ8IEMUaJSzFwgbOrZ10WmSdCW0=
+github.com/civo/terraform-provider-civo v0.9.15 h1:S1J7XiEbE+bucfQOeskutlqArlgboEnUf/lyIVplnL4=
+github.com/civo/terraform-provider-civo v0.9.15/go.mod h1:Bq4ZHTIF/qDTX8sCJZ8IEMUaJSzFwgbOrZ10WmSdCW0=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/codahale/hdrhistogram v0.0.0-20161010025455-3a0bb77429bd/go.mod h1:sE/e/2PUdi/liOCUjSTXgM1o87ZssimdTWN964YiIeI=
