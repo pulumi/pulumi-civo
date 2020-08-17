@@ -21,7 +21,7 @@ func TestAccNetworkTs(t *testing.T) {
 
 func TestKubernetesMinimalTs(t *testing.T) {
 	skipIfShort(t)
-	test := getJSKubernetesOptions(t).
+	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
 		})
@@ -31,7 +31,7 @@ func TestKubernetesMinimalTs(t *testing.T) {
 
 func TestKubernetesMediumTs(t *testing.T) {
 	skipIfShort(t)
-	test := getJSKubernetesOptions(t).
+	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "kubernetes", "ts", "medium"),
 		})
@@ -41,7 +41,7 @@ func TestKubernetesMediumTs(t *testing.T) {
 
 func TestKubernetesComplexTs(t *testing.T) {
 	skipIfShort(t)
-	test := getJSKubernetesOptions(t).
+	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "kubernetes", "ts", "complex"),
 			Config: map[string]string{
@@ -63,17 +63,6 @@ func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	baseJS := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
 			"@pulumi/civo",
-		},
-	})
-
-	return baseJS
-}
-
-func getJSKubernetesOptions(t *testing.T) integration.ProgramTestOptions {
-	base := getJSBaseOptions(t)
-	baseJS := base.With(integration.ProgramTestOptions{
-		Dependencies: []string{
-			"@pulumi/kubernetes",
 		},
 	})
 
