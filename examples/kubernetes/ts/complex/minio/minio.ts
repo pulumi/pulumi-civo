@@ -44,6 +44,11 @@ export class MinioDeployment extends pulumi.ComponentResource {
                 size: minioConfig.persistenceSize,
                 storageClass: (minioConfig.persistenceStorageClass === undefined) ? null : minioConfig.persistenceStorageClass,
                 existingClaim: (minioConfig.persistenceExistingClaim === undefined) ? null : minioConfig.persistenceExistingClaim
+            },
+            resources: {
+                requests: {
+                    memory: "2Gi"
+                }
             }
         }
 
