@@ -29,9 +29,3 @@ func getCwd(t *testing.T) string {
 
 	return cwd
 }
-
-func skipIfShort(t *testing.T) {
-	if testing.Short() {
-		t.Skip("skipping long-running test in short mode")
-	}
-}

@@ -20,30 +20,30 @@ func TestAccNetworkTs(t *testing.T) {
 }
 
 func TestKubernetesMinimalTs(t *testing.T) {
-	skipIfShort(t)
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
+			ExpectRefreshChanges: true,
+			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
 		})
 
 	integration.ProgramTest(t, &test)
 }
 
 func TestKubernetesMediumTs(t *testing.T) {
-	skipIfShort(t)
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "kubernetes", "ts", "medium"),
+			ExpectRefreshChanges: true,
+			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "medium"),
 		})
 
 	integration.ProgramTest(t, &test)
 }
 
 func TestKubernetesComplexTs(t *testing.T) {
-	skipIfShort(t)
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			Dir: path.Join(getCwd(t), "kubernetes", "ts", "complex"),
+			ExpectRefreshChanges: true,
+			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "complex"),
 			Config: map[string]string{
 				"kubernetes-ts-complex:useAmbassadorIngress": "true",
 				"minio:exposeWithIngress":                    "true",
