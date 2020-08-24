@@ -5,10 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetVolumeResult',
+    'AwaitableGetVolumeResult',
+    'get_volume',
+]
 
+@pulumi.output_type
 class GetVolumeResult:
     """
     A collection of values returned by getVolume.
@@ -16,40 +22,70 @@ class GetVolumeResult:
     def __init__(__self__, bootable=None, created_at=None, id=None, mount_point=None, name=None, size_gb=None):
         if bootable and not isinstance(bootable, bool):
             raise TypeError("Expected argument 'bootable' to be a bool")
-        __self__.bootable = bootable
+        pulumi.set(__self__, "bootable", bootable)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if mount_point and not isinstance(mount_point, str):
+            raise TypeError("Expected argument 'mount_point' to be a str")
+        pulumi.set(__self__, "mount_point", mount_point)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if size_gb and not isinstance(size_gb, float):
+            raise TypeError("Expected argument 'size_gb' to be a float")
+        pulumi.set(__self__, "size_gb", size_gb)
+
+    @property
+    @pulumi.getter
+    def bootable(self) -> bool:
         """
         if is bootable or not.
         """
-        if created_at and not isinstance(created_at, str):
-            raise TypeError("Expected argument 'created_at' to be a str")
-        __self__.created_at = created_at
+        return pulumi.get(self, "bootable")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
         """
         The date of the creation of the volume.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         The unique identifier for the volume.
         """
-        if mount_point and not isinstance(mount_point, str):
-            raise TypeError("Expected argument 'mount_point' to be a str")
-        __self__.mount_point = mount_point
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> str:
         """
         The mount point of the volume.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "mount_point")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         Name of the volume.
         """
-        if size_gb and not isinstance(size_gb, float):
-            raise TypeError("Expected argument 'size_gb' to be a float")
-        __self__.size_gb = size_gb
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> float:
         """
         The size of the volume.
         """
+        return pulumi.get(self, "size_gb")
 
 
 class AwaitableGetVolumeResult(GetVolumeResult):
@@ -66,7 +102,9 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             size_gb=self.size_gb)
 
 
-def get_volume(id=None, name=None, opts=None):
+def get_volume(id: Optional[str] = None,
+               name: Optional[str] = None,
+               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -80,12 +118,12 @@ def get_volume(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getVolume:getVolume', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult).value
 
     return AwaitableGetVolumeResult(
-        bootable=__ret__.get('bootable'),
-        created_at=__ret__.get('createdAt'),
-        id=__ret__.get('id'),
-        mount_point=__ret__.get('mountPoint'),
-        name=__ret__.get('name'),
-        size_gb=__ret__.get('sizeGb'))
+        bootable=__ret__.bootable,
+        created_at=__ret__.created_at,
+        id=__ret__.id,
+        mount_point=__ret__.mount_point,
+        name=__ret__.name,
+        size_gb=__ret__.size_gb)

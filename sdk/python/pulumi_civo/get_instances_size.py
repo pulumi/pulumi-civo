@@ -5,10 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetInstancesSizeResult',
+    'AwaitableGetInstancesSizeResult',
+    'get_instances_size',
+]
 
+@pulumi.output_type
 class GetInstancesSizeResult:
     """
     A collection of values returned by getInstancesSize.
@@ -16,19 +24,39 @@ class GetInstancesSizeResult:
     def __init__(__self__, filters=None, id=None, sizes=None, sorts=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if sizes and not isinstance(sizes, list):
+            raise TypeError("Expected argument 'sizes' to be a list")
+        pulumi.set(__self__, "sizes", sizes)
+        if sorts and not isinstance(sorts, list):
+            raise TypeError("Expected argument 'sorts' to be a list")
+        pulumi.set(__self__, "sorts", sorts)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInstancesSizeFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if sizes and not isinstance(sizes, list):
-            raise TypeError("Expected argument 'sizes' to be a list")
-        __self__.sizes = sizes
-        if sorts and not isinstance(sorts, list):
-            raise TypeError("Expected argument 'sorts' to be a list")
-        __self__.sorts = sorts
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def sizes(self) -> List['outputs.GetInstancesSizeSizeResult']:
+        return pulumi.get(self, "sizes")
+
+    @property
+    @pulumi.getter
+    def sorts(self) -> Optional[List['outputs.GetInstancesSizeSortResult']]:
+        return pulumi.get(self, "sorts")
 
 
 class AwaitableGetInstancesSizeResult(GetInstancesSizeResult):
@@ -43,20 +71,11 @@ class AwaitableGetInstancesSizeResult(GetInstancesSizeResult):
             sorts=self.sorts)
 
 
-def get_instances_size(filters=None, sorts=None, opts=None):
+def get_instances_size(filters: Optional[List[pulumi.InputType['GetInstancesSizeFilterArgs']]] = None,
+                       sorts: Optional[List[pulumi.InputType['GetInstancesSizeSortArgs']]] = None,
+                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesSizeResult:
     """
     Use this data source to access information about an existing resource.
-
-
-    The **filters** object supports the following:
-
-      * `key` (`str`)
-      * `values` (`list`)
-
-    The **sorts** object supports the following:
-
-      * `direction` (`str`)
-      * `key` (`str`)
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -65,10 +84,10 @@ def get_instances_size(filters=None, sorts=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getInstancesSize:getInstancesSize', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getInstancesSize:getInstancesSize', __args__, opts=opts, typ=GetInstancesSizeResult).value
 
     return AwaitableGetInstancesSizeResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        sizes=__ret__.get('sizes'),
-        sorts=__ret__.get('sorts'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        sizes=__ret__.sizes,
+        sorts=__ret__.sorts)

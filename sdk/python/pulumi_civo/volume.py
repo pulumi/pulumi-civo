@@ -5,32 +5,22 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = ['Volume']
 
 
 class Volume(pulumi.CustomResource):
-    bootable: pulumi.Output[bool]
-    """
-    Mark the volume as bootable.
-    """
-    created_at: pulumi.Output[str]
-    """
-    The date of the creation of the volume.
-    """
-    mount_point: pulumi.Output[str]
-    """
-    The mount point of the volume.
-    """
-    name: pulumi.Output[str]
-    """
-    A name that you wish to use to refer to this volume .
-    """
-    size_gb: pulumi.Output[float]
-    """
-    A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
-    """
-    def __init__(__self__, resource_name, opts=None, bootable=None, name=None, size_gb=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bootable: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 size_gb: Optional[pulumi.Input[float]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
 
@@ -84,13 +74,20 @@ class Volume(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, bootable=None, created_at=None, mount_point=None, name=None, size_gb=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            bootable: Optional[pulumi.Input[bool]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            mount_point: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            size_gb: Optional[pulumi.Input[float]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bootable: Mark the volume as bootable.
         :param pulumi.Input[str] created_at: The date of the creation of the volume.
@@ -109,8 +106,49 @@ class Volume(pulumi.CustomResource):
         __props__["size_gb"] = size_gb
         return Volume(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def bootable(self) -> pulumi.Output[bool]:
+        """
+        Mark the volume as bootable.
+        """
+        return pulumi.get(self, "bootable")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The date of the creation of the volume.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> pulumi.Output[str]:
+        """
+        The mount point of the volume.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        A name that you wish to use to refer to this volume .
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> pulumi.Output[float]:
+        """
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        """
+        return pulumi.get(self, "size_gb")
+
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

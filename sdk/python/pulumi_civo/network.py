@@ -5,32 +5,20 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+
+__all__ = ['Network']
 
 
 class Network(pulumi.CustomResource):
-    cidr: pulumi.Output[str]
-    """
-    The block ip assigned to the network.
-    """
-    default: pulumi.Output[bool]
-    """
-    If is the default network.
-    """
-    label: pulumi.Output[str]
-    """
-    The Network label
-    """
-    name: pulumi.Output[str]
-    """
-    The name of the network.
-    """
-    region: pulumi.Output[str]
-    """
-    The region where the network was create.
-    """
-    def __init__(__self__, resource_name, opts=None, label=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 label: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Provides a Civo Network resource. This can be used to create,
         modify, and delete Networks.
@@ -79,13 +67,20 @@ class Network(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, cidr=None, default=None, label=None, name=None, region=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            cidr: Optional[pulumi.Input[str]] = None,
+            default: Optional[pulumi.Input[bool]] = None,
+            label: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cidr: The block ip assigned to the network.
         :param pulumi.Input[bool] default: If is the default network.
@@ -104,8 +99,49 @@ class Network(pulumi.CustomResource):
         __props__["region"] = region
         return Network(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter
+    def cidr(self) -> pulumi.Output[str]:
+        """
+        The block ip assigned to the network.
+        """
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def default(self) -> pulumi.Output[bool]:
+        """
+        If is the default network.
+        """
+        return pulumi.get(self, "default")
+
+    @property
+    @pulumi.getter
+    def label(self) -> pulumi.Output[str]:
+        """
+        The Network label
+        """
+        return pulumi.get(self, "label")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        The name of the network.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[str]:
+        """
+        The region where the network was create.
+        """
+        return pulumi.get(self, "region")
+
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

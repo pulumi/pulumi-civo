@@ -5,10 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetLoadBalancerResult',
+    'AwaitableGetLoadBalancerResult',
+    'get_load_balancer',
+]
 
+@pulumi.output_type
 class GetLoadBalancerResult:
     """
     A collection of values returned by getLoadBalancer.
@@ -16,82 +23,147 @@ class GetLoadBalancerResult:
     def __init__(__self__, backends=None, fail_timeout=None, health_check_path=None, hostname=None, id=None, ignore_invalid_backend_tls=None, max_conns=None, max_request_size=None, policy=None, port=None, protocol=None, tls_certificate=None, tls_key=None):
         if backends and not isinstance(backends, list):
             raise TypeError("Expected argument 'backends' to be a list")
-        __self__.backends = backends
+        pulumi.set(__self__, "backends", backends)
+        if fail_timeout and not isinstance(fail_timeout, float):
+            raise TypeError("Expected argument 'fail_timeout' to be a float")
+        pulumi.set(__self__, "fail_timeout", fail_timeout)
+        if health_check_path and not isinstance(health_check_path, str):
+            raise TypeError("Expected argument 'health_check_path' to be a str")
+        pulumi.set(__self__, "health_check_path", health_check_path)
+        if hostname and not isinstance(hostname, str):
+            raise TypeError("Expected argument 'hostname' to be a str")
+        pulumi.set(__self__, "hostname", hostname)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if ignore_invalid_backend_tls and not isinstance(ignore_invalid_backend_tls, bool):
+            raise TypeError("Expected argument 'ignore_invalid_backend_tls' to be a bool")
+        pulumi.set(__self__, "ignore_invalid_backend_tls", ignore_invalid_backend_tls)
+        if max_conns and not isinstance(max_conns, float):
+            raise TypeError("Expected argument 'max_conns' to be a float")
+        pulumi.set(__self__, "max_conns", max_conns)
+        if max_request_size and not isinstance(max_request_size, float):
+            raise TypeError("Expected argument 'max_request_size' to be a float")
+        pulumi.set(__self__, "max_request_size", max_request_size)
+        if policy and not isinstance(policy, str):
+            raise TypeError("Expected argument 'policy' to be a str")
+        pulumi.set(__self__, "policy", policy)
+        if port and not isinstance(port, float):
+            raise TypeError("Expected argument 'port' to be a float")
+        pulumi.set(__self__, "port", port)
+        if protocol and not isinstance(protocol, str):
+            raise TypeError("Expected argument 'protocol' to be a str")
+        pulumi.set(__self__, "protocol", protocol)
+        if tls_certificate and not isinstance(tls_certificate, str):
+            raise TypeError("Expected argument 'tls_certificate' to be a str")
+        pulumi.set(__self__, "tls_certificate", tls_certificate)
+        if tls_key and not isinstance(tls_key, str):
+            raise TypeError("Expected argument 'tls_key' to be a str")
+        pulumi.set(__self__, "tls_key", tls_key)
+
+    @property
+    @pulumi.getter
+    def backends(self) -> List['outputs.GetLoadBalancerBackendResult']:
         """
         A list of backend instances
         """
-        if fail_timeout and not isinstance(fail_timeout, float):
-            raise TypeError("Expected argument 'fail_timeout' to be a float")
-        __self__.fail_timeout = fail_timeout
+        return pulumi.get(self, "backends")
+
+    @property
+    @pulumi.getter(name="failTimeout")
+    def fail_timeout(self) -> float:
         """
         The wait time until the backend is marked as a failure
         """
-        if health_check_path and not isinstance(health_check_path, str):
-            raise TypeError("Expected argument 'health_check_path' to be a str")
-        __self__.health_check_path = health_check_path
+        return pulumi.get(self, "fail_timeout")
+
+    @property
+    @pulumi.getter(name="healthCheckPath")
+    def health_check_path(self) -> str:
         """
         The path to check the health of the backend
         """
-        if hostname and not isinstance(hostname, str):
-            raise TypeError("Expected argument 'hostname' to be a str")
-        __self__.hostname = hostname
+        return pulumi.get(self, "health_check_path")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[str]:
         """
         The hostname of the Load Balancer
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         The ID of the Load Balancer
         """
-        if ignore_invalid_backend_tls and not isinstance(ignore_invalid_backend_tls, bool):
-            raise TypeError("Expected argument 'ignore_invalid_backend_tls' to be a bool")
-        __self__.ignore_invalid_backend_tls = ignore_invalid_backend_tls
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ignoreInvalidBackendTls")
+    def ignore_invalid_backend_tls(self) -> bool:
         """
         Should self-signed/invalid certificates be ignored from the backend servers
         """
-        if max_conns and not isinstance(max_conns, float):
-            raise TypeError("Expected argument 'max_conns' to be a float")
-        __self__.max_conns = max_conns
+        return pulumi.get(self, "ignore_invalid_backend_tls")
+
+    @property
+    @pulumi.getter(name="maxConns")
+    def max_conns(self) -> float:
         """
         How many concurrent connections can each backend handle
         """
-        if max_request_size and not isinstance(max_request_size, float):
-            raise TypeError("Expected argument 'max_request_size' to be a float")
-        __self__.max_request_size = max_request_size
+        return pulumi.get(self, "max_conns")
+
+    @property
+    @pulumi.getter(name="maxRequestSize")
+    def max_request_size(self) -> float:
         """
         The max request size set in the configuration
         """
-        if policy and not isinstance(policy, str):
-            raise TypeError("Expected argument 'policy' to be a str")
-        __self__.policy = policy
+        return pulumi.get(self, "max_request_size")
+
+    @property
+    @pulumi.getter
+    def policy(self) -> str:
         """
         The policy set in the Load Balancer
         """
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
-        __self__.port = port
+        return pulumi.get(self, "policy")
+
+    @property
+    @pulumi.getter
+    def port(self) -> float:
         """
         The port set in the configuration.
         """
-        if protocol and not isinstance(protocol, str):
-            raise TypeError("Expected argument 'protocol' to be a str")
-        __self__.protocol = protocol
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
         """
         The protocol used in the configuration.
         """
-        if tls_certificate and not isinstance(tls_certificate, str):
-            raise TypeError("Expected argument 'tls_certificate' to be a str")
-        __self__.tls_certificate = tls_certificate
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="tlsCertificate")
+    def tls_certificate(self) -> str:
         """
         If is set will be returned
         """
-        if tls_key and not isinstance(tls_key, str):
-            raise TypeError("Expected argument 'tls_key' to be a str")
-        __self__.tls_key = tls_key
+        return pulumi.get(self, "tls_certificate")
+
+    @property
+    @pulumi.getter(name="tlsKey")
+    def tls_key(self) -> str:
         """
         If is set will be returned
         """
+        return pulumi.get(self, "tls_key")
 
 
 class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
@@ -115,7 +187,9 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             tls_key=self.tls_key)
 
 
-def get_load_balancer(hostname=None, id=None, opts=None):
+def get_load_balancer(hostname: Optional[str] = None,
+                      id: Optional[str] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -129,19 +203,19 @@ def get_load_balancer(hostname=None, id=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getLoadBalancer:getLoadBalancer', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=GetLoadBalancerResult).value
 
     return AwaitableGetLoadBalancerResult(
-        backends=__ret__.get('backends'),
-        fail_timeout=__ret__.get('failTimeout'),
-        health_check_path=__ret__.get('healthCheckPath'),
-        hostname=__ret__.get('hostname'),
-        id=__ret__.get('id'),
-        ignore_invalid_backend_tls=__ret__.get('ignoreInvalidBackendTls'),
-        max_conns=__ret__.get('maxConns'),
-        max_request_size=__ret__.get('maxRequestSize'),
-        policy=__ret__.get('policy'),
-        port=__ret__.get('port'),
-        protocol=__ret__.get('protocol'),
-        tls_certificate=__ret__.get('tlsCertificate'),
-        tls_key=__ret__.get('tlsKey'))
+        backends=__ret__.backends,
+        fail_timeout=__ret__.fail_timeout,
+        health_check_path=__ret__.health_check_path,
+        hostname=__ret__.hostname,
+        id=__ret__.id,
+        ignore_invalid_backend_tls=__ret__.ignore_invalid_backend_tls,
+        max_conns=__ret__.max_conns,
+        max_request_size=__ret__.max_request_size,
+        policy=__ret__.policy,
+        port=__ret__.port,
+        protocol=__ret__.protocol,
+        tls_certificate=__ret__.tls_certificate,
+        tls_key=__ret__.tls_key)

@@ -5,10 +5,17 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
 
+__all__ = [
+    'GetKubernetesClusterResult',
+    'AwaitableGetKubernetesClusterResult',
+    'get_kubernetes_cluster',
+]
 
+@pulumi.output_type
 class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
@@ -16,104 +23,189 @@ class GetKubernetesClusterResult:
     def __init__(__self__, api_endpoint=None, applications=None, built_at=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, ready=None, status=None, tags=None, target_nodes_size=None):
         if api_endpoint and not isinstance(api_endpoint, str):
             raise TypeError("Expected argument 'api_endpoint' to be a str")
-        __self__.api_endpoint = api_endpoint
+        pulumi.set(__self__, "api_endpoint", api_endpoint)
+        if applications and not isinstance(applications, str):
+            raise TypeError("Expected argument 'applications' to be a str")
+        pulumi.set(__self__, "applications", applications)
+        if built_at and not isinstance(built_at, str):
+            raise TypeError("Expected argument 'built_at' to be a str")
+        pulumi.set(__self__, "built_at", built_at)
+        if created_at and not isinstance(created_at, str):
+            raise TypeError("Expected argument 'created_at' to be a str")
+        pulumi.set(__self__, "created_at", created_at)
+        if dns_entry and not isinstance(dns_entry, str):
+            raise TypeError("Expected argument 'dns_entry' to be a str")
+        pulumi.set(__self__, "dns_entry", dns_entry)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if installed_applications and not isinstance(installed_applications, list):
+            raise TypeError("Expected argument 'installed_applications' to be a list")
+        pulumi.set(__self__, "installed_applications", installed_applications)
+        if instances and not isinstance(instances, list):
+            raise TypeError("Expected argument 'instances' to be a list")
+        pulumi.set(__self__, "instances", instances)
+        if kubeconfig and not isinstance(kubeconfig, str):
+            raise TypeError("Expected argument 'kubeconfig' to be a str")
+        pulumi.set(__self__, "kubeconfig", kubeconfig)
+        if kubernetes_version and not isinstance(kubernetes_version, str):
+            raise TypeError("Expected argument 'kubernetes_version' to be a str")
+        pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+        if master_ip and not isinstance(master_ip, str):
+            raise TypeError("Expected argument 'master_ip' to be a str")
+        pulumi.set(__self__, "master_ip", master_ip)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if num_target_nodes and not isinstance(num_target_nodes, float):
+            raise TypeError("Expected argument 'num_target_nodes' to be a float")
+        pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+        if ready and not isinstance(ready, bool):
+            raise TypeError("Expected argument 'ready' to be a bool")
+        pulumi.set(__self__, "ready", ready)
+        if status and not isinstance(status, str):
+            raise TypeError("Expected argument 'status' to be a str")
+        pulumi.set(__self__, "status", status)
+        if tags and not isinstance(tags, str):
+            raise TypeError("Expected argument 'tags' to be a str")
+        pulumi.set(__self__, "tags", tags)
+        if target_nodes_size and not isinstance(target_nodes_size, str):
+            raise TypeError("Expected argument 'target_nodes_size' to be a str")
+        pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> str:
         """
         The base URL of the API server on the Kubernetes master node.
         """
-        if applications and not isinstance(applications, str):
-            raise TypeError("Expected argument 'applications' to be a str")
-        __self__.applications = applications
+        return pulumi.get(self, "api_endpoint")
+
+    @property
+    @pulumi.getter
+    def applications(self) -> str:
         """
         A list of application installed.
         """
-        if built_at and not isinstance(built_at, str):
-            raise TypeError("Expected argument 'built_at' to be a str")
-        __self__.built_at = built_at
+        return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="builtAt")
+    def built_at(self) -> str:
         """
         The date where the Kubernetes cluster was build.
         """
-        if created_at and not isinstance(created_at, str):
-            raise TypeError("Expected argument 'created_at' to be a str")
-        __self__.created_at = created_at
+        return pulumi.get(self, "built_at")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
         """
         The date where the Kubernetes cluster was create.
         """
-        if dns_entry and not isinstance(dns_entry, str):
-            raise TypeError("Expected argument 'dns_entry' to be a str")
-        __self__.dns_entry = dns_entry
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dnsEntry")
+    def dns_entry(self) -> str:
         """
         The unique dns entry for the cluster in this case point to the master.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "dns_entry")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         A unique ID that can be used to identify and reference a Kubernetes cluster.
         """
-        if installed_applications and not isinstance(installed_applications, list):
-            raise TypeError("Expected argument 'installed_applications' to be a list")
-        __self__.installed_applications = installed_applications
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="installedApplications")
+    def installed_applications(self) -> List['outputs.GetKubernetesClusterInstalledApplicationResult']:
         """
         A unique ID that can be used to identify and reference a Kubernetes cluster.
         """
-        if instances and not isinstance(instances, list):
-            raise TypeError("Expected argument 'instances' to be a list")
-        __self__.instances = instances
+        return pulumi.get(self, "installed_applications")
+
+    @property
+    @pulumi.getter
+    def instances(self) -> List['outputs.GetKubernetesClusterInstanceResult']:
         """
         In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
         """
-        if kubeconfig and not isinstance(kubeconfig, str):
-            raise TypeError("Expected argument 'kubeconfig' to be a str")
-        __self__.kubeconfig = kubeconfig
+        return pulumi.get(self, "instances")
+
+    @property
+    @pulumi.getter
+    def kubeconfig(self) -> str:
         """
         A representation of the Kubernetes cluster's kubeconfig in yaml format.
         """
-        if kubernetes_version and not isinstance(kubernetes_version, str):
-            raise TypeError("Expected argument 'kubernetes_version' to be a str")
-        __self__.kubernetes_version = kubernetes_version
+        return pulumi.get(self, "kubeconfig")
+
+    @property
+    @pulumi.getter(name="kubernetesVersion")
+    def kubernetes_version(self) -> str:
         """
         The version of Kubernetes.
         """
-        if master_ip and not isinstance(master_ip, str):
-            raise TypeError("Expected argument 'master_ip' to be a str")
-        __self__.master_ip = master_ip
+        return pulumi.get(self, "kubernetes_version")
+
+    @property
+    @pulumi.getter(name="masterIp")
+    def master_ip(self) -> str:
         """
         The Ip of the Kubernetes master node.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "master_ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         The name of your cluster,.
         """
-        if num_target_nodes and not isinstance(num_target_nodes, float):
-            raise TypeError("Expected argument 'num_target_nodes' to be a float")
-        __self__.num_target_nodes = num_target_nodes
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="numTargetNodes")
+    def num_target_nodes(self) -> float:
         """
         The size of the Kubernetes cluster.
         """
-        if ready and not isinstance(ready, bool):
-            raise TypeError("Expected argument 'ready' to be a bool")
-        __self__.ready = ready
-        if status and not isinstance(status, str):
-            raise TypeError("Expected argument 'status' to be a str")
-        __self__.status = status
+        return pulumi.get(self, "num_target_nodes")
+
+    @property
+    @pulumi.getter
+    def ready(self) -> bool:
+        return pulumi.get(self, "ready")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
         """
         The status of Kubernetes cluster.
         * `ready` -If the Kubernetes cluster is ready.
         """
-        if tags and not isinstance(tags, str):
-            raise TypeError("Expected argument 'tags' to be a str")
-        __self__.tags = tags
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> str:
         """
         The tag of the instances
         """
-        if target_nodes_size and not isinstance(target_nodes_size, str):
-            raise TypeError("Expected argument 'target_nodes_size' to be a str")
-        __self__.target_nodes_size = target_nodes_size
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetNodesSize")
+    def target_nodes_size(self) -> str:
         """
         The size of each node.
         """
+        return pulumi.get(self, "target_nodes_size")
 
 
 class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
@@ -141,7 +233,9 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             target_nodes_size=self.target_nodes_size)
 
 
-def get_kubernetes_cluster(id=None, name=None, opts=None):
+def get_kubernetes_cluster(id: Optional[str] = None,
+                           name: Optional[str] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
     Provides a Civo Kubernetes cluster data source.
 
@@ -180,23 +274,23 @@ def get_kubernetes_cluster(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult).value
 
     return AwaitableGetKubernetesClusterResult(
-        api_endpoint=__ret__.get('apiEndpoint'),
-        applications=__ret__.get('applications'),
-        built_at=__ret__.get('builtAt'),
-        created_at=__ret__.get('createdAt'),
-        dns_entry=__ret__.get('dnsEntry'),
-        id=__ret__.get('id'),
-        installed_applications=__ret__.get('installedApplications'),
-        instances=__ret__.get('instances'),
-        kubeconfig=__ret__.get('kubeconfig'),
-        kubernetes_version=__ret__.get('kubernetesVersion'),
-        master_ip=__ret__.get('masterIp'),
-        name=__ret__.get('name'),
-        num_target_nodes=__ret__.get('numTargetNodes'),
-        ready=__ret__.get('ready'),
-        status=__ret__.get('status'),
-        tags=__ret__.get('tags'),
-        target_nodes_size=__ret__.get('targetNodesSize'))
+        api_endpoint=__ret__.api_endpoint,
+        applications=__ret__.applications,
+        built_at=__ret__.built_at,
+        created_at=__ret__.created_at,
+        dns_entry=__ret__.dns_entry,
+        id=__ret__.id,
+        installed_applications=__ret__.installed_applications,
+        instances=__ret__.instances,
+        kubeconfig=__ret__.kubeconfig,
+        kubernetes_version=__ret__.kubernetes_version,
+        master_ip=__ret__.master_ip,
+        name=__ret__.name,
+        num_target_nodes=__ret__.num_target_nodes,
+        ready=__ret__.ready,
+        status=__ret__.status,
+        tags=__ret__.tags,
+        target_nodes_size=__ret__.target_nodes_size)
