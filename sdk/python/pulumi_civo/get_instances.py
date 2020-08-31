@@ -5,10 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetInstancesResult',
+    'AwaitableGetInstancesResult',
+    'get_instances',
+]
 
+@pulumi.output_type
 class GetInstancesResult:
     """
     A collection of values returned by getInstances.
@@ -16,22 +24,42 @@ class GetInstancesResult:
     def __init__(__self__, filters=None, id=None, instances=None, sorts=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if instances and not isinstance(instances, list):
+            raise TypeError("Expected argument 'instances' to be a list")
+        pulumi.set(__self__, "instances", instances)
+        if sorts and not isinstance(sorts, list):
+            raise TypeError("Expected argument 'sorts' to be a list")
+        pulumi.set(__self__, "sorts", sorts)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetInstancesFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if instances and not isinstance(instances, list):
-            raise TypeError("Expected argument 'instances' to be a list")
-        __self__.instances = instances
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def instances(self) -> List['outputs.GetInstancesInstanceResult']:
         """
         A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
         """
-        if sorts and not isinstance(sorts, list):
-            raise TypeError("Expected argument 'sorts' to be a list")
-        __self__.sorts = sorts
+        return pulumi.get(self, "instances")
+
+    @property
+    @pulumi.getter
+    def sorts(self) -> Optional[List['outputs.GetInstancesSortResult']]:
+        return pulumi.get(self, "sorts")
 
 
 class AwaitableGetInstancesResult(GetInstancesResult):
@@ -46,27 +74,16 @@ class AwaitableGetInstancesResult(GetInstancesResult):
             sorts=self.sorts)
 
 
-def get_instances(filters=None, sorts=None, opts=None):
+def get_instances(filters: Optional[List[pulumi.InputType['GetInstancesFilterArgs']]] = None,
+                  sorts: Optional[List[pulumi.InputType['GetInstancesSortArgs']]] = None,
+                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param list filters: Filter the results.
+    :param List[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results.
            The `filter` block is documented below.
-    :param list sorts: Sort the results.
+    :param List[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results.
            The `sort` block is documented below.
-
-    The **filters** object supports the following:
-
-      * `key` (`str`) - Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-      * `values` (`list`) - A list of values to match against the `key` field. Only retrieves Instances
-        where the `key` field takes on one or more of the values provided here.
-
-    The **sorts** object supports the following:
-
-      * `direction` (`str`) - The sort direction. This may be either `asc` or `desc`.
-      * `key` (`str`) - Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -75,10 +92,10 @@ def get_instances(filters=None, sorts=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getInstances:getInstances', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        instances=__ret__.get('instances'),
-        sorts=__ret__.get('sorts'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        instances=__ret__.instances,
+        sorts=__ret__.sorts)

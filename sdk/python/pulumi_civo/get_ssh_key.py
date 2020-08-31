@@ -5,10 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetSshKeyResult',
+    'AwaitableGetSshKeyResult',
+    'get_ssh_key',
+]
 
+@pulumi.output_type
 class GetSshKeyResult:
     """
     A collection of values returned by getSshKey.
@@ -16,13 +22,28 @@ class GetSshKeyResult:
     def __init__(__self__, fingerprint=None, id=None, name=None):
         if fingerprint and not isinstance(fingerprint, str):
             raise TypeError("Expected argument 'fingerprint' to be a str")
-        __self__.fingerprint = fingerprint
+        pulumi.set(__self__, "fingerprint", fingerprint)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def fingerprint(self) -> str:
+        return pulumi.get(self, "fingerprint")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
 
 
 class AwaitableGetSshKeyResult(GetSshKeyResult):
@@ -36,7 +57,9 @@ class AwaitableGetSshKeyResult(GetSshKeyResult):
             name=self.name)
 
 
-def get_ssh_key(id=None, name=None, opts=None):
+def get_ssh_key(id: Optional[str] = None,
+                name: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSshKeyResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -50,9 +73,9 @@ def get_ssh_key(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getSshKey:getSshKey', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getSshKey:getSshKey', __args__, opts=opts, typ=GetSshKeyResult).value
 
     return AwaitableGetSshKeyResult(
-        fingerprint=__ret__.get('fingerprint'),
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        fingerprint=__ret__.fingerprint,
+        id=__ret__.id,
+        name=__ret__.name)

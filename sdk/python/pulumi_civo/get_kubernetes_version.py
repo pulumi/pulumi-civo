@@ -5,10 +5,18 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
 
+__all__ = [
+    'GetKubernetesVersionResult',
+    'AwaitableGetKubernetesVersionResult',
+    'get_kubernetes_version',
+]
 
+@pulumi.output_type
 class GetKubernetesVersionResult:
     """
     A collection of values returned by getKubernetesVersion.
@@ -16,19 +24,39 @@ class GetKubernetesVersionResult:
     def __init__(__self__, filters=None, id=None, sorts=None, versions=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
-        __self__.filters = filters
+        pulumi.set(__self__, "filters", filters)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if sorts and not isinstance(sorts, list):
+            raise TypeError("Expected argument 'sorts' to be a list")
+        pulumi.set(__self__, "sorts", sorts)
+        if versions and not isinstance(versions, list):
+            raise TypeError("Expected argument 'versions' to be a list")
+        pulumi.set(__self__, "versions", versions)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[List['outputs.GetKubernetesVersionFilterResult']]:
+        return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
         """
         The provider-assigned unique ID for this managed resource.
         """
-        if sorts and not isinstance(sorts, list):
-            raise TypeError("Expected argument 'sorts' to be a list")
-        __self__.sorts = sorts
-        if versions and not isinstance(versions, list):
-            raise TypeError("Expected argument 'versions' to be a list")
-        __self__.versions = versions
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def sorts(self) -> Optional[List['outputs.GetKubernetesVersionSortResult']]:
+        return pulumi.get(self, "sorts")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> List['outputs.GetKubernetesVersionVersionResult']:
+        return pulumi.get(self, "versions")
 
 
 class AwaitableGetKubernetesVersionResult(GetKubernetesVersionResult):
@@ -43,7 +71,9 @@ class AwaitableGetKubernetesVersionResult(GetKubernetesVersionResult):
             versions=self.versions)
 
 
-def get_kubernetes_version(filters=None, sorts=None, opts=None):
+def get_kubernetes_version(filters: Optional[List[pulumi.InputType['GetKubernetesVersionFilterArgs']]] = None,
+                           sorts: Optional[List[pulumi.InputType['GetKubernetesVersionSortArgs']]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesVersionResult:
     """
     Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
 
@@ -53,10 +83,10 @@ def get_kubernetes_version(filters=None, sorts=None, opts=None):
     import pulumi
     import pulumi_civo as civo
 
-    stable = civo.get_kubernetes_version(filters=[{
-        "key": "type",
-        "values": ["stable"],
-    }])
+    stable = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+        key="type",
+        values=["stable"],
+    )])
     ```
     ### Pin a Kubernetes cluster to a specific minor version
 
@@ -64,29 +94,17 @@ def get_kubernetes_version(filters=None, sorts=None, opts=None):
     import pulumi
     import pulumi_civo as civo
 
-    minor_version = civo.get_kubernetes_version(filters=[{
-        "key": "version",
-        "values": ["0.9.1"],
-    }])
+    minor_version = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+        key="version",
+        values=["0.9.1"],
+    )])
     ```
 
 
-    :param list filters: Filter the results.
+    :param List[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: Filter the results.
            The `filter` block is documented below.
-    :param list sorts: Sort the results.
+    :param List[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: Sort the results.
            The `sort` block is documented below.
-
-    The **filters** object supports the following:
-
-      * `key` (`str`) - Filter the sizes by this key. This may be one of `version`,
-        `label`, `type`, `default`.
-      * `values` (`list`) - Only retrieves the version which keys has value that matches
-        one of the values provided here.
-
-    The **sorts** object supports the following:
-
-      * `direction` (`str`) - The sort direction. This may be either `asc` or `desc`.
-      * `key` (`str`) - Sort the sizes by this key. This may be one of `version`.
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -95,10 +113,10 @@ def get_kubernetes_version(filters=None, sorts=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesVersion:getKubernetesVersion', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesVersion:getKubernetesVersion', __args__, opts=opts, typ=GetKubernetesVersionResult).value
 
     return AwaitableGetKubernetesVersionResult(
-        filters=__ret__.get('filters'),
-        id=__ret__.get('id'),
-        sorts=__ret__.get('sorts'),
-        versions=__ret__.get('versions'))
+        filters=__ret__.filters,
+        id=__ret__.id,
+        sorts=__ret__.sorts,
+        versions=__ret__.versions)

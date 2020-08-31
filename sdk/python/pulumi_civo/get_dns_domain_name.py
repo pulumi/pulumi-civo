@@ -5,10 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetDnsDomainNameResult',
+    'AwaitableGetDnsDomainNameResult',
+    'get_dns_domain_name',
+]
 
+@pulumi.output_type
 class GetDnsDomainNameResult:
     """
     A collection of values returned by getDnsDomainName.
@@ -16,16 +22,26 @@ class GetDnsDomainNameResult:
     def __init__(__self__, id=None, name=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        pulumi.set(__self__, "id", id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         A unique ID that can be used to identify and reference a domain.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         The name of the domain.
         """
+        return pulumi.get(self, "name")
 
 
 class AwaitableGetDnsDomainNameResult(GetDnsDomainNameResult):
@@ -38,7 +54,9 @@ class AwaitableGetDnsDomainNameResult(GetDnsDomainNameResult):
             name=self.name)
 
 
-def get_dns_domain_name(id=None, name=None, opts=None):
+def get_dns_domain_name(id: Optional[str] = None,
+                        name: Optional[str] = None,
+                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDnsDomainNameResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -52,8 +70,8 @@ def get_dns_domain_name(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getDnsDomainName:getDnsDomainName', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getDnsDomainName:getDnsDomainName', __args__, opts=opts, typ=GetDnsDomainNameResult).value
 
     return AwaitableGetDnsDomainNameResult(
-        id=__ret__.get('id'),
-        name=__ret__.get('name'))
+        id=__ret__.id,
+        name=__ret__.name)

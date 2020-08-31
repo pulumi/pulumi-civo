@@ -5,92 +5,27 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
+from . import outputs
+from ._inputs import *
+
+__all__ = ['KubernetesCluster']
 
 
 class KubernetesCluster(pulumi.CustomResource):
-    api_endpoint: pulumi.Output[str]
-    """
-    The base URL of the API server on the Kubernetes master node.
-    """
-    applications: pulumi.Output[str]
-    """
-    A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
-    """
-    built_at: pulumi.Output[str]
-    """
-    The date where the Kubernetes cluster was build.
-    """
-    created_at: pulumi.Output[str]
-    """
-    The date where the Kubernetes cluster was create.
-    """
-    dns_entry: pulumi.Output[str]
-    """
-    The unique dns entry for the cluster in this case point to the master.
-    """
-    installed_applications: pulumi.Output[list]
-    """
-    A unique ID that can be used to identify and reference a Kubernetes cluster.
-
-      * `application` (`str`) - The name of the application
-      * `category` (`str`) - The category of the application
-      * `installed` (`bool`) - if installed or not
-      * `version` (`str`) - The version of the application
-    """
-    instances: pulumi.Output[list]
-    """
-    In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-
-      * `cpu_cores` (`float`) - Total cpu of the inatance.
-      * `created_at` (`str`) - The date where the Kubernetes cluster was create.
-      * `disk_gb` (`float`) - The size of the disk.
-      * `firewall_id` (`str`) - The firewall id assigned to the instance
-      * `hostname` (`str`) - The hostname of the instance.
-      * `public_ip` (`str`) - The public ip of the instances, only available if the instances is the master
-      * `ram_mb` (`float`) - Total ram of the instance.
-      * `region` (`str`) - The region where instance are.
-      * `size` (`str`) - The size of the instance.
-      * `status` (`str`) - The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-      * `tags` (`list`) - A space separated list of tags, to be used freely as required.
-    """
-    kubeconfig: pulumi.Output[str]
-    """
-    A representation of the Kubernetes cluster's kubeconfig in yaml format.
-    """
-    kubernetes_version: pulumi.Output[str]
-    """
-    The version of k3s to install (optional, the default is currently the latest available).
-    """
-    master_ip: pulumi.Output[str]
-    """
-    The Ip of the Kubernetes master node.
-    """
-    name: pulumi.Output[str]
-    """
-    A name for the Kubernetes cluster.
-    """
-    num_target_nodes: pulumi.Output[float]
-    """
-    The number of instances to create (optional, the default at the time of writing is 3).
-    """
-    ready: pulumi.Output[bool]
-    status: pulumi.Output[str]
-    """
-    The status of Kubernetes cluster.
-    * `ready` -If the Kubernetes cluster is ready.
-    """
-    tags: pulumi.Output[str]
-    """
-    A space separated list of tags, to be used freely as required.
-    """
-    target_nodes_size: pulumi.Output[str]
-    """
-    The size of each node (optional, the default is currently g2.small)
-    """
-    def __init__(__self__, resource_name, opts=None, applications=None, kubernetes_version=None, name=None, num_target_nodes=None, tags=None, target_nodes_size=None, __props__=None, __name__=None, __opts__=None):
+    def __init__(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 applications: Optional[pulumi.Input[str]] = None,
+                 kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_target_nodes: Optional[pulumi.Input[float]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         """
         Create a KubernetesCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
@@ -142,21 +77,39 @@ class KubernetesCluster(pulumi.CustomResource):
             opts)
 
     @staticmethod
-    def get(resource_name, id, opts=None, api_endpoint=None, applications=None, built_at=None, created_at=None, dns_entry=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, ready=None, status=None, tags=None, target_nodes_size=None):
+    def get(resource_name: str,
+            id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None,
+            api_endpoint: Optional[pulumi.Input[str]] = None,
+            applications: Optional[pulumi.Input[str]] = None,
+            built_at: Optional[pulumi.Input[str]] = None,
+            created_at: Optional[pulumi.Input[str]] = None,
+            dns_entry: Optional[pulumi.Input[str]] = None,
+            installed_applications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
+            instances: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]]] = None,
+            kubeconfig: Optional[pulumi.Input[str]] = None,
+            kubernetes_version: Optional[pulumi.Input[str]] = None,
+            master_ip: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            num_target_nodes: Optional[pulumi.Input[float]] = None,
+            ready: Optional[pulumi.Input[bool]] = None,
+            status: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[str]] = None,
+            target_nodes_size: Optional[pulumi.Input[str]] = None) -> 'KubernetesCluster':
         """
         Get an existing KubernetesCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
-        :param str id: The unique provider ID of the resource to lookup.
+        :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_endpoint: The base URL of the API server on the Kubernetes master node.
         :param pulumi.Input[str] applications: A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
         :param pulumi.Input[str] built_at: The date where the Kubernetes cluster was build.
         :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
         :param pulumi.Input[str] dns_entry: The unique dns entry for the cluster in this case point to the master.
-        :param pulumi.Input[list] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
-        :param pulumi.Input[list] instances: In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
+        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]] instances: In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
         :param pulumi.Input[str] kubeconfig: A representation of the Kubernetes cluster's kubeconfig in yaml format.
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available).
         :param pulumi.Input[str] master_ip: The Ip of the Kubernetes master node.
@@ -166,28 +119,6 @@ class KubernetesCluster(pulumi.CustomResource):
                * `ready` -If the Kubernetes cluster is ready.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g2.small)
-
-        The **installed_applications** object supports the following:
-
-          * `application` (`pulumi.Input[str]`) - The name of the application
-          * `category` (`pulumi.Input[str]`) - The category of the application
-          * `installed` (`pulumi.Input[bool]`) - if installed or not
-          * `version` (`pulumi.Input[str]`) - The version of the application
-
-        The **instances** object supports the following:
-
-          * `cpu_cores` (`pulumi.Input[float]`) - Total cpu of the inatance.
-          * `created_at` (`pulumi.Input[str]`) - The date where the Kubernetes cluster was create.
-          * `disk_gb` (`pulumi.Input[float]`) - The size of the disk.
-          * `firewall_id` (`pulumi.Input[str]`) - The firewall id assigned to the instance
-          * `hostname` (`pulumi.Input[str]`) - The hostname of the instance.
-          * `public_ip` (`pulumi.Input[str]`) - The public ip of the instances, only available if the instances is the master
-          * `ram_mb` (`pulumi.Input[float]`) - Total ram of the instance.
-          * `region` (`pulumi.Input[str]`) - The region where instance are.
-          * `size` (`pulumi.Input[str]`) - The size of the instance.
-          * `status` (`pulumi.Input[str]`) - The status of Kubernetes cluster.
-            * `ready` -If the Kubernetes cluster is ready.
-          * `tags` (`pulumi.Input[list]`) - A space separated list of tags, to be used freely as required.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -211,8 +142,135 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__["target_nodes_size"] = target_nodes_size
         return KubernetesCluster(resource_name, opts=opts, __props__=__props__)
 
+    @property
+    @pulumi.getter(name="apiEndpoint")
+    def api_endpoint(self) -> pulumi.Output[str]:
+        """
+        The base URL of the API server on the Kubernetes master node.
+        """
+        return pulumi.get(self, "api_endpoint")
+
+    @property
+    @pulumi.getter
+    def applications(self) -> pulumi.Output[Optional[str]]:
+        """
+        A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        """
+        return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter(name="builtAt")
+    def built_at(self) -> pulumi.Output[str]:
+        """
+        The date where the Kubernetes cluster was build.
+        """
+        return pulumi.get(self, "built_at")
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Output[str]:
+        """
+        The date where the Kubernetes cluster was create.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dnsEntry")
+    def dns_entry(self) -> pulumi.Output[str]:
+        """
+        The unique dns entry for the cluster in this case point to the master.
+        """
+        return pulumi.get(self, "dns_entry")
+
+    @property
+    @pulumi.getter(name="installedApplications")
+    def installed_applications(self) -> pulumi.Output[List['outputs.KubernetesClusterInstalledApplication']]:
+        """
+        A unique ID that can be used to identify and reference a Kubernetes cluster.
+        """
+        return pulumi.get(self, "installed_applications")
+
+    @property
+    @pulumi.getter
+    def instances(self) -> pulumi.Output[List['outputs.KubernetesClusterInstance']]:
+        """
+        In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        """
+        return pulumi.get(self, "instances")
+
+    @property
+    @pulumi.getter
+    def kubeconfig(self) -> pulumi.Output[str]:
+        """
+        A representation of the Kubernetes cluster's kubeconfig in yaml format.
+        """
+        return pulumi.get(self, "kubeconfig")
+
+    @property
+    @pulumi.getter(name="kubernetesVersion")
+    def kubernetes_version(self) -> pulumi.Output[Optional[str]]:
+        """
+        The version of k3s to install (optional, the default is currently the latest available).
+        """
+        return pulumi.get(self, "kubernetes_version")
+
+    @property
+    @pulumi.getter(name="masterIp")
+    def master_ip(self) -> pulumi.Output[str]:
+        """
+        The Ip of the Kubernetes master node.
+        """
+        return pulumi.get(self, "master_ip")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        A name for the Kubernetes cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="numTargetNodes")
+    def num_target_nodes(self) -> pulumi.Output[Optional[float]]:
+        """
+        The number of instances to create (optional, the default at the time of writing is 3).
+        """
+        return pulumi.get(self, "num_target_nodes")
+
+    @property
+    @pulumi.getter
+    def ready(self) -> pulumi.Output[bool]:
+        return pulumi.get(self, "ready")
+
+    @property
+    @pulumi.getter
+    def status(self) -> pulumi.Output[str]:
+        """
+        The status of Kubernetes cluster.
+        * `ready` -If the Kubernetes cluster is ready.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[str]]:
+        """
+        A space separated list of tags, to be used freely as required.
+        """
+        return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="targetNodesSize")
+    def target_nodes_size(self) -> pulumi.Output[Optional[str]]:
+        """
+        The size of each node (optional, the default is currently g2.small)
+        """
+        return pulumi.get(self, "target_nodes_size")
+
     def translate_output_property(self, prop):
         return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
     def translate_input_property(self, prop):
         return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
+

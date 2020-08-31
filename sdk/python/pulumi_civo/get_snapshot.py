@@ -5,10 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetSnapshotResult',
+    'AwaitableGetSnapshotResult',
+    'get_snapshot',
+]
 
+@pulumi.output_type
 class GetSnapshotResult:
     """
     A collection of values returned by getSnapshot.
@@ -16,79 +22,144 @@ class GetSnapshotResult:
     def __init__(__self__, completed_at=None, cron_timing=None, hostname=None, id=None, instance_id=None, name=None, next_execution=None, region=None, requested_at=None, safe=None, size_gb=None, state=None, template_id=None):
         if completed_at and not isinstance(completed_at, str):
             raise TypeError("Expected argument 'completed_at' to be a str")
-        __self__.completed_at = completed_at
+        pulumi.set(__self__, "completed_at", completed_at)
+        if cron_timing and not isinstance(cron_timing, str):
+            raise TypeError("Expected argument 'cron_timing' to be a str")
+        pulumi.set(__self__, "cron_timing", cron_timing)
+        if hostname and not isinstance(hostname, str):
+            raise TypeError("Expected argument 'hostname' to be a str")
+        pulumi.set(__self__, "hostname", hostname)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if instance_id and not isinstance(instance_id, str):
+            raise TypeError("Expected argument 'instance_id' to be a str")
+        pulumi.set(__self__, "instance_id", instance_id)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if next_execution and not isinstance(next_execution, str):
+            raise TypeError("Expected argument 'next_execution' to be a str")
+        pulumi.set(__self__, "next_execution", next_execution)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+        if requested_at and not isinstance(requested_at, str):
+            raise TypeError("Expected argument 'requested_at' to be a str")
+        pulumi.set(__self__, "requested_at", requested_at)
+        if safe and not isinstance(safe, bool):
+            raise TypeError("Expected argument 'safe' to be a bool")
+        pulumi.set(__self__, "safe", safe)
+        if size_gb and not isinstance(size_gb, float):
+            raise TypeError("Expected argument 'size_gb' to be a float")
+        pulumi.set(__self__, "size_gb", size_gb)
+        if state and not isinstance(state, str):
+            raise TypeError("Expected argument 'state' to be a str")
+        pulumi.set(__self__, "state", state)
+        if template_id and not isinstance(template_id, str):
+            raise TypeError("Expected argument 'template_id' to be a str")
+        pulumi.set(__self__, "template_id", template_id)
+
+    @property
+    @pulumi.getter(name="completedAt")
+    def completed_at(self) -> str:
         """
         The date where the snapshot was completed.
         """
-        if cron_timing and not isinstance(cron_timing, str):
-            raise TypeError("Expected argument 'cron_timing' to be a str")
-        __self__.cron_timing = cron_timing
+        return pulumi.get(self, "completed_at")
+
+    @property
+    @pulumi.getter(name="cronTiming")
+    def cron_timing(self) -> str:
         """
         A string with the cron format.
         """
-        if hostname and not isinstance(hostname, str):
-            raise TypeError("Expected argument 'hostname' to be a str")
-        __self__.hostname = hostname
+        return pulumi.get(self, "cron_timing")
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> str:
         """
         The hostname of the instance.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
-        if instance_id and not isinstance(instance_id, str):
-            raise TypeError("Expected argument 'instance_id' to be a str")
-        __self__.instance_id = instance_id
+        return pulumi.get(self, "hostname")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
         """
         The ID of the Instance from which the snapshot was be taken.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
         """
         The name of the snapshot.
         """
-        if next_execution and not isinstance(next_execution, str):
-            raise TypeError("Expected argument 'next_execution' to be a str")
-        __self__.next_execution = next_execution
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nextExecution")
+    def next_execution(self) -> str:
         """
         if cron was define this date will be the next execution date.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        return pulumi.get(self, "next_execution")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
         """
         The region where the snapshot was take.
         """
-        if requested_at and not isinstance(requested_at, str):
-            raise TypeError("Expected argument 'requested_at' to be a str")
-        __self__.requested_at = requested_at
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="requestedAt")
+    def requested_at(self) -> str:
         """
         The date where the snapshot was requested.
         """
-        if safe and not isinstance(safe, bool):
-            raise TypeError("Expected argument 'safe' to be a bool")
-        __self__.safe = safe
+        return pulumi.get(self, "requested_at")
+
+    @property
+    @pulumi.getter
+    def safe(self) -> bool:
         """
         If is `true` the instance will be shut down during the snapshot if id `false` them not.
         """
-        if size_gb and not isinstance(size_gb, float):
-            raise TypeError("Expected argument 'size_gb' to be a float")
-        __self__.size_gb = size_gb
+        return pulumi.get(self, "safe")
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> float:
         """
         The size of the snapshot in GB.
         """
-        if state and not isinstance(state, str):
-            raise TypeError("Expected argument 'state' to be a str")
-        __self__.state = state
+        return pulumi.get(self, "size_gb")
+
+    @property
+    @pulumi.getter
+    def state(self) -> str:
         """
         The status of the snapshot.
         """
-        if template_id and not isinstance(template_id, str):
-            raise TypeError("Expected argument 'template_id' to be a str")
-        __self__.template_id = template_id
+        return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> str:
         """
         The template id.
         """
+        return pulumi.get(self, "template_id")
 
 
 class AwaitableGetSnapshotResult(GetSnapshotResult):
@@ -112,7 +183,9 @@ class AwaitableGetSnapshotResult(GetSnapshotResult):
             template_id=self.template_id)
 
 
-def get_snapshot(id=None, name=None, opts=None):
+def get_snapshot(id: Optional[str] = None,
+                 name: Optional[str] = None,
+                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
     Snapshots are saved instances of a block storage volume. Use this data
     source to retrieve the ID of a Civo snapshot for use in other
@@ -140,19 +213,19 @@ def get_snapshot(id=None, name=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getSnapshot:getSnapshot', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getSnapshot:getSnapshot', __args__, opts=opts, typ=GetSnapshotResult).value
 
     return AwaitableGetSnapshotResult(
-        completed_at=__ret__.get('completedAt'),
-        cron_timing=__ret__.get('cronTiming'),
-        hostname=__ret__.get('hostname'),
-        id=__ret__.get('id'),
-        instance_id=__ret__.get('instanceId'),
-        name=__ret__.get('name'),
-        next_execution=__ret__.get('nextExecution'),
-        region=__ret__.get('region'),
-        requested_at=__ret__.get('requestedAt'),
-        safe=__ret__.get('safe'),
-        size_gb=__ret__.get('sizeGb'),
-        state=__ret__.get('state'),
-        template_id=__ret__.get('templateId'))
+        completed_at=__ret__.completed_at,
+        cron_timing=__ret__.cron_timing,
+        hostname=__ret__.hostname,
+        id=__ret__.id,
+        instance_id=__ret__.instance_id,
+        name=__ret__.name,
+        next_execution=__ret__.next_execution,
+        region=__ret__.region,
+        requested_at=__ret__.requested_at,
+        safe=__ret__.safe,
+        size_gb=__ret__.size_gb,
+        state=__ret__.state,
+        template_id=__ret__.template_id)

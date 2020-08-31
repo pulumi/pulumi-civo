@@ -3,6 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to v0.9.15 of the Civo Terraform Provider
+* Upgrade to pulumi-terraform-bridge v2.7.3
+* Upgrade to Pulumi v2.9.0, which adds type annotations and input/output classes to Python
 
 ---
 

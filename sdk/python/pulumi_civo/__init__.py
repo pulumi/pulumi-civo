@@ -30,6 +30,8 @@ from .ssh_key import *
 from .template import *
 from .volume import *
 from .volume_attachment import *
+from ._inputs import *
+from . import outputs
 
 # Make subpackages available:
 from . import (

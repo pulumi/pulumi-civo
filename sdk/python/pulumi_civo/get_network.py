@@ -5,10 +5,16 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Union
+from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
 from . import _utilities, _tables
 
+__all__ = [
+    'GetNetworkResult',
+    'AwaitableGetNetworkResult',
+    'get_network',
+]
 
+@pulumi.output_type
 class GetNetworkResult:
     """
     A collection of values returned by getNetwork.
@@ -16,40 +22,70 @@ class GetNetworkResult:
     def __init__(__self__, cidr=None, default=None, id=None, label=None, name=None, region=None):
         if cidr and not isinstance(cidr, str):
             raise TypeError("Expected argument 'cidr' to be a str")
-        __self__.cidr = cidr
+        pulumi.set(__self__, "cidr", cidr)
+        if default and not isinstance(default, bool):
+            raise TypeError("Expected argument 'default' to be a bool")
+        pulumi.set(__self__, "default", default)
+        if id and not isinstance(id, str):
+            raise TypeError("Expected argument 'id' to be a str")
+        pulumi.set(__self__, "id", id)
+        if label and not isinstance(label, str):
+            raise TypeError("Expected argument 'label' to be a str")
+        pulumi.set(__self__, "label", label)
+        if name and not isinstance(name, str):
+            raise TypeError("Expected argument 'name' to be a str")
+        pulumi.set(__self__, "name", name)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> str:
         """
         The block ip assigned to the network.
         """
-        if default and not isinstance(default, bool):
-            raise TypeError("Expected argument 'default' to be a bool")
-        __self__.default = default
+        return pulumi.get(self, "cidr")
+
+    @property
+    @pulumi.getter
+    def default(self) -> bool:
         """
         If is the default network.
         """
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        __self__.id = id
+        return pulumi.get(self, "default")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
         """
         A unique ID that can be used to identify and reference a Network.
         """
-        if label and not isinstance(label, str):
-            raise TypeError("Expected argument 'label' to be a str")
-        __self__.label = label
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[str]:
         """
         The label used in the configuration.
         """
-        if name and not isinstance(name, str):
-            raise TypeError("Expected argument 'name' to be a str")
-        __self__.name = name
+        return pulumi.get(self, "label")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
         """
         The name of the network.
         """
-        if region and not isinstance(region, str):
-            raise TypeError("Expected argument 'region' to be a str")
-        __self__.region = region
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
         """
         The region where the network was create.
         """
+        return pulumi.get(self, "region")
 
 
 class AwaitableGetNetworkResult(GetNetworkResult):
@@ -66,7 +102,9 @@ class AwaitableGetNetworkResult(GetNetworkResult):
             region=self.region)
 
 
-def get_network(id=None, label=None, opts=None):
+def get_network(id: Optional[str] = None,
+                label: Optional[str] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkResult:
     """
     Use this data source to access information about an existing resource.
 
@@ -80,12 +118,12 @@ def get_network(id=None, label=None, opts=None):
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
-    __ret__ = pulumi.runtime.invoke('civo:index/getNetwork:getNetwork', __args__, opts=opts).value
+    __ret__ = pulumi.runtime.invoke('civo:index/getNetwork:getNetwork', __args__, opts=opts, typ=GetNetworkResult).value
 
     return AwaitableGetNetworkResult(
-        cidr=__ret__.get('cidr'),
-        default=__ret__.get('default'),
-        id=__ret__.get('id'),
-        label=__ret__.get('label'),
-        name=__ret__.get('name'),
-        region=__ret__.get('region'))
+        cidr=__ret__.cidr,
+        default=__ret__.default,
+        id=__ret__.id,
+        label=__ret__.label,
+        name=__ret__.name,
+        region=__ret__.region)
