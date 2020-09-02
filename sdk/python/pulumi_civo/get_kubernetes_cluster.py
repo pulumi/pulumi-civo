@@ -76,105 +76,66 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="apiEndpoint")
     def api_endpoint(self) -> str:
-        """
-        The base URL of the API server on the Kubernetes master node.
-        """
         return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter
     def applications(self) -> str:
-        """
-        A list of application installed.
-        """
         return pulumi.get(self, "applications")
 
     @property
     @pulumi.getter(name="builtAt")
     def built_at(self) -> str:
-        """
-        The date where the Kubernetes cluster was build.
-        """
         return pulumi.get(self, "built_at")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date where the Kubernetes cluster was create.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="dnsEntry")
     def dns_entry(self) -> str:
-        """
-        The unique dns entry for the cluster in this case point to the master.
-        """
         return pulumi.get(self, "dns_entry")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        A unique ID that can be used to identify and reference a Kubernetes cluster.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="installedApplications")
     def installed_applications(self) -> List['outputs.GetKubernetesClusterInstalledApplicationResult']:
-        """
-        A unique ID that can be used to identify and reference a Kubernetes cluster.
-        """
         return pulumi.get(self, "installed_applications")
 
     @property
     @pulumi.getter
     def instances(self) -> List['outputs.GetKubernetesClusterInstanceResult']:
-        """
-        In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def kubeconfig(self) -> str:
-        """
-        A representation of the Kubernetes cluster's kubeconfig in yaml format.
-        """
         return pulumi.get(self, "kubeconfig")
 
     @property
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> str:
-        """
-        The version of Kubernetes.
-        """
         return pulumi.get(self, "kubernetes_version")
 
     @property
     @pulumi.getter(name="masterIp")
     def master_ip(self) -> str:
-        """
-        The Ip of the Kubernetes master node.
-        """
         return pulumi.get(self, "master_ip")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of your cluster,.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="numTargetNodes")
     def num_target_nodes(self) -> float:
-        """
-        The size of the Kubernetes cluster.
-        """
         return pulumi.get(self, "num_target_nodes")
 
     @property
@@ -185,26 +146,16 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> str:
-        """
-        The tag of the instances
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> str:
-        """
-        The size of each node.
-        """
         return pulumi.get(self, "target_nodes_size")
 
 
@@ -237,35 +188,7 @@ def get_kubernetes_cluster(id: Optional[str] = None,
                            name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
-    Provides a Civo Kubernetes cluster data source.
-
-    **Note:** This data source returns a single kubernetes cluster. When specifying a `name`, an
-    error is triggered if more than one kubernetes Cluster is found.
-
-    ## Example Usage
-
-    Get the Kubernetes Cluster by name:
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
-    pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
-    ```
-
-    Get the Kubernetes Cluster by id:
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    my_cluster = civo.get_kubernetes_cluster(name="40ac97ee-b82b-4231-9b60-079c7e2e5d79")
-    ```
-
-
-    :param str id: The ID of the kubernetes Cluster
-    :param str name: The name of the kubernetes Cluster.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id

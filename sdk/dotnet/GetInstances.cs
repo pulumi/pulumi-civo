@@ -20,11 +20,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetInstancesFilterArgs>? _filters;
-
-        /// <summary>
-        /// Filter the results.
-        /// The `filter` block is documented below.
-        /// </summary>
         public List<Inputs.GetInstancesFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetInstancesFilterArgs>());
@@ -33,11 +28,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetInstancesSortArgs>? _sorts;
-
-        /// <summary>
-        /// Sort the results.
-        /// The `sort` block is documented below.
-        /// </summary>
         public List<Inputs.GetInstancesSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetInstancesSortArgs>());
@@ -58,9 +48,6 @@ namespace Pulumi.Civo
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesInstanceResult> Instances;
         public readonly ImmutableArray<Outputs.GetInstancesSortResult> Sorts;
 

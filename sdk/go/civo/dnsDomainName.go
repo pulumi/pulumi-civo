@@ -9,34 +9,11 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Civo dns domain name resource.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewDnsDomainName(ctx, "main", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type DnsDomainName struct {
 	pulumi.CustomResourceState
 
-	// The id account of the domain
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
-	// The name of the domain
+	// A fully qualified domain name
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -68,16 +45,14 @@ func GetDnsDomainName(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsDomainName resources.
 type dnsDomainNameState struct {
-	// The id account of the domain
 	AccountId *string `pulumi:"accountId"`
-	// The name of the domain
+	// A fully qualified domain name
 	Name *string `pulumi:"name"`
 }
 
 type DnsDomainNameState struct {
-	// The id account of the domain
 	AccountId pulumi.StringPtrInput
-	// The name of the domain
+	// A fully qualified domain name
 	Name pulumi.StringPtrInput
 }
 
@@ -86,13 +61,13 @@ func (DnsDomainNameState) ElementType() reflect.Type {
 }
 
 type dnsDomainNameArgs struct {
-	// The name of the domain
+	// A fully qualified domain name
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a DnsDomainName resource.
 type DnsDomainNameArgs struct {
-	// The name of the domain
+	// A fully qualified domain name
 	Name pulumi.StringPtrInput
 }
 

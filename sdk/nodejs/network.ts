@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Civo Network resource. This can be used to create,
- * modify, and delete Networks.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const customNet = new civo.Network("custom_net", {
- *     label: "test_network",
- * });
- * ```
- */
 export class Network extends pulumi.CustomResource {
     /**
      * Get an existing Network resource's state with the given name, ID, and optional extra
@@ -47,25 +32,13 @@ export class Network extends pulumi.CustomResource {
         return obj['__pulumiType'] === Network.__pulumiType;
     }
 
-    /**
-     * The block ip assigned to the network.
-     */
     public /*out*/ readonly cidr!: pulumi.Output<string>;
-    /**
-     * If is the default network.
-     */
     public /*out*/ readonly default!: pulumi.Output<boolean>;
     /**
-     * The Network label
+     * Name for the network
      */
     public readonly label!: pulumi.Output<string>;
-    /**
-     * The name of the network.
-     */
     public /*out*/ readonly name!: pulumi.Output<string>;
-    /**
-     * The region where the network was create.
-     */
     public /*out*/ readonly region!: pulumi.Output<string>;
 
     /**
@@ -111,25 +84,13 @@ export class Network extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Network resources.
  */
 export interface NetworkState {
-    /**
-     * The block ip assigned to the network.
-     */
     readonly cidr?: pulumi.Input<string>;
-    /**
-     * If is the default network.
-     */
     readonly default?: pulumi.Input<boolean>;
     /**
-     * The Network label
+     * Name for the network
      */
     readonly label?: pulumi.Input<string>;
-    /**
-     * The name of the network.
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The region where the network was create.
-     */
     readonly region?: pulumi.Input<string>;
 }
 
@@ -138,7 +99,7 @@ export interface NetworkState {
  */
 export interface NetworkArgs {
     /**
-     * The Network label
+     * Name for the network
      */
     readonly label: pulumi.Input<string>;
 }

@@ -4,19 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Civo Cloud Firewall resource. This can be used to create,
- * modify, and delete Firewalls.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const www = new civo.Firewall("www", {});
- * ```
- */
 export class Firewall extends pulumi.CustomResource {
     /**
      * Get an existing Firewall resource's state with the given name, ID, and optional extra
@@ -45,13 +32,7 @@ export class Firewall extends pulumi.CustomResource {
         return obj['__pulumiType'] === Firewall.__pulumiType;
     }
 
-    /**
-     * The Firewall name
-     */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * The region where the firewall was create.
-     */
     public /*out*/ readonly region!: pulumi.Output<string>;
 
     /**
@@ -88,13 +69,7 @@ export class Firewall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Firewall resources.
  */
 export interface FirewallState {
-    /**
-     * The Firewall name
-     */
     readonly name?: pulumi.Input<string>;
-    /**
-     * The region where the firewall was create.
-     */
     readonly region?: pulumi.Input<string>;
 }
 
@@ -102,8 +77,5 @@ export interface FirewallState {
  * The set of arguments for constructing a Firewall resource.
  */
 export interface FirewallArgs {
-    /**
-     * The Firewall name
-     */
     readonly name?: pulumi.Input<string>;
 }

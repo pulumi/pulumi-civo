@@ -31,23 +31,26 @@ class Instance(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo Instance resource. This can be used to create,
-        modify, and delete Instances.
-
+        Create a Instance resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
-        :param pulumi.Input[str] hostname: The Instance hostname.
-        :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
-        :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
-        :param pulumi.Input[str] notes: Add some notes to the instance.
-        :param pulumi.Input[str] public_ip_requiered: This should be either false, true or `move_ip_from:intances_id`.
-        :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
-        :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
-        :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
-        :param pulumi.Input[str] template: The ID for the template to use to build the instance.
+        :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+               to all)
+        :param pulumi.Input[str] hostname: A fully qualified domain name that should be set as the instance's hostname (required)
+        :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and
+               fallback to civo)
+        :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
+        :param pulumi.Input[str] notes: Add some notes to the instance
+        :param pulumi.Input[str] public_ip_requiered: This should be either none, create or `move_ip_from:intances_id` by default is create
+        :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+               unspecified)
+        :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+               read/write/executable only by root and then will be executed at the end of the cloud initialization
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required)
+        :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+               random password will be set and returned in the initial_password field)
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] template: The ID for the template to use to build the instance
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -127,27 +130,23 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] cpu_cores: Total cpu of the inatance.
-        :param pulumi.Input[str] created_at: The date of creation of the instance
-        :param pulumi.Input[float] disk_gb: The size of the disk.
-        :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
-        :param pulumi.Input[str] hostname: The Instance hostname.
-        :param pulumi.Input[str] initial_password: Instance initial password
-        :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
-        :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
-        :param pulumi.Input[str] notes: Add some notes to the instance.
-        :param pulumi.Input[str] private_ip: The private ip.
-        :param pulumi.Input[str] pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
-        :param pulumi.Input[str] public_ip: This should be either false, true or `move_ip_from:intances_id`.
-        :param pulumi.Input[str] public_ip_requiered: This should be either false, true or `move_ip_from:intances_id`.
-        :param pulumi.Input[float] ram_mb: Total ram of the instance.
-        :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
-        :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
-        :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
-        :param pulumi.Input[str] status: The status of the instance
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
-        :param pulumi.Input[str] template: The ID for the template to use to build the instance.
+        :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+               to all)
+        :param pulumi.Input[str] hostname: A fully qualified domain name that should be set as the instance's hostname (required)
+        :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and
+               fallback to civo)
+        :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
+        :param pulumi.Input[str] notes: Add some notes to the instance
+        :param pulumi.Input[str] public_ip_requiered: This should be either none, create or `move_ip_from:intances_id` by default is create
+        :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+               unspecified)
+        :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+               read/write/executable only by root and then will be executed at the end of the cloud initialization
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required)
+        :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+               random password will be set and returned in the initial_password field)
+        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] template: The ID for the template to use to build the instance
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -179,32 +178,24 @@ class Instance(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> pulumi.Output[float]:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
-        """
-        The date of creation of the instance
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> pulumi.Output[float]:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        to all)
         """
         return pulumi.get(self, "firewall_id")
 
@@ -212,23 +203,21 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def hostname(self) -> pulumi.Output[str]:
         """
-        The Instance hostname.
+        A fully qualified domain name that should be set as the instance's hostname (required)
         """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> pulumi.Output[str]:
-        """
-        Instance initial password
-        """
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="initialUser")
     def initial_user(self) -> pulumi.Output[Optional[str]]:
         """
-        The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        The name of the initial user created on the server (optional; this will default to the template's default_username and
+        fallback to civo)
         """
         return pulumi.get(self, "initial_user")
 
@@ -236,7 +225,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[Optional[str]]:
         """
-        This must be the ID of the network from the network listing (optional; default network used when not specified).
+        This must be the ID of the network from the network listing (optional; default network used when not specified)
         """
         return pulumi.get(self, "network_id")
 
@@ -244,55 +233,44 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def notes(self) -> pulumi.Output[Optional[str]]:
         """
-        Add some notes to the instance.
+        Add some notes to the instance
         """
         return pulumi.get(self, "notes")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> pulumi.Output[str]:
-        """
-        The private ip.
-        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="pseudoIp")
     def pseudo_ip(self) -> pulumi.Output[str]:
-        """
-        Is the ip that is used to route the public ip from the internet to the instance using NAT
-        """
         return pulumi.get(self, "pseudo_ip")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Output[str]:
-        """
-        This should be either false, true or `move_ip_from:intances_id`.
-        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="publicIpRequiered")
     def public_ip_requiered(self) -> pulumi.Output[Optional[str]]:
         """
-        This should be either false, true or `move_ip_from:intances_id`.
+        This should be either none, create or `move_ip_from:intances_id` by default is create
         """
         return pulumi.get(self, "public_ip_requiered")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> pulumi.Output[float]:
-        """
-        Total ram of the instance.
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> pulumi.Output[Optional[str]]:
         """
-        A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        unspecified)
         """
         return pulumi.get(self, "reverse_dns")
 
@@ -300,7 +278,8 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def script(self) -> pulumi.Output[Optional[str]]:
         """
-        the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        read/write/executable only by root and then will be executed at the end of the cloud initialization
         """
         return pulumi.get(self, "script")
 
@@ -308,7 +287,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[Optional[str]]:
         """
-        The name of the size, from the current list, e.g. g2.small (required).
+        The name of the size, from the current list, e.g. g2.small (required)
         """
         return pulumi.get(self, "size")
 
@@ -316,23 +295,21 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="sshkeyId")
     def sshkey_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        random password will be set and returned in the initial_password field)
         """
         return pulumi.get(self, "sshkey_id")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
-        """
-        The status of the instance
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> pulumi.Output[Optional[List[str]]]:
         """
-        An optional list of tags, represented as a key, value pair.
+        An optional list of tags, represented as a key, value pair
         """
         return pulumi.get(self, "tags")
 
@@ -340,7 +317,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def template(self) -> pulumi.Output[Optional[str]]:
         """
-        The ID for the template to use to build the instance.
+        The ID for the template to use to build the instance
         """
         return pulumi.get(self, "template")
 

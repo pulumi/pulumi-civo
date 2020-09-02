@@ -10,43 +10,14 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Civo Network resource. This can be used to create,
-// modify, and delete Networks.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
-// 			Label: pulumi.String("test_network"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Network struct {
 	pulumi.CustomResourceState
 
-	// The block ip assigned to the network.
-	Cidr pulumi.StringOutput `pulumi:"cidr"`
-	// If is the default network.
-	Default pulumi.BoolOutput `pulumi:"default"`
-	// The Network label
-	Label pulumi.StringOutput `pulumi:"label"`
-	// The name of the network.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The region where the network was create.
+	Cidr    pulumi.StringOutput `pulumi:"cidr"`
+	Default pulumi.BoolOutput   `pulumi:"default"`
+	// Name for the network
+	Label  pulumi.StringOutput `pulumi:"label"`
+	Name   pulumi.StringOutput `pulumi:"name"`
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -81,28 +52,20 @@ func GetNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Network resources.
 type networkState struct {
-	// The block ip assigned to the network.
-	Cidr *string `pulumi:"cidr"`
-	// If is the default network.
-	Default *bool `pulumi:"default"`
-	// The Network label
-	Label *string `pulumi:"label"`
-	// The name of the network.
-	Name *string `pulumi:"name"`
-	// The region where the network was create.
+	Cidr    *string `pulumi:"cidr"`
+	Default *bool   `pulumi:"default"`
+	// Name for the network
+	Label  *string `pulumi:"label"`
+	Name   *string `pulumi:"name"`
 	Region *string `pulumi:"region"`
 }
 
 type NetworkState struct {
-	// The block ip assigned to the network.
-	Cidr pulumi.StringPtrInput
-	// If is the default network.
+	Cidr    pulumi.StringPtrInput
 	Default pulumi.BoolPtrInput
-	// The Network label
-	Label pulumi.StringPtrInput
-	// The name of the network.
-	Name pulumi.StringPtrInput
-	// The region where the network was create.
+	// Name for the network
+	Label  pulumi.StringPtrInput
+	Name   pulumi.StringPtrInput
 	Region pulumi.StringPtrInput
 }
 
@@ -111,13 +74,13 @@ func (NetworkState) ElementType() reflect.Type {
 }
 
 type networkArgs struct {
-	// The Network label
+	// Name for the network
 	Label string `pulumi:"label"`
 }
 
 // The set of arguments for constructing a Network resource.
 type NetworkArgs struct {
-	// The Network label
+	// Name for the network
 	Label pulumi.StringInput
 }
 

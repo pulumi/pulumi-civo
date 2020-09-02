@@ -9,52 +9,44 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Provides a Civo Cloud Firewall Rule resource.
-    /// This can be used to create, modify, and delete Firewalls Rules.
-    /// This resource don't have an update option because the backend don't have the
-    /// support for that, so in this case we use ForceNew for all object in the resource.
-    /// </summary>
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+        /// applied, i.e. 0.0.0.0/0)
         /// </summary>
         [Output("cidrs")]
         public Output<ImmutableArray<string>> Cidrs { get; private set; } = null!;
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic
         /// </summary>
         [Output("direction")]
         public Output<string> Direction { get; private set; } = null!;
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Output("endPort")]
         public Output<string> EndPort { get; private set; } = null!;
 
-        /// <summary>
-        /// The Firewall id
-        /// </summary>
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule (optional)
         /// </summary>
         [Output("label")]
         public Output<string?> Label { get; private set; } = null!;
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Output("startPort")]
         public Output<string> StartPort { get; private set; } = null!;
@@ -109,7 +101,8 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+        /// applied, i.e. 0.0.0.0/0)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -118,37 +111,34 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic
         /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Input("endPort", required: true)]
         public Input<string> EndPort { get; set; } = null!;
 
-        /// <summary>
-        /// The Firewall id
-        /// </summary>
         [Input("firewallId", required: true)]
         public Input<string> FirewallId { get; set; } = null!;
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule (optional)
         /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
         /// </summary>
         [Input("protocol", required: true)]
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Input("startPort", required: true)]
         public Input<string> StartPort { get; set; } = null!;
@@ -164,7 +154,8 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+        /// applied, i.e. 0.0.0.0/0)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -173,37 +164,34 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic
         /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Input("endPort")]
         public Input<string>? EndPort { get; set; }
 
-        /// <summary>
-        /// The Firewall id
-        /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule (optional)
         /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Input("startPort")]
         public Input<string>? StartPort { get; set; }

@@ -11,72 +11,6 @@ namespace Pulumi.Civo
 {
     public static class GetKubernetesVersion
     {
-        /// <summary>
-        /// Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var stable = Output.Create(Civo.GetKubernetesVersion.InvokeAsync(new Civo.GetKubernetesVersionArgs
-        ///         {
-        ///             Filters = 
-        ///             {
-        ///                 new Civo.Inputs.GetKubernetesVersionFilterArgs
-        ///                 {
-        ///                     Key = "type",
-        ///                     Values = 
-        ///                     {
-        ///                         "stable",
-        ///                     },
-        ///                 },
-        ///             },
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% example %}}
-        /// ### Pin a Kubernetes cluster to a specific minor version
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var minorVersion = Output.Create(Civo.GetKubernetesVersion.InvokeAsync(new Civo.GetKubernetesVersionArgs
-        ///         {
-        ///             Filters = 
-        ///             {
-        ///                 new Civo.Inputs.GetKubernetesVersionFilterArgs
-        ///                 {
-        ///                     Key = "version",
-        ///                     Values = 
-        ///                     {
-        ///                         "0.9.1",
-        ///                     },
-        ///                 },
-        ///             },
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetKubernetesVersionResult> InvokeAsync(GetKubernetesVersionArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionArgs(), options.WithVersion());
     }
@@ -86,11 +20,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetKubernetesVersionFilterArgs>? _filters;
-
-        /// <summary>
-        /// Filter the results.
-        /// The `filter` block is documented below.
-        /// </summary>
         public List<Inputs.GetKubernetesVersionFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetKubernetesVersionFilterArgs>());
@@ -99,11 +28,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetKubernetesVersionSortArgs>? _sorts;
-
-        /// <summary>
-        /// Sort the results.
-        /// The `sort` block is documented below.
-        /// </summary>
         public List<Inputs.GetKubernetesVersionSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetKubernetesVersionSortArgs>());

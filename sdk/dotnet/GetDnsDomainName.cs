@@ -18,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetDnsDomainNameArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The id of the domain.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the domain.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -39,13 +33,7 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetDnsDomainNameResult
     {
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a domain.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of the domain.
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

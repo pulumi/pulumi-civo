@@ -7,35 +7,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Snapshots are saved instances of a block storage volume. Use this data
-// source to retrieve the ID of a Civo snapshot for use in other
-// resources.
-//
-// ## Example Usage
-//
-// Get the snapshot:
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "mysql-vm"
-// 		_, err := civo.LookupSnapshot(ctx, &civo.LookupSnapshotArgs{
-// 			Name: &opt0,
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func LookupSnapshot(ctx *pulumi.Context, args *LookupSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupSnapshotResult, error) {
 	var rv LookupSnapshotResult
 	err := ctx.Invoke("civo:index/getSnapshot:getSnapshot", args, &rv, opts...)
@@ -47,37 +18,23 @@ func LookupSnapshot(ctx *pulumi.Context, args *LookupSnapshotArgs, opts ...pulum
 
 // A collection of arguments for invoking getSnapshot.
 type LookupSnapshotArgs struct {
-	// The ID of the snapshot.
-	Id *string `pulumi:"id"`
-	// The name of the snapshot.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getSnapshot.
 type LookupSnapshotResult struct {
-	// The date where the snapshot was completed.
-	CompletedAt string `pulumi:"completedAt"`
-	// A string with the cron format.
-	CronTiming string `pulumi:"cronTiming"`
-	// The hostname of the instance.
-	Hostname string  `pulumi:"hostname"`
-	Id       *string `pulumi:"id"`
-	// The ID of the Instance from which the snapshot was be taken.
-	InstanceId string `pulumi:"instanceId"`
-	// The name of the snapshot.
-	Name *string `pulumi:"name"`
-	// if cron was define this date will be the next execution date.
-	NextExecution string `pulumi:"nextExecution"`
-	// The region where the snapshot was take.
-	Region string `pulumi:"region"`
-	// The date where the snapshot was requested.
-	RequestedAt string `pulumi:"requestedAt"`
-	// If is `true` the instance will be shut down during the snapshot if id `false` them not.
-	Safe bool `pulumi:"safe"`
-	// The size of the snapshot in GB.
-	SizeGb int `pulumi:"sizeGb"`
-	// The status of the snapshot.
-	State string `pulumi:"state"`
-	// The template id.
-	TemplateId string `pulumi:"templateId"`
+	CompletedAt   string  `pulumi:"completedAt"`
+	CronTiming    string  `pulumi:"cronTiming"`
+	Hostname      string  `pulumi:"hostname"`
+	Id            *string `pulumi:"id"`
+	InstanceId    string  `pulumi:"instanceId"`
+	Name          *string `pulumi:"name"`
+	NextExecution string  `pulumi:"nextExecution"`
+	Region        string  `pulumi:"region"`
+	RequestedAt   string  `pulumi:"requestedAt"`
+	Safe          bool    `pulumi:"safe"`
+	SizeGb        int     `pulumi:"sizeGb"`
+	State         string  `pulumi:"state"`
+	TemplateId    string  `pulumi:"templateId"`
 }

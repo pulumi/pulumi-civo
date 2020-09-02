@@ -75,36 +75,7 @@ def get_kubernetes_version(filters: Optional[List[pulumi.InputType['GetKubernete
                            sorts: Optional[List[pulumi.InputType['GetKubernetesVersionSortArgs']]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesVersionResult:
     """
-    Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    stable = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["stable"],
-    )])
-    ```
-    ### Pin a Kubernetes cluster to a specific minor version
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    minor_version = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="version",
-        values=["0.9.1"],
-    )])
-    ```
-
-
-    :param List[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: Filter the results.
-           The `filter` block is documented below.
-    :param List[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: Sort the results.
-           The `sort` block is documented below.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['filters'] = filters

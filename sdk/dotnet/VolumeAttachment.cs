@@ -9,45 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Manages attaching a Volume to a Instance.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var db = new Civo.Volume("db", new Civo.VolumeArgs
-    ///         {
-    ///             SizeGb = 60,
-    ///             Bootable = false,
-    ///         });
-    ///         var foobar = new Civo.VolumeAttachment("foobar", new Civo.VolumeAttachmentArgs
-    ///         {
-    ///             InstanceId = civo_instance.My_test_instance.Id,
-    ///             VolumeId = db.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class VolumeAttachment : Pulumi.CustomResource
     {
-        /// <summary>
-        /// ID of the instance to attach the volume to.
-        /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
-        /// <summary>
-        /// ID of the Volume to be attached to the instance.
-        /// </summary>
         [Output("volumeId")]
         public Output<string> VolumeId { get; private set; } = null!;
 
@@ -97,15 +63,9 @@ namespace Pulumi.Civo
 
     public sealed class VolumeAttachmentArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// ID of the instance to attach the volume to.
-        /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
-        /// <summary>
-        /// ID of the Volume to be attached to the instance.
-        /// </summary>
         [Input("volumeId", required: true)]
         public Input<string> VolumeId { get; set; } = null!;
 
@@ -116,15 +76,9 @@ namespace Pulumi.Civo
 
     public sealed class VolumeAttachmentState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// ID of the instance to attach the volume to.
-        /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
-        /// <summary>
-        /// ID of the Volume to be attached to the instance.
-        /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }
 

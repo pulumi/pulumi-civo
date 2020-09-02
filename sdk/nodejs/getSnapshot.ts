@@ -6,24 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Snapshots are saved instances of a block storage volume. Use this data
- * source to retrieve the ID of a Civo snapshot for use in other
- * resources.
- *
- * ## Example Usage
- *
- * Get the snapshot:
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const mysql_vm = pulumi.output(civo.getSnapshot({
- *     name: "mysql-vm",
- * }, { async: true }));
- * ```
- */
 export function getSnapshot(args?: GetSnapshotArgs, opts?: pulumi.InvokeOptions): Promise<GetSnapshotResult> {
     args = args || {};
     if (!opts) {
@@ -43,13 +25,7 @@ export function getSnapshot(args?: GetSnapshotArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getSnapshot.
  */
 export interface GetSnapshotArgs {
-    /**
-     * The ID of the snapshot.
-     */
     readonly id?: string;
-    /**
-     * The name of the snapshot.
-     */
     readonly name?: string;
 }
 
@@ -57,53 +33,17 @@ export interface GetSnapshotArgs {
  * A collection of values returned by getSnapshot.
  */
 export interface GetSnapshotResult {
-    /**
-     * The date where the snapshot was completed.
-     */
     readonly completedAt: string;
-    /**
-     * A string with the cron format.
-     */
     readonly cronTiming: string;
-    /**
-     * The hostname of the instance.
-     */
     readonly hostname: string;
     readonly id?: string;
-    /**
-     * The ID of the Instance from which the snapshot was be taken.
-     */
     readonly instanceId: string;
-    /**
-     * The name of the snapshot.
-     */
     readonly name?: string;
-    /**
-     * if cron was define this date will be the next execution date.
-     */
     readonly nextExecution: string;
-    /**
-     * The region where the snapshot was take.
-     */
     readonly region: string;
-    /**
-     * The date where the snapshot was requested.
-     */
     readonly requestedAt: string;
-    /**
-     * If is `true` the instance will be shut down during the snapshot if id `false` them not.
-     */
     readonly safe: boolean;
-    /**
-     * The size of the snapshot in GB.
-     */
     readonly sizeGb: number;
-    /**
-     * The status of the snapshot.
-     */
     readonly state: string;
-    /**
-     * The template id.
-     */
     readonly templateId: string;
 }

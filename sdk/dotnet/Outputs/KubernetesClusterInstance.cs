@@ -13,50 +13,16 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class KubernetesClusterInstance
     {
-        /// <summary>
-        /// Total cpu of the inatance.
-        /// </summary>
         public readonly int? CpuCores;
-        /// <summary>
-        /// The date where the Kubernetes cluster was create.
-        /// </summary>
         public readonly string? CreatedAt;
-        /// <summary>
-        /// The size of the disk.
-        /// </summary>
         public readonly int? DiskGb;
-        /// <summary>
-        /// The firewall id assigned to the instance
-        /// </summary>
         public readonly string? FirewallId;
-        /// <summary>
-        /// The hostname of the instance.
-        /// </summary>
         public readonly string? Hostname;
-        /// <summary>
-        /// The public ip of the instances, only available if the instances is the master
-        /// </summary>
         public readonly string? PublicIp;
-        /// <summary>
-        /// Total ram of the instance.
-        /// </summary>
         public readonly int? RamMb;
-        /// <summary>
-        /// The region where instance are.
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// The size of the instance.
-        /// </summary>
         public readonly string? Size;
-        /// <summary>
-        /// The status of Kubernetes cluster.
-        /// * `ready` -If the Kubernetes cluster is ready.
-        /// </summary>
         public readonly string? Status;
-        /// <summary>
-        /// A space separated list of tags, to be used freely as required.
-        /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]

@@ -20,11 +20,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetTemplateFilterArgs>? _filters;
-
-        /// <summary>
-        /// Filter the results.
-        /// The `filter` block is documented below.
-        /// </summary>
         public List<Inputs.GetTemplateFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetTemplateFilterArgs>());
@@ -33,11 +28,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetTemplateSortArgs>? _sorts;
-
-        /// <summary>
-        /// Sort the results.
-        /// The `sort` block is documented below.
-        /// </summary>
         public List<Inputs.GetTemplateSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetTemplateSortArgs>());

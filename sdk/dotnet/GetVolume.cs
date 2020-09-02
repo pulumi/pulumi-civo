@@ -18,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetVolumeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The unique identifier for the volume.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the volume.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -39,29 +33,11 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetVolumeResult
     {
-        /// <summary>
-        /// if is bootable or not.
-        /// </summary>
         public readonly bool Bootable;
-        /// <summary>
-        /// The date of the creation of the volume.
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The unique identifier for the volume.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The mount point of the volume.
-        /// </summary>
         public readonly string MountPoint;
-        /// <summary>
-        /// Name of the volume.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The size of the volume.
-        /// </summary>
         public readonly int SizeGb;
 
         [OutputConstructor]

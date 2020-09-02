@@ -24,13 +24,7 @@ export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.I
  * A collection of arguments for invoking getDnsDomainRecord.
  */
 export interface GetDnsDomainRecordArgs {
-    /**
-     * The domain id of the record.
-     */
     readonly domainId: string;
-    /**
-     * The name of the record.
-     */
     readonly name: string;
 }
 
@@ -38,44 +32,17 @@ export interface GetDnsDomainRecordArgs {
  * A collection of values returned by getDnsDomainRecord.
  */
 export interface GetDnsDomainRecordResult {
-    /**
-     * The id account of the domain.
-     */
     readonly accountId: string;
-    /**
-     * The date when it was created in UTC format
-     */
     readonly createdAt: string;
-    /**
-     * The id of the domain
-     */
     readonly domainId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-     */
     readonly name: string;
-    /**
-     * The priority of the record.
-     */
     readonly priority: number;
-    /**
-     * How long caching DNS servers should cache this record.
-     */
     readonly ttl: number;
-    /**
-     * The choice of record type from a, cname, mx or txt
-     */
     readonly type: string;
-    /**
-     * The date when it was updated in UTC format
-     */
     readonly updatedAt: string;
-    /**
-     * The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-     */
     readonly value: string;
 }

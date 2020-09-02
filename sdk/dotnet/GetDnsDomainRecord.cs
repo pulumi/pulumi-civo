@@ -18,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetDnsDomainRecordArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The domain id of the record.
-        /// </summary>
         [Input("domainId", required: true)]
         public string DomainId { get; set; } = null!;
 
-        /// <summary>
-        /// The name of the record.
-        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
@@ -39,45 +33,18 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetDnsDomainRecordResult
     {
-        /// <summary>
-        /// The id account of the domain.
-        /// </summary>
         public readonly string AccountId;
-        /// <summary>
-        /// The date when it was created in UTC format
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The id of the domain
-        /// </summary>
         public readonly string DomainId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The priority of the record.
-        /// </summary>
         public readonly int Priority;
-        /// <summary>
-        /// How long caching DNS servers should cache this record.
-        /// </summary>
         public readonly int Ttl;
-        /// <summary>
-        /// The choice of record type from a, cname, mx or txt
-        /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// The date when it was updated in UTC format
-        /// </summary>
         public readonly string UpdatedAt;
-        /// <summary>
-        /// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-        /// </summary>
         public readonly string Value;
 
         [OutputConstructor]

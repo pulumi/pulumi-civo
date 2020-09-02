@@ -22,24 +22,12 @@ class Volume(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        db = civo.Volume("db",
-            bootable=False,
-            size_gb=60)
-        ```
-
+        Create a Volume resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[bool] bootable: Mark the volume as bootable
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -89,11 +77,9 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[str] created_at: The date of the creation of the volume.
-        :param pulumi.Input[str] mount_point: The mount point of the volume.
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[bool] bootable: Mark the volume as bootable
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -110,31 +96,25 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def bootable(self) -> pulumi.Output[bool]:
         """
-        Mark the volume as bootable.
+        Mark the volume as bootable
         """
         return pulumi.get(self, "bootable")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
-        """
-        The date of the creation of the volume.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="mountPoint")
     def mount_point(self) -> pulumi.Output[str]:
-        """
-        The mount point of the volume.
-        """
         return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A name that you wish to use to refer to this volume .
+        A name that you wish to use to refer to this volume
         """
         return pulumi.get(self, "name")
 
@@ -142,7 +122,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> pulumi.Output[float]:
         """
-        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         return pulumi.get(self, "size_gb")
 

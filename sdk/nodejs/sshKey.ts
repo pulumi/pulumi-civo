@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Civo SSH key resource to allow you to manage SSH
- * keys for Instance access. Keys created with this resource
- * can be referenced in your instance configuration via their ID.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- * import * from "fs";
- *
- * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub")});
- * ```
- */
 export class SshKey extends pulumi.CustomResource {
     /**
      * Get an existing SshKey resource's state with the given name, ID, and optional extra
@@ -48,16 +33,15 @@ export class SshKey extends pulumi.CustomResource {
     }
 
     /**
-     * The fingerprint of the SSH key
+     * a string containing the SSH finger print.
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
-     * The name of the SSH key for identification
+     * a string that will be the reference for the SSH key.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The public key. If this is a file, it
-     * can be read using the file interpolation function.
+     * a string containing the SSH public key.
      */
     public readonly publicKey!: pulumi.Output<string>;
 
@@ -101,16 +85,15 @@ export class SshKey extends pulumi.CustomResource {
  */
 export interface SshKeyState {
     /**
-     * The fingerprint of the SSH key
+     * a string containing the SSH finger print.
      */
     readonly fingerprint?: pulumi.Input<string>;
     /**
-     * The name of the SSH key for identification
+     * a string that will be the reference for the SSH key.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The public key. If this is a file, it
-     * can be read using the file interpolation function.
+     * a string containing the SSH public key.
      */
     readonly publicKey?: pulumi.Input<string>;
 }
@@ -120,12 +103,11 @@ export interface SshKeyState {
  */
 export interface SshKeyArgs {
     /**
-     * The name of the SSH key for identification
+     * a string that will be the reference for the SSH key.
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The public key. If this is a file, it
-     * can be read using the file interpolation function.
+     * a string containing the SSH public key.
      */
     readonly publicKey: pulumi.Input<string>;
 }

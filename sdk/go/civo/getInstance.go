@@ -18,54 +18,31 @@ func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulum
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceArgs struct {
-	// The hostname of the Instance.
 	Hostname *string `pulumi:"hostname"`
-	// The ID of the Instance
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
 }
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
-	// Total cpu of the inatance.
-	CpuCores int `pulumi:"cpuCores"`
-	// The date of creation of the instance
-	CreatedAt string `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb int `pulumi:"diskGb"`
-	// The ID of the firewall used.
-	FirewallId string `pulumi:"firewallId"`
-	// The Instance hostname.
-	Hostname *string `pulumi:"hostname"`
-	// The ID of the Instance.
-	Id *string `pulumi:"id"`
-	// Instance initial password
-	InitialPassword string `pulumi:"initialPassword"`
-	// The name of the initial user created on the server.
-	InitialUser string `pulumi:"initialUser"`
-	// This will be the ID of the network.
-	NetworkId string `pulumi:"networkId"`
-	// The notes of the instance.
-	Notes string `pulumi:"notes"`
-	// The private ip.
-	PrivateIp string `pulumi:"privateIp"`
-	// Is the ip that is used to route the public ip from the internet to the instance using NAT
-	PseudoIp string `pulumi:"pseudoIp"`
-	// The public ip.
-	PublicIp string `pulumi:"publicIp"`
-	// Total ram of the instance.
-	RamMb int `pulumi:"ramMb"`
-	// A fully qualified domain name.
-	ReverseDns string `pulumi:"reverseDns"`
-	// the contents of a script uploaded
-	Script string `pulumi:"script"`
-	// The name of the size.
-	Size string `pulumi:"size"`
-	// The ID SSH.
-	SshkeyId string `pulumi:"sshkeyId"`
-	// The status of the instance
-	Status string `pulumi:"status"`
-	// An optional list of tags
-	Tags []string `pulumi:"tags"`
-	// The ID for the template to used to build the instance.
-	Template string `pulumi:"template"`
+	CpuCores        int      `pulumi:"cpuCores"`
+	CreatedAt       string   `pulumi:"createdAt"`
+	DiskGb          int      `pulumi:"diskGb"`
+	FirewallId      string   `pulumi:"firewallId"`
+	Hostname        *string  `pulumi:"hostname"`
+	Id              *string  `pulumi:"id"`
+	InitialPassword string   `pulumi:"initialPassword"`
+	InitialUser     string   `pulumi:"initialUser"`
+	NetworkId       string   `pulumi:"networkId"`
+	Notes           string   `pulumi:"notes"`
+	PrivateIp       string   `pulumi:"privateIp"`
+	PseudoIp        string   `pulumi:"pseudoIp"`
+	PublicIp        string   `pulumi:"publicIp"`
+	RamMb           int      `pulumi:"ramMb"`
+	ReverseDns      string   `pulumi:"reverseDns"`
+	Script          string   `pulumi:"script"`
+	Size            string   `pulumi:"size"`
+	SshkeyId        string   `pulumi:"sshkeyId"`
+	Status          string   `pulumi:"status"`
+	Tags            []string `pulumi:"tags"`
+	Template        string   `pulumi:"template"`
 }

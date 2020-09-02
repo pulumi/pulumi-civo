@@ -18,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetNetworkArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The unique identifier of an existing Network.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of an existing Network.
-        /// </summary>
         [Input("label")]
         public string? Label { get; set; }
 
@@ -39,29 +33,11 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetNetworkResult
     {
-        /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
         public readonly string Cidr;
-        /// <summary>
-        /// If is the default network.
-        /// </summary>
         public readonly bool Default;
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a Network.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The label used in the configuration.
-        /// </summary>
         public readonly string? Label;
-        /// <summary>
-        /// The name of the network.
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The region where the network was create.
-        /// </summary>
         public readonly string Region;
 
         [OutputConstructor]

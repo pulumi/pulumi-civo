@@ -25,13 +25,7 @@ export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDnsDomainName.
  */
 export interface GetDnsDomainNameArgs {
-    /**
-     * The id of the domain.
-     */
     readonly id?: string;
-    /**
-     * The name of the domain.
-     */
     readonly name?: string;
 }
 
@@ -39,12 +33,6 @@ export interface GetDnsDomainNameArgs {
  * A collection of values returned by getDnsDomainName.
  */
 export interface GetDnsDomainNameResult {
-    /**
-     * A unique ID that can be used to identify and reference a domain.
-     */
     readonly id?: string;
-    /**
-     * The name of the domain.
-     */
     readonly name?: string;
 }

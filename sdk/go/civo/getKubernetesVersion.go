@@ -7,66 +7,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
-// 			Filters: []civo.GetKubernetesVersionFilter{
-// 				civo.GetKubernetesVersionFilter{
-// 					Key: "type",
-// 					Values: []string{
-// 						"stable",
-// 					},
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-// ### Pin a Kubernetes cluster to a specific minor version
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
-// 			Filters: []civo.GetKubernetesVersionFilter{
-// 				civo.GetKubernetesVersionFilter{
-// 					Key: "version",
-// 					Values: []string{
-// 						"0.9.1",
-// 					},
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, opts ...pulumi.InvokeOption) (*GetKubernetesVersionResult, error) {
 	var rv GetKubernetesVersionResult
 	err := ctx.Invoke("civo:index/getKubernetesVersion:getKubernetesVersion", args, &rv, opts...)
@@ -78,12 +18,8 @@ func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, o
 
 // A collection of arguments for invoking getKubernetesVersion.
 type GetKubernetesVersionArgs struct {
-	// Filter the results.
-	// The `filter` block is documented below.
 	Filters []GetKubernetesVersionFilter `pulumi:"filters"`
-	// Sort the results.
-	// The `sort` block is documented below.
-	Sorts []GetKubernetesVersionSort `pulumi:"sorts"`
+	Sorts   []GetKubernetesVersionSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getKubernetesVersion.

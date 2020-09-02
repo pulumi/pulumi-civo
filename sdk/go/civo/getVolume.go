@@ -18,24 +18,16 @@ func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getVolume.
 type LookupVolumeArgs struct {
-	// The unique identifier for the volume.
-	Id *string `pulumi:"id"`
-	// The name of the volume.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getVolume.
 type LookupVolumeResult struct {
-	// if is bootable or not.
-	Bootable bool `pulumi:"bootable"`
-	// The date of the creation of the volume.
-	CreatedAt string `pulumi:"createdAt"`
-	// The unique identifier for the volume.
-	Id *string `pulumi:"id"`
-	// The mount point of the volume.
-	MountPoint string `pulumi:"mountPoint"`
-	// Name of the volume.
-	Name *string `pulumi:"name"`
-	// The size of the volume.
-	SizeGb int `pulumi:"sizeGb"`
+	Bootable   bool    `pulumi:"bootable"`
+	CreatedAt  string  `pulumi:"createdAt"`
+	Id         *string `pulumi:"id"`
+	MountPoint string  `pulumi:"mountPoint"`
+	Name       *string `pulumi:"name"`
+	SizeGb     int     `pulumi:"sizeGb"`
 }

@@ -42,49 +42,31 @@ class GetNetworkResult:
     @property
     @pulumi.getter
     def cidr(self) -> str:
-        """
-        The block ip assigned to the network.
-        """
         return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter
     def default(self) -> bool:
-        """
-        If is the default network.
-        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        A unique ID that can be used to identify and reference a Network.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> Optional[str]:
-        """
-        The label used in the configuration.
-        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the network.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        The region where the network was create.
-        """
         return pulumi.get(self, "region")
 
 
@@ -107,9 +89,6 @@ def get_network(id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: The unique identifier of an existing Network.
-    :param str label: The name of an existing Network.
     """
     __args__ = dict()
     __args__['id'] = id

@@ -18,24 +18,16 @@ func LookupNetwork(ctx *pulumi.Context, args *LookupNetworkArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getNetwork.
 type LookupNetworkArgs struct {
-	// The unique identifier of an existing Network.
-	Id *string `pulumi:"id"`
-	// The name of an existing Network.
+	Id    *string `pulumi:"id"`
 	Label *string `pulumi:"label"`
 }
 
 // A collection of values returned by getNetwork.
 type LookupNetworkResult struct {
-	// The block ip assigned to the network.
-	Cidr string `pulumi:"cidr"`
-	// If is the default network.
-	Default bool `pulumi:"default"`
-	// A unique ID that can be used to identify and reference a Network.
-	Id *string `pulumi:"id"`
-	// The label used in the configuration.
-	Label *string `pulumi:"label"`
-	// The name of the network.
-	Name string `pulumi:"name"`
-	// The region where the network was create.
-	Region string `pulumi:"region"`
+	Cidr    string  `pulumi:"cidr"`
+	Default bool    `pulumi:"default"`
+	Id      *string `pulumi:"id"`
+	Label   *string `pulumi:"label"`
+	Name    string  `pulumi:"name"`
+	Region  string  `pulumi:"region"`
 }

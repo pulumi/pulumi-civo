@@ -18,38 +18,23 @@ func LookupLoadBalancer(ctx *pulumi.Context, args *LookupLoadBalancerArgs, opts 
 
 // A collection of arguments for invoking getLoadBalancer.
 type LookupLoadBalancerArgs struct {
-	// The hostname of the Load Balancer.
 	Hostname *string `pulumi:"hostname"`
-	// The ID of the Load Balancer.
-	Id *string `pulumi:"id"`
+	Id       *string `pulumi:"id"`
 }
 
 // A collection of values returned by getLoadBalancer.
 type LookupLoadBalancerResult struct {
-	// A list of backend instances
-	Backends []GetLoadBalancerBackend `pulumi:"backends"`
-	// The wait time until the backend is marked as a failure
-	FailTimeout int `pulumi:"failTimeout"`
-	// The path to check the health of the backend
-	HealthCheckPath string `pulumi:"healthCheckPath"`
-	// The hostname of the Load Balancer
-	Hostname *string `pulumi:"hostname"`
-	// The ID of the Load Balancer
-	Id *string `pulumi:"id"`
-	// Should self-signed/invalid certificates be ignored from the backend servers
-	IgnoreInvalidBackendTls bool `pulumi:"ignoreInvalidBackendTls"`
-	// How many concurrent connections can each backend handle
-	MaxConns int `pulumi:"maxConns"`
-	// The max request size set in the configuration
-	MaxRequestSize int `pulumi:"maxRequestSize"`
-	// The policy set in the Load Balancer
-	Policy string `pulumi:"policy"`
-	// The port set in the configuration.
-	Port int `pulumi:"port"`
-	// The protocol used in the configuration.
-	Protocol string `pulumi:"protocol"`
-	// If is set will be returned
-	TlsCertificate string `pulumi:"tlsCertificate"`
-	// If is set will be returned
-	TlsKey string `pulumi:"tlsKey"`
+	Backends                []GetLoadBalancerBackend `pulumi:"backends"`
+	FailTimeout             int                      `pulumi:"failTimeout"`
+	HealthCheckPath         string                   `pulumi:"healthCheckPath"`
+	Hostname                *string                  `pulumi:"hostname"`
+	Id                      *string                  `pulumi:"id"`
+	IgnoreInvalidBackendTls bool                     `pulumi:"ignoreInvalidBackendTls"`
+	MaxConns                int                      `pulumi:"maxConns"`
+	MaxRequestSize          int                      `pulumi:"maxRequestSize"`
+	Policy                  string                   `pulumi:"policy"`
+	Port                    int                      `pulumi:"port"`
+	Protocol                string                   `pulumi:"protocol"`
+	TlsCertificate          string                   `pulumi:"tlsCertificate"`
+	TlsKey                  string                   `pulumi:"tlsKey"`
 }

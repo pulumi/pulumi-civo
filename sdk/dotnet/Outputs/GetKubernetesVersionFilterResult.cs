@@ -13,15 +13,7 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesVersionFilterResult
     {
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `version`,
-        /// `label`, `type`, `default`.
-        /// </summary>
         public readonly string Key;
-        /// <summary>
-        /// Only retrieves the version which keys has value that matches
-        /// one of the values provided here.
-        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

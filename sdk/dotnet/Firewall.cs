@@ -9,39 +9,11 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Provides a Civo Cloud Firewall resource. This can be used to create,
-    /// modify, and delete Firewalls.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var www = new Civo.Firewall("www", new Civo.FirewallArgs
-    ///         {
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class Firewall : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The Firewall name
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// The region where the firewall was create.
-        /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
@@ -91,9 +63,6 @@ namespace Pulumi.Civo
 
     public sealed class FirewallArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The Firewall name
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -104,15 +73,9 @@ namespace Pulumi.Civo
 
     public sealed class FirewallState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The Firewall name
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region where the firewall was create.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

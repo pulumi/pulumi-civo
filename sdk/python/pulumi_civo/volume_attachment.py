@@ -21,26 +21,9 @@ class VolumeAttachment(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Manages attaching a Volume to a Instance.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        db = civo.Volume("db",
-            size_gb=60,
-            bootable=False)
-        foobar = civo.VolumeAttachment("foobar",
-            instance_id=civo_instance["my-test-instance"]["id"],
-            volume_id=db.id)
-        ```
-
+        Create a VolumeAttachment resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: ID of the instance to attach the volume to.
-        :param pulumi.Input[str] volume_id: ID of the Volume to be attached to the instance.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -84,8 +67,6 @@ class VolumeAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] instance_id: ID of the instance to attach the volume to.
-        :param pulumi.Input[str] volume_id: ID of the Volume to be attached to the instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -98,17 +79,11 @@ class VolumeAttachment(pulumi.CustomResource):
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> pulumi.Output[str]:
-        """
-        ID of the instance to attach the volume to.
-        """
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="volumeId")
     def volume_id(self) -> pulumi.Output[str]:
-        """
-        ID of the Volume to be attached to the instance.
-        """
         return pulumi.get(self, "volume_id")
 
     def translate_output_property(self, prop):

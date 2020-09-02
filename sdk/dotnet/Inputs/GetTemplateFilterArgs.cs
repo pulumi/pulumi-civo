@@ -12,20 +12,11 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetTemplateFilterArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `code`,
-        /// `name`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         [Input("values", required: true)]
         private List<string>? _values;
-
-        /// <summary>
-        /// Only retrieves the template which keys has value that matches
-        /// one of the values provided here.
-        /// </summary>
         public List<string> Values
         {
             get => _values ?? (_values = new List<string>());

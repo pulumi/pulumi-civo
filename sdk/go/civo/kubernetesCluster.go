@@ -12,37 +12,28 @@ import (
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
 
-	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
-	Applications pulumi.StringPtrOutput `pulumi:"applications"`
-	// The date where the Kubernetes cluster was build.
-	BuiltAt pulumi.StringOutput `pulumi:"builtAt"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The unique dns entry for the cluster in this case point to the master.
-	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+	// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
+	Applications          pulumi.StringPtrOutput                           `pulumi:"applications"`
+	BuiltAt               pulumi.StringOutput                              `pulumi:"builtAt"`
+	CreatedAt             pulumi.StringOutput                              `pulumi:"createdAt"`
+	DnsEntry              pulumi.StringOutput                              `pulumi:"dnsEntry"`
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-	Instances KubernetesClusterInstanceArrayOutput `pulumi:"instances"`
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	Instances             KubernetesClusterInstanceArrayOutput             `pulumi:"instances"`
+	Kubeconfig            pulumi.StringOutput                              `pulumi:"kubeconfig"`
+	// the version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrOutput `pulumi:"kubernetesVersion"`
-	// The Ip of the Kubernetes master node.
-	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster.
+	MasterIp          pulumi.StringOutput    `pulumi:"masterIp"`
+	// a name for your cluster, must be unique within your account (required)
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
 	Ready          pulumi.BoolOutput   `pulumi:"ready"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status pulumi.StringOutput `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
+	Status         pulumi.StringOutput `pulumi:"status"`
+	// a space separated list of tags, to be used freely as required (optional)
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// the size of each node (optional, the default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrOutput `pulumi:"targetNodesSize"`
 }
 
@@ -74,72 +65,54 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesCluster resources.
 type kubernetesClusterState struct {
-	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
-	Applications *string `pulumi:"applications"`
-	// The date where the Kubernetes cluster was build.
-	BuiltAt *string `pulumi:"builtAt"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt *string `pulumi:"createdAt"`
-	// The unique dns entry for the cluster in this case point to the master.
-	DnsEntry *string `pulumi:"dnsEntry"`
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+	// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
+	Applications          *string                                 `pulumi:"applications"`
+	BuiltAt               *string                                 `pulumi:"builtAt"`
+	CreatedAt             *string                                 `pulumi:"createdAt"`
+	DnsEntry              *string                                 `pulumi:"dnsEntry"`
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-	Instances []KubernetesClusterInstance `pulumi:"instances"`
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-	Kubeconfig *string `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	Instances             []KubernetesClusterInstance             `pulumi:"instances"`
+	Kubeconfig            *string                                 `pulumi:"kubeconfig"`
+	// the version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// The Ip of the Kubernetes master node.
-	MasterIp *string `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster.
+	MasterIp          *string `pulumi:"masterIp"`
+	// a name for your cluster, must be unique within your account (required)
 	Name *string `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
-	NumTargetNodes *int  `pulumi:"numTargetNodes"`
-	Ready          *bool `pulumi:"ready"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status *string `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	NumTargetNodes *int    `pulumi:"numTargetNodes"`
+	Ready          *bool   `pulumi:"ready"`
+	Status         *string `pulumi:"status"`
+	// a space separated list of tags, to be used freely as required (optional)
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// the size of each node (optional, the default is currently g2.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 type KubernetesClusterState struct {
-	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint pulumi.StringPtrInput
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
-	Applications pulumi.StringPtrInput
-	// The date where the Kubernetes cluster was build.
-	BuiltAt pulumi.StringPtrInput
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringPtrInput
-	// The unique dns entry for the cluster in this case point to the master.
-	DnsEntry pulumi.StringPtrInput
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+	// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
+	Applications          pulumi.StringPtrInput
+	BuiltAt               pulumi.StringPtrInput
+	CreatedAt             pulumi.StringPtrInput
+	DnsEntry              pulumi.StringPtrInput
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-	Instances KubernetesClusterInstanceArrayInput
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-	Kubeconfig pulumi.StringPtrInput
-	// The version of k3s to install (optional, the default is currently the latest available).
+	Instances             KubernetesClusterInstanceArrayInput
+	Kubeconfig            pulumi.StringPtrInput
+	// the version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrInput
-	// The Ip of the Kubernetes master node.
-	MasterIp pulumi.StringPtrInput
-	// A name for the Kubernetes cluster.
+	MasterIp          pulumi.StringPtrInput
+	// a name for your cluster, must be unique within your account (required)
 	Name pulumi.StringPtrInput
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
 	Ready          pulumi.BoolPtrInput
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status pulumi.StringPtrInput
-	// A space separated list of tags, to be used freely as required.
+	Status         pulumi.StringPtrInput
+	// a space separated list of tags, to be used freely as required (optional)
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g2.small)
+	// the size of each node (optional, the default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -148,33 +121,35 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+	// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
 	Applications *string `pulumi:"applications"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// the version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// A name for the Kubernetes cluster.
+	// a name for your cluster, must be unique within your account (required)
 	Name *string `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
-	// A space separated list of tags, to be used freely as required.
+	// a space separated list of tags, to be used freely as required (optional)
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// the size of each node (optional, the default is currently g2.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+	// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
 	Applications pulumi.StringPtrInput
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// the version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrInput
-	// A name for the Kubernetes cluster.
+	// a name for your cluster, must be unique within your account (required)
 	Name pulumi.StringPtrInput
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
-	// A space separated list of tags, to be used freely as required.
+	// a space separated list of tags, to be used freely as required (optional)
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g2.small)
+	// the size of each node (optional, the default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

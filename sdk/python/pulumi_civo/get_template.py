@@ -76,11 +76,6 @@ def get_template(filters: Optional[List[pulumi.InputType['GetTemplateFilterArgs'
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTemplateResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param List[pulumi.InputType['GetTemplateFilterArgs']] filters: Filter the results.
-           The `filter` block is documented below.
-    :param List[pulumi.InputType['GetTemplateSortArgs']] sorts: Sort the results.
-           The `sort` block is documented below.
     """
     __args__ = dict()
     __args__['filters'] = filters

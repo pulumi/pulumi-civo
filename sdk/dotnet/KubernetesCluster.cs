@@ -11,74 +11,51 @@ namespace Pulumi.Civo
 {
     public partial class KubernetesCluster : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The base URL of the API server on the Kubernetes master node.
-        /// </summary>
         [Output("apiEndpoint")]
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        /// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+        /// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
         /// </summary>
         [Output("applications")]
         public Output<string?> Applications { get; private set; } = null!;
 
-        /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
         [Output("builtAt")]
         public Output<string> BuiltAt { get; private set; } = null!;
 
-        /// <summary>
-        /// The date where the Kubernetes cluster was create.
-        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
-        /// <summary>
-        /// The unique dns entry for the cluster in this case point to the master.
-        /// </summary>
         [Output("dnsEntry")]
         public Output<string> DnsEntry { get; private set; } = null!;
 
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a Kubernetes cluster.
-        /// </summary>
         [Output("installedApplications")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstalledApplication>> InstalledApplications { get; private set; } = null!;
 
-        /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-        /// </summary>
         [Output("instances")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstance>> Instances { get; private set; } = null!;
 
-        /// <summary>
-        /// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-        /// </summary>
         [Output("kubeconfig")]
         public Output<string> Kubeconfig { get; private set; } = null!;
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// the version of k3s to install (optional, the default is currently the latest available)
         /// </summary>
         [Output("kubernetesVersion")]
         public Output<string?> KubernetesVersion { get; private set; } = null!;
 
-        /// <summary>
-        /// The Ip of the Kubernetes master node.
-        /// </summary>
         [Output("masterIp")]
         public Output<string> MasterIp { get; private set; } = null!;
 
         /// <summary>
-        /// A name for the Kubernetes cluster.
+        /// a name for your cluster, must be unique within your account (required)
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Output("numTargetNodes")]
         public Output<int?> NumTargetNodes { get; private set; } = null!;
@@ -86,21 +63,17 @@ namespace Pulumi.Civo
         [Output("ready")]
         public Output<bool> Ready { get; private set; } = null!;
 
-        /// <summary>
-        /// The status of Kubernetes cluster.
-        /// * `ready` -If the Kubernetes cluster is ready.
-        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// A space separated list of tags, to be used freely as required.
+        /// a space separated list of tags, to be used freely as required (optional)
         /// </summary>
         [Output("tags")]
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// the size of each node (optional, the default is currently g2.small)
         /// </summary>
         [Output("targetNodesSize")]
         public Output<string?> TargetNodesSize { get; private set; } = null!;
@@ -152,37 +125,38 @@ namespace Pulumi.Civo
     public sealed class KubernetesClusterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        /// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+        /// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// the version of k3s to install (optional, the default is currently the latest available)
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
 
         /// <summary>
-        /// A name for the Kubernetes cluster.
+        /// a name for your cluster, must be unique within your account (required)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
 
         /// <summary>
-        /// A space separated list of tags, to be used freely as required.
+        /// a space separated list of tags, to be used freely as required (optional)
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// the size of each node (optional, the default is currently g2.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
@@ -194,42 +168,27 @@ namespace Pulumi.Civo
 
     public sealed class KubernetesClusterState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The base URL of the API server on the Kubernetes master node.
-        /// </summary>
         [Input("apiEndpoint")]
         public Input<string>? ApiEndpoint { get; set; }
 
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        /// a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+        /// of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
 
-        /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
         [Input("builtAt")]
         public Input<string>? BuiltAt { get; set; }
 
-        /// <summary>
-        /// The date where the Kubernetes cluster was create.
-        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
-        /// <summary>
-        /// The unique dns entry for the cluster in this case point to the master.
-        /// </summary>
         [Input("dnsEntry")]
         public Input<string>? DnsEntry { get; set; }
 
         [Input("installedApplications")]
         private InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>? _installedApplications;
-
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a Kubernetes cluster.
-        /// </summary>
         public InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs> InstalledApplications
         {
             get => _installedApplications ?? (_installedApplications = new InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>());
@@ -238,42 +197,32 @@ namespace Pulumi.Civo
 
         [Input("instances")]
         private InputList<Inputs.KubernetesClusterInstanceGetArgs>? _instances;
-
-        /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-        /// </summary>
         public InputList<Inputs.KubernetesClusterInstanceGetArgs> Instances
         {
             get => _instances ?? (_instances = new InputList<Inputs.KubernetesClusterInstanceGetArgs>());
             set => _instances = value;
         }
 
-        /// <summary>
-        /// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-        /// </summary>
         [Input("kubeconfig")]
         public Input<string>? Kubeconfig { get; set; }
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// the version of k3s to install (optional, the default is currently the latest available)
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
 
-        /// <summary>
-        /// The Ip of the Kubernetes master node.
-        /// </summary>
         [Input("masterIp")]
         public Input<string>? MasterIp { get; set; }
 
         /// <summary>
-        /// A name for the Kubernetes cluster.
+        /// a name for your cluster, must be unique within your account (required)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
@@ -281,21 +230,17 @@ namespace Pulumi.Civo
         [Input("ready")]
         public Input<bool>? Ready { get; set; }
 
-        /// <summary>
-        /// The status of Kubernetes cluster.
-        /// * `ready` -If the Kubernetes cluster is ready.
-        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         /// <summary>
-        /// A space separated list of tags, to be used freely as required.
+        /// a space separated list of tags, to be used freely as required (optional)
         /// </summary>
         [Input("tags")]
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// the size of each node (optional, the default is currently g2.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }

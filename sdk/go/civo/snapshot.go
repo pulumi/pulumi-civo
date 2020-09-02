@@ -10,62 +10,29 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a resource which can be used to create a snapshot from an existing Civo Instance.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewSnapshot(ctx, "myinstance_backup", &civo.SnapshotArgs{
-// 			InstanceId: pulumi.Any(civo_instance.Myinstance.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Snapshot struct {
 	pulumi.CustomResourceState
 
-	// The date where the snapshot was completed.
 	CompletedAt pulumi.StringOutput `pulumi:"completedAt"`
-	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot
-	// continuing to automatically update based on the schedule of the cron sequence provided
-	// The default is nil meaning the snapshot will be saved as a one-off snapshot.
+	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+	// based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+	// snapshot.
 	CronTiming pulumi.StringPtrOutput `pulumi:"cronTiming"`
-	// The hostname of the instance.
-	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// The ID of the Instance from which the snapshot will be taken.
+	Hostname   pulumi.StringOutput    `pulumi:"hostname"`
+	// The ID of the instance to snapshot
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// A name for the instance snapshot.
-	Name pulumi.StringOutput `pulumi:"name"`
-	// if cron was define this date will be the next execution date.
+	// This is a unqiue, alphanumerical, short, human readable code for the snapshot
+	Name          pulumi.StringOutput `pulumi:"name"`
 	NextExecution pulumi.StringOutput `pulumi:"nextExecution"`
-	// The region where the snapshot was take.
-	Region pulumi.StringOutput `pulumi:"region"`
-	// The date where the snapshot was requested.
-	RequestedAt pulumi.StringOutput `pulumi:"requestedAt"`
-	// If `true` the instance will be shut down during the snapshot to ensure all files
-	// are in a consistent state (e.g. database tables aren't in the middle of being optimised
-	// and hence risking corruption). The default is `false` so you experience no interruption
-	// of service, but a small risk of corruption.
-	Safe pulumi.BoolPtrOutput `pulumi:"safe"`
-	// The size of the snapshot in GB.
-	SizeGb pulumi.IntOutput `pulumi:"sizeGb"`
-	// The status of the snapshot.
-	State pulumi.StringOutput `pulumi:"state"`
-	// The template id.
-	TemplateId pulumi.StringOutput `pulumi:"templateId"`
+	Region        pulumi.StringOutput `pulumi:"region"`
+	RequestedAt   pulumi.StringOutput `pulumi:"requestedAt"`
+	// If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+	// tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+	// interruptionof service, but a small risk of corruption.
+	Safe       pulumi.BoolPtrOutput `pulumi:"safe"`
+	SizeGb     pulumi.IntOutput     `pulumi:"sizeGb"`
+	State      pulumi.StringOutput  `pulumi:"state"`
+	TemplateId pulumi.StringOutput  `pulumi:"templateId"`
 }
 
 // NewSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -99,66 +66,48 @@ func GetSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Snapshot resources.
 type snapshotState struct {
-	// The date where the snapshot was completed.
 	CompletedAt *string `pulumi:"completedAt"`
-	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot
-	// continuing to automatically update based on the schedule of the cron sequence provided
-	// The default is nil meaning the snapshot will be saved as a one-off snapshot.
+	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+	// based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+	// snapshot.
 	CronTiming *string `pulumi:"cronTiming"`
-	// The hostname of the instance.
-	Hostname *string `pulumi:"hostname"`
-	// The ID of the Instance from which the snapshot will be taken.
+	Hostname   *string `pulumi:"hostname"`
+	// The ID of the instance to snapshot
 	InstanceId *string `pulumi:"instanceId"`
-	// A name for the instance snapshot.
-	Name *string `pulumi:"name"`
-	// if cron was define this date will be the next execution date.
+	// This is a unqiue, alphanumerical, short, human readable code for the snapshot
+	Name          *string `pulumi:"name"`
 	NextExecution *string `pulumi:"nextExecution"`
-	// The region where the snapshot was take.
-	Region *string `pulumi:"region"`
-	// The date where the snapshot was requested.
-	RequestedAt *string `pulumi:"requestedAt"`
-	// If `true` the instance will be shut down during the snapshot to ensure all files
-	// are in a consistent state (e.g. database tables aren't in the middle of being optimised
-	// and hence risking corruption). The default is `false` so you experience no interruption
-	// of service, but a small risk of corruption.
-	Safe *bool `pulumi:"safe"`
-	// The size of the snapshot in GB.
-	SizeGb *int `pulumi:"sizeGb"`
-	// The status of the snapshot.
-	State *string `pulumi:"state"`
-	// The template id.
+	Region        *string `pulumi:"region"`
+	RequestedAt   *string `pulumi:"requestedAt"`
+	// If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+	// tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+	// interruptionof service, but a small risk of corruption.
+	Safe       *bool   `pulumi:"safe"`
+	SizeGb     *int    `pulumi:"sizeGb"`
+	State      *string `pulumi:"state"`
 	TemplateId *string `pulumi:"templateId"`
 }
 
 type SnapshotState struct {
-	// The date where the snapshot was completed.
 	CompletedAt pulumi.StringPtrInput
-	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot
-	// continuing to automatically update based on the schedule of the cron sequence provided
-	// The default is nil meaning the snapshot will be saved as a one-off snapshot.
+	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+	// based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+	// snapshot.
 	CronTiming pulumi.StringPtrInput
-	// The hostname of the instance.
-	Hostname pulumi.StringPtrInput
-	// The ID of the Instance from which the snapshot will be taken.
+	Hostname   pulumi.StringPtrInput
+	// The ID of the instance to snapshot
 	InstanceId pulumi.StringPtrInput
-	// A name for the instance snapshot.
-	Name pulumi.StringPtrInput
-	// if cron was define this date will be the next execution date.
+	// This is a unqiue, alphanumerical, short, human readable code for the snapshot
+	Name          pulumi.StringPtrInput
 	NextExecution pulumi.StringPtrInput
-	// The region where the snapshot was take.
-	Region pulumi.StringPtrInput
-	// The date where the snapshot was requested.
-	RequestedAt pulumi.StringPtrInput
-	// If `true` the instance will be shut down during the snapshot to ensure all files
-	// are in a consistent state (e.g. database tables aren't in the middle of being optimised
-	// and hence risking corruption). The default is `false` so you experience no interruption
-	// of service, but a small risk of corruption.
-	Safe pulumi.BoolPtrInput
-	// The size of the snapshot in GB.
-	SizeGb pulumi.IntPtrInput
-	// The status of the snapshot.
-	State pulumi.StringPtrInput
-	// The template id.
+	Region        pulumi.StringPtrInput
+	RequestedAt   pulumi.StringPtrInput
+	// If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+	// tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+	// interruptionof service, but a small risk of corruption.
+	Safe       pulumi.BoolPtrInput
+	SizeGb     pulumi.IntPtrInput
+	State      pulumi.StringPtrInput
 	TemplateId pulumi.StringPtrInput
 }
 
@@ -167,35 +116,33 @@ func (SnapshotState) ElementType() reflect.Type {
 }
 
 type snapshotArgs struct {
-	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot
-	// continuing to automatically update based on the schedule of the cron sequence provided
-	// The default is nil meaning the snapshot will be saved as a one-off snapshot.
+	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+	// based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+	// snapshot.
 	CronTiming *string `pulumi:"cronTiming"`
-	// The ID of the Instance from which the snapshot will be taken.
+	// The ID of the instance to snapshot
 	InstanceId string `pulumi:"instanceId"`
-	// A name for the instance snapshot.
+	// This is a unqiue, alphanumerical, short, human readable code for the snapshot
 	Name *string `pulumi:"name"`
-	// If `true` the instance will be shut down during the snapshot to ensure all files
-	// are in a consistent state (e.g. database tables aren't in the middle of being optimised
-	// and hence risking corruption). The default is `false` so you experience no interruption
-	// of service, but a small risk of corruption.
+	// If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+	// tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+	// interruptionof service, but a small risk of corruption.
 	Safe *bool `pulumi:"safe"`
 }
 
 // The set of arguments for constructing a Snapshot resource.
 type SnapshotArgs struct {
-	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot
-	// continuing to automatically update based on the schedule of the cron sequence provided
-	// The default is nil meaning the snapshot will be saved as a one-off snapshot.
+	// If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+	// based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+	// snapshot.
 	CronTiming pulumi.StringPtrInput
-	// The ID of the Instance from which the snapshot will be taken.
+	// The ID of the instance to snapshot
 	InstanceId pulumi.StringInput
-	// A name for the instance snapshot.
+	// This is a unqiue, alphanumerical, short, human readable code for the snapshot
 	Name pulumi.StringPtrInput
-	// If `true` the instance will be shut down during the snapshot to ensure all files
-	// are in a consistent state (e.g. database tables aren't in the middle of being optimised
-	// and hence risking corruption). The default is `false` so you experience no interruption
-	// of service, but a small risk of corruption.
+	// If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+	// tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+	// interruptionof service, but a small risk of corruption.
 	Safe pulumi.BoolPtrInput
 }
 

@@ -25,13 +25,7 @@ export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getNetwork.
  */
 export interface GetNetworkArgs {
-    /**
-     * The unique identifier of an existing Network.
-     */
     readonly id?: string;
-    /**
-     * The name of an existing Network.
-     */
     readonly label?: string;
 }
 
@@ -39,28 +33,10 @@ export interface GetNetworkArgs {
  * A collection of values returned by getNetwork.
  */
 export interface GetNetworkResult {
-    /**
-     * The block ip assigned to the network.
-     */
     readonly cidr: string;
-    /**
-     * If is the default network.
-     */
     readonly default: boolean;
-    /**
-     * A unique ID that can be used to identify and reference a Network.
-     */
     readonly id?: string;
-    /**
-     * The label used in the configuration.
-     */
     readonly label?: string;
-    /**
-     * The name of the network.
-     */
     readonly name: string;
-    /**
-     * The region where the network was create.
-     */
     readonly region: string;
 }

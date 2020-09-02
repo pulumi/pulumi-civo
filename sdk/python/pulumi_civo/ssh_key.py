@@ -21,24 +21,11 @@ class SshKey(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo SSH key resource to allow you to manage SSH
-        keys for Instance access. Keys created with this resource
-        can be referenced in your instance configuration via their ID.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
-        ```
-
+        Create a SshKey resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The name of the SSH key for identification
-        :param pulumi.Input[str] public_key: The public key. If this is a file, it
-               can be read using the file interpolation function.
+        :param pulumi.Input[str] name: a string that will be the reference for the SSH key.
+        :param pulumi.Input[str] public_key: a string containing the SSH public key.
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,10 +69,9 @@ class SshKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] fingerprint: The fingerprint of the SSH key
-        :param pulumi.Input[str] name: The name of the SSH key for identification
-        :param pulumi.Input[str] public_key: The public key. If this is a file, it
-               can be read using the file interpolation function.
+        :param pulumi.Input[str] fingerprint: a string containing the SSH finger print.
+        :param pulumi.Input[str] name: a string that will be the reference for the SSH key.
+        :param pulumi.Input[str] public_key: a string containing the SSH public key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -100,7 +86,7 @@ class SshKey(pulumi.CustomResource):
     @pulumi.getter
     def fingerprint(self) -> pulumi.Output[str]:
         """
-        The fingerprint of the SSH key
+        a string containing the SSH finger print.
         """
         return pulumi.get(self, "fingerprint")
 
@@ -108,7 +94,7 @@ class SshKey(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The name of the SSH key for identification
+        a string that will be the reference for the SSH key.
         """
         return pulumi.get(self, "name")
 
@@ -116,8 +102,7 @@ class SshKey(pulumi.CustomResource):
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
         """
-        The public key. If this is a file, it
-        can be read using the file interpolation function.
+        a string containing the SSH public key.
         """
         return pulumi.get(self, "public_key")
 

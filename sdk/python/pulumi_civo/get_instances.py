@@ -51,9 +51,6 @@ class GetInstancesResult:
     @property
     @pulumi.getter
     def instances(self) -> List['outputs.GetInstancesInstanceResult']:
-        """
-        A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
-        """
         return pulumi.get(self, "instances")
 
     @property
@@ -79,11 +76,6 @@ def get_instances(filters: Optional[List[pulumi.InputType['GetInstancesFilterArg
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param List[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results.
-           The `filter` block is documented below.
-    :param List[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results.
-           The `sort` block is documented below.
     """
     __args__ = dict()
     __args__['filters'] = filters

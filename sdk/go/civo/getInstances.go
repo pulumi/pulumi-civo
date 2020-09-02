@@ -18,20 +18,15 @@ func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getInstances.
 type GetInstancesArgs struct {
-	// Filter the results.
-	// The `filter` block is documented below.
 	Filters []GetInstancesFilter `pulumi:"filters"`
-	// Sort the results.
-	// The `sort` block is documented below.
-	Sorts []GetInstancesSort `pulumi:"sorts"`
+	Sorts   []GetInstancesSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getInstances.
 type GetInstancesResult struct {
 	Filters []GetInstancesFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
+	Id        string                 `pulumi:"id"`
 	Instances []GetInstancesInstance `pulumi:"instances"`
 	Sorts     []GetInstancesSort     `pulumi:"sorts"`
 }

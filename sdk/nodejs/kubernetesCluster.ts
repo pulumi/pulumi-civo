@@ -34,66 +34,39 @@ export class KubernetesCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === KubernetesCluster.__pulumiType;
     }
 
-    /**
-     * The base URL of the API server on the Kubernetes master node.
-     */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+     * of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
      */
     public readonly applications!: pulumi.Output<string | undefined>;
-    /**
-     * The date where the Kubernetes cluster was build.
-     */
     public /*out*/ readonly builtAt!: pulumi.Output<string>;
-    /**
-     * The date where the Kubernetes cluster was create.
-     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    /**
-     * The unique dns entry for the cluster in this case point to the master.
-     */
     public /*out*/ readonly dnsEntry!: pulumi.Output<string>;
-    /**
-     * A unique ID that can be used to identify and reference a Kubernetes cluster.
-     */
     public /*out*/ readonly installedApplications!: pulumi.Output<outputs.KubernetesClusterInstalledApplication[]>;
-    /**
-     * In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-     */
     public /*out*/ readonly instances!: pulumi.Output<outputs.KubernetesClusterInstance[]>;
-    /**
-     * A representation of the Kubernetes cluster's kubeconfig in yaml format.
-     */
     public /*out*/ readonly kubeconfig!: pulumi.Output<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * the version of k3s to install (optional, the default is currently the latest available)
      */
     public readonly kubernetesVersion!: pulumi.Output<string | undefined>;
-    /**
-     * The Ip of the Kubernetes master node.
-     */
     public /*out*/ readonly masterIp!: pulumi.Output<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * a name for your cluster, must be unique within your account (required)
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * the number of instances to create (optional, the default at the time of writing is 3)
      */
     public readonly numTargetNodes!: pulumi.Output<number | undefined>;
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
-    /**
-     * The status of Kubernetes cluster.
-     * * `ready` -If the Kubernetes cluster is ready.
-     */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * A space separated list of tags, to be used freely as required.
+     * a space separated list of tags, to be used freely as required (optional)
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * the size of each node (optional, the default is currently g2.small)
      */
     public readonly targetNodesSize!: pulumi.Output<string | undefined>;
 
@@ -159,66 +132,39 @@ export class KubernetesCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering KubernetesCluster resources.
  */
 export interface KubernetesClusterState {
-    /**
-     * The base URL of the API server on the Kubernetes master node.
-     */
     readonly apiEndpoint?: pulumi.Input<string>;
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+     * of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
      */
     readonly applications?: pulumi.Input<string>;
-    /**
-     * The date where the Kubernetes cluster was build.
-     */
     readonly builtAt?: pulumi.Input<string>;
-    /**
-     * The date where the Kubernetes cluster was create.
-     */
     readonly createdAt?: pulumi.Input<string>;
-    /**
-     * The unique dns entry for the cluster in this case point to the master.
-     */
     readonly dnsEntry?: pulumi.Input<string>;
-    /**
-     * A unique ID that can be used to identify and reference a Kubernetes cluster.
-     */
     readonly installedApplications?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstalledApplication>[]>;
-    /**
-     * In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-     */
     readonly instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstance>[]>;
-    /**
-     * A representation of the Kubernetes cluster's kubeconfig in yaml format.
-     */
     readonly kubeconfig?: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * the version of k3s to install (optional, the default is currently the latest available)
      */
     readonly kubernetesVersion?: pulumi.Input<string>;
-    /**
-     * The Ip of the Kubernetes master node.
-     */
     readonly masterIp?: pulumi.Input<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * a name for your cluster, must be unique within your account (required)
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * the number of instances to create (optional, the default at the time of writing is 3)
      */
     readonly numTargetNodes?: pulumi.Input<number>;
     readonly ready?: pulumi.Input<boolean>;
-    /**
-     * The status of Kubernetes cluster.
-     * * `ready` -If the Kubernetes cluster is ready.
-     */
     readonly status?: pulumi.Input<string>;
     /**
-     * A space separated list of tags, to be used freely as required.
+     * a space separated list of tags, to be used freely as required (optional)
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * the size of each node (optional, the default is currently g2.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }
@@ -228,27 +174,28 @@ export interface KubernetesClusterState {
  */
 export interface KubernetesClusterArgs {
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * a comma separated list of applications to install.Spaces within application names are fine, but shouldn't be either side
+     * of the comma.If you want to remove a default installed application, prefix it with a '-', e.g. -traefik.
      */
     readonly applications?: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * the version of k3s to install (optional, the default is currently the latest available)
      */
     readonly kubernetesVersion?: pulumi.Input<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * a name for your cluster, must be unique within your account (required)
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * the number of instances to create (optional, the default at the time of writing is 3)
      */
     readonly numTargetNodes?: pulumi.Input<number>;
     /**
-     * A space separated list of tags, to be used freely as required.
+     * a space separated list of tags, to be used freely as required (optional)
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * the size of each node (optional, the default is currently g2.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }

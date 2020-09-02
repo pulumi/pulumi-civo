@@ -9,38 +9,13 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Provides a Civo dns domain name resource.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         // Create a new domain name
-    ///         var main = new Civo.DnsDomainName("main", new Civo.DnsDomainNameArgs
-    ///         {
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class DnsDomainName : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The id account of the domain
-        /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the domain
+        /// A fully qualified domain name
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -92,7 +67,7 @@ namespace Pulumi.Civo
     public sealed class DnsDomainNameArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the domain
+        /// A fully qualified domain name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -104,14 +79,11 @@ namespace Pulumi.Civo
 
     public sealed class DnsDomainNameState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The id account of the domain
-        /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
         /// <summary>
-        /// The name of the domain
+        /// A fully qualified domain name
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

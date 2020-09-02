@@ -9,35 +9,10 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Civo Cloud Firewall resource. This can be used to create,
-// modify, and delete Firewalls.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewFirewall(ctx, "www", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	// The Firewall name
-	Name pulumi.StringOutput `pulumi:"name"`
-	// The region where the firewall was create.
+	Name   pulumi.StringOutput `pulumi:"name"`
 	Region pulumi.StringOutput `pulumi:"region"`
 }
 
@@ -69,16 +44,12 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	// The Firewall name
-	Name *string `pulumi:"name"`
-	// The region where the firewall was create.
+	Name   *string `pulumi:"name"`
 	Region *string `pulumi:"region"`
 }
 
 type FirewallState struct {
-	// The Firewall name
-	Name pulumi.StringPtrInput
-	// The region where the firewall was create.
+	Name   pulumi.StringPtrInput
 	Region pulumi.StringPtrInput
 }
 
@@ -87,13 +58,11 @@ func (FirewallState) ElementType() reflect.Type {
 }
 
 type firewallArgs struct {
-	// The Firewall name
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
-	// The Firewall name
 	Name pulumi.StringPtrInput
 }
 

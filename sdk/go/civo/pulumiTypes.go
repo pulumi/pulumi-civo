@@ -11,14 +11,10 @@ import (
 )
 
 type KubernetesClusterInstalledApplication struct {
-	// The name of the application
 	Application *string `pulumi:"application"`
-	// The category of the application
-	Category *string `pulumi:"category"`
-	// if installed or not
-	Installed *bool `pulumi:"installed"`
-	// The version of the application
-	Version *string `pulumi:"version"`
+	Category    *string `pulumi:"category"`
+	Installed   *bool   `pulumi:"installed"`
+	Version     *string `pulumi:"version"`
 }
 
 // KubernetesClusterInstalledApplicationInput is an input type that accepts KubernetesClusterInstalledApplicationArgs and KubernetesClusterInstalledApplicationOutput values.
@@ -33,14 +29,10 @@ type KubernetesClusterInstalledApplicationInput interface {
 }
 
 type KubernetesClusterInstalledApplicationArgs struct {
-	// The name of the application
 	Application pulumi.StringPtrInput `pulumi:"application"`
-	// The category of the application
-	Category pulumi.StringPtrInput `pulumi:"category"`
-	// if installed or not
-	Installed pulumi.BoolPtrInput `pulumi:"installed"`
-	// The version of the application
-	Version pulumi.StringPtrInput `pulumi:"version"`
+	Category    pulumi.StringPtrInput `pulumi:"category"`
+	Installed   pulumi.BoolPtrInput   `pulumi:"installed"`
+	Version     pulumi.StringPtrInput `pulumi:"version"`
 }
 
 func (KubernetesClusterInstalledApplicationArgs) ElementType() reflect.Type {
@@ -94,22 +86,18 @@ func (o KubernetesClusterInstalledApplicationOutput) ToKubernetesClusterInstalle
 	return o
 }
 
-// The name of the application
 func (o KubernetesClusterInstalledApplicationOutput) Application() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Application }).(pulumi.StringPtrOutput)
 }
 
-// The category of the application
 func (o KubernetesClusterInstalledApplicationOutput) Category() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Category }).(pulumi.StringPtrOutput)
 }
 
-// if installed or not
 func (o KubernetesClusterInstalledApplicationOutput) Installed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *bool { return v.Installed }).(pulumi.BoolPtrOutput)
 }
 
-// The version of the application
 func (o KubernetesClusterInstalledApplicationOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -135,29 +123,17 @@ func (o KubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInpu
 }
 
 type KubernetesClusterInstance struct {
-	// Total cpu of the inatance.
-	CpuCores *int `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt *string `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb *int `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId *string `pulumi:"firewallId"`
-	// The hostname of the instance.
-	Hostname *string `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp *string `pulumi:"publicIp"`
-	// Total ram of the instance.
-	RamMb *int `pulumi:"ramMb"`
-	// The region where instance are.
-	Region *string `pulumi:"region"`
-	// The size of the instance.
-	Size *string `pulumi:"size"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status *string `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
-	Tags []string `pulumi:"tags"`
+	CpuCores   *int     `pulumi:"cpuCores"`
+	CreatedAt  *string  `pulumi:"createdAt"`
+	DiskGb     *int     `pulumi:"diskGb"`
+	FirewallId *string  `pulumi:"firewallId"`
+	Hostname   *string  `pulumi:"hostname"`
+	PublicIp   *string  `pulumi:"publicIp"`
+	RamMb      *int     `pulumi:"ramMb"`
+	Region     *string  `pulumi:"region"`
+	Size       *string  `pulumi:"size"`
+	Status     *string  `pulumi:"status"`
+	Tags       []string `pulumi:"tags"`
 }
 
 // KubernetesClusterInstanceInput is an input type that accepts KubernetesClusterInstanceArgs and KubernetesClusterInstanceOutput values.
@@ -172,29 +148,17 @@ type KubernetesClusterInstanceInput interface {
 }
 
 type KubernetesClusterInstanceArgs struct {
-	// Total cpu of the inatance.
-	CpuCores pulumi.IntPtrInput `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb pulumi.IntPtrInput `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId pulumi.StringPtrInput `pulumi:"firewallId"`
-	// The hostname of the instance.
-	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
-	// Total ram of the instance.
-	RamMb pulumi.IntPtrInput `pulumi:"ramMb"`
-	// The region where instance are.
-	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The size of the instance.
-	Size pulumi.StringPtrInput `pulumi:"size"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status pulumi.StringPtrInput `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
-	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores   pulumi.IntPtrInput      `pulumi:"cpuCores"`
+	CreatedAt  pulumi.StringPtrInput   `pulumi:"createdAt"`
+	DiskGb     pulumi.IntPtrInput      `pulumi:"diskGb"`
+	FirewallId pulumi.StringPtrInput   `pulumi:"firewallId"`
+	Hostname   pulumi.StringPtrInput   `pulumi:"hostname"`
+	PublicIp   pulumi.StringPtrInput   `pulumi:"publicIp"`
+	RamMb      pulumi.IntPtrInput      `pulumi:"ramMb"`
+	Region     pulumi.StringPtrInput   `pulumi:"region"`
+	Size       pulumi.StringPtrInput   `pulumi:"size"`
+	Status     pulumi.StringPtrInput   `pulumi:"status"`
+	Tags       pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (KubernetesClusterInstanceArgs) ElementType() reflect.Type {
@@ -248,58 +212,46 @@ func (o KubernetesClusterInstanceOutput) ToKubernetesClusterInstanceOutputWithCo
 	return o
 }
 
-// Total cpu of the inatance.
 func (o KubernetesClusterInstanceOutput) CpuCores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.CpuCores }).(pulumi.IntPtrOutput)
 }
 
-// The date where the Kubernetes cluster was create.
 func (o KubernetesClusterInstanceOutput) CreatedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
 }
 
-// The size of the disk.
 func (o KubernetesClusterInstanceOutput) DiskGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.DiskGb }).(pulumi.IntPtrOutput)
 }
 
-// The firewall id assigned to the instance
 func (o KubernetesClusterInstanceOutput) FirewallId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.FirewallId }).(pulumi.StringPtrOutput)
 }
 
-// The hostname of the instance.
 func (o KubernetesClusterInstanceOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// The public ip of the instances, only available if the instances is the master
 func (o KubernetesClusterInstanceOutput) PublicIp() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
 }
 
-// Total ram of the instance.
 func (o KubernetesClusterInstanceOutput) RamMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.RamMb }).(pulumi.IntPtrOutput)
 }
 
-// The region where instance are.
 func (o KubernetesClusterInstanceOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The size of the instance.
 func (o KubernetesClusterInstanceOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
-// The status of Kubernetes cluster.
-// * `ready` -If the Kubernetes cluster is ready.
 func (o KubernetesClusterInstanceOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
-// A space separated list of tags, to be used freely as required.
 func (o KubernetesClusterInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -431,11 +383,7 @@ func (o LoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadBalancerBac
 }
 
 type GetInstancesFilter struct {
-	// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
-	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key string `pulumi:"key"`
-	// A list of values to match against the `key` field. Only retrieves Instances
-	// where the `key` field takes on one or more of the values provided here.
+	Key    string   `pulumi:"key"`
 	Values []string `pulumi:"values"`
 }
 
@@ -451,11 +399,7 @@ type GetInstancesFilterInput interface {
 }
 
 type GetInstancesFilterArgs struct {
-	// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
-	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key pulumi.StringInput `pulumi:"key"`
-	// A list of values to match against the `key` field. Only retrieves Instances
-	// where the `key` field takes on one or more of the values provided here.
+	Key    pulumi.StringInput      `pulumi:"key"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -510,14 +454,10 @@ func (o GetInstancesFilterOutput) ToGetInstancesFilterOutputWithContext(ctx cont
 	return o
 }
 
-// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
-// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
 func (o GetInstancesFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// A list of values to match against the `key` field. Only retrieves Instances
-// where the `key` field takes on one or more of the values provided here.
 func (o GetInstancesFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstancesFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -543,48 +483,27 @@ func (o GetInstancesFilterArrayOutput) Index(i pulumi.IntInput) GetInstancesFilt
 }
 
 type GetInstancesInstance struct {
-	// Total cpu of the inatance.
-	CpuCores int `pulumi:"cpuCores"`
-	// The date of creation of the instance
-	CreatedAt string `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb int `pulumi:"diskGb"`
-	// The ID of the firewall used.
-	FirewallId string `pulumi:"firewallId"`
-	// The Instance hostname.
-	Hostname string `pulumi:"hostname"`
-	// The ID of the Instance.
-	Id string `pulumi:"id"`
-	// Instance initial password
-	InitialPassword string `pulumi:"initialPassword"`
-	// The name of the initial user created on the server.
-	InitialUser string `pulumi:"initialUser"`
-	// This will be the ID of the network.
-	NetworkId string `pulumi:"networkId"`
-	// The notes of the instance.
-	Notes string `pulumi:"notes"`
-	// The private ip.
-	PrivateIp string `pulumi:"privateIp"`
-	// Is the ip that is used to route the public ip from the internet to the instance using NAT
-	PseudoIp string `pulumi:"pseudoIp"`
-	// The public ip.
-	PublicIp string `pulumi:"publicIp"`
-	// Total ram of the instance.
-	RamMb int `pulumi:"ramMb"`
-	// A fully qualified domain name.
-	ReverseDns string `pulumi:"reverseDns"`
-	// the contents of a script uploaded
-	Script string `pulumi:"script"`
-	// The name of the size.
-	Size string `pulumi:"size"`
-	// The ID SSH.
-	SshkeyId string `pulumi:"sshkeyId"`
-	// The status of the instance
-	Status string `pulumi:"status"`
-	// An optional list of tags
-	Tags []string `pulumi:"tags"`
-	// The ID for the template to used to build the instance.
-	Template string `pulumi:"template"`
+	CpuCores        int      `pulumi:"cpuCores"`
+	CreatedAt       string   `pulumi:"createdAt"`
+	DiskGb          int      `pulumi:"diskGb"`
+	FirewallId      string   `pulumi:"firewallId"`
+	Hostname        string   `pulumi:"hostname"`
+	Id              string   `pulumi:"id"`
+	InitialPassword string   `pulumi:"initialPassword"`
+	InitialUser     string   `pulumi:"initialUser"`
+	NetworkId       string   `pulumi:"networkId"`
+	Notes           string   `pulumi:"notes"`
+	PrivateIp       string   `pulumi:"privateIp"`
+	PseudoIp        string   `pulumi:"pseudoIp"`
+	PublicIp        string   `pulumi:"publicIp"`
+	RamMb           int      `pulumi:"ramMb"`
+	ReverseDns      string   `pulumi:"reverseDns"`
+	Script          string   `pulumi:"script"`
+	Size            string   `pulumi:"size"`
+	SshkeyId        string   `pulumi:"sshkeyId"`
+	Status          string   `pulumi:"status"`
+	Tags            []string `pulumi:"tags"`
+	Template        string   `pulumi:"template"`
 }
 
 // GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
@@ -599,48 +518,27 @@ type GetInstancesInstanceInput interface {
 }
 
 type GetInstancesInstanceArgs struct {
-	// Total cpu of the inatance.
-	CpuCores pulumi.IntInput `pulumi:"cpuCores"`
-	// The date of creation of the instance
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb pulumi.IntInput `pulumi:"diskGb"`
-	// The ID of the firewall used.
-	FirewallId pulumi.StringInput `pulumi:"firewallId"`
-	// The Instance hostname.
-	Hostname pulumi.StringInput `pulumi:"hostname"`
-	// The ID of the Instance.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Instance initial password
-	InitialPassword pulumi.StringInput `pulumi:"initialPassword"`
-	// The name of the initial user created on the server.
-	InitialUser pulumi.StringInput `pulumi:"initialUser"`
-	// This will be the ID of the network.
-	NetworkId pulumi.StringInput `pulumi:"networkId"`
-	// The notes of the instance.
-	Notes pulumi.StringInput `pulumi:"notes"`
-	// The private ip.
-	PrivateIp pulumi.StringInput `pulumi:"privateIp"`
-	// Is the ip that is used to route the public ip from the internet to the instance using NAT
-	PseudoIp pulumi.StringInput `pulumi:"pseudoIp"`
-	// The public ip.
-	PublicIp pulumi.StringInput `pulumi:"publicIp"`
-	// Total ram of the instance.
-	RamMb pulumi.IntInput `pulumi:"ramMb"`
-	// A fully qualified domain name.
-	ReverseDns pulumi.StringInput `pulumi:"reverseDns"`
-	// the contents of a script uploaded
-	Script pulumi.StringInput `pulumi:"script"`
-	// The name of the size.
-	Size pulumi.StringInput `pulumi:"size"`
-	// The ID SSH.
-	SshkeyId pulumi.StringInput `pulumi:"sshkeyId"`
-	// The status of the instance
-	Status pulumi.StringInput `pulumi:"status"`
-	// An optional list of tags
-	Tags pulumi.StringArrayInput `pulumi:"tags"`
-	// The ID for the template to used to build the instance.
-	Template pulumi.StringInput `pulumi:"template"`
+	CpuCores        pulumi.IntInput         `pulumi:"cpuCores"`
+	CreatedAt       pulumi.StringInput      `pulumi:"createdAt"`
+	DiskGb          pulumi.IntInput         `pulumi:"diskGb"`
+	FirewallId      pulumi.StringInput      `pulumi:"firewallId"`
+	Hostname        pulumi.StringInput      `pulumi:"hostname"`
+	Id              pulumi.StringInput      `pulumi:"id"`
+	InitialPassword pulumi.StringInput      `pulumi:"initialPassword"`
+	InitialUser     pulumi.StringInput      `pulumi:"initialUser"`
+	NetworkId       pulumi.StringInput      `pulumi:"networkId"`
+	Notes           pulumi.StringInput      `pulumi:"notes"`
+	PrivateIp       pulumi.StringInput      `pulumi:"privateIp"`
+	PseudoIp        pulumi.StringInput      `pulumi:"pseudoIp"`
+	PublicIp        pulumi.StringInput      `pulumi:"publicIp"`
+	RamMb           pulumi.IntInput         `pulumi:"ramMb"`
+	ReverseDns      pulumi.StringInput      `pulumi:"reverseDns"`
+	Script          pulumi.StringInput      `pulumi:"script"`
+	Size            pulumi.StringInput      `pulumi:"size"`
+	SshkeyId        pulumi.StringInput      `pulumi:"sshkeyId"`
+	Status          pulumi.StringInput      `pulumi:"status"`
+	Tags            pulumi.StringArrayInput `pulumi:"tags"`
+	Template        pulumi.StringInput      `pulumi:"template"`
 }
 
 func (GetInstancesInstanceArgs) ElementType() reflect.Type {
@@ -694,107 +592,86 @@ func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutputWithContext(ctx 
 	return o
 }
 
-// Total cpu of the inatance.
 func (o GetInstancesInstanceOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.CpuCores }).(pulumi.IntOutput)
 }
 
-// The date of creation of the instance
 func (o GetInstancesInstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The size of the disk.
 func (o GetInstancesInstanceOutput) DiskGb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.DiskGb }).(pulumi.IntOutput)
 }
 
-// The ID of the firewall used.
 func (o GetInstancesInstanceOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.FirewallId }).(pulumi.StringOutput)
 }
 
-// The Instance hostname.
 func (o GetInstancesInstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The ID of the Instance.
 func (o GetInstancesInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Instance initial password
 func (o GetInstancesInstanceOutput) InitialPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.InitialPassword }).(pulumi.StringOutput)
 }
 
-// The name of the initial user created on the server.
 func (o GetInstancesInstanceOutput) InitialUser() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.InitialUser }).(pulumi.StringOutput)
 }
 
-// This will be the ID of the network.
 func (o GetInstancesInstanceOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
-// The notes of the instance.
 func (o GetInstancesInstanceOutput) Notes() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Notes }).(pulumi.StringOutput)
 }
 
-// The private ip.
 func (o GetInstancesInstanceOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
-// Is the ip that is used to route the public ip from the internet to the instance using NAT
 func (o GetInstancesInstanceOutput) PseudoIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.PseudoIp }).(pulumi.StringOutput)
 }
 
-// The public ip.
 func (o GetInstancesInstanceOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
-// Total ram of the instance.
 func (o GetInstancesInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
-// A fully qualified domain name.
 func (o GetInstancesInstanceOutput) ReverseDns() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.ReverseDns }).(pulumi.StringOutput)
 }
 
-// the contents of a script uploaded
 func (o GetInstancesInstanceOutput) Script() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Script }).(pulumi.StringOutput)
 }
 
-// The name of the size.
 func (o GetInstancesInstanceOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Size }).(pulumi.StringOutput)
 }
 
-// The ID SSH.
 func (o GetInstancesInstanceOutput) SshkeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.SshkeyId }).(pulumi.StringOutput)
 }
 
-// The status of the instance
 func (o GetInstancesInstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// An optional list of tags
 func (o GetInstancesInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstancesInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The ID for the template to used to build the instance.
 func (o GetInstancesInstanceOutput) Template() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Template }).(pulumi.StringOutput)
 }
@@ -1150,11 +1027,8 @@ func (o GetInstancesSizeSortArrayOutput) Index(i pulumi.IntInput) GetInstancesSi
 }
 
 type GetInstancesSort struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	// Sort the Instance by this key. This may be one of `id`, `hostname`, `publicIp`, `privateIp`,
-	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key string `pulumi:"key"`
+	Key       string  `pulumi:"key"`
 }
 
 // GetInstancesSortInput is an input type that accepts GetInstancesSortArgs and GetInstancesSortOutput values.
@@ -1169,11 +1043,8 @@ type GetInstancesSortInput interface {
 }
 
 type GetInstancesSortArgs struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort the Instance by this key. This may be one of `id`, `hostname`, `publicIp`, `privateIp`,
-	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key       pulumi.StringInput    `pulumi:"key"`
 }
 
 func (GetInstancesSortArgs) ElementType() reflect.Type {
@@ -1227,13 +1098,10 @@ func (o GetInstancesSortOutput) ToGetInstancesSortOutputWithContext(ctx context.
 	return o
 }
 
-// The sort direction. This may be either `asc` or `desc`.
 func (o GetInstancesSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
-// Sort the Instance by this key. This may be one of `id`, `hostname`, `publicIp`, `privateIp`,
-// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
 func (o GetInstancesSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1259,14 +1127,10 @@ func (o GetInstancesSortArrayOutput) Index(i pulumi.IntInput) GetInstancesSortOu
 }
 
 type GetKubernetesClusterInstalledApplication struct {
-	// The name of the application
 	Application string `pulumi:"application"`
-	// The category of the application
-	Category string `pulumi:"category"`
-	// if installed or not
-	Installed bool `pulumi:"installed"`
-	// The version of the application
-	Version string `pulumi:"version"`
+	Category    string `pulumi:"category"`
+	Installed   bool   `pulumi:"installed"`
+	Version     string `pulumi:"version"`
 }
 
 // GetKubernetesClusterInstalledApplicationInput is an input type that accepts GetKubernetesClusterInstalledApplicationArgs and GetKubernetesClusterInstalledApplicationOutput values.
@@ -1281,14 +1145,10 @@ type GetKubernetesClusterInstalledApplicationInput interface {
 }
 
 type GetKubernetesClusterInstalledApplicationArgs struct {
-	// The name of the application
 	Application pulumi.StringInput `pulumi:"application"`
-	// The category of the application
-	Category pulumi.StringInput `pulumi:"category"`
-	// if installed or not
-	Installed pulumi.BoolInput `pulumi:"installed"`
-	// The version of the application
-	Version pulumi.StringInput `pulumi:"version"`
+	Category    pulumi.StringInput `pulumi:"category"`
+	Installed   pulumi.BoolInput   `pulumi:"installed"`
+	Version     pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetKubernetesClusterInstalledApplicationArgs) ElementType() reflect.Type {
@@ -1342,22 +1202,18 @@ func (o GetKubernetesClusterInstalledApplicationOutput) ToGetKubernetesClusterIn
 	return o
 }
 
-// The name of the application
 func (o GetKubernetesClusterInstalledApplicationOutput) Application() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstalledApplication) string { return v.Application }).(pulumi.StringOutput)
 }
 
-// The category of the application
 func (o GetKubernetesClusterInstalledApplicationOutput) Category() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstalledApplication) string { return v.Category }).(pulumi.StringOutput)
 }
 
-// if installed or not
 func (o GetKubernetesClusterInstalledApplicationOutput) Installed() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstalledApplication) bool { return v.Installed }).(pulumi.BoolOutput)
 }
 
-// The version of the application
 func (o GetKubernetesClusterInstalledApplicationOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstalledApplication) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -1383,29 +1239,17 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntI
 }
 
 type GetKubernetesClusterInstance struct {
-	// Total cpu of the inatance.
-	CpuCores int `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt string `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb int `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId string `pulumi:"firewallId"`
-	// The hostname of the instance.
-	Hostname string `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp string `pulumi:"publicIp"`
-	// Total ram of the instance
-	RamMb int `pulumi:"ramMb"`
-	// The region where instance are.
-	Region string `pulumi:"region"`
-	// The size of the instance.
-	Size string `pulumi:"size"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status string `pulumi:"status"`
-	// The tag of the instances
-	Tags []string `pulumi:"tags"`
+	CpuCores   int      `pulumi:"cpuCores"`
+	CreatedAt  string   `pulumi:"createdAt"`
+	DiskGb     int      `pulumi:"diskGb"`
+	FirewallId string   `pulumi:"firewallId"`
+	Hostname   string   `pulumi:"hostname"`
+	PublicIp   string   `pulumi:"publicIp"`
+	RamMb      int      `pulumi:"ramMb"`
+	Region     string   `pulumi:"region"`
+	Size       string   `pulumi:"size"`
+	Status     string   `pulumi:"status"`
+	Tags       []string `pulumi:"tags"`
 }
 
 // GetKubernetesClusterInstanceInput is an input type that accepts GetKubernetesClusterInstanceArgs and GetKubernetesClusterInstanceOutput values.
@@ -1420,29 +1264,17 @@ type GetKubernetesClusterInstanceInput interface {
 }
 
 type GetKubernetesClusterInstanceArgs struct {
-	// Total cpu of the inatance.
-	CpuCores pulumi.IntInput `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// The size of the disk.
-	DiskGb pulumi.IntInput `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId pulumi.StringInput `pulumi:"firewallId"`
-	// The hostname of the instance.
-	Hostname pulumi.StringInput `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp pulumi.StringInput `pulumi:"publicIp"`
-	// Total ram of the instance
-	RamMb pulumi.IntInput `pulumi:"ramMb"`
-	// The region where instance are.
-	Region pulumi.StringInput `pulumi:"region"`
-	// The size of the instance.
-	Size pulumi.StringInput `pulumi:"size"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
-	Status pulumi.StringInput `pulumi:"status"`
-	// The tag of the instances
-	Tags pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores   pulumi.IntInput         `pulumi:"cpuCores"`
+	CreatedAt  pulumi.StringInput      `pulumi:"createdAt"`
+	DiskGb     pulumi.IntInput         `pulumi:"diskGb"`
+	FirewallId pulumi.StringInput      `pulumi:"firewallId"`
+	Hostname   pulumi.StringInput      `pulumi:"hostname"`
+	PublicIp   pulumi.StringInput      `pulumi:"publicIp"`
+	RamMb      pulumi.IntInput         `pulumi:"ramMb"`
+	Region     pulumi.StringInput      `pulumi:"region"`
+	Size       pulumi.StringInput      `pulumi:"size"`
+	Status     pulumi.StringInput      `pulumi:"status"`
+	Tags       pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetKubernetesClusterInstanceArgs) ElementType() reflect.Type {
@@ -1496,58 +1328,46 @@ func (o GetKubernetesClusterInstanceOutput) ToGetKubernetesClusterInstanceOutput
 	return o
 }
 
-// Total cpu of the inatance.
 func (o GetKubernetesClusterInstanceOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.CpuCores }).(pulumi.IntOutput)
 }
 
-// The date where the Kubernetes cluster was create.
 func (o GetKubernetesClusterInstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The size of the disk.
 func (o GetKubernetesClusterInstanceOutput) DiskGb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.DiskGb }).(pulumi.IntOutput)
 }
 
-// The firewall id assigned to the instance
 func (o GetKubernetesClusterInstanceOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.FirewallId }).(pulumi.StringOutput)
 }
 
-// The hostname of the instance.
 func (o GetKubernetesClusterInstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The public ip of the instances, only available if the instances is the master
 func (o GetKubernetesClusterInstanceOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
-// Total ram of the instance
 func (o GetKubernetesClusterInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
-// The region where instance are.
 func (o GetKubernetesClusterInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Region }).(pulumi.StringOutput)
 }
 
-// The size of the instance.
 func (o GetKubernetesClusterInstanceOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Size }).(pulumi.StringOutput)
 }
 
-// The status of Kubernetes cluster.
-// * `ready` -If the Kubernetes cluster is ready.
 func (o GetKubernetesClusterInstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// The tag of the instances
 func (o GetKubernetesClusterInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -1573,11 +1393,7 @@ func (o GetKubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) GetKub
 }
 
 type GetKubernetesVersionFilter struct {
-	// Filter the sizes by this key. This may be one of `version`,
-	// `label`, `type`, `default`.
-	Key string `pulumi:"key"`
-	// Only retrieves the version which keys has value that matches
-	// one of the values provided here.
+	Key    string   `pulumi:"key"`
 	Values []string `pulumi:"values"`
 }
 
@@ -1593,11 +1409,7 @@ type GetKubernetesVersionFilterInput interface {
 }
 
 type GetKubernetesVersionFilterArgs struct {
-	// Filter the sizes by this key. This may be one of `version`,
-	// `label`, `type`, `default`.
-	Key pulumi.StringInput `pulumi:"key"`
-	// Only retrieves the version which keys has value that matches
-	// one of the values provided here.
+	Key    pulumi.StringInput      `pulumi:"key"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -1652,14 +1464,10 @@ func (o GetKubernetesVersionFilterOutput) ToGetKubernetesVersionFilterOutputWith
 	return o
 }
 
-// Filter the sizes by this key. This may be one of `version`,
-// `label`, `type`, `default`.
 func (o GetKubernetesVersionFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Only retrieves the version which keys has value that matches
-// one of the values provided here.
 func (o GetKubernetesVersionFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -1685,10 +1493,8 @@ func (o GetKubernetesVersionFilterArrayOutput) Index(i pulumi.IntInput) GetKuber
 }
 
 type GetKubernetesVersionSort struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `version`.
-	Key string `pulumi:"key"`
+	Key       string  `pulumi:"key"`
 }
 
 // GetKubernetesVersionSortInput is an input type that accepts GetKubernetesVersionSortArgs and GetKubernetesVersionSortOutput values.
@@ -1703,10 +1509,8 @@ type GetKubernetesVersionSortInput interface {
 }
 
 type GetKubernetesVersionSortArgs struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `version`.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key       pulumi.StringInput    `pulumi:"key"`
 }
 
 func (GetKubernetesVersionSortArgs) ElementType() reflect.Type {
@@ -1760,12 +1564,10 @@ func (o GetKubernetesVersionSortOutput) ToGetKubernetesVersionSortOutputWithCont
 	return o
 }
 
-// The sort direction. This may be either `asc` or `desc`.
 func (o GetKubernetesVersionSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetKubernetesVersionSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
-// Sort the sizes by this key. This may be one of `version`.
 func (o GetKubernetesVersionSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1791,13 +1593,9 @@ func (o GetKubernetesVersionSortArrayOutput) Index(i pulumi.IntInput) GetKuberne
 }
 
 type GetKubernetesVersionVersion struct {
-	// If is the default version used in all cluster.
-	Default bool `pulumi:"default"`
-	// The label of this version.
-	Label string `pulumi:"label"`
-	// The type of the version can be `stable`, `legacy` etc...
-	Type string `pulumi:"type"`
-	// A version of the kubernetes.
+	Default bool   `pulumi:"default"`
+	Label   string `pulumi:"label"`
+	Type    string `pulumi:"type"`
 	Version string `pulumi:"version"`
 }
 
@@ -1813,13 +1611,9 @@ type GetKubernetesVersionVersionInput interface {
 }
 
 type GetKubernetesVersionVersionArgs struct {
-	// If is the default version used in all cluster.
-	Default pulumi.BoolInput `pulumi:"default"`
-	// The label of this version.
-	Label pulumi.StringInput `pulumi:"label"`
-	// The type of the version can be `stable`, `legacy` etc...
-	Type pulumi.StringInput `pulumi:"type"`
-	// A version of the kubernetes.
+	Default pulumi.BoolInput   `pulumi:"default"`
+	Label   pulumi.StringInput `pulumi:"label"`
+	Type    pulumi.StringInput `pulumi:"type"`
 	Version pulumi.StringInput `pulumi:"version"`
 }
 
@@ -1874,22 +1668,18 @@ func (o GetKubernetesVersionVersionOutput) ToGetKubernetesVersionVersionOutputWi
 	return o
 }
 
-// If is the default version used in all cluster.
 func (o GetKubernetesVersionVersionOutput) Default() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetKubernetesVersionVersion) bool { return v.Default }).(pulumi.BoolOutput)
 }
 
-// The label of this version.
 func (o GetKubernetesVersionVersionOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionVersion) string { return v.Label }).(pulumi.StringOutput)
 }
 
-// The type of the version can be `stable`, `legacy` etc...
 func (o GetKubernetesVersionVersionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionVersion) string { return v.Type }).(pulumi.StringOutput)
 }
 
-// A version of the kubernetes.
 func (o GetKubernetesVersionVersionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionVersion) string { return v.Version }).(pulumi.StringOutput)
 }
@@ -1915,12 +1705,9 @@ func (o GetKubernetesVersionVersionArrayOutput) Index(i pulumi.IntInput) GetKube
 }
 
 type GetLoadBalancerBackend struct {
-	// The instance id
 	InstanceId string `pulumi:"instanceId"`
-	// The port set in the configuration.
-	Port int `pulumi:"port"`
-	// The protocol used in the configuration.
-	Protocol string `pulumi:"protocol"`
+	Port       int    `pulumi:"port"`
+	Protocol   string `pulumi:"protocol"`
 }
 
 // GetLoadBalancerBackendInput is an input type that accepts GetLoadBalancerBackendArgs and GetLoadBalancerBackendOutput values.
@@ -1935,12 +1722,9 @@ type GetLoadBalancerBackendInput interface {
 }
 
 type GetLoadBalancerBackendArgs struct {
-	// The instance id
 	InstanceId pulumi.StringInput `pulumi:"instanceId"`
-	// The port set in the configuration.
-	Port pulumi.IntInput `pulumi:"port"`
-	// The protocol used in the configuration.
-	Protocol pulumi.StringInput `pulumi:"protocol"`
+	Port       pulumi.IntInput    `pulumi:"port"`
+	Protocol   pulumi.StringInput `pulumi:"protocol"`
 }
 
 func (GetLoadBalancerBackendArgs) ElementType() reflect.Type {
@@ -1994,17 +1778,14 @@ func (o GetLoadBalancerBackendOutput) ToGetLoadBalancerBackendOutputWithContext(
 	return o
 }
 
-// The instance id
 func (o GetLoadBalancerBackendOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerBackend) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
-// The port set in the configuration.
 func (o GetLoadBalancerBackendOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLoadBalancerBackend) int { return v.Port }).(pulumi.IntOutput)
 }
 
-// The protocol used in the configuration.
 func (o GetLoadBalancerBackendOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerBackend) string { return v.Protocol }).(pulumi.StringOutput)
 }
@@ -2030,11 +1811,7 @@ func (o GetLoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) GetLoadBalan
 }
 
 type GetTemplateFilter struct {
-	// Filter the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key string `pulumi:"key"`
-	// Only retrieves the template which keys has value that matches
-	// one of the values provided here.
+	Key    string   `pulumi:"key"`
 	Values []string `pulumi:"values"`
 }
 
@@ -2050,11 +1827,7 @@ type GetTemplateFilterInput interface {
 }
 
 type GetTemplateFilterArgs struct {
-	// Filter the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key pulumi.StringInput `pulumi:"key"`
-	// Only retrieves the template which keys has value that matches
-	// one of the values provided here.
+	Key    pulumi.StringInput      `pulumi:"key"`
 	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
@@ -2109,14 +1882,10 @@ func (o GetTemplateFilterOutput) ToGetTemplateFilterOutputWithContext(ctx contex
 	return o
 }
 
-// Filter the sizes by this key. This may be one of `code`,
-// `name`.
 func (o GetTemplateFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
-// Only retrieves the template which keys has value that matches
-// one of the values provided here.
 func (o GetTemplateFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetTemplateFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -2142,11 +1911,8 @@ func (o GetTemplateFilterArrayOutput) Index(i pulumi.IntInput) GetTemplateFilter
 }
 
 type GetTemplateSort struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key string `pulumi:"key"`
+	Key       string  `pulumi:"key"`
 }
 
 // GetTemplateSortInput is an input type that accepts GetTemplateSortArgs and GetTemplateSortOutput values.
@@ -2161,11 +1927,8 @@ type GetTemplateSortInput interface {
 }
 
 type GetTemplateSortArgs struct {
-	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key       pulumi.StringInput    `pulumi:"key"`
 }
 
 func (GetTemplateSortArgs) ElementType() reflect.Type {
@@ -2219,13 +1982,10 @@ func (o GetTemplateSortOutput) ToGetTemplateSortOutputWithContext(ctx context.Co
 	return o
 }
 
-// The sort direction. This may be either `asc` or `desc`.
 func (o GetTemplateSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTemplateSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
-// Sort the sizes by this key. This may be one of `code`,
-// `name`.
 func (o GetTemplateSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -2251,25 +2011,15 @@ func (o GetTemplateSortArrayOutput) Index(i pulumi.IntInput) GetTemplateSortOutp
 }
 
 type GetTemplateTemplate struct {
-	// Commonly referred to as 'user-data', this is a customisation script that is run after
-	// the instance is first booted.
-	CloudConfig string `pulumi:"cloudConfig"`
-	// A unqiue, alphanumerical, short, human readable code for the template.
-	Code string `pulumi:"code"`
-	// The default username to suggest that the user creates
-	DefaultUsername string `pulumi:"defaultUsername"`
-	// A multi-line description of the template, in Markdown format
-	Description string `pulumi:"description"`
-	// The id of the template
-	Id string `pulumi:"id"`
-	// The Image ID of any default template or the ID of another template.
-	ImageId string `pulumi:"imageId"`
-	// A short human readable name for the template
-	Name string `pulumi:"name"`
-	// A one line description of the template
+	CloudConfig      string `pulumi:"cloudConfig"`
+	Code             string `pulumi:"code"`
+	DefaultUsername  string `pulumi:"defaultUsername"`
+	Description      string `pulumi:"description"`
+	Id               string `pulumi:"id"`
+	ImageId          string `pulumi:"imageId"`
+	Name             string `pulumi:"name"`
 	ShortDescription string `pulumi:"shortDescription"`
-	// The ID of a bootable volume, either owned by you or global.
-	VolumeId string `pulumi:"volumeId"`
+	VolumeId         string `pulumi:"volumeId"`
 }
 
 // GetTemplateTemplateInput is an input type that accepts GetTemplateTemplateArgs and GetTemplateTemplateOutput values.
@@ -2284,25 +2034,15 @@ type GetTemplateTemplateInput interface {
 }
 
 type GetTemplateTemplateArgs struct {
-	// Commonly referred to as 'user-data', this is a customisation script that is run after
-	// the instance is first booted.
-	CloudConfig pulumi.StringInput `pulumi:"cloudConfig"`
-	// A unqiue, alphanumerical, short, human readable code for the template.
-	Code pulumi.StringInput `pulumi:"code"`
-	// The default username to suggest that the user creates
-	DefaultUsername pulumi.StringInput `pulumi:"defaultUsername"`
-	// A multi-line description of the template, in Markdown format
-	Description pulumi.StringInput `pulumi:"description"`
-	// The id of the template
-	Id pulumi.StringInput `pulumi:"id"`
-	// The Image ID of any default template or the ID of another template.
-	ImageId pulumi.StringInput `pulumi:"imageId"`
-	// A short human readable name for the template
-	Name pulumi.StringInput `pulumi:"name"`
-	// A one line description of the template
+	CloudConfig      pulumi.StringInput `pulumi:"cloudConfig"`
+	Code             pulumi.StringInput `pulumi:"code"`
+	DefaultUsername  pulumi.StringInput `pulumi:"defaultUsername"`
+	Description      pulumi.StringInput `pulumi:"description"`
+	Id               pulumi.StringInput `pulumi:"id"`
+	ImageId          pulumi.StringInput `pulumi:"imageId"`
+	Name             pulumi.StringInput `pulumi:"name"`
 	ShortDescription pulumi.StringInput `pulumi:"shortDescription"`
-	// The ID of a bootable volume, either owned by you or global.
-	VolumeId pulumi.StringInput `pulumi:"volumeId"`
+	VolumeId         pulumi.StringInput `pulumi:"volumeId"`
 }
 
 func (GetTemplateTemplateArgs) ElementType() reflect.Type {
@@ -2356,48 +2096,38 @@ func (o GetTemplateTemplateOutput) ToGetTemplateTemplateOutputWithContext(ctx co
 	return o
 }
 
-// Commonly referred to as 'user-data', this is a customisation script that is run after
-// the instance is first booted.
 func (o GetTemplateTemplateOutput) CloudConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.CloudConfig }).(pulumi.StringOutput)
 }
 
-// A unqiue, alphanumerical, short, human readable code for the template.
 func (o GetTemplateTemplateOutput) Code() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Code }).(pulumi.StringOutput)
 }
 
-// The default username to suggest that the user creates
 func (o GetTemplateTemplateOutput) DefaultUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.DefaultUsername }).(pulumi.StringOutput)
 }
 
-// A multi-line description of the template, in Markdown format
 func (o GetTemplateTemplateOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Description }).(pulumi.StringOutput)
 }
 
-// The id of the template
 func (o GetTemplateTemplateOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The Image ID of any default template or the ID of another template.
 func (o GetTemplateTemplateOutput) ImageId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.ImageId }).(pulumi.StringOutput)
 }
 
-// A short human readable name for the template
 func (o GetTemplateTemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A one line description of the template
 func (o GetTemplateTemplateOutput) ShortDescription() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.ShortDescription }).(pulumi.StringOutput)
 }
 
-// The ID of a bootable volume, either owned by you or global.
 func (o GetTemplateTemplateOutput) VolumeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.VolumeId }).(pulumi.StringOutput)
 }

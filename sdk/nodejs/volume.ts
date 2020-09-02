@@ -4,21 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const db = new civo.Volume("db", {
- *     bootable: false,
- *     sizeGb: 60,
- * });
- * ```
- */
 export class Volume extends pulumi.CustomResource {
     /**
      * Get an existing Volume resource's state with the given name, ID, and optional extra
@@ -48,23 +33,17 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
-     * Mark the volume as bootable.
+     * Mark the volume as bootable
      */
     public readonly bootable!: pulumi.Output<boolean>;
-    /**
-     * The date of the creation of the volume.
-     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    /**
-     * The mount point of the volume.
-     */
     public /*out*/ readonly mountPoint!: pulumi.Output<string>;
     /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     public readonly sizeGb!: pulumi.Output<number>;
 
@@ -115,23 +94,17 @@ export class Volume extends pulumi.CustomResource {
  */
 export interface VolumeState {
     /**
-     * Mark the volume as bootable.
+     * Mark the volume as bootable
      */
     readonly bootable?: pulumi.Input<boolean>;
-    /**
-     * The date of the creation of the volume.
-     */
     readonly createdAt?: pulumi.Input<string>;
-    /**
-     * The mount point of the volume.
-     */
     readonly mountPoint?: pulumi.Input<string>;
     /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     readonly sizeGb?: pulumi.Input<number>;
 }
@@ -141,15 +114,15 @@ export interface VolumeState {
  */
 export interface VolumeArgs {
     /**
-     * Mark the volume as bootable.
+     * Mark the volume as bootable
      */
     readonly bootable: pulumi.Input<boolean>;
     /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     readonly sizeGb: pulumi.Input<number>;
 }

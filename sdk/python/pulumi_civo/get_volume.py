@@ -42,49 +42,31 @@ class GetVolumeResult:
     @property
     @pulumi.getter
     def bootable(self) -> bool:
-        """
-        if is bootable or not.
-        """
         return pulumi.get(self, "bootable")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date of the creation of the volume.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The unique identifier for the volume.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="mountPoint")
     def mount_point(self) -> str:
-        """
-        The mount point of the volume.
-        """
         return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Name of the volume.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> float:
-        """
-        The size of the volume.
-        """
         return pulumi.get(self, "size_gb")
 
 
@@ -107,9 +89,6 @@ def get_volume(id: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: The unique identifier for the volume.
-    :param str name: The name of the volume.
     """
     __args__ = dict()
     __args__['id'] = id

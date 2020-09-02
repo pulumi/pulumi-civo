@@ -62,9 +62,6 @@ def get_ssh_key(id: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSshKeyResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: The ID of the ssh key.
-    :param str name: The name of the ssh key.
     """
     __args__ = dict()
     __args__['id'] = id

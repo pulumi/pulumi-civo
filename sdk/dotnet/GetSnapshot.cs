@@ -11,36 +11,6 @@ namespace Pulumi.Civo
 {
     public static class GetSnapshot
     {
-        /// <summary>
-        /// Snapshots are saved instances of a block storage volume. Use this data
-        /// source to retrieve the ID of a Civo snapshot for use in other
-        /// resources.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// Get the snapshot:
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var mysql_vm = Output.Create(Civo.GetSnapshot.InvokeAsync(new Civo.GetSnapshotArgs
-        ///         {
-        ///             Name = "mysql-vm",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetSnapshotResult> InvokeAsync(GetSnapshotArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSnapshotResult>("civo:index/getSnapshot:getSnapshot", args ?? new GetSnapshotArgs(), options.WithVersion());
     }
@@ -48,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetSnapshotArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the snapshot.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the snapshot.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -69,54 +33,18 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetSnapshotResult
     {
-        /// <summary>
-        /// The date where the snapshot was completed.
-        /// </summary>
         public readonly string CompletedAt;
-        /// <summary>
-        /// A string with the cron format.
-        /// </summary>
         public readonly string CronTiming;
-        /// <summary>
-        /// The hostname of the instance.
-        /// </summary>
         public readonly string Hostname;
         public readonly string? Id;
-        /// <summary>
-        /// The ID of the Instance from which the snapshot was be taken.
-        /// </summary>
         public readonly string InstanceId;
-        /// <summary>
-        /// The name of the snapshot.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// if cron was define this date will be the next execution date.
-        /// </summary>
         public readonly string NextExecution;
-        /// <summary>
-        /// The region where the snapshot was take.
-        /// </summary>
         public readonly string Region;
-        /// <summary>
-        /// The date where the snapshot was requested.
-        /// </summary>
         public readonly string RequestedAt;
-        /// <summary>
-        /// If is `true` the instance will be shut down during the snapshot if id `false` them not.
-        /// </summary>
         public readonly bool Safe;
-        /// <summary>
-        /// The size of the snapshot in GB.
-        /// </summary>
         public readonly int SizeGb;
-        /// <summary>
-        /// The status of the snapshot.
-        /// </summary>
         public readonly string State;
-        /// <summary>
-        /// The template id.
-        /// </summary>
         public readonly string TemplateId;
 
         [OutputConstructor]

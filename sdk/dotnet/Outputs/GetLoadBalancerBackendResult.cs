@@ -13,17 +13,8 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetLoadBalancerBackendResult
     {
-        /// <summary>
-        /// The instance id
-        /// </summary>
         public readonly string InstanceId;
-        /// <summary>
-        /// The port set in the configuration.
-        /// </summary>
         public readonly int Port;
-        /// <summary>
-        /// The protocol used in the configuration.
-        /// </summary>
         public readonly string Protocol;
 
         [OutputConstructor]

@@ -18,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetSshKeyArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the ssh key.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the ssh key.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 

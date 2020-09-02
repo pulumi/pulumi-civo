@@ -4,18 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a resource which can be used to create a snapshot from an existing Civo Instance.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const myinstance_backup = new civo.Snapshot("myinstance-backup", {instanceId: civo_instance.myinstance.id});
- * ```
- */
 export class Snapshot extends pulumi.CustomResource {
     /**
      * Get an existing Snapshot resource's state with the given name, ID, and optional extra
@@ -44,58 +32,33 @@ export class Snapshot extends pulumi.CustomResource {
         return obj['__pulumiType'] === Snapshot.__pulumiType;
     }
 
-    /**
-     * The date where the snapshot was completed.
-     */
     public /*out*/ readonly completedAt!: pulumi.Output<string>;
     /**
-     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
-     * continuing to automatically update based on the schedule of the cron sequence provided
-     * The default is nil meaning the snapshot will be saved as a one-off snapshot.
+     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+     * based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+     * snapshot.
      */
     public readonly cronTiming!: pulumi.Output<string | undefined>;
-    /**
-     * The hostname of the instance.
-     */
     public /*out*/ readonly hostname!: pulumi.Output<string>;
     /**
-     * The ID of the Instance from which the snapshot will be taken.
+     * The ID of the instance to snapshot
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * A name for the instance snapshot.
+     * This is a unqiue, alphanumerical, short, human readable code for the snapshot
      */
     public readonly name!: pulumi.Output<string>;
-    /**
-     * if cron was define this date will be the next execution date.
-     */
     public /*out*/ readonly nextExecution!: pulumi.Output<string>;
-    /**
-     * The region where the snapshot was take.
-     */
     public /*out*/ readonly region!: pulumi.Output<string>;
-    /**
-     * The date where the snapshot was requested.
-     */
     public /*out*/ readonly requestedAt!: pulumi.Output<string>;
     /**
-     * If `true` the instance will be shut down during the snapshot to ensure all files 
-     * are in a consistent state (e.g. database tables aren't in the middle of being optimised
-     * and hence risking corruption). The default is `false` so you experience no interruption
-     * of service, but a small risk of corruption.
+     * If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+     * tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+     * interruptionof service, but a small risk of corruption.
      */
     public readonly safe!: pulumi.Output<boolean | undefined>;
-    /**
-     * The size of the snapshot in GB.
-     */
     public /*out*/ readonly sizeGb!: pulumi.Output<number>;
-    /**
-     * The status of the snapshot.
-     */
     public /*out*/ readonly state!: pulumi.Output<string>;
-    /**
-     * The template id.
-     */
     public /*out*/ readonly templateId!: pulumi.Output<string>;
 
     /**
@@ -155,58 +118,33 @@ export class Snapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Snapshot resources.
  */
 export interface SnapshotState {
-    /**
-     * The date where the snapshot was completed.
-     */
     readonly completedAt?: pulumi.Input<string>;
     /**
-     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
-     * continuing to automatically update based on the schedule of the cron sequence provided
-     * The default is nil meaning the snapshot will be saved as a one-off snapshot.
+     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+     * based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+     * snapshot.
      */
     readonly cronTiming?: pulumi.Input<string>;
-    /**
-     * The hostname of the instance.
-     */
     readonly hostname?: pulumi.Input<string>;
     /**
-     * The ID of the Instance from which the snapshot will be taken.
+     * The ID of the instance to snapshot
      */
     readonly instanceId?: pulumi.Input<string>;
     /**
-     * A name for the instance snapshot.
+     * This is a unqiue, alphanumerical, short, human readable code for the snapshot
      */
     readonly name?: pulumi.Input<string>;
-    /**
-     * if cron was define this date will be the next execution date.
-     */
     readonly nextExecution?: pulumi.Input<string>;
-    /**
-     * The region where the snapshot was take.
-     */
     readonly region?: pulumi.Input<string>;
-    /**
-     * The date where the snapshot was requested.
-     */
     readonly requestedAt?: pulumi.Input<string>;
     /**
-     * If `true` the instance will be shut down during the snapshot to ensure all files 
-     * are in a consistent state (e.g. database tables aren't in the middle of being optimised
-     * and hence risking corruption). The default is `false` so you experience no interruption
-     * of service, but a small risk of corruption.
+     * If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+     * tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+     * interruptionof service, but a small risk of corruption.
      */
     readonly safe?: pulumi.Input<boolean>;
-    /**
-     * The size of the snapshot in GB.
-     */
     readonly sizeGb?: pulumi.Input<number>;
-    /**
-     * The status of the snapshot.
-     */
     readonly state?: pulumi.Input<string>;
-    /**
-     * The template id.
-     */
     readonly templateId?: pulumi.Input<string>;
 }
 
@@ -215,24 +153,23 @@ export interface SnapshotState {
  */
 export interface SnapshotArgs {
     /**
-     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
-     * continuing to automatically update based on the schedule of the cron sequence provided
-     * The default is nil meaning the snapshot will be saved as a one-off snapshot.
+     * If a valid cron string is passed, the snapshot will be saved as an automated snapshot,continuing to automatically update
+     * based on the schedule of the cron sequence provided.The default is nil meaning the snapshot will be saved as a one-off
+     * snapshot.
      */
     readonly cronTiming?: pulumi.Input<string>;
     /**
-     * The ID of the Instance from which the snapshot will be taken.
+     * The ID of the instance to snapshot
      */
     readonly instanceId: pulumi.Input<string>;
     /**
-     * A name for the instance snapshot.
+     * This is a unqiue, alphanumerical, short, human readable code for the snapshot
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * If `true` the instance will be shut down during the snapshot to ensure all files 
-     * are in a consistent state (e.g. database tables aren't in the middle of being optimised
-     * and hence risking corruption). The default is `false` so you experience no interruption
-     * of service, but a small risk of corruption.
+     * If true the instance will be shut down during the snapshot to ensure all filesare in a consistent state (e.g. database
+     * tables aren't in the middle of being optimisedand hence risking corruption). The default is false so you experience no
+     * interruptionof service, but a small risk of corruption.
      */
     readonly safe?: pulumi.Input<boolean>;
 }

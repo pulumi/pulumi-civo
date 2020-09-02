@@ -25,13 +25,7 @@ export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getVolume.
  */
 export interface GetVolumeArgs {
-    /**
-     * The unique identifier for the volume.
-     */
     readonly id?: string;
-    /**
-     * The name of the volume.
-     */
     readonly name?: string;
 }
 
@@ -39,28 +33,10 @@ export interface GetVolumeArgs {
  * A collection of values returned by getVolume.
  */
 export interface GetVolumeResult {
-    /**
-     * if is bootable or not.
-     */
     readonly bootable: boolean;
-    /**
-     * The date of the creation of the volume.
-     */
     readonly createdAt: string;
-    /**
-     * The unique identifier for the volume.
-     */
     readonly id?: string;
-    /**
-     * The mount point of the volume.
-     */
     readonly mountPoint: string;
-    /**
-     * Name of the volume.
-     */
     readonly name?: string;
-    /**
-     * The size of the volume.
-     */
     readonly sizeGb: number;
 }

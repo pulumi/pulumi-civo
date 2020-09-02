@@ -25,13 +25,7 @@ export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getSshKey.
  */
 export interface GetSshKeyArgs {
-    /**
-     * The ID of the ssh key.
-     */
     readonly id?: string;
-    /**
-     * The name of the ssh key.
-     */
     readonly name?: string;
 }
 

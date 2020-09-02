@@ -4,19 +4,6 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
-/**
- * Provides a Civo dns domain name resource.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * // Create a new domain name
- * const main = new civo.DnsDomainName("main", {});
- * ```
- */
 export class DnsDomainName extends pulumi.CustomResource {
     /**
      * Get an existing DnsDomainName resource's state with the given name, ID, and optional extra
@@ -45,12 +32,9 @@ export class DnsDomainName extends pulumi.CustomResource {
         return obj['__pulumiType'] === DnsDomainName.__pulumiType;
     }
 
-    /**
-     * The id account of the domain
-     */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
-     * The name of the domain
+     * A fully qualified domain name
      */
     public readonly name!: pulumi.Output<string>;
 
@@ -88,12 +72,9 @@ export class DnsDomainName extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DnsDomainName resources.
  */
 export interface DnsDomainNameState {
-    /**
-     * The id account of the domain
-     */
     readonly accountId?: pulumi.Input<string>;
     /**
-     * The name of the domain
+     * A fully qualified domain name
      */
     readonly name?: pulumi.Input<string>;
 }
@@ -103,7 +84,7 @@ export interface DnsDomainNameState {
  */
 export interface DnsDomainNameArgs {
     /**
-     * The name of the domain
+     * A fully qualified domain name
      */
     readonly name?: pulumi.Input<string>;
 }

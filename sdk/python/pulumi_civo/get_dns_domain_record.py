@@ -54,25 +54,16 @@ class GetDnsDomainRecordResult:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
-        """
-        The id account of the domain.
-        """
         return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date when it was created in UTC format
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="domainId")
     def domain_id(self) -> str:
-        """
-        The id of the domain
-        """
         return pulumi.get(self, "domain_id")
 
     @property
@@ -86,49 +77,31 @@ class GetDnsDomainRecordResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> float:
-        """
-        The priority of the record.
-        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def ttl(self) -> float:
-        """
-        How long caching DNS servers should cache this record.
-        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The choice of record type from a, cname, mx or txt
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
-        """
-        The date when it was updated in UTC format
-        """
         return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        """
-        The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-        """
         return pulumi.get(self, "value")
 
 
@@ -155,9 +128,6 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDnsDomainRecordResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str domain_id: The domain id of the record.
-    :param str name: The name of the record.
     """
     __args__ = dict()
     __args__['domainId'] = domain_id

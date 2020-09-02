@@ -18,12 +18,8 @@ func LookupTemplate(ctx *pulumi.Context, args *LookupTemplateArgs, opts ...pulum
 
 // A collection of arguments for invoking getTemplate.
 type LookupTemplateArgs struct {
-	// Filter the results.
-	// The `filter` block is documented below.
 	Filters []GetTemplateFilter `pulumi:"filters"`
-	// Sort the results.
-	// The `sort` block is documented below.
-	Sorts []GetTemplateSort `pulumi:"sorts"`
+	Sorts   []GetTemplateSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getTemplate.

@@ -20,21 +20,9 @@ class Firewall(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo Cloud Firewall resource. This can be used to create,
-        modify, and delete Firewalls.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        www = civo.Firewall("www")
-        ```
-
+        Create a Firewall resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The Firewall name
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -74,8 +62,6 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: The Firewall name
-        :param pulumi.Input[str] region: The region where the firewall was create.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -88,17 +74,11 @@ class Firewall(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        The Firewall name
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
-        """
-        The region where the firewall was create.
-        """
         return pulumi.get(self, "region")
 
     def translate_output_property(self, prop):

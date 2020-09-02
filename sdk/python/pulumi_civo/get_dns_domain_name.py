@@ -30,17 +30,11 @@ class GetDnsDomainNameResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        A unique ID that can be used to identify and reference a domain.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the domain.
-        """
         return pulumi.get(self, "name")
 
 
@@ -59,9 +53,6 @@ def get_dns_domain_name(id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDnsDomainNameResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str id: The id of the domain.
-    :param str name: The name of the domain.
     """
     __args__ = dict()
     __args__['id'] = id

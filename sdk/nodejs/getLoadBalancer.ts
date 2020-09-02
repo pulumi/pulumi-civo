@@ -25,13 +25,7 @@ export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getLoadBalancer.
  */
 export interface GetLoadBalancerArgs {
-    /**
-     * The hostname of the Load Balancer.
-     */
     readonly hostname?: string;
-    /**
-     * The ID of the Load Balancer.
-     */
     readonly id?: string;
 }
 
@@ -39,56 +33,17 @@ export interface GetLoadBalancerArgs {
  * A collection of values returned by getLoadBalancer.
  */
 export interface GetLoadBalancerResult {
-    /**
-     * A list of backend instances
-     */
     readonly backends: outputs.GetLoadBalancerBackend[];
-    /**
-     * The wait time until the backend is marked as a failure
-     */
     readonly failTimeout: number;
-    /**
-     * The path to check the health of the backend
-     */
     readonly healthCheckPath: string;
-    /**
-     * The hostname of the Load Balancer
-     */
     readonly hostname?: string;
-    /**
-     * The ID of the Load Balancer
-     */
     readonly id?: string;
-    /**
-     * Should self-signed/invalid certificates be ignored from the backend servers
-     */
     readonly ignoreInvalidBackendTls: boolean;
-    /**
-     * How many concurrent connections can each backend handle
-     */
     readonly maxConns: number;
-    /**
-     * The max request size set in the configuration
-     */
     readonly maxRequestSize: number;
-    /**
-     * The policy set in the Load Balancer
-     */
     readonly policy: string;
-    /**
-     * The port set in the configuration.
-     */
     readonly port: number;
-    /**
-     * The protocol used in the configuration.
-     */
     readonly protocol: string;
-    /**
-     * If is set will be returned
-     */
     readonly tlsCertificate: string;
-    /**
-     * If is set will be returned
-     */
     readonly tlsKey: string;
 }

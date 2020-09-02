@@ -29,12 +29,6 @@ class KubernetesClusterInstalledApplicationArgs:
                  category: Optional[pulumi.Input[str]] = None,
                  installed: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None):
-        """
-        :param pulumi.Input[str] application: The name of the application
-        :param pulumi.Input[str] category: The category of the application
-        :param pulumi.Input[bool] installed: if installed or not
-        :param pulumi.Input[str] version: The version of the application
-        """
         if application is not None:
             pulumi.set(__self__, "application", application)
         if category is not None:
@@ -47,9 +41,6 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def application(self) -> Optional[pulumi.Input[str]]:
-        """
-        The name of the application
-        """
         return pulumi.get(self, "application")
 
     @application.setter
@@ -59,9 +50,6 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
-        """
-        The category of the application
-        """
         return pulumi.get(self, "category")
 
     @category.setter
@@ -71,9 +59,6 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def installed(self) -> Optional[pulumi.Input[bool]]:
-        """
-        if installed or not
-        """
         return pulumi.get(self, "installed")
 
     @installed.setter
@@ -83,9 +68,6 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
-        """
-        The version of the application
-        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -107,20 +89,6 @@ class KubernetesClusterInstanceArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[float] cpu_cores: Total cpu of the inatance.
-        :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
-        :param pulumi.Input[float] disk_gb: The size of the disk.
-        :param pulumi.Input[str] firewall_id: The firewall id assigned to the instance
-        :param pulumi.Input[str] hostname: The hostname of the instance.
-        :param pulumi.Input[str] public_ip: The public ip of the instances, only available if the instances is the master
-        :param pulumi.Input[float] ram_mb: Total ram of the instance.
-        :param pulumi.Input[str] region: The region where instance are.
-        :param pulumi.Input[str] size: The size of the instance.
-        :param pulumi.Input[str] status: The status of Kubernetes cluster.
-               * `ready` -If the Kubernetes cluster is ready.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: A space separated list of tags, to be used freely as required.
-        """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
         if created_at is not None:
@@ -147,9 +115,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> Optional[pulumi.Input[float]]:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @cpu_cores.setter
@@ -159,9 +124,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        The date where the Kubernetes cluster was create.
-        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -171,9 +133,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> Optional[pulumi.Input[float]]:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @disk_gb.setter
@@ -183,9 +142,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The firewall id assigned to the instance
-        """
         return pulumi.get(self, "firewall_id")
 
     @firewall_id.setter
@@ -195,9 +151,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -207,9 +160,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> Optional[pulumi.Input[str]]:
-        """
-        The public ip of the instances, only available if the instances is the master
-        """
         return pulumi.get(self, "public_ip")
 
     @public_ip.setter
@@ -219,9 +169,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> Optional[pulumi.Input[float]]:
-        """
-        Total ram of the instance.
-        """
         return pulumi.get(self, "ram_mb")
 
     @ram_mb.setter
@@ -231,9 +178,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
-        """
-        The region where instance are.
-        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -243,9 +187,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -255,10 +196,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -268,9 +205,6 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
-        """
-        A space separated list of tags, to be used freely as required.
-        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -321,22 +255,12 @@ class GetInstancesFilterArgs:
     def __init__(__self__, *,
                  key: str,
                  values: List[str]):
-        """
-        :param str key: Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-               `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        :param List[str] values: A list of values to match against the `key` field. Only retrieves Instances
-               where the `key` field takes on one or more of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -346,10 +270,6 @@ class GetInstancesFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        """
-        A list of values to match against the `key` field. Only retrieves Instances
-        where the `key` field takes on one or more of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -417,11 +337,6 @@ class GetInstancesSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-               `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -429,10 +344,6 @@ class GetInstancesSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -442,9 +353,6 @@ class GetInstancesSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -457,22 +365,12 @@ class GetKubernetesVersionFilterArgs:
     def __init__(__self__, *,
                  key: str,
                  values: List[str]):
-        """
-        :param str key: Filter the sizes by this key. This may be one of `version`,
-               `label`, `type`, `default`.
-        :param List[str] values: Only retrieves the version which keys has value that matches
-               one of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the sizes by this key. This may be one of `version`,
-        `label`, `type`, `default`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -482,10 +380,6 @@ class GetKubernetesVersionFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        """
-        Only retrieves the version which keys has value that matches
-        one of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -498,10 +392,6 @@ class GetKubernetesVersionSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the sizes by this key. This may be one of `version`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -509,9 +399,6 @@ class GetKubernetesVersionSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the sizes by this key. This may be one of `version`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -521,9 +408,6 @@ class GetKubernetesVersionSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -536,22 +420,12 @@ class GetTemplateFilterArgs:
     def __init__(__self__, *,
                  key: str,
                  values: List[str]):
-        """
-        :param str key: Filter the sizes by this key. This may be one of `code`,
-               `name`.
-        :param List[str] values: Only retrieves the template which keys has value that matches
-               one of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the sizes by this key. This may be one of `code`,
-        `name`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -561,10 +435,6 @@ class GetTemplateFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> List[str]:
-        """
-        Only retrieves the template which keys has value that matches
-        one of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -577,11 +447,6 @@ class GetTemplateSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the sizes by this key. This may be one of `code`, 
-               `name`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -589,10 +454,6 @@ class GetTemplateSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the sizes by this key. This may be one of `code`, 
-        `name`.
-        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -602,9 +463,6 @@ class GetTemplateSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
     @direction.setter

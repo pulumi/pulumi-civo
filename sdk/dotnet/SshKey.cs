@@ -9,48 +9,22 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Provides a Civo SSH key resource to allow you to manage SSH
-    /// keys for Instance access. Keys created with this resource
-    /// can be referenced in your instance configuration via their ID.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.IO;
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var my_user = new Civo.SshKey("my-user", new Civo.SshKeyArgs
-    ///         {
-    ///             PublicKey = File.ReadAllText("~/.ssh/id_rsa.pub"),
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class SshKey : Pulumi.CustomResource
     {
         /// <summary>
-        /// The fingerprint of the SSH key
+        /// a string containing the SSH finger print.
         /// </summary>
         [Output("fingerprint")]
         public Output<string> Fingerprint { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the SSH key for identification
+        /// a string that will be the reference for the SSH key.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The public key. If this is a file, it
-        /// can be read using the file interpolation function.
+        /// a string containing the SSH public key.
         /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
@@ -102,14 +76,13 @@ namespace Pulumi.Civo
     public sealed class SshKeyArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The name of the SSH key for identification
+        /// a string that will be the reference for the SSH key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The public key. If this is a file, it
-        /// can be read using the file interpolation function.
+        /// a string containing the SSH public key.
         /// </summary>
         [Input("publicKey", required: true)]
         public Input<string> PublicKey { get; set; } = null!;
@@ -122,20 +95,19 @@ namespace Pulumi.Civo
     public sealed class SshKeyState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The fingerprint of the SSH key
+        /// a string containing the SSH finger print.
         /// </summary>
         [Input("fingerprint")]
         public Input<string>? Fingerprint { get; set; }
 
         /// <summary>
-        /// The name of the SSH key for identification
+        /// a string that will be the reference for the SSH key.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The public key. If this is a file, it
-        /// can be read using the file interpolation function.
+        /// a string containing the SSH public key.
         /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }

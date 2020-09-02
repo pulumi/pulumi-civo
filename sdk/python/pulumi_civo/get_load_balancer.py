@@ -64,105 +64,66 @@ class GetLoadBalancerResult:
     @property
     @pulumi.getter
     def backends(self) -> List['outputs.GetLoadBalancerBackendResult']:
-        """
-        A list of backend instances
-        """
         return pulumi.get(self, "backends")
 
     @property
     @pulumi.getter(name="failTimeout")
     def fail_timeout(self) -> float:
-        """
-        The wait time until the backend is marked as a failure
-        """
         return pulumi.get(self, "fail_timeout")
 
     @property
     @pulumi.getter(name="healthCheckPath")
     def health_check_path(self) -> str:
-        """
-        The path to check the health of the backend
-        """
         return pulumi.get(self, "health_check_path")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
-        """
-        The hostname of the Load Balancer
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of the Load Balancer
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="ignoreInvalidBackendTls")
     def ignore_invalid_backend_tls(self) -> bool:
-        """
-        Should self-signed/invalid certificates be ignored from the backend servers
-        """
         return pulumi.get(self, "ignore_invalid_backend_tls")
 
     @property
     @pulumi.getter(name="maxConns")
     def max_conns(self) -> float:
-        """
-        How many concurrent connections can each backend handle
-        """
         return pulumi.get(self, "max_conns")
 
     @property
     @pulumi.getter(name="maxRequestSize")
     def max_request_size(self) -> float:
-        """
-        The max request size set in the configuration
-        """
         return pulumi.get(self, "max_request_size")
 
     @property
     @pulumi.getter
     def policy(self) -> str:
-        """
-        The policy set in the Load Balancer
-        """
         return pulumi.get(self, "policy")
 
     @property
     @pulumi.getter
     def port(self) -> float:
-        """
-        The port set in the configuration.
-        """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
-        """
-        The protocol used in the configuration.
-        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="tlsCertificate")
     def tls_certificate(self) -> str:
-        """
-        If is set will be returned
-        """
         return pulumi.get(self, "tls_certificate")
 
     @property
     @pulumi.getter(name="tlsKey")
     def tls_key(self) -> str:
-        """
-        If is set will be returned
-        """
         return pulumi.get(self, "tls_key")
 
 
@@ -192,9 +153,6 @@ def get_load_balancer(hostname: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Use this data source to access information about an existing resource.
-
-    :param str hostname: The hostname of the Load Balancer.
-    :param str id: The ID of the Load Balancer.
     """
     __args__ = dict()
     __args__['hostname'] = hostname

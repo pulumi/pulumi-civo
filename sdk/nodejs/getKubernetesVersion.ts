@@ -6,36 +6,6 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-/**
- * Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const stable = pulumi.output(civo.getKubernetesVersion({
- *     filters: [{
- *         key: "type",
- *         values: ["stable"],
- *     }],
- * }, { async: true }));
- * ```
- * ### Pin a Kubernetes cluster to a specific minor version
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const minorVersion = pulumi.output(civo.getKubernetesVersion({
- *     filters: [{
- *         key: "version",
- *         values: ["0.9.1"],
- *     }],
- * }, { async: true }));
- * ```
- */
 export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesVersionResult> {
     args = args || {};
     if (!opts) {
@@ -55,15 +25,7 @@ export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pul
  * A collection of arguments for invoking getKubernetesVersion.
  */
 export interface GetKubernetesVersionArgs {
-    /**
-     * Filter the results.
-     * The `filter` block is documented below.
-     */
     readonly filters?: inputs.GetKubernetesVersionFilter[];
-    /**
-     * Sort the results.
-     * The `sort` block is documented below.
-     */
     readonly sorts?: inputs.GetKubernetesVersionSort[];
 }
 

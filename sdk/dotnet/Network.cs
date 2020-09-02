@@ -9,58 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
-    /// <summary>
-    /// Provides a Civo Network resource. This can be used to create,
-    /// modify, and delete Networks.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var customNet = new Civo.Network("customNet", new Civo.NetworkArgs
-    ///         {
-    ///             Label = "test_network",
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
-    /// </summary>
     public partial class Network : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
         [Output("cidr")]
         public Output<string> Cidr { get; private set; } = null!;
 
-        /// <summary>
-        /// If is the default network.
-        /// </summary>
         [Output("default")]
         public Output<bool> Default { get; private set; } = null!;
 
         /// <summary>
-        /// The Network label
+        /// Name for the network
         /// </summary>
         [Output("label")]
         public Output<string> Label { get; private set; } = null!;
 
-        /// <summary>
-        /// The name of the network.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// The region where the network was create.
-        /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
@@ -111,7 +76,7 @@ namespace Pulumi.Civo
     public sealed class NetworkArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The Network label
+        /// Name for the network
         /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
@@ -123,33 +88,21 @@ namespace Pulumi.Civo
 
     public sealed class NetworkState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
         [Input("cidr")]
         public Input<string>? Cidr { get; set; }
 
-        /// <summary>
-        /// If is the default network.
-        /// </summary>
         [Input("default")]
         public Input<bool>? Default { get; set; }
 
         /// <summary>
-        /// The Network label
+        /// Name for the network
         /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
-        /// <summary>
-        /// The name of the network.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region where the network was create.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

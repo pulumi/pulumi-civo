@@ -20,21 +20,10 @@ class Network(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo Network resource. This can be used to create,
-        modify, and delete Networks.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        custom_net = civo.Network("customNet", label="test_network")
-        ```
-
+        Create a Network resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] label: The Network label
+        :param pulumi.Input[str] label: Name for the network
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -82,11 +71,7 @@ class Network(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cidr: The block ip assigned to the network.
-        :param pulumi.Input[bool] default: If is the default network.
-        :param pulumi.Input[str] label: The Network label
-        :param pulumi.Input[str] name: The name of the network.
-        :param pulumi.Input[str] region: The region where the network was create.
+        :param pulumi.Input[str] label: Name for the network
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -102,41 +87,29 @@ class Network(pulumi.CustomResource):
     @property
     @pulumi.getter
     def cidr(self) -> pulumi.Output[str]:
-        """
-        The block ip assigned to the network.
-        """
         return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter
     def default(self) -> pulumi.Output[bool]:
-        """
-        If is the default network.
-        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def label(self) -> pulumi.Output[str]:
         """
-        The Network label
+        Name for the network
         """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        The name of the network.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
-        """
-        The region where the network was create.
-        """
         return pulumi.get(self, "region")
 
     def translate_output_property(self, prop):

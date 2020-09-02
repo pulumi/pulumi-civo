@@ -26,20 +26,16 @@ class FirewallRule(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Provides a Civo Cloud Firewall Rule resource.
-        This can be used to create, modify, and delete Firewalls Rules.
-        This resource don't have an update option because the backend don't have the
-        support for that, so in this case we use ForceNew for all object in the resource.
-
+        Create a FirewallRule resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
-        :param pulumi.Input[str] direction: will this rule affect ingress traffic
-        :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
-        :param pulumi.Input[str] firewall_id: The Firewall id
-        :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
-        :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
-        :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
+        :param pulumi.Input[List[pulumi.Input[str]]] cidrs: The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+               applied, i.e. 0.0.0.0/0)
+        :param pulumi.Input[str] direction: Will this rule affect ingress traffic
+        :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+        :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule (optional)
+        :param pulumi.Input[str] protocol: The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
+        :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -101,13 +97,13 @@ class FirewallRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
-        :param pulumi.Input[str] direction: will this rule affect ingress traffic
-        :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
-        :param pulumi.Input[str] firewall_id: The Firewall id
-        :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
-        :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
-        :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
+        :param pulumi.Input[List[pulumi.Input[str]]] cidrs: The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+               applied, i.e. 0.0.0.0/0)
+        :param pulumi.Input[str] direction: Will this rule affect ingress traffic
+        :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+        :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule (optional)
+        :param pulumi.Input[str] protocol: The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
+        :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -126,7 +122,8 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def cidrs(self) -> pulumi.Output[List[str]]:
         """
-        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+        applied, i.e. 0.0.0.0/0)
         """
         return pulumi.get(self, "cidrs")
 
@@ -134,7 +131,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def direction(self) -> pulumi.Output[str]:
         """
-        will this rule affect ingress traffic
+        Will this rule affect ingress traffic
         """
         return pulumi.get(self, "direction")
 
@@ -142,23 +139,20 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter(name="endPort")
     def end_port(self) -> pulumi.Output[str]:
         """
-        The end port where traffic to be allowed.
+        The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         """
         return pulumi.get(self, "end_port")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> pulumi.Output[str]:
-        """
-        The Firewall id
-        """
         return pulumi.get(self, "firewall_id")
 
     @property
     @pulumi.getter
     def label(self) -> pulumi.Output[Optional[str]]:
         """
-        a string that will be the displayed name/reference for this rule (optional)
+        A string that will be the displayed name/reference for this rule (optional)
         """
         return pulumi.get(self, "label")
 
@@ -166,7 +160,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        This may be one of "tcp", "udp", or "icmp".
+        The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
         """
         return pulumi.get(self, "protocol")
 
@@ -174,7 +168,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter(name="startPort")
     def start_port(self) -> pulumi.Output[str]:
         """
-        The start port where traffic to be allowed.
+        The start of the port range to configure for this rule (or the single port if required)
         """
         return pulumi.get(self, "start_port")
 

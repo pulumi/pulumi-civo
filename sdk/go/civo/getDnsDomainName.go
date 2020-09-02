@@ -18,16 +18,12 @@ func LookupDnsDomainName(ctx *pulumi.Context, args *LookupDnsDomainNameArgs, opt
 
 // A collection of arguments for invoking getDnsDomainName.
 type LookupDnsDomainNameArgs struct {
-	// The id of the domain.
-	Id *string `pulumi:"id"`
-	// The name of the domain.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getDnsDomainName.
 type LookupDnsDomainNameResult struct {
-	// A unique ID that can be used to identify and reference a domain.
-	Id *string `pulumi:"id"`
-	// The name of the domain.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }

@@ -63,25 +63,16 @@ class GetSnapshotResult:
     @property
     @pulumi.getter(name="completedAt")
     def completed_at(self) -> str:
-        """
-        The date where the snapshot was completed.
-        """
         return pulumi.get(self, "completed_at")
 
     @property
     @pulumi.getter(name="cronTiming")
     def cron_timing(self) -> str:
-        """
-        A string with the cron format.
-        """
         return pulumi.get(self, "cron_timing")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @property
@@ -92,73 +83,46 @@ class GetSnapshotResult:
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> str:
-        """
-        The ID of the Instance from which the snapshot was be taken.
-        """
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the snapshot.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nextExecution")
     def next_execution(self) -> str:
-        """
-        if cron was define this date will be the next execution date.
-        """
         return pulumi.get(self, "next_execution")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        The region where the snapshot was take.
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="requestedAt")
     def requested_at(self) -> str:
-        """
-        The date where the snapshot was requested.
-        """
         return pulumi.get(self, "requested_at")
 
     @property
     @pulumi.getter
     def safe(self) -> bool:
-        """
-        If is `true` the instance will be shut down during the snapshot if id `false` them not.
-        """
         return pulumi.get(self, "safe")
 
     @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> float:
-        """
-        The size of the snapshot in GB.
-        """
         return pulumi.get(self, "size_gb")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        The status of the snapshot.
-        """
         return pulumi.get(self, "state")
 
     @property
     @pulumi.getter(name="templateId")
     def template_id(self) -> str:
-        """
-        The template id.
-        """
         return pulumi.get(self, "template_id")
 
 
@@ -187,24 +151,7 @@ def get_snapshot(id: Optional[str] = None,
                  name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSnapshotResult:
     """
-    Snapshots are saved instances of a block storage volume. Use this data
-    source to retrieve the ID of a Civo snapshot for use in other
-    resources.
-
-    ## Example Usage
-
-    Get the snapshot:
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    mysql_vm = civo.get_snapshot(name="mysql-vm")
-    ```
-
-
-    :param str id: The ID of the snapshot.
-    :param str name: The name of the snapshot.
+    Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['id'] = id

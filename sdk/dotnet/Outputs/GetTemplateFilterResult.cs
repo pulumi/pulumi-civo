@@ -13,15 +13,7 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetTemplateFilterResult
     {
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `code`,
-        /// `name`.
-        /// </summary>
         public readonly string Key;
-        /// <summary>
-        /// Only retrieves the template which keys has value that matches
-        /// one of the values provided here.
-        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

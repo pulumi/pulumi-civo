@@ -18,9 +18,7 @@ func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSshKey.
 type LookupSshKeyArgs struct {
-	// The ID of the ssh key.
-	Id *string `pulumi:"id"`
-	// The name of the ssh key.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 

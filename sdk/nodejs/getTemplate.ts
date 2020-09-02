@@ -25,15 +25,7 @@ export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getTemplate.
  */
 export interface GetTemplateArgs {
-    /**
-     * Filter the results.
-     * The `filter` block is documented below.
-     */
     readonly filters?: inputs.GetTemplateFilter[];
-    /**
-     * Sort the results.
-     * The `sort` block is documented below.
-     */
     readonly sorts?: inputs.GetTemplateSort[];
 }
 

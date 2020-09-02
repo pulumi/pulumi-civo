@@ -10,26 +10,22 @@ import (
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 )
 
-// Provides a Civo Cloud Firewall Rule resource.
-// This can be used to create, modify, and delete Firewalls Rules.
-// This resource don't have an update option because the backend don't have the
-// support for that, so in this case we use ForceNew for all object in the resource.
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+	// applied, i.e. 0.0.0.0/0)
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
-	// will this rule affect ingress traffic
+	// Will this rule affect ingress traffic
 	Direction pulumi.StringOutput `pulumi:"direction"`
-	// The end port where traffic to be allowed.
-	EndPort pulumi.StringOutput `pulumi:"endPort"`
-	// The Firewall id
+	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+	EndPort    pulumi.StringOutput `pulumi:"endPort"`
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
-	// a string that will be the displayed name/reference for this rule (optional)
+	// A string that will be the displayed name/reference for this rule (optional)
 	Label pulumi.StringPtrOutput `pulumi:"label"`
-	// This may be one of "tcp", "udp", or "icmp".
+	// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
-	// The start port where traffic to be allowed.
+	// The start of the port range to configure for this rule (or the single port if required)
 	StartPort pulumi.StringOutput `pulumi:"startPort"`
 }
 
@@ -79,36 +75,36 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+	// applied, i.e. 0.0.0.0/0)
 	Cidrs []string `pulumi:"cidrs"`
-	// will this rule affect ingress traffic
+	// Will this rule affect ingress traffic
 	Direction *string `pulumi:"direction"`
-	// The end port where traffic to be allowed.
-	EndPort *string `pulumi:"endPort"`
-	// The Firewall id
+	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+	EndPort    *string `pulumi:"endPort"`
 	FirewallId *string `pulumi:"firewallId"`
-	// a string that will be the displayed name/reference for this rule (optional)
+	// A string that will be the displayed name/reference for this rule (optional)
 	Label *string `pulumi:"label"`
-	// This may be one of "tcp", "udp", or "icmp".
+	// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
 	Protocol *string `pulumi:"protocol"`
-	// The start port where traffic to be allowed.
+	// The start of the port range to configure for this rule (or the single port if required)
 	StartPort *string `pulumi:"startPort"`
 }
 
 type FirewallRuleState struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+	// applied, i.e. 0.0.0.0/0)
 	Cidrs pulumi.StringArrayInput
-	// will this rule affect ingress traffic
+	// Will this rule affect ingress traffic
 	Direction pulumi.StringPtrInput
-	// The end port where traffic to be allowed.
-	EndPort pulumi.StringPtrInput
-	// The Firewall id
+	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+	EndPort    pulumi.StringPtrInput
 	FirewallId pulumi.StringPtrInput
-	// a string that will be the displayed name/reference for this rule (optional)
+	// A string that will be the displayed name/reference for this rule (optional)
 	Label pulumi.StringPtrInput
-	// This may be one of "tcp", "udp", or "icmp".
+	// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
 	Protocol pulumi.StringPtrInput
-	// The start port where traffic to be allowed.
+	// The start of the port range to configure for this rule (or the single port if required)
 	StartPort pulumi.StringPtrInput
 }
 
@@ -117,37 +113,37 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+	// applied, i.e. 0.0.0.0/0)
 	Cidrs []string `pulumi:"cidrs"`
-	// will this rule affect ingress traffic
+	// Will this rule affect ingress traffic
 	Direction string `pulumi:"direction"`
-	// The end port where traffic to be allowed.
-	EndPort string `pulumi:"endPort"`
-	// The Firewall id
+	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+	EndPort    string `pulumi:"endPort"`
 	FirewallId string `pulumi:"firewallId"`
-	// a string that will be the displayed name/reference for this rule (optional)
+	// A string that will be the displayed name/reference for this rule (optional)
 	Label *string `pulumi:"label"`
-	// This may be one of "tcp", "udp", or "icmp".
+	// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
 	Protocol string `pulumi:"protocol"`
-	// The start port where traffic to be allowed.
+	// The start of the port range to configure for this rule (or the single port if required)
 	StartPort string `pulumi:"startPort"`
 }
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally
+	// applied, i.e. 0.0.0.0/0)
 	Cidrs pulumi.StringArrayInput
-	// will this rule affect ingress traffic
+	// Will this rule affect ingress traffic
 	Direction pulumi.StringInput
-	// The end port where traffic to be allowed.
-	EndPort pulumi.StringInput
-	// The Firewall id
+	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+	EndPort    pulumi.StringInput
 	FirewallId pulumi.StringInput
-	// a string that will be the displayed name/reference for this rule (optional)
+	// A string that will be the displayed name/reference for this rule (optional)
 	Label pulumi.StringPtrInput
-	// This may be one of "tcp", "udp", or "icmp".
+	// The protocol choice from tcp, udp or icmp (the default if unspecified is tcp)
 	Protocol pulumi.StringInput
-	// The start port where traffic to be allowed.
+	// The start of the port range to configure for this rule (or the single port if required)
 	StartPort pulumi.StringInput
 }
 

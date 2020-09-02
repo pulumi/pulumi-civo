@@ -25,15 +25,7 @@ export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getInstances.
  */
 export interface GetInstancesArgs {
-    /**
-     * Filter the results.
-     * The `filter` block is documented below.
-     */
     readonly filters?: inputs.GetInstancesFilter[];
-    /**
-     * Sort the results.
-     * The `sort` block is documented below.
-     */
     readonly sorts?: inputs.GetInstancesSort[];
 }
 
@@ -46,9 +38,6 @@ export interface GetInstancesResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
-     */
     readonly instances: outputs.GetInstancesInstance[];
     readonly sorts?: outputs.GetInstancesSort[];
 }

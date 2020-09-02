@@ -11,59 +11,6 @@ namespace Pulumi.Civo
 {
     public static class GetKubernetesCluster
     {
-        /// <summary>
-        /// Provides a Civo Kubernetes cluster data source.
-        /// 
-        /// **Note:** This data source returns a single kubernetes cluster. When specifying a `name`, an
-        /// error is triggered if more than one kubernetes Cluster is found.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// Get the Kubernetes Cluster by name:
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs
-        ///         {
-        ///             Name = "my-super-cluster",
-        ///         }));
-        ///         this.KubernetesClusterOutput = my_cluster.Apply(my_cluster =&gt; my_cluster.MasterIp);
-        ///     }
-        /// 
-        ///     [Output("kubernetesClusterOutput")]
-        ///     public Output&lt;string&gt; KubernetesClusterOutput { get; set; }
-        /// }
-        /// ```
-        /// 
-        /// Get the Kubernetes Cluster by id:
-        /// 
-        /// ```csharp
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// class MyStack : Stack
-        /// {
-        ///     public MyStack()
-        ///     {
-        ///         var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs
-        ///         {
-        ///             Name = "40ac97ee-b82b-4231-9b60-079c7e2e5d79",
-        ///         }));
-        ///     }
-        /// 
-        /// }
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
-        /// </summary>
         public static Task<GetKubernetesClusterResult> InvokeAsync(GetKubernetesClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithVersion());
     }
@@ -71,15 +18,9 @@ namespace Pulumi.Civo
 
     public sealed class GetKubernetesClusterArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the kubernetes Cluster
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the kubernetes Cluster.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -92,71 +33,22 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetKubernetesClusterResult
     {
-        /// <summary>
-        /// The base URL of the API server on the Kubernetes master node.
-        /// </summary>
         public readonly string ApiEndpoint;
-        /// <summary>
-        /// A list of application installed.
-        /// </summary>
         public readonly string Applications;
-        /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
         public readonly string BuiltAt;
-        /// <summary>
-        /// The date where the Kubernetes cluster was create.
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The unique dns entry for the cluster in this case point to the master.
-        /// </summary>
         public readonly string DnsEntry;
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a Kubernetes cluster.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// A unique ID that can be used to identify and reference a Kubernetes cluster.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> InstalledApplications;
-        /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstanceResult> Instances;
-        /// <summary>
-        /// A representation of the Kubernetes cluster's kubeconfig in yaml format.
-        /// </summary>
         public readonly string Kubeconfig;
-        /// <summary>
-        /// The version of Kubernetes.
-        /// </summary>
         public readonly string KubernetesVersion;
-        /// <summary>
-        /// The Ip of the Kubernetes master node.
-        /// </summary>
         public readonly string MasterIp;
-        /// <summary>
-        /// The name of your cluster,.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The size of the Kubernetes cluster.
-        /// </summary>
         public readonly int NumTargetNodes;
         public readonly bool Ready;
-        /// <summary>
-        /// The status of Kubernetes cluster.
-        /// * `ready` -If the Kubernetes cluster is ready.
-        /// </summary>
         public readonly string Status;
-        /// <summary>
-        /// The tag of the instances
-        /// </summary>
         public readonly string Tags;
-        /// <summary>
-        /// The size of each node.
-        /// </summary>
         public readonly string TargetNodesSize;
 
         [OutputConstructor]
