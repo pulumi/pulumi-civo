@@ -40,7 +40,7 @@ type LookupDnsDomainRecordResult struct {
 	Priority int `pulumi:"priority"`
 	// How long caching DNS servers should cache this record.
 	Ttl int `pulumi:"ttl"`
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type string `pulumi:"type"`
 	// The date when it was updated in UTC format
 	UpdatedAt string `pulumi:"updatedAt"`

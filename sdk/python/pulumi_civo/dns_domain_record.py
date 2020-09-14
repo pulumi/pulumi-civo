@@ -36,7 +36,7 @@ class DnsDomainRecord(pulumi.CustomResource):
         # Create a new domain record
         www = civo.DnsDomainRecord("www",
             domain_id=civo_dns_domain_name["main"]["id"],
-            type="a",
+            type="A",
             value=civo_instance["foo"]["public_ip"],
             ttl=600,
             opts=ResourceOptions(depends_on=[
@@ -51,7 +51,7 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         :param pulumi.Input[float] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
         :param pulumi.Input[float] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from a, cname, mx or txt
+        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
         if __name__ is not None:
@@ -120,7 +120,7 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         :param pulumi.Input[float] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
         :param pulumi.Input[float] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from a, cname, mx or txt
+        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
         :param pulumi.Input[str] updated_at: The date when it was updated in UTC format
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
@@ -191,7 +191,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The choice of record type from a, cname, mx or txt
+        The choice of record type from A, CNAME, MX, SRV or TXT
         """
         return pulumi.get(self, "type")
 

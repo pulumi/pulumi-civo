@@ -67,7 +67,7 @@ export interface GetDnsDomainRecordResult {
      */
     readonly ttl: number;
     /**
-     * The choice of record type from a, cname, mx or txt
+     * The choice of record type from A, CNAME, MX, SRV or TXT
      */
     readonly type: string;
     /**

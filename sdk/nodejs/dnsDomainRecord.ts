@@ -16,7 +16,7 @@ import * as utilities from "./utilities";
  * // Create a new domain record
  * const www = new civo.DnsDomainRecord("www", {
  *     domainId: civo_dns_domain_name.main.id,
- *     type: "a",
+ *     type: "A",
  *     value: civo_instance.foo.public_ip,
  *     ttl: 600,
  * }, {
@@ -80,7 +80,7 @@ export class DnsDomainRecord extends pulumi.CustomResource {
      */
     public readonly ttl!: pulumi.Output<number>;
     /**
-     * The choice of record type from a, cname, mx or txt
+     * The choice of record type from A, CNAME, MX, SRV or TXT
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -177,7 +177,7 @@ export interface DnsDomainRecordState {
      */
     readonly ttl?: pulumi.Input<number>;
     /**
-     * The choice of record type from a, cname, mx or txt
+     * The choice of record type from A, CNAME, MX, SRV or TXT
      */
     readonly type?: pulumi.Input<string>;
     /**
@@ -211,7 +211,7 @@ export interface DnsDomainRecordArgs {
      */
     readonly ttl: pulumi.Input<number>;
     /**
-     * The choice of record type from a, cname, mx or txt
+     * The choice of record type from A, CNAME, MX, SRV or TXT
      */
     readonly type: pulumi.Input<string>;
     /**

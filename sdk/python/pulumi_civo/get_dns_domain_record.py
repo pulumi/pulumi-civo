@@ -111,7 +111,7 @@ class GetDnsDomainRecordResult:
     @pulumi.getter
     def type(self) -> str:
         """
-        The choice of record type from a, cname, mx or txt
+        The choice of record type from A, CNAME, MX, SRV or TXT
         """
         return pulumi.get(self, "type")
 
