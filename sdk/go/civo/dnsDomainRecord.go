@@ -26,7 +26,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := civo.NewDnsDomainRecord(ctx, "www", &civo.DnsDomainRecordArgs{
 // 			DomainId: pulumi.Any(civo_dns_domain_name.Main.Id),
-// 			Type:     pulumi.String("a"),
+// 			Type:     pulumi.String("A"),
 // 			Value:    pulumi.Any(civo_instance.Foo.Public_ip),
 // 			Ttl:      pulumi.Int(600),
 // 		}, pulumi.DependsOn([]pulumi.Resource{
@@ -55,7 +55,7 @@ type DnsDomainRecord struct {
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
 	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The date when it was updated in UTC format
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
@@ -115,7 +115,7 @@ type dnsDomainRecordState struct {
 	Priority *int `pulumi:"priority"`
 	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl *int `pulumi:"ttl"`
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type *string `pulumi:"type"`
 	// The date when it was updated in UTC format
 	UpdatedAt *string `pulumi:"updatedAt"`
@@ -136,7 +136,7 @@ type DnsDomainRecordState struct {
 	Priority pulumi.IntPtrInput
 	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntPtrInput
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type pulumi.StringPtrInput
 	// The date when it was updated in UTC format
 	UpdatedAt pulumi.StringPtrInput
@@ -157,7 +157,7 @@ type dnsDomainRecordArgs struct {
 	Priority *int `pulumi:"priority"`
 	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl int `pulumi:"ttl"`
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type string `pulumi:"type"`
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value string `pulumi:"value"`
@@ -173,7 +173,7 @@ type DnsDomainRecordArgs struct {
 	Priority pulumi.IntPtrInput
 	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntInput
-	// The choice of record type from a, cname, mx or txt
+	// The choice of record type from A, CNAME, MX, SRV or TXT
 	Type pulumi.StringInput
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value pulumi.StringInput

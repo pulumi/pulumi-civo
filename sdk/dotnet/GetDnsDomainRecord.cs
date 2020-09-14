@@ -68,7 +68,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly int Ttl;
         /// <summary>
-        /// The choice of record type from a, cname, mx or txt
+        /// The choice of record type from A, CNAME, MX, SRV or TXT
         /// </summary>
         public readonly string Type;
         /// <summary>

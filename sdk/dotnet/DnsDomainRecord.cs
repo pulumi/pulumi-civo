@@ -26,7 +26,7 @@ namespace Pulumi.Civo
     ///         var www = new Civo.DnsDomainRecord("www", new Civo.DnsDomainRecordArgs
     ///         {
     ///             DomainId = civo_dns_domain_name.Main.Id,
-    ///             Type = "a",
+    ///             Type = "A",
     ///             Value = civo_instance.Foo.Public_ip,
     ///             Ttl = 600,
     ///         }, new CustomResourceOptions
@@ -81,7 +81,7 @@ namespace Pulumi.Civo
         public Output<int> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// The choice of record type from a, cname, mx or txt
+        /// The choice of record type from A, CNAME, MX, SRV or TXT
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -169,7 +169,7 @@ namespace Pulumi.Civo
         public Input<int> Ttl { get; set; } = null!;
 
         /// <summary>
-        /// The choice of record type from a, cname, mx or txt
+        /// The choice of record type from A, CNAME, MX, SRV or TXT
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -224,7 +224,7 @@ namespace Pulumi.Civo
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// The choice of record type from a, cname, mx or txt
+        /// The choice of record type from A, CNAME, MX, SRV or TXT
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
