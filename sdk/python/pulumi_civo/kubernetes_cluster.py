@@ -208,7 +208,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="kubernetesVersion")
-    def kubernetes_version(self) -> pulumi.Output[Optional[str]]:
+    def kubernetes_version(self) -> pulumi.Output[str]:
         """
         The version of k3s to install (optional, the default is currently the latest available).
         """

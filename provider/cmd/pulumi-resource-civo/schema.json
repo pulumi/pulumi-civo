@@ -1786,6 +1786,7 @@
                 "installedApplications",
                 "instances",
                 "kubeconfig",
+                "kubernetesVersion",
                 "masterIp",
                 "name",
                 "ready",
