@@ -3,10 +3,17 @@ import * as civo from "@pulumi/civo"
 import * as fs from "fs";
 import * as pulumi from "@pulumi/pulumi";
 
+const version = civo.getKubernetesVersion({
+    filters: [{
+        key: "type",
+        values: ["stable"],
+    }],
+}).then(x => x.versions[0].version)
+
 // Cluster and provider
 const cluster = new civo.KubernetesCluster("acc-test", {
     applications: "-traefik",
-    kubernetesVersion: "1.18.6+k3s1",
+    kubernetesVersion: version,
     targetNodesSize: "g2.medium",
     numTargetNodes: 4,
     tags: "demo-kubernetes-typescript"

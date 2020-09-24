@@ -29,7 +29,7 @@ type KubernetesCluster struct {
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
 	// The version of k3s to install (optional, the default is currently the latest available).
-	KubernetesVersion pulumi.StringPtrOutput `pulumi:"kubernetesVersion"`
+	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
 	// The Ip of the Kubernetes master node.
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
 	// A name for the Kubernetes cluster.

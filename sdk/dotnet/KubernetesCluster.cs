@@ -63,7 +63,7 @@ namespace Pulumi.Civo
         /// The version of k3s to install (optional, the default is currently the latest available).
         /// </summary>
         [Output("kubernetesVersion")]
-        public Output<string?> KubernetesVersion { get; private set; } = null!;
+        public Output<string> KubernetesVersion { get; private set; } = null!;
 
         /// <summary>
         /// The Ip of the Kubernetes master node.

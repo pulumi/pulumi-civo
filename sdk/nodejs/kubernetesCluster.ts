@@ -69,7 +69,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * The version of k3s to install (optional, the default is currently the latest available).
      */
-    public readonly kubernetesVersion!: pulumi.Output<string | undefined>;
+    public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
      * The Ip of the Kubernetes master node.
      */
