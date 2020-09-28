@@ -1502,9 +1502,9 @@
                 },
                 "publicIp": {
                     "type": "string",
-                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    "description": "The public ip.\n"
                 },
-                "publicIpRequiered": {
+                "publicIpRequired": {
                     "type": "string",
                     "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
                 },
@@ -1577,7 +1577,7 @@
                     "type": "string",
                     "description": "Add some notes to the instance.\n"
                 },
-                "publicIpRequiered": {
+                "publicIpRequired": {
                     "type": "string",
                     "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
                 },
@@ -1661,9 +1661,9 @@
                     },
                     "publicIp": {
                         "type": "string",
-                        "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                        "description": "The public ip.\n"
                     },
-                    "publicIpRequiered": {
+                    "publicIpRequired": {
                         "type": "string",
                         "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
                     },
@@ -1748,7 +1748,7 @@
                 },
                 "kubernetesVersion": {
                     "type": "string",
-                    "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                    "description": "The version of k3s to install (The default is currently the latest available).\n"
                 },
                 "masterIp": {
                     "type": "string",
@@ -1760,7 +1760,7 @@
                 },
                 "numTargetNodes": {
                     "type": "integer",
-                    "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                    "description": "The number of instances to create (The default at the time of writing is 3).\n"
                 },
                 "ready": {
                     "type": "boolean"
@@ -1775,7 +1775,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g2.small)\n"
                 }
             },
             "required": [
@@ -1799,7 +1799,7 @@
                 },
                 "kubernetesVersion": {
                     "type": "string",
-                    "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                    "description": "The version of k3s to install (The default is currently the latest available).\n"
                 },
                 "name": {
                     "type": "string",
@@ -1807,7 +1807,7 @@
                 },
                 "numTargetNodes": {
                     "type": "integer",
-                    "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                    "description": "The number of instances to create (The default at the time of writing is 3).\n"
                 },
                 "tags": {
                     "type": "string",
@@ -1815,7 +1815,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g2.small)\n"
                 }
             },
             "stateInputs": {
@@ -1861,7 +1861,7 @@
                     },
                     "kubernetesVersion": {
                         "type": "string",
-                        "description": "The version of k3s to install (optional, the default is currently the latest available).\n"
+                        "description": "The version of k3s to install (The default is currently the latest available).\n"
                     },
                     "masterIp": {
                         "type": "string",
@@ -1873,7 +1873,7 @@
                     },
                     "numTargetNodes": {
                         "type": "integer",
-                        "description": "The number of instances to create (optional, the default at the time of writing is 3).\n"
+                        "description": "The number of instances to create (The default at the time of writing is 3).\n"
                     },
                     "ready": {
                         "type": "boolean"
@@ -1888,7 +1888,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (optional, the default is currently g2.small)\n"
+                        "description": "The size of each node (The default is currently g2.small)\n"
                     }
                 },
                 "type": "object"

@@ -28,13 +28,13 @@ type KubernetesCluster struct {
 	Instances KubernetesClusterInstanceArrayOutput `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
 	// The Ip of the Kubernetes master node.
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
 	Ready          pulumi.BoolOutput   `pulumi:"ready"`
 	// The status of Kubernetes cluster.
@@ -42,7 +42,7 @@ type KubernetesCluster struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// The size of each node (The default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrOutput `pulumi:"targetNodesSize"`
 }
 
@@ -90,13 +90,13 @@ type kubernetesClusterState struct {
 	Instances []KubernetesClusterInstance `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig *string `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// The Ip of the Kubernetes master node.
 	MasterIp *string `pulumi:"masterIp"`
 	// A name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes *int  `pulumi:"numTargetNodes"`
 	Ready          *bool `pulumi:"ready"`
 	// The status of Kubernetes cluster.
@@ -104,7 +104,7 @@ type kubernetesClusterState struct {
 	Status *string `pulumi:"status"`
 	// A space separated list of tags, to be used freely as required.
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// The size of each node (The default is currently g2.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -125,13 +125,13 @@ type KubernetesClusterState struct {
 	Instances KubernetesClusterInstanceArrayInput
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig pulumi.StringPtrInput
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion pulumi.StringPtrInput
 	// The Ip of the Kubernetes master node.
 	MasterIp pulumi.StringPtrInput
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
 	Ready          pulumi.BoolPtrInput
 	// The status of Kubernetes cluster.
@@ -139,7 +139,7 @@ type KubernetesClusterState struct {
 	Status pulumi.StringPtrInput
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g2.small)
+	// The size of each node (The default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -150,15 +150,15 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 type kubernetesClusterArgs struct {
 	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
 	Applications *string `pulumi:"applications"`
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// A name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// A space separated list of tags, to be used freely as required.
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g2.small)
+	// The size of each node (The default is currently g2.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -166,15 +166,15 @@ type kubernetesClusterArgs struct {
 type KubernetesClusterArgs struct {
 	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
 	Applications pulumi.StringPtrInput
-	// The version of k3s to install (optional, the default is currently the latest available).
+	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion pulumi.StringPtrInput
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
-	// The number of instances to create (optional, the default at the time of writing is 3).
+	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g2.small)
+	// The size of each node (The default is currently g2.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

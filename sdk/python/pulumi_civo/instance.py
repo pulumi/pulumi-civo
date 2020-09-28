@@ -20,7 +20,7 @@ class Instance(pulumi.CustomResource):
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
-                 public_ip_requiered: Optional[pulumi.Input[str]] = None,
+                 public_ip_required: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -41,7 +41,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
         :param pulumi.Input[str] notes: Add some notes to the instance.
-        :param pulumi.Input[str] public_ip_requiered: This should be either false, true or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
@@ -73,7 +73,7 @@ class Instance(pulumi.CustomResource):
             __props__['initial_user'] = initial_user
             __props__['network_id'] = network_id
             __props__['notes'] = notes
-            __props__['public_ip_requiered'] = public_ip_requiered
+            __props__['public_ip_required'] = public_ip_required
             __props__['reverse_dns'] = reverse_dns
             __props__['script'] = script
             __props__['size'] = size
@@ -111,7 +111,7 @@ class Instance(pulumi.CustomResource):
             private_ip: Optional[pulumi.Input[str]] = None,
             pseudo_ip: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
-            public_ip_requiered: Optional[pulumi.Input[str]] = None,
+            public_ip_required: Optional[pulumi.Input[str]] = None,
             ram_mb: Optional[pulumi.Input[float]] = None,
             reverse_dns: Optional[pulumi.Input[str]] = None,
             script: Optional[pulumi.Input[str]] = None,
@@ -138,8 +138,8 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] notes: Add some notes to the instance.
         :param pulumi.Input[str] private_ip: The private ip.
         :param pulumi.Input[str] pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
-        :param pulumi.Input[str] public_ip: This should be either false, true or `move_ip_from:intances_id`.
-        :param pulumi.Input[str] public_ip_requiered: This should be either false, true or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip: The public ip.
+        :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
         :param pulumi.Input[float] ram_mb: Total ram of the instance.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -165,7 +165,7 @@ class Instance(pulumi.CustomResource):
         __props__["private_ip"] = private_ip
         __props__["pseudo_ip"] = pseudo_ip
         __props__["public_ip"] = public_ip
-        __props__["public_ip_requiered"] = public_ip_requiered
+        __props__["public_ip_required"] = public_ip_required
         __props__["ram_mb"] = ram_mb
         __props__["reverse_dns"] = reverse_dns
         __props__["script"] = script
@@ -268,17 +268,17 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> pulumi.Output[str]:
         """
-        This should be either false, true or `move_ip_from:intances_id`.
+        The public ip.
         """
         return pulumi.get(self, "public_ip")
 
     @property
-    @pulumi.getter(name="publicIpRequiered")
-    def public_ip_requiered(self) -> pulumi.Output[Optional[str]]:
+    @pulumi.getter(name="publicIpRequired")
+    def public_ip_required(self) -> pulumi.Output[Optional[str]]:
         """
         This should be either false, true or `move_ip_from:intances_id`.
         """
-        return pulumi.get(self, "public_ip_requiered")
+        return pulumi.get(self, "public_ip_required")
 
     @property
     @pulumi.getter(name="ramMb")
