@@ -67,7 +67,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly kubeconfig!: pulumi.Output<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * The version of k3s to install (The default is currently the latest available).
      */
     public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
@@ -79,7 +79,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * The number of instances to create (The default at the time of writing is 3).
      */
     public readonly numTargetNodes!: pulumi.Output<number | undefined>;
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
@@ -93,7 +93,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * The size of each node (The default is currently g2.small)
      */
     public readonly targetNodesSize!: pulumi.Output<string | undefined>;
 
@@ -192,7 +192,7 @@ export interface KubernetesClusterState {
      */
     readonly kubeconfig?: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * The version of k3s to install (The default is currently the latest available).
      */
     readonly kubernetesVersion?: pulumi.Input<string>;
     /**
@@ -204,7 +204,7 @@ export interface KubernetesClusterState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * The number of instances to create (The default at the time of writing is 3).
      */
     readonly numTargetNodes?: pulumi.Input<number>;
     readonly ready?: pulumi.Input<boolean>;
@@ -218,7 +218,7 @@ export interface KubernetesClusterState {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * The size of each node (The default is currently g2.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }
@@ -232,7 +232,7 @@ export interface KubernetesClusterArgs {
      */
     readonly applications?: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available).
+     * The version of k3s to install (The default is currently the latest available).
      */
     readonly kubernetesVersion?: pulumi.Input<string>;
     /**
@@ -240,7 +240,7 @@ export interface KubernetesClusterArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The number of instances to create (optional, the default at the time of writing is 3).
+     * The number of instances to create (The default at the time of writing is 3).
      */
     readonly numTargetNodes?: pulumi.Input<number>;
     /**
@@ -248,7 +248,7 @@ export interface KubernetesClusterArgs {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g2.small)
+     * The size of each node (The default is currently g2.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }

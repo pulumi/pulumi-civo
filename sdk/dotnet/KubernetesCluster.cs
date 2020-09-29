@@ -60,7 +60,7 @@ namespace Pulumi.Civo
         public Output<string> Kubeconfig { get; private set; } = null!;
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// The version of k3s to install (The default is currently the latest available).
         /// </summary>
         [Output("kubernetesVersion")]
         public Output<string> KubernetesVersion { get; private set; } = null!;
@@ -78,7 +78,7 @@ namespace Pulumi.Civo
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Output("numTargetNodes")]
         public Output<int?> NumTargetNodes { get; private set; } = null!;
@@ -100,7 +100,7 @@ namespace Pulumi.Civo
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// The size of each node (The default is currently g2.small)
         /// </summary>
         [Output("targetNodesSize")]
         public Output<string?> TargetNodesSize { get; private set; } = null!;
@@ -158,7 +158,7 @@ namespace Pulumi.Civo
         public Input<string>? Applications { get; set; }
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// The version of k3s to install (The default is currently the latest available).
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
@@ -170,7 +170,7 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
@@ -182,7 +182,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// The size of each node (The default is currently g2.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
@@ -255,7 +255,7 @@ namespace Pulumi.Civo
         public Input<string>? Kubeconfig { get; set; }
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available).
+        /// The version of k3s to install (The default is currently the latest available).
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
@@ -273,7 +273,7 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The number of instances to create (optional, the default at the time of writing is 3).
+        /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
@@ -295,7 +295,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g2.small)
+        /// The size of each node (The default is currently g2.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }

@@ -81,13 +81,13 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly pseudoIp!: pulumi.Output<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * The public ip.
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
      * This should be either false, true or `move_ip_from:intances_id`.
      */
-    public readonly publicIpRequiered!: pulumi.Output<string | undefined>;
+    public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
      * Total ram of the instance.
      */
@@ -145,7 +145,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["privateIp"] = state ? state.privateIp : undefined;
             inputs["pseudoIp"] = state ? state.pseudoIp : undefined;
             inputs["publicIp"] = state ? state.publicIp : undefined;
-            inputs["publicIpRequiered"] = state ? state.publicIpRequiered : undefined;
+            inputs["publicIpRequired"] = state ? state.publicIpRequired : undefined;
             inputs["ramMb"] = state ? state.ramMb : undefined;
             inputs["reverseDns"] = state ? state.reverseDns : undefined;
             inputs["script"] = state ? state.script : undefined;
@@ -164,7 +164,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["initialUser"] = args ? args.initialUser : undefined;
             inputs["networkId"] = args ? args.networkId : undefined;
             inputs["notes"] = args ? args.notes : undefined;
-            inputs["publicIpRequiered"] = args ? args.publicIpRequiered : undefined;
+            inputs["publicIpRequired"] = args ? args.publicIpRequired : undefined;
             inputs["reverseDns"] = args ? args.reverseDns : undefined;
             inputs["script"] = args ? args.script : undefined;
             inputs["size"] = args ? args.size : undefined;
@@ -241,13 +241,13 @@ export interface InstanceState {
      */
     readonly pseudoIp?: pulumi.Input<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * The public ip.
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
      * This should be either false, true or `move_ip_from:intances_id`.
      */
-    readonly publicIpRequiered?: pulumi.Input<string>;
+    readonly publicIpRequired?: pulumi.Input<string>;
     /**
      * Total ram of the instance.
      */
@@ -309,7 +309,7 @@ export interface InstanceArgs {
     /**
      * This should be either false, true or `move_ip_from:intances_id`.
      */
-    readonly publicIpRequiered?: pulumi.Input<string>;
+    readonly publicIpRequired?: pulumi.Input<string>;
     /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
      */

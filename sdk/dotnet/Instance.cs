@@ -82,7 +82,7 @@ namespace Pulumi.Civo
         public Output<string> PseudoIp { get; private set; } = null!;
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// The public ip.
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
@@ -90,8 +90,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// This should be either false, true or `move_ip_from:intances_id`.
         /// </summary>
-        [Output("publicIpRequiered")]
-        public Output<string?> PublicIpRequiered { get; private set; } = null!;
+        [Output("publicIpRequired")]
+        public Output<string?> PublicIpRequired { get; private set; } = null!;
 
         /// <summary>
         /// Total ram of the instance.
@@ -220,8 +220,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// This should be either false, true or `move_ip_from:intances_id`.
         /// </summary>
-        [Input("publicIpRequiered")]
-        public Input<string>? PublicIpRequiered { get; set; }
+        [Input("publicIpRequired")]
+        public Input<string>? PublicIpRequired { get; set; }
 
         /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -339,7 +339,7 @@ namespace Pulumi.Civo
         public Input<string>? PseudoIp { get; set; }
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// The public ip.
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
@@ -347,8 +347,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// This should be either false, true or `move_ip_from:intances_id`.
         /// </summary>
-        [Input("publicIpRequiered")]
-        public Input<string>? PublicIpRequiered { get; set; }
+        [Input("publicIpRequired")]
+        public Input<string>? PublicIpRequired { get; set; }
 
         /// <summary>
         /// Total ram of the instance.

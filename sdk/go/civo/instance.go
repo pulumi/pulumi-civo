@@ -37,10 +37,10 @@ type Instance struct {
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
 	// Is the ip that is used to route the public ip from the internet to the instance using NAT
 	PseudoIp pulumi.StringOutput `pulumi:"pseudoIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// The public ip.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
 	// This should be either false, true or `move_ip_from:intances_id`.
-	PublicIpRequiered pulumi.StringPtrOutput `pulumi:"publicIpRequiered"`
+	PublicIpRequired pulumi.StringPtrOutput `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -112,10 +112,10 @@ type instanceState struct {
 	PrivateIp *string `pulumi:"privateIp"`
 	// Is the ip that is used to route the public ip from the internet to the instance using NAT
 	PseudoIp *string `pulumi:"pseudoIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// The public ip.
 	PublicIp *string `pulumi:"publicIp"`
 	// This should be either false, true or `move_ip_from:intances_id`.
-	PublicIpRequiered *string `pulumi:"publicIpRequiered"`
+	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb *int `pulumi:"ramMb"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -157,10 +157,10 @@ type InstanceState struct {
 	PrivateIp pulumi.StringPtrInput
 	// Is the ip that is used to route the public ip from the internet to the instance using NAT
 	PseudoIp pulumi.StringPtrInput
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// The public ip.
 	PublicIp pulumi.StringPtrInput
 	// This should be either false, true or `move_ip_from:intances_id`.
-	PublicIpRequiered pulumi.StringPtrInput
+	PublicIpRequired pulumi.StringPtrInput
 	// Total ram of the instance.
 	RamMb pulumi.IntPtrInput
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -195,7 +195,7 @@ type instanceArgs struct {
 	// Add some notes to the instance.
 	Notes *string `pulumi:"notes"`
 	// This should be either false, true or `move_ip_from:intances_id`.
-	PublicIpRequiered *string `pulumi:"publicIpRequiered"`
+	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
 	ReverseDns *string `pulumi:"reverseDns"`
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -223,7 +223,7 @@ type InstanceArgs struct {
 	// Add some notes to the instance.
 	Notes pulumi.StringPtrInput
 	// This should be either false, true or `move_ip_from:intances_id`.
-	PublicIpRequiered pulumi.StringPtrInput
+	PublicIpRequired pulumi.StringPtrInput
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
 	ReverseDns pulumi.StringPtrInput
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
