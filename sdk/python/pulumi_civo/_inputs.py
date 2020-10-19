@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -96,30 +96,30 @@ class KubernetesClusterInstalledApplicationArgs:
 @pulumi.input_type
 class KubernetesClusterInstanceArgs:
     def __init__(__self__, *,
-                 cpu_cores: Optional[pulumi.Input[float]] = None,
+                 cpu_cores: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
-                 disk_gb: Optional[pulumi.Input[float]] = None,
+                 disk_gb: Optional[pulumi.Input[int]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  public_ip: Optional[pulumi.Input[str]] = None,
-                 ram_mb: Optional[pulumi.Input[float]] = None,
+                 ram_mb: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[float] cpu_cores: Total cpu of the inatance.
+        :param pulumi.Input[int] cpu_cores: Total cpu of the inatance.
         :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
-        :param pulumi.Input[float] disk_gb: The size of the disk.
+        :param pulumi.Input[int] disk_gb: The size of the disk.
         :param pulumi.Input[str] firewall_id: The firewall id assigned to the instance
         :param pulumi.Input[str] hostname: The hostname of the instance.
         :param pulumi.Input[str] public_ip: The public ip of the instances, only available if the instances is the master
-        :param pulumi.Input[float] ram_mb: Total ram of the instance.
+        :param pulumi.Input[int] ram_mb: Total ram of the instance.
         :param pulumi.Input[str] region: The region where instance are.
         :param pulumi.Input[str] size: The size of the instance.
         :param pulumi.Input[str] status: The status of Kubernetes cluster.
                * `ready` -If the Kubernetes cluster is ready.
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: A space separated list of tags, to be used freely as required.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: A space separated list of tags, to be used freely as required.
         """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
@@ -146,14 +146,14 @@ class KubernetesClusterInstanceArgs:
 
     @property
     @pulumi.getter(name="cpuCores")
-    def cpu_cores(self) -> Optional[pulumi.Input[float]]:
+    def cpu_cores(self) -> Optional[pulumi.Input[int]]:
         """
         Total cpu of the inatance.
         """
         return pulumi.get(self, "cpu_cores")
 
     @cpu_cores.setter
-    def cpu_cores(self, value: Optional[pulumi.Input[float]]):
+    def cpu_cores(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "cpu_cores", value)
 
     @property
@@ -170,14 +170,14 @@ class KubernetesClusterInstanceArgs:
 
     @property
     @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> Optional[pulumi.Input[float]]:
+    def disk_gb(self) -> Optional[pulumi.Input[int]]:
         """
         The size of the disk.
         """
         return pulumi.get(self, "disk_gb")
 
     @disk_gb.setter
-    def disk_gb(self, value: Optional[pulumi.Input[float]]):
+    def disk_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_gb", value)
 
     @property
@@ -218,14 +218,14 @@ class KubernetesClusterInstanceArgs:
 
     @property
     @pulumi.getter(name="ramMb")
-    def ram_mb(self) -> Optional[pulumi.Input[float]]:
+    def ram_mb(self) -> Optional[pulumi.Input[int]]:
         """
         Total ram of the instance.
         """
         return pulumi.get(self, "ram_mb")
 
     @ram_mb.setter
-    def ram_mb(self, value: Optional[pulumi.Input[float]]):
+    def ram_mb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ram_mb", value)
 
     @property
@@ -267,14 +267,14 @@ class KubernetesClusterInstanceArgs:
 
     @property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[List[pulumi.Input[str]]]]:
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         A space separated list of tags, to be used freely as required.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[List[pulumi.Input[str]]]]):
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
 
@@ -282,7 +282,7 @@ class KubernetesClusterInstanceArgs:
 class LoadBalancerBackendArgs:
     def __init__(__self__, *,
                  instance_id: pulumi.Input[str],
-                 port: pulumi.Input[float],
+                 port: pulumi.Input[int],
                  protocol: pulumi.Input[str]):
         pulumi.set(__self__, "instance_id", instance_id)
         pulumi.set(__self__, "port", port)
@@ -299,11 +299,11 @@ class LoadBalancerBackendArgs:
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Input[float]:
+    def port(self) -> pulumi.Input[int]:
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: pulumi.Input[float]):
+    def port(self, value: pulumi.Input[int]):
         pulumi.set(self, "port", value)
 
     @property
@@ -320,11 +320,11 @@ class LoadBalancerBackendArgs:
 class GetInstancesFilterArgs:
     def __init__(__self__, *,
                  key: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         """
         :param str key: Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
                `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        :param List[str] values: A list of values to match against the `key` field. Only retrieves Instances
+        :param Sequence[str] values: A list of values to match against the `key` field. Only retrieves Instances
                where the `key` field takes on one or more of the values provided here.
         """
         pulumi.set(__self__, "key", key)
@@ -345,7 +345,7 @@ class GetInstancesFilterArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         """
         A list of values to match against the `key` field. Only retrieves Instances
         where the `key` field takes on one or more of the values provided here.
@@ -353,7 +353,7 @@ class GetInstancesFilterArgs:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: List[str]):
+    def values(self, value: Sequence[str]):
         pulumi.set(self, "values", value)
 
 
@@ -361,7 +361,7 @@ class GetInstancesFilterArgs:
 class GetInstancesSizeFilterArgs:
     def __init__(__self__, *,
                  key: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
 
@@ -376,11 +376,11 @@ class GetInstancesSizeFilterArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: List[str]):
+    def values(self, value: Sequence[str]):
         pulumi.set(self, "values", value)
 
 
@@ -456,11 +456,11 @@ class GetInstancesSortArgs:
 class GetKubernetesVersionFilterArgs:
     def __init__(__self__, *,
                  key: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         """
         :param str key: Filter the sizes by this key. This may be one of `version`,
                `label`, `type`, `default`.
-        :param List[str] values: Only retrieves the version which keys has value that matches
+        :param Sequence[str] values: Only retrieves the version which keys has value that matches
                one of the values provided here.
         """
         pulumi.set(__self__, "key", key)
@@ -481,7 +481,7 @@ class GetKubernetesVersionFilterArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         """
         Only retrieves the version which keys has value that matches
         one of the values provided here.
@@ -489,7 +489,7 @@ class GetKubernetesVersionFilterArgs:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: List[str]):
+    def values(self, value: Sequence[str]):
         pulumi.set(self, "values", value)
 
 
@@ -535,11 +535,11 @@ class GetKubernetesVersionSortArgs:
 class GetTemplateFilterArgs:
     def __init__(__self__, *,
                  key: str,
-                 values: List[str]):
+                 values: Sequence[str]):
         """
         :param str key: Filter the sizes by this key. This may be one of `code`,
                `name`.
-        :param List[str] values: Only retrieves the template which keys has value that matches
+        :param Sequence[str] values: Only retrieves the template which keys has value that matches
                one of the values provided here.
         """
         pulumi.set(__self__, "key", key)
@@ -560,7 +560,7 @@ class GetTemplateFilterArgs:
 
     @property
     @pulumi.getter
-    def values(self) -> List[str]:
+    def values(self) -> Sequence[str]:
         """
         Only retrieves the template which keys has value that matches
         one of the values provided here.
@@ -568,7 +568,7 @@ class GetTemplateFilterArgs:
         return pulumi.get(self, "values")
 
     @values.setter
-    def values(self, value: List[str]):
+    def values(self, value: Sequence[str]):
         pulumi.set(self, "values", value)
 
 

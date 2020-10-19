@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -24,8 +24,8 @@ class GetLoadBalancerResult:
         if backends and not isinstance(backends, list):
             raise TypeError("Expected argument 'backends' to be a list")
         pulumi.set(__self__, "backends", backends)
-        if fail_timeout and not isinstance(fail_timeout, float):
-            raise TypeError("Expected argument 'fail_timeout' to be a float")
+        if fail_timeout and not isinstance(fail_timeout, int):
+            raise TypeError("Expected argument 'fail_timeout' to be a int")
         pulumi.set(__self__, "fail_timeout", fail_timeout)
         if health_check_path and not isinstance(health_check_path, str):
             raise TypeError("Expected argument 'health_check_path' to be a str")
@@ -39,17 +39,17 @@ class GetLoadBalancerResult:
         if ignore_invalid_backend_tls and not isinstance(ignore_invalid_backend_tls, bool):
             raise TypeError("Expected argument 'ignore_invalid_backend_tls' to be a bool")
         pulumi.set(__self__, "ignore_invalid_backend_tls", ignore_invalid_backend_tls)
-        if max_conns and not isinstance(max_conns, float):
-            raise TypeError("Expected argument 'max_conns' to be a float")
+        if max_conns and not isinstance(max_conns, int):
+            raise TypeError("Expected argument 'max_conns' to be a int")
         pulumi.set(__self__, "max_conns", max_conns)
-        if max_request_size and not isinstance(max_request_size, float):
-            raise TypeError("Expected argument 'max_request_size' to be a float")
+        if max_request_size and not isinstance(max_request_size, int):
+            raise TypeError("Expected argument 'max_request_size' to be a int")
         pulumi.set(__self__, "max_request_size", max_request_size)
         if policy and not isinstance(policy, str):
             raise TypeError("Expected argument 'policy' to be a str")
         pulumi.set(__self__, "policy", policy)
-        if port and not isinstance(port, float):
-            raise TypeError("Expected argument 'port' to be a float")
+        if port and not isinstance(port, int):
+            raise TypeError("Expected argument 'port' to be a int")
         pulumi.set(__self__, "port", port)
         if protocol and not isinstance(protocol, str):
             raise TypeError("Expected argument 'protocol' to be a str")
@@ -63,7 +63,7 @@ class GetLoadBalancerResult:
 
     @property
     @pulumi.getter
-    def backends(self) -> List['outputs.GetLoadBalancerBackendResult']:
+    def backends(self) -> Sequence['outputs.GetLoadBalancerBackendResult']:
         """
         A list of backend instances
         """
@@ -71,7 +71,7 @@ class GetLoadBalancerResult:
 
     @property
     @pulumi.getter(name="failTimeout")
-    def fail_timeout(self) -> float:
+    def fail_timeout(self) -> int:
         """
         The wait time until the backend is marked as a failure
         """
@@ -111,7 +111,7 @@ class GetLoadBalancerResult:
 
     @property
     @pulumi.getter(name="maxConns")
-    def max_conns(self) -> float:
+    def max_conns(self) -> int:
         """
         How many concurrent connections can each backend handle
         """
@@ -119,7 +119,7 @@ class GetLoadBalancerResult:
 
     @property
     @pulumi.getter(name="maxRequestSize")
-    def max_request_size(self) -> float:
+    def max_request_size(self) -> int:
         """
         The max request size set in the configuration
         """
@@ -135,7 +135,7 @@ class GetLoadBalancerResult:
 
     @property
     @pulumi.getter
-    def port(self) -> float:
+    def port(self) -> int:
         """
         The port set in the configuration.
         """

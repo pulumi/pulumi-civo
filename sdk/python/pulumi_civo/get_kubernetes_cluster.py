@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 
@@ -57,8 +57,8 @@ class GetKubernetesClusterResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
-        if num_target_nodes and not isinstance(num_target_nodes, float):
-            raise TypeError("Expected argument 'num_target_nodes' to be a float")
+        if num_target_nodes and not isinstance(num_target_nodes, int):
+            raise TypeError("Expected argument 'num_target_nodes' to be a int")
         pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if ready and not isinstance(ready, bool):
             raise TypeError("Expected argument 'ready' to be a bool")
@@ -123,7 +123,7 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter(name="installedApplications")
-    def installed_applications(self) -> List['outputs.GetKubernetesClusterInstalledApplicationResult']:
+    def installed_applications(self) -> Sequence['outputs.GetKubernetesClusterInstalledApplicationResult']:
         """
         A unique ID that can be used to identify and reference a Kubernetes cluster.
         """
@@ -131,7 +131,7 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter
-    def instances(self) -> List['outputs.GetKubernetesClusterInstanceResult']:
+    def instances(self) -> Sequence['outputs.GetKubernetesClusterInstanceResult']:
         """
         In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
         """
@@ -171,7 +171,7 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter(name="numTargetNodes")
-    def num_target_nodes(self) -> float:
+    def num_target_nodes(self) -> int:
         """
         The size of the Kubernetes cluster.
         """

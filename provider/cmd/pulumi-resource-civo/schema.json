@@ -20,7 +20,7 @@
         }
     },
     "types": {
-        "civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication": {
+        "civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication": {
             "properties": {
                 "application": {
                     "type": "string",
@@ -71,7 +71,7 @@
                 }
             }
         },
-        "civo:/KubernetesClusterInstance:KubernetesClusterInstance": {
+        "civo:index/KubernetesClusterInstance:KubernetesClusterInstance": {
             "properties": {
                 "cpuCores": {
                     "type": "integer",
@@ -195,7 +195,7 @@
                 }
             }
         },
-        "civo:/LoadBalancerBackend:LoadBalancerBackend": {
+        "civo:index/LoadBalancerBackend:LoadBalancerBackend": {
             "properties": {
                 "instanceId": {
                     "type": "string",
@@ -229,7 +229,7 @@
                 "protocol"
             ]
         },
-        "civo:/getInstancesFilter:getInstancesFilter": {
+        "civo:index/getInstancesFilter:getInstancesFilter": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -259,7 +259,7 @@
                 "values"
             ]
         },
-        "civo:/getInstancesInstance:getInstancesInstance": {
+        "civo:index/getInstancesInstance:getInstancesInstance": {
             "properties": {
                 "cpuCores": {
                     "type": "integer",
@@ -484,7 +484,7 @@
                 }
             }
         },
-        "civo:/getInstancesSizeFilter:getInstancesSizeFilter": {
+        "civo:index/getInstancesSizeFilter:getInstancesSizeFilter": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -512,7 +512,7 @@
                 "values"
             ]
         },
-        "civo:/getInstancesSizeSize:getInstancesSizeSize": {
+        "civo:index/getInstancesSizeSize:getInstancesSizeSize": {
             "properties": {
                 "cpuCores": {
                     "type": "integer",
@@ -587,7 +587,7 @@
                 }
             }
         },
-        "civo:/getInstancesSizeSort:getInstancesSizeSort": {
+        "civo:index/getInstancesSizeSort:getInstancesSizeSort": {
             "properties": {
                 "direction": {
                     "type": "string",
@@ -611,7 +611,7 @@
                 "key"
             ]
         },
-        "civo:/getInstancesSort:getInstancesSort": {
+        "civo:index/getInstancesSort:getInstancesSort": {
             "properties": {
                 "direction": {
                     "type": "string",
@@ -637,7 +637,7 @@
                 "key"
             ]
         },
-        "civo:/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication": {
+        "civo:index/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication": {
             "properties": {
                 "application": {
                     "type": "string",
@@ -689,7 +689,7 @@
                 }
             }
         },
-        "civo:/getKubernetesClusterInstance:getKubernetesClusterInstance": {
+        "civo:index/getKubernetesClusterInstance:getKubernetesClusterInstance": {
             "properties": {
                 "cpuCores": {
                     "type": "integer",
@@ -814,7 +814,7 @@
                 }
             }
         },
-        "civo:/getKubernetesVersionFilter:getKubernetesVersionFilter": {
+        "civo:index/getKubernetesVersionFilter:getKubernetesVersionFilter": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -844,7 +844,7 @@
                 "values"
             ]
         },
-        "civo:/getKubernetesVersionSort:getKubernetesVersionSort": {
+        "civo:index/getKubernetesVersionSort:getKubernetesVersionSort": {
             "properties": {
                 "direction": {
                     "type": "string",
@@ -870,7 +870,7 @@
                 "key"
             ]
         },
-        "civo:/getKubernetesVersionVersion:getKubernetesVersionVersion": {
+        "civo:index/getKubernetesVersionVersion:getKubernetesVersionVersion": {
             "properties": {
                 "default": {
                     "type": "boolean",
@@ -922,7 +922,7 @@
                 }
             }
         },
-        "civo:/getLoadBalancerBackend:getLoadBalancerBackend": {
+        "civo:index/getLoadBalancerBackend:getLoadBalancerBackend": {
             "properties": {
                 "instanceId": {
                     "type": "string",
@@ -964,7 +964,7 @@
                 }
             }
         },
-        "civo:/getTemplateFilter:getTemplateFilter": {
+        "civo:index/getTemplateFilter:getTemplateFilter": {
             "properties": {
                 "key": {
                     "type": "string",
@@ -994,7 +994,7 @@
                 "values"
             ]
         },
-        "civo:/getTemplateSort:getTemplateSort": {
+        "civo:index/getTemplateSort:getTemplateSort": {
             "properties": {
                 "direction": {
                     "type": "string",
@@ -1020,7 +1020,7 @@
                 "key"
             ]
         },
-        "civo:/getTemplateTemplate:getTemplateTemplate": {
+        "civo:index/getTemplateTemplate:getTemplateTemplate": {
             "properties": {
                 "cloudConfig": {
                     "type": "string",
@@ -1731,14 +1731,14 @@
                 "installedApplications": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
+                        "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
                     },
                     "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
                 },
                 "instances": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/civo:/KubernetesClusterInstance:KubernetesClusterInstance"
+                        "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
                     },
                     "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
                 },
@@ -1844,14 +1844,14 @@
                     "installedApplications": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
+                            "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
                         },
                         "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
                     },
                     "instances": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/KubernetesClusterInstance:KubernetesClusterInstance"
+                            "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
                         },
                         "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
                     },
@@ -1899,7 +1899,7 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                        "$ref": "#/types/civo:index/LoadBalancerBackend:LoadBalancerBackend"
                     },
                     "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
                 },
@@ -1962,7 +1962,7 @@
                 "backends": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                        "$ref": "#/types/civo:index/LoadBalancerBackend:LoadBalancerBackend"
                     },
                     "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
                 },
@@ -2027,7 +2027,7 @@
                     "backends": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/LoadBalancerBackend:LoadBalancerBackend"
+                            "$ref": "#/types/civo:index/LoadBalancerBackend:LoadBalancerBackend"
                         },
                         "description": "a list of backend instances, each containing an instance_id, protocol (http or https) and port\n"
                     },
@@ -2823,14 +2823,14 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesFilter:getInstancesFilter"
+                            "$ref": "#/types/civo:index/getInstancesFilter:getInstancesFilter"
                         },
                         "description": "Filter the results.\nThe `filter` block is documented below.\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSort:getInstancesSort"
+                            "$ref": "#/types/civo:index/getInstancesSort:getInstancesSort"
                         },
                         "description": "Sort the results.\nThe `sort` block is documented below.\n"
                     }
@@ -2843,7 +2843,7 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesFilter:getInstancesFilter"
+                            "$ref": "#/types/civo:index/getInstancesFilter:getInstancesFilter"
                         }
                     },
                     "id": {
@@ -2853,14 +2853,14 @@
                     "instances": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesInstance:getInstancesInstance"
+                            "$ref": "#/types/civo:index/getInstancesInstance:getInstancesInstance"
                         },
                         "description": "A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSort:getInstancesSort"
+                            "$ref": "#/types/civo:index/getInstancesSort:getInstancesSort"
                         }
                     }
                 },
@@ -2878,13 +2878,13 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSizeFilter:getInstancesSizeFilter"
+                            "$ref": "#/types/civo:index/getInstancesSizeFilter:getInstancesSizeFilter"
                         }
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSizeSort:getInstancesSizeSort"
+                            "$ref": "#/types/civo:index/getInstancesSizeSort:getInstancesSizeSort"
                         }
                     }
                 },
@@ -2896,7 +2896,7 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSizeFilter:getInstancesSizeFilter"
+                            "$ref": "#/types/civo:index/getInstancesSizeFilter:getInstancesSizeFilter"
                         }
                     },
                     "id": {
@@ -2906,13 +2906,13 @@
                     "sizes": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSizeSize:getInstancesSizeSize"
+                            "$ref": "#/types/civo:index/getInstancesSizeSize:getInstancesSizeSize"
                         }
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getInstancesSizeSort:getInstancesSizeSort"
+                            "$ref": "#/types/civo:index/getInstancesSizeSort:getInstancesSizeSort"
                         }
                     }
                 },
@@ -2969,14 +2969,14 @@
                     "installedApplications": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication"
+                            "$ref": "#/types/civo:index/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication"
                         },
                         "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
                     },
                     "instances": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesClusterInstance:getKubernetesClusterInstance"
+                            "$ref": "#/types/civo:index/getKubernetesClusterInstance:getKubernetesClusterInstance"
                         },
                         "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
                     },
@@ -3044,14 +3044,14 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesVersionFilter:getKubernetesVersionFilter"
+                            "$ref": "#/types/civo:index/getKubernetesVersionFilter:getKubernetesVersionFilter"
                         },
                         "description": "Filter the results.\nThe `filter` block is documented below.\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesVersionSort:getKubernetesVersionSort"
+                            "$ref": "#/types/civo:index/getKubernetesVersionSort:getKubernetesVersionSort"
                         },
                         "description": "Sort the results.\nThe `sort` block is documented below.\n"
                     }
@@ -3064,7 +3064,7 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesVersionFilter:getKubernetesVersionFilter"
+                            "$ref": "#/types/civo:index/getKubernetesVersionFilter:getKubernetesVersionFilter"
                         }
                     },
                     "id": {
@@ -3074,13 +3074,13 @@
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesVersionSort:getKubernetesVersionSort"
+                            "$ref": "#/types/civo:index/getKubernetesVersionSort:getKubernetesVersionSort"
                         }
                     },
                     "versions": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getKubernetesVersionVersion:getKubernetesVersionVersion"
+                            "$ref": "#/types/civo:index/getKubernetesVersionVersion:getKubernetesVersionVersion"
                         }
                     }
                 },
@@ -3112,7 +3112,7 @@
                     "backends": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getLoadBalancerBackend:getLoadBalancerBackend"
+                            "$ref": "#/types/civo:index/getLoadBalancerBackend:getLoadBalancerBackend"
                         },
                         "description": "A list of backend instances\n"
                     },
@@ -3361,14 +3361,14 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getTemplateFilter:getTemplateFilter"
+                            "$ref": "#/types/civo:index/getTemplateFilter:getTemplateFilter"
                         },
                         "description": "Filter the results.\nThe `filter` block is documented below.\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getTemplateSort:getTemplateSort"
+                            "$ref": "#/types/civo:index/getTemplateSort:getTemplateSort"
                         },
                         "description": "Sort the results.\nThe `sort` block is documented below.\n"
                     }
@@ -3381,7 +3381,7 @@
                     "filters": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getTemplateFilter:getTemplateFilter"
+                            "$ref": "#/types/civo:index/getTemplateFilter:getTemplateFilter"
                         }
                     },
                     "id": {
@@ -3391,13 +3391,13 @@
                     "sorts": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getTemplateSort:getTemplateSort"
+                            "$ref": "#/types/civo:index/getTemplateSort:getTemplateSort"
                         }
                     },
                     "templates": {
                         "type": "array",
                         "items": {
-                            "$ref": "#/types/civo:/getTemplateTemplate:getTemplateTemplate"
+                            "$ref": "#/types/civo:index/getTemplateTemplate:getTemplateTemplate"
                         }
                     }
                 },

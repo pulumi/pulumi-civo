@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -17,15 +17,15 @@ class LoadBalancer(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]]] = None,
-                 fail_timeout: Optional[pulumi.Input[float]] = None,
+                 backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]]] = None,
+                 fail_timeout: Optional[pulumi.Input[int]] = None,
                  health_check_path: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  ignore_invalid_backend_tls: Optional[pulumi.Input[bool]] = None,
-                 max_conns: Optional[pulumi.Input[float]] = None,
-                 max_request_size: Optional[pulumi.Input[float]] = None,
+                 max_conns: Optional[pulumi.Input[int]] = None,
+                 max_request_size: Optional[pulumi.Input[int]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
-                 port: Optional[pulumi.Input[float]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  tls_certificate: Optional[pulumi.Input[str]] = None,
                  tls_key: Optional[pulumi.Input[str]] = None,
@@ -36,18 +36,18 @@ class LoadBalancer(pulumi.CustomResource):
         Create a LoadBalancer resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]] backends: a list of backend instances, each containing an instance_id, protocol (http or https) and port
-        :param pulumi.Input[float] fail_timeout: how long to wait in seconds before determining a backend has failed, defaults to 30
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]] backends: a list of backend instances, each containing an instance_id, protocol (http or https) and port
+        :param pulumi.Input[int] fail_timeout: how long to wait in seconds before determining a backend has failed, defaults to 30
         :param pulumi.Input[str] health_check_path: what URL should be used on the backends to determine if it's OK (2xx/3xx status), defaults to /
         :param pulumi.Input[str] hostname: the hostname to receive traffic for, e.g. www.example.com (optional: sets hostname to loadbalancer-uuid.civo.com if
                blank)
         :param pulumi.Input[bool] ignore_invalid_backend_tls: should self-signed/invalid certificates be ignored from the backend servers, defaults to true
-        :param pulumi.Input[float] max_conns: how many concurrent connections can each backend handle, defaults to 10
-        :param pulumi.Input[float] max_request_size: the size in megabytes of the maximum request content that will be accepted, defaults to 20
+        :param pulumi.Input[int] max_conns: how many concurrent connections can each backend handle, defaults to 10
+        :param pulumi.Input[int] max_request_size: the size in megabytes of the maximum request content that will be accepted, defaults to 20
         :param pulumi.Input[str] policy: one of: least_conn (sends new requests to the least busy server), random (sends new requests to a random backend),
                round_robin (sends new requests to the next backend in order), ip_hash (sends requests from a given IP address to the
                same backend), default is random
-        :param pulumi.Input[float] port: you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here
+        :param pulumi.Input[int] port: you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here
                (commonly 80 for HTTP or 443 for HTTPS)
         :param pulumi.Input[str] protocol: either http or https. If you specify https then you must also provide the next two fields, the default is http
         :param pulumi.Input[str] tls_certificate: if your protocol is https then you should send the TLS certificate in Base64-encoded PEM format
@@ -108,15 +108,15 @@ class LoadBalancer(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backends: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]]] = None,
-            fail_timeout: Optional[pulumi.Input[float]] = None,
+            backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]]] = None,
+            fail_timeout: Optional[pulumi.Input[int]] = None,
             health_check_path: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             ignore_invalid_backend_tls: Optional[pulumi.Input[bool]] = None,
-            max_conns: Optional[pulumi.Input[float]] = None,
-            max_request_size: Optional[pulumi.Input[float]] = None,
+            max_conns: Optional[pulumi.Input[int]] = None,
+            max_request_size: Optional[pulumi.Input[int]] = None,
             policy: Optional[pulumi.Input[str]] = None,
-            port: Optional[pulumi.Input[float]] = None,
+            port: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             tls_certificate: Optional[pulumi.Input[str]] = None,
             tls_key: Optional[pulumi.Input[str]] = None) -> 'LoadBalancer':
@@ -127,18 +127,18 @@ class LoadBalancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]] backends: a list of backend instances, each containing an instance_id, protocol (http or https) and port
-        :param pulumi.Input[float] fail_timeout: how long to wait in seconds before determining a backend has failed, defaults to 30
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerBackendArgs']]]] backends: a list of backend instances, each containing an instance_id, protocol (http or https) and port
+        :param pulumi.Input[int] fail_timeout: how long to wait in seconds before determining a backend has failed, defaults to 30
         :param pulumi.Input[str] health_check_path: what URL should be used on the backends to determine if it's OK (2xx/3xx status), defaults to /
         :param pulumi.Input[str] hostname: the hostname to receive traffic for, e.g. www.example.com (optional: sets hostname to loadbalancer-uuid.civo.com if
                blank)
         :param pulumi.Input[bool] ignore_invalid_backend_tls: should self-signed/invalid certificates be ignored from the backend servers, defaults to true
-        :param pulumi.Input[float] max_conns: how many concurrent connections can each backend handle, defaults to 10
-        :param pulumi.Input[float] max_request_size: the size in megabytes of the maximum request content that will be accepted, defaults to 20
+        :param pulumi.Input[int] max_conns: how many concurrent connections can each backend handle, defaults to 10
+        :param pulumi.Input[int] max_request_size: the size in megabytes of the maximum request content that will be accepted, defaults to 20
         :param pulumi.Input[str] policy: one of: least_conn (sends new requests to the least busy server), random (sends new requests to a random backend),
                round_robin (sends new requests to the next backend in order), ip_hash (sends requests from a given IP address to the
                same backend), default is random
-        :param pulumi.Input[float] port: you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here
+        :param pulumi.Input[int] port: you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here
                (commonly 80 for HTTP or 443 for HTTPS)
         :param pulumi.Input[str] protocol: either http or https. If you specify https then you must also provide the next two fields, the default is http
         :param pulumi.Input[str] tls_certificate: if your protocol is https then you should send the TLS certificate in Base64-encoded PEM format
@@ -164,7 +164,7 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def backends(self) -> pulumi.Output[List['outputs.LoadBalancerBackend']]:
+    def backends(self) -> pulumi.Output[Sequence['outputs.LoadBalancerBackend']]:
         """
         a list of backend instances, each containing an instance_id, protocol (http or https) and port
         """
@@ -172,7 +172,7 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="failTimeout")
-    def fail_timeout(self) -> pulumi.Output[float]:
+    def fail_timeout(self) -> pulumi.Output[int]:
         """
         how long to wait in seconds before determining a backend has failed, defaults to 30
         """
@@ -205,7 +205,7 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxConns")
-    def max_conns(self) -> pulumi.Output[float]:
+    def max_conns(self) -> pulumi.Output[int]:
         """
         how many concurrent connections can each backend handle, defaults to 10
         """
@@ -213,7 +213,7 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="maxRequestSize")
-    def max_request_size(self) -> pulumi.Output[float]:
+    def max_request_size(self) -> pulumi.Output[int]:
         """
         the size in megabytes of the maximum request content that will be accepted, defaults to 20
         """
@@ -231,7 +231,7 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def port(self) -> pulumi.Output[float]:
+    def port(self) -> pulumi.Output[int]:
         """
         you can listen on any port, the default is 80 to match the default protocol of http,if not you must specify it here
         (commonly 80 for HTTP or 443 for HTTPS)

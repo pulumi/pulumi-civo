@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -37,7 +37,7 @@ class GetTemplateResult:
 
     @property
     @pulumi.getter
-    def filters(self) -> Optional[List['outputs.GetTemplateFilterResult']]:
+    def filters(self) -> Optional[Sequence['outputs.GetTemplateFilterResult']]:
         return pulumi.get(self, "filters")
 
     @property
@@ -50,12 +50,12 @@ class GetTemplateResult:
 
     @property
     @pulumi.getter
-    def sorts(self) -> Optional[List['outputs.GetTemplateSortResult']]:
+    def sorts(self) -> Optional[Sequence['outputs.GetTemplateSortResult']]:
         return pulumi.get(self, "sorts")
 
     @property
     @pulumi.getter
-    def templates(self) -> List['outputs.GetTemplateTemplateResult']:
+    def templates(self) -> Sequence['outputs.GetTemplateTemplateResult']:
         return pulumi.get(self, "templates")
 
 
@@ -71,15 +71,15 @@ class AwaitableGetTemplateResult(GetTemplateResult):
             templates=self.templates)
 
 
-def get_template(filters: Optional[List[pulumi.InputType['GetTemplateFilterArgs']]] = None,
-                 sorts: Optional[List[pulumi.InputType['GetTemplateSortArgs']]] = None,
+def get_template(filters: Optional[Sequence[pulumi.InputType['GetTemplateFilterArgs']]] = None,
+                 sorts: Optional[Sequence[pulumi.InputType['GetTemplateSortArgs']]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetTemplateResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param List[pulumi.InputType['GetTemplateFilterArgs']] filters: Filter the results.
+    :param Sequence[pulumi.InputType['GetTemplateFilterArgs']] filters: Filter the results.
            The `filter` block is documented below.
-    :param List[pulumi.InputType['GetTemplateSortArgs']] sorts: Sort the results.
+    :param Sequence[pulumi.InputType['GetTemplateSortArgs']] sorts: Sort the results.
            The `sort` block is documented below.
     """
     __args__ = dict()
