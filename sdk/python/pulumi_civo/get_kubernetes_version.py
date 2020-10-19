@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -37,7 +37,7 @@ class GetKubernetesVersionResult:
 
     @property
     @pulumi.getter
-    def filters(self) -> Optional[List['outputs.GetKubernetesVersionFilterResult']]:
+    def filters(self) -> Optional[Sequence['outputs.GetKubernetesVersionFilterResult']]:
         return pulumi.get(self, "filters")
 
     @property
@@ -50,12 +50,12 @@ class GetKubernetesVersionResult:
 
     @property
     @pulumi.getter
-    def sorts(self) -> Optional[List['outputs.GetKubernetesVersionSortResult']]:
+    def sorts(self) -> Optional[Sequence['outputs.GetKubernetesVersionSortResult']]:
         return pulumi.get(self, "sorts")
 
     @property
     @pulumi.getter
-    def versions(self) -> List['outputs.GetKubernetesVersionVersionResult']:
+    def versions(self) -> Sequence['outputs.GetKubernetesVersionVersionResult']:
         return pulumi.get(self, "versions")
 
 
@@ -71,8 +71,8 @@ class AwaitableGetKubernetesVersionResult(GetKubernetesVersionResult):
             versions=self.versions)
 
 
-def get_kubernetes_version(filters: Optional[List[pulumi.InputType['GetKubernetesVersionFilterArgs']]] = None,
-                           sorts: Optional[List[pulumi.InputType['GetKubernetesVersionSortArgs']]] = None,
+def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']]] = None,
+                           sorts: Optional[Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesVersionResult:
     """
     Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
@@ -101,9 +101,9 @@ def get_kubernetes_version(filters: Optional[List[pulumi.InputType['GetKubernete
     ```
 
 
-    :param List[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: Filter the results.
+    :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: Filter the results.
            The `filter` block is documented below.
-    :param List[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: Sort the results.
+    :param Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: Sort the results.
            The `sort` block is documented below.
     """
     __args__ = dict()

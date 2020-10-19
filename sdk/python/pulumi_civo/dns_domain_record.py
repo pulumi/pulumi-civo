@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['DnsDomainRecord']
@@ -17,8 +17,8 @@ class DnsDomainRecord(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  domain_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 priority: Optional[pulumi.Input[float]] = None,
-                 ttl: Optional[pulumi.Input[float]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -49,8 +49,8 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] domain_id: The id of the domain
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-        :param pulumi.Input[float] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[float] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
@@ -102,8 +102,8 @@ class DnsDomainRecord(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             domain_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            priority: Optional[pulumi.Input[float]] = None,
-            ttl: Optional[pulumi.Input[float]] = None,
+            priority: Optional[pulumi.Input[int]] = None,
+            ttl: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
             updated_at: Optional[pulumi.Input[str]] = None,
             value: Optional[pulumi.Input[str]] = None) -> 'DnsDomainRecord':
@@ -118,8 +118,8 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date when it was created in UTC format
         :param pulumi.Input[str] domain_id: The id of the domain
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-        :param pulumi.Input[float] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[float] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
         :param pulumi.Input[str] updated_at: The date when it was updated in UTC format
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
@@ -173,7 +173,7 @@ class DnsDomainRecord(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def priority(self) -> pulumi.Output[Optional[float]]:
+    def priority(self) -> pulumi.Output[Optional[int]]:
         """
         Useful for MX records only, the priority mail should be attempted it (defaults to 10)
         """
@@ -181,7 +181,7 @@ class DnsDomainRecord(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def ttl(self) -> pulumi.Output[float]:
+    def ttl(self) -> pulumi.Output[int]:
         """
         How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         """

@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -37,7 +37,7 @@ class GetInstancesResult:
 
     @property
     @pulumi.getter
-    def filters(self) -> Optional[List['outputs.GetInstancesFilterResult']]:
+    def filters(self) -> Optional[Sequence['outputs.GetInstancesFilterResult']]:
         return pulumi.get(self, "filters")
 
     @property
@@ -50,7 +50,7 @@ class GetInstancesResult:
 
     @property
     @pulumi.getter
-    def instances(self) -> List['outputs.GetInstancesInstanceResult']:
+    def instances(self) -> Sequence['outputs.GetInstancesInstanceResult']:
         """
         A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
         """
@@ -58,7 +58,7 @@ class GetInstancesResult:
 
     @property
     @pulumi.getter
-    def sorts(self) -> Optional[List['outputs.GetInstancesSortResult']]:
+    def sorts(self) -> Optional[Sequence['outputs.GetInstancesSortResult']]:
         return pulumi.get(self, "sorts")
 
 
@@ -74,15 +74,15 @@ class AwaitableGetInstancesResult(GetInstancesResult):
             sorts=self.sorts)
 
 
-def get_instances(filters: Optional[List[pulumi.InputType['GetInstancesFilterArgs']]] = None,
-                  sorts: Optional[List[pulumi.InputType['GetInstancesSortArgs']]] = None,
+def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilterArgs']]] = None,
+                  sorts: Optional[Sequence[pulumi.InputType['GetInstancesSortArgs']]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param List[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results.
+    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results.
            The `filter` block is documented below.
-    :param List[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results.
+    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results.
            The `sort` block is documented below.
     """
     __args__ = dict()

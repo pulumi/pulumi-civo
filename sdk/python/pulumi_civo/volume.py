@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Volume']
@@ -17,7 +17,7 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bootable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 size_gb: Optional[pulumi.Input[float]] = None,
+                 size_gb: Optional[pulumi.Input[int]] = None,
                  __props__=None,
                  __name__=None,
                  __opts__=None):
@@ -39,7 +39,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bootable: Mark the volume as bootable.
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
@@ -81,7 +81,7 @@ class Volume(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             mount_point: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            size_gb: Optional[pulumi.Input[float]] = None) -> 'Volume':
+            size_gb: Optional[pulumi.Input[int]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -93,7 +93,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date of the creation of the volume.
         :param pulumi.Input[str] mount_point: The mount point of the volume.
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[float] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -140,7 +140,7 @@ class Volume(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sizeGb")
-    def size_gb(self) -> pulumi.Output[float]:
+    def size_gb(self) -> pulumi.Output[int]:
         """
         A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """

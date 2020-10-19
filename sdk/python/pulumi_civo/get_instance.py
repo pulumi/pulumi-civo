@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = [
@@ -20,14 +20,14 @@ class GetInstanceResult:
     A collection of values returned by getInstance.
     """
     def __init__(__self__, cpu_cores=None, created_at=None, disk_gb=None, firewall_id=None, hostname=None, id=None, initial_password=None, initial_user=None, network_id=None, notes=None, private_ip=None, pseudo_ip=None, public_ip=None, ram_mb=None, reverse_dns=None, script=None, size=None, sshkey_id=None, status=None, tags=None, template=None):
-        if cpu_cores and not isinstance(cpu_cores, float):
-            raise TypeError("Expected argument 'cpu_cores' to be a float")
+        if cpu_cores and not isinstance(cpu_cores, int):
+            raise TypeError("Expected argument 'cpu_cores' to be a int")
         pulumi.set(__self__, "cpu_cores", cpu_cores)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
-        if disk_gb and not isinstance(disk_gb, float):
-            raise TypeError("Expected argument 'disk_gb' to be a float")
+        if disk_gb and not isinstance(disk_gb, int):
+            raise TypeError("Expected argument 'disk_gb' to be a int")
         pulumi.set(__self__, "disk_gb", disk_gb)
         if firewall_id and not isinstance(firewall_id, str):
             raise TypeError("Expected argument 'firewall_id' to be a str")
@@ -59,8 +59,8 @@ class GetInstanceResult:
         if public_ip and not isinstance(public_ip, str):
             raise TypeError("Expected argument 'public_ip' to be a str")
         pulumi.set(__self__, "public_ip", public_ip)
-        if ram_mb and not isinstance(ram_mb, float):
-            raise TypeError("Expected argument 'ram_mb' to be a float")
+        if ram_mb and not isinstance(ram_mb, int):
+            raise TypeError("Expected argument 'ram_mb' to be a int")
         pulumi.set(__self__, "ram_mb", ram_mb)
         if reverse_dns and not isinstance(reverse_dns, str):
             raise TypeError("Expected argument 'reverse_dns' to be a str")
@@ -86,7 +86,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter(name="cpuCores")
-    def cpu_cores(self) -> float:
+    def cpu_cores(self) -> int:
         """
         Total cpu of the inatance.
         """
@@ -102,7 +102,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> float:
+    def disk_gb(self) -> int:
         """
         The size of the disk.
         """
@@ -190,7 +190,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter(name="ramMb")
-    def ram_mb(self) -> float:
+    def ram_mb(self) -> int:
         """
         Total ram of the instance.
         """
@@ -238,7 +238,7 @@ class GetInstanceResult:
 
     @property
     @pulumi.getter
-    def tags(self) -> List[str]:
+    def tags(self) -> Sequence[str]:
         """
         An optional list of tags
         """

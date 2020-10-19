@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Snapshot']
@@ -96,7 +96,7 @@ class Snapshot(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             requested_at: Optional[pulumi.Input[str]] = None,
             safe: Optional[pulumi.Input[bool]] = None,
-            size_gb: Optional[pulumi.Input[float]] = None,
+            size_gb: Optional[pulumi.Input[int]] = None,
             state: Optional[pulumi.Input[str]] = None,
             template_id: Optional[pulumi.Input[str]] = None) -> 'Snapshot':
         """
@@ -120,7 +120,7 @@ class Snapshot(pulumi.CustomResource):
                are in a consistent state (e.g. database tables aren't in the middle of being optimised
                and hence risking corruption). The default is `false` so you experience no interruption
                of service, but a small risk of corruption.
-        :param pulumi.Input[float] size_gb: The size of the snapshot in GB.
+        :param pulumi.Input[int] size_gb: The size of the snapshot in GB.
         :param pulumi.Input[str] state: The status of the snapshot.
         :param pulumi.Input[str] template_id: The template id.
         """
@@ -221,7 +221,7 @@ class Snapshot(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sizeGb")
-    def size_gb(self) -> pulumi.Output[float]:
+    def size_gb(self) -> pulumi.Output[int]:
         """
         The size of the snapshot in GB.
         """

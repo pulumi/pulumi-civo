@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 
 __all__ = ['Instance']
@@ -25,7 +25,7 @@ class Instance(pulumi.CustomResource):
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  template: Optional[pulumi.Input[str]] = None,
                  __props__=None,
                  __name__=None,
@@ -46,7 +46,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
         """
         if __name__ is not None:
@@ -99,9 +99,9 @@ class Instance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cpu_cores: Optional[pulumi.Input[float]] = None,
+            cpu_cores: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
-            disk_gb: Optional[pulumi.Input[float]] = None,
+            disk_gb: Optional[pulumi.Input[int]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             initial_password: Optional[pulumi.Input[str]] = None,
@@ -112,13 +112,13 @@ class Instance(pulumi.CustomResource):
             pseudo_ip: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
             public_ip_required: Optional[pulumi.Input[str]] = None,
-            ram_mb: Optional[pulumi.Input[float]] = None,
+            ram_mb: Optional[pulumi.Input[int]] = None,
             reverse_dns: Optional[pulumi.Input[str]] = None,
             script: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
             sshkey_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[List[pulumi.Input[str]]]] = None,
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             template: Optional[pulumi.Input[str]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
@@ -127,9 +127,9 @@ class Instance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[float] cpu_cores: Total cpu of the inatance.
+        :param pulumi.Input[int] cpu_cores: Total cpu of the inatance.
         :param pulumi.Input[str] created_at: The date of creation of the instance
-        :param pulumi.Input[float] disk_gb: The size of the disk.
+        :param pulumi.Input[int] disk_gb: The size of the disk.
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         :param pulumi.Input[str] hostname: The Instance hostname.
         :param pulumi.Input[str] initial_password: Instance initial password
@@ -140,13 +140,13 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
         :param pulumi.Input[str] public_ip: The public ip.
         :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
-        :param pulumi.Input[float] ram_mb: Total ram of the instance.
+        :param pulumi.Input[int] ram_mb: Total ram of the instance.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
         :param pulumi.Input[str] status: The status of the instance
-        :param pulumi.Input[List[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -178,7 +178,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cpuCores")
-    def cpu_cores(self) -> pulumi.Output[float]:
+    def cpu_cores(self) -> pulumi.Output[int]:
         """
         Total cpu of the inatance.
         """
@@ -194,7 +194,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> pulumi.Output[float]:
+    def disk_gb(self) -> pulumi.Output[int]:
         """
         The size of the disk.
         """
@@ -282,7 +282,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="ramMb")
-    def ram_mb(self) -> pulumi.Output[float]:
+    def ram_mb(self) -> pulumi.Output[int]:
         """
         Total ram of the instance.
         """
@@ -330,7 +330,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def tags(self) -> pulumi.Output[Optional[List[str]]]:
+    def tags(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         An optional list of tags, represented as a key, value pair.
         """

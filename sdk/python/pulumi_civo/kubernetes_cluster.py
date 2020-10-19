@@ -5,7 +5,7 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Dict, List, Mapping, Optional, Tuple, Union
+from typing import Any, Mapping, Optional, Sequence, Union
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
@@ -20,7 +20,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  applications: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
-                 num_target_nodes: Optional[pulumi.Input[float]] = None,
+                 num_target_nodes: Optional[pulumi.Input[int]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
                  __props__=None,
@@ -33,7 +33,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] applications: A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (The default is currently the latest available).
         :param pulumi.Input[str] name: A name for the Kubernetes cluster.
-        :param pulumi.Input[float] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
+        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
         :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
         """
@@ -85,13 +85,13 @@ class KubernetesCluster(pulumi.CustomResource):
             built_at: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dns_entry: Optional[pulumi.Input[str]] = None,
-            installed_applications: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
-            instances: Optional[pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]]] = None,
+            installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
+            instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]]] = None,
             kubeconfig: Optional[pulumi.Input[str]] = None,
             kubernetes_version: Optional[pulumi.Input[str]] = None,
             master_ip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
-            num_target_nodes: Optional[pulumi.Input[float]] = None,
+            num_target_nodes: Optional[pulumi.Input[int]] = None,
             ready: Optional[pulumi.Input[bool]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
@@ -108,13 +108,13 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] built_at: The date where the Kubernetes cluster was build.
         :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
         :param pulumi.Input[str] dns_entry: The unique dns entry for the cluster in this case point to the master.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
-        :param pulumi.Input[List[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]] instances: In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]] instances: In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
         :param pulumi.Input[str] kubeconfig: A representation of the Kubernetes cluster's kubeconfig in yaml format.
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (The default is currently the latest available).
         :param pulumi.Input[str] master_ip: The Ip of the Kubernetes master node.
         :param pulumi.Input[str] name: A name for the Kubernetes cluster.
-        :param pulumi.Input[float] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
+        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
         :param pulumi.Input[str] status: The status of Kubernetes cluster.
                * `ready` -If the Kubernetes cluster is ready.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
@@ -184,7 +184,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="installedApplications")
-    def installed_applications(self) -> pulumi.Output[List['outputs.KubernetesClusterInstalledApplication']]:
+    def installed_applications(self) -> pulumi.Output[Sequence['outputs.KubernetesClusterInstalledApplication']]:
         """
         A unique ID that can be used to identify and reference a Kubernetes cluster.
         """
@@ -192,7 +192,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def instances(self) -> pulumi.Output[List['outputs.KubernetesClusterInstance']]:
+    def instances(self) -> pulumi.Output[Sequence['outputs.KubernetesClusterInstance']]:
         """
         In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
         """
@@ -232,7 +232,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numTargetNodes")
-    def num_target_nodes(self) -> pulumi.Output[Optional[float]]:
+    def num_target_nodes(self) -> pulumi.Output[Optional[int]]:
         """
         The number of instances to create (The default at the time of writing is 3).
         """
