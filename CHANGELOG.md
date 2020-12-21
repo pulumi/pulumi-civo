@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.9.22 of the Civo Terraform Provider
+* Upgrade to v0.9.23 of the Civo Terraform Provider
 
 ---
 
