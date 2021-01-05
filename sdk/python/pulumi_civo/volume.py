@@ -35,6 +35,14 @@ class Volume(pulumi.CustomResource):
             size_gb=60)
         ```
 
+        ## Import
+
+        Volumes can be imported using the `volume id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bootable: Mark the volume as bootable.

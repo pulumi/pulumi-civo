@@ -12,6 +12,14 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo Template resource.
     /// This can be used to create, modify, and delete Templates.
+    /// 
+    /// ## Import
+    /// 
+    /// Template can be imported using the template `code`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import civo:index/template:Template my-custom-template my-template-code
+    /// ```
     /// </summary>
     public partial class Template : Pulumi.CustomResource
     {

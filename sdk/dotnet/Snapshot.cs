@@ -30,6 +30,14 @@ namespace Pulumi.Civo
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Instance Snapshots can be imported using the `snapshot id`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import civo:index/snapshot:Snapshot myinstance-backup 4cc87851-e1d0-4270-822a-b36d28c7a77f
+    /// ```
     /// </summary>
     public partial class Snapshot : Pulumi.CustomResource
     {

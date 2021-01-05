@@ -15,6 +15,14 @@ import * as utilities from "./utilities";
  *
  * const myinstance_backup = new civo.Snapshot("myinstance-backup", {instanceId: civo_instance.myinstance.id});
  * ```
+ *
+ * ## Import
+ *
+ * Instance Snapshots can be imported using the `snapshot id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/snapshot:Snapshot myinstance-backup 4cc87851-e1d0-4270-822a-b36d28c7a77f
+ * ```
  */
 export class Snapshot extends pulumi.CustomResource {
     /**

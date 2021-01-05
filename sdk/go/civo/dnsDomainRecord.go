@@ -4,6 +4,7 @@
 package civo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -39,6 +40,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Domains can be imported using the `id_domain:id_domain_record`, e.g.
+//
+// ```sh
+//  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
 // ```
 type DnsDomainRecord struct {
 	pulumi.CustomResourceState
@@ -181,4 +190,43 @@ type DnsDomainRecordArgs struct {
 
 func (DnsDomainRecordArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsDomainRecordArgs)(nil)).Elem()
+}
+
+type DnsDomainRecordInput interface {
+	pulumi.Input
+
+	ToDnsDomainRecordOutput() DnsDomainRecordOutput
+	ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput
+}
+
+func (DnsDomainRecord) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsDomainRecord)(nil)).Elem()
+}
+
+func (i DnsDomainRecord) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
+	return i.ToDnsDomainRecordOutputWithContext(context.Background())
+}
+
+func (i DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordOutput)
+}
+
+type DnsDomainRecordOutput struct {
+	*pulumi.OutputState
+}
+
+func (DnsDomainRecordOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsDomainRecordOutput)(nil)).Elem()
+}
+
+func (o DnsDomainRecordOutput) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
+	return o
+}
+
+func (o DnsDomainRecordOutput) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DnsDomainRecordOutput{})
 }

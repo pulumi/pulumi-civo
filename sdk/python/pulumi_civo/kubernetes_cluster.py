@@ -27,7 +27,14 @@ class KubernetesCluster(pulumi.CustomResource):
                  __name__=None,
                  __opts__=None):
         """
-        Create a KubernetesCluster resource with the given unique name, props, and options.
+        ## Import
+
+        Then the Kubernetes cluster can be imported using the cluster's `id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] applications: A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik

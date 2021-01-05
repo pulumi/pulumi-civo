@@ -4,6 +4,7 @@
 package civo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -13,6 +14,14 @@ import (
 // Provides a Civo SSH key resource to allow you to manage SSH
 // keys for Instance access. Keys created with this resource
 // can be referenced in your instance configuration via their ID.
+//
+// ## Import
+//
+// SSH Keys can be imported using the `ssh key id`, e.g.
+//
+// ```sh
+//  $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
+// ```
 type SshKey struct {
 	pulumi.CustomResourceState
 
@@ -98,4 +107,43 @@ type SshKeyArgs struct {
 
 func (SshKeyArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*sshKeyArgs)(nil)).Elem()
+}
+
+type SshKeyInput interface {
+	pulumi.Input
+
+	ToSshKeyOutput() SshKeyOutput
+	ToSshKeyOutputWithContext(ctx context.Context) SshKeyOutput
+}
+
+func (SshKey) ElementType() reflect.Type {
+	return reflect.TypeOf((*SshKey)(nil)).Elem()
+}
+
+func (i SshKey) ToSshKeyOutput() SshKeyOutput {
+	return i.ToSshKeyOutputWithContext(context.Background())
+}
+
+func (i SshKey) ToSshKeyOutputWithContext(ctx context.Context) SshKeyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SshKeyOutput)
+}
+
+type SshKeyOutput struct {
+	*pulumi.OutputState
+}
+
+func (SshKeyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SshKeyOutput)(nil)).Elem()
+}
+
+func (o SshKeyOutput) ToSshKeyOutput() SshKeyOutput {
+	return o
+}
+
+func (o SshKeyOutput) ToSshKeyOutputWithContext(ctx context.Context) SshKeyOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(SshKeyOutput{})
 }

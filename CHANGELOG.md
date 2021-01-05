@@ -3,6 +3,8 @@ CHANGELOG
 
 ## HEAD (Unreleased)
 * Upgrade to v0.9.23 of the Civo Terraform Provider
+* Upgrade to pulumi-terraform-bridge v2.13.2
+  * This adds support for import specific examples in documentation
 
 ---
 

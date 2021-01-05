@@ -9,6 +9,15 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
+    /// <summary>
+    /// ## Import
+    /// 
+    /// Then the Kubernetes cluster can be imported using the cluster's `id`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+    /// ```
+    /// </summary>
     public partial class KubernetesCluster : Pulumi.CustomResource
     {
         /// <summary>

@@ -9,6 +9,14 @@ import * as utilities from "./utilities";
  * This can be used to create, modify, and delete Firewalls Rules.
  * This resource don't have an update option because the backend don't have the
  * support for that, so in this case we use ForceNew for all object in the resource.
+ *
+ * ## Import
+ *
+ * Firewalls can be imported using the firewall `firewall_id:firewall_rule_id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
+ * ```
  */
 export class FirewallRule extends pulumi.CustomResource {
     /**

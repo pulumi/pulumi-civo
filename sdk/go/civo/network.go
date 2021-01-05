@@ -4,6 +4,7 @@
 package civo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pkg/errors"
@@ -34,6 +35,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Firewalls can be imported using the firewall `id`, e.g.
+//
+// ```sh
+//  $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
 // ```
 type Network struct {
 	pulumi.CustomResourceState
@@ -123,4 +132,43 @@ type NetworkArgs struct {
 
 func (NetworkArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*networkArgs)(nil)).Elem()
+}
+
+type NetworkInput interface {
+	pulumi.Input
+
+	ToNetworkOutput() NetworkOutput
+	ToNetworkOutputWithContext(ctx context.Context) NetworkOutput
+}
+
+func (Network) ElementType() reflect.Type {
+	return reflect.TypeOf((*Network)(nil)).Elem()
+}
+
+func (i Network) ToNetworkOutput() NetworkOutput {
+	return i.ToNetworkOutputWithContext(context.Background())
+}
+
+func (i Network) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(NetworkOutput)
+}
+
+type NetworkOutput struct {
+	*pulumi.OutputState
+}
+
+func (NetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*NetworkOutput)(nil)).Elem()
+}
+
+func (o NetworkOutput) ToNetworkOutput() NetworkOutput {
+	return o
+}
+
+func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(NetworkOutput{})
 }

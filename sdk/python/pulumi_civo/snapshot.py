@@ -34,6 +34,14 @@ class Snapshot(pulumi.CustomResource):
         myinstance_backup = civo.Snapshot("myinstance-backup", instance_id=civo_instance["myinstance"]["id"])
         ```
 
+        ## Import
+
+        Instance Snapshots can be imported using the `snapshot id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/snapshot:Snapshot myinstance-backup 4cc87851-e1d0-4270-822a-b36d28c7a77f
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cron_timing: If a valid cron string is passed, the snapshot will be saved as an automated snapshot 

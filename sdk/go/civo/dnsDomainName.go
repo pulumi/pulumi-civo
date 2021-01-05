@@ -4,6 +4,7 @@
 package civo
 
 import (
+	"context"
 	"reflect"
 
 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
@@ -30,6 +31,14 @@ import (
 // 		return nil
 // 	})
 // }
+// ```
+//
+// ## Import
+//
+// Domains can be imported using the `domain name`, e.g.
+//
+// ```sh
+//  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
 // ```
 type DnsDomainName struct {
 	pulumi.CustomResourceState
@@ -98,4 +107,43 @@ type DnsDomainNameArgs struct {
 
 func (DnsDomainNameArgs) ElementType() reflect.Type {
 	return reflect.TypeOf((*dnsDomainNameArgs)(nil)).Elem()
+}
+
+type DnsDomainNameInput interface {
+	pulumi.Input
+
+	ToDnsDomainNameOutput() DnsDomainNameOutput
+	ToDnsDomainNameOutputWithContext(ctx context.Context) DnsDomainNameOutput
+}
+
+func (DnsDomainName) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsDomainName)(nil)).Elem()
+}
+
+func (i DnsDomainName) ToDnsDomainNameOutput() DnsDomainNameOutput {
+	return i.ToDnsDomainNameOutputWithContext(context.Background())
+}
+
+func (i DnsDomainName) ToDnsDomainNameOutputWithContext(ctx context.Context) DnsDomainNameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainNameOutput)
+}
+
+type DnsDomainNameOutput struct {
+	*pulumi.OutputState
+}
+
+func (DnsDomainNameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsDomainNameOutput)(nil)).Elem()
+}
+
+func (o DnsDomainNameOutput) ToDnsDomainNameOutput() DnsDomainNameOutput {
+	return o
+}
+
+func (o DnsDomainNameOutput) ToDnsDomainNameOutputWithContext(ctx context.Context) DnsDomainNameOutput {
+	return o
+}
+
+func init() {
+	pulumi.RegisterOutputType(DnsDomainNameOutput{})
 }
