@@ -7,6 +7,14 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo Instance resource. This can be used to create,
  * modify, and delete Instances.
+ *
+ * ## Import
+ *
+ * Instances can be imported using the instance `id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
+ * ```
  */
 export class Instance extends pulumi.CustomResource {
     /**

@@ -2,10 +2,18 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import * as inputs from "./types/input";
-import * as outputs from "./types/output";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * ## Import
+ *
+ * Then the Kubernetes cluster can be imported using the cluster's `id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+ * ```
+ */
 export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * Get an existing KubernetesCluster resource's state with the given name, ID, and optional extra

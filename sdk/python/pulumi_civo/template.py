@@ -30,6 +30,14 @@ class Template(pulumi.CustomResource):
         Provides a Civo Template resource.
         This can be used to create, modify, and delete Templates.
 
+        ## Import
+
+        Template can be imported using the template `code`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/template:Template my-custom-template my-template-code
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cloud_config: Commonly referred to as 'user-data', this is a customisation script that is run after

@@ -16,6 +16,14 @@ import * as utilities from "./utilities";
  * // Create a new domain name
  * const main = new civo.DnsDomainName("main", {});
  * ```
+ *
+ * ## Import
+ *
+ * Domains can be imported using the `domain name`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+ * ```
  */
 export class DnsDomainName extends pulumi.CustomResource {
     /**

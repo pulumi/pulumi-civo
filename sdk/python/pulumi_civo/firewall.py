@@ -32,6 +32,14 @@ class Firewall(pulumi.CustomResource):
         www = civo.Firewall("www")
         ```
 
+        ## Import
+
+        Firewalls can be imported using the firewall `id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The Firewall name

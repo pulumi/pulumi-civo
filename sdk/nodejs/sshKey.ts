@@ -18,6 +18,14 @@ import * as utilities from "./utilities";
  *
  * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub")});
  * ```
+ *
+ * ## Import
+ *
+ * SSH Keys can be imported using the `ssh key id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
+ * ```
  */
 export class SshKey extends pulumi.CustomResource {
     /**

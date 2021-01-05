@@ -7,6 +7,14 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo Template resource.
  * This can be used to create, modify, and delete Templates.
+ *
+ * ## Import
+ *
+ * Template can be imported using the template `code`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/template:Template my-custom-template my-template-code
+ * ```
  */
 export class Template extends pulumi.CustomResource {
     /**

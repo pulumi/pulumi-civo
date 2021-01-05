@@ -32,6 +32,14 @@ class DnsDomainName(pulumi.CustomResource):
         main = civo.DnsDomainName("main")
         ```
 
+        ## Import
+
+        Domains can be imported using the `domain name`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the domain

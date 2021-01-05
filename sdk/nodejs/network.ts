@@ -18,6 +18,14 @@ import * as utilities from "./utilities";
  *     label: "test_network",
  * });
  * ```
+ *
+ * ## Import
+ *
+ * Firewalls can be imported using the firewall `id`, e.g.
+ *
+ * ```sh
+ *  $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+ * ```
  */
 export class Network extends pulumi.CustomResource {
     /**

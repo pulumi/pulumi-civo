@@ -30,6 +30,14 @@ namespace Pulumi.Civo
     /// 
     /// }
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Domains can be imported using the `domain name`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+    /// ```
     /// </summary>
     public partial class DnsDomainName : Pulumi.CustomResource
     {

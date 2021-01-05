@@ -34,6 +34,14 @@ class SshKey(pulumi.CustomResource):
         my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
         ```
 
+        ## Import
+
+        SSH Keys can be imported using the `ssh key id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the SSH key for identification
