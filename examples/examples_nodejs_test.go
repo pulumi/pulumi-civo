@@ -20,6 +20,8 @@ func TestAccNetworkTs(t *testing.T) {
 }
 
 func TestKubernetesMinimalTs(t *testing.T) {
+	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
+		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
@@ -30,6 +32,8 @@ func TestKubernetesMinimalTs(t *testing.T) {
 }
 
 func TestKubernetesMediumTs(t *testing.T) {
+	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
+		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
@@ -40,6 +44,8 @@ func TestKubernetesMediumTs(t *testing.T) {
 }
 
 func TestKubernetesComplexTs(t *testing.T) {
+	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
+		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
