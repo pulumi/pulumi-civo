@@ -45,26 +45,27 @@ type FirewallRule struct {
 // NewFirewallRule registers a new resource with the given unique name, arguments, and options.
 func NewFirewallRule(ctx *pulumi.Context,
 	name string, args *FirewallRuleArgs, opts ...pulumi.ResourceOption) (*FirewallRule, error) {
-	if args == nil || args.Cidrs == nil {
-		return nil, errors.New("missing required argument 'Cidrs'")
-	}
-	if args == nil || args.Direction == nil {
-		return nil, errors.New("missing required argument 'Direction'")
-	}
-	if args == nil || args.EndPort == nil {
-		return nil, errors.New("missing required argument 'EndPort'")
-	}
-	if args == nil || args.FirewallId == nil {
-		return nil, errors.New("missing required argument 'FirewallId'")
-	}
-	if args == nil || args.Protocol == nil {
-		return nil, errors.New("missing required argument 'Protocol'")
-	}
-	if args == nil || args.StartPort == nil {
-		return nil, errors.New("missing required argument 'StartPort'")
-	}
 	if args == nil {
-		args = &FirewallRuleArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Cidrs == nil {
+		return nil, errors.New("invalid value for required argument 'Cidrs'")
+	}
+	if args.Direction == nil {
+		return nil, errors.New("invalid value for required argument 'Direction'")
+	}
+	if args.EndPort == nil {
+		return nil, errors.New("invalid value for required argument 'EndPort'")
+	}
+	if args.FirewallId == nil {
+		return nil, errors.New("invalid value for required argument 'FirewallId'")
+	}
+	if args.Protocol == nil {
+		return nil, errors.New("invalid value for required argument 'Protocol'")
+	}
+	if args.StartPort == nil {
+		return nil, errors.New("invalid value for required argument 'StartPort'")
 	}
 	var resource FirewallRule
 	err := ctx.RegisterResource("civo:index/firewallRule:FirewallRule", name, args, &resource, opts...)

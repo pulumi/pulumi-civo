@@ -72,7 +72,7 @@ class Snapshot(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['cron_timing'] = cron_timing
-            if instance_id is None:
+            if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
             __props__['instance_id'] = instance_id
             __props__['name'] = name

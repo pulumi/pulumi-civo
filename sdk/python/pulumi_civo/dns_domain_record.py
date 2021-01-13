@@ -39,7 +39,7 @@ class DnsDomainRecord(pulumi.CustomResource):
             type="A",
             value=civo_instance["foo"]["public_ip"],
             ttl=600,
-            opts=ResourceOptions(depends_on=[
+            opts=pulumi.ResourceOptions(depends_on=[
                     civo_dns_domain_name["main"],
                     civo_instance["foo"],
                 ]))
@@ -79,18 +79,18 @@ class DnsDomainRecord(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if domain_id is None:
+            if domain_id is None and not opts.urn:
                 raise TypeError("Missing required property 'domain_id'")
             __props__['domain_id'] = domain_id
             __props__['name'] = name
             __props__['priority'] = priority
-            if ttl is None:
+            if ttl is None and not opts.urn:
                 raise TypeError("Missing required property 'ttl'")
             __props__['ttl'] = ttl
-            if type is None:
+            if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
             __props__['type'] = type
-            if value is None:
+            if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
             __props__['value'] = value
             __props__['account_id'] = None

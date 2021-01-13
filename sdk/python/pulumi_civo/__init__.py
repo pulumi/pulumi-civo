@@ -37,3 +37,77 @@ from . import outputs
 from . import (
     config,
 )
+
+def _register_module():
+    import pulumi
+    from . import _utilities
+
+
+    class Module(pulumi.runtime.ResourceModule):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Module._version
+
+        def construct(self, name: str, typ: str, urn: str) -> pulumi.Resource:
+            if typ == "civo:index/dnsDomainName:DnsDomainName":
+                return DnsDomainName(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/dnsDomainRecord:DnsDomainRecord":
+                return DnsDomainRecord(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/firewall:Firewall":
+                return Firewall(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/firewallRule:FirewallRule":
+                return FirewallRule(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/instance:Instance":
+                return Instance(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/kubernetesCluster:KubernetesCluster":
+                return KubernetesCluster(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/loadBalancer:LoadBalancer":
+                return LoadBalancer(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/network:Network":
+                return Network(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/snapshot:Snapshot":
+                return Snapshot(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/sshKey:SshKey":
+                return SshKey(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/template:Template":
+                return Template(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/volume:Volume":
+                return Volume(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/volumeAttachment:VolumeAttachment":
+                return VolumeAttachment(name, pulumi.ResourceOptions(urn=urn))
+            else:
+                raise Exception(f"unknown resource type {typ}")
+
+
+    _module_instance = Module()
+    pulumi.runtime.register_resource_module("civo", "index/dnsDomainName", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/dnsDomainRecord", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/firewall", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/firewallRule", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/instance", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/kubernetesCluster", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/loadBalancer", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/network", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/snapshot", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/sshKey", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/template", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/volume", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/volumeAttachment", _module_instance)
+
+
+    class Package(pulumi.runtime.ResourcePackage):
+        _version = _utilities.get_semver_version()
+
+        def version(self):
+            return Package._version
+
+        def construct_provider(self, name: str, typ: str, urn: str) -> pulumi.ProviderResource:
+            if typ != "pulumi:providers:civo":
+                raise Exception(f"unknown provider type {typ}")
+            return Provider(name, pulumi.ResourceOptions(urn=urn))
+
+
+    pulumi.runtime.register_resource_package("civo", Package())
+
+_register_module()

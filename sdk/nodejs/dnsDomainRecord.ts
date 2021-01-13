@@ -123,16 +123,16 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as DnsDomainRecordArgs | undefined;
-            if (!args || args.domainId === undefined) {
+            if ((!args || args.domainId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'domainId'");
             }
-            if (!args || args.ttl === undefined) {
+            if ((!args || args.ttl === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'ttl'");
             }
-            if (!args || args.type === undefined) {
+            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'type'");
             }
-            if (!args || args.value === undefined) {
+            if ((!args || args.value === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'value'");
             }
             inputs["domainId"] = args ? args.domainId : undefined;

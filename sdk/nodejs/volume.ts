@@ -95,10 +95,10 @@ export class Volume extends pulumi.CustomResource {
             inputs["sizeGb"] = state ? state.sizeGb : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
-            if (!args || args.bootable === undefined) {
+            if ((!args || args.bootable === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'bootable'");
             }
-            if (!args || args.sizeGb === undefined) {
+            if ((!args || args.sizeGb === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'sizeGb'");
             }
             inputs["bootable"] = args ? args.bootable : undefined;

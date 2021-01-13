@@ -76,7 +76,7 @@ class Template(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['cloud_config'] = cloud_config
-            if code is None:
+            if code is None and not opts.urn:
                 raise TypeError("Missing required property 'code'")
             __props__['code'] = code
             __props__['default_username'] = default_username

@@ -96,22 +96,22 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
-            if (!args || args.cidrs === undefined) {
+            if ((!args || args.cidrs === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'cidrs'");
             }
-            if (!args || args.direction === undefined) {
+            if ((!args || args.direction === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'direction'");
             }
-            if (!args || args.endPort === undefined) {
+            if ((!args || args.endPort === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'endPort'");
             }
-            if (!args || args.firewallId === undefined) {
+            if ((!args || args.firewallId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'firewallId'");
             }
-            if (!args || args.protocol === undefined) {
+            if ((!args || args.protocol === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'protocol'");
             }
-            if (!args || args.startPort === undefined) {
+            if ((!args || args.startPort === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'startPort'");
             }
             inputs["cidrs"] = args ? args.cidrs : undefined;
