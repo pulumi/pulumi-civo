@@ -75,20 +75,21 @@ type DnsDomainRecord struct {
 // NewDnsDomainRecord registers a new resource with the given unique name, arguments, and options.
 func NewDnsDomainRecord(ctx *pulumi.Context,
 	name string, args *DnsDomainRecordArgs, opts ...pulumi.ResourceOption) (*DnsDomainRecord, error) {
-	if args == nil || args.DomainId == nil {
-		return nil, errors.New("missing required argument 'DomainId'")
-	}
-	if args == nil || args.Ttl == nil {
-		return nil, errors.New("missing required argument 'Ttl'")
-	}
-	if args == nil || args.Type == nil {
-		return nil, errors.New("missing required argument 'Type'")
-	}
-	if args == nil || args.Value == nil {
-		return nil, errors.New("missing required argument 'Value'")
-	}
 	if args == nil {
-		args = &DnsDomainRecordArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.DomainId == nil {
+		return nil, errors.New("invalid value for required argument 'DomainId'")
+	}
+	if args.Ttl == nil {
+		return nil, errors.New("invalid value for required argument 'Ttl'")
+	}
+	if args.Type == nil {
+		return nil, errors.New("invalid value for required argument 'Type'")
+	}
+	if args.Value == nil {
+		return nil, errors.New("invalid value for required argument 'Value'")
 	}
 	var resource DnsDomainRecord
 	err := ctx.RegisterResource("civo:index/dnsDomainRecord:DnsDomainRecord", name, args, &resource, opts...)

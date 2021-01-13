@@ -47,32 +47,33 @@ type LoadBalancer struct {
 // NewLoadBalancer registers a new resource with the given unique name, arguments, and options.
 func NewLoadBalancer(ctx *pulumi.Context,
 	name string, args *LoadBalancerArgs, opts ...pulumi.ResourceOption) (*LoadBalancer, error) {
-	if args == nil || args.Backends == nil {
-		return nil, errors.New("missing required argument 'Backends'")
-	}
-	if args == nil || args.FailTimeout == nil {
-		return nil, errors.New("missing required argument 'FailTimeout'")
-	}
-	if args == nil || args.Hostname == nil {
-		return nil, errors.New("missing required argument 'Hostname'")
-	}
-	if args == nil || args.MaxConns == nil {
-		return nil, errors.New("missing required argument 'MaxConns'")
-	}
-	if args == nil || args.MaxRequestSize == nil {
-		return nil, errors.New("missing required argument 'MaxRequestSize'")
-	}
-	if args == nil || args.Policy == nil {
-		return nil, errors.New("missing required argument 'Policy'")
-	}
-	if args == nil || args.Port == nil {
-		return nil, errors.New("missing required argument 'Port'")
-	}
-	if args == nil || args.Protocol == nil {
-		return nil, errors.New("missing required argument 'Protocol'")
-	}
 	if args == nil {
-		args = &LoadBalancerArgs{}
+		return nil, errors.New("missing one or more required arguments")
+	}
+
+	if args.Backends == nil {
+		return nil, errors.New("invalid value for required argument 'Backends'")
+	}
+	if args.FailTimeout == nil {
+		return nil, errors.New("invalid value for required argument 'FailTimeout'")
+	}
+	if args.Hostname == nil {
+		return nil, errors.New("invalid value for required argument 'Hostname'")
+	}
+	if args.MaxConns == nil {
+		return nil, errors.New("invalid value for required argument 'MaxConns'")
+	}
+	if args.MaxRequestSize == nil {
+		return nil, errors.New("invalid value for required argument 'MaxRequestSize'")
+	}
+	if args.Policy == nil {
+		return nil, errors.New("invalid value for required argument 'Policy'")
+	}
+	if args.Port == nil {
+		return nil, errors.New("invalid value for required argument 'Port'")
+	}
+	if args.Protocol == nil {
+		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
 	var resource LoadBalancer
 	err := ctx.RegisterResource("civo:index/loadBalancer:LoadBalancer", name, args, &resource, opts...)

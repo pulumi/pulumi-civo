@@ -66,11 +66,11 @@ class Volume(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if bootable is None:
+            if bootable is None and not opts.urn:
                 raise TypeError("Missing required property 'bootable'")
             __props__['bootable'] = bootable
             __props__['name'] = name
-            if size_gb is None:
+            if size_gb is None and not opts.urn:
                 raise TypeError("Missing required property 'size_gb'")
             __props__['size_gb'] = size_gb
             __props__['created_at'] = None

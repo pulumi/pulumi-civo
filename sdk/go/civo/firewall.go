@@ -56,6 +56,7 @@ func NewFirewall(ctx *pulumi.Context,
 	if args == nil {
 		args = &FirewallArgs{}
 	}
+
 	var resource Firewall
 	err := ctx.RegisterResource("civo:index/firewall:Firewall", name, args, &resource, opts...)
 	if err != nil {

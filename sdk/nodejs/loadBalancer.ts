@@ -112,28 +112,28 @@ export class LoadBalancer extends pulumi.CustomResource {
             inputs["tlsKey"] = state ? state.tlsKey : undefined;
         } else {
             const args = argsOrState as LoadBalancerArgs | undefined;
-            if (!args || args.backends === undefined) {
+            if ((!args || args.backends === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'backends'");
             }
-            if (!args || args.failTimeout === undefined) {
+            if ((!args || args.failTimeout === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'failTimeout'");
             }
-            if (!args || args.hostname === undefined) {
+            if ((!args || args.hostname === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if (!args || args.maxConns === undefined) {
+            if ((!args || args.maxConns === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'maxConns'");
             }
-            if (!args || args.maxRequestSize === undefined) {
+            if ((!args || args.maxRequestSize === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'maxRequestSize'");
             }
-            if (!args || args.policy === undefined) {
+            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'policy'");
             }
-            if (!args || args.port === undefined) {
+            if ((!args || args.port === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'port'");
             }
-            if (!args || args.protocol === undefined) {
+            if ((!args || args.protocol === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'protocol'");
             }
             inputs["backends"] = args ? args.backends : undefined;

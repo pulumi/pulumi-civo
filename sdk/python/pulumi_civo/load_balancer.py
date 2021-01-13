@@ -70,30 +70,30 @@ class LoadBalancer(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
-            if backends is None:
+            if backends is None and not opts.urn:
                 raise TypeError("Missing required property 'backends'")
             __props__['backends'] = backends
-            if fail_timeout is None:
+            if fail_timeout is None and not opts.urn:
                 raise TypeError("Missing required property 'fail_timeout'")
             __props__['fail_timeout'] = fail_timeout
             __props__['health_check_path'] = health_check_path
-            if hostname is None:
+            if hostname is None and not opts.urn:
                 raise TypeError("Missing required property 'hostname'")
             __props__['hostname'] = hostname
             __props__['ignore_invalid_backend_tls'] = ignore_invalid_backend_tls
-            if max_conns is None:
+            if max_conns is None and not opts.urn:
                 raise TypeError("Missing required property 'max_conns'")
             __props__['max_conns'] = max_conns
-            if max_request_size is None:
+            if max_request_size is None and not opts.urn:
                 raise TypeError("Missing required property 'max_request_size'")
             __props__['max_request_size'] = max_request_size
-            if policy is None:
+            if policy is None and not opts.urn:
                 raise TypeError("Missing required property 'policy'")
             __props__['policy'] = policy
-            if port is None:
+            if port is None and not opts.urn:
                 raise TypeError("Missing required property 'port'")
             __props__['port'] = port
-            if protocol is None:
+            if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__['protocol'] = protocol
             __props__['tls_certificate'] = tls_certificate

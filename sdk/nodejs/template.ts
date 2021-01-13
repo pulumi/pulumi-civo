@@ -108,7 +108,7 @@ export class Template extends pulumi.CustomResource {
             inputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
             const args = argsOrState as TemplateArgs | undefined;
-            if (!args || args.code === undefined) {
+            if ((!args || args.code === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'code'");
             }
             inputs["cloudConfig"] = args ? args.cloudConfig : undefined;

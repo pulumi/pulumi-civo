@@ -55,6 +55,7 @@ func NewDnsDomainName(ctx *pulumi.Context,
 	if args == nil {
 		args = &DnsDomainNameArgs{}
 	}
+
 	var resource DnsDomainName
 	err := ctx.RegisterResource("civo:index/dnsDomainName:DnsDomainName", name, args, &resource, opts...)
 	if err != nil {

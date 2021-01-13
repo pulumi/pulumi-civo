@@ -60,6 +60,7 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 	if args == nil {
 		args = &KubernetesClusterArgs{}
 	}
+
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("civo:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {

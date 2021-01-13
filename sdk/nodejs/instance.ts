@@ -164,7 +164,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if (!args || args.hostname === undefined) {
+            if ((!args || args.hostname === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'hostname'");
             }
             inputs["firewallId"] = args ? args.firewallId : undefined;

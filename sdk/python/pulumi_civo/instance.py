@@ -75,7 +75,7 @@ class Instance(pulumi.CustomResource):
             __props__ = dict()
 
             __props__['firewall_id'] = firewall_id
-            if hostname is None:
+            if hostname is None and not opts.urn:
                 raise TypeError("Missing required property 'hostname'")
             __props__['hostname'] = hostname
             __props__['initial_user'] = initial_user

@@ -132,7 +132,7 @@ export class Snapshot extends pulumi.CustomResource {
             inputs["templateId"] = state ? state.templateId : undefined;
         } else {
             const args = argsOrState as SnapshotArgs | undefined;
-            if (!args || args.instanceId === undefined) {
+            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["cronTiming"] = args ? args.cronTiming : undefined;
