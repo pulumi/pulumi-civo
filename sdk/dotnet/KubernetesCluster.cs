@@ -18,6 +18,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/kubernetesCluster:KubernetesCluster")]
     public partial class KubernetesCluster : Pulumi.CustomResource
     {
         /// <summary>

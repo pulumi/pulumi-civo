@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -142,15 +142,15 @@ type NetworkInput interface {
 	ToNetworkOutputWithContext(ctx context.Context) NetworkOutput
 }
 
-func (Network) ElementType() reflect.Type {
-	return reflect.TypeOf((*Network)(nil)).Elem()
+func (*Network) ElementType() reflect.Type {
+	return reflect.TypeOf((*Network)(nil))
 }
 
-func (i Network) ToNetworkOutput() NetworkOutput {
+func (i *Network) ToNetworkOutput() NetworkOutput {
 	return i.ToNetworkOutputWithContext(context.Background())
 }
 
-func (i Network) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
+func (i *Network) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkOutput)
 }
 
@@ -159,7 +159,7 @@ type NetworkOutput struct {
 }
 
 func (NetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkOutput)(nil)).Elem()
+	return reflect.TypeOf((*Network)(nil))
 }
 
 func (o NetworkOutput) ToNetworkOutput() NetworkOutput {

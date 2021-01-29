@@ -50,6 +50,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/dnsDomainRecord:DnsDomainRecord")]
     public partial class DnsDomainRecord : Pulumi.CustomResource
     {
         /// <summary>

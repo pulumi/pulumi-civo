@@ -39,6 +39,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/snapshot:Snapshot myinstance-backup 4cc87851-e1d0-4270-822a-b36d28c7a77f
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/snapshot:Snapshot")]
     public partial class Snapshot : Pulumi.CustomResource
     {
         /// <summary>

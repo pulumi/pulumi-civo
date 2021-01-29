@@ -40,6 +40,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/volume:Volume")]
     public partial class Volume : Pulumi.CustomResource
     {
         /// <summary>

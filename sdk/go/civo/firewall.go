@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -118,15 +118,15 @@ type FirewallInput interface {
 	ToFirewallOutputWithContext(ctx context.Context) FirewallOutput
 }
 
-func (Firewall) ElementType() reflect.Type {
-	return reflect.TypeOf((*Firewall)(nil)).Elem()
+func (*Firewall) ElementType() reflect.Type {
+	return reflect.TypeOf((*Firewall)(nil))
 }
 
-func (i Firewall) ToFirewallOutput() FirewallOutput {
+func (i *Firewall) ToFirewallOutput() FirewallOutput {
 	return i.ToFirewallOutputWithContext(context.Background())
 }
 
-func (i Firewall) ToFirewallOutputWithContext(ctx context.Context) FirewallOutput {
+func (i *Firewall) ToFirewallOutputWithContext(ctx context.Context) FirewallOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallOutput)
 }
 
@@ -135,7 +135,7 @@ type FirewallOutput struct {
 }
 
 func (FirewallOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallOutput)(nil)).Elem()
+	return reflect.TypeOf((*Firewall)(nil))
 }
 
 func (o FirewallOutput) ToFirewallOutput() FirewallOutput {

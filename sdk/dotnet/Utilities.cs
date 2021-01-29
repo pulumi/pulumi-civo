@@ -77,4 +77,11 @@ namespace Pulumi.Civo
             }
         }
     }
+
+    internal sealed class CivoResourceTypeAttribute : Pulumi.ResourceTypeAttribute
+    {
+        public CivoResourceTypeAttribute(string type) : base(type, Utilities.Version)
+        {
+        }
+    }
 }
