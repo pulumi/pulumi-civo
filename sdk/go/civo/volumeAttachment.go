@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -130,15 +130,15 @@ type VolumeAttachmentInput interface {
 	ToVolumeAttachmentOutputWithContext(ctx context.Context) VolumeAttachmentOutput
 }
 
-func (VolumeAttachment) ElementType() reflect.Type {
-	return reflect.TypeOf((*VolumeAttachment)(nil)).Elem()
+func (*VolumeAttachment) ElementType() reflect.Type {
+	return reflect.TypeOf((*VolumeAttachment)(nil))
 }
 
-func (i VolumeAttachment) ToVolumeAttachmentOutput() VolumeAttachmentOutput {
+func (i *VolumeAttachment) ToVolumeAttachmentOutput() VolumeAttachmentOutput {
 	return i.ToVolumeAttachmentOutputWithContext(context.Background())
 }
 
-func (i VolumeAttachment) ToVolumeAttachmentOutputWithContext(ctx context.Context) VolumeAttachmentOutput {
+func (i *VolumeAttachment) ToVolumeAttachmentOutputWithContext(ctx context.Context) VolumeAttachmentOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VolumeAttachmentOutput)
 }
 
@@ -147,7 +147,7 @@ type VolumeAttachmentOutput struct {
 }
 
 func (VolumeAttachmentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VolumeAttachmentOutput)(nil)).Elem()
+	return reflect.TypeOf((*VolumeAttachment)(nil))
 }
 
 func (o VolumeAttachmentOutput) ToVolumeAttachmentOutput() VolumeAttachmentOutput {

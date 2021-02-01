@@ -48,7 +48,7 @@ setup(name='pulumi_civo',
       packages=find_packages(),
       package_data={
           'pulumi_civo': [
-              'py.typed'
+              'py.typed',
           ]
       },
       install_requires=[

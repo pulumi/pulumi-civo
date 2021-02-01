@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -220,15 +220,15 @@ type SnapshotInput interface {
 	ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput
 }
 
-func (Snapshot) ElementType() reflect.Type {
-	return reflect.TypeOf((*Snapshot)(nil)).Elem()
+func (*Snapshot) ElementType() reflect.Type {
+	return reflect.TypeOf((*Snapshot)(nil))
 }
 
-func (i Snapshot) ToSnapshotOutput() SnapshotOutput {
+func (i *Snapshot) ToSnapshotOutput() SnapshotOutput {
 	return i.ToSnapshotOutputWithContext(context.Background())
 }
 
-func (i Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
+func (i *Snapshot) ToSnapshotOutputWithContext(ctx context.Context) SnapshotOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SnapshotOutput)
 }
 
@@ -237,7 +237,7 @@ type SnapshotOutput struct {
 }
 
 func (SnapshotOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SnapshotOutput)(nil)).Elem()
+	return reflect.TypeOf((*Snapshot)(nil))
 }
 
 func (o SnapshotOutput) ToSnapshotOutput() SnapshotOutput {

@@ -39,6 +39,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/dnsDomainName:DnsDomainName")]
     public partial class DnsDomainName : Pulumi.CustomResource
     {
         /// <summary>

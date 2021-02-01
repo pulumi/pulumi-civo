@@ -23,6 +23,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/firewallRule:FirewallRule")]
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>

@@ -37,6 +37,7 @@ namespace Pulumi.Civo
     /// }
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
     public partial class VolumeAttachment : Pulumi.CustomResource
     {
         /// <summary>

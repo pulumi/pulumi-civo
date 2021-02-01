@@ -39,6 +39,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/firewall:Firewall")]
     public partial class Firewall : Pulumi.CustomResource
     {
         /// <summary>

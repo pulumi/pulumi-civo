@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -200,15 +200,15 @@ type DnsDomainRecordInput interface {
 	ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput
 }
 
-func (DnsDomainRecord) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsDomainRecord)(nil)).Elem()
+func (*DnsDomainRecord) ElementType() reflect.Type {
+	return reflect.TypeOf((*DnsDomainRecord)(nil))
 }
 
-func (i DnsDomainRecord) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
+func (i *DnsDomainRecord) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
 	return i.ToDnsDomainRecordOutputWithContext(context.Background())
 }
 
-func (i DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
+func (i *DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordOutput)
 }
 
@@ -217,7 +217,7 @@ type DnsDomainRecordOutput struct {
 }
 
 func (DnsDomainRecordOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsDomainRecordOutput)(nil)).Elem()
+	return reflect.TypeOf((*DnsDomainRecord)(nil))
 }
 
 func (o DnsDomainRecordOutput) ToDnsDomainRecordOutput() DnsDomainRecordOutput {

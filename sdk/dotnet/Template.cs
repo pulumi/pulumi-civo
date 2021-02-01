@@ -21,6 +21,7 @@ namespace Pulumi.Civo
     ///  $ pulumi import civo:index/template:Template my-custom-template my-template-code
     /// ```
     /// </summary>
+    [CivoResourceType("civo:index/template:Template")]
     public partial class Template : Pulumi.CustomResource
     {
         /// <summary>

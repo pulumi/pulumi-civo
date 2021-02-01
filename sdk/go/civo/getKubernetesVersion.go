@@ -16,6 +16,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -45,6 +46,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //

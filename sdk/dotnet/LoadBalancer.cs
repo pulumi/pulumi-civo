@@ -9,6 +9,7 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo
 {
+    [CivoResourceType("civo:index/loadBalancer:LoadBalancer")]
     public partial class LoadBalancer : Pulumi.CustomResource
     {
         /// <summary>
