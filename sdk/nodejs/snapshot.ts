@@ -116,7 +116,8 @@ export class Snapshot extends pulumi.CustomResource {
     constructor(name: string, args: SnapshotArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SnapshotArgs | SnapshotState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as SnapshotState | undefined;
             inputs["completedAt"] = state ? state.completedAt : undefined;
             inputs["cronTiming"] = state ? state.cronTiming : undefined;
@@ -132,7 +133,7 @@ export class Snapshot extends pulumi.CustomResource {
             inputs["templateId"] = state ? state.templateId : undefined;
         } else {
             const args = argsOrState as SnapshotArgs | undefined;
-            if ((!args || args.instanceId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.instanceId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'instanceId'");
             }
             inputs["cronTiming"] = args ? args.cronTiming : undefined;
@@ -148,12 +149,8 @@ export class Snapshot extends pulumi.CustomResource {
             inputs["state"] = undefined /*out*/;
             inputs["templateId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Snapshot.__pulumiType, name, inputs, opts);
     }

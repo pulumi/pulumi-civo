@@ -86,7 +86,8 @@ export class Volume extends pulumi.CustomResource {
     constructor(name: string, args: VolumeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VolumeArgs | VolumeState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
             inputs["bootable"] = state ? state.bootable : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
@@ -95,10 +96,10 @@ export class Volume extends pulumi.CustomResource {
             inputs["sizeGb"] = state ? state.sizeGb : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
-            if ((!args || args.bootable === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.bootable === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'bootable'");
             }
-            if ((!args || args.sizeGb === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.sizeGb === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sizeGb'");
             }
             inputs["bootable"] = args ? args.bootable : undefined;
@@ -107,12 +108,8 @@ export class Volume extends pulumi.CustomResource {
             inputs["createdAt"] = undefined /*out*/;
             inputs["mountPoint"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Volume.__pulumiType, name, inputs, opts);
     }

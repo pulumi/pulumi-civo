@@ -96,7 +96,8 @@ export class LoadBalancer extends pulumi.CustomResource {
     constructor(name: string, args: LoadBalancerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LoadBalancerArgs | LoadBalancerState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as LoadBalancerState | undefined;
             inputs["backends"] = state ? state.backends : undefined;
             inputs["failTimeout"] = state ? state.failTimeout : undefined;
@@ -112,28 +113,28 @@ export class LoadBalancer extends pulumi.CustomResource {
             inputs["tlsKey"] = state ? state.tlsKey : undefined;
         } else {
             const args = argsOrState as LoadBalancerArgs | undefined;
-            if ((!args || args.backends === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.backends === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'backends'");
             }
-            if ((!args || args.failTimeout === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.failTimeout === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'failTimeout'");
             }
-            if ((!args || args.hostname === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.hostname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            if ((!args || args.maxConns === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.maxConns === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'maxConns'");
             }
-            if ((!args || args.maxRequestSize === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.maxRequestSize === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'maxRequestSize'");
             }
-            if ((!args || args.policy === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.policy === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policy'");
             }
-            if ((!args || args.port === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.port === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'port'");
             }
-            if ((!args || args.protocol === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.protocol === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'protocol'");
             }
             inputs["backends"] = args ? args.backends : undefined;
@@ -149,12 +150,8 @@ export class LoadBalancer extends pulumi.CustomResource {
             inputs["tlsCertificate"] = args ? args.tlsCertificate : undefined;
             inputs["tlsKey"] = args ? args.tlsKey : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(LoadBalancer.__pulumiType, name, inputs, opts);
     }

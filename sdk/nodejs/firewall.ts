@@ -72,7 +72,8 @@ export class Firewall extends pulumi.CustomResource {
     constructor(name: string, args?: FirewallArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallArgs | FirewallState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as FirewallState | undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["region"] = state ? state.region : undefined;
@@ -81,12 +82,8 @@ export class Firewall extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["region"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Firewall.__pulumiType, name, inputs, opts);
     }

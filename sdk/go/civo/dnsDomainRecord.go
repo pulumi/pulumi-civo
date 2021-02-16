@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo/"
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
 // 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
 // )
 //
@@ -212,6 +212,85 @@ func (i *DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordOutput)
 }
 
+func (i *DnsDomainRecord) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
+	return i.ToDnsDomainRecordPtrOutputWithContext(context.Background())
+}
+
+func (i *DnsDomainRecord) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordPtrOutput)
+}
+
+type DnsDomainRecordPtrInput interface {
+	pulumi.Input
+
+	ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput
+	ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput
+}
+
+type dnsDomainRecordPtrType DnsDomainRecordArgs
+
+func (*dnsDomainRecordPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsDomainRecord)(nil))
+}
+
+func (i *dnsDomainRecordPtrType) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
+	return i.ToDnsDomainRecordPtrOutputWithContext(context.Background())
+}
+
+func (i *dnsDomainRecordPtrType) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordPtrOutput)
+}
+
+// DnsDomainRecordArrayInput is an input type that accepts DnsDomainRecordArray and DnsDomainRecordArrayOutput values.
+// You can construct a concrete instance of `DnsDomainRecordArrayInput` via:
+//
+//          DnsDomainRecordArray{ DnsDomainRecordArgs{...} }
+type DnsDomainRecordArrayInput interface {
+	pulumi.Input
+
+	ToDnsDomainRecordArrayOutput() DnsDomainRecordArrayOutput
+	ToDnsDomainRecordArrayOutputWithContext(context.Context) DnsDomainRecordArrayOutput
+}
+
+type DnsDomainRecordArray []DnsDomainRecordInput
+
+func (DnsDomainRecordArray) ElementType() reflect.Type {
+	return reflect.TypeOf(([]*DnsDomainRecord)(nil))
+}
+
+func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutput() DnsDomainRecordArrayOutput {
+	return i.ToDnsDomainRecordArrayOutputWithContext(context.Background())
+}
+
+func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutputWithContext(ctx context.Context) DnsDomainRecordArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordArrayOutput)
+}
+
+// DnsDomainRecordMapInput is an input type that accepts DnsDomainRecordMap and DnsDomainRecordMapOutput values.
+// You can construct a concrete instance of `DnsDomainRecordMapInput` via:
+//
+//          DnsDomainRecordMap{ "key": DnsDomainRecordArgs{...} }
+type DnsDomainRecordMapInput interface {
+	pulumi.Input
+
+	ToDnsDomainRecordMapOutput() DnsDomainRecordMapOutput
+	ToDnsDomainRecordMapOutputWithContext(context.Context) DnsDomainRecordMapOutput
+}
+
+type DnsDomainRecordMap map[string]DnsDomainRecordInput
+
+func (DnsDomainRecordMap) ElementType() reflect.Type {
+	return reflect.TypeOf((map[string]*DnsDomainRecord)(nil))
+}
+
+func (i DnsDomainRecordMap) ToDnsDomainRecordMapOutput() DnsDomainRecordMapOutput {
+	return i.ToDnsDomainRecordMapOutputWithContext(context.Background())
+}
+
+func (i DnsDomainRecordMap) ToDnsDomainRecordMapOutputWithContext(ctx context.Context) DnsDomainRecordMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordMapOutput)
+}
+
 type DnsDomainRecordOutput struct {
 	*pulumi.OutputState
 }
@@ -228,6 +307,75 @@ func (o DnsDomainRecordOutput) ToDnsDomainRecordOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o DnsDomainRecordOutput) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
+	return o.ToDnsDomainRecordPtrOutputWithContext(context.Background())
+}
+
+func (o DnsDomainRecordOutput) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
+	return o.ApplyT(func(v DnsDomainRecord) *DnsDomainRecord {
+		return &v
+	}).(DnsDomainRecordPtrOutput)
+}
+
+type DnsDomainRecordPtrOutput struct {
+	*pulumi.OutputState
+}
+
+func (DnsDomainRecordPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DnsDomainRecord)(nil))
+}
+
+func (o DnsDomainRecordPtrOutput) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
+	return o
+}
+
+func (o DnsDomainRecordPtrOutput) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
+	return o
+}
+
+type DnsDomainRecordArrayOutput struct{ *pulumi.OutputState }
+
+func (DnsDomainRecordArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]DnsDomainRecord)(nil))
+}
+
+func (o DnsDomainRecordArrayOutput) ToDnsDomainRecordArrayOutput() DnsDomainRecordArrayOutput {
+	return o
+}
+
+func (o DnsDomainRecordArrayOutput) ToDnsDomainRecordArrayOutputWithContext(ctx context.Context) DnsDomainRecordArrayOutput {
+	return o
+}
+
+func (o DnsDomainRecordArrayOutput) Index(i pulumi.IntInput) DnsDomainRecordOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsDomainRecord {
+		return vs[0].([]DnsDomainRecord)[vs[1].(int)]
+	}).(DnsDomainRecordOutput)
+}
+
+type DnsDomainRecordMapOutput struct{ *pulumi.OutputState }
+
+func (DnsDomainRecordMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]DnsDomainRecord)(nil))
+}
+
+func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutput() DnsDomainRecordMapOutput {
+	return o
+}
+
+func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutputWithContext(ctx context.Context) DnsDomainRecordMapOutput {
+	return o
+}
+
+func (o DnsDomainRecordMapOutput) MapIndex(k pulumi.StringInput) DnsDomainRecordOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsDomainRecord {
+		return vs[0].(map[string]DnsDomainRecord)[vs[1].(string)]
+	}).(DnsDomainRecordOutput)
+}
+
 func init() {
 	pulumi.RegisterOutputType(DnsDomainRecordOutput{})
+	pulumi.RegisterOutputType(DnsDomainRecordPtrOutput{})
+	pulumi.RegisterOutputType(DnsDomainRecordArrayOutput{})
+	pulumi.RegisterOutputType(DnsDomainRecordMapOutput{})
 }

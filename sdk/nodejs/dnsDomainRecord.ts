@@ -110,7 +110,8 @@ export class DnsDomainRecord extends pulumi.CustomResource {
     constructor(name: string, args: DnsDomainRecordArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsDomainRecordArgs | DnsDomainRecordState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as DnsDomainRecordState | undefined;
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
@@ -123,16 +124,16 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["value"] = state ? state.value : undefined;
         } else {
             const args = argsOrState as DnsDomainRecordArgs | undefined;
-            if ((!args || args.domainId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.domainId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'domainId'");
             }
-            if ((!args || args.ttl === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.ttl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ttl'");
             }
-            if ((!args || args.type === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            if ((!args || args.value === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
             inputs["domainId"] = args ? args.domainId : undefined;
@@ -145,12 +146,8 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["createdAt"] = undefined /*out*/;
             inputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(DnsDomainRecord.__pulumiType, name, inputs, opts);
     }

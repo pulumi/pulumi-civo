@@ -85,7 +85,8 @@ export class FirewallRule extends pulumi.CustomResource {
     constructor(name: string, args: FirewallRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallRuleArgs | FirewallRuleState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as FirewallRuleState | undefined;
             inputs["cidrs"] = state ? state.cidrs : undefined;
             inputs["direction"] = state ? state.direction : undefined;
@@ -96,22 +97,22 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
-            if ((!args || args.cidrs === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.cidrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cidrs'");
             }
-            if ((!args || args.direction === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.direction === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'direction'");
             }
-            if ((!args || args.endPort === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.endPort === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'endPort'");
             }
-            if ((!args || args.firewallId === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
-            if ((!args || args.protocol === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.protocol === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'protocol'");
             }
-            if ((!args || args.startPort === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.startPort === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startPort'");
             }
             inputs["cidrs"] = args ? args.cidrs : undefined;
@@ -122,12 +123,8 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["protocol"] = args ? args.protocol : undefined;
             inputs["startPort"] = args ? args.startPort : undefined;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(FirewallRule.__pulumiType, name, inputs, opts);
     }

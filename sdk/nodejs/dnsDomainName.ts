@@ -72,7 +72,8 @@ export class DnsDomainName extends pulumi.CustomResource {
     constructor(name: string, args?: DnsDomainNameArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsDomainNameArgs | DnsDomainNameState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as DnsDomainNameState | undefined;
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -81,12 +82,8 @@ export class DnsDomainName extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["accountId"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(DnsDomainName.__pulumiType, name, inputs, opts);
     }

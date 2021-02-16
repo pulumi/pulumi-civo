@@ -86,7 +86,8 @@ export class Network extends pulumi.CustomResource {
     constructor(name: string, args: NetworkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkArgs | NetworkState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
             inputs["cidr"] = state ? state.cidr : undefined;
             inputs["default"] = state ? state.default : undefined;
@@ -95,7 +96,7 @@ export class Network extends pulumi.CustomResource {
             inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as NetworkArgs | undefined;
-            if ((!args || args.label === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.label === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'label'");
             }
             inputs["label"] = args ? args.label : undefined;
@@ -104,12 +105,8 @@ export class Network extends pulumi.CustomResource {
             inputs["name"] = undefined /*out*/;
             inputs["region"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Network.__pulumiType, name, inputs, opts);
     }
