@@ -139,7 +139,8 @@ export class Instance extends pulumi.CustomResource {
     constructor(name: string, args: InstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceArgs | InstanceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
-        if (opts && opts.id) {
+        opts = opts || {};
+        if (opts.id) {
             const state = argsOrState as InstanceState | undefined;
             inputs["cpuCores"] = state ? state.cpuCores : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
@@ -164,7 +165,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if ((!args || args.hostname === undefined) && !(opts && opts.urn)) {
+            if ((!args || args.hostname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
             inputs["firewallId"] = args ? args.firewallId : undefined;
@@ -189,12 +190,8 @@ export class Instance extends pulumi.CustomResource {
             inputs["ramMb"] = undefined /*out*/;
             inputs["status"] = undefined /*out*/;
         }
-        if (!opts) {
-            opts = {}
-        }
-
         if (!opts.version) {
-            opts.version = utilities.getVersion();
+            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
         super(Instance.__pulumiType, name, inputs, opts);
     }
