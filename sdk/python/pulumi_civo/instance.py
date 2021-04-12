@@ -5,13 +5,212 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Instance']
+__all__ = ['InstanceArgs', 'Instance']
+
+@pulumi.input_type
+class InstanceArgs:
+    def __init__(__self__, *,
+                 hostname: pulumi.Input[str],
+                 firewall_id: Optional[pulumi.Input[str]] = None,
+                 initial_user: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 notes: Optional[pulumi.Input[str]] = None,
+                 public_ip_required: Optional[pulumi.Input[str]] = None,
+                 reverse_dns: Optional[pulumi.Input[str]] = None,
+                 script: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[str]] = None,
+                 sshkey_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 template: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Instance resource.
+        :param pulumi.Input[str] hostname: The Instance hostname.
+        :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
+        :param pulumi.Input[str] notes: Add some notes to the instance.
+        :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
+        :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
+        :param pulumi.Input[str] template: The ID for the template to use to build the instance.
+        """
+        pulumi.set(__self__, "hostname", hostname)
+        if firewall_id is not None:
+            pulumi.set(__self__, "firewall_id", firewall_id)
+        if initial_user is not None:
+            pulumi.set(__self__, "initial_user", initial_user)
+        if network_id is not None:
+            pulumi.set(__self__, "network_id", network_id)
+        if notes is not None:
+            pulumi.set(__self__, "notes", notes)
+        if public_ip_required is not None:
+            pulumi.set(__self__, "public_ip_required", public_ip_required)
+        if reverse_dns is not None:
+            pulumi.set(__self__, "reverse_dns", reverse_dns)
+        if script is not None:
+            pulumi.set(__self__, "script", script)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+        if sshkey_id is not None:
+            pulumi.set(__self__, "sshkey_id", sshkey_id)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> pulumi.Input[str]:
+        """
+        The Instance hostname.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: pulumi.Input[str]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="firewallId")
+    def firewall_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        """
+        return pulumi.get(self, "firewall_id")
+
+    @firewall_id.setter
+    def firewall_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firewall_id", value)
+
+    @property
+    @pulumi.getter(name="initialUser")
+    def initial_user(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        """
+        return pulumi.get(self, "initial_user")
+
+    @initial_user.setter
+    def initial_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "initial_user", value)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        This must be the ID of the network from the network listing (optional; default network used when not specified).
+        """
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_id", value)
+
+    @property
+    @pulumi.getter
+    def notes(self) -> Optional[pulumi.Input[str]]:
+        """
+        Add some notes to the instance.
+        """
+        return pulumi.get(self, "notes")
+
+    @notes.setter
+    def notes(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "notes", value)
+
+    @property
+    @pulumi.getter(name="publicIpRequired")
+    def public_ip_required(self) -> Optional[pulumi.Input[str]]:
+        """
+        This should be either false, true or `move_ip_from:intances_id`.
+        """
+        return pulumi.get(self, "public_ip_required")
+
+    @public_ip_required.setter
+    def public_ip_required(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "public_ip_required", value)
+
+    @property
+    @pulumi.getter(name="reverseDns")
+    def reverse_dns(self) -> Optional[pulumi.Input[str]]:
+        """
+        A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        """
+        return pulumi.get(self, "reverse_dns")
+
+    @reverse_dns.setter
+    def reverse_dns(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reverse_dns", value)
+
+    @property
+    @pulumi.getter
+    def script(self) -> Optional[pulumi.Input[str]]:
+        """
+        the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        """
+        return pulumi.get(self, "script")
+
+    @script.setter
+    def script(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "script", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the size, from the current list, e.g. g2.small (required).
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter(name="sshkeyId")
+    def sshkey_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        """
+        return pulumi.get(self, "sshkey_id")
+
+    @sshkey_id.setter
+    def sshkey_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sshkey_id", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An optional list of tags, represented as a key, value pair.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter
+    def template(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID for the template to use to build the instance.
+        """
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template", value)
 
 
 class Instance(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -57,6 +256,54 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: InstanceArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a Civo Instance resource. This can be used to create,
+        modify, and delete Instances.
+
+        ## Import
+
+        Instances can be imported using the instance `id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param InstanceArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(InstanceArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 firewall_id: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 initial_user: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 notes: Optional[pulumi.Input[str]] = None,
+                 public_ip_required: Optional[pulumi.Input[str]] = None,
+                 reverse_dns: Optional[pulumi.Input[str]] = None,
+                 script: Optional[pulumi.Input[str]] = None,
+                 size: Optional[pulumi.Input[str]] = None,
+                 sshkey_id: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 template: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

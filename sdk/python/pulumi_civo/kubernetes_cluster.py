@@ -5,15 +5,119 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 from . import outputs
 from ._inputs import *
 
-__all__ = ['KubernetesCluster']
+__all__ = ['KubernetesClusterArgs', 'KubernetesCluster']
+
+@pulumi.input_type
+class KubernetesClusterArgs:
+    def __init__(__self__, *,
+                 applications: Optional[pulumi.Input[str]] = None,
+                 kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_target_nodes: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_nodes_size: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a KubernetesCluster resource.
+        :param pulumi.Input[str] applications: A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (The default is currently the latest available).
+        :param pulumi.Input[str] name: A name for the Kubernetes cluster.
+        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
+        :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
+        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
+        """
+        if applications is not None:
+            pulumi.set(__self__, "applications", applications)
+        if kubernetes_version is not None:
+            pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if num_target_nodes is not None:
+            pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if target_nodes_size is not None:
+            pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+
+    @property
+    @pulumi.getter
+    def applications(self) -> Optional[pulumi.Input[str]]:
+        """
+        A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+        """
+        return pulumi.get(self, "applications")
+
+    @applications.setter
+    def applications(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "applications", value)
+
+    @property
+    @pulumi.getter(name="kubernetesVersion")
+    def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version of k3s to install (The default is currently the latest available).
+        """
+        return pulumi.get(self, "kubernetes_version")
+
+    @kubernetes_version.setter
+    def kubernetes_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kubernetes_version", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name for the Kubernetes cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="numTargetNodes")
+    def num_target_nodes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of instances to create (The default at the time of writing is 3).
+        """
+        return pulumi.get(self, "num_target_nodes")
+
+    @num_target_nodes.setter
+    def num_target_nodes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "num_target_nodes", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[str]]:
+        """
+        A space separated list of tags, to be used freely as required.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tags", value)
+
+    @property
+    @pulumi.getter(name="targetNodesSize")
+    def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
+        """
+        The size of each node (The default is currently g2.small)
+        """
+        return pulumi.get(self, "target_nodes_size")
+
+    @target_nodes_size.setter
+    def target_nodes_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_nodes_size", value)
 
 
 class KubernetesCluster(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -44,6 +148,45 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
         :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[KubernetesClusterArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        ## Import
+
+        Then the Kubernetes cluster can be imported using the cluster's `id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param KubernetesClusterArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(KubernetesClusterArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 applications: Optional[pulumi.Input[str]] = None,
+                 kubernetes_version: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 num_target_nodes: Optional[pulumi.Input[int]] = None,
+                 tags: Optional[pulumi.Input[str]] = None,
+                 target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

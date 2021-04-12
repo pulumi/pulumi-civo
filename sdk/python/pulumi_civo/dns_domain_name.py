@@ -5,13 +5,37 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['DnsDomainName']
+__all__ = ['DnsDomainNameArgs', 'DnsDomainName']
+
+@pulumi.input_type
+class DnsDomainNameArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a DnsDomainName resource.
+        :param pulumi.Input[str] name: The name of the domain
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the domain
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class DnsDomainName(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -44,6 +68,52 @@ class DnsDomainName(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the domain
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: Optional[DnsDomainNameArgs] = None,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a Civo dns domain name resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Create a new domain name
+        main = civo.DnsDomainName("main")
+        ```
+
+        ## Import
+
+        Domains can be imported using the `domain name`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param DnsDomainNameArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(DnsDomainNameArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

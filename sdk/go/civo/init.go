@@ -21,35 +21,36 @@ func (m *module) Version() semver.Version {
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
 	case "civo:index/dnsDomainName:DnsDomainName":
-		r, err = NewDnsDomainName(ctx, name, nil, pulumi.URN_(urn))
+		r = &DnsDomainName{}
 	case "civo:index/dnsDomainRecord:DnsDomainRecord":
-		r, err = NewDnsDomainRecord(ctx, name, nil, pulumi.URN_(urn))
+		r = &DnsDomainRecord{}
 	case "civo:index/firewall:Firewall":
-		r, err = NewFirewall(ctx, name, nil, pulumi.URN_(urn))
+		r = &Firewall{}
 	case "civo:index/firewallRule:FirewallRule":
-		r, err = NewFirewallRule(ctx, name, nil, pulumi.URN_(urn))
+		r = &FirewallRule{}
 	case "civo:index/instance:Instance":
-		r, err = NewInstance(ctx, name, nil, pulumi.URN_(urn))
+		r = &Instance{}
 	case "civo:index/kubernetesCluster:KubernetesCluster":
-		r, err = NewKubernetesCluster(ctx, name, nil, pulumi.URN_(urn))
+		r = &KubernetesCluster{}
 	case "civo:index/loadBalancer:LoadBalancer":
-		r, err = NewLoadBalancer(ctx, name, nil, pulumi.URN_(urn))
+		r = &LoadBalancer{}
 	case "civo:index/network:Network":
-		r, err = NewNetwork(ctx, name, nil, pulumi.URN_(urn))
+		r = &Network{}
 	case "civo:index/snapshot:Snapshot":
-		r, err = NewSnapshot(ctx, name, nil, pulumi.URN_(urn))
+		r = &Snapshot{}
 	case "civo:index/sshKey:SshKey":
-		r, err = NewSshKey(ctx, name, nil, pulumi.URN_(urn))
+		r = &SshKey{}
 	case "civo:index/template:Template":
-		r, err = NewTemplate(ctx, name, nil, pulumi.URN_(urn))
+		r = &Template{}
 	case "civo:index/volume:Volume":
-		r, err = NewVolume(ctx, name, nil, pulumi.URN_(urn))
+		r = &Volume{}
 	case "civo:index/volumeAttachment:VolumeAttachment":
-		r, err = NewVolumeAttachment(ctx, name, nil, pulumi.URN_(urn))
+		r = &VolumeAttachment{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
 
+	err = ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
 	return
 }
 
@@ -66,7 +67,9 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 		return nil, fmt.Errorf("unknown provider type: %s", typ)
 	}
 
-	return NewProvider(ctx, name, nil, pulumi.URN_(urn))
+	r := &Provider{}
+	err := ctx.RegisterResource(typ, name, nil, r, pulumi.URN_(urn))
+	return r, err
 }
 
 func init() {

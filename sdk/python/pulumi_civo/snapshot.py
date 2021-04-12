@@ -5,13 +5,94 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Snapshot']
+__all__ = ['SnapshotArgs', 'Snapshot']
+
+@pulumi.input_type
+class SnapshotArgs:
+    def __init__(__self__, *,
+                 instance_id: pulumi.Input[str],
+                 cron_timing: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 safe: Optional[pulumi.Input[bool]] = None):
+        """
+        The set of arguments for constructing a Snapshot resource.
+        :param pulumi.Input[str] instance_id: The ID of the Instance from which the snapshot will be taken.
+        :param pulumi.Input[str] cron_timing: If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
+               continuing to automatically update based on the schedule of the cron sequence provided
+               The default is nil meaning the snapshot will be saved as a one-off snapshot.
+        :param pulumi.Input[str] name: A name for the instance snapshot.
+        :param pulumi.Input[bool] safe: If `true` the instance will be shut down during the snapshot to ensure all files 
+               are in a consistent state (e.g. database tables aren't in the middle of being optimised
+               and hence risking corruption). The default is `false` so you experience no interruption
+               of service, but a small risk of corruption.
+        """
+        pulumi.set(__self__, "instance_id", instance_id)
+        if cron_timing is not None:
+            pulumi.set(__self__, "cron_timing", cron_timing)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if safe is not None:
+            pulumi.set(__self__, "safe", safe)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the Instance from which the snapshot will be taken.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter(name="cronTiming")
+    def cron_timing(self) -> Optional[pulumi.Input[str]]:
+        """
+        If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
+        continuing to automatically update based on the schedule of the cron sequence provided
+        The default is nil meaning the snapshot will be saved as a one-off snapshot.
+        """
+        return pulumi.get(self, "cron_timing")
+
+    @cron_timing.setter
+    def cron_timing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cron_timing", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name for the instance snapshot.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def safe(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true` the instance will be shut down during the snapshot to ensure all files 
+        are in a consistent state (e.g. database tables aren't in the middle of being optimised
+        and hence risking corruption). The default is `false` so you experience no interruption
+        of service, but a small risk of corruption.
+        """
+        return pulumi.get(self, "safe")
+
+    @safe.setter
+    def safe(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "safe", value)
 
 
 class Snapshot(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -54,6 +135,54 @@ class Snapshot(pulumi.CustomResource):
                and hence risking corruption). The default is `false` so you experience no interruption
                of service, but a small risk of corruption.
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SnapshotArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a resource which can be used to create a snapshot from an existing Civo Instance.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        myinstance_backup = civo.Snapshot("myinstance-backup", instance_id=civo_instance["myinstance"]["id"])
+        ```
+
+        ## Import
+
+        Instance Snapshots can be imported using the `snapshot id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/snapshot:Snapshot myinstance-backup 4cc87851-e1d0-4270-822a-b36d28c7a77f
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param SnapshotArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(SnapshotArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 cron_timing: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 safe: Optional[pulumi.Input[bool]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__

@@ -5,13 +5,113 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['DnsDomainRecord']
+__all__ = ['DnsDomainRecordArgs', 'DnsDomainRecord']
+
+@pulumi.input_type
+class DnsDomainRecordArgs:
+    def __init__(__self__, *,
+                 domain_id: pulumi.Input[str],
+                 ttl: pulumi.Input[int],
+                 type: pulumi.Input[str],
+                 value: pulumi.Input[str],
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None):
+        """
+        The set of arguments for constructing a DnsDomainRecord resource.
+        :param pulumi.Input[str] domain_id: The id of the domain
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
+        :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        """
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "ttl", ttl)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "value", value)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+
+    @property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> pulumi.Input[str]:
+        """
+        The id of the domain
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "domain_id", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> pulumi.Input[int]:
+        """
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: pulumi.Input[int]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        The choice of record type from A, CNAME, MX, SRV or TXT
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        """
+        The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
 
 
 class DnsDomainRecord(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -62,6 +162,65 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: DnsDomainRecordArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a Civo dns domain record resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Create a new domain record
+        www = civo.DnsDomainRecord("www",
+            domain_id=civo_dns_domain_name["main"]["id"],
+            type="A",
+            value=civo_instance["foo"]["public_ip"],
+            ttl=600,
+            opts=pulumi.ResourceOptions(depends_on=[
+                    civo_dns_domain_name["main"],
+                    civo_instance["foo"],
+                ]))
+        ```
+
+        ## Import
+
+        Domains can be imported using the `id_domain:id_domain_record`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param DnsDomainRecordArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(DnsDomainRecordArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 domain_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
