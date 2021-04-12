@@ -5,13 +5,67 @@
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities, _tables
 
-__all__ = ['Volume']
+__all__ = ['VolumeArgs', 'Volume']
+
+@pulumi.input_type
+class VolumeArgs:
+    def __init__(__self__, *,
+                 bootable: pulumi.Input[bool],
+                 size_gb: pulumi.Input[int],
+                 name: Optional[pulumi.Input[str]] = None):
+        """
+        The set of arguments for constructing a Volume resource.
+        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        """
+        pulumi.set(__self__, "bootable", bootable)
+        pulumi.set(__self__, "size_gb", size_gb)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def bootable(self) -> pulumi.Input[bool]:
+        """
+        Mark the volume as bootable.
+        """
+        return pulumi.get(self, "bootable")
+
+    @bootable.setter
+    def bootable(self, value: pulumi.Input[bool]):
+        pulumi.set(self, "bootable", value)
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> pulumi.Input[int]:
+        """
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        """
+        return pulumi.get(self, "size_gb")
+
+    @size_gb.setter
+    def size_gb(self, value: pulumi.Input[int]):
+        pulumi.set(self, "size_gb", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name that you wish to use to refer to this volume .
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
 
 
 class Volume(pulumi.CustomResource):
+    @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
@@ -49,6 +103,55 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: VolumeArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        db = civo.Volume("db",
+            bootable=False,
+            size_gb=60)
+        ```
+
+        ## Import
+
+        Volumes can be imported using the `volume id`, e.g.
+
+        ```sh
+         $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
+        ```
+
+        :param str resource_name: The name of the resource.
+        :param VolumeArgs args: The arguments to use to populate this resource's properties.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        """
+        ...
+    def __init__(__self__, resource_name: str, *args, **kwargs):
+        resource_args, opts = _utilities.get_resource_args_opts(VolumeArgs, pulumi.ResourceOptions, *args, **kwargs)
+        if resource_args is not None:
+            __self__._internal_init(resource_name, opts, **resource_args.__dict__)
+        else:
+            __self__._internal_init(resource_name, *args, **kwargs)
+
+    def _internal_init(__self__,
+                 resource_name: str,
+                 opts: Optional[pulumi.ResourceOptions] = None,
+                 bootable: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 size_gb: Optional[pulumi.Input[int]] = None,
+                 __props__=None,
+                 __name__=None,
+                 __opts__=None):
         if __name__ is not None:
             warnings.warn("explicit use of __name__ is deprecated", DeprecationWarning)
             resource_name = __name__
