@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['VolumeArgs', 'Volume']
 
@@ -62,6 +62,94 @@ class VolumeArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class _VolumeState:
+    def __init__(__self__, *,
+                 bootable: Optional[pulumi.Input[bool]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 mount_point: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 size_gb: Optional[pulumi.Input[int]] = None):
+        """
+        Input properties used for looking up and filtering Volume resources.
+        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
+        :param pulumi.Input[str] created_at: The date of the creation of the volume.
+        :param pulumi.Input[str] mount_point: The mount point of the volume.
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        """
+        if bootable is not None:
+            pulumi.set(__self__, "bootable", bootable)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if mount_point is not None:
+            pulumi.set(__self__, "mount_point", mount_point)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if size_gb is not None:
+            pulumi.set(__self__, "size_gb", size_gb)
+
+    @property
+    @pulumi.getter
+    def bootable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Mark the volume as bootable.
+        """
+        return pulumi.get(self, "bootable")
+
+    @bootable.setter
+    def bootable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "bootable", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date of the creation of the volume.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="mountPoint")
+    def mount_point(self) -> Optional[pulumi.Input[str]]:
+        """
+        The mount point of the volume.
+        """
+        return pulumi.get(self, "mount_point")
+
+    @mount_point.setter
+    def mount_point(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mount_point", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name that you wish to use to refer to this volume .
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        """
+        return pulumi.get(self, "size_gb")
+
+    @size_gb.setter
+    def size_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "size_gb", value)
 
 
 class Volume(pulumi.CustomResource):
@@ -167,17 +255,17 @@ class Volume(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = VolumeArgs.__new__(VolumeArgs)
 
             if bootable is None and not opts.urn:
                 raise TypeError("Missing required property 'bootable'")
-            __props__['bootable'] = bootable
-            __props__['name'] = name
+            __props__.__dict__["bootable"] = bootable
+            __props__.__dict__["name"] = name
             if size_gb is None and not opts.urn:
                 raise TypeError("Missing required property 'size_gb'")
-            __props__['size_gb'] = size_gb
-            __props__['created_at'] = None
-            __props__['mount_point'] = None
+            __props__.__dict__["size_gb"] = size_gb
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["mount_point"] = None
         super(Volume, __self__).__init__(
             'civo:index/volume:Volume',
             resource_name,
@@ -208,13 +296,13 @@ class Volume(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _VolumeState.__new__(_VolumeState)
 
-        __props__["bootable"] = bootable
-        __props__["created_at"] = created_at
-        __props__["mount_point"] = mount_point
-        __props__["name"] = name
-        __props__["size_gb"] = size_gb
+        __props__.__dict__["bootable"] = bootable
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["mount_point"] = mount_point
+        __props__.__dict__["name"] = name
+        __props__.__dict__["size_gb"] = size_gb
         return Volume(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -256,10 +344,4 @@ class Volume(pulumi.CustomResource):
         A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         return pulumi.get(self, "size_gb")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

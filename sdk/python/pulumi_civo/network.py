@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['NetworkArgs', 'Network']
 
@@ -31,6 +31,94 @@ class NetworkArgs:
     @label.setter
     def label(self, value: pulumi.Input[str]):
         pulumi.set(self, "label", value)
+
+
+@pulumi.input_type
+class _NetworkState:
+    def __init__(__self__, *,
+                 cidr: Optional[pulumi.Input[str]] = None,
+                 default: Optional[pulumi.Input[bool]] = None,
+                 label: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Network resources.
+        :param pulumi.Input[str] cidr: The block ip assigned to the network.
+        :param pulumi.Input[bool] default: If is the default network.
+        :param pulumi.Input[str] label: The Network label
+        :param pulumi.Input[str] name: The name of the network.
+        :param pulumi.Input[str] region: The region where the network was create.
+        """
+        if cidr is not None:
+            pulumi.set(__self__, "cidr", cidr)
+        if default is not None:
+            pulumi.set(__self__, "default", default)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def cidr(self) -> Optional[pulumi.Input[str]]:
+        """
+        The block ip assigned to the network.
+        """
+        return pulumi.get(self, "cidr")
+
+    @cidr.setter
+    def cidr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cidr", value)
+
+    @property
+    @pulumi.getter
+    def default(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If is the default network.
+        """
+        return pulumi.get(self, "default")
+
+    @default.setter
+    def default(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "default", value)
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Network label
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "label", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the network.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where the network was create.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
 
 class Network(pulumi.CustomResource):
@@ -128,15 +216,15 @@ class Network(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = NetworkArgs.__new__(NetworkArgs)
 
             if label is None and not opts.urn:
                 raise TypeError("Missing required property 'label'")
-            __props__['label'] = label
-            __props__['cidr'] = None
-            __props__['default'] = None
-            __props__['name'] = None
-            __props__['region'] = None
+            __props__.__dict__["label"] = label
+            __props__.__dict__["cidr"] = None
+            __props__.__dict__["default"] = None
+            __props__.__dict__["name"] = None
+            __props__.__dict__["region"] = None
         super(Network, __self__).__init__(
             'civo:index/network:Network',
             resource_name,
@@ -167,13 +255,13 @@ class Network(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _NetworkState.__new__(_NetworkState)
 
-        __props__["cidr"] = cidr
-        __props__["default"] = default
-        __props__["label"] = label
-        __props__["name"] = name
-        __props__["region"] = region
+        __props__.__dict__["cidr"] = cidr
+        __props__.__dict__["default"] = default
+        __props__.__dict__["label"] = label
+        __props__.__dict__["name"] = name
+        __props__.__dict__["region"] = region
         return Network(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -215,10 +303,4 @@ class Network(pulumi.CustomResource):
         The region where the network was create.
         """
         return pulumi.get(self, "region")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 

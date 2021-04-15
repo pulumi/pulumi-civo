@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['SnapshotArgs', 'Snapshot']
 
@@ -89,6 +89,216 @@ class SnapshotArgs:
     @safe.setter
     def safe(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "safe", value)
+
+
+@pulumi.input_type
+class _SnapshotState:
+    def __init__(__self__, *,
+                 completed_at: Optional[pulumi.Input[str]] = None,
+                 cron_timing: Optional[pulumi.Input[str]] = None,
+                 hostname: Optional[pulumi.Input[str]] = None,
+                 instance_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 next_execution: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 requested_at: Optional[pulumi.Input[str]] = None,
+                 safe: Optional[pulumi.Input[bool]] = None,
+                 size_gb: Optional[pulumi.Input[int]] = None,
+                 state: Optional[pulumi.Input[str]] = None,
+                 template_id: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Snapshot resources.
+        :param pulumi.Input[str] completed_at: The date where the snapshot was completed.
+        :param pulumi.Input[str] cron_timing: If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
+               continuing to automatically update based on the schedule of the cron sequence provided
+               The default is nil meaning the snapshot will be saved as a one-off snapshot.
+        :param pulumi.Input[str] hostname: The hostname of the instance.
+        :param pulumi.Input[str] instance_id: The ID of the Instance from which the snapshot will be taken.
+        :param pulumi.Input[str] name: A name for the instance snapshot.
+        :param pulumi.Input[str] next_execution: if cron was define this date will be the next execution date.
+        :param pulumi.Input[str] region: The region where the snapshot was take.
+        :param pulumi.Input[str] requested_at: The date where the snapshot was requested.
+        :param pulumi.Input[bool] safe: If `true` the instance will be shut down during the snapshot to ensure all files 
+               are in a consistent state (e.g. database tables aren't in the middle of being optimised
+               and hence risking corruption). The default is `false` so you experience no interruption
+               of service, but a small risk of corruption.
+        :param pulumi.Input[int] size_gb: The size of the snapshot in GB.
+        :param pulumi.Input[str] state: The status of the snapshot.
+        :param pulumi.Input[str] template_id: The template id.
+        """
+        if completed_at is not None:
+            pulumi.set(__self__, "completed_at", completed_at)
+        if cron_timing is not None:
+            pulumi.set(__self__, "cron_timing", cron_timing)
+        if hostname is not None:
+            pulumi.set(__self__, "hostname", hostname)
+        if instance_id is not None:
+            pulumi.set(__self__, "instance_id", instance_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if next_execution is not None:
+            pulumi.set(__self__, "next_execution", next_execution)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if requested_at is not None:
+            pulumi.set(__self__, "requested_at", requested_at)
+        if safe is not None:
+            pulumi.set(__self__, "safe", safe)
+        if size_gb is not None:
+            pulumi.set(__self__, "size_gb", size_gb)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if template_id is not None:
+            pulumi.set(__self__, "template_id", template_id)
+
+    @property
+    @pulumi.getter(name="completedAt")
+    def completed_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date where the snapshot was completed.
+        """
+        return pulumi.get(self, "completed_at")
+
+    @completed_at.setter
+    def completed_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "completed_at", value)
+
+    @property
+    @pulumi.getter(name="cronTiming")
+    def cron_timing(self) -> Optional[pulumi.Input[str]]:
+        """
+        If a valid cron string is passed, the snapshot will be saved as an automated snapshot 
+        continuing to automatically update based on the schedule of the cron sequence provided
+        The default is nil meaning the snapshot will be saved as a one-off snapshot.
+        """
+        return pulumi.get(self, "cron_timing")
+
+    @cron_timing.setter
+    def cron_timing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cron_timing", value)
+
+    @property
+    @pulumi.getter
+    def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        The hostname of the instance.
+        """
+        return pulumi.get(self, "hostname")
+
+    @hostname.setter
+    def hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hostname", value)
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Instance from which the snapshot will be taken.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @instance_id.setter
+    def instance_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name for the instance snapshot.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nextExecution")
+    def next_execution(self) -> Optional[pulumi.Input[str]]:
+        """
+        if cron was define this date will be the next execution date.
+        """
+        return pulumi.get(self, "next_execution")
+
+    @next_execution.setter
+    def next_execution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "next_execution", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where the snapshot was take.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="requestedAt")
+    def requested_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date where the snapshot was requested.
+        """
+        return pulumi.get(self, "requested_at")
+
+    @requested_at.setter
+    def requested_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "requested_at", value)
+
+    @property
+    @pulumi.getter
+    def safe(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If `true` the instance will be shut down during the snapshot to ensure all files 
+        are in a consistent state (e.g. database tables aren't in the middle of being optimised
+        and hence risking corruption). The default is `false` so you experience no interruption
+        of service, but a small risk of corruption.
+        """
+        return pulumi.get(self, "safe")
+
+    @safe.setter
+    def safe(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "safe", value)
+
+    @property
+    @pulumi.getter(name="sizeGb")
+    def size_gb(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of the snapshot in GB.
+        """
+        return pulumi.get(self, "size_gb")
+
+    @size_gb.setter
+    def size_gb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "size_gb", value)
+
+    @property
+    @pulumi.getter
+    def state(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the snapshot.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter(name="templateId")
+    def template_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The template id.
+        """
+        return pulumi.get(self, "template_id")
+
+    @template_id.setter
+    def template_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template_id", value)
 
 
 class Snapshot(pulumi.CustomResource):
@@ -198,22 +408,22 @@ class Snapshot(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = SnapshotArgs.__new__(SnapshotArgs)
 
-            __props__['cron_timing'] = cron_timing
+            __props__.__dict__["cron_timing"] = cron_timing
             if instance_id is None and not opts.urn:
                 raise TypeError("Missing required property 'instance_id'")
-            __props__['instance_id'] = instance_id
-            __props__['name'] = name
-            __props__['safe'] = safe
-            __props__['completed_at'] = None
-            __props__['hostname'] = None
-            __props__['next_execution'] = None
-            __props__['region'] = None
-            __props__['requested_at'] = None
-            __props__['size_gb'] = None
-            __props__['state'] = None
-            __props__['template_id'] = None
+            __props__.__dict__["instance_id"] = instance_id
+            __props__.__dict__["name"] = name
+            __props__.__dict__["safe"] = safe
+            __props__.__dict__["completed_at"] = None
+            __props__.__dict__["hostname"] = None
+            __props__.__dict__["next_execution"] = None
+            __props__.__dict__["region"] = None
+            __props__.__dict__["requested_at"] = None
+            __props__.__dict__["size_gb"] = None
+            __props__.__dict__["state"] = None
+            __props__.__dict__["template_id"] = None
         super(Snapshot, __self__).__init__(
             'civo:index/snapshot:Snapshot',
             resource_name,
@@ -263,20 +473,20 @@ class Snapshot(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _SnapshotState.__new__(_SnapshotState)
 
-        __props__["completed_at"] = completed_at
-        __props__["cron_timing"] = cron_timing
-        __props__["hostname"] = hostname
-        __props__["instance_id"] = instance_id
-        __props__["name"] = name
-        __props__["next_execution"] = next_execution
-        __props__["region"] = region
-        __props__["requested_at"] = requested_at
-        __props__["safe"] = safe
-        __props__["size_gb"] = size_gb
-        __props__["state"] = state
-        __props__["template_id"] = template_id
+        __props__.__dict__["completed_at"] = completed_at
+        __props__.__dict__["cron_timing"] = cron_timing
+        __props__.__dict__["hostname"] = hostname
+        __props__.__dict__["instance_id"] = instance_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["next_execution"] = next_execution
+        __props__.__dict__["region"] = region
+        __props__.__dict__["requested_at"] = requested_at
+        __props__.__dict__["safe"] = safe
+        __props__.__dict__["size_gb"] = size_gb
+        __props__.__dict__["state"] = state
+        __props__.__dict__["template_id"] = template_id
         return Snapshot(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -379,10 +589,4 @@ class Snapshot(pulumi.CustomResource):
         The template id.
         """
         return pulumi.get(self, "template_id")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
