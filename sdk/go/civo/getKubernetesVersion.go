@@ -4,7 +4,7 @@
 package civo
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides access to the available Civo Kubernetes Service versions, with the ability to filter the results.
@@ -16,7 +16,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
@@ -45,7 +45,7 @@ import (
 //
 // import (
 // 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {

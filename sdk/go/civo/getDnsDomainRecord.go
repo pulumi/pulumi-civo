@@ -4,7 +4,7 @@
 package civo
 
 import (
-	"github.com/pulumi/pulumi/sdk/v2/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupDnsDomainRecord(ctx *pulumi.Context, args *LookupDnsDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDnsDomainRecordResult, error) {

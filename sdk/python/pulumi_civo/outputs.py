@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = [
     'KubernetesClusterInstalledApplication',
@@ -83,12 +83,36 @@ class KubernetesClusterInstalledApplication(dict):
         """
         return pulumi.get(self, "version")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class KubernetesClusterInstance(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cpuCores":
+            suggest = "cpu_cores"
+        elif key == "createdAt":
+            suggest = "created_at"
+        elif key == "diskGb":
+            suggest = "disk_gb"
+        elif key == "firewallId":
+            suggest = "firewall_id"
+        elif key == "publicIp":
+            suggest = "public_ip"
+        elif key == "ramMb":
+            suggest = "ram_mb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesClusterInstance. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesClusterInstance.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesClusterInstance.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  cpu_cores: Optional[int] = None,
                  created_at: Optional[str] = None,
@@ -227,12 +251,26 @@ class KubernetesClusterInstance(dict):
         """
         return pulumi.get(self, "tags")
 
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
 
 @pulumi.output_type
 class LoadBalancerBackend(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "instanceId":
+            suggest = "instance_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LoadBalancerBackend. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LoadBalancerBackend.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LoadBalancerBackend.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  instance_id: str,
                  port: int,
@@ -255,9 +293,6 @@ class LoadBalancerBackend(dict):
     @pulumi.getter
     def protocol(self) -> str:
         return pulumi.get(self, "protocol")
-
-    def _translate_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
 
 
 @pulumi.output_type

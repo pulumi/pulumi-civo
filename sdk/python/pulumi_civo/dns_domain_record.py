@@ -6,7 +6,7 @@ import warnings
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
-from . import _utilities, _tables
+from . import _utilities
 
 __all__ = ['DnsDomainRecordArgs', 'DnsDomainRecord']
 
@@ -108,6 +108,158 @@ class DnsDomainRecordArgs:
     @priority.setter
     def priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "priority", value)
+
+
+@pulumi.input_type
+class _DnsDomainRecordState:
+    def __init__(__self__, *,
+                 account_id: Optional[pulumi.Input[str]] = None,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 domain_id: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 ttl: Optional[pulumi.Input[int]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering DnsDomainRecord resources.
+        :param pulumi.Input[str] account_id: The id account of the domain
+        :param pulumi.Input[str] created_at: The date when it was created in UTC format
+        :param pulumi.Input[str] domain_id: The id of the domain
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
+        :param pulumi.Input[str] updated_at: The date when it was updated in UTC format
+        :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+        """
+        if account_id is not None:
+            pulumi.set(__self__, "account_id", account_id)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if ttl is not None:
+            pulumi.set(__self__, "ttl", ttl)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter(name="accountId")
+    def account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id account of the domain
+        """
+        return pulumi.get(self, "account_id")
+
+    @account_id.setter
+    def account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_id", value)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date when it was created in UTC format
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the domain
+        """
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_id", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        """
+        return pulumi.get(self, "ttl")
+
+    @ttl.setter
+    def ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ttl", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The choice of record type from A, CNAME, MX, SRV or TXT
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The date when it was updated in UTC format
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
 
 
 class DnsDomainRecord(pulumi.CustomResource):
@@ -236,25 +388,25 @@ class DnsDomainRecord(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = dict()
+            __props__ = DnsDomainRecordArgs.__new__(DnsDomainRecordArgs)
 
             if domain_id is None and not opts.urn:
                 raise TypeError("Missing required property 'domain_id'")
-            __props__['domain_id'] = domain_id
-            __props__['name'] = name
-            __props__['priority'] = priority
+            __props__.__dict__["domain_id"] = domain_id
+            __props__.__dict__["name"] = name
+            __props__.__dict__["priority"] = priority
             if ttl is None and not opts.urn:
                 raise TypeError("Missing required property 'ttl'")
-            __props__['ttl'] = ttl
+            __props__.__dict__["ttl"] = ttl
             if type is None and not opts.urn:
                 raise TypeError("Missing required property 'type'")
-            __props__['type'] = type
+            __props__.__dict__["type"] = type
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
-            __props__['value'] = value
-            __props__['account_id'] = None
-            __props__['created_at'] = None
-            __props__['updated_at'] = None
+            __props__.__dict__["value"] = value
+            __props__.__dict__["account_id"] = None
+            __props__.__dict__["created_at"] = None
+            __props__.__dict__["updated_at"] = None
         super(DnsDomainRecord, __self__).__init__(
             'civo:index/dnsDomainRecord:DnsDomainRecord',
             resource_name,
@@ -293,17 +445,17 @@ class DnsDomainRecord(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = dict()
+        __props__ = _DnsDomainRecordState.__new__(_DnsDomainRecordState)
 
-        __props__["account_id"] = account_id
-        __props__["created_at"] = created_at
-        __props__["domain_id"] = domain_id
-        __props__["name"] = name
-        __props__["priority"] = priority
-        __props__["ttl"] = ttl
-        __props__["type"] = type
-        __props__["updated_at"] = updated_at
-        __props__["value"] = value
+        __props__.__dict__["account_id"] = account_id
+        __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["domain_id"] = domain_id
+        __props__.__dict__["name"] = name
+        __props__.__dict__["priority"] = priority
+        __props__.__dict__["ttl"] = ttl
+        __props__.__dict__["type"] = type
+        __props__.__dict__["updated_at"] = updated_at
+        __props__.__dict__["value"] = value
         return DnsDomainRecord(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -377,10 +529,4 @@ class DnsDomainRecord(pulumi.CustomResource):
         The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
         return pulumi.get(self, "value")
-
-    def translate_output_property(self, prop):
-        return _tables.CAMEL_TO_SNAKE_CASE_TABLE.get(prop) or prop
-
-    def translate_input_property(self, prop):
-        return _tables.SNAKE_TO_CAMEL_CASE_TABLE.get(prop) or prop
 
