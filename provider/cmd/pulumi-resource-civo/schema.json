@@ -3464,6 +3464,7 @@
     },
     "language": {
         "csharp": {
+            "compatibility": "tfbridge20",
             "namespaces": {
                 "civo": "Civo"
             },
@@ -3477,6 +3478,7 @@
             "importBasePath": "github.com/pulumi/pulumi-civo/sdk/go/civo"
         },
         "nodejs": {
+            "compatibility": "tfbridge20",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0-alpha.0"
             },
@@ -3491,6 +3493,7 @@
             "typescriptVersion": ""
         },
         "python": {
+            "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`civo/terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0a1,\u003c4.0.0"

@@ -9,35 +9,4 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo.Inputs
 {
-
-    public sealed class KubernetesClusterInstalledApplicationArgs : Pulumi.ResourceArgs
-    {
-        /// <summary>
-        /// The name of the application
-        /// </summary>
-        [Input("application")]
-        public Input<string>? Application { get; set; }
-
-        /// <summary>
-        /// The category of the application
-        /// </summary>
-        [Input("category")]
-        public Input<string>? Category { get; set; }
-
-        /// <summary>
-        /// if installed or not
-        /// </summary>
-        [Input("installed")]
-        public Input<bool>? Installed { get; set; }
-
-        /// <summary>
-        /// The version of the application
-        /// </summary>
-        [Input("version")]
-        public Input<string>? Version { get; set; }
-
-        public KubernetesClusterInstalledApplicationArgs()
-        {
-        }
-    }
 }

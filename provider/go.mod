@@ -7,6 +7,7 @@ replace github.com/hashicorp/go-getter v1.5.0 => github.com/hashicorp/go-getter 
 require (
 	github.com/civo/terraform-provider-civo v0.9.23
 	github.com/hashicorp/terraform-plugin-sdk v1.14.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0-beta.1
-	github.com/pulumi/pulumi/sdk/v3 v3.0.0-beta.2
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0
+	github.com/pulumi/pulumi/pkg/v3 v3.0.0
+	github.com/pulumi/pulumi/sdk/v3 v3.0.0
 )
