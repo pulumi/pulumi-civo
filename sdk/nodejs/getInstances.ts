@@ -16,6 +16,7 @@ export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOption
     }
     return pulumi.runtime.invoke("civo:index/getInstances:getInstances", {
         "filters": args.filters,
+        "region": args.region,
         "sorts": args.sorts,
     }, opts);
 }
@@ -25,13 +26,15 @@ export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOption
  */
 export interface GetInstancesArgs {
     /**
-     * Filter the results.
-     * The `filter` block is documented below.
+     * Filter the results. The `filter` block is documented below.
      */
     readonly filters?: inputs.GetInstancesFilter[];
     /**
-     * Sort the results.
-     * The `sort` block is documented below.
+     * If is used, them all instances will be from that region.
+     */
+    readonly region?: string;
+    /**
+     * Sort the results. The `sort` block is documented below.
      */
     readonly sorts?: inputs.GetInstancesSort[];
 }
@@ -49,5 +52,6 @@ export interface GetInstancesResult {
      * A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
      */
     readonly instances: outputs.GetInstancesInstance[];
+    readonly region?: string;
     readonly sorts?: outputs.GetInstancesSort[];
 }

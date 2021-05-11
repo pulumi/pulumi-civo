@@ -12,12 +12,18 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetInstancesFilterArgs : Pulumi.InvokeArgs
     {
+        [Input("all")]
+        public bool? All { get; set; }
+
         /// <summary>
         /// Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
         /// `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
         /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
+
+        [Input("matchBy")]
+        public string? MatchBy { get; set; }
 
         [Input("values", required: true)]
         private List<string>? _values;

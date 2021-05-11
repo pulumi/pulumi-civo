@@ -22,8 +22,7 @@ namespace Pulumi.Civo
         private List<Inputs.GetTemplateFilterArgs>? _filters;
 
         /// <summary>
-        /// Filter the results.
-        /// The `filter` block is documented below.
+        /// Filter the results. The `filter` block is documented below.
         /// </summary>
         public List<Inputs.GetTemplateFilterArgs> Filters
         {
@@ -31,12 +30,17 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
+        /// <summary>
+        /// If is used, them all instances will be from that region.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         [Input("sorts")]
         private List<Inputs.GetTemplateSortArgs>? _sorts;
 
         /// <summary>
-        /// Sort the results.
-        /// The `sort` block is documented below.
+        /// Sort the results. The `sort` block is documented below.
         /// </summary>
         public List<Inputs.GetTemplateSortArgs> Sorts
         {
@@ -58,6 +62,7 @@ namespace Pulumi.Civo
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        public readonly string? Region;
         public readonly ImmutableArray<Outputs.GetTemplateSortResult> Sorts;
         public readonly ImmutableArray<Outputs.GetTemplateTemplateResult> Templates;
 
@@ -67,12 +72,15 @@ namespace Pulumi.Civo
 
             string id,
 
+            string? region,
+
             ImmutableArray<Outputs.GetTemplateSortResult> sorts,
 
             ImmutableArray<Outputs.GetTemplateTemplateResult> templates)
         {
             Filters = filters;
             Id = id;
+            Region = region;
             Sorts = sorts;
             Templates = templates;
         }

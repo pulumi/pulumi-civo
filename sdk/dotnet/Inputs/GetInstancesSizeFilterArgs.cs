@@ -12,8 +12,14 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetInstancesSizeFilterArgs : Pulumi.InvokeArgs
     {
+        [Input("all")]
+        public bool? All { get; set; }
+
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
+
+        [Input("matchBy")]
+        public string? MatchBy { get; set; }
 
         [Input("values", required: true)]
         private List<string>? _values;

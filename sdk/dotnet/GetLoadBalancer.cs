@@ -30,6 +30,9 @@ namespace Pulumi.Civo
         [Input("id")]
         public string? Id { get; set; }
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetLoadBalancerArgs()
         {
         }
@@ -83,6 +86,7 @@ namespace Pulumi.Civo
         /// The protocol used in the configuration.
         /// </summary>
         public readonly string Protocol;
+        public readonly string? Region;
         /// <summary>
         /// If is set will be returned
         /// </summary>
@@ -116,6 +120,8 @@ namespace Pulumi.Civo
 
             string protocol,
 
+            string? region,
+
             string tlsCertificate,
 
             string tlsKey)
@@ -131,6 +137,7 @@ namespace Pulumi.Civo
             Policy = policy;
             Port = port;
             Protocol = protocol;
+            Region = region;
             TlsCertificate = tlsCertificate;
             TlsKey = tlsKey;
         }

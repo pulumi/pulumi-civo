@@ -38,6 +38,8 @@ type FirewallRule struct {
 	Label pulumi.StringPtrOutput `pulumi:"label"`
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
+	// The region for this rule
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// The start port where traffic to be allowed.
 	StartPort pulumi.StringOutput `pulumi:"startPort"`
 }
@@ -101,6 +103,8 @@ type firewallRuleState struct {
 	Label *string `pulumi:"label"`
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol *string `pulumi:"protocol"`
+	// The region for this rule
+	Region *string `pulumi:"region"`
 	// The start port where traffic to be allowed.
 	StartPort *string `pulumi:"startPort"`
 }
@@ -118,6 +122,8 @@ type FirewallRuleState struct {
 	Label pulumi.StringPtrInput
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol pulumi.StringPtrInput
+	// The region for this rule
+	Region pulumi.StringPtrInput
 	// The start port where traffic to be allowed.
 	StartPort pulumi.StringPtrInput
 }
@@ -139,6 +145,8 @@ type firewallRuleArgs struct {
 	Label *string `pulumi:"label"`
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol string `pulumi:"protocol"`
+	// The region for this rule
+	Region *string `pulumi:"region"`
 	// The start port where traffic to be allowed.
 	StartPort string `pulumi:"startPort"`
 }
@@ -157,6 +165,8 @@ type FirewallRuleArgs struct {
 	Label pulumi.StringPtrInput
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol pulumi.StringInput
+	// The region for this rule
+	Region pulumi.StringPtrInput
 	// The start port where traffic to be allowed.
 	StartPort pulumi.StringInput
 }

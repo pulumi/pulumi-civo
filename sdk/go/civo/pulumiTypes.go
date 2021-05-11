@@ -137,20 +137,12 @@ func (o KubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInpu
 type KubernetesClusterInstance struct {
 	// Total cpu of the inatance.
 	CpuCores *int `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt *string `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb *int `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId *string `pulumi:"firewallId"`
 	// The hostname of the instance.
 	Hostname *string `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp *string `pulumi:"publicIp"`
-	// Total ram of the instance.
+	// Total ram of the instance
 	RamMb *int `pulumi:"ramMb"`
-	// The region where instance are.
-	Region *string `pulumi:"region"`
 	// The size of the instance.
 	Size *string `pulumi:"size"`
 	// The status of Kubernetes cluster.
@@ -174,20 +166,12 @@ type KubernetesClusterInstanceInput interface {
 type KubernetesClusterInstanceArgs struct {
 	// Total cpu of the inatance.
 	CpuCores pulumi.IntPtrInput `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb pulumi.IntPtrInput `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId pulumi.StringPtrInput `pulumi:"firewallId"`
 	// The hostname of the instance.
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp pulumi.StringPtrInput `pulumi:"publicIp"`
-	// Total ram of the instance.
+	// Total ram of the instance
 	RamMb pulumi.IntPtrInput `pulumi:"ramMb"`
-	// The region where instance are.
-	Region pulumi.StringPtrInput `pulumi:"region"`
 	// The size of the instance.
 	Size pulumi.StringPtrInput `pulumi:"size"`
 	// The status of Kubernetes cluster.
@@ -253,19 +237,9 @@ func (o KubernetesClusterInstanceOutput) CpuCores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.CpuCores }).(pulumi.IntPtrOutput)
 }
 
-// The date where the Kubernetes cluster was create.
-func (o KubernetesClusterInstanceOutput) CreatedAt() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
-}
-
 // The size of the disk.
 func (o KubernetesClusterInstanceOutput) DiskGb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.DiskGb }).(pulumi.IntPtrOutput)
-}
-
-// The firewall id assigned to the instance
-func (o KubernetesClusterInstanceOutput) FirewallId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.FirewallId }).(pulumi.StringPtrOutput)
 }
 
 // The hostname of the instance.
@@ -273,19 +247,9 @@ func (o KubernetesClusterInstanceOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
-// The public ip of the instances, only available if the instances is the master
-func (o KubernetesClusterInstanceOutput) PublicIp() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.PublicIp }).(pulumi.StringPtrOutput)
-}
-
-// Total ram of the instance.
+// Total ram of the instance
 func (o KubernetesClusterInstanceOutput) RamMb() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *int { return v.RamMb }).(pulumi.IntPtrOutput)
-}
-
-// The region where instance are.
-func (o KubernetesClusterInstanceOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
 // The size of the instance.
@@ -322,6 +286,293 @@ func (o KubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) Kubernete
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesClusterInstance {
 		return vs[0].([]KubernetesClusterInstance)[vs[1].(int)]
 	}).(KubernetesClusterInstanceOutput)
+}
+
+type KubernetesClusterPool struct {
+	// The size of the pool
+	Count *int `pulumi:"count"`
+	// The ID of the pool
+	Id *string `pulumi:"id"`
+	// A list of the instance in the pool
+	InstanceNames []string `pulumi:"instanceNames"`
+	// A list of instance inside the pool
+	Instances []KubernetesClusterPoolInstance `pulumi:"instances"`
+	// The size of the instance.
+	Size *string `pulumi:"size"`
+}
+
+// KubernetesClusterPoolInput is an input type that accepts KubernetesClusterPoolArgs and KubernetesClusterPoolOutput values.
+// You can construct a concrete instance of `KubernetesClusterPoolInput` via:
+//
+//          KubernetesClusterPoolArgs{...}
+type KubernetesClusterPoolInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterPoolOutput() KubernetesClusterPoolOutput
+	ToKubernetesClusterPoolOutputWithContext(context.Context) KubernetesClusterPoolOutput
+}
+
+type KubernetesClusterPoolArgs struct {
+	// The size of the pool
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// The ID of the pool
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// A list of the instance in the pool
+	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// A list of instance inside the pool
+	Instances KubernetesClusterPoolInstanceArrayInput `pulumi:"instances"`
+	// The size of the instance.
+	Size pulumi.StringPtrInput `pulumi:"size"`
+}
+
+func (KubernetesClusterPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterPool)(nil)).Elem()
+}
+
+func (i KubernetesClusterPoolArgs) ToKubernetesClusterPoolOutput() KubernetesClusterPoolOutput {
+	return i.ToKubernetesClusterPoolOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterPoolArgs) ToKubernetesClusterPoolOutputWithContext(ctx context.Context) KubernetesClusterPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolOutput)
+}
+
+// KubernetesClusterPoolArrayInput is an input type that accepts KubernetesClusterPoolArray and KubernetesClusterPoolArrayOutput values.
+// You can construct a concrete instance of `KubernetesClusterPoolArrayInput` via:
+//
+//          KubernetesClusterPoolArray{ KubernetesClusterPoolArgs{...} }
+type KubernetesClusterPoolArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterPoolArrayOutput() KubernetesClusterPoolArrayOutput
+	ToKubernetesClusterPoolArrayOutputWithContext(context.Context) KubernetesClusterPoolArrayOutput
+}
+
+type KubernetesClusterPoolArray []KubernetesClusterPoolInput
+
+func (KubernetesClusterPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesClusterPool)(nil)).Elem()
+}
+
+func (i KubernetesClusterPoolArray) ToKubernetesClusterPoolArrayOutput() KubernetesClusterPoolArrayOutput {
+	return i.ToKubernetesClusterPoolArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterPoolArray) ToKubernetesClusterPoolArrayOutputWithContext(ctx context.Context) KubernetesClusterPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolArrayOutput)
+}
+
+type KubernetesClusterPoolOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterPool)(nil)).Elem()
+}
+
+func (o KubernetesClusterPoolOutput) ToKubernetesClusterPoolOutput() KubernetesClusterPoolOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolOutput) ToKubernetesClusterPoolOutputWithContext(ctx context.Context) KubernetesClusterPoolOutput {
+	return o
+}
+
+// The size of the pool
+func (o KubernetesClusterPoolOutput) Count() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the pool
+func (o KubernetesClusterPoolOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// A list of the instance in the pool
+func (o KubernetesClusterPoolOutput) InstanceNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
+}
+
+// A list of instance inside the pool
+func (o KubernetesClusterPoolOutput) Instances() KubernetesClusterPoolInstanceArrayOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) []KubernetesClusterPoolInstance { return v.Instances }).(KubernetesClusterPoolInstanceArrayOutput)
+}
+
+// The size of the instance.
+func (o KubernetesClusterPoolOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+type KubernetesClusterPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesClusterPool)(nil)).Elem()
+}
+
+func (o KubernetesClusterPoolArrayOutput) ToKubernetesClusterPoolArrayOutput() KubernetesClusterPoolArrayOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolArrayOutput) ToKubernetesClusterPoolArrayOutputWithContext(ctx context.Context) KubernetesClusterPoolArrayOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolArrayOutput) Index(i pulumi.IntInput) KubernetesClusterPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesClusterPool {
+		return vs[0].([]KubernetesClusterPool)[vs[1].(int)]
+	}).(KubernetesClusterPoolOutput)
+}
+
+type KubernetesClusterPoolInstance struct {
+	// Total cpu of the inatance.
+	CpuCores *int `pulumi:"cpuCores"`
+	// The size of the disk.
+	DiskGb *int `pulumi:"diskGb"`
+	// The hostname of the instance.
+	Hostname *string `pulumi:"hostname"`
+	// Total ram of the instance
+	RamMb *int `pulumi:"ramMb"`
+	// The size of the instance.
+	Size *string `pulumi:"size"`
+	// The status of Kubernetes cluster.
+	// * `ready` -If the Kubernetes cluster is ready.
+	Status *string `pulumi:"status"`
+	// A space separated list of tags, to be used freely as required.
+	Tags []string `pulumi:"tags"`
+}
+
+// KubernetesClusterPoolInstanceInput is an input type that accepts KubernetesClusterPoolInstanceArgs and KubernetesClusterPoolInstanceOutput values.
+// You can construct a concrete instance of `KubernetesClusterPoolInstanceInput` via:
+//
+//          KubernetesClusterPoolInstanceArgs{...}
+type KubernetesClusterPoolInstanceInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterPoolInstanceOutput() KubernetesClusterPoolInstanceOutput
+	ToKubernetesClusterPoolInstanceOutputWithContext(context.Context) KubernetesClusterPoolInstanceOutput
+}
+
+type KubernetesClusterPoolInstanceArgs struct {
+	// Total cpu of the inatance.
+	CpuCores pulumi.IntPtrInput `pulumi:"cpuCores"`
+	// The size of the disk.
+	DiskGb pulumi.IntPtrInput `pulumi:"diskGb"`
+	// The hostname of the instance.
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	// Total ram of the instance
+	RamMb pulumi.IntPtrInput `pulumi:"ramMb"`
+	// The size of the instance.
+	Size pulumi.StringPtrInput `pulumi:"size"`
+	// The status of Kubernetes cluster.
+	// * `ready` -If the Kubernetes cluster is ready.
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// A space separated list of tags, to be used freely as required.
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+}
+
+func (KubernetesClusterPoolInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (i KubernetesClusterPoolInstanceArgs) ToKubernetesClusterPoolInstanceOutput() KubernetesClusterPoolInstanceOutput {
+	return i.ToKubernetesClusterPoolInstanceOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterPoolInstanceArgs) ToKubernetesClusterPoolInstanceOutputWithContext(ctx context.Context) KubernetesClusterPoolInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolInstanceOutput)
+}
+
+// KubernetesClusterPoolInstanceArrayInput is an input type that accepts KubernetesClusterPoolInstanceArray and KubernetesClusterPoolInstanceArrayOutput values.
+// You can construct a concrete instance of `KubernetesClusterPoolInstanceArrayInput` via:
+//
+//          KubernetesClusterPoolInstanceArray{ KubernetesClusterPoolInstanceArgs{...} }
+type KubernetesClusterPoolInstanceArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesClusterPoolInstanceArrayOutput() KubernetesClusterPoolInstanceArrayOutput
+	ToKubernetesClusterPoolInstanceArrayOutputWithContext(context.Context) KubernetesClusterPoolInstanceArrayOutput
+}
+
+type KubernetesClusterPoolInstanceArray []KubernetesClusterPoolInstanceInput
+
+func (KubernetesClusterPoolInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (i KubernetesClusterPoolInstanceArray) ToKubernetesClusterPoolInstanceArrayOutput() KubernetesClusterPoolInstanceArrayOutput {
+	return i.ToKubernetesClusterPoolInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesClusterPoolInstanceArray) ToKubernetesClusterPoolInstanceArrayOutputWithContext(ctx context.Context) KubernetesClusterPoolInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolInstanceArrayOutput)
+}
+
+type KubernetesClusterPoolInstanceOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterPoolInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (o KubernetesClusterPoolInstanceOutput) ToKubernetesClusterPoolInstanceOutput() KubernetesClusterPoolInstanceOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolInstanceOutput) ToKubernetesClusterPoolInstanceOutputWithContext(ctx context.Context) KubernetesClusterPoolInstanceOutput {
+	return o
+}
+
+// Total cpu of the inatance.
+func (o KubernetesClusterPoolInstanceOutput) CpuCores() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *int { return v.CpuCores }).(pulumi.IntPtrOutput)
+}
+
+// The size of the disk.
+func (o KubernetesClusterPoolInstanceOutput) DiskGb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *int { return v.DiskGb }).(pulumi.IntPtrOutput)
+}
+
+// The hostname of the instance.
+func (o KubernetesClusterPoolInstanceOutput) Hostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *string { return v.Hostname }).(pulumi.StringPtrOutput)
+}
+
+// Total ram of the instance
+func (o KubernetesClusterPoolInstanceOutput) RamMb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *int { return v.RamMb }).(pulumi.IntPtrOutput)
+}
+
+// The size of the instance.
+func (o KubernetesClusterPoolInstanceOutput) Size() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *string { return v.Size }).(pulumi.StringPtrOutput)
+}
+
+// The status of Kubernetes cluster.
+// * `ready` -If the Kubernetes cluster is ready.
+func (o KubernetesClusterPoolInstanceOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+// A space separated list of tags, to be used freely as required.
+func (o KubernetesClusterPoolInstanceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KubernetesClusterPoolInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+type KubernetesClusterPoolInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesClusterPoolInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (o KubernetesClusterPoolInstanceArrayOutput) ToKubernetesClusterPoolInstanceArrayOutput() KubernetesClusterPoolInstanceArrayOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolInstanceArrayOutput) ToKubernetesClusterPoolInstanceArrayOutputWithContext(ctx context.Context) KubernetesClusterPoolInstanceArrayOutput {
+	return o
+}
+
+func (o KubernetesClusterPoolInstanceArrayOutput) Index(i pulumi.IntInput) KubernetesClusterPoolInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesClusterPoolInstance {
+		return vs[0].([]KubernetesClusterPoolInstance)[vs[1].(int)]
+	}).(KubernetesClusterPoolInstanceOutput)
 }
 
 type LoadBalancerBackend struct {
@@ -431,9 +682,11 @@ func (o LoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadBalancerBac
 }
 
 type GetInstancesFilter struct {
+	All *bool `pulumi:"all"`
 	// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
 	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key string `pulumi:"key"`
+	Key     string  `pulumi:"key"`
+	MatchBy *string `pulumi:"matchBy"`
 	// A list of values to match against the `key` field. Only retrieves Instances
 	// where the `key` field takes on one or more of the values provided here.
 	Values []string `pulumi:"values"`
@@ -451,9 +704,11 @@ type GetInstancesFilterInput interface {
 }
 
 type GetInstancesFilterArgs struct {
+	All pulumi.BoolPtrInput `pulumi:"all"`
 	// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
 	// `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key     pulumi.StringInput    `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
 	// A list of values to match against the `key` field. Only retrieves Instances
 	// where the `key` field takes on one or more of the values provided here.
 	Values pulumi.StringArrayInput `pulumi:"values"`
@@ -510,10 +765,18 @@ func (o GetInstancesFilterOutput) ToGetInstancesFilterOutputWithContext(ctx cont
 	return o
 }
 
+func (o GetInstancesFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetInstancesFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
 // Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
 // `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
 func (o GetInstancesFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetInstancesFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
 // A list of values to match against the `key` field. Only retrieves Instances
@@ -571,6 +834,8 @@ type GetInstancesInstance struct {
 	PublicIp string `pulumi:"publicIp"`
 	// Total ram of the instance.
 	RamMb int `pulumi:"ramMb"`
+	// If is used, them all instances will be from that region.
+	Region string `pulumi:"region"`
 	// A fully qualified domain name.
 	ReverseDns string `pulumi:"reverseDns"`
 	// the contents of a script uploaded
@@ -627,6 +892,8 @@ type GetInstancesInstanceArgs struct {
 	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// Total ram of the instance.
 	RamMb pulumi.IntInput `pulumi:"ramMb"`
+	// If is used, them all instances will be from that region.
+	Region pulumi.StringInput `pulumi:"region"`
 	// A fully qualified domain name.
 	ReverseDns pulumi.StringInput `pulumi:"reverseDns"`
 	// the contents of a script uploaded
@@ -764,6 +1031,11 @@ func (o GetInstancesInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
+// If is used, them all instances will be from that region.
+func (o GetInstancesInstanceOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesInstance) string { return v.Region }).(pulumi.StringOutput)
+}
+
 // A fully qualified domain name.
 func (o GetInstancesInstanceOutput) ReverseDns() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.ReverseDns }).(pulumi.StringOutput)
@@ -820,8 +1092,10 @@ func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesIn
 }
 
 type GetInstancesSizeFilter struct {
-	Key    string   `pulumi:"key"`
-	Values []string `pulumi:"values"`
+	All     *bool    `pulumi:"all"`
+	Key     string   `pulumi:"key"`
+	MatchBy *string  `pulumi:"matchBy"`
+	Values  []string `pulumi:"values"`
 }
 
 // GetInstancesSizeFilterInput is an input type that accepts GetInstancesSizeFilterArgs and GetInstancesSizeFilterOutput values.
@@ -836,8 +1110,10 @@ type GetInstancesSizeFilterInput interface {
 }
 
 type GetInstancesSizeFilterArgs struct {
-	Key    pulumi.StringInput      `pulumi:"key"`
-	Values pulumi.StringArrayInput `pulumi:"values"`
+	All     pulumi.BoolPtrInput     `pulumi:"all"`
+	Key     pulumi.StringInput      `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
+	Values  pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetInstancesSizeFilterArgs) ElementType() reflect.Type {
@@ -891,8 +1167,16 @@ func (o GetInstancesSizeFilterOutput) ToGetInstancesSizeFilterOutputWithContext(
 	return o
 }
 
+func (o GetInstancesSizeFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetInstancesSizeFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
 func (o GetInstancesSizeFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSizeFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetInstancesSizeFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetInstancesSizeFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
 func (o GetInstancesSizeFilterOutput) Values() pulumi.StringArrayOutput {
@@ -920,13 +1204,13 @@ func (o GetInstancesSizeFilterArrayOutput) Index(i pulumi.IntInput) GetInstances
 }
 
 type GetInstancesSizeSize struct {
-	CpuCores    int    `pulumi:"cpuCores"`
+	Cpu         int    `pulumi:"cpu"`
 	Description string `pulumi:"description"`
-	DiskGb      int    `pulumi:"diskGb"`
+	Disk        int    `pulumi:"disk"`
 	Name        string `pulumi:"name"`
-	NiceName    string `pulumi:"niceName"`
-	RamMb       int    `pulumi:"ramMb"`
+	Ram         int    `pulumi:"ram"`
 	Selectable  bool   `pulumi:"selectable"`
+	Type        string `pulumi:"type"`
 }
 
 // GetInstancesSizeSizeInput is an input type that accepts GetInstancesSizeSizeArgs and GetInstancesSizeSizeOutput values.
@@ -941,13 +1225,13 @@ type GetInstancesSizeSizeInput interface {
 }
 
 type GetInstancesSizeSizeArgs struct {
-	CpuCores    pulumi.IntInput    `pulumi:"cpuCores"`
+	Cpu         pulumi.IntInput    `pulumi:"cpu"`
 	Description pulumi.StringInput `pulumi:"description"`
-	DiskGb      pulumi.IntInput    `pulumi:"diskGb"`
+	Disk        pulumi.IntInput    `pulumi:"disk"`
 	Name        pulumi.StringInput `pulumi:"name"`
-	NiceName    pulumi.StringInput `pulumi:"niceName"`
-	RamMb       pulumi.IntInput    `pulumi:"ramMb"`
+	Ram         pulumi.IntInput    `pulumi:"ram"`
 	Selectable  pulumi.BoolInput   `pulumi:"selectable"`
+	Type        pulumi.StringInput `pulumi:"type"`
 }
 
 func (GetInstancesSizeSizeArgs) ElementType() reflect.Type {
@@ -1001,32 +1285,32 @@ func (o GetInstancesSizeSizeOutput) ToGetInstancesSizeSizeOutputWithContext(ctx 
 	return o
 }
 
-func (o GetInstancesSizeSizeOutput) CpuCores() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.CpuCores }).(pulumi.IntOutput)
+func (o GetInstancesSizeSizeOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Cpu }).(pulumi.IntOutput)
 }
 
 func (o GetInstancesSizeSizeOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Description }).(pulumi.StringOutput)
 }
 
-func (o GetInstancesSizeSizeOutput) DiskGb() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.DiskGb }).(pulumi.IntOutput)
+func (o GetInstancesSizeSizeOutput) Disk() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Disk }).(pulumi.IntOutput)
 }
 
 func (o GetInstancesSizeSizeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Name }).(pulumi.StringOutput)
 }
 
-func (o GetInstancesSizeSizeOutput) NiceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.NiceName }).(pulumi.StringOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) RamMb() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.RamMb }).(pulumi.IntOutput)
+func (o GetInstancesSizeSizeOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Ram }).(pulumi.IntOutput)
 }
 
 func (o GetInstancesSizeSizeOutput) Selectable() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstancesSizeSize) bool { return v.Selectable }).(pulumi.BoolOutput)
+}
+
+func (o GetInstancesSizeSizeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Type }).(pulumi.StringOutput)
 }
 
 type GetInstancesSizeSizeArrayOutput struct{ *pulumi.OutputState }
@@ -1385,20 +1669,12 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntI
 type GetKubernetesClusterInstance struct {
 	// Total cpu of the inatance.
 	CpuCores int `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt string `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb int `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId string `pulumi:"firewallId"`
 	// The hostname of the instance.
 	Hostname string `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp string `pulumi:"publicIp"`
 	// Total ram of the instance
 	RamMb int `pulumi:"ramMb"`
-	// The region where instance are.
-	Region string `pulumi:"region"`
 	// The size of the instance.
 	Size string `pulumi:"size"`
 	// The status of Kubernetes cluster.
@@ -1422,20 +1698,12 @@ type GetKubernetesClusterInstanceInput interface {
 type GetKubernetesClusterInstanceArgs struct {
 	// Total cpu of the inatance.
 	CpuCores pulumi.IntInput `pulumi:"cpuCores"`
-	// The date where the Kubernetes cluster was create.
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb pulumi.IntInput `pulumi:"diskGb"`
-	// The firewall id assigned to the instance
-	FirewallId pulumi.StringInput `pulumi:"firewallId"`
 	// The hostname of the instance.
 	Hostname pulumi.StringInput `pulumi:"hostname"`
-	// The public ip of the instances, only available if the instances is the master
-	PublicIp pulumi.StringInput `pulumi:"publicIp"`
 	// Total ram of the instance
 	RamMb pulumi.IntInput `pulumi:"ramMb"`
-	// The region where instance are.
-	Region pulumi.StringInput `pulumi:"region"`
 	// The size of the instance.
 	Size pulumi.StringInput `pulumi:"size"`
 	// The status of Kubernetes cluster.
@@ -1501,19 +1769,9 @@ func (o GetKubernetesClusterInstanceOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.CpuCores }).(pulumi.IntOutput)
 }
 
-// The date where the Kubernetes cluster was create.
-func (o GetKubernetesClusterInstanceOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
 // The size of the disk.
 func (o GetKubernetesClusterInstanceOutput) DiskGb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.DiskGb }).(pulumi.IntOutput)
-}
-
-// The firewall id assigned to the instance
-func (o GetKubernetesClusterInstanceOutput) FirewallId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.FirewallId }).(pulumi.StringOutput)
 }
 
 // The hostname of the instance.
@@ -1521,19 +1779,9 @@ func (o GetKubernetesClusterInstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The public ip of the instances, only available if the instances is the master
-func (o GetKubernetesClusterInstanceOutput) PublicIp() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.PublicIp }).(pulumi.StringOutput)
-}
-
 // Total ram of the instance
 func (o GetKubernetesClusterInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) int { return v.RamMb }).(pulumi.IntOutput)
-}
-
-// The region where instance are.
-func (o GetKubernetesClusterInstanceOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Region }).(pulumi.StringOutput)
 }
 
 // The size of the instance.
@@ -1572,10 +1820,299 @@ func (o GetKubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) GetKub
 	}).(GetKubernetesClusterInstanceOutput)
 }
 
+type GetKubernetesClusterPool struct {
+	// The size of the pool
+	Count int `pulumi:"count"`
+	// The ID of the kubernetes Cluster
+	Id string `pulumi:"id"`
+	// A list of the instance in the pool
+	InstanceNames []string `pulumi:"instanceNames"`
+	// A list of instance inside the pool
+	Instances []GetKubernetesClusterPoolInstance `pulumi:"instances"`
+	// The size of the instance.
+	Size string `pulumi:"size"`
+}
+
+// GetKubernetesClusterPoolInput is an input type that accepts GetKubernetesClusterPoolArgs and GetKubernetesClusterPoolOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterPoolInput` via:
+//
+//          GetKubernetesClusterPoolArgs{...}
+type GetKubernetesClusterPoolInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterPoolOutput() GetKubernetesClusterPoolOutput
+	ToGetKubernetesClusterPoolOutputWithContext(context.Context) GetKubernetesClusterPoolOutput
+}
+
+type GetKubernetesClusterPoolArgs struct {
+	// The size of the pool
+	Count pulumi.IntInput `pulumi:"count"`
+	// The ID of the kubernetes Cluster
+	Id pulumi.StringInput `pulumi:"id"`
+	// A list of the instance in the pool
+	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// A list of instance inside the pool
+	Instances GetKubernetesClusterPoolInstanceArrayInput `pulumi:"instances"`
+	// The size of the instance.
+	Size pulumi.StringInput `pulumi:"size"`
+}
+
+func (GetKubernetesClusterPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterPool)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterPoolArgs) ToGetKubernetesClusterPoolOutput() GetKubernetesClusterPoolOutput {
+	return i.ToGetKubernetesClusterPoolOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterPoolArgs) ToGetKubernetesClusterPoolOutputWithContext(ctx context.Context) GetKubernetesClusterPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolOutput)
+}
+
+// GetKubernetesClusterPoolArrayInput is an input type that accepts GetKubernetesClusterPoolArray and GetKubernetesClusterPoolArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterPoolArrayInput` via:
+//
+//          GetKubernetesClusterPoolArray{ GetKubernetesClusterPoolArgs{...} }
+type GetKubernetesClusterPoolArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterPoolArrayOutput() GetKubernetesClusterPoolArrayOutput
+	ToGetKubernetesClusterPoolArrayOutputWithContext(context.Context) GetKubernetesClusterPoolArrayOutput
+}
+
+type GetKubernetesClusterPoolArray []GetKubernetesClusterPoolInput
+
+func (GetKubernetesClusterPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterPool)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterPoolArray) ToGetKubernetesClusterPoolArrayOutput() GetKubernetesClusterPoolArrayOutput {
+	return i.ToGetKubernetesClusterPoolArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterPoolArray) ToGetKubernetesClusterPoolArrayOutputWithContext(ctx context.Context) GetKubernetesClusterPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolArrayOutput)
+}
+
+type GetKubernetesClusterPoolOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterPool)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterPoolOutput) ToGetKubernetesClusterPoolOutput() GetKubernetesClusterPoolOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolOutput) ToGetKubernetesClusterPoolOutputWithContext(ctx context.Context) GetKubernetesClusterPoolOutput {
+	return o
+}
+
+// The size of the pool
+func (o GetKubernetesClusterPoolOutput) Count() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) int { return v.Count }).(pulumi.IntOutput)
+}
+
+// The ID of the kubernetes Cluster
+func (o GetKubernetesClusterPoolOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the instance in the pool
+func (o GetKubernetesClusterPoolOutput) InstanceNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
+}
+
+// A list of instance inside the pool
+func (o GetKubernetesClusterPoolOutput) Instances() GetKubernetesClusterPoolInstanceArrayOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) []GetKubernetesClusterPoolInstance { return v.Instances }).(GetKubernetesClusterPoolInstanceArrayOutput)
+}
+
+// The size of the instance.
+func (o GetKubernetesClusterPoolOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) string { return v.Size }).(pulumi.StringOutput)
+}
+
+type GetKubernetesClusterPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterPool)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterPoolArrayOutput) ToGetKubernetesClusterPoolArrayOutput() GetKubernetesClusterPoolArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolArrayOutput) ToGetKubernetesClusterPoolArrayOutputWithContext(ctx context.Context) GetKubernetesClusterPoolArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolArrayOutput) Index(i pulumi.IntInput) GetKubernetesClusterPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesClusterPool {
+		return vs[0].([]GetKubernetesClusterPool)[vs[1].(int)]
+	}).(GetKubernetesClusterPoolOutput)
+}
+
+type GetKubernetesClusterPoolInstance struct {
+	// Total cpu of the inatance.
+	CpuCores int `pulumi:"cpuCores"`
+	// The size of the disk.
+	DiskGb int `pulumi:"diskGb"`
+	// The hostname of the instance.
+	Hostname string `pulumi:"hostname"`
+	// Total ram of the instance
+	RamMb int `pulumi:"ramMb"`
+	// The size of the instance.
+	Size string `pulumi:"size"`
+	// The status of Kubernetes cluster.
+	// * `ready` -If the Kubernetes cluster is ready.
+	Status string `pulumi:"status"`
+	// The tag of the instances
+	Tags []string `pulumi:"tags"`
+}
+
+// GetKubernetesClusterPoolInstanceInput is an input type that accepts GetKubernetesClusterPoolInstanceArgs and GetKubernetesClusterPoolInstanceOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterPoolInstanceInput` via:
+//
+//          GetKubernetesClusterPoolInstanceArgs{...}
+type GetKubernetesClusterPoolInstanceInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterPoolInstanceOutput() GetKubernetesClusterPoolInstanceOutput
+	ToGetKubernetesClusterPoolInstanceOutputWithContext(context.Context) GetKubernetesClusterPoolInstanceOutput
+}
+
+type GetKubernetesClusterPoolInstanceArgs struct {
+	// Total cpu of the inatance.
+	CpuCores pulumi.IntInput `pulumi:"cpuCores"`
+	// The size of the disk.
+	DiskGb pulumi.IntInput `pulumi:"diskGb"`
+	// The hostname of the instance.
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	// Total ram of the instance
+	RamMb pulumi.IntInput `pulumi:"ramMb"`
+	// The size of the instance.
+	Size pulumi.StringInput `pulumi:"size"`
+	// The status of Kubernetes cluster.
+	// * `ready` -If the Kubernetes cluster is ready.
+	Status pulumi.StringInput `pulumi:"status"`
+	// The tag of the instances
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
+}
+
+func (GetKubernetesClusterPoolInstanceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterPoolInstanceArgs) ToGetKubernetesClusterPoolInstanceOutput() GetKubernetesClusterPoolInstanceOutput {
+	return i.ToGetKubernetesClusterPoolInstanceOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterPoolInstanceArgs) ToGetKubernetesClusterPoolInstanceOutputWithContext(ctx context.Context) GetKubernetesClusterPoolInstanceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolInstanceOutput)
+}
+
+// GetKubernetesClusterPoolInstanceArrayInput is an input type that accepts GetKubernetesClusterPoolInstanceArray and GetKubernetesClusterPoolInstanceArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterPoolInstanceArrayInput` via:
+//
+//          GetKubernetesClusterPoolInstanceArray{ GetKubernetesClusterPoolInstanceArgs{...} }
+type GetKubernetesClusterPoolInstanceArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterPoolInstanceArrayOutput() GetKubernetesClusterPoolInstanceArrayOutput
+	ToGetKubernetesClusterPoolInstanceArrayOutputWithContext(context.Context) GetKubernetesClusterPoolInstanceArrayOutput
+}
+
+type GetKubernetesClusterPoolInstanceArray []GetKubernetesClusterPoolInstanceInput
+
+func (GetKubernetesClusterPoolInstanceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterPoolInstanceArray) ToGetKubernetesClusterPoolInstanceArrayOutput() GetKubernetesClusterPoolInstanceArrayOutput {
+	return i.ToGetKubernetesClusterPoolInstanceArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterPoolInstanceArray) ToGetKubernetesClusterPoolInstanceArrayOutputWithContext(ctx context.Context) GetKubernetesClusterPoolInstanceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolInstanceArrayOutput)
+}
+
+type GetKubernetesClusterPoolInstanceOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterPoolInstanceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterPoolInstanceOutput) ToGetKubernetesClusterPoolInstanceOutput() GetKubernetesClusterPoolInstanceOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolInstanceOutput) ToGetKubernetesClusterPoolInstanceOutputWithContext(ctx context.Context) GetKubernetesClusterPoolInstanceOutput {
+	return o
+}
+
+// Total cpu of the inatance.
+func (o GetKubernetesClusterPoolInstanceOutput) CpuCores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) int { return v.CpuCores }).(pulumi.IntOutput)
+}
+
+// The size of the disk.
+func (o GetKubernetesClusterPoolInstanceOutput) DiskGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) int { return v.DiskGb }).(pulumi.IntOutput)
+}
+
+// The hostname of the instance.
+func (o GetKubernetesClusterPoolInstanceOutput) Hostname() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) string { return v.Hostname }).(pulumi.StringOutput)
+}
+
+// Total ram of the instance
+func (o GetKubernetesClusterPoolInstanceOutput) RamMb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) int { return v.RamMb }).(pulumi.IntOutput)
+}
+
+// The size of the instance.
+func (o GetKubernetesClusterPoolInstanceOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) string { return v.Size }).(pulumi.StringOutput)
+}
+
+// The status of Kubernetes cluster.
+// * `ready` -If the Kubernetes cluster is ready.
+func (o GetKubernetesClusterPoolInstanceOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// The tag of the instances
+func (o GetKubernetesClusterPoolInstanceOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+type GetKubernetesClusterPoolInstanceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterPoolInstanceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterPoolInstance)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterPoolInstanceArrayOutput) ToGetKubernetesClusterPoolInstanceArrayOutput() GetKubernetesClusterPoolInstanceArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolInstanceArrayOutput) ToGetKubernetesClusterPoolInstanceArrayOutputWithContext(ctx context.Context) GetKubernetesClusterPoolInstanceArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterPoolInstanceArrayOutput) Index(i pulumi.IntInput) GetKubernetesClusterPoolInstanceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesClusterPoolInstance {
+		return vs[0].([]GetKubernetesClusterPoolInstance)[vs[1].(int)]
+	}).(GetKubernetesClusterPoolInstanceOutput)
+}
+
 type GetKubernetesVersionFilter struct {
+	All *bool `pulumi:"all"`
 	// Filter the sizes by this key. This may be one of `version`,
 	// `label`, `type`, `default`.
-	Key string `pulumi:"key"`
+	Key     string  `pulumi:"key"`
+	MatchBy *string `pulumi:"matchBy"`
 	// Only retrieves the version which keys has value that matches
 	// one of the values provided here.
 	Values []string `pulumi:"values"`
@@ -1593,9 +2130,11 @@ type GetKubernetesVersionFilterInput interface {
 }
 
 type GetKubernetesVersionFilterArgs struct {
+	All pulumi.BoolPtrInput `pulumi:"all"`
 	// Filter the sizes by this key. This may be one of `version`,
 	// `label`, `type`, `default`.
-	Key pulumi.StringInput `pulumi:"key"`
+	Key     pulumi.StringInput    `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
 	// Only retrieves the version which keys has value that matches
 	// one of the values provided here.
 	Values pulumi.StringArrayInput `pulumi:"values"`
@@ -1652,10 +2191,18 @@ func (o GetKubernetesVersionFilterOutput) ToGetKubernetesVersionFilterOutputWith
 	return o
 }
 
+func (o GetKubernetesVersionFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetKubernetesVersionFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
 // Filter the sizes by this key. This may be one of `version`,
 // `label`, `type`, `default`.
 func (o GetKubernetesVersionFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetKubernetesVersionFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubernetesVersionFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
 // Only retrieves the version which keys has value that matches
@@ -2030,9 +2577,10 @@ func (o GetLoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) GetLoadBalan
 }
 
 type GetTemplateFilter struct {
-	// Filter the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key string `pulumi:"key"`
+	All *bool `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key     string  `pulumi:"key"`
+	MatchBy *string `pulumi:"matchBy"`
 	// Only retrieves the template which keys has value that matches
 	// one of the values provided here.
 	Values []string `pulumi:"values"`
@@ -2050,9 +2598,10 @@ type GetTemplateFilterInput interface {
 }
 
 type GetTemplateFilterArgs struct {
-	// Filter the sizes by this key. This may be one of `code`,
-	// `name`.
-	Key pulumi.StringInput `pulumi:"key"`
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key     pulumi.StringInput    `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
 	// Only retrieves the template which keys has value that matches
 	// one of the values provided here.
 	Values pulumi.StringArrayInput `pulumi:"values"`
@@ -2109,10 +2658,17 @@ func (o GetTemplateFilterOutput) ToGetTemplateFilterOutputWithContext(ctx contex
 	return o
 }
 
-// Filter the sizes by this key. This may be one of `code`,
-// `name`.
+func (o GetTemplateFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetTemplateFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
 func (o GetTemplateFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetTemplateFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetTemplateFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
 // Only retrieves the template which keys has value that matches
@@ -2144,8 +2700,7 @@ func (o GetTemplateFilterArrayOutput) Index(i pulumi.IntInput) GetTemplateFilter
 type GetTemplateSort struct {
 	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `code`,
-	// `name`.
+	// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
 	Key string `pulumi:"key"`
 }
 
@@ -2163,8 +2718,7 @@ type GetTemplateSortInput interface {
 type GetTemplateSortArgs struct {
 	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort the sizes by this key. This may be one of `code`,
-	// `name`.
+	// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -2224,8 +2778,7 @@ func (o GetTemplateSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTemplateSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
-// Sort the sizes by this key. This may be one of `code`,
-// `name`.
+// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
 func (o GetTemplateSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -2251,25 +2804,14 @@ func (o GetTemplateSortArrayOutput) Index(i pulumi.IntInput) GetTemplateSortOutp
 }
 
 type GetTemplateTemplate struct {
-	// Commonly referred to as 'user-data', this is a customisation script that is run after
-	// the instance is first booted.
-	CloudConfig string `pulumi:"cloudConfig"`
-	// A unqiue, alphanumerical, short, human readable code for the template.
-	Code string `pulumi:"code"`
-	// The default username to suggest that the user creates
-	DefaultUsername string `pulumi:"defaultUsername"`
-	// A multi-line description of the template, in Markdown format
-	Description string `pulumi:"description"`
 	// The id of the template
 	Id string `pulumi:"id"`
-	// The Image ID of any default template or the ID of another template.
-	ImageId string `pulumi:"imageId"`
+	// The label of the template.
+	Label string `pulumi:"label"`
 	// A short human readable name for the template
 	Name string `pulumi:"name"`
-	// A one line description of the template
-	ShortDescription string `pulumi:"shortDescription"`
-	// The ID of a bootable volume, either owned by you or global.
-	VolumeId string `pulumi:"volumeId"`
+	// The version of the template.
+	Version string `pulumi:"version"`
 }
 
 // GetTemplateTemplateInput is an input type that accepts GetTemplateTemplateArgs and GetTemplateTemplateOutput values.
@@ -2284,25 +2826,14 @@ type GetTemplateTemplateInput interface {
 }
 
 type GetTemplateTemplateArgs struct {
-	// Commonly referred to as 'user-data', this is a customisation script that is run after
-	// the instance is first booted.
-	CloudConfig pulumi.StringInput `pulumi:"cloudConfig"`
-	// A unqiue, alphanumerical, short, human readable code for the template.
-	Code pulumi.StringInput `pulumi:"code"`
-	// The default username to suggest that the user creates
-	DefaultUsername pulumi.StringInput `pulumi:"defaultUsername"`
-	// A multi-line description of the template, in Markdown format
-	Description pulumi.StringInput `pulumi:"description"`
 	// The id of the template
 	Id pulumi.StringInput `pulumi:"id"`
-	// The Image ID of any default template or the ID of another template.
-	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// The label of the template.
+	Label pulumi.StringInput `pulumi:"label"`
 	// A short human readable name for the template
 	Name pulumi.StringInput `pulumi:"name"`
-	// A one line description of the template
-	ShortDescription pulumi.StringInput `pulumi:"shortDescription"`
-	// The ID of a bootable volume, either owned by you or global.
-	VolumeId pulumi.StringInput `pulumi:"volumeId"`
+	// The version of the template.
+	Version pulumi.StringInput `pulumi:"version"`
 }
 
 func (GetTemplateTemplateArgs) ElementType() reflect.Type {
@@ -2356,35 +2887,14 @@ func (o GetTemplateTemplateOutput) ToGetTemplateTemplateOutputWithContext(ctx co
 	return o
 }
 
-// Commonly referred to as 'user-data', this is a customisation script that is run after
-// the instance is first booted.
-func (o GetTemplateTemplateOutput) CloudConfig() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.CloudConfig }).(pulumi.StringOutput)
-}
-
-// A unqiue, alphanumerical, short, human readable code for the template.
-func (o GetTemplateTemplateOutput) Code() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Code }).(pulumi.StringOutput)
-}
-
-// The default username to suggest that the user creates
-func (o GetTemplateTemplateOutput) DefaultUsername() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.DefaultUsername }).(pulumi.StringOutput)
-}
-
-// A multi-line description of the template, in Markdown format
-func (o GetTemplateTemplateOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Description }).(pulumi.StringOutput)
-}
-
 // The id of the template
 func (o GetTemplateTemplateOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// The Image ID of any default template or the ID of another template.
-func (o GetTemplateTemplateOutput) ImageId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.ImageId }).(pulumi.StringOutput)
+// The label of the template.
+func (o GetTemplateTemplateOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Label }).(pulumi.StringOutput)
 }
 
 // A short human readable name for the template
@@ -2392,14 +2902,9 @@ func (o GetTemplateTemplateOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// A one line description of the template
-func (o GetTemplateTemplateOutput) ShortDescription() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.ShortDescription }).(pulumi.StringOutput)
-}
-
-// The ID of a bootable volume, either owned by you or global.
-func (o GetTemplateTemplateOutput) VolumeId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTemplateTemplate) string { return v.VolumeId }).(pulumi.StringOutput)
+// The version of the template.
+func (o GetTemplateTemplateOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Version }).(pulumi.StringOutput)
 }
 
 type GetTemplateTemplateArrayOutput struct{ *pulumi.OutputState }
@@ -2427,6 +2932,10 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstanceOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstanceArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterPoolOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterPoolArrayOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterPoolInstanceOutput{})
+	pulumi.RegisterOutputType(KubernetesClusterPoolInstanceArrayOutput{})
 	pulumi.RegisterOutputType(LoadBalancerBackendOutput{})
 	pulumi.RegisterOutputType(LoadBalancerBackendArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesFilterOutput{})
@@ -2445,6 +2954,10 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterInstanceOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterInstanceArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterPoolOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterPoolArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterPoolInstanceOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterPoolInstanceArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesVersionFilterOutput{})
 	pulumi.RegisterOutputType(GetKubernetesVersionFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesVersionSortOutput{})

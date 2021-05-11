@@ -19,6 +19,7 @@ class InstanceArgs:
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class InstanceArgs:
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
         :param pulumi.Input[str] notes: Add some notes to the instance.
         :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
@@ -51,6 +53,8 @@ class InstanceArgs:
             pulumi.set(__self__, "notes", notes)
         if public_ip_required is not None:
             pulumi.set(__self__, "public_ip_required", public_ip_required)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if reverse_dns is not None:
             pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
@@ -135,6 +139,18 @@ class InstanceArgs:
     @public_ip_required.setter
     def public_ip_required(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "public_ip_required", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for the instance, if not declare we use the region in declared in the provider.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
 
     @property
     @pulumi.getter(name="reverseDns")
@@ -226,9 +242,12 @@ class _InstanceState:
                  public_ip: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  ram_mb: Optional[pulumi.Input[int]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
+                 source_id: Optional[pulumi.Input[str]] = None,
+                 source_type: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -249,6 +268,7 @@ class _InstanceState:
         :param pulumi.Input[str] public_ip: The public ip.
         :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
         :param pulumi.Input[int] ram_mb: Total ram of the instance.
+        :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
@@ -285,12 +305,18 @@ class _InstanceState:
             pulumi.set(__self__, "public_ip_required", public_ip_required)
         if ram_mb is not None:
             pulumi.set(__self__, "ram_mb", ram_mb)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if reverse_dns is not None:
             pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
             pulumi.set(__self__, "script", script)
         if size is not None:
             pulumi.set(__self__, "size", size)
+        if source_id is not None:
+            pulumi.set(__self__, "source_id", source_id)
+        if source_type is not None:
+            pulumi.set(__self__, "source_type", source_type)
         if sshkey_id is not None:
             pulumi.set(__self__, "sshkey_id", sshkey_id)
         if status is not None:
@@ -469,6 +495,18 @@ class _InstanceState:
         pulumi.set(self, "ram_mb", value)
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for the instance, if not declare we use the region in declared in the provider.
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> Optional[pulumi.Input[str]]:
         """
@@ -503,6 +541,24 @@ class _InstanceState:
     @size.setter
     def size(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_id")
+
+    @source_id.setter
+    def source_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_id", value)
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_type")
+
+    @source_type.setter
+    def source_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_type", value)
 
     @property
     @pulumi.getter(name="sshkeyId")
@@ -564,6 +620,7 @@ class Instance(pulumi.CustomResource):
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -591,6 +648,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
         :param pulumi.Input[str] notes: Add some notes to the instance.
         :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
@@ -637,6 +695,7 @@ class Instance(pulumi.CustomResource):
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -663,6 +722,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["notes"] = notes
             __props__.__dict__["public_ip_required"] = public_ip_required
+            __props__.__dict__["region"] = region
             __props__.__dict__["reverse_dns"] = reverse_dns
             __props__.__dict__["script"] = script
             __props__.__dict__["size"] = size
@@ -677,6 +737,8 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["pseudo_ip"] = None
             __props__.__dict__["public_ip"] = None
             __props__.__dict__["ram_mb"] = None
+            __props__.__dict__["source_id"] = None
+            __props__.__dict__["source_type"] = None
             __props__.__dict__["status"] = None
         super(Instance, __self__).__init__(
             'civo:index/instance:Instance',
@@ -702,9 +764,12 @@ class Instance(pulumi.CustomResource):
             public_ip: Optional[pulumi.Input[str]] = None,
             public_ip_required: Optional[pulumi.Input[str]] = None,
             ram_mb: Optional[pulumi.Input[int]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             reverse_dns: Optional[pulumi.Input[str]] = None,
             script: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
+            source_id: Optional[pulumi.Input[str]] = None,
+            source_type: Optional[pulumi.Input[str]] = None,
             sshkey_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -730,6 +795,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] public_ip: The public ip.
         :param pulumi.Input[str] public_ip_required: This should be either false, true or `move_ip_from:intances_id`.
         :param pulumi.Input[int] ram_mb: Total ram of the instance.
+        :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
@@ -756,9 +822,12 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["public_ip"] = public_ip
         __props__.__dict__["public_ip_required"] = public_ip_required
         __props__.__dict__["ram_mb"] = ram_mb
+        __props__.__dict__["region"] = region
         __props__.__dict__["reverse_dns"] = reverse_dns
         __props__.__dict__["script"] = script
         __props__.__dict__["size"] = size
+        __props__.__dict__["source_id"] = source_id
+        __props__.__dict__["source_type"] = source_type
         __props__.__dict__["sshkey_id"] = sshkey_id
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
@@ -823,7 +892,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="networkId")
-    def network_id(self) -> pulumi.Output[Optional[str]]:
+    def network_id(self) -> pulumi.Output[str]:
         """
         This must be the ID of the network from the network listing (optional; default network used when not specified).
         """
@@ -878,6 +947,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "ram_mb")
 
     @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        The region for the instance, if not declare we use the region in declared in the provider.
+        """
+        return pulumi.get(self, "region")
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> pulumi.Output[Optional[str]]:
         """
@@ -900,6 +977,16 @@ class Instance(pulumi.CustomResource):
         The name of the size, from the current list, e.g. g2.small (required).
         """
         return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter(name="sourceId")
+    def source_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "source_id")
+
+    @property
+    @pulumi.getter(name="sourceType")
+    def source_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "source_type")
 
     @property
     @pulumi.getter(name="sshkeyId")

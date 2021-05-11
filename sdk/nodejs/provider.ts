@@ -37,6 +37,7 @@ export class Provider extends pulumi.ProviderResource {
         let inputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            inputs["region"] = args ? args.region : undefined;
             inputs["token"] = args ? args.token : undefined;
         }
         if (!opts.version) {
@@ -50,5 +51,6 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    readonly region?: pulumi.Input<string>;
     readonly token?: pulumi.Input<string>;
 }

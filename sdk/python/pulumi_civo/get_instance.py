@@ -19,7 +19,7 @@ class GetInstanceResult:
     """
     A collection of values returned by getInstance.
     """
-    def __init__(__self__, cpu_cores=None, created_at=None, disk_gb=None, firewall_id=None, hostname=None, id=None, initial_password=None, initial_user=None, network_id=None, notes=None, private_ip=None, pseudo_ip=None, public_ip=None, ram_mb=None, reverse_dns=None, script=None, size=None, sshkey_id=None, status=None, tags=None, template=None):
+    def __init__(__self__, cpu_cores=None, created_at=None, disk_gb=None, firewall_id=None, hostname=None, id=None, initial_password=None, initial_user=None, network_id=None, notes=None, private_ip=None, pseudo_ip=None, public_ip=None, ram_mb=None, region=None, reverse_dns=None, script=None, size=None, sshkey_id=None, status=None, tags=None, template=None):
         if cpu_cores and not isinstance(cpu_cores, int):
             raise TypeError("Expected argument 'cpu_cores' to be a int")
         pulumi.set(__self__, "cpu_cores", cpu_cores)
@@ -62,6 +62,9 @@ class GetInstanceResult:
         if ram_mb and not isinstance(ram_mb, int):
             raise TypeError("Expected argument 'ram_mb' to be a int")
         pulumi.set(__self__, "ram_mb", ram_mb)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if reverse_dns and not isinstance(reverse_dns, str):
             raise TypeError("Expected argument 'reverse_dns' to be a str")
         pulumi.set(__self__, "reverse_dns", reverse_dns)
@@ -197,6 +200,14 @@ class GetInstanceResult:
         return pulumi.get(self, "ram_mb")
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region of the instance
+        """
+        return pulumi.get(self, "region")
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> str:
         """
@@ -273,6 +284,7 @@ class AwaitableGetInstanceResult(GetInstanceResult):
             pseudo_ip=self.pseudo_ip,
             public_ip=self.public_ip,
             ram_mb=self.ram_mb,
+            region=self.region,
             reverse_dns=self.reverse_dns,
             script=self.script,
             size=self.size,
@@ -284,16 +296,19 @@ class AwaitableGetInstanceResult(GetInstanceResult):
 
 def get_instance(hostname: Optional[str] = None,
                  id: Optional[str] = None,
+                 region: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstanceResult:
     """
     Use this data source to access information about an existing resource.
 
     :param str hostname: The hostname of the Instance.
     :param str id: The ID of the Instance
+    :param str region: The region of an existing Instance.
     """
     __args__ = dict()
     __args__['hostname'] = hostname
     __args__['id'] = id
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -315,6 +330,7 @@ def get_instance(hostname: Optional[str] = None,
         pseudo_ip=__ret__.pseudo_ip,
         public_ip=__ret__.public_ip,
         ram_mb=__ret__.ram_mb,
+        region=__ret__.region,
         reverse_dns=__ret__.reverse_dns,
         script=__ret__.script,
         size=__ret__.size,

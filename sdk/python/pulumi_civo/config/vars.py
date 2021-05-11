@@ -9,10 +9,13 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
+    'region',
     'token',
 ]
 
 __config__ = pulumi.Config('civo')
+
+region = __config__.get('region')
 
 token = __config__.get('token')
 

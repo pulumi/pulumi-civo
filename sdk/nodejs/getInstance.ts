@@ -17,6 +17,7 @@ export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions)
     return pulumi.runtime.invoke("civo:index/getInstance:getInstance", {
         "hostname": args.hostname,
         "id": args.id,
+        "region": args.region,
     }, opts);
 }
 
@@ -32,6 +33,10 @@ export interface GetInstanceArgs {
      * The ID of the Instance
      */
     readonly id?: string;
+    /**
+     * The region of an existing Instance.
+     */
+    readonly region?: string;
 }
 
 /**
@@ -94,6 +99,10 @@ export interface GetInstanceResult {
      * Total ram of the instance.
      */
     readonly ramMb: number;
+    /**
+     * The region of the instance
+     */
+    readonly region?: string;
     /**
      * A fully qualified domain name.
      */

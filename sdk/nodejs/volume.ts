@@ -72,6 +72,10 @@ export class Volume extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The region for the volume
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
      */
     public readonly sizeGb!: pulumi.Output<number>;
@@ -93,6 +97,7 @@ export class Volume extends pulumi.CustomResource {
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["mountPoint"] = state ? state.mountPoint : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["sizeGb"] = state ? state.sizeGb : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
@@ -104,6 +109,7 @@ export class Volume extends pulumi.CustomResource {
             }
             inputs["bootable"] = args ? args.bootable : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["sizeGb"] = args ? args.sizeGb : undefined;
             inputs["createdAt"] = undefined /*out*/;
             inputs["mountPoint"] = undefined /*out*/;
@@ -136,6 +142,10 @@ export interface VolumeState {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * The region for the volume
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
      */
     readonly sizeGb?: pulumi.Input<number>;
@@ -153,6 +163,10 @@ export interface VolumeArgs {
      * A name that you wish to use to refer to this volume .
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The region for the volume
+     */
+    readonly region?: pulumi.Input<string>;
     /**
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
      */

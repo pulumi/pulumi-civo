@@ -11,7 +11,7 @@ namespace Pulumi.Civo.Outputs
 {
 
     [OutputType]
-    public sealed class GetKubernetesClusterInstanceResult
+    public sealed class GetKubernetesClusterPoolInstanceResult
     {
         /// <summary>
         /// Total cpu of the inatance.
@@ -44,7 +44,7 @@ namespace Pulumi.Civo.Outputs
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
-        private GetKubernetesClusterInstanceResult(
+        private GetKubernetesClusterPoolInstanceResult(
             int cpuCores,
 
             int diskGb,

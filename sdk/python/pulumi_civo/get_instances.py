@@ -21,7 +21,7 @@ class GetInstancesResult:
     """
     A collection of values returned by getInstances.
     """
-    def __init__(__self__, filters=None, id=None, instances=None, sorts=None):
+    def __init__(__self__, filters=None, id=None, instances=None, region=None, sorts=None):
         if filters and not isinstance(filters, list):
             raise TypeError("Expected argument 'filters' to be a list")
         pulumi.set(__self__, "filters", filters)
@@ -31,6 +31,9 @@ class GetInstancesResult:
         if instances and not isinstance(instances, list):
             raise TypeError("Expected argument 'instances' to be a list")
         pulumi.set(__self__, "instances", instances)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if sorts and not isinstance(sorts, list):
             raise TypeError("Expected argument 'sorts' to be a list")
         pulumi.set(__self__, "sorts", sorts)
@@ -58,6 +61,11 @@ class GetInstancesResult:
 
     @property
     @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetInstancesSortResult']]:
         return pulumi.get(self, "sorts")
 
@@ -71,22 +79,24 @@ class AwaitableGetInstancesResult(GetInstancesResult):
             filters=self.filters,
             id=self.id,
             instances=self.instances,
+            region=self.region,
             sorts=self.sorts)
 
 
 def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilterArgs']]] = None,
+                  region: Optional[str] = None,
                   sorts: Optional[Sequence[pulumi.InputType['GetInstancesSortArgs']]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Use this data source to access information about an existing resource.
 
-    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results.
-           The `filter` block is documented below.
-    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results.
-           The `sort` block is documented below.
+    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: Filter the results. The `filter` block is documented below.
+    :param str region: If is used, them all instances will be from that region.
+    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: Sort the results. The `sort` block is documented below.
     """
     __args__ = dict()
     __args__['filters'] = filters
+    __args__['region'] = region
     __args__['sorts'] = sorts
     if opts is None:
         opts = pulumi.InvokeOptions()
@@ -98,4 +108,5 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
         filters=__ret__.filters,
         id=__ret__.id,
         instances=__ret__.instances,
+        region=__ret__.region,
         sorts=__ret__.sorts)

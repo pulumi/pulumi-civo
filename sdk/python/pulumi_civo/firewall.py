@@ -13,39 +13,19 @@ __all__ = ['FirewallArgs', 'Firewall']
 @pulumi.input_type
 class FirewallArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
         :param pulumi.Input[str] name: The Firewall name
+        :param pulumi.Input[str] network_id: The ID of the network of the firewall
+        :param pulumi.Input[str] region: The Firewall region, if is not defined we use the global defined in the provider
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
-
-    @property
-    @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        The Firewall name
-        """
-        return pulumi.get(self, "name")
-
-    @name.setter
-    def name(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "name", value)
-
-
-@pulumi.input_type
-class _FirewallState:
-    def __init__(__self__, *,
-                 name: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
-        """
-        Input properties used for looking up and filtering Firewall resources.
-        :param pulumi.Input[str] name: The Firewall name
-        :param pulumi.Input[str] region: The region where the firewall was create.
-        """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        if network_id is not None:
+            pulumi.set(__self__, "network_id", network_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -62,10 +42,78 @@ class _FirewallState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the network of the firewall
+        """
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region where the firewall was create.
+        The Firewall region, if is not defined we use the global defined in the provider
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+
+@pulumi.input_type
+class _FirewallState:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
+        """
+        Input properties used for looking up and filtering Firewall resources.
+        :param pulumi.Input[str] name: The Firewall name
+        :param pulumi.Input[str] network_id: The ID of the network of the firewall
+        :param pulumi.Input[str] region: The Firewall region, if is not defined we use the global defined in the provider
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if network_id is not None:
+            pulumi.set(__self__, "network_id", network_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Firewall name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the network of the firewall
+        """
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Firewall region, if is not defined we use the global defined in the provider
         """
         return pulumi.get(self, "region")
 
@@ -80,6 +128,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a Civo Cloud Firewall resource. This can be used to create,
@@ -93,6 +143,13 @@ class Firewall(pulumi.CustomResource):
 
         www = civo.Firewall("www")
         ```
+        ### Example with region
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        www = civo.Firewall("www", region="NYC1")
+        ```
 
         ## Import
 
@@ -105,6 +162,8 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The Firewall name
+        :param pulumi.Input[str] network_id: The ID of the network of the firewall
+        :param pulumi.Input[str] region: The Firewall region, if is not defined we use the global defined in the provider
         """
         ...
     @overload
@@ -123,6 +182,13 @@ class Firewall(pulumi.CustomResource):
         import pulumi_civo as civo
 
         www = civo.Firewall("www")
+        ```
+        ### Example with region
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        www = civo.Firewall("www", region="NYC1")
         ```
 
         ## Import
@@ -149,6 +215,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -162,7 +230,8 @@ class Firewall(pulumi.CustomResource):
             __props__ = FirewallArgs.__new__(FirewallArgs)
 
             __props__.__dict__["name"] = name
-            __props__.__dict__["region"] = None
+            __props__.__dict__["network_id"] = network_id
+            __props__.__dict__["region"] = region
         super(Firewall, __self__).__init__(
             'civo:index/firewall:Firewall',
             resource_name,
@@ -174,6 +243,7 @@ class Firewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             name: Optional[pulumi.Input[str]] = None,
+            network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Firewall':
         """
         Get an existing Firewall resource's state with the given name, id, and optional extra
@@ -183,13 +253,15 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The Firewall name
-        :param pulumi.Input[str] region: The region where the firewall was create.
+        :param pulumi.Input[str] network_id: The ID of the network of the firewall
+        :param pulumi.Input[str] region: The Firewall region, if is not defined we use the global defined in the provider
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _FirewallState.__new__(_FirewallState)
 
         __props__.__dict__["name"] = name
+        __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region"] = region
         return Firewall(resource_name, opts=opts, __props__=__props__)
 
@@ -202,10 +274,18 @@ class Firewall(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
-    @pulumi.getter
-    def region(self) -> pulumi.Output[str]:
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Output[Optional[str]]:
         """
-        The region where the firewall was create.
+        The ID of the network of the firewall
+        """
+        return pulumi.get(self, "network_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        The Firewall region, if is not defined we use the global defined in the provider
         """
         return pulumi.get(self, "region")
 

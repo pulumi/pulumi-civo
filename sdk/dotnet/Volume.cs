@@ -68,6 +68,12 @@ namespace Pulumi.Civo
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The region for the volume
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
         /// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         /// </summary>
         [Output("sizeGb")]
@@ -132,6 +138,12 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The region for the volume
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         /// </summary>
         [Input("sizeGb", required: true)]
@@ -167,6 +179,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The region for the volume
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .

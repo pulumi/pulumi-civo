@@ -67,7 +67,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly installedApplications!: pulumi.Output<outputs.KubernetesClusterInstalledApplication[]>;
     /**
-     * In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+     * A list of instance inside the pool
      */
     public /*out*/ readonly instances!: pulumi.Output<outputs.KubernetesClusterInstance[]>;
     /**
@@ -87,10 +87,22 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * The network for the cluster, if not declare we use the default one
+     */
+    public readonly networkId!: pulumi.Output<string>;
+    /**
      * The number of instances to create (The default at the time of writing is 3).
      */
-    public readonly numTargetNodes!: pulumi.Output<number | undefined>;
+    public readonly numTargetNodes!: pulumi.Output<number>;
+    /**
+     * A list of node pools associated with the cluster. Each node pool exports the following attributes:
+     */
+    public /*out*/ readonly pools!: pulumi.Output<outputs.KubernetesClusterPool[]>;
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
+    /**
+     * The region for the cluster.
+     */
+    public readonly region!: pulumi.Output<string>;
     /**
      * The status of Kubernetes cluster.
      * * `ready` -If the Kubernetes cluster is ready.
@@ -103,7 +115,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * The size of each node (The default is currently g2.small)
      */
-    public readonly targetNodesSize!: pulumi.Output<string | undefined>;
+    public readonly targetNodesSize!: pulumi.Output<string>;
 
     /**
      * Create a KubernetesCluster resource with the given unique name, arguments, and options.
@@ -129,8 +141,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
             inputs["kubernetesVersion"] = state ? state.kubernetesVersion : undefined;
             inputs["masterIp"] = state ? state.masterIp : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["networkId"] = state ? state.networkId : undefined;
             inputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
+            inputs["pools"] = state ? state.pools : undefined;
             inputs["ready"] = state ? state.ready : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["status"] = state ? state.status : undefined;
             inputs["tags"] = state ? state.tags : undefined;
             inputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
@@ -139,7 +154,9 @@ export class KubernetesCluster extends pulumi.CustomResource {
             inputs["applications"] = args ? args.applications : undefined;
             inputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["networkId"] = args ? args.networkId : undefined;
             inputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["tags"] = args ? args.tags : undefined;
             inputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
             inputs["apiEndpoint"] = undefined /*out*/;
@@ -150,6 +167,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             inputs["instances"] = undefined /*out*/;
             inputs["kubeconfig"] = undefined /*out*/;
             inputs["masterIp"] = undefined /*out*/;
+            inputs["pools"] = undefined /*out*/;
             inputs["ready"] = undefined /*out*/;
             inputs["status"] = undefined /*out*/;
         }
@@ -189,7 +207,7 @@ export interface KubernetesClusterState {
      */
     readonly installedApplications?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstalledApplication>[]>;
     /**
-     * In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+     * A list of instance inside the pool
      */
     readonly instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstance>[]>;
     /**
@@ -209,10 +227,22 @@ export interface KubernetesClusterState {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * The network for the cluster, if not declare we use the default one
+     */
+    readonly networkId?: pulumi.Input<string>;
+    /**
      * The number of instances to create (The default at the time of writing is 3).
      */
     readonly numTargetNodes?: pulumi.Input<number>;
+    /**
+     * A list of node pools associated with the cluster. Each node pool exports the following attributes:
+     */
+    readonly pools?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPool>[]>;
     readonly ready?: pulumi.Input<boolean>;
+    /**
+     * The region for the cluster.
+     */
+    readonly region?: pulumi.Input<string>;
     /**
      * The status of Kubernetes cluster.
      * * `ready` -If the Kubernetes cluster is ready.
@@ -245,9 +275,17 @@ export interface KubernetesClusterArgs {
      */
     readonly name?: pulumi.Input<string>;
     /**
+     * The network for the cluster, if not declare we use the default one
+     */
+    readonly networkId?: pulumi.Input<string>;
+    /**
      * The number of instances to create (The default at the time of writing is 3).
      */
     readonly numTargetNodes?: pulumi.Input<number>;
+    /**
+     * The region for the cluster.
+     */
+    readonly region?: pulumi.Input<string>;
     /**
      * A space separated list of tags, to be used freely as required.
      */

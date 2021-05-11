@@ -75,7 +75,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * This must be the ID of the network from the network listing (optional; default network used when not specified).
      */
-    public readonly networkId!: pulumi.Output<string | undefined>;
+    public readonly networkId!: pulumi.Output<string>;
     /**
      * Add some notes to the instance.
      */
@@ -101,6 +101,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly ramMb!: pulumi.Output<number>;
     /**
+     * The region for the instance, if not declare we use the region in declared in the provider.
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
      */
     public readonly reverseDns!: pulumi.Output<string | undefined>;
@@ -112,6 +116,8 @@ export class Instance extends pulumi.CustomResource {
      * The name of the size, from the current list, e.g. g2.small (required).
      */
     public readonly size!: pulumi.Output<string | undefined>;
+    public /*out*/ readonly sourceId!: pulumi.Output<string>;
+    public /*out*/ readonly sourceType!: pulumi.Output<string>;
     /**
      * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
      */
@@ -156,9 +162,12 @@ export class Instance extends pulumi.CustomResource {
             inputs["publicIp"] = state ? state.publicIp : undefined;
             inputs["publicIpRequired"] = state ? state.publicIpRequired : undefined;
             inputs["ramMb"] = state ? state.ramMb : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["reverseDns"] = state ? state.reverseDns : undefined;
             inputs["script"] = state ? state.script : undefined;
             inputs["size"] = state ? state.size : undefined;
+            inputs["sourceId"] = state ? state.sourceId : undefined;
+            inputs["sourceType"] = state ? state.sourceType : undefined;
             inputs["sshkeyId"] = state ? state.sshkeyId : undefined;
             inputs["status"] = state ? state.status : undefined;
             inputs["tags"] = state ? state.tags : undefined;
@@ -174,6 +183,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["networkId"] = args ? args.networkId : undefined;
             inputs["notes"] = args ? args.notes : undefined;
             inputs["publicIpRequired"] = args ? args.publicIpRequired : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["reverseDns"] = args ? args.reverseDns : undefined;
             inputs["script"] = args ? args.script : undefined;
             inputs["size"] = args ? args.size : undefined;
@@ -188,6 +198,8 @@ export class Instance extends pulumi.CustomResource {
             inputs["pseudoIp"] = undefined /*out*/;
             inputs["publicIp"] = undefined /*out*/;
             inputs["ramMb"] = undefined /*out*/;
+            inputs["sourceId"] = undefined /*out*/;
+            inputs["sourceType"] = undefined /*out*/;
             inputs["status"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -258,6 +270,10 @@ export interface InstanceState {
      */
     readonly ramMb?: pulumi.Input<number>;
     /**
+     * The region for the instance, if not declare we use the region in declared in the provider.
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
      */
     readonly reverseDns?: pulumi.Input<string>;
@@ -269,6 +285,8 @@ export interface InstanceState {
      * The name of the size, from the current list, e.g. g2.small (required).
      */
     readonly size?: pulumi.Input<string>;
+    readonly sourceId?: pulumi.Input<string>;
+    readonly sourceType?: pulumi.Input<string>;
     /**
      * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
      */
@@ -315,6 +333,10 @@ export interface InstanceArgs {
      * This should be either false, true or `move_ip_from:intances_id`.
      */
     readonly publicIpRequired?: pulumi.Input<string>;
+    /**
+     * The region for the instance, if not declare we use the region in declared in the provider.
+     */
+    readonly region?: pulumi.Input<string>;
     /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
      */

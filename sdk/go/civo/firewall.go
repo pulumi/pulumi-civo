@@ -33,6 +33,27 @@ import (
 // 	})
 // }
 // ```
+// ### Example with region
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := civo.NewFirewall(ctx, "www", &civo.FirewallArgs{
+// 			Region: pulumi.String("NYC1"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 //
 // ## Import
 //
@@ -46,8 +67,10 @@ type Firewall struct {
 
 	// The Firewall name
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The region where the firewall was create.
-	Region pulumi.StringOutput `pulumi:"region"`
+	// The ID of the network of the firewall
+	NetworkId pulumi.StringPtrOutput `pulumi:"networkId"`
+	// The Firewall region, if is not defined we use the global defined in the provider
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewFirewall registers a new resource with the given unique name, arguments, and options.
@@ -81,14 +104,18 @@ func GetFirewall(ctx *pulumi.Context,
 type firewallState struct {
 	// The Firewall name
 	Name *string `pulumi:"name"`
-	// The region where the firewall was create.
+	// The ID of the network of the firewall
+	NetworkId *string `pulumi:"networkId"`
+	// The Firewall region, if is not defined we use the global defined in the provider
 	Region *string `pulumi:"region"`
 }
 
 type FirewallState struct {
 	// The Firewall name
 	Name pulumi.StringPtrInput
-	// The region where the firewall was create.
+	// The ID of the network of the firewall
+	NetworkId pulumi.StringPtrInput
+	// The Firewall region, if is not defined we use the global defined in the provider
 	Region pulumi.StringPtrInput
 }
 
@@ -99,12 +126,20 @@ func (FirewallState) ElementType() reflect.Type {
 type firewallArgs struct {
 	// The Firewall name
 	Name *string `pulumi:"name"`
+	// The ID of the network of the firewall
+	NetworkId *string `pulumi:"networkId"`
+	// The Firewall region, if is not defined we use the global defined in the provider
+	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
 	// The Firewall name
 	Name pulumi.StringPtrInput
+	// The ID of the network of the firewall
+	NetworkId pulumi.StringPtrInput
+	// The Firewall region, if is not defined we use the global defined in the provider
+	Region pulumi.StringPtrInput
 }
 
 func (FirewallArgs) ElementType() reflect.Type {

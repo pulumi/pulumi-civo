@@ -74,7 +74,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * The region where the network was create.
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    public readonly region!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Network resource with the given unique name, arguments, and options.
@@ -100,10 +100,10 @@ export class Network extends pulumi.CustomResource {
                 throw new Error("Missing required property 'label'");
             }
             inputs["label"] = args ? args.label : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["cidr"] = undefined /*out*/;
             inputs["default"] = undefined /*out*/;
             inputs["name"] = undefined /*out*/;
-            inputs["region"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -146,4 +146,8 @@ export interface NetworkArgs {
      * The Network label
      */
     readonly label: pulumi.Input<string>;
+    /**
+     * The region where the network was create.
+     */
+    readonly region?: pulumi.Input<string>;
 }

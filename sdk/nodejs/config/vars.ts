@@ -6,4 +6,5 @@ import * as utilities from "../utilities";
 
 let __config = new pulumi.Config("civo");
 
+export let region: string | undefined = __config.get("region");
 export let token: string | undefined = __config.get("token");

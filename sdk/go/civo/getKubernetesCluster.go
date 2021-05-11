@@ -76,7 +76,8 @@ type LookupKubernetesClusterArgs struct {
 	// The ID of the kubernetes Cluster
 	Id *string `pulumi:"id"`
 	// The name of the kubernetes Cluster.
-	Name *string `pulumi:"name"`
+	Name   *string `pulumi:"name"`
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getKubernetesCluster.
@@ -91,11 +92,11 @@ type LookupKubernetesClusterResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.
 	DnsEntry string `pulumi:"dnsEntry"`
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// The ID of the pool
 	Id *string `pulumi:"id"`
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications []GetKubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+	// A list of instance inside the pool
 	Instances []GetKubernetesClusterInstance `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig string `pulumi:"kubeconfig"`
@@ -106,8 +107,11 @@ type LookupKubernetesClusterResult struct {
 	// The name of your cluster,.
 	Name *string `pulumi:"name"`
 	// The size of the Kubernetes cluster.
-	NumTargetNodes int  `pulumi:"numTargetNodes"`
-	Ready          bool `pulumi:"ready"`
+	NumTargetNodes int `pulumi:"numTargetNodes"`
+	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+	Pools  []GetKubernetesClusterPool `pulumi:"pools"`
+	Ready  bool                       `pulumi:"ready"`
+	Region *string                    `pulumi:"region"`
 	// The status of Kubernetes cluster.
 	// * `ready` -If the Kubernetes cluster is ready.
 	Status string `pulumi:"status"`

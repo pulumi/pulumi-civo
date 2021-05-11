@@ -45,6 +45,9 @@ namespace Pulumi.Civo
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         [Input("token")]
         public Input<string>? Token { get; set; }
 

@@ -18,11 +18,11 @@ func LookupTemplate(ctx *pulumi.Context, args *LookupTemplateArgs, opts ...pulum
 
 // A collection of arguments for invoking getTemplate.
 type LookupTemplateArgs struct {
-	// Filter the results.
-	// The `filter` block is documented below.
+	// Filter the results. The `filter` block is documented below.
 	Filters []GetTemplateFilter `pulumi:"filters"`
-	// Sort the results.
-	// The `sort` block is documented below.
+	// If is used, them all instances will be from that region.
+	Region *string `pulumi:"region"`
+	// Sort the results. The `sort` block is documented below.
 	Sorts []GetTemplateSort `pulumi:"sorts"`
 }
 
@@ -31,6 +31,7 @@ type LookupTemplateResult struct {
 	Filters []GetTemplateFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string                `pulumi:"id"`
+	Region    *string               `pulumi:"region"`
 	Sorts     []GetTemplateSort     `pulumi:"sorts"`
 	Templates []GetTemplateTemplate `pulumi:"templates"`
 }

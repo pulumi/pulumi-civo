@@ -12,12 +12,18 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetKubernetesVersionFilterArgs : Pulumi.InvokeArgs
     {
+        [Input("all")]
+        public bool? All { get; set; }
+
         /// <summary>
         /// Filter the sizes by this key. This may be one of `version`,
         /// `label`, `type`, `default`.
         /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
+
+        [Input("matchBy")]
+        public string? MatchBy { get; set; }
 
         [Input("values", required: true)]
         private List<string>? _values;

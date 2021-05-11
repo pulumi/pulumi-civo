@@ -70,7 +70,7 @@ namespace Pulumi.Civo
         /// This must be the ID of the network from the network listing (optional; default network used when not specified).
         /// </summary>
         [Output("networkId")]
-        public Output<string?> NetworkId { get; private set; } = null!;
+        public Output<string> NetworkId { get; private set; } = null!;
 
         /// <summary>
         /// Add some notes to the instance.
@@ -109,6 +109,12 @@ namespace Pulumi.Civo
         public Output<int> RamMb { get; private set; } = null!;
 
         /// <summary>
+        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         /// </summary>
         [Output("reverseDns")]
@@ -125,6 +131,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("size")]
         public Output<string?> Size { get; private set; } = null!;
+
+        [Output("sourceId")]
+        public Output<string> SourceId { get; private set; } = null!;
+
+        [Output("sourceType")]
+        public Output<string> SourceType { get; private set; } = null!;
 
         /// <summary>
         /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
@@ -231,6 +243,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
+
+        /// <summary>
+        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -366,6 +384,12 @@ namespace Pulumi.Civo
         public Input<int>? RamMb { get; set; }
 
         /// <summary>
+        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         /// </summary>
         [Input("reverseDns")]
@@ -382,6 +406,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
+
+        [Input("sourceId")]
+        public Input<string>? SourceId { get; set; }
+
+        [Input("sourceType")]
+        public Input<string>? SourceType { get; set; }
 
         /// <summary>
         /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).

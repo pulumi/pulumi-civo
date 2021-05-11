@@ -21,7 +21,8 @@ type LookupLoadBalancerArgs struct {
 	// The hostname of the Load Balancer.
 	Hostname *string `pulumi:"hostname"`
 	// The ID of the Load Balancer.
-	Id *string `pulumi:"id"`
+	Id     *string `pulumi:"id"`
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getLoadBalancer.
@@ -47,7 +48,8 @@ type LookupLoadBalancerResult struct {
 	// The port set in the configuration.
 	Port int `pulumi:"port"`
 	// The protocol used in the configuration.
-	Protocol string `pulumi:"protocol"`
+	Protocol string  `pulumi:"protocol"`
+	Region   *string `pulumi:"region"`
 	// If is set will be returned
 	TlsCertificate string `pulumi:"tlsCertificate"`
 	// If is set will be returned

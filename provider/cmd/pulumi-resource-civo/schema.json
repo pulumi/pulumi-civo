@@ -14,6 +14,9 @@
     },
     "config": {
         "variables": {
+            "region": {
+                "type": "string"
+            },
             "token": {
                 "type": "string"
             }
@@ -82,27 +85,9 @@
                         }
                     }
                 },
-                "createdAt": {
-                    "type": "string",
-                    "description": "The date where the Kubernetes cluster was create.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "diskGb": {
                     "type": "integer",
                     "description": "The size of the disk.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "firewallId": {
-                    "type": "string",
-                    "description": "The firewall id assigned to the instance\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -118,27 +103,9 @@
                         }
                     }
                 },
-                "publicIp": {
-                    "type": "string",
-                    "description": "The public ip of the instances, only available if the instances is the master\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "ramMb": {
                     "type": "integer",
-                    "description": "Total ram of the instance.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "region": {
-                    "type": "string",
-                    "description": "The region where instance are.\n",
+                    "description": "Total ram of the instance\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -181,13 +148,160 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "cpuCores",
-                        "createdAt",
                         "diskGb",
-                        "firewallId",
                         "hostname",
-                        "publicIp",
                         "ramMb",
-                        "region",
+                        "size",
+                        "status",
+                        "tags"
+                    ]
+                }
+            }
+        },
+        "civo:index/KubernetesClusterPool:KubernetesClusterPool": {
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "description": "The size of the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instanceNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the instance in the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/KubernetesClusterPoolInstance:KubernetesClusterPoolInstance"
+                    },
+                    "description": "A list of instance inside the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "count",
+                        "id",
+                        "instanceNames",
+                        "instances",
+                        "size"
+                    ]
+                }
+            }
+        },
+        "civo:index/KubernetesClusterPoolInstance:KubernetesClusterPoolInstance": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A space separated list of tags, to be used freely as required.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "cpuCores",
+                        "diskGb",
+                        "hostname",
+                        "ramMb",
                         "size",
                         "status",
                         "tags"
@@ -231,9 +345,25 @@
         },
         "civo:index/getInstancesFilter:getInstancesFilter": {
             "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "key": {
                     "type": "string",
                     "description": "Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,\n`pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -387,6 +517,15 @@
                         }
                     }
                 },
+                "region": {
+                    "type": "string",
+                    "description": "If is used, them all instances will be from that region.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "reverseDns": {
                     "type": "string",
                     "description": "A fully qualified domain name.\n",
@@ -470,6 +609,7 @@
                 "pseudoIp",
                 "publicIp",
                 "ramMb",
+                "region",
                 "reverseDns",
                 "script",
                 "size",
@@ -486,7 +626,23 @@
         },
         "civo:index/getInstancesSizeFilter:getInstancesSizeFilter": {
             "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
                     "type": "string",
                     "language": {
                         "python": {
@@ -514,7 +670,7 @@
         },
         "civo:index/getInstancesSizeSize:getInstancesSizeSize": {
             "properties": {
-                "cpuCores": {
+                "cpu": {
                     "type": "integer",
                     "language": {
                         "python": {
@@ -530,7 +686,7 @@
                         }
                     }
                 },
-                "diskGb": {
+                "disk": {
                     "type": "integer",
                     "language": {
                         "python": {
@@ -546,15 +702,7 @@
                         }
                     }
                 },
-                "niceName": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "ramMb": {
+                "ram": {
                     "type": "integer",
                     "language": {
                         "python": {
@@ -569,17 +717,25 @@
                             "mapCase": false
                         }
                     }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
-                "cpuCores",
+                "cpu",
                 "description",
-                "diskGb",
+                "disk",
                 "name",
-                "niceName",
-                "ramMb",
-                "selectable"
+                "ram",
+                "selectable",
+                "type"
             ],
             "language": {
                 "nodejs": {
@@ -700,27 +856,9 @@
                         }
                     }
                 },
-                "createdAt": {
-                    "type": "string",
-                    "description": "The date where the Kubernetes cluster was create.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "diskGb": {
                     "type": "integer",
                     "description": "The size of the disk.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "firewallId": {
-                    "type": "string",
-                    "description": "The firewall id assigned to the instance\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -736,27 +874,9 @@
                         }
                     }
                 },
-                "publicIp": {
-                    "type": "string",
-                    "description": "The public ip of the instances, only available if the instances is the master\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "ramMb": {
                     "type": "integer",
                     "description": "Total ram of the instance\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "region": {
-                    "type": "string",
-                    "description": "The region where instance are.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -797,13 +917,162 @@
             "type": "object",
             "required": [
                 "cpuCores",
-                "createdAt",
                 "diskGb",
-                "firewallId",
                 "hostname",
-                "publicIp",
                 "ramMb",
-                "region",
+                "size",
+                "status",
+                "tags"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getKubernetesClusterPool:getKubernetesClusterPool": {
+            "properties": {
+                "count": {
+                    "type": "integer",
+                    "description": "The size of the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "description": "The ID of the kubernetes Cluster\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instanceNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "A list of the instance in the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "instances": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/getKubernetesClusterPoolInstance:getKubernetesClusterPoolInstance"
+                    },
+                    "description": "A list of instance inside the pool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "count",
+                "id",
+                "instanceNames",
+                "instances",
+                "size"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getKubernetesClusterPoolInstance:getKubernetesClusterPoolInstance": {
+            "properties": {
+                "cpuCores": {
+                    "type": "integer",
+                    "description": "Total cpu of the inatance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskGb": {
+                    "type": "integer",
+                    "description": "The size of the disk.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "hostname": {
+                    "type": "string",
+                    "description": "The hostname of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ramMb": {
+                    "type": "integer",
+                    "description": "Total ram of the instance\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "size": {
+                    "type": "string",
+                    "description": "The size of the instance.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of Kubernetes cluster.\n* `ready` -If the Kubernetes cluster is ready.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "The tag of the instances\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpuCores",
+                "diskGb",
+                "hostname",
+                "ramMb",
                 "size",
                 "status",
                 "tags"
@@ -816,9 +1085,25 @@
         },
         "civo:index/getKubernetesVersionFilter:getKubernetesVersionFilter": {
             "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "key": {
                     "type": "string",
                     "description": "Filter the sizes by this key. This may be one of `version`,\n`label`, `type`, `default`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -966,9 +1251,25 @@
         },
         "civo:index/getTemplateFilter:getTemplateFilter": {
             "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "key": {
                     "type": "string",
-                    "description": "Filter the sizes by this key. This may be one of `code`,\n`name`.\n",
+                    "description": "Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1007,7 +1308,7 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "Sort the sizes by this key. This may be one of `code`, \n`name`.\n",
+                    "description": "Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1022,42 +1323,6 @@
         },
         "civo:index/getTemplateTemplate:getTemplateTemplate": {
             "properties": {
-                "cloudConfig": {
-                    "type": "string",
-                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "code": {
-                    "type": "string",
-                    "description": "A unqiue, alphanumerical, short, human readable code for the template.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "defaultUsername": {
-                    "type": "string",
-                    "description": "The default username to suggest that the user creates\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A multi-line description of the template, in Markdown format\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "id": {
                     "type": "string",
                     "description": "The id of the template\n",
@@ -1067,9 +1332,9 @@
                         }
                     }
                 },
-                "imageId": {
+                "label": {
                     "type": "string",
-                    "description": "The Image ID of any default template or the ID of another template.\n",
+                    "description": "The label of the template.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1085,18 +1350,9 @@
                         }
                     }
                 },
-                "shortDescription": {
+                "version": {
                     "type": "string",
-                    "description": "A one line description of the template\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "volumeId": {
-                    "type": "string",
-                    "description": "The ID of a bootable volume, either owned by you or global.\n",
+                    "description": "The version of the template.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1106,15 +1362,10 @@
             },
             "type": "object",
             "required": [
-                "cloudConfig",
-                "code",
-                "defaultUsername",
-                "description",
                 "id",
-                "imageId",
+                "label",
                 "name",
-                "shortDescription",
-                "volumeId"
+                "version"
             ],
             "language": {
                 "nodejs": {
@@ -1126,6 +1377,9 @@
     "provider": {
         "description": "The provider type for the civo package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "inputProperties": {
+            "region": {
+                "type": "string"
+            },
             "token": {
                 "type": "string"
             }
@@ -1295,25 +1549,36 @@
             }
         },
         "civo:index/firewall:Firewall": {
-            "description": "Provides a Civo Cloud Firewall resource. This can be used to create,\nmodify, and delete Firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst www = new civo.Firewall(\"www\", {});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nwww = civo.Firewall(\"www\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewFirewall(ctx, \"www\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFirewalls can be imported using the firewall `id`, e.g.\n\n```sh\n $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
+            "description": "Provides a Civo Cloud Firewall resource. This can be used to create,\nmodify, and delete Firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst www = new civo.Firewall(\"www\", {});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nwww = civo.Firewall(\"www\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewFirewall(ctx, \"www\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% example %}}\n### Example with region\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst www = new civo.Firewall(\"www\", {\n    region: \"NYC1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nwww = civo.Firewall(\"www\", region=\"NYC1\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n            Region = \"NYC1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewFirewall(ctx, \"www\", \u0026civo.FirewallArgs{\n\t\t\tRegion: pulumi.String(\"NYC1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFirewalls can be imported using the firewall `id`, e.g.\n\n```sh\n $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
             "properties": {
                 "name": {
                     "type": "string",
                     "description": "The Firewall name\n"
                 },
+                "networkId": {
+                    "type": "string",
+                    "description": "The ID of the network of the firewall\n"
+                },
                 "region": {
                     "type": "string",
-                    "description": "The region where the firewall was create.\n"
+                    "description": "The Firewall region, if is not defined we use the global defined in the provider\n"
                 }
             },
             "required": [
-                "name",
-                "region"
+                "name"
             ],
             "inputProperties": {
                 "name": {
                     "type": "string",
                     "description": "The Firewall name\n"
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "The ID of the network of the firewall\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The Firewall region, if is not defined we use the global defined in the provider\n"
                 }
             },
             "stateInputs": {
@@ -1323,9 +1588,13 @@
                         "type": "string",
                         "description": "The Firewall name\n"
                     },
+                    "networkId": {
+                        "type": "string",
+                        "description": "The ID of the network of the firewall\n"
+                    },
                     "region": {
                         "type": "string",
-                        "description": "The region where the firewall was create.\n"
+                        "description": "The Firewall region, if is not defined we use the global defined in the provider\n"
                     }
                 },
                 "type": "object"
@@ -1360,6 +1629,10 @@
                 "protocol": {
                     "type": "string",
                     "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for this rule\n"
                 },
                 "startPort": {
                     "type": "string",
@@ -1401,6 +1674,10 @@
                 "protocol": {
                     "type": "string",
                     "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for this rule\n"
                 },
                 "startPort": {
                     "type": "string",
@@ -1444,6 +1721,10 @@
                     "protocol": {
                         "type": "string",
                         "description": "This may be one of \"tcp\", \"udp\", or \"icmp\".\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region for this rule\n"
                     },
                     "startPort": {
                         "type": "string",
@@ -1512,6 +1793,10 @@
                     "type": "integer",
                     "description": "Total ram of the instance.\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the instance, if not declare we use the region in declared in the provider.\n"
+                },
                 "reverseDns": {
                     "type": "string",
                     "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).\n"
@@ -1523,6 +1808,12 @@
                 "size": {
                     "type": "string",
                     "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                },
+                "sourceId": {
+                    "type": "string"
+                },
+                "sourceType": {
+                    "type": "string"
                 },
                 "sshkeyId": {
                     "type": "string",
@@ -1550,10 +1841,13 @@
                 "diskGb",
                 "hostname",
                 "initialPassword",
+                "networkId",
                 "privateIp",
                 "pseudoIp",
                 "publicIp",
                 "ramMb",
+                "sourceId",
+                "sourceType",
                 "status"
             ],
             "inputProperties": {
@@ -1580,6 +1874,10 @@
                 "publicIpRequired": {
                     "type": "string",
                     "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the instance, if not declare we use the region in declared in the provider.\n"
                 },
                 "reverseDns": {
                     "type": "string",
@@ -1671,6 +1969,10 @@
                         "type": "integer",
                         "description": "Total ram of the instance.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region for the instance, if not declare we use the region in declared in the provider.\n"
+                    },
                     "reverseDns": {
                         "type": "string",
                         "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).\n"
@@ -1682,6 +1984,12 @@
                     "size": {
                         "type": "string",
                         "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    },
+                    "sourceId": {
+                        "type": "string"
+                    },
+                    "sourceType": {
+                        "type": "string"
                     },
                     "sshkeyId": {
                         "type": "string",
@@ -1741,7 +2049,7 @@
                     "items": {
                         "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
                     },
-                    "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                    "description": "A list of instance inside the pool\n"
                 },
                 "kubeconfig": {
                     "type": "string",
@@ -1759,12 +2067,27 @@
                     "type": "string",
                     "description": "A name for the Kubernetes cluster.\n"
                 },
+                "networkId": {
+                    "type": "string",
+                    "description": "The network for the cluster, if not declare we use the default one\n"
+                },
                 "numTargetNodes": {
                     "type": "integer",
                     "description": "The number of instances to create (The default at the time of writing is 3).\n"
                 },
+                "pools": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/KubernetesClusterPool:KubernetesClusterPool"
+                    },
+                    "description": "A list of node pools associated with the cluster. Each node pool exports the following attributes:\n"
+                },
                 "ready": {
                     "type": "boolean"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the cluster.\n"
                 },
                 "status": {
                     "type": "string",
@@ -1790,8 +2113,13 @@
                 "kubernetesVersion",
                 "masterIp",
                 "name",
+                "networkId",
+                "numTargetNodes",
+                "pools",
                 "ready",
-                "status"
+                "region",
+                "status",
+                "targetNodesSize"
             ],
             "inputProperties": {
                 "applications": {
@@ -1806,9 +2134,17 @@
                     "type": "string",
                     "description": "A name for the Kubernetes cluster.\n"
                 },
+                "networkId": {
+                    "type": "string",
+                    "description": "The network for the cluster, if not declare we use the default one\n"
+                },
                 "numTargetNodes": {
                     "type": "integer",
                     "description": "The number of instances to create (The default at the time of writing is 3).\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the cluster.\n"
                 },
                 "tags": {
                     "type": "string",
@@ -1854,7 +2190,7 @@
                         "items": {
                             "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
                         },
-                        "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                        "description": "A list of instance inside the pool\n"
                     },
                     "kubeconfig": {
                         "type": "string",
@@ -1872,12 +2208,27 @@
                         "type": "string",
                         "description": "A name for the Kubernetes cluster.\n"
                     },
+                    "networkId": {
+                        "type": "string",
+                        "description": "The network for the cluster, if not declare we use the default one\n"
+                    },
                     "numTargetNodes": {
                         "type": "integer",
                         "description": "The number of instances to create (The default at the time of writing is 3).\n"
                     },
+                    "pools": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/KubernetesClusterPool:KubernetesClusterPool"
+                        },
+                        "description": "A list of node pools associated with the cluster. Each node pool exports the following attributes:\n"
+                    },
                     "ready": {
                         "type": "boolean"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region for the cluster.\n"
                     },
                     "status": {
                         "type": "string",
@@ -2108,13 +2459,16 @@
                 "cidr",
                 "default",
                 "label",
-                "name",
-                "region"
+                "name"
             ],
             "inputProperties": {
                 "label": {
                     "type": "string",
                     "description": "The Network label\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the network was create.\n"
                 }
             },
             "requiredInputs": [
@@ -2475,6 +2829,10 @@
                     "type": "string",
                     "description": "A name that you wish to use to refer to this volume .\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the volume\n"
+                },
                 "sizeGb": {
                     "type": "integer",
                     "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
@@ -2495,6 +2853,10 @@
                 "name": {
                     "type": "string",
                     "description": "A name that you wish to use to refer to this volume .\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the volume\n"
                 },
                 "sizeGb": {
                     "type": "integer",
@@ -2523,6 +2885,10 @@
                     "name": {
                         "type": "string",
                         "description": "A name that you wish to use to refer to this volume .\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region for the volume\n"
                     },
                     "sizeGb": {
                         "type": "integer",
@@ -2698,6 +3064,10 @@
                     "id": {
                         "type": "string",
                         "description": "The ID of the Instance\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of an existing Instance.\n"
                     }
                 },
                 "type": "object"
@@ -2760,6 +3130,10 @@
                     "ramMb": {
                         "type": "integer",
                         "description": "Total ram of the instance.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of the instance\n"
                     },
                     "reverseDns": {
                         "type": "string",
@@ -2826,14 +3200,18 @@
                         "items": {
                             "$ref": "#/types/civo:index/getInstancesFilter:getInstancesFilter"
                         },
-                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                        "description": "Filter the results. The `filter` block is documented below.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "If is used, them all instances will be from that region.\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/civo:index/getInstancesSort:getInstancesSort"
                         },
-                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                        "description": "Sort the results. The `sort` block is documented below.\n"
                     }
                 },
                 "type": "object"
@@ -2857,6 +3235,9 @@
                             "$ref": "#/types/civo:index/getInstancesInstance:getInstancesInstance"
                         },
                         "description": "A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:\n"
+                    },
+                    "region": {
+                        "type": "string"
                     },
                     "sorts": {
                         "type": "array",
@@ -2936,6 +3317,9 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the kubernetes Cluster.\n"
+                    },
+                    "region": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -2965,7 +3349,7 @@
                     },
                     "id": {
                         "type": "string",
-                        "description": "A unique ID that can be used to identify and reference a Kubernetes cluster.\n"
+                        "description": "The ID of the pool\n"
                     },
                     "installedApplications": {
                         "type": "array",
@@ -2979,7 +3363,7 @@
                         "items": {
                             "$ref": "#/types/civo:index/getKubernetesClusterInstance:getKubernetesClusterInstance"
                         },
-                        "description": "In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.\n"
+                        "description": "A list of instance inside the pool\n"
                     },
                     "kubeconfig": {
                         "type": "string",
@@ -3001,8 +3385,18 @@
                         "type": "integer",
                         "description": "The size of the Kubernetes cluster.\n"
                     },
+                    "pools": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getKubernetesClusterPool:getKubernetesClusterPool"
+                        },
+                        "description": "A list of node pools associated with the cluster. Each node pool exports the following attributes:\n"
+                    },
                     "ready": {
                         "type": "boolean"
+                    },
+                    "region": {
+                        "type": "string"
                     },
                     "status": {
                         "type": "string",
@@ -3030,6 +3424,7 @@
                     "kubernetesVersion",
                     "masterIp",
                     "numTargetNodes",
+                    "pools",
                     "ready",
                     "status",
                     "tags",
@@ -3103,6 +3498,9 @@
                     "id": {
                         "type": "string",
                         "description": "The ID of the Load Balancer.\n"
+                    },
+                    "region": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -3157,6 +3555,9 @@
                         "type": "string",
                         "description": "The protocol used in the configuration.\n"
                     },
+                    "region": {
+                        "type": "string"
+                    },
                     "tlsCertificate": {
                         "type": "string",
                         "description": "If is set will be returned\n"
@@ -3192,7 +3593,11 @@
                     },
                     "label": {
                         "type": "string",
-                        "description": "The name of an existing Network.\n"
+                        "description": "The label of an existing Network.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of an existing Network.\n"
                     }
                 },
                 "type": "object"
@@ -3221,16 +3626,14 @@
                         "description": "The name of the network.\n"
                     },
                     "region": {
-                        "type": "string",
-                        "description": "The region where the network was create.\n"
+                        "type": "string"
                     }
                 },
                 "type": "object",
                 "required": [
                     "cidr",
                     "default",
-                    "name",
-                    "region"
+                    "name"
                 ]
             }
         },
@@ -3364,14 +3767,18 @@
                         "items": {
                             "$ref": "#/types/civo:index/getTemplateFilter:getTemplateFilter"
                         },
-                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                        "description": "Filter the results. The `filter` block is documented below.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "If is used, them all instances will be from that region.\n"
                     },
                     "sorts": {
                         "type": "array",
                         "items": {
                             "$ref": "#/types/civo:index/getTemplateSort:getTemplateSort"
                         },
-                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                        "description": "Sort the results. The `sort` block is documented below.\n"
                     }
                 },
                 "type": "object"
@@ -3388,6 +3795,9 @@
                     "id": {
                         "type": "string",
                         "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string"
                     },
                     "sorts": {
                         "type": "array",
@@ -3420,6 +3830,9 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the volume.\n"
+                    },
+                    "region": {
+                        "type": "string"
                     }
                 },
                 "type": "object"
@@ -3447,6 +3860,9 @@
                         "type": "string",
                         "description": "Name of the volume.\n"
                     },
+                    "region": {
+                        "type": "string"
+                    },
                     "sizeGb": {
                         "type": "integer",
                         "description": "The size of the volume.\n"
@@ -3469,7 +3885,7 @@
                 "civo": "Civo"
             },
             "packageReferences": {
-                "Pulumi": "3.*-*",
+                "Pulumi": "3.*",
                 "System.Collections.Immutable": "1.6.0"
             }
         },
@@ -3480,7 +3896,7 @@
         "nodejs": {
             "compatibility": "tfbridge20",
             "dependencies": {
-                "@pulumi/pulumi": "^3.0.0-alpha.0"
+                "@pulumi/pulumi": "^3.0.0"
             },
             "devDependencies": {
                 "@types/mime": "^2.0.0",
@@ -3496,7 +3912,7 @@
             "compatibility": "tfbridge20",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi/pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`civo/terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
             "requires": {
-                "pulumi": "\u003e=3.0.0a1,\u003c4.0.0"
+                "pulumi": "\u003e=3.0.0,\u003c4.0.0"
             }
         }
     }

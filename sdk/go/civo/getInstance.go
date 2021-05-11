@@ -22,6 +22,8 @@ type LookupInstanceArgs struct {
 	Hostname *string `pulumi:"hostname"`
 	// The ID of the Instance
 	Id *string `pulumi:"id"`
+	// The region of an existing Instance.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getInstance.
@@ -54,6 +56,8 @@ type LookupInstanceResult struct {
 	PublicIp string `pulumi:"publicIp"`
 	// Total ram of the instance.
 	RamMb int `pulumi:"ramMb"`
+	// The region of the instance
+	Region *string `pulumi:"region"`
 	// A fully qualified domain name.
 	ReverseDns string `pulumi:"reverseDns"`
 	// the contents of a script uploaded

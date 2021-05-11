@@ -21,7 +21,8 @@ type LookupVolumeArgs struct {
 	// The unique identifier for the volume.
 	Id *string `pulumi:"id"`
 	// The name of the volume.
-	Name *string `pulumi:"name"`
+	Name   *string `pulumi:"name"`
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getVolume.
@@ -35,7 +36,8 @@ type LookupVolumeResult struct {
 	// The mount point of the volume.
 	MountPoint string `pulumi:"mountPoint"`
 	// Name of the volume.
-	Name *string `pulumi:"name"`
+	Name   *string `pulumi:"name"`
+	Region *string `pulumi:"region"`
 	// The size of the volume.
 	SizeGb int `pulumi:"sizeGb"`
 }

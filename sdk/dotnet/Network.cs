@@ -71,7 +71,7 @@ namespace Pulumi.Civo
         /// The region where the network was create.
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>
@@ -124,6 +124,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
+
+        /// <summary>
+        /// The region where the network was create.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         public NetworkArgs()
         {

@@ -48,6 +48,7 @@ export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pul
     return pulumi.runtime.invoke("civo:index/getKubernetesCluster:getKubernetesCluster", {
         "id": args.id,
         "name": args.name,
+        "region": args.region,
     }, opts);
 }
 
@@ -63,6 +64,7 @@ export interface GetKubernetesClusterArgs {
      * The name of the kubernetes Cluster.
      */
     readonly name?: string;
+    readonly region?: string;
 }
 
 /**
@@ -90,7 +92,7 @@ export interface GetKubernetesClusterResult {
      */
     readonly dnsEntry: string;
     /**
-     * A unique ID that can be used to identify and reference a Kubernetes cluster.
+     * The ID of the pool
      */
     readonly id?: string;
     /**
@@ -98,7 +100,7 @@ export interface GetKubernetesClusterResult {
      */
     readonly installedApplications: outputs.GetKubernetesClusterInstalledApplication[];
     /**
-     * In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+     * A list of instance inside the pool
      */
     readonly instances: outputs.GetKubernetesClusterInstance[];
     /**
@@ -121,7 +123,12 @@ export interface GetKubernetesClusterResult {
      * The size of the Kubernetes cluster.
      */
     readonly numTargetNodes: number;
+    /**
+     * A list of node pools associated with the cluster. Each node pool exports the following attributes:
+     */
+    readonly pools: outputs.GetKubernetesClusterPool[];
     readonly ready: boolean;
+    readonly region?: string;
     /**
      * The status of Kubernetes cluster.
      * * `ready` -If the Kubernetes cluster is ready.

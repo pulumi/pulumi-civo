@@ -20,7 +20,7 @@ class GetLoadBalancerResult:
     """
     A collection of values returned by getLoadBalancer.
     """
-    def __init__(__self__, backends=None, fail_timeout=None, health_check_path=None, hostname=None, id=None, ignore_invalid_backend_tls=None, max_conns=None, max_request_size=None, policy=None, port=None, protocol=None, tls_certificate=None, tls_key=None):
+    def __init__(__self__, backends=None, fail_timeout=None, health_check_path=None, hostname=None, id=None, ignore_invalid_backend_tls=None, max_conns=None, max_request_size=None, policy=None, port=None, protocol=None, region=None, tls_certificate=None, tls_key=None):
         if backends and not isinstance(backends, list):
             raise TypeError("Expected argument 'backends' to be a list")
         pulumi.set(__self__, "backends", backends)
@@ -54,6 +54,9 @@ class GetLoadBalancerResult:
         if protocol and not isinstance(protocol, str):
             raise TypeError("Expected argument 'protocol' to be a str")
         pulumi.set(__self__, "protocol", protocol)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if tls_certificate and not isinstance(tls_certificate, str):
             raise TypeError("Expected argument 'tls_certificate' to be a str")
         pulumi.set(__self__, "tls_certificate", tls_certificate)
@@ -150,6 +153,11 @@ class GetLoadBalancerResult:
         return pulumi.get(self, "protocol")
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+    @property
     @pulumi.getter(name="tlsCertificate")
     def tls_certificate(self) -> str:
         """
@@ -183,12 +191,14 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             policy=self.policy,
             port=self.port,
             protocol=self.protocol,
+            region=self.region,
             tls_certificate=self.tls_certificate,
             tls_key=self.tls_key)
 
 
 def get_load_balancer(hostname: Optional[str] = None,
                       id: Optional[str] = None,
+                      region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Use this data source to access information about an existing resource.
@@ -199,6 +209,7 @@ def get_load_balancer(hostname: Optional[str] = None,
     __args__ = dict()
     __args__['hostname'] = hostname
     __args__['id'] = id
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -217,5 +228,6 @@ def get_load_balancer(hostname: Optional[str] = None,
         policy=__ret__.policy,
         port=__ret__.port,
         protocol=__ret__.protocol,
+        region=__ret__.region,
         tls_certificate=__ret__.tls_certificate,
         tls_key=__ret__.tls_key)

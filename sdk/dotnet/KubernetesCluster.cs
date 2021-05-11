@@ -58,7 +58,7 @@ namespace Pulumi.Civo
         public Output<ImmutableArray<Outputs.KubernetesClusterInstalledApplication>> InstalledApplications { get; private set; } = null!;
 
         /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        /// A list of instance inside the pool
         /// </summary>
         [Output("instances")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstance>> Instances { get; private set; } = null!;
@@ -88,13 +88,31 @@ namespace Pulumi.Civo
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// The network for the cluster, if not declare we use the default one
+        /// </summary>
+        [Output("networkId")]
+        public Output<string> NetworkId { get; private set; } = null!;
+
+        /// <summary>
         /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Output("numTargetNodes")]
-        public Output<int?> NumTargetNodes { get; private set; } = null!;
+        public Output<int> NumTargetNodes { get; private set; } = null!;
+
+        /// <summary>
+        /// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+        /// </summary>
+        [Output("pools")]
+        public Output<ImmutableArray<Outputs.KubernetesClusterPool>> Pools { get; private set; } = null!;
 
         [Output("ready")]
         public Output<bool> Ready { get; private set; } = null!;
+
+        /// <summary>
+        /// The region for the cluster.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of Kubernetes cluster.
@@ -113,7 +131,7 @@ namespace Pulumi.Civo
         /// The size of each node (The default is currently g2.small)
         /// </summary>
         [Output("targetNodesSize")]
-        public Output<string?> TargetNodesSize { get; private set; } = null!;
+        public Output<string> TargetNodesSize { get; private set; } = null!;
 
 
         /// <summary>
@@ -180,10 +198,22 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The network for the cluster, if not declare we use the default one
+        /// </summary>
+        [Input("networkId")]
+        public Input<string>? NetworkId { get; set; }
+
+        /// <summary>
         /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
+
+        /// <summary>
+        /// The region for the cluster.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// A space separated list of tags, to be used freely as required.
@@ -250,7 +280,7 @@ namespace Pulumi.Civo
         private InputList<Inputs.KubernetesClusterInstanceGetArgs>? _instances;
 
         /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        /// A list of instance inside the pool
         /// </summary>
         public InputList<Inputs.KubernetesClusterInstanceGetArgs> Instances
         {
@@ -283,13 +313,37 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The network for the cluster, if not declare we use the default one
+        /// </summary>
+        [Input("networkId")]
+        public Input<string>? NetworkId { get; set; }
+
+        /// <summary>
         /// The number of instances to create (The default at the time of writing is 3).
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
 
+        [Input("pools")]
+        private InputList<Inputs.KubernetesClusterPoolGetArgs>? _pools;
+
+        /// <summary>
+        /// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+        /// </summary>
+        public InputList<Inputs.KubernetesClusterPoolGetArgs> Pools
+        {
+            get => _pools ?? (_pools = new InputList<Inputs.KubernetesClusterPoolGetArgs>());
+            set => _pools = value;
+        }
+
         [Input("ready")]
         public Input<bool>? Ready { get; set; }
+
+        /// <summary>
+        /// The region for the cluster.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The status of Kubernetes cluster.

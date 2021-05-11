@@ -19,7 +19,7 @@ class GetVolumeResult:
     """
     A collection of values returned by getVolume.
     """
-    def __init__(__self__, bootable=None, created_at=None, id=None, mount_point=None, name=None, size_gb=None):
+    def __init__(__self__, bootable=None, created_at=None, id=None, mount_point=None, name=None, region=None, size_gb=None):
         if bootable and not isinstance(bootable, bool):
             raise TypeError("Expected argument 'bootable' to be a bool")
         pulumi.set(__self__, "bootable", bootable)
@@ -35,6 +35,9 @@ class GetVolumeResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if size_gb and not isinstance(size_gb, int):
             raise TypeError("Expected argument 'size_gb' to be a int")
         pulumi.set(__self__, "size_gb", size_gb)
@@ -80,6 +83,11 @@ class GetVolumeResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+    @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> int:
         """
@@ -99,11 +107,13 @@ class AwaitableGetVolumeResult(GetVolumeResult):
             id=self.id,
             mount_point=self.mount_point,
             name=self.name,
+            region=self.region,
             size_gb=self.size_gb)
 
 
 def get_volume(id: Optional[str] = None,
                name: Optional[str] = None,
+               region: Optional[str] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVolumeResult:
     """
     Use this data source to access information about an existing resource.
@@ -114,6 +124,7 @@ def get_volume(id: Optional[str] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -126,4 +137,5 @@ def get_volume(id: Optional[str] = None,
         id=__ret__.id,
         mount_point=__ret__.mount_point,
         name=__ret__.name,
+        region=__ret__.region,
         size_gb=__ret__.size_gb)

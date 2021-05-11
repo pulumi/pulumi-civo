@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetInstancesFilter {
+    all?: boolean;
     /**
      * Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
      * `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
      */
     key: string;
+    matchBy?: string;
     /**
      * A list of values to match against the `key` field. Only retrieves Instances
      * where the `key` field takes on one or more of the values provided here.
@@ -18,7 +20,9 @@ export interface GetInstancesFilter {
 }
 
 export interface GetInstancesSizeFilter {
+    all?: boolean;
     key: string;
+    matchBy?: string;
     values: string[];
 }
 
@@ -40,11 +44,13 @@ export interface GetInstancesSort {
 }
 
 export interface GetKubernetesVersionFilter {
+    all?: boolean;
     /**
      * Filter the sizes by this key. This may be one of `version`,
      * `label`, `type`, `default`.
      */
     key: string;
+    matchBy?: string;
     /**
      * Only retrieves the version which keys has value that matches
      * one of the values provided here.
@@ -64,11 +70,12 @@ export interface GetKubernetesVersionSort {
 }
 
 export interface GetTemplateFilter {
+    all?: boolean;
     /**
-     * Filter the sizes by this key. This may be one of `code`,
-     * `name`.
+     * Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
      */
     key: string;
+    matchBy?: string;
     /**
      * Only retrieves the template which keys has value that matches
      * one of the values provided here.
@@ -82,8 +89,7 @@ export interface GetTemplateSort {
      */
     direction?: string;
     /**
-     * Sort the sizes by this key. This may be one of `code`, 
-     * `name`.
+     * Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
      */
     key: string;
 }
@@ -113,33 +119,72 @@ export interface KubernetesClusterInstance {
      */
     cpuCores?: pulumi.Input<number>;
     /**
-     * The date where the Kubernetes cluster was create.
-     */
-    createdAt?: pulumi.Input<string>;
-    /**
      * The size of the disk.
      */
     diskGb?: pulumi.Input<number>;
-    /**
-     * The firewall id assigned to the instance
-     */
-    firewallId?: pulumi.Input<string>;
     /**
      * The hostname of the instance.
      */
     hostname?: pulumi.Input<string>;
     /**
-     * The public ip of the instances, only available if the instances is the master
-     */
-    publicIp?: pulumi.Input<string>;
-    /**
-     * Total ram of the instance.
+     * Total ram of the instance
      */
     ramMb?: pulumi.Input<number>;
     /**
-     * The region where instance are.
+     * The size of the instance.
      */
-    region?: pulumi.Input<string>;
+    size?: pulumi.Input<string>;
+    /**
+     * The status of Kubernetes cluster.
+     * * `ready` -If the Kubernetes cluster is ready.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * A space separated list of tags, to be used freely as required.
+     */
+    tags?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface KubernetesClusterPool {
+    /**
+     * The size of the pool
+     */
+    count?: pulumi.Input<number>;
+    /**
+     * The ID of the pool
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * A list of the instance in the pool
+     */
+    instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A list of instance inside the pool
+     */
+    instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolInstance>[]>;
+    /**
+     * The size of the instance.
+     */
+    size?: pulumi.Input<string>;
+}
+
+export interface KubernetesClusterPoolInstance {
+    /**
+     * Total cpu of the inatance.
+     */
+    cpuCores?: pulumi.Input<number>;
+    /**
+     * The size of the disk.
+     */
+    diskGb?: pulumi.Input<number>;
+    /**
+     * The hostname of the instance.
+     */
+    hostname?: pulumi.Input<string>;
+    /**
+     * Total ram of the instance
+     */
+    ramMb?: pulumi.Input<number>;
     /**
      * The size of the instance.
      */

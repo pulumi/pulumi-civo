@@ -34,12 +34,14 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
-	Token *string `pulumi:"token"`
+	Region *string `pulumi:"region"`
+	Token  *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
-	Token pulumi.StringPtrInput
+	Region pulumi.StringPtrInput
+	Token  pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

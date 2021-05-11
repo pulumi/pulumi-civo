@@ -32,7 +32,7 @@ type KubernetesCluster struct {
 	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+	// A list of instance inside the pool
 	Instances KubernetesClusterInstanceArrayOutput `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
@@ -42,16 +42,22 @@ type KubernetesCluster struct {
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The network for the cluster, if not declare we use the default one
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// The number of instances to create (The default at the time of writing is 3).
-	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
-	Ready          pulumi.BoolOutput   `pulumi:"ready"`
+	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
+	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+	Pools KubernetesClusterPoolArrayOutput `pulumi:"pools"`
+	Ready pulumi.BoolOutput                `pulumi:"ready"`
+	// The region for the cluster.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The status of Kubernetes cluster.
 	// * `ready` -If the Kubernetes cluster is ready.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// The size of each node (The default is currently g2.small)
-	TargetNodesSize pulumi.StringPtrOutput `pulumi:"targetNodesSize"`
+	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
 // NewKubernetesCluster registers a new resource with the given unique name, arguments, and options.
@@ -95,7 +101,7 @@ type kubernetesClusterState struct {
 	DnsEntry *string `pulumi:"dnsEntry"`
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+	// A list of instance inside the pool
 	Instances []KubernetesClusterInstance `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig *string `pulumi:"kubeconfig"`
@@ -105,9 +111,15 @@ type kubernetesClusterState struct {
 	MasterIp *string `pulumi:"masterIp"`
 	// A name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
+	// The network for the cluster, if not declare we use the default one
+	NetworkId *string `pulumi:"networkId"`
 	// The number of instances to create (The default at the time of writing is 3).
-	NumTargetNodes *int  `pulumi:"numTargetNodes"`
-	Ready          *bool `pulumi:"ready"`
+	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+	Pools []KubernetesClusterPool `pulumi:"pools"`
+	Ready *bool                   `pulumi:"ready"`
+	// The region for the cluster.
+	Region *string `pulumi:"region"`
 	// The status of Kubernetes cluster.
 	// * `ready` -If the Kubernetes cluster is ready.
 	Status *string `pulumi:"status"`
@@ -130,7 +142,7 @@ type KubernetesClusterState struct {
 	DnsEntry pulumi.StringPtrInput
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
-	// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+	// A list of instance inside the pool
 	Instances KubernetesClusterInstanceArrayInput
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
 	Kubeconfig pulumi.StringPtrInput
@@ -140,9 +152,15 @@ type KubernetesClusterState struct {
 	MasterIp pulumi.StringPtrInput
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
+	// The network for the cluster, if not declare we use the default one
+	NetworkId pulumi.StringPtrInput
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
-	Ready          pulumi.BoolPtrInput
+	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+	Pools KubernetesClusterPoolArrayInput
+	Ready pulumi.BoolPtrInput
+	// The region for the cluster.
+	Region pulumi.StringPtrInput
 	// The status of Kubernetes cluster.
 	// * `ready` -If the Kubernetes cluster is ready.
 	Status pulumi.StringPtrInput
@@ -163,8 +181,12 @@ type kubernetesClusterArgs struct {
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// A name for the Kubernetes cluster.
 	Name *string `pulumi:"name"`
+	// The network for the cluster, if not declare we use the default one
+	NetworkId *string `pulumi:"networkId"`
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// The region for the cluster.
+	Region *string `pulumi:"region"`
 	// A space separated list of tags, to be used freely as required.
 	Tags *string `pulumi:"tags"`
 	// The size of each node (The default is currently g2.small)
@@ -179,8 +201,12 @@ type KubernetesClusterArgs struct {
 	KubernetesVersion pulumi.StringPtrInput
 	// A name for the Kubernetes cluster.
 	Name pulumi.StringPtrInput
+	// The network for the cluster, if not declare we use the default one
+	NetworkId pulumi.StringPtrInput
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
+	// The region for the cluster.
+	Region pulumi.StringPtrInput
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrInput
 	// The size of each node (The default is currently g2.small)

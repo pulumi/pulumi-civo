@@ -25,10 +25,16 @@ namespace Pulumi.Civo
         public string? Id { get; set; }
 
         /// <summary>
-        /// The name of an existing Network.
+        /// The label of an existing Network.
         /// </summary>
         [Input("label")]
         public string? Label { get; set; }
+
+        /// <summary>
+        /// The region of an existing Network.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
 
         public GetNetworkArgs()
         {
@@ -59,10 +65,7 @@ namespace Pulumi.Civo
         /// The name of the network.
         /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The region where the network was create.
-        /// </summary>
-        public readonly string Region;
+        public readonly string? Region;
 
         [OutputConstructor]
         private GetNetworkResult(
@@ -76,7 +79,7 @@ namespace Pulumi.Civo
 
             string name,
 
-            string region)
+            string? region)
         {
             Cidr = cidr;
             Default = @default;
