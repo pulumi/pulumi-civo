@@ -20,11 +20,10 @@ func TestAccNetworkTs(t *testing.T) {
 }
 
 func TestKubernetesMinimalTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
+			RunUpdateTest:        false,
 			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
 		})
 
@@ -32,11 +31,10 @@ func TestKubernetesMinimalTs(t *testing.T) {
 }
 
 func TestKubernetesMediumTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
+			RunUpdateTest:        false,
 			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "medium"),
 		})
 
@@ -44,11 +42,10 @@ func TestKubernetesMediumTs(t *testing.T) {
 }
 
 func TestKubernetesComplexTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			ExpectRefreshChanges: true,
+			RunUpdateTest:        false,
 			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "complex"),
 			Config: map[string]string{
 				"kubernetes-ts-complex:useAmbassadorIngress": "true",

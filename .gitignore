@@ -12,6 +12,8 @@ Pulumi.*.yaml
 .idea/
 *.iml
 
+package-lock.json
+
 yarn.lock
 **/pulumiManifest.go
 

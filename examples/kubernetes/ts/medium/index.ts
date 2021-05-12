@@ -14,7 +14,7 @@ const version = civo.getKubernetesVersion({
 const cluster = new civo.KubernetesCluster("acc-test", {
     applications: "-traefik",
     kubernetesVersion: version,
-    targetNodesSize: "g2.medium",
+    targetNodesSize: "g3.medium",
     numTargetNodes: 4,
     tags: "demo-kubernetes-typescript"
 });
