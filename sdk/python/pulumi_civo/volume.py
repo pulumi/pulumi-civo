@@ -15,17 +15,21 @@ class VolumeArgs:
     def __init__(__self__, *,
                  bootable: pulumi.Input[bool],
                  size_gb: pulumi.Input[int],
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
         :param pulumi.Input[bool] bootable: Mark the volume as bootable.
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        :param pulumi.Input[str] region: The region for the volume
         """
         pulumi.set(__self__, "bootable", bootable)
         pulumi.set(__self__, "size_gb", size_gb)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -63,6 +67,18 @@ class VolumeArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for the volume
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _VolumeState:
@@ -71,6 +87,7 @@ class _VolumeState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  mount_point: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
@@ -78,6 +95,7 @@ class _VolumeState:
         :param pulumi.Input[str] created_at: The date of the creation of the volume.
         :param pulumi.Input[str] mount_point: The mount point of the volume.
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        :param pulumi.Input[str] region: The region for the volume
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         if bootable is not None:
@@ -88,6 +106,8 @@ class _VolumeState:
             pulumi.set(__self__, "mount_point", mount_point)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if size_gb is not None:
             pulumi.set(__self__, "size_gb", size_gb)
 
@@ -140,6 +160,18 @@ class _VolumeState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for the volume
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> Optional[pulumi.Input[int]]:
         """
@@ -159,6 +191,7 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bootable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
@@ -187,6 +220,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] bootable: Mark the volume as bootable.
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        :param pulumi.Input[str] region: The region for the volume
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         ...
@@ -234,6 +268,7 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bootable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         if opts is None:
@@ -251,6 +286,7 @@ class Volume(pulumi.CustomResource):
                 raise TypeError("Missing required property 'bootable'")
             __props__.__dict__["bootable"] = bootable
             __props__.__dict__["name"] = name
+            __props__.__dict__["region"] = region
             if size_gb is None and not opts.urn:
                 raise TypeError("Missing required property 'size_gb'")
             __props__.__dict__["size_gb"] = size_gb
@@ -270,6 +306,7 @@ class Volume(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             mount_point: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             size_gb: Optional[pulumi.Input[int]] = None) -> 'Volume':
         """
         Get an existing Volume resource's state with the given name, id, and optional extra
@@ -282,6 +319,7 @@ class Volume(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The date of the creation of the volume.
         :param pulumi.Input[str] mount_point: The mount point of the volume.
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
+        :param pulumi.Input[str] region: The region for the volume
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -292,6 +330,7 @@ class Volume(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["mount_point"] = mount_point
         __props__.__dict__["name"] = name
+        __props__.__dict__["region"] = region
         __props__.__dict__["size_gb"] = size_gb
         return Volume(resource_name, opts=opts, __props__=__props__)
 
@@ -326,6 +365,14 @@ class Volume(pulumi.CustomResource):
         A name that you wish to use to refer to this volume .
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        The region for the volume
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="sizeGb")

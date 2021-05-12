@@ -17,6 +17,7 @@ export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("civo:index/getLoadBalancer:getLoadBalancer", {
         "hostname": args.hostname,
         "id": args.id,
+        "region": args.region,
     }, opts);
 }
 
@@ -32,6 +33,7 @@ export interface GetLoadBalancerArgs {
      * The ID of the Load Balancer.
      */
     readonly id?: string;
+    readonly region?: string;
 }
 
 /**
@@ -82,6 +84,7 @@ export interface GetLoadBalancerResult {
      * The protocol used in the configuration.
      */
     readonly protocol: string;
+    readonly region?: string;
     /**
      * If is set will be returned
      */

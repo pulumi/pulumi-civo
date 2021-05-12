@@ -30,6 +30,23 @@ namespace Pulumi.Civo
     /// 
     /// }
     /// ```
+    /// ### Example with region
+    /// ```csharp
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// class MyStack : Stack
+    /// {
+    ///     public MyStack()
+    ///     {
+    ///         var www = new Civo.Firewall("www", new Civo.FirewallArgs
+    ///         {
+    ///             Region = "NYC1",
+    ///         });
+    ///     }
+    /// 
+    /// }
+    /// ```
     /// 
     /// ## Import
     /// 
@@ -49,10 +66,16 @@ namespace Pulumi.Civo
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// The region where the firewall was create.
+        /// The ID of the network of the firewall
+        /// </summary>
+        [Output("networkId")]
+        public Output<string?> NetworkId { get; private set; } = null!;
+
+        /// <summary>
+        /// The Firewall region, if is not defined we use the global defined in the provider
         /// </summary>
         [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
+        public Output<string?> Region { get; private set; } = null!;
 
 
         /// <summary>
@@ -106,6 +129,18 @@ namespace Pulumi.Civo
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of the network of the firewall
+        /// </summary>
+        [Input("networkId")]
+        public Input<string>? NetworkId { get; set; }
+
+        /// <summary>
+        /// The Firewall region, if is not defined we use the global defined in the provider
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
         public FirewallArgs()
         {
         }
@@ -120,7 +155,13 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region where the firewall was create.
+        /// The ID of the network of the firewall
+        /// </summary>
+        [Input("networkId")]
+        public Input<string>? NetworkId { get; set; }
+
+        /// <summary>
+        /// The Firewall region, if is not defined we use the global defined in the provider
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }

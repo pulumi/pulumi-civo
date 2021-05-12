@@ -30,6 +30,9 @@ namespace Pulumi.Civo
         [Input("name")]
         public string? Name { get; set; }
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetVolumeArgs()
         {
         }
@@ -59,6 +62,7 @@ namespace Pulumi.Civo
         /// Name of the volume.
         /// </summary>
         public readonly string? Name;
+        public readonly string? Region;
         /// <summary>
         /// The size of the volume.
         /// </summary>
@@ -76,6 +80,8 @@ namespace Pulumi.Civo
 
             string? name,
 
+            string? region,
+
             int sizeGb)
         {
             Bootable = bootable;
@@ -83,6 +89,7 @@ namespace Pulumi.Civo
             Id = id;
             MountPoint = mountPoint;
             Name = name;
+            Region = region;
             SizeGb = sizeGb;
         }
     }

@@ -16,6 +16,15 @@ import * as utilities from "./utilities";
  *
  * const www = new civo.Firewall("www", {});
  * ```
+ * ### Example with region
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const www = new civo.Firewall("www", {
+ *     region: "NYC1",
+ * });
+ * ```
  *
  * ## Import
  *
@@ -58,9 +67,13 @@ export class Firewall extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * The region where the firewall was create.
+     * The ID of the network of the firewall
      */
-    public /*out*/ readonly region!: pulumi.Output<string>;
+    public readonly networkId!: pulumi.Output<string | undefined>;
+    /**
+     * The Firewall region, if is not defined we use the global defined in the provider
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Firewall resource with the given unique name, arguments, and options.
@@ -76,11 +89,13 @@ export class Firewall extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FirewallState | undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["networkId"] = state ? state.networkId : undefined;
             inputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as FirewallArgs | undefined;
             inputs["name"] = args ? args.name : undefined;
-            inputs["region"] = undefined /*out*/;
+            inputs["networkId"] = args ? args.networkId : undefined;
+            inputs["region"] = args ? args.region : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -98,7 +113,11 @@ export interface FirewallState {
      */
     readonly name?: pulumi.Input<string>;
     /**
-     * The region where the firewall was create.
+     * The ID of the network of the firewall
+     */
+    readonly networkId?: pulumi.Input<string>;
+    /**
+     * The Firewall region, if is not defined we use the global defined in the provider
      */
     readonly region?: pulumi.Input<string>;
 }
@@ -111,4 +130,12 @@ export interface FirewallArgs {
      * The Firewall name
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The ID of the network of the firewall
+     */
+    readonly networkId?: pulumi.Input<string>;
+    /**
+     * The Firewall region, if is not defined we use the global defined in the provider
+     */
+    readonly region?: pulumi.Input<string>;
 }

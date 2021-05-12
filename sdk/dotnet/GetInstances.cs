@@ -22,8 +22,7 @@ namespace Pulumi.Civo
         private List<Inputs.GetInstancesFilterArgs>? _filters;
 
         /// <summary>
-        /// Filter the results.
-        /// The `filter` block is documented below.
+        /// Filter the results. The `filter` block is documented below.
         /// </summary>
         public List<Inputs.GetInstancesFilterArgs> Filters
         {
@@ -31,12 +30,17 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
+        /// <summary>
+        /// If is used, them all instances will be from that region.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         [Input("sorts")]
         private List<Inputs.GetInstancesSortArgs>? _sorts;
 
         /// <summary>
-        /// Sort the results.
-        /// The `sort` block is documented below.
+        /// Sort the results. The `sort` block is documented below.
         /// </summary>
         public List<Inputs.GetInstancesSortArgs> Sorts
         {
@@ -62,6 +66,7 @@ namespace Pulumi.Civo
         /// A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
         /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesInstanceResult> Instances;
+        public readonly string? Region;
         public readonly ImmutableArray<Outputs.GetInstancesSortResult> Sorts;
 
         [OutputConstructor]
@@ -72,11 +77,14 @@ namespace Pulumi.Civo
 
             ImmutableArray<Outputs.GetInstancesInstanceResult> instances,
 
+            string? region,
+
             ImmutableArray<Outputs.GetInstancesSortResult> sorts)
         {
             Filters = filters;
             Id = id;
             Instances = instances;
+            Region = region;
             Sorts = sorts;
         }
     }

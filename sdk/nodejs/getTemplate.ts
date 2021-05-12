@@ -16,6 +16,7 @@ export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions)
     }
     return pulumi.runtime.invoke("civo:index/getTemplate:getTemplate", {
         "filters": args.filters,
+        "region": args.region,
         "sorts": args.sorts,
     }, opts);
 }
@@ -25,13 +26,15 @@ export function getTemplate(args?: GetTemplateArgs, opts?: pulumi.InvokeOptions)
  */
 export interface GetTemplateArgs {
     /**
-     * Filter the results.
-     * The `filter` block is documented below.
+     * Filter the results. The `filter` block is documented below.
      */
     readonly filters?: inputs.GetTemplateFilter[];
     /**
-     * Sort the results.
-     * The `sort` block is documented below.
+     * If is used, them all instances will be from that region.
+     */
+    readonly region?: string;
+    /**
+     * Sort the results. The `sort` block is documented below.
      */
     readonly sorts?: inputs.GetTemplateSort[];
 }
@@ -45,6 +48,7 @@ export interface GetTemplateResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly region?: string;
     readonly sorts?: outputs.GetTemplateSort[];
     readonly templates: outputs.GetTemplateTemplate[];
 }

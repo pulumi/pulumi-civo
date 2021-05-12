@@ -20,7 +20,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, api_endpoint=None, applications=None, built_at=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, ready=None, status=None, tags=None, target_nodes_size=None):
+    def __init__(__self__, api_endpoint=None, applications=None, built_at=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, pools=None, ready=None, region=None, status=None, tags=None, target_nodes_size=None):
         if api_endpoint and not isinstance(api_endpoint, str):
             raise TypeError("Expected argument 'api_endpoint' to be a str")
         pulumi.set(__self__, "api_endpoint", api_endpoint)
@@ -60,9 +60,15 @@ class GetKubernetesClusterResult:
         if num_target_nodes and not isinstance(num_target_nodes, int):
             raise TypeError("Expected argument 'num_target_nodes' to be a int")
         pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+        if pools and not isinstance(pools, list):
+            raise TypeError("Expected argument 'pools' to be a list")
+        pulumi.set(__self__, "pools", pools)
         if ready and not isinstance(ready, bool):
             raise TypeError("Expected argument 'ready' to be a bool")
         pulumi.set(__self__, "ready", ready)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -117,7 +123,7 @@ class GetKubernetesClusterResult:
     @pulumi.getter
     def id(self) -> Optional[str]:
         """
-        A unique ID that can be used to identify and reference a Kubernetes cluster.
+        The ID of the pool
         """
         return pulumi.get(self, "id")
 
@@ -133,7 +139,7 @@ class GetKubernetesClusterResult:
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetKubernetesClusterInstanceResult']:
         """
-        In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        A list of instance inside the pool
         """
         return pulumi.get(self, "instances")
 
@@ -179,8 +185,21 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter
+    def pools(self) -> Sequence['outputs.GetKubernetesClusterPoolResult']:
+        """
+        A list of node pools associated with the cluster. Each node pool exports the following attributes:
+        """
+        return pulumi.get(self, "pools")
+
+    @property
+    @pulumi.getter
     def ready(self) -> bool:
         return pulumi.get(self, "ready")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
@@ -227,7 +246,9 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             master_ip=self.master_ip,
             name=self.name,
             num_target_nodes=self.num_target_nodes,
+            pools=self.pools,
             ready=self.ready,
+            region=self.region,
             status=self.status,
             tags=self.tags,
             target_nodes_size=self.target_nodes_size)
@@ -235,6 +256,7 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
 
 def get_kubernetes_cluster(id: Optional[str] = None,
                            name: Optional[str] = None,
+                           region: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
     Provides a Civo Kubernetes cluster data source.
@@ -270,6 +292,7 @@ def get_kubernetes_cluster(id: Optional[str] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -290,7 +313,9 @@ def get_kubernetes_cluster(id: Optional[str] = None,
         master_ip=__ret__.master_ip,
         name=__ret__.name,
         num_target_nodes=__ret__.num_target_nodes,
+        pools=__ret__.pools,
         ready=__ret__.ready,
+        region=__ret__.region,
         status=__ret__.status,
         tags=__ret__.tags,
         target_nodes_size=__ret__.target_nodes_size)

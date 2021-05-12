@@ -56,7 +56,7 @@ type Network struct {
 	// The name of the network.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region where the network was create.
-	Region pulumi.StringOutput `pulumi:"region"`
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 }
 
 // NewNetwork registers a new resource with the given unique name, arguments, and options.
@@ -123,12 +123,16 @@ func (NetworkState) ElementType() reflect.Type {
 type networkArgs struct {
 	// The Network label
 	Label string `pulumi:"label"`
+	// The region where the network was create.
+	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a Network resource.
 type NetworkArgs struct {
 	// The Network label
 	Label pulumi.StringInput
+	// The region where the network was create.
+	Region pulumi.StringPtrInput
 }
 
 func (NetworkArgs) ElementType() reflect.Type {

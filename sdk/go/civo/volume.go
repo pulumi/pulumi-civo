@@ -55,6 +55,8 @@ type Volume struct {
 	MountPoint pulumi.StringOutput `pulumi:"mountPoint"`
 	// A name that you wish to use to refer to this volume .
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The region for the volume
+	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
 	SizeGb pulumi.IntOutput `pulumi:"sizeGb"`
 }
@@ -102,6 +104,8 @@ type volumeState struct {
 	MountPoint *string `pulumi:"mountPoint"`
 	// A name that you wish to use to refer to this volume .
 	Name *string `pulumi:"name"`
+	// The region for the volume
+	Region *string `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
 	SizeGb *int `pulumi:"sizeGb"`
 }
@@ -115,6 +119,8 @@ type VolumeState struct {
 	MountPoint pulumi.StringPtrInput
 	// A name that you wish to use to refer to this volume .
 	Name pulumi.StringPtrInput
+	// The region for the volume
+	Region pulumi.StringPtrInput
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
 	SizeGb pulumi.IntPtrInput
 }
@@ -128,6 +134,8 @@ type volumeArgs struct {
 	Bootable bool `pulumi:"bootable"`
 	// A name that you wish to use to refer to this volume .
 	Name *string `pulumi:"name"`
+	// The region for the volume
+	Region *string `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
 	SizeGb int `pulumi:"sizeGb"`
 }
@@ -138,6 +146,8 @@ type VolumeArgs struct {
 	Bootable pulumi.BoolInput
 	// A name that you wish to use to refer to this volume .
 	Name pulumi.StringPtrInput
+	// The region for the volume
+	Region pulumi.StringPtrInput
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
 	SizeGb pulumi.IntInput
 }

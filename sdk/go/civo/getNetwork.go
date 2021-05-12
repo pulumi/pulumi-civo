@@ -20,8 +20,10 @@ func LookupNetwork(ctx *pulumi.Context, args *LookupNetworkArgs, opts ...pulumi.
 type LookupNetworkArgs struct {
 	// The unique identifier of an existing Network.
 	Id *string `pulumi:"id"`
-	// The name of an existing Network.
+	// The label of an existing Network.
 	Label *string `pulumi:"label"`
+	// The region of an existing Network.
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getNetwork.
@@ -35,7 +37,6 @@ type LookupNetworkResult struct {
 	// The label used in the configuration.
 	Label *string `pulumi:"label"`
 	// The name of the network.
-	Name string `pulumi:"name"`
-	// The region where the network was create.
-	Region string `pulumi:"region"`
+	Name   string  `pulumi:"name"`
+	Region *string `pulumi:"region"`
 }

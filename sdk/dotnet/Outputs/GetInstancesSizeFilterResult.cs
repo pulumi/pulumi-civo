@@ -13,16 +13,24 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetInstancesSizeFilterResult
     {
+        public readonly bool? All;
         public readonly string Key;
+        public readonly string? MatchBy;
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]
         private GetInstancesSizeFilterResult(
+            bool? all,
+
             string key,
+
+            string? matchBy,
 
             ImmutableArray<string> values)
         {
+            All = all;
             Key = key;
+            MatchBy = matchBy;
             Values = values;
         }
     }

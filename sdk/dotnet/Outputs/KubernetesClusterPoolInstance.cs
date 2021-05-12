@@ -11,51 +11,51 @@ namespace Pulumi.Civo.Outputs
 {
 
     [OutputType]
-    public sealed class GetKubernetesClusterInstanceResult
+    public sealed class KubernetesClusterPoolInstance
     {
         /// <summary>
         /// Total cpu of the inatance.
         /// </summary>
-        public readonly int CpuCores;
+        public readonly int? CpuCores;
         /// <summary>
         /// The size of the disk.
         /// </summary>
-        public readonly int DiskGb;
+        public readonly int? DiskGb;
         /// <summary>
         /// The hostname of the instance.
         /// </summary>
-        public readonly string Hostname;
+        public readonly string? Hostname;
         /// <summary>
         /// Total ram of the instance
         /// </summary>
-        public readonly int RamMb;
+        public readonly int? RamMb;
         /// <summary>
         /// The size of the instance.
         /// </summary>
-        public readonly string Size;
+        public readonly string? Size;
         /// <summary>
         /// The status of Kubernetes cluster.
         /// * `ready` -If the Kubernetes cluster is ready.
         /// </summary>
-        public readonly string Status;
+        public readonly string? Status;
         /// <summary>
-        /// The tag of the instances
+        /// A space separated list of tags, to be used freely as required.
         /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]
-        private GetKubernetesClusterInstanceResult(
-            int cpuCores,
+        private KubernetesClusterPoolInstance(
+            int? cpuCores,
 
-            int diskGb,
+            int? diskGb,
 
-            string hostname,
+            string? hostname,
 
-            int ramMb,
+            int? ramMb,
 
-            string size,
+            string? size,
 
-            string status,
+            string? status,
 
             ImmutableArray<string> tags)
         {

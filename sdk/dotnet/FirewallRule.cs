@@ -63,6 +63,12 @@ namespace Pulumi.Civo
         public Output<string> Protocol { get; private set; } = null!;
 
         /// <summary>
+        /// The region for this rule
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
         /// The start port where traffic to be allowed.
         /// </summary>
         [Output("startPort")]
@@ -157,6 +163,12 @@ namespace Pulumi.Civo
         public Input<string> Protocol { get; set; } = null!;
 
         /// <summary>
+        /// The region for this rule
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// The start port where traffic to be allowed.
         /// </summary>
         [Input("startPort", required: true)]
@@ -210,6 +222,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
+
+        /// <summary>
+        /// The region for this rule
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The start port where traffic to be allowed.

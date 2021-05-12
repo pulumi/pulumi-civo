@@ -17,6 +17,7 @@ export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): 
     return pulumi.runtime.invoke("civo:index/getNetwork:getNetwork", {
         "id": args.id,
         "label": args.label,
+        "region": args.region,
     }, opts);
 }
 
@@ -29,9 +30,13 @@ export interface GetNetworkArgs {
      */
     readonly id?: string;
     /**
-     * The name of an existing Network.
+     * The label of an existing Network.
      */
     readonly label?: string;
+    /**
+     * The region of an existing Network.
+     */
+    readonly region?: string;
 }
 
 /**
@@ -58,8 +63,5 @@ export interface GetNetworkResult {
      * The name of the network.
      */
     readonly name: string;
-    /**
-     * The region where the network was create.
-     */
-    readonly region: string;
+    readonly region?: string;
 }

@@ -30,6 +30,12 @@ namespace Pulumi.Civo
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The region of an existing Instance.
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetInstanceArgs()
         {
         }
@@ -96,6 +102,10 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly int RamMb;
         /// <summary>
+        /// The region of the instance
+        /// </summary>
+        public readonly string? Region;
+        /// <summary>
         /// A fully qualified domain name.
         /// </summary>
         public readonly string ReverseDns;
@@ -154,6 +164,8 @@ namespace Pulumi.Civo
 
             int ramMb,
 
+            string? region,
+
             string reverseDns,
 
             string script,
@@ -182,6 +194,7 @@ namespace Pulumi.Civo
             PseudoIp = pseudoIp;
             PublicIp = publicIp;
             RamMb = ramMb;
+            Region = region;
             ReverseDns = reverseDns;
             Script = script;
             Size = size;

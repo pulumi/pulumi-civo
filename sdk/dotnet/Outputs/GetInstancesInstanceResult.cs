@@ -70,6 +70,10 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly int RamMb;
         /// <summary>
+        /// If is used, them all instances will be from that region.
+        /// </summary>
+        public readonly string Region;
+        /// <summary>
         /// A fully qualified domain name.
         /// </summary>
         public readonly string ReverseDns;
@@ -128,6 +132,8 @@ namespace Pulumi.Civo.Outputs
 
             int ramMb,
 
+            string region,
+
             string reverseDns,
 
             string script,
@@ -156,6 +162,7 @@ namespace Pulumi.Civo.Outputs
             PseudoIp = pseudoIp;
             PublicIp = publicIp;
             RamMb = ramMb;
+            Region = region;
             ReverseDns = reverseDns;
             Script = script;
             Size = size;

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class KubernetesClusterInstanceGetArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterPoolInstanceGetArgs : Pulumi.ResourceArgs
     {
         /// <summary>
         /// Total cpu of the inatance.
@@ -61,7 +61,7 @@ namespace Pulumi.Civo.Inputs
             set => _tags = value;
         }
 
-        public KubernetesClusterInstanceGetArgs()
+        public KubernetesClusterPoolInstanceGetArgs()
         {
         }
     }

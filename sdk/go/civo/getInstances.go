@@ -18,11 +18,11 @@ func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getInstances.
 type GetInstancesArgs struct {
-	// Filter the results.
-	// The `filter` block is documented below.
+	// Filter the results. The `filter` block is documented below.
 	Filters []GetInstancesFilter `pulumi:"filters"`
-	// Sort the results.
-	// The `sort` block is documented below.
+	// If is used, them all instances will be from that region.
+	Region *string `pulumi:"region"`
+	// Sort the results. The `sort` block is documented below.
 	Sorts []GetInstancesSort `pulumi:"sorts"`
 }
 
@@ -33,5 +33,6 @@ type GetInstancesResult struct {
 	Id string `pulumi:"id"`
 	// A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
 	Instances []GetInstancesInstance `pulumi:"instances"`
+	Region    *string                `pulumi:"region"`
 	Sorts     []GetInstancesSort     `pulumi:"sorts"`
 }

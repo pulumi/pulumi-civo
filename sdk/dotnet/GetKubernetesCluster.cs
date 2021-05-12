@@ -83,6 +83,9 @@ namespace Pulumi.Civo
         [Input("name")]
         public string? Name { get; set; }
 
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetKubernetesClusterArgs()
         {
         }
@@ -113,7 +116,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string DnsEntry;
         /// <summary>
-        /// A unique ID that can be used to identify and reference a Kubernetes cluster.
+        /// The ID of the pool
         /// </summary>
         public readonly string? Id;
         /// <summary>
@@ -121,7 +124,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> InstalledApplications;
         /// <summary>
-        /// In addition to the arguments provided, these additional attributes about the cluster's default node instance are exported.
+        /// A list of instance inside the pool
         /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstanceResult> Instances;
         /// <summary>
@@ -144,7 +147,12 @@ namespace Pulumi.Civo
         /// The size of the Kubernetes cluster.
         /// </summary>
         public readonly int NumTargetNodes;
+        /// <summary>
+        /// A list of node pools associated with the cluster. Each node pool exports the following attributes:
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubernetesClusterPoolResult> Pools;
         public readonly bool Ready;
+        public readonly string? Region;
         /// <summary>
         /// The status of Kubernetes cluster.
         /// * `ready` -If the Kubernetes cluster is ready.
@@ -187,7 +195,11 @@ namespace Pulumi.Civo
 
             int numTargetNodes,
 
+            ImmutableArray<Outputs.GetKubernetesClusterPoolResult> pools,
+
             bool ready,
+
+            string? region,
 
             string status,
 
@@ -208,7 +220,9 @@ namespace Pulumi.Civo
             MasterIp = masterIp;
             Name = name;
             NumTargetNodes = numTargetNodes;
+            Pools = pools;
             Ready = ready;
+            Region = region;
             Status = status;
             Tags = tags;
             TargetNodesSize = targetNodesSize;

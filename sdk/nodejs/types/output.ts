@@ -5,11 +5,13 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetInstancesFilter {
+    all?: boolean;
     /**
      * Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
      * `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
      */
     key: string;
+    matchBy?: string;
     /**
      * A list of values to match against the `key` field. Only retrieves Instances
      * where the `key` field takes on one or more of the values provided here.
@@ -75,6 +77,10 @@ export interface GetInstancesInstance {
      */
     ramMb: number;
     /**
+     * If is used, them all instances will be from that region.
+     */
+    region: string;
+    /**
      * A fully qualified domain name.
      */
     reverseDns: string;
@@ -105,18 +111,20 @@ export interface GetInstancesInstance {
 }
 
 export interface GetInstancesSizeFilter {
+    all?: boolean;
     key: string;
+    matchBy?: string;
     values: string[];
 }
 
 export interface GetInstancesSizeSize {
-    cpuCores: number;
+    cpu: number;
     description: string;
-    diskGb: number;
+    disk: number;
     name: string;
-    niceName: string;
-    ramMb: number;
+    ram: number;
     selectable: boolean;
+    type: string;
 }
 
 export interface GetInstancesSizeSort {
@@ -161,33 +169,72 @@ export interface GetKubernetesClusterInstance {
      */
     cpuCores: number;
     /**
-     * The date where the Kubernetes cluster was create.
-     */
-    createdAt: string;
-    /**
      * The size of the disk.
      */
     diskGb: number;
-    /**
-     * The firewall id assigned to the instance
-     */
-    firewallId: string;
     /**
      * The hostname of the instance.
      */
     hostname: string;
     /**
-     * The public ip of the instances, only available if the instances is the master
-     */
-    publicIp: string;
-    /**
      * Total ram of the instance
      */
     ramMb: number;
     /**
-     * The region where instance are.
+     * The size of the instance.
      */
-    region: string;
+    size: string;
+    /**
+     * The status of Kubernetes cluster.
+     * * `ready` -If the Kubernetes cluster is ready.
+     */
+    status: string;
+    /**
+     * The tag of the instances
+     */
+    tags: string[];
+}
+
+export interface GetKubernetesClusterPool {
+    /**
+     * The size of the pool
+     */
+    count: number;
+    /**
+     * The ID of the kubernetes Cluster
+     */
+    id: string;
+    /**
+     * A list of the instance in the pool
+     */
+    instanceNames: string[];
+    /**
+     * A list of instance inside the pool
+     */
+    instances: outputs.GetKubernetesClusterPoolInstance[];
+    /**
+     * The size of the instance.
+     */
+    size: string;
+}
+
+export interface GetKubernetesClusterPoolInstance {
+    /**
+     * Total cpu of the inatance.
+     */
+    cpuCores: number;
+    /**
+     * The size of the disk.
+     */
+    diskGb: number;
+    /**
+     * The hostname of the instance.
+     */
+    hostname: string;
+    /**
+     * Total ram of the instance
+     */
+    ramMb: number;
     /**
      * The size of the instance.
      */
@@ -204,11 +251,13 @@ export interface GetKubernetesClusterInstance {
 }
 
 export interface GetKubernetesVersionFilter {
+    all?: boolean;
     /**
      * Filter the sizes by this key. This may be one of `version`,
      * `label`, `type`, `default`.
      */
     key: string;
+    matchBy?: string;
     /**
      * Only retrieves the version which keys has value that matches
      * one of the values provided here.
@@ -262,11 +311,12 @@ export interface GetLoadBalancerBackend {
 }
 
 export interface GetTemplateFilter {
+    all?: boolean;
     /**
-     * Filter the sizes by this key. This may be one of `code`,
-     * `name`.
+     * Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
      */
     key: string;
+    matchBy?: string;
     /**
      * Only retrieves the template which keys has value that matches
      * one of the values provided here.
@@ -280,50 +330,28 @@ export interface GetTemplateSort {
      */
     direction?: string;
     /**
-     * Sort the sizes by this key. This may be one of `code`, 
-     * `name`.
+     * Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
      */
     key: string;
 }
 
 export interface GetTemplateTemplate {
     /**
-     * Commonly referred to as 'user-data', this is a customisation script that is run after
-     * the instance is first booted.
-     */
-    cloudConfig: string;
-    /**
-     * A unqiue, alphanumerical, short, human readable code for the template.
-     */
-    code: string;
-    /**
-     * The default username to suggest that the user creates
-     */
-    defaultUsername: string;
-    /**
-     * A multi-line description of the template, in Markdown format
-     */
-    description: string;
-    /**
      * The id of the template
      */
     id: string;
     /**
-     * The Image ID of any default template or the ID of another template.
+     * The label of the template.
      */
-    imageId: string;
+    label: string;
     /**
      * A short human readable name for the template
      */
     name: string;
     /**
-     * A one line description of the template
+     * The version of the template.
      */
-    shortDescription: string;
-    /**
-     * The ID of a bootable volume, either owned by you or global.
-     */
-    volumeId: string;
+    version: string;
 }
 
 export interface KubernetesClusterInstalledApplication {
@@ -351,33 +379,72 @@ export interface KubernetesClusterInstance {
      */
     cpuCores: number;
     /**
-     * The date where the Kubernetes cluster was create.
-     */
-    createdAt: string;
-    /**
      * The size of the disk.
      */
     diskGb: number;
-    /**
-     * The firewall id assigned to the instance
-     */
-    firewallId: string;
     /**
      * The hostname of the instance.
      */
     hostname: string;
     /**
-     * The public ip of the instances, only available if the instances is the master
-     */
-    publicIp: string;
-    /**
-     * Total ram of the instance.
+     * Total ram of the instance
      */
     ramMb: number;
     /**
-     * The region where instance are.
+     * The size of the instance.
      */
-    region: string;
+    size: string;
+    /**
+     * The status of Kubernetes cluster.
+     * * `ready` -If the Kubernetes cluster is ready.
+     */
+    status: string;
+    /**
+     * A space separated list of tags, to be used freely as required.
+     */
+    tags: string[];
+}
+
+export interface KubernetesClusterPool {
+    /**
+     * The size of the pool
+     */
+    count: number;
+    /**
+     * The ID of the pool
+     */
+    id: string;
+    /**
+     * A list of the instance in the pool
+     */
+    instanceNames: string[];
+    /**
+     * A list of instance inside the pool
+     */
+    instances: outputs.KubernetesClusterPoolInstance[];
+    /**
+     * The size of the instance.
+     */
+    size: string;
+}
+
+export interface KubernetesClusterPoolInstance {
+    /**
+     * Total cpu of the inatance.
+     */
+    cpuCores: number;
+    /**
+     * The size of the disk.
+     */
+    diskGb: number;
+    /**
+     * The hostname of the instance.
+     */
+    hostname: string;
+    /**
+     * Total ram of the instance
+     */
+    ramMb: number;
     /**
      * The size of the instance.
      */

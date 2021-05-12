@@ -18,8 +18,7 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly string? Direction;
         /// <summary>
-        /// Sort the sizes by this key. This may be one of `code`, 
-        /// `name`.
+        /// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
         /// </summary>
         public readonly string Key;
 

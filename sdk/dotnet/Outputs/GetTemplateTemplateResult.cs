@@ -14,72 +14,36 @@ namespace Pulumi.Civo.Outputs
     public sealed class GetTemplateTemplateResult
     {
         /// <summary>
-        /// Commonly referred to as 'user-data', this is a customisation script that is run after
-        /// the instance is first booted.
-        /// </summary>
-        public readonly string CloudConfig;
-        /// <summary>
-        /// A unqiue, alphanumerical, short, human readable code for the template.
-        /// </summary>
-        public readonly string Code;
-        /// <summary>
-        /// The default username to suggest that the user creates
-        /// </summary>
-        public readonly string DefaultUsername;
-        /// <summary>
-        /// A multi-line description of the template, in Markdown format
-        /// </summary>
-        public readonly string Description;
-        /// <summary>
         /// The id of the template
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// The Image ID of any default template or the ID of another template.
+        /// The label of the template.
         /// </summary>
-        public readonly string ImageId;
+        public readonly string Label;
         /// <summary>
         /// A short human readable name for the template
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// A one line description of the template
+        /// The version of the template.
         /// </summary>
-        public readonly string ShortDescription;
-        /// <summary>
-        /// The ID of a bootable volume, either owned by you or global.
-        /// </summary>
-        public readonly string VolumeId;
+        public readonly string Version;
 
         [OutputConstructor]
         private GetTemplateTemplateResult(
-            string cloudConfig,
-
-            string code,
-
-            string defaultUsername,
-
-            string description,
-
             string id,
 
-            string imageId,
+            string label,
 
             string name,
 
-            string shortDescription,
-
-            string volumeId)
+            string version)
         {
-            CloudConfig = cloudConfig;
-            Code = code;
-            DefaultUsername = defaultUsername;
-            Description = description;
             Id = id;
-            ImageId = imageId;
+            Label = label;
             Name = name;
-            ShortDescription = shortDescription;
-            VolumeId = volumeId;
+            Version = version;
         }
     }
 }

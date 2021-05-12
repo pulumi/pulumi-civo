@@ -71,6 +71,10 @@ export class FirewallRule extends pulumi.CustomResource {
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
+     * The region for this rule
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
      * The start port where traffic to be allowed.
      */
     public readonly startPort!: pulumi.Output<string>;
@@ -94,6 +98,7 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["firewallId"] = state ? state.firewallId : undefined;
             inputs["label"] = state ? state.label : undefined;
             inputs["protocol"] = state ? state.protocol : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
@@ -121,6 +126,7 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["firewallId"] = args ? args.firewallId : undefined;
             inputs["label"] = args ? args.label : undefined;
             inputs["protocol"] = args ? args.protocol : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["startPort"] = args ? args.startPort : undefined;
         }
         if (!opts.version) {
@@ -159,6 +165,10 @@ export interface FirewallRuleState {
      */
     readonly protocol?: pulumi.Input<string>;
     /**
+     * The region for this rule
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
      * The start port where traffic to be allowed.
      */
     readonly startPort?: pulumi.Input<string>;
@@ -192,6 +202,10 @@ export interface FirewallRuleArgs {
      * This may be one of "tcp", "udp", or "icmp".
      */
     readonly protocol: pulumi.Input<string>;
+    /**
+     * The region for this rule
+     */
+    readonly region?: pulumi.Input<string>;
     /**
      * The start port where traffic to be allowed.
      */

@@ -8,6 +8,8 @@ namespace Pulumi.Civo
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("civo");
+        public static string? Region { get; set; } = __config.Get("region");
+
         public static string? Token { get; set; } = __config.Get("token");
 
     }

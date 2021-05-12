@@ -81,10 +81,7 @@ class GetNetworkResult:
 
     @property
     @pulumi.getter
-    def region(self) -> str:
-        """
-        The region where the network was create.
-        """
+    def region(self) -> Optional[str]:
         return pulumi.get(self, "region")
 
 
@@ -104,16 +101,19 @@ class AwaitableGetNetworkResult(GetNetworkResult):
 
 def get_network(id: Optional[str] = None,
                 label: Optional[str] = None,
+                region: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetNetworkResult:
     """
     Use this data source to access information about an existing resource.
 
     :param str id: The unique identifier of an existing Network.
-    :param str label: The name of an existing Network.
+    :param str label: The label of an existing Network.
+    :param str region: The region of an existing Network.
     """
     __args__ = dict()
     __args__['id'] = id
     __args__['label'] = label
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:

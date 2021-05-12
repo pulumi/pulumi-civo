@@ -8,6 +8,9 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+func GetRegion(ctx *pulumi.Context) string {
+	return config.Get(ctx, "civo:region")
+}
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "civo:token")
 }

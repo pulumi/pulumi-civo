@@ -19,7 +19,8 @@ class FirewallRuleArgs:
                  firewall_id: pulumi.Input[str],
                  protocol: pulumi.Input[str],
                  start_port: pulumi.Input[str],
-                 label: Optional[pulumi.Input[str]] = None):
+                 label: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
@@ -29,6 +30,7 @@ class FirewallRuleArgs:
         :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
         :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
+        :param pulumi.Input[str] region: The region for this rule
         """
         pulumi.set(__self__, "cidrs", cidrs)
         pulumi.set(__self__, "direction", direction)
@@ -38,6 +40,8 @@ class FirewallRuleArgs:
         pulumi.set(__self__, "start_port", start_port)
         if label is not None:
             pulumi.set(__self__, "label", label)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
@@ -123,6 +127,18 @@ class FirewallRuleArgs:
     def label(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "label", value)
 
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for this rule
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
 
 @pulumi.input_type
 class _FirewallRuleState:
@@ -133,6 +149,7 @@ class _FirewallRuleState:
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallRule resources.
@@ -142,6 +159,7 @@ class _FirewallRuleState:
         :param pulumi.Input[str] firewall_id: The Firewall id
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
         :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
+        :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         """
         if cidrs is not None:
@@ -156,6 +174,8 @@ class _FirewallRuleState:
             pulumi.set(__self__, "label", label)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
 
@@ -232,6 +252,18 @@ class _FirewallRuleState:
         pulumi.set(self, "protocol", value)
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region for this rule
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
     @pulumi.getter(name="startPort")
     def start_port(self) -> Optional[pulumi.Input[str]]:
         """
@@ -255,6 +287,7 @@ class FirewallRule(pulumi.CustomResource):
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -279,6 +312,7 @@ class FirewallRule(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_id: The Firewall id
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
         :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
+        :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         """
         ...
@@ -322,6 +356,7 @@ class FirewallRule(pulumi.CustomResource):
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
                  start_port: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -351,6 +386,7 @@ class FirewallRule(pulumi.CustomResource):
             if protocol is None and not opts.urn:
                 raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["region"] = region
             if start_port is None and not opts.urn:
                 raise TypeError("Missing required property 'start_port'")
             __props__.__dict__["start_port"] = start_port
@@ -370,6 +406,7 @@ class FirewallRule(pulumi.CustomResource):
             firewall_id: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            region: Optional[pulumi.Input[str]] = None,
             start_port: Optional[pulumi.Input[str]] = None) -> 'FirewallRule':
         """
         Get an existing FirewallRule resource's state with the given name, id, and optional extra
@@ -384,6 +421,7 @@ class FirewallRule(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_id: The Firewall id
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
         :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
+        :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -396,6 +434,7 @@ class FirewallRule(pulumi.CustomResource):
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["label"] = label
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["region"] = region
         __props__.__dict__["start_port"] = start_port
         return FirewallRule(resource_name, opts=opts, __props__=__props__)
 
@@ -446,6 +485,14 @@ class FirewallRule(pulumi.CustomResource):
         This may be one of "tcp", "udp", or "icmp".
         """
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        The region for this rule
+        """
+        return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="startPort")

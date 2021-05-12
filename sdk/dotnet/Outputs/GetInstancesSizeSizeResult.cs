@@ -13,37 +13,37 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetInstancesSizeSizeResult
     {
-        public readonly int CpuCores;
+        public readonly int Cpu;
         public readonly string Description;
-        public readonly int DiskGb;
+        public readonly int Disk;
         public readonly string Name;
-        public readonly string NiceName;
-        public readonly int RamMb;
+        public readonly int Ram;
         public readonly bool Selectable;
+        public readonly string Type;
 
         [OutputConstructor]
         private GetInstancesSizeSizeResult(
-            int cpuCores,
+            int cpu,
 
             string description,
 
-            int diskGb,
+            int disk,
 
             string name,
 
-            string niceName,
+            int ram,
 
-            int ramMb,
+            bool selectable,
 
-            bool selectable)
+            string type)
         {
-            CpuCores = cpuCores;
+            Cpu = cpu;
             Description = description;
-            DiskGb = diskGb;
+            Disk = disk;
             Name = name;
-            NiceName = niceName;
-            RamMb = ramMb;
+            Ram = ram;
             Selectable = selectable;
+            Type = type;
         }
     }
 }

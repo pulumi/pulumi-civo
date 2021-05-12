@@ -17,6 +17,7 @@ export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pr
     return pulumi.runtime.invoke("civo:index/getVolume:getVolume", {
         "id": args.id,
         "name": args.name,
+        "region": args.region,
     }, opts);
 }
 
@@ -32,6 +33,7 @@ export interface GetVolumeArgs {
      * The name of the volume.
      */
     readonly name?: string;
+    readonly region?: string;
 }
 
 /**
@@ -58,6 +60,7 @@ export interface GetVolumeResult {
      * Name of the volume.
      */
     readonly name?: string;
+    readonly region?: string;
     /**
      * The size of the volume.
      */

@@ -13,11 +13,13 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesVersionFilterResult
     {
+        public readonly bool? All;
         /// <summary>
         /// Filter the sizes by this key. This may be one of `version`,
         /// `label`, `type`, `default`.
         /// </summary>
         public readonly string Key;
+        public readonly string? MatchBy;
         /// <summary>
         /// Only retrieves the version which keys has value that matches
         /// one of the values provided here.
@@ -26,11 +28,17 @@ namespace Pulumi.Civo.Outputs
 
         [OutputConstructor]
         private GetKubernetesVersionFilterResult(
+            bool? all,
+
             string key,
+
+            string? matchBy,
 
             ImmutableArray<string> values)
         {
+            All = all;
             Key = key;
+            MatchBy = matchBy;
             Values = values;
         }
     }

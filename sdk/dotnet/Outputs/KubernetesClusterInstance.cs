@@ -18,33 +18,17 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly int? CpuCores;
         /// <summary>
-        /// The date where the Kubernetes cluster was create.
-        /// </summary>
-        public readonly string? CreatedAt;
-        /// <summary>
         /// The size of the disk.
         /// </summary>
         public readonly int? DiskGb;
-        /// <summary>
-        /// The firewall id assigned to the instance
-        /// </summary>
-        public readonly string? FirewallId;
         /// <summary>
         /// The hostname of the instance.
         /// </summary>
         public readonly string? Hostname;
         /// <summary>
-        /// The public ip of the instances, only available if the instances is the master
-        /// </summary>
-        public readonly string? PublicIp;
-        /// <summary>
-        /// Total ram of the instance.
+        /// Total ram of the instance
         /// </summary>
         public readonly int? RamMb;
-        /// <summary>
-        /// The region where instance are.
-        /// </summary>
-        public readonly string? Region;
         /// <summary>
         /// The size of the instance.
         /// </summary>
@@ -63,19 +47,11 @@ namespace Pulumi.Civo.Outputs
         private KubernetesClusterInstance(
             int? cpuCores,
 
-            string? createdAt,
-
             int? diskGb,
-
-            string? firewallId,
 
             string? hostname,
 
-            string? publicIp,
-
             int? ramMb,
-
-            string? region,
 
             string? size,
 
@@ -84,13 +60,9 @@ namespace Pulumi.Civo.Outputs
             ImmutableArray<string> tags)
         {
             CpuCores = cpuCores;
-            CreatedAt = createdAt;
             DiskGb = diskGb;
-            FirewallId = firewallId;
             Hostname = hostname;
-            PublicIp = publicIp;
             RamMb = ramMb;
-            Region = region;
             Size = size;
             Status = status;
             Tags = tags;
