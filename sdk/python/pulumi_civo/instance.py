@@ -37,7 +37,7 @@ class InstanceArgs:
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.k3s.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
@@ -180,7 +180,7 @@ class InstanceArgs:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the size, from the current list, e.g. g2.small (required).
+        The name of the size, from the current list, e.g. g3.k3s.small (required).
         """
         return pulumi.get(self, "size")
 
@@ -271,7 +271,7 @@ class _InstanceState:
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.k3s.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
         :param pulumi.Input[str] status: The status of the instance
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
@@ -534,7 +534,7 @@ class _InstanceState:
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the size, from the current list, e.g. g2.small (required).
+        The name of the size, from the current list, e.g. g3.k3s.small (required).
         """
         return pulumi.get(self, "size")
 
@@ -651,7 +651,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.k3s.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
@@ -798,7 +798,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
-        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g2.small (required).
+        :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.k3s.small (required).
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
         :param pulumi.Input[str] status: The status of the instance
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
@@ -974,7 +974,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter
     def size(self) -> pulumi.Output[Optional[str]]:
         """
-        The name of the size, from the current list, e.g. g2.small (required).
+        The name of the size, from the current list, e.g. g3.k3s.small (required).
         """
         return pulumi.get(self, "size")
 

@@ -8,7 +8,7 @@ replace (
 )
 
 require (
-	github.com/civo/terraform-provider-civo v0.10.0
+	github.com/civo/terraform-provider-civo v0.10.1
 	github.com/hashicorp/terraform-plugin-sdk v1.14.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0
 	github.com/pulumi/pulumi/pkg/v3 v3.0.0

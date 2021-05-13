@@ -2,16 +2,9 @@ import * as k8s from "@pulumi/kubernetes";
 import * as civo from "@pulumi/civo"
 import * as pulumi from "@pulumi/pulumi";
 
-const version = civo.getKubernetesVersion({
-    filters: [{
-        key: "type",
-        values: ["stable"],
-    }],
-}).then(x => x.versions[0].version)
-
 const cluster = new civo.KubernetesCluster("acc-test", {
     tags: "demo-kubernetes-typescript",
-    kubernetesVersion: version,
+    kubernetesVersion: '1.20.0-k3s1',
 });
 
 const k8sProvider = new k8s.Provider("acc-provider-test", {

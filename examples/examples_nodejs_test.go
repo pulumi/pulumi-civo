@@ -22,9 +22,8 @@ func TestAccNetworkTs(t *testing.T) {
 func TestKubernetesMinimalTs(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			RunUpdateTest:        false,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
+			RunUpdateTest: false,
+			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
 		})
 
 	integration.ProgramTest(t, &test)
@@ -33,9 +32,8 @@ func TestKubernetesMinimalTs(t *testing.T) {
 func TestKubernetesMediumTs(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			RunUpdateTest:        false,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "medium"),
+			RunUpdateTest: false,
+			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "medium"),
 		})
 
 	integration.ProgramTest(t, &test)
@@ -44,9 +42,8 @@ func TestKubernetesMediumTs(t *testing.T) {
 func TestKubernetesComplexTs(t *testing.T) {
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			RunUpdateTest:        false,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "complex"),
+			RunUpdateTest: false,
+			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "complex"),
 			Config: map[string]string{
 				"kubernetes-ts-complex:useAmbassadorIngress": "true",
 				"minio:exposeWithIngress":                    "true",

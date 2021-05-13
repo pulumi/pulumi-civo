@@ -113,7 +113,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly script!: pulumi.Output<string | undefined>;
     /**
-     * The name of the size, from the current list, e.g. g2.small (required).
+     * The name of the size, from the current list, e.g. g3.k3s.small (required).
      */
     public readonly size!: pulumi.Output<string | undefined>;
     public /*out*/ readonly sourceId!: pulumi.Output<string>;
@@ -282,7 +282,7 @@ export interface InstanceState {
      */
     readonly script?: pulumi.Input<string>;
     /**
-     * The name of the size, from the current list, e.g. g2.small (required).
+     * The name of the size, from the current list, e.g. g3.k3s.small (required).
      */
     readonly size?: pulumi.Input<string>;
     readonly sourceId?: pulumi.Input<string>;
@@ -346,7 +346,7 @@ export interface InstanceArgs {
      */
     readonly script?: pulumi.Input<string>;
     /**
-     * The name of the size, from the current list, e.g. g2.small (required).
+     * The name of the size, from the current list, e.g. g3.k3s.small (required).
      */
     readonly size?: pulumi.Input<string>;
     /**

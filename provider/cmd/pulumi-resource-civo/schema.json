@@ -1807,7 +1807,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                 },
                 "sourceId": {
                     "type": "string"
@@ -1889,7 +1889,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                 },
                 "sshkeyId": {
                     "type": "string",
@@ -1983,7 +1983,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                        "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                     },
                     "sourceId": {
                         "type": "string"
@@ -2099,7 +2099,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (The default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g3.k3s.small)\n"
                 }
             },
             "required": [
@@ -2152,7 +2152,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (The default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g3.k3s.small)\n"
                 }
             },
             "stateInputs": {
@@ -2240,7 +2240,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (The default is currently g2.small)\n"
+                        "description": "The size of each node (The default is currently g3.k3s.small)\n"
                     }
                 },
                 "type": "object"

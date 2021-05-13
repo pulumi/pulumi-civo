@@ -127,7 +127,7 @@ namespace Pulumi.Civo
         public Output<string?> Script { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g2.small (required).
+        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
         /// </summary>
         [Output("size")]
         public Output<string?> Size { get; private set; } = null!;
@@ -263,7 +263,7 @@ namespace Pulumi.Civo
         public Input<string>? Script { get; set; }
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g2.small (required).
+        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
@@ -402,7 +402,7 @@ namespace Pulumi.Civo
         public Input<string>? Script { get; set; }
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g2.small (required).
+        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }

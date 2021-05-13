@@ -113,7 +113,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
-     * The size of each node (The default is currently g2.small)
+     * The size of each node (The default is currently g3.k3s.small)
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
 
@@ -253,7 +253,7 @@ export interface KubernetesClusterState {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (The default is currently g2.small)
+     * The size of each node (The default is currently g3.k3s.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }
@@ -291,7 +291,7 @@ export interface KubernetesClusterArgs {
      */
     readonly tags?: pulumi.Input<string>;
     /**
-     * The size of each node (The default is currently g2.small)
+     * The size of each node (The default is currently g3.k3s.small)
      */
     readonly targetNodesSize?: pulumi.Input<string>;
 }

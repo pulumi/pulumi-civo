@@ -32,7 +32,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
         :param pulumi.Input[str] region: The region for the cluster.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
-        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g3.k3s.small)
         """
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
@@ -139,7 +139,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node (The default is currently g2.small)
+        The size of each node (The default is currently g3.k3s.small)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -190,7 +190,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] status: The status of Kubernetes cluster.
                * `ready` -If the Kubernetes cluster is ready.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
-        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g3.k3s.small)
         """
         if api_endpoint is not None:
             pulumi.set(__self__, "api_endpoint", api_endpoint)
@@ -449,7 +449,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node (The default is currently g2.small)
+        The size of each node (The default is currently g3.k3s.small)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -490,7 +490,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
         :param pulumi.Input[str] region: The region for the cluster.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
-        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g3.k3s.small)
         """
         ...
     @overload
@@ -615,7 +615,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] status: The status of Kubernetes cluster.
                * `ready` -If the Kubernetes cluster is ready.
         :param pulumi.Input[str] tags: A space separated list of tags, to be used freely as required.
-        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g2.small)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (The default is currently g3.k3s.small)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -788,7 +788,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> pulumi.Output[str]:
         """
-        The size of each node (The default is currently g2.small)
+        The size of each node (The default is currently g3.k3s.small)
         """
         return pulumi.get(self, "target_nodes_size")
 
