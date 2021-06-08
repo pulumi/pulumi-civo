@@ -56,11 +56,7 @@ export class Network extends pulumi.CustomResource {
     }
 
     /**
-     * The block ip assigned to the network.
-     */
-    public /*out*/ readonly cidr!: pulumi.Output<string>;
-    /**
-     * If is the default network.
+     * If is the default network
      */
     public /*out*/ readonly default!: pulumi.Output<boolean>;
     /**
@@ -89,7 +85,6 @@ export class Network extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
-            inputs["cidr"] = state ? state.cidr : undefined;
             inputs["default"] = state ? state.default : undefined;
             inputs["label"] = state ? state.label : undefined;
             inputs["name"] = state ? state.name : undefined;
@@ -101,7 +96,6 @@ export class Network extends pulumi.CustomResource {
             }
             inputs["label"] = args ? args.label : undefined;
             inputs["region"] = args ? args.region : undefined;
-            inputs["cidr"] = undefined /*out*/;
             inputs["default"] = undefined /*out*/;
             inputs["name"] = undefined /*out*/;
         }
@@ -117,11 +111,7 @@ export class Network extends pulumi.CustomResource {
  */
 export interface NetworkState {
     /**
-     * The block ip assigned to the network.
-     */
-    readonly cidr?: pulumi.Input<string>;
-    /**
-     * If is the default network.
+     * If is the default network
      */
     readonly default?: pulumi.Input<boolean>;
     /**

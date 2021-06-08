@@ -1249,6 +1249,126 @@
                 }
             }
         },
+        "civo:index/getRegionFilter:getRegionFilter": {
+            "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only retrieves region which keys has value that matches one of the values provided here.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:index/getRegionRegion:getRegionRegion": {
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "country": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "default": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "code",
+                "country",
+                "default",
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getRegionSort:getRegionSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort the sizes by this key. This may be one of `code`,`name`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
         "civo:index/getTemplateFilter:getTemplateFilter": {
             "properties": {
                 "all": {
@@ -1807,7 +1927,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                 },
                 "sourceId": {
                     "type": "string"
@@ -1889,7 +2009,7 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                    "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                 },
                 "sshkeyId": {
                     "type": "string",
@@ -1983,7 +2103,7 @@
                     },
                     "size": {
                         "type": "string",
-                        "description": "The name of the size, from the current list, e.g. g2.small (required).\n"
+                        "description": "The name of the size, from the current list, e.g. g3.k3s.small (required).\n"
                     },
                     "sourceId": {
                         "type": "string"
@@ -2099,7 +2219,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (The default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g3.k3s.small)\n"
                 }
             },
             "required": [
@@ -2152,7 +2272,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (The default is currently g2.small)\n"
+                    "description": "The size of each node (The default is currently g3.k3s.small)\n"
                 }
             },
             "stateInputs": {
@@ -2240,7 +2360,64 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (The default is currently g2.small)\n"
+                        "description": "The size of each node (The default is currently g3.k3s.small)\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "civo:index/kubernetesNodePool:KubernetesNodePool": {
+            "description": "Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the civo.KubernetesCluster resource, this resource can be used to add additional ones to a cluster.\n\n\n## Import\n\nThen the Kubernetes cluster node pool can be imported using the cluster's and pool id `cluster_id:node_pool_id`, e.g.\n\n```sh\n $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a\n```\n\n ",
+            "properties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Kubernetes cluster to which the node pool is associated.\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "The number of instances to create (The default at the time of writing is 3).\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "The size of each node.\n"
+                }
+            },
+            "required": [
+                "clusterId",
+                "numTargetNodes",
+                "targetNodesSize"
+            ],
+            "inputProperties": {
+                "clusterId": {
+                    "type": "string",
+                    "description": "The ID of the Kubernetes cluster to which the node pool is associated.\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "The number of instances to create (The default at the time of writing is 3).\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "The size of each node.\n"
+                }
+            },
+            "requiredInputs": [
+                "clusterId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering KubernetesNodePool resources.\n",
+                "properties": {
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The ID of the Kubernetes cluster to which the node pool is associated.\n"
+                    },
+                    "numTargetNodes": {
+                        "type": "integer",
+                        "description": "The number of instances to create (The default at the time of writing is 3).\n"
+                    },
+                    "targetNodesSize": {
+                        "type": "string",
+                        "description": "The size of each node.\n"
                     }
                 },
                 "type": "object"
@@ -2434,13 +2611,9 @@
         "civo:index/network:Network": {
             "description": "Provides a Civo Network resource. This can be used to create,\nmodify, and delete Networks.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst customNet = new civo.Network(\"custom_net\", {\n    label: \"test_network\",\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ncustom_net = civo.Network(\"customNet\", label=\"test_network\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var customNet = new Civo.Network(\"customNet\", new Civo.NetworkArgs\n        {\n            Label = \"test_network\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewNetwork(ctx, \"customNet\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"test_network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nFirewalls can be imported using the firewall `id`, e.g.\n\n```sh\n $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
             "properties": {
-                "cidr": {
-                    "type": "string",
-                    "description": "The block ip assigned to the network.\n"
-                },
                 "default": {
                     "type": "boolean",
-                    "description": "If is the default network.\n"
+                    "description": "If is the default network\n"
                 },
                 "label": {
                     "type": "string",
@@ -2456,7 +2629,6 @@
                 }
             },
             "required": [
-                "cidr",
                 "default",
                 "label",
                 "name"
@@ -2477,13 +2649,9 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Network resources.\n",
                 "properties": {
-                    "cidr": {
-                        "type": "string",
-                        "description": "The block ip assigned to the network.\n"
-                    },
                     "default": {
                         "type": "boolean",
-                        "description": "If is the default network.\n"
+                        "description": "If is the default network\n"
                     },
                     "label": {
                         "type": "string",
@@ -3605,10 +3773,6 @@
             "outputs": {
                 "description": "A collection of values returned by getNetwork.\n",
                 "properties": {
-                    "cidr": {
-                        "type": "string",
-                        "description": "The block ip assigned to the network.\n"
-                    },
                     "default": {
                         "type": "boolean",
                         "description": "If is the default network.\n"
@@ -3631,9 +3795,63 @@
                 },
                 "type": "object",
                 "required": [
-                    "cidr",
                     "default",
                     "name"
+                ]
+            }
+        },
+        "civo:index/getRegion:getRegion": {
+            "description": "Retrieves information about the Region that Civo supports,\nwith the ability to filter the results.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getRegion.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getRegionFilter:getRegionFilter"
+                        },
+                        "description": "Filter the results.\nThe `filter` block is documented below.\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getRegionSort:getRegionSort"
+                        },
+                        "description": "Sort the results.\nThe `sort` block is documented below.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getRegion.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getRegionFilter:getRegionFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "regions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getRegionRegion:getRegionRegion"
+                        }
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getRegionSort:getRegionSort"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "regions",
+                    "id"
                 ]
             }
         },

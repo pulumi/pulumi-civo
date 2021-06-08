@@ -20,45 +20,10 @@ func TestAccNetworkTs(t *testing.T) {
 }
 
 func TestKubernetesMinimalTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
-
-func TestKubernetesMediumTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "medium"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
-
-func TestKubernetesComplexTs(t *testing.T) {
-	t.Skip("DisabledServiceError: Unfortunately this service is temporarily unavailable - " +
-		"check https://civo.statuspage.io for more details")
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			ExpectRefreshChanges: true,
-			Dir:                  path.Join(getCwd(t), "kubernetes", "ts", "complex"),
-			Config: map[string]string{
-				"kubernetes-ts-complex:useAmbassadorIngress": "true",
-				"minio:exposeWithIngress":                    "true",
-				"minio:persistenceEnabled":                   "false",
-			},
-			Secrets: map[string]string{
-				"minio:accessKey": "pulumicivo",
-				"minio:secretKey": "abrakadabra",
-			},
+			RunUpdateTest: false,
+			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "minimal"),
 		})
 
 	integration.ProgramTest(t, &test)

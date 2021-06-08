@@ -58,7 +58,7 @@ type Instance struct {
 	ReverseDns pulumi.StringPtrOutput `pulumi:"reverseDns"`
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrOutput `pulumi:"script"`
-	// The name of the size, from the current list, e.g. g2.small (required).
+	// The name of the size, from the current list, e.g. g3.k3s.small (required).
 	Size       pulumi.StringPtrOutput `pulumi:"size"`
 	SourceId   pulumi.StringOutput    `pulumi:"sourceId"`
 	SourceType pulumi.StringOutput    `pulumi:"sourceType"`
@@ -138,7 +138,7 @@ type instanceState struct {
 	ReverseDns *string `pulumi:"reverseDns"`
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script *string `pulumi:"script"`
-	// The name of the size, from the current list, e.g. g2.small (required).
+	// The name of the size, from the current list, e.g. g3.k3s.small (required).
 	Size       *string `pulumi:"size"`
 	SourceId   *string `pulumi:"sourceId"`
 	SourceType *string `pulumi:"sourceType"`
@@ -187,7 +187,7 @@ type InstanceState struct {
 	ReverseDns pulumi.StringPtrInput
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrInput
-	// The name of the size, from the current list, e.g. g2.small (required).
+	// The name of the size, from the current list, e.g. g3.k3s.small (required).
 	Size       pulumi.StringPtrInput
 	SourceId   pulumi.StringPtrInput
 	SourceType pulumi.StringPtrInput
@@ -224,7 +224,7 @@ type instanceArgs struct {
 	ReverseDns *string `pulumi:"reverseDns"`
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script *string `pulumi:"script"`
-	// The name of the size, from the current list, e.g. g2.small (required).
+	// The name of the size, from the current list, e.g. g3.k3s.small (required).
 	Size *string `pulumi:"size"`
 	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
 	SshkeyId *string `pulumi:"sshkeyId"`
@@ -254,7 +254,7 @@ type InstanceArgs struct {
 	ReverseDns pulumi.StringPtrInput
 	// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrInput
-	// The name of the size, from the current list, e.g. g2.small (required).
+	// The name of the size, from the current list, e.g. g3.k3s.small (required).
 	Size pulumi.StringPtrInput
 	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
 	SshkeyId pulumi.StringPtrInput

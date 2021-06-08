@@ -128,7 +128,7 @@ namespace Pulumi.Civo
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The size of each node (The default is currently g2.small)
+        /// The size of each node (The default is currently g3.k3s.small)
         /// </summary>
         [Output("targetNodesSize")]
         public Output<string> TargetNodesSize { get; private set; } = null!;
@@ -222,7 +222,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (The default is currently g2.small)
+        /// The size of each node (The default is currently g3.k3s.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
@@ -359,7 +359,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (The default is currently g2.small)
+        /// The size of each node (The default is currently g3.k3s.small)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }

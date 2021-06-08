@@ -52,21 +52,17 @@ class NetworkArgs:
 @pulumi.input_type
 class _NetworkState:
     def __init__(__self__, *,
-                 cidr: Optional[pulumi.Input[str]] = None,
                  default: Optional[pulumi.Input[bool]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
-        :param pulumi.Input[str] cidr: The block ip assigned to the network.
-        :param pulumi.Input[bool] default: If is the default network.
+        :param pulumi.Input[bool] default: If is the default network
         :param pulumi.Input[str] label: The Network label
         :param pulumi.Input[str] name: The name of the network.
         :param pulumi.Input[str] region: The region where the network was create.
         """
-        if cidr is not None:
-            pulumi.set(__self__, "cidr", cidr)
         if default is not None:
             pulumi.set(__self__, "default", default)
         if label is not None:
@@ -78,21 +74,9 @@ class _NetworkState:
 
     @property
     @pulumi.getter
-    def cidr(self) -> Optional[pulumi.Input[str]]:
-        """
-        The block ip assigned to the network.
-        """
-        return pulumi.get(self, "cidr")
-
-    @cidr.setter
-    def cidr(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "cidr", value)
-
-    @property
-    @pulumi.getter
     def default(self) -> Optional[pulumi.Input[bool]]:
         """
-        If is the default network.
+        If is the default network
         """
         return pulumi.get(self, "default")
 
@@ -231,7 +215,6 @@ class Network(pulumi.CustomResource):
                 raise TypeError("Missing required property 'label'")
             __props__.__dict__["label"] = label
             __props__.__dict__["region"] = region
-            __props__.__dict__["cidr"] = None
             __props__.__dict__["default"] = None
             __props__.__dict__["name"] = None
         super(Network, __self__).__init__(
@@ -244,7 +227,6 @@ class Network(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cidr: Optional[pulumi.Input[str]] = None,
             default: Optional[pulumi.Input[bool]] = None,
             label: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -256,8 +238,7 @@ class Network(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cidr: The block ip assigned to the network.
-        :param pulumi.Input[bool] default: If is the default network.
+        :param pulumi.Input[bool] default: If is the default network
         :param pulumi.Input[str] label: The Network label
         :param pulumi.Input[str] name: The name of the network.
         :param pulumi.Input[str] region: The region where the network was create.
@@ -266,7 +247,6 @@ class Network(pulumi.CustomResource):
 
         __props__ = _NetworkState.__new__(_NetworkState)
 
-        __props__.__dict__["cidr"] = cidr
         __props__.__dict__["default"] = default
         __props__.__dict__["label"] = label
         __props__.__dict__["name"] = name
@@ -275,17 +255,9 @@ class Network(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def cidr(self) -> pulumi.Output[str]:
-        """
-        The block ip assigned to the network.
-        """
-        return pulumi.get(self, "cidr")
-
-    @property
-    @pulumi.getter
     def default(self) -> pulumi.Output[bool]:
         """
-        If is the default network.
+        If is the default network
         """
         return pulumi.get(self, "default")
 

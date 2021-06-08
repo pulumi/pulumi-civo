@@ -46,7 +46,9 @@ To use from .NET, install using `dotnet add package`:
 
 The following configuration points are available:
 
-- `civo:token` - (Required) This is the Civo API token. It can also be sourced from the `CIVO_TOKEN` 
+- `civo:token` - (Required) This is the Civo API token. It can also be sourced from the `CIVO_TOKEN`
+  environment variable.
+- `civo:region` - (Optional) Region in which to create Civo resources.  It can also be sourced from the `CIVO_REGION`
   environment variable.
 
 ## Reference

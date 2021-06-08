@@ -56,7 +56,7 @@ type KubernetesCluster struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// The size of each node (The default is currently g2.small)
+	// The size of each node (The default is currently g3.k3s.small)
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -125,7 +125,7 @@ type kubernetesClusterState struct {
 	Status *string `pulumi:"status"`
 	// A space separated list of tags, to be used freely as required.
 	Tags *string `pulumi:"tags"`
-	// The size of each node (The default is currently g2.small)
+	// The size of each node (The default is currently g3.k3s.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -166,7 +166,7 @@ type KubernetesClusterState struct {
 	Status pulumi.StringPtrInput
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrInput
-	// The size of each node (The default is currently g2.small)
+	// The size of each node (The default is currently g3.k3s.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -189,7 +189,7 @@ type kubernetesClusterArgs struct {
 	Region *string `pulumi:"region"`
 	// A space separated list of tags, to be used freely as required.
 	Tags *string `pulumi:"tags"`
-	// The size of each node (The default is currently g2.small)
+	// The size of each node (The default is currently g3.k3s.small)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -209,7 +209,7 @@ type KubernetesClusterArgs struct {
 	Region pulumi.StringPtrInput
 	// A space separated list of tags, to be used freely as required.
 	Tags pulumi.StringPtrInput
-	// The size of each node (The default is currently g2.small)
+	// The size of each node (The default is currently g3.k3s.small)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

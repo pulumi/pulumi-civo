@@ -44,13 +44,7 @@ namespace Pulumi.Civo
     public partial class Network : Pulumi.CustomResource
     {
         /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
-        [Output("cidr")]
-        public Output<string> Cidr { get; private set; } = null!;
-
-        /// <summary>
-        /// If is the default network.
+        /// If is the default network
         /// </summary>
         [Output("default")]
         public Output<bool> Default { get; private set; } = null!;
@@ -139,13 +133,7 @@ namespace Pulumi.Civo
     public sealed class NetworkState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
-        [Input("cidr")]
-        public Input<string>? Cidr { get; set; }
-
-        /// <summary>
-        /// If is the default network.
+        /// If is the default network
         /// </summary>
         [Input("default")]
         public Input<bool>? Default { get; set; }

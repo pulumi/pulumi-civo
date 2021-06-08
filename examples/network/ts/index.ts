@@ -5,4 +5,4 @@ const network = new civo.Network("acc-test", {
     label: "demo-network-typescript"
 });
 
-export const networkCidr = network.cidr;
+export const networkName = network.name;
