@@ -29,35 +29,6 @@ func TestKubernetesMinimalTs(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
-func TestKubernetesMediumTs(t *testing.T) {
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			RunUpdateTest: false,
-			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "medium"),
-		})
-
-	integration.ProgramTest(t, &test)
-}
-
-func TestKubernetesComplexTs(t *testing.T) {
-	test := getJSBaseOptions(t).
-		With(integration.ProgramTestOptions{
-			RunUpdateTest: false,
-			Dir:           path.Join(getCwd(t), "kubernetes", "ts", "complex"),
-			Config: map[string]string{
-				"kubernetes-ts-complex:useAmbassadorIngress": "true",
-				"minio:exposeWithIngress":                    "true",
-				"minio:persistenceEnabled":                   "false",
-			},
-			Secrets: map[string]string{
-				"minio:accessKey": "pulumicivo",
-				"minio:secretKey": "abrakadabra",
-			},
-		})
-
-	integration.ProgramTest(t, &test)
-}
-
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{

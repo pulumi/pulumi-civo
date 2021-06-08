@@ -47,9 +47,7 @@ import (
 type Network struct {
 	pulumi.CustomResourceState
 
-	// The block ip assigned to the network.
-	Cidr pulumi.StringOutput `pulumi:"cidr"`
-	// If is the default network.
+	// If is the default network
 	Default pulumi.BoolOutput `pulumi:"default"`
 	// The Network label
 	Label pulumi.StringOutput `pulumi:"label"`
@@ -91,9 +89,7 @@ func GetNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Network resources.
 type networkState struct {
-	// The block ip assigned to the network.
-	Cidr *string `pulumi:"cidr"`
-	// If is the default network.
+	// If is the default network
 	Default *bool `pulumi:"default"`
 	// The Network label
 	Label *string `pulumi:"label"`
@@ -104,9 +100,7 @@ type networkState struct {
 }
 
 type NetworkState struct {
-	// The block ip assigned to the network.
-	Cidr pulumi.StringPtrInput
-	// If is the default network.
+	// If is the default network
 	Default pulumi.BoolPtrInput
 	// The Network label
 	Label pulumi.StringPtrInput

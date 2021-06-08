@@ -10,9 +10,6 @@ import (
 func getBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	checkCivoToken(t)
 	return integration.ProgramTestOptions{
-		Config: map[string]string{
-			"civo:region": "LON1",
-		},
 		ExpectRefreshChanges: true,
 	}
 }

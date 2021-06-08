@@ -16,12 +16,14 @@ from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
 from .get_load_balancer import *
 from .get_network import *
+from .get_region import *
 from .get_snapshot import *
 from .get_ssh_key import *
 from .get_template import *
 from .get_volume import *
 from .instance import *
 from .kubernetes_cluster import *
+from .kubernetes_node_pool import *
 from .load_balancer import *
 from .network import *
 from .provider import *
@@ -62,6 +64,8 @@ def _register_module():
                 return Instance(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/kubernetesCluster:KubernetesCluster":
                 return KubernetesCluster(name, pulumi.ResourceOptions(urn=urn))
+            elif typ == "civo:index/kubernetesNodePool:KubernetesNodePool":
+                return KubernetesNodePool(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/loadBalancer:LoadBalancer":
                 return LoadBalancer(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/network:Network":
@@ -87,6 +91,7 @@ def _register_module():
     pulumi.runtime.register_resource_module("civo", "index/firewallRule", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/instance", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/kubernetesCluster", _module_instance)
+    pulumi.runtime.register_resource_module("civo", "index/kubernetesNodePool", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/loadBalancer", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/network", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/snapshot", _module_instance)

@@ -2576,6 +2576,342 @@ func (o GetLoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) GetLoadBalan
 	}).(GetLoadBalancerBackendOutput)
 }
 
+type GetRegionFilter struct {
+	All *bool `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+	Key     string  `pulumi:"key"`
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves region which keys has value that matches one of the values provided here.
+	Values []string `pulumi:"values"`
+}
+
+// GetRegionFilterInput is an input type that accepts GetRegionFilterArgs and GetRegionFilterOutput values.
+// You can construct a concrete instance of `GetRegionFilterInput` via:
+//
+//          GetRegionFilterArgs{...}
+type GetRegionFilterInput interface {
+	pulumi.Input
+
+	ToGetRegionFilterOutput() GetRegionFilterOutput
+	ToGetRegionFilterOutputWithContext(context.Context) GetRegionFilterOutput
+}
+
+type GetRegionFilterArgs struct {
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+	Key     pulumi.StringInput    `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves region which keys has value that matches one of the values provided here.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetRegionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionFilter)(nil)).Elem()
+}
+
+func (i GetRegionFilterArgs) ToGetRegionFilterOutput() GetRegionFilterOutput {
+	return i.ToGetRegionFilterOutputWithContext(context.Background())
+}
+
+func (i GetRegionFilterArgs) ToGetRegionFilterOutputWithContext(ctx context.Context) GetRegionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionFilterOutput)
+}
+
+// GetRegionFilterArrayInput is an input type that accepts GetRegionFilterArray and GetRegionFilterArrayOutput values.
+// You can construct a concrete instance of `GetRegionFilterArrayInput` via:
+//
+//          GetRegionFilterArray{ GetRegionFilterArgs{...} }
+type GetRegionFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionFilterArrayOutput() GetRegionFilterArrayOutput
+	ToGetRegionFilterArrayOutputWithContext(context.Context) GetRegionFilterArrayOutput
+}
+
+type GetRegionFilterArray []GetRegionFilterInput
+
+func (GetRegionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionFilter)(nil)).Elem()
+}
+
+func (i GetRegionFilterArray) ToGetRegionFilterArrayOutput() GetRegionFilterArrayOutput {
+	return i.ToGetRegionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionFilterArray) ToGetRegionFilterArrayOutputWithContext(ctx context.Context) GetRegionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionFilterArrayOutput)
+}
+
+type GetRegionFilterOutput struct{ *pulumi.OutputState }
+
+func (GetRegionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionFilter)(nil)).Elem()
+}
+
+func (o GetRegionFilterOutput) ToGetRegionFilterOutput() GetRegionFilterOutput {
+	return o
+}
+
+func (o GetRegionFilterOutput) ToGetRegionFilterOutputWithContext(ctx context.Context) GetRegionFilterOutput {
+	return o
+}
+
+func (o GetRegionFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetRegionFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+func (o GetRegionFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetRegionFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
+}
+
+// Only retrieves region which keys has value that matches one of the values provided here.
+func (o GetRegionFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRegionFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetRegionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionFilter)(nil)).Elem()
+}
+
+func (o GetRegionFilterArrayOutput) ToGetRegionFilterArrayOutput() GetRegionFilterArrayOutput {
+	return o
+}
+
+func (o GetRegionFilterArrayOutput) ToGetRegionFilterArrayOutputWithContext(ctx context.Context) GetRegionFilterArrayOutput {
+	return o
+}
+
+func (o GetRegionFilterArrayOutput) Index(i pulumi.IntInput) GetRegionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionFilter {
+		return vs[0].([]GetRegionFilter)[vs[1].(int)]
+	}).(GetRegionFilterOutput)
+}
+
+type GetRegionRegion struct {
+	Code    string `pulumi:"code"`
+	Country string `pulumi:"country"`
+	Default bool   `pulumi:"default"`
+	Name    string `pulumi:"name"`
+}
+
+// GetRegionRegionInput is an input type that accepts GetRegionRegionArgs and GetRegionRegionOutput values.
+// You can construct a concrete instance of `GetRegionRegionInput` via:
+//
+//          GetRegionRegionArgs{...}
+type GetRegionRegionInput interface {
+	pulumi.Input
+
+	ToGetRegionRegionOutput() GetRegionRegionOutput
+	ToGetRegionRegionOutputWithContext(context.Context) GetRegionRegionOutput
+}
+
+type GetRegionRegionArgs struct {
+	Code    pulumi.StringInput `pulumi:"code"`
+	Country pulumi.StringInput `pulumi:"country"`
+	Default pulumi.BoolInput   `pulumi:"default"`
+	Name    pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetRegionRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionRegion)(nil)).Elem()
+}
+
+func (i GetRegionRegionArgs) ToGetRegionRegionOutput() GetRegionRegionOutput {
+	return i.ToGetRegionRegionOutputWithContext(context.Background())
+}
+
+func (i GetRegionRegionArgs) ToGetRegionRegionOutputWithContext(ctx context.Context) GetRegionRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionRegionOutput)
+}
+
+// GetRegionRegionArrayInput is an input type that accepts GetRegionRegionArray and GetRegionRegionArrayOutput values.
+// You can construct a concrete instance of `GetRegionRegionArrayInput` via:
+//
+//          GetRegionRegionArray{ GetRegionRegionArgs{...} }
+type GetRegionRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionRegionArrayOutput() GetRegionRegionArrayOutput
+	ToGetRegionRegionArrayOutputWithContext(context.Context) GetRegionRegionArrayOutput
+}
+
+type GetRegionRegionArray []GetRegionRegionInput
+
+func (GetRegionRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionRegion)(nil)).Elem()
+}
+
+func (i GetRegionRegionArray) ToGetRegionRegionArrayOutput() GetRegionRegionArrayOutput {
+	return i.ToGetRegionRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionRegionArray) ToGetRegionRegionArrayOutputWithContext(ctx context.Context) GetRegionRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionRegionArrayOutput)
+}
+
+type GetRegionRegionOutput struct{ *pulumi.OutputState }
+
+func (GetRegionRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionRegion)(nil)).Elem()
+}
+
+func (o GetRegionRegionOutput) ToGetRegionRegionOutput() GetRegionRegionOutput {
+	return o
+}
+
+func (o GetRegionRegionOutput) ToGetRegionRegionOutputWithContext(ctx context.Context) GetRegionRegionOutput {
+	return o
+}
+
+func (o GetRegionRegionOutput) Code() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionRegion) string { return v.Code }).(pulumi.StringOutput)
+}
+
+func (o GetRegionRegionOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionRegion) string { return v.Country }).(pulumi.StringOutput)
+}
+
+func (o GetRegionRegionOutput) Default() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetRegionRegion) bool { return v.Default }).(pulumi.BoolOutput)
+}
+
+func (o GetRegionRegionOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionRegion) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetRegionRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionRegion)(nil)).Elem()
+}
+
+func (o GetRegionRegionArrayOutput) ToGetRegionRegionArrayOutput() GetRegionRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionRegionArrayOutput) ToGetRegionRegionArrayOutputWithContext(ctx context.Context) GetRegionRegionArrayOutput {
+	return o
+}
+
+func (o GetRegionRegionArrayOutput) Index(i pulumi.IntInput) GetRegionRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionRegion {
+		return vs[0].([]GetRegionRegion)[vs[1].(int)]
+	}).(GetRegionRegionOutput)
+}
+
+type GetRegionSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction *string `pulumi:"direction"`
+	// Sort the sizes by this key. This may be one of `code`,`name`.
+	Key string `pulumi:"key"`
+}
+
+// GetRegionSortInput is an input type that accepts GetRegionSortArgs and GetRegionSortOutput values.
+// You can construct a concrete instance of `GetRegionSortInput` via:
+//
+//          GetRegionSortArgs{...}
+type GetRegionSortInput interface {
+	pulumi.Input
+
+	ToGetRegionSortOutput() GetRegionSortOutput
+	ToGetRegionSortOutputWithContext(context.Context) GetRegionSortOutput
+}
+
+type GetRegionSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction pulumi.StringPtrInput `pulumi:"direction"`
+	// Sort the sizes by this key. This may be one of `code`,`name`.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetRegionSortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionSort)(nil)).Elem()
+}
+
+func (i GetRegionSortArgs) ToGetRegionSortOutput() GetRegionSortOutput {
+	return i.ToGetRegionSortOutputWithContext(context.Background())
+}
+
+func (i GetRegionSortArgs) ToGetRegionSortOutputWithContext(ctx context.Context) GetRegionSortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionSortOutput)
+}
+
+// GetRegionSortArrayInput is an input type that accepts GetRegionSortArray and GetRegionSortArrayOutput values.
+// You can construct a concrete instance of `GetRegionSortArrayInput` via:
+//
+//          GetRegionSortArray{ GetRegionSortArgs{...} }
+type GetRegionSortArrayInput interface {
+	pulumi.Input
+
+	ToGetRegionSortArrayOutput() GetRegionSortArrayOutput
+	ToGetRegionSortArrayOutputWithContext(context.Context) GetRegionSortArrayOutput
+}
+
+type GetRegionSortArray []GetRegionSortInput
+
+func (GetRegionSortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionSort)(nil)).Elem()
+}
+
+func (i GetRegionSortArray) ToGetRegionSortArrayOutput() GetRegionSortArrayOutput {
+	return i.ToGetRegionSortArrayOutputWithContext(context.Background())
+}
+
+func (i GetRegionSortArray) ToGetRegionSortArrayOutputWithContext(ctx context.Context) GetRegionSortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRegionSortArrayOutput)
+}
+
+type GetRegionSortOutput struct{ *pulumi.OutputState }
+
+func (GetRegionSortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionSort)(nil)).Elem()
+}
+
+func (o GetRegionSortOutput) ToGetRegionSortOutput() GetRegionSortOutput {
+	return o
+}
+
+func (o GetRegionSortOutput) ToGetRegionSortOutputWithContext(ctx context.Context) GetRegionSortOutput {
+	return o
+}
+
+// The sort direction. This may be either `asc` or `desc`.
+func (o GetRegionSortOutput) Direction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRegionSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
+}
+
+// Sort the sizes by this key. This may be one of `code`,`name`.
+func (o GetRegionSortOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionSort) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetRegionSortArrayOutput struct{ *pulumi.OutputState }
+
+func (GetRegionSortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetRegionSort)(nil)).Elem()
+}
+
+func (o GetRegionSortArrayOutput) ToGetRegionSortArrayOutput() GetRegionSortArrayOutput {
+	return o
+}
+
+func (o GetRegionSortArrayOutput) ToGetRegionSortArrayOutputWithContext(ctx context.Context) GetRegionSortArrayOutput {
+	return o
+}
+
+func (o GetRegionSortArrayOutput) Index(i pulumi.IntInput) GetRegionSortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetRegionSort {
+		return vs[0].([]GetRegionSort)[vs[1].(int)]
+	}).(GetRegionSortOutput)
+}
+
 type GetTemplateFilter struct {
 	All *bool `pulumi:"all"`
 	// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
@@ -2966,6 +3302,12 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesVersionVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetLoadBalancerBackendOutput{})
 	pulumi.RegisterOutputType(GetLoadBalancerBackendArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionFilterOutput{})
+	pulumi.RegisterOutputType(GetRegionFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionRegionOutput{})
+	pulumi.RegisterOutputType(GetRegionRegionArrayOutput{})
+	pulumi.RegisterOutputType(GetRegionSortOutput{})
+	pulumi.RegisterOutputType(GetRegionSortArrayOutput{})
 	pulumi.RegisterOutputType(GetTemplateFilterOutput{})
 	pulumi.RegisterOutputType(GetTemplateFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetTemplateSortOutput{})

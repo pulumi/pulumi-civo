@@ -310,6 +310,37 @@ export interface GetLoadBalancerBackend {
     protocol: string;
 }
 
+export interface GetRegionFilter {
+    all?: boolean;
+    /**
+     * Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+     */
+    key: string;
+    matchBy?: string;
+    /**
+     * Only retrieves region which keys has value that matches one of the values provided here.
+     */
+    values: string[];
+}
+
+export interface GetRegionRegion {
+    code: string;
+    country: string;
+    default: boolean;
+    name: string;
+}
+
+export interface GetRegionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: string;
+    /**
+     * Sort the sizes by this key. This may be one of `code`,`name`.
+     */
+    key: string;
+}
+
 export interface GetTemplateFilter {
     all?: boolean;
     /**

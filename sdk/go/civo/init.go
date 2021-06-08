@@ -32,6 +32,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Instance{}
 	case "civo:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
+	case "civo:index/kubernetesNodePool:KubernetesNodePool":
+		r = &KubernetesNodePool{}
 	case "civo:index/loadBalancer:LoadBalancer":
 		r = &LoadBalancer{}
 	case "civo:index/network:Network":
@@ -105,6 +107,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/kubernetesCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"civo",
+		"index/kubernetesNodePool",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -4,7 +4,7 @@ import * as pulumi from "@pulumi/pulumi";
 
 const cluster = new civo.KubernetesCluster("acc-test", {
     tags: "demo-kubernetes-typescript",
-    kubernetesVersion: '1.20.0-k3s1',
+    region: "lon1",
 });
 
 const k8sProvider = new k8s.Provider("acc-provider-test", {

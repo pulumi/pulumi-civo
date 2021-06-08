@@ -29,6 +29,9 @@ __all__ = [
     'GetKubernetesVersionSortResult',
     'GetKubernetesVersionVersionResult',
     'GetLoadBalancerBackendResult',
+    'GetRegionFilterResult',
+    'GetRegionRegionResult',
+    'GetRegionSortResult',
     'GetTemplateFilterResult',
     'GetTemplateSortResult',
     'GetTemplateTemplateResult',
@@ -1336,6 +1339,114 @@ class GetLoadBalancerBackendResult(dict):
         The protocol used in the configuration.
         """
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetRegionFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str],
+                 all: Optional[bool] = None,
+                 match_by: Optional[str] = None):
+        """
+        :param str key: Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+        :param Sequence[str] values: Only retrieves region which keys has value that matches one of the values provided here.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if match_by is not None:
+            pulumi.set(__self__, "match_by", match_by)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        Only retrieves region which keys has value that matches one of the values provided here.
+        """
+        return pulumi.get(self, "values")
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[bool]:
+        return pulumi.get(self, "all")
+
+    @property
+    @pulumi.getter(name="matchBy")
+    def match_by(self) -> Optional[str]:
+        return pulumi.get(self, "match_by")
+
+
+@pulumi.output_type
+class GetRegionRegionResult(dict):
+    def __init__(__self__, *,
+                 code: str,
+                 country: str,
+                 default: bool,
+                 name: str):
+        pulumi.set(__self__, "code", code)
+        pulumi.set(__self__, "country", country)
+        pulumi.set(__self__, "default", default)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def code(self) -> str:
+        return pulumi.get(self, "code")
+
+    @property
+    @pulumi.getter
+    def country(self) -> str:
+        return pulumi.get(self, "country")
+
+    @property
+    @pulumi.getter
+    def default(self) -> bool:
+        return pulumi.get(self, "default")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRegionSortResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 direction: Optional[str] = None):
+        """
+        :param str key: Sort the sizes by this key. This may be one of `code`,`name`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
+        pulumi.set(__self__, "key", key)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Sort the sizes by this key. This may be one of `code`,`name`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+        return pulumi.get(self, "direction")
 
 
 @pulumi.output_type

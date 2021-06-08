@@ -19,10 +19,7 @@ class GetNetworkResult:
     """
     A collection of values returned by getNetwork.
     """
-    def __init__(__self__, cidr=None, default=None, id=None, label=None, name=None, region=None):
-        if cidr and not isinstance(cidr, str):
-            raise TypeError("Expected argument 'cidr' to be a str")
-        pulumi.set(__self__, "cidr", cidr)
+    def __init__(__self__, default=None, id=None, label=None, name=None, region=None):
         if default and not isinstance(default, bool):
             raise TypeError("Expected argument 'default' to be a bool")
         pulumi.set(__self__, "default", default)
@@ -38,14 +35,6 @@ class GetNetworkResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def cidr(self) -> str:
-        """
-        The block ip assigned to the network.
-        """
-        return pulumi.get(self, "cidr")
 
     @property
     @pulumi.getter
@@ -91,7 +80,6 @@ class AwaitableGetNetworkResult(GetNetworkResult):
         if False:
             yield self
         return GetNetworkResult(
-            cidr=self.cidr,
             default=self.default,
             id=self.id,
             label=self.label,
@@ -121,7 +109,6 @@ def get_network(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getNetwork:getNetwork', __args__, opts=opts, typ=GetNetworkResult).value
 
     return AwaitableGetNetworkResult(
-        cidr=__ret__.cidr,
         default=__ret__.default,
         id=__ret__.id,
         label=__ret__.label,

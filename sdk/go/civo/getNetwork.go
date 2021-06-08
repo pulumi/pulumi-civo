@@ -28,8 +28,6 @@ type LookupNetworkArgs struct {
 
 // A collection of values returned by getNetwork.
 type LookupNetworkResult struct {
-	// The block ip assigned to the network.
-	Cidr string `pulumi:"cidr"`
 	// If is the default network.
 	Default bool `pulumi:"default"`
 	// A unique ID that can be used to identify and reference a Network.

@@ -46,10 +46,6 @@ namespace Pulumi.Civo
     public sealed class GetNetworkResult
     {
         /// <summary>
-        /// The block ip assigned to the network.
-        /// </summary>
-        public readonly string Cidr;
-        /// <summary>
         /// If is the default network.
         /// </summary>
         public readonly bool Default;
@@ -69,8 +65,6 @@ namespace Pulumi.Civo
 
         [OutputConstructor]
         private GetNetworkResult(
-            string cidr,
-
             bool @default,
 
             string? id,
@@ -81,7 +75,6 @@ namespace Pulumi.Civo
 
             string? region)
         {
-            Cidr = cidr;
             Default = @default;
             Id = id;
             Label = label;

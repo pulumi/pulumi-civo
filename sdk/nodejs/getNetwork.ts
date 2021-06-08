@@ -44,10 +44,6 @@ export interface GetNetworkArgs {
  */
 export interface GetNetworkResult {
     /**
-     * The block ip assigned to the network.
-     */
-    readonly cidr: string;
-    /**
      * If is the default network.
      */
     readonly default: boolean;
