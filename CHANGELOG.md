@@ -2,9 +2,12 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v0.10.2 of the Civo Terraform Provider
+_(none)_
 
 ---
+
+## 1.0.1 (2021-06-09)
+* Upgrade to v0.10.2 of the Civo Terraform Provider
 
 ## 1.0.0 (2021-04-19)
 * Depend on Pulumi 3.0, which includes improvements to Python resource arguments and key translation, Go SDK performance,
