@@ -48,7 +48,7 @@ type Instance struct {
 	PseudoIp pulumi.StringOutput `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrOutput `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
@@ -128,7 +128,7 @@ type instanceState struct {
 	PseudoIp *string `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp *string `pulumi:"publicIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb *int `pulumi:"ramMb"`
@@ -177,7 +177,7 @@ type InstanceState struct {
 	PseudoIp pulumi.StringPtrInput
 	// The public ip.
 	PublicIp pulumi.StringPtrInput
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrInput
 	// Total ram of the instance.
 	RamMb pulumi.IntPtrInput
@@ -216,7 +216,7 @@ type instanceArgs struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Add some notes to the instance.
 	Notes *string `pulumi:"notes"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region *string `pulumi:"region"`
@@ -246,7 +246,7 @@ type InstanceArgs struct {
 	NetworkId pulumi.StringPtrInput
 	// Add some notes to the instance.
 	Notes pulumi.StringPtrInput
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region pulumi.StringPtrInput

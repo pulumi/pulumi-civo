@@ -1907,7 +1907,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                 },
                 "ramMb": {
                     "type": "integer",
@@ -1993,7 +1993,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                 },
                 "region": {
                     "type": "string",
@@ -2083,7 +2083,7 @@
                     },
                     "publicIpRequired": {
                         "type": "string",
-                        "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                        "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                     },
                     "ramMb": {
                         "type": "integer",

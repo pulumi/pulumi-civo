@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Update attribute public_ip_requiered description
 
 ---
+
 
 ## 1.0.2 (2021-06-14)
 * Upgrade to v0.10.3 of the Civo Terraform Provider

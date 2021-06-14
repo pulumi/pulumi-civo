@@ -93,7 +93,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
@@ -262,7 +262,7 @@ export interface InstanceState {
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
@@ -330,7 +330,7 @@ export interface InstanceArgs {
      */
     readonly notes?: pulumi.Input<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**

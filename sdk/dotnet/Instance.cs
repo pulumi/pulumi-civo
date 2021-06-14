@@ -97,7 +97,7 @@ namespace Pulumi.Civo
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Output("publicIpRequired")]
         public Output<string?> PublicIpRequired { get; private set; } = null!;
@@ -239,7 +239,7 @@ namespace Pulumi.Civo
         public Input<string>? Notes { get; set; }
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
@@ -372,7 +372,7 @@ namespace Pulumi.Civo
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
