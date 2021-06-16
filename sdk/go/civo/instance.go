@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +31,7 @@ type Instance struct {
 	DiskGb pulumi.IntOutput `pulumi:"diskGb"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringPtrOutput `pulumi:"firewallId"`
-	// The Instance hostname.
+	// The Instance hostname, if is not declare the provider will generate one for you
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// Instance initial password
 	InitialPassword pulumi.StringOutput `pulumi:"initialPassword"`
@@ -48,7 +47,7 @@ type Instance struct {
 	PseudoIp pulumi.StringOutput `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrOutput `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
@@ -76,12 +75,9 @@ type Instance struct {
 func NewInstance(ctx *pulumi.Context,
 	name string, args *InstanceArgs, opts ...pulumi.ResourceOption) (*Instance, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &InstanceArgs{}
 	}
 
-	if args.Hostname == nil {
-		return nil, errors.New("invalid value for required argument 'Hostname'")
-	}
 	var resource Instance
 	err := ctx.RegisterResource("civo:index/instance:Instance", name, args, &resource, opts...)
 	if err != nil {
@@ -112,7 +108,7 @@ type instanceState struct {
 	DiskGb *int `pulumi:"diskGb"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId *string `pulumi:"firewallId"`
-	// The Instance hostname.
+	// The Instance hostname, if is not declare the provider will generate one for you
 	Hostname *string `pulumi:"hostname"`
 	// Instance initial password
 	InitialPassword *string `pulumi:"initialPassword"`
@@ -128,7 +124,7 @@ type instanceState struct {
 	PseudoIp *string `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp *string `pulumi:"publicIp"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb *int `pulumi:"ramMb"`
@@ -161,7 +157,7 @@ type InstanceState struct {
 	DiskGb pulumi.IntPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringPtrInput
-	// The Instance hostname.
+	// The Instance hostname, if is not declare the provider will generate one for you
 	Hostname pulumi.StringPtrInput
 	// Instance initial password
 	InitialPassword pulumi.StringPtrInput
@@ -177,7 +173,7 @@ type InstanceState struct {
 	PseudoIp pulumi.StringPtrInput
 	// The public ip.
 	PublicIp pulumi.StringPtrInput
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrInput
 	// Total ram of the instance.
 	RamMb pulumi.IntPtrInput
@@ -208,15 +204,15 @@ func (InstanceState) ElementType() reflect.Type {
 type instanceArgs struct {
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId *string `pulumi:"firewallId"`
-	// The Instance hostname.
-	Hostname string `pulumi:"hostname"`
+	// The Instance hostname, if is not declare the provider will generate one for you
+	Hostname *string `pulumi:"hostname"`
 	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
 	InitialUser *string `pulumi:"initialUser"`
 	// This must be the ID of the network from the network listing (optional; default network used when not specified).
 	NetworkId *string `pulumi:"networkId"`
 	// Add some notes to the instance.
 	Notes *string `pulumi:"notes"`
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region *string `pulumi:"region"`
@@ -238,15 +234,15 @@ type instanceArgs struct {
 type InstanceArgs struct {
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringPtrInput
-	// The Instance hostname.
-	Hostname pulumi.StringInput
+	// The Instance hostname, if is not declare the provider will generate one for you
+	Hostname pulumi.StringPtrInput
 	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
 	InitialUser pulumi.StringPtrInput
 	// This must be the ID of the network from the network listing (optional; default network used when not specified).
 	NetworkId pulumi.StringPtrInput
 	// Add some notes to the instance.
 	Notes pulumi.StringPtrInput
-	// This should be either false, true or `move_ip_from:intances_id`.
+	// This should be either `create`, `none` or `move_ip_from:intances_id`.
 	PublicIpRequired pulumi.StringPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region pulumi.StringPtrInput

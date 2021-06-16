@@ -49,7 +49,7 @@ namespace Pulumi.Civo
         public Output<string?> FirewallId { get; private set; } = null!;
 
         /// <summary>
-        /// The Instance hostname.
+        /// The Instance hostname, if is not declare the provider will generate one for you
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
@@ -97,7 +97,7 @@ namespace Pulumi.Civo
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Output("publicIpRequired")]
         public Output<string?> PublicIpRequired { get; private set; } = null!;
@@ -170,7 +170,7 @@ namespace Pulumi.Civo
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Instance(string name, InstanceArgs args, CustomResourceOptions? options = null)
+        public Instance(string name, InstanceArgs? args = null, CustomResourceOptions? options = null)
             : base("civo:index/instance:Instance", name, args ?? new InstanceArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -215,10 +215,10 @@ namespace Pulumi.Civo
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// The Instance hostname.
+        /// The Instance hostname, if is not declare the provider will generate one for you
         /// </summary>
-        [Input("hostname", required: true)]
-        public Input<string> Hostname { get; set; } = null!;
+        [Input("hostname")]
+        public Input<string>? Hostname { get; set; }
 
         /// <summary>
         /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
@@ -239,7 +239,7 @@ namespace Pulumi.Civo
         public Input<string>? Notes { get; set; }
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
@@ -324,7 +324,7 @@ namespace Pulumi.Civo
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// The Instance hostname.
+        /// The Instance hostname, if is not declare the provider will generate one for you
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
@@ -372,7 +372,7 @@ namespace Pulumi.Civo
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// This should be either false, true or `move_ip_from:intances_id`.
+        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }

@@ -47,7 +47,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
      */
     public readonly applications!: pulumi.Output<string | undefined>;
     /**
@@ -83,7 +83,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly masterIp!: pulumi.Output<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -187,7 +187,7 @@ export interface KubernetesClusterState {
      */
     readonly apiEndpoint?: pulumi.Input<string>;
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
      */
     readonly applications?: pulumi.Input<string>;
     /**
@@ -223,7 +223,7 @@ export interface KubernetesClusterState {
      */
     readonly masterIp?: pulumi.Input<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -263,7 +263,7 @@ export interface KubernetesClusterState {
  */
 export interface KubernetesClusterArgs {
     /**
-     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+     * A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
      */
     readonly applications?: pulumi.Input<string>;
     /**
@@ -271,7 +271,7 @@ export interface KubernetesClusterArgs {
      */
     readonly kubernetesVersion?: pulumi.Input<string>;
     /**
-     * A name for the Kubernetes cluster.
+     * A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
      */
     readonly name?: pulumi.Input<string>;
     /**

@@ -69,7 +69,7 @@ export class Firewall extends pulumi.CustomResource {
     /**
      * The ID of the network of the firewall
      */
-    public readonly networkId!: pulumi.Output<string | undefined>;
+    public readonly networkId!: pulumi.Output<string>;
     /**
      * The Firewall region, if is not defined we use the global defined in the provider
      */

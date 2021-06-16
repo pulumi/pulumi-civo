@@ -35,11 +35,11 @@ type FirewallRule struct {
 	// The Firewall id
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// a string that will be the displayed name/reference for this rule (optional)
-	Label pulumi.StringPtrOutput `pulumi:"label"`
+	Label pulumi.StringOutput `pulumi:"label"`
 	// This may be one of "tcp", "udp", or "icmp".
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// The region for this rule
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The start port where traffic to be allowed.
 	StartPort pulumi.StringOutput `pulumi:"startPort"`
 }
@@ -51,23 +51,8 @@ func NewFirewallRule(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Cidrs == nil {
-		return nil, errors.New("invalid value for required argument 'Cidrs'")
-	}
-	if args.Direction == nil {
-		return nil, errors.New("invalid value for required argument 'Direction'")
-	}
-	if args.EndPort == nil {
-		return nil, errors.New("invalid value for required argument 'EndPort'")
-	}
 	if args.FirewallId == nil {
 		return nil, errors.New("invalid value for required argument 'FirewallId'")
-	}
-	if args.Protocol == nil {
-		return nil, errors.New("invalid value for required argument 'Protocol'")
-	}
-	if args.StartPort == nil {
-		return nil, errors.New("invalid value for required argument 'StartPort'")
 	}
 	var resource FirewallRule
 	err := ctx.RegisterResource("civo:index/firewallRule:FirewallRule", name, args, &resource, opts...)
@@ -136,19 +121,19 @@ type firewallRuleArgs struct {
 	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
 	Cidrs []string `pulumi:"cidrs"`
 	// will this rule affect ingress traffic
-	Direction string `pulumi:"direction"`
+	Direction *string `pulumi:"direction"`
 	// The end port where traffic to be allowed.
-	EndPort string `pulumi:"endPort"`
+	EndPort *string `pulumi:"endPort"`
 	// The Firewall id
 	FirewallId string `pulumi:"firewallId"`
 	// a string that will be the displayed name/reference for this rule (optional)
 	Label *string `pulumi:"label"`
 	// This may be one of "tcp", "udp", or "icmp".
-	Protocol string `pulumi:"protocol"`
+	Protocol *string `pulumi:"protocol"`
 	// The region for this rule
 	Region *string `pulumi:"region"`
 	// The start port where traffic to be allowed.
-	StartPort string `pulumi:"startPort"`
+	StartPort *string `pulumi:"startPort"`
 }
 
 // The set of arguments for constructing a FirewallRule resource.
@@ -156,19 +141,19 @@ type FirewallRuleArgs struct {
 	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
 	Cidrs pulumi.StringArrayInput
 	// will this rule affect ingress traffic
-	Direction pulumi.StringInput
+	Direction pulumi.StringPtrInput
 	// The end port where traffic to be allowed.
-	EndPort pulumi.StringInput
+	EndPort pulumi.StringPtrInput
 	// The Firewall id
 	FirewallId pulumi.StringInput
 	// a string that will be the displayed name/reference for this rule (optional)
 	Label pulumi.StringPtrInput
 	// This may be one of "tcp", "udp", or "icmp".
-	Protocol pulumi.StringInput
+	Protocol pulumi.StringPtrInput
 	// The region for this rule
 	Region pulumi.StringPtrInput
 	// The start port where traffic to be allowed.
-	StartPort pulumi.StringInput
+	StartPort pulumi.StringPtrInput
 }
 
 func (FirewallRuleArgs) ElementType() reflect.Type {

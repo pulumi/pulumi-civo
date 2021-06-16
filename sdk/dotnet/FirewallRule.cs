@@ -54,7 +54,7 @@ namespace Pulumi.Civo
         /// a string that will be the displayed name/reference for this rule (optional)
         /// </summary>
         [Output("label")]
-        public Output<string?> Label { get; private set; } = null!;
+        public Output<string> Label { get; private set; } = null!;
 
         /// <summary>
         /// This may be one of "tcp", "udp", or "icmp".
@@ -66,7 +66,7 @@ namespace Pulumi.Civo
         /// The region for this rule
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The start port where traffic to be allowed.
@@ -120,7 +120,7 @@ namespace Pulumi.Civo
 
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
-        [Input("cidrs", required: true)]
+        [Input("cidrs")]
         private InputList<string>? _cidrs;
 
         /// <summary>
@@ -135,14 +135,14 @@ namespace Pulumi.Civo
         /// <summary>
         /// will this rule affect ingress traffic
         /// </summary>
-        [Input("direction", required: true)]
-        public Input<string> Direction { get; set; } = null!;
+        [Input("direction")]
+        public Input<string>? Direction { get; set; }
 
         /// <summary>
         /// The end port where traffic to be allowed.
         /// </summary>
-        [Input("endPort", required: true)]
-        public Input<string> EndPort { get; set; } = null!;
+        [Input("endPort")]
+        public Input<string>? EndPort { get; set; }
 
         /// <summary>
         /// The Firewall id
@@ -159,8 +159,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// This may be one of "tcp", "udp", or "icmp".
         /// </summary>
-        [Input("protocol", required: true)]
-        public Input<string> Protocol { get; set; } = null!;
+        [Input("protocol")]
+        public Input<string>? Protocol { get; set; }
 
         /// <summary>
         /// The region for this rule
@@ -171,8 +171,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// The start port where traffic to be allowed.
         /// </summary>
-        [Input("startPort", required: true)]
-        public Input<string> StartPort { get; set; } = null!;
+        [Input("startPort")]
+        public Input<string>? StartPort { get; set; }
 
         public FirewallRuleArgs()
         {
