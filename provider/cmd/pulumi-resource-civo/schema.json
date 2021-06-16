@@ -1685,7 +1685,8 @@
                 }
             },
             "required": [
-                "name"
+                "name",
+                "networkId"
             ],
             "inputProperties": {
                 "name": {
@@ -1764,7 +1765,9 @@
                 "direction",
                 "endPort",
                 "firewallId",
+                "label",
                 "protocol",
+                "region",
                 "startPort"
             ],
             "inputProperties": {
@@ -1805,12 +1808,7 @@
                 }
             },
             "requiredInputs": [
-                "cidrs",
-                "direction",
-                "endPort",
-                "firewallId",
-                "protocol",
-                "startPort"
+                "firewallId"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering FirewallRule resources.\n",
@@ -1875,7 +1873,7 @@
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "The Instance hostname.\n"
+                    "description": "The Instance hostname, if is not declare the provider will generate one for you\n"
                 },
                 "initialPassword": {
                     "type": "string",
@@ -1907,7 +1905,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                 },
                 "ramMb": {
                     "type": "integer",
@@ -1977,7 +1975,7 @@
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "The Instance hostname.\n"
+                    "description": "The Instance hostname, if is not declare the provider will generate one for you\n"
                 },
                 "initialUser": {
                     "type": "string",
@@ -1993,7 +1991,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                 },
                 "region": {
                     "type": "string",
@@ -2027,9 +2025,6 @@
                     "description": "The ID for the template to use to build the instance.\n"
                 }
             },
-            "requiredInputs": [
-                "hostname"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Instance resources.\n",
                 "properties": {
@@ -2051,7 +2046,7 @@
                     },
                     "hostname": {
                         "type": "string",
-                        "description": "The Instance hostname.\n"
+                        "description": "The Instance hostname, if is not declare the provider will generate one for you\n"
                     },
                     "initialPassword": {
                         "type": "string",
@@ -2083,7 +2078,7 @@
                     },
                     "publicIpRequired": {
                         "type": "string",
-                        "description": "This should be either false, true or `move_ip_from:intances_id`.\n"
+                        "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
                     },
                     "ramMb": {
                         "type": "integer",
@@ -2143,7 +2138,7 @@
                 },
                 "applications": {
                     "type": "string",
-                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
                 },
                 "builtAt": {
                     "type": "string",
@@ -2185,7 +2180,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "A name for the Kubernetes cluster.\n"
+                    "description": "A name for the Kubernetes cluster, if is not declare the provider will generate one for you.\n"
                 },
                 "networkId": {
                     "type": "string",
@@ -2244,7 +2239,7 @@
             "inputProperties": {
                 "applications": {
                     "type": "string",
-                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                    "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
                 },
                 "kubernetesVersion": {
                     "type": "string",
@@ -2252,7 +2247,7 @@
                 },
                 "name": {
                     "type": "string",
-                    "description": "A name for the Kubernetes cluster.\n"
+                    "description": "A name for the Kubernetes cluster, if is not declare the provider will generate one for you.\n"
                 },
                 "networkId": {
                     "type": "string",
@@ -2284,7 +2279,7 @@
                     },
                     "applications": {
                         "type": "string",
-                        "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik\n"
+                        "description": "A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
                     },
                     "builtAt": {
                         "type": "string",
@@ -2326,7 +2321,7 @@
                     },
                     "name": {
                         "type": "string",
-                        "description": "A name for the Kubernetes cluster.\n"
+                        "description": "A name for the Kubernetes cluster, if is not declare the provider will generate one for you.\n"
                     },
                     "networkId": {
                         "type": "string",

@@ -68,7 +68,7 @@ type Firewall struct {
 	// The Firewall name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the network of the firewall
-	NetworkId pulumi.StringPtrOutput `pulumi:"networkId"`
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// The Firewall region, if is not defined we use the global defined in the provider
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 }

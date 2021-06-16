@@ -61,7 +61,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly firewallId!: pulumi.Output<string | undefined>;
     /**
-     * The Instance hostname.
+     * The Instance hostname, if is not declare the provider will generate one for you
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
@@ -93,7 +93,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
@@ -142,7 +142,7 @@ export class Instance extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: InstanceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: InstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceArgs | InstanceState, opts?: pulumi.CustomResourceOptions) {
         let inputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -174,9 +174,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
-            if ((!args || args.hostname === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'hostname'");
-            }
             inputs["firewallId"] = args ? args.firewallId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["initialUser"] = args ? args.initialUser : undefined;
@@ -230,7 +227,7 @@ export interface InstanceState {
      */
     readonly firewallId?: pulumi.Input<string>;
     /**
-     * The Instance hostname.
+     * The Instance hostname, if is not declare the provider will generate one for you
      */
     readonly hostname?: pulumi.Input<string>;
     /**
@@ -262,7 +259,7 @@ export interface InstanceState {
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
@@ -314,9 +311,9 @@ export interface InstanceArgs {
      */
     readonly firewallId?: pulumi.Input<string>;
     /**
-     * The Instance hostname.
+     * The Instance hostname, if is not declare the provider will generate one for you
      */
-    readonly hostname: pulumi.Input<string>;
+    readonly hostname?: pulumi.Input<string>;
     /**
      * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
      */
@@ -330,7 +327,7 @@ export interface InstanceArgs {
      */
     readonly notes?: pulumi.Input<string>;
     /**
-     * This should be either false, true or `move_ip_from:intances_id`.
+     * This should be either `create`, `none` or `move_ip_from:intances_id`.
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**

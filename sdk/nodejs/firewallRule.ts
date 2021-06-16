@@ -65,7 +65,7 @@ export class FirewallRule extends pulumi.CustomResource {
     /**
      * a string that will be the displayed name/reference for this rule (optional)
      */
-    public readonly label!: pulumi.Output<string | undefined>;
+    public readonly label!: pulumi.Output<string>;
     /**
      * This may be one of "tcp", "udp", or "icmp".
      */
@@ -73,7 +73,7 @@ export class FirewallRule extends pulumi.CustomResource {
     /**
      * The region for this rule
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * The start port where traffic to be allowed.
      */
@@ -102,23 +102,8 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
-            if ((!args || args.cidrs === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'cidrs'");
-            }
-            if ((!args || args.direction === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'direction'");
-            }
-            if ((!args || args.endPort === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'endPort'");
-            }
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
-            }
-            if ((!args || args.protocol === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'protocol'");
-            }
-            if ((!args || args.startPort === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'startPort'");
             }
             inputs["cidrs"] = args ? args.cidrs : undefined;
             inputs["direction"] = args ? args.direction : undefined;
@@ -181,15 +166,15 @@ export interface FirewallRuleArgs {
     /**
      * the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
      */
-    readonly cidrs: pulumi.Input<pulumi.Input<string>[]>;
+    readonly cidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * will this rule affect ingress traffic
      */
-    readonly direction: pulumi.Input<string>;
+    readonly direction?: pulumi.Input<string>;
     /**
      * The end port where traffic to be allowed.
      */
-    readonly endPort: pulumi.Input<string>;
+    readonly endPort?: pulumi.Input<string>;
     /**
      * The Firewall id
      */
@@ -201,7 +186,7 @@ export interface FirewallRuleArgs {
     /**
      * This may be one of "tcp", "udp", or "icmp".
      */
-    readonly protocol: pulumi.Input<string>;
+    readonly protocol?: pulumi.Input<string>;
     /**
      * The region for this rule
      */
@@ -209,5 +194,5 @@ export interface FirewallRuleArgs {
     /**
      * The start port where traffic to be allowed.
      */
-    readonly startPort: pulumi.Input<string>;
+    readonly startPort?: pulumi.Input<string>;
 }

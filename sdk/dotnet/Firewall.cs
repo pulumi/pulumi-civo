@@ -69,7 +69,7 @@ namespace Pulumi.Civo
         /// The ID of the network of the firewall
         /// </summary>
         [Output("networkId")]
-        public Output<string?> NetworkId { get; private set; } = null!;
+        public Output<string> NetworkId { get; private set; } = null!;
 
         /// <summary>
         /// The Firewall region, if is not defined we use the global defined in the provider

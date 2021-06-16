@@ -275,7 +275,7 @@ class Firewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="networkId")
-    def network_id(self) -> pulumi.Output[Optional[str]]:
+    def network_id(self) -> pulumi.Output[str]:
         """
         The ID of the network of the firewall
         """

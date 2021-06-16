@@ -13,71 +13,40 @@ __all__ = ['FirewallRuleArgs', 'FirewallRule']
 @pulumi.input_type
 class FirewallRuleArgs:
     def __init__(__self__, *,
-                 cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 direction: pulumi.Input[str],
-                 end_port: pulumi.Input[str],
                  firewall_id: pulumi.Input[str],
-                 protocol: pulumi.Input[str],
-                 start_port: pulumi.Input[str],
+                 cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 direction: Optional[pulumi.Input[str]] = None,
+                 end_port: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 protocol: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 start_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
+        :param pulumi.Input[str] firewall_id: The Firewall id
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
         :param pulumi.Input[str] direction: will this rule affect ingress traffic
         :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
-        :param pulumi.Input[str] firewall_id: The Firewall id
-        :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
-        :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
+        :param pulumi.Input[str] protocol: This may be one of "tcp", "udp", or "icmp".
         :param pulumi.Input[str] region: The region for this rule
+        :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         """
-        pulumi.set(__self__, "cidrs", cidrs)
-        pulumi.set(__self__, "direction", direction)
-        pulumi.set(__self__, "end_port", end_port)
         pulumi.set(__self__, "firewall_id", firewall_id)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "start_port", start_port)
+        if cidrs is not None:
+            pulumi.set(__self__, "cidrs", cidrs)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+        if end_port is not None:
+            pulumi.set(__self__, "end_port", end_port)
         if label is not None:
             pulumi.set(__self__, "label", label)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if region is not None:
             pulumi.set(__self__, "region", region)
-
-    @property
-    @pulumi.getter
-    def cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        """
-        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
-        """
-        return pulumi.get(self, "cidrs")
-
-    @cidrs.setter
-    def cidrs(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "cidrs", value)
-
-    @property
-    @pulumi.getter
-    def direction(self) -> pulumi.Input[str]:
-        """
-        will this rule affect ingress traffic
-        """
-        return pulumi.get(self, "direction")
-
-    @direction.setter
-    def direction(self, value: pulumi.Input[str]):
-        pulumi.set(self, "direction", value)
-
-    @property
-    @pulumi.getter(name="endPort")
-    def end_port(self) -> pulumi.Input[str]:
-        """
-        The end port where traffic to be allowed.
-        """
-        return pulumi.get(self, "end_port")
-
-    @end_port.setter
-    def end_port(self, value: pulumi.Input[str]):
-        pulumi.set(self, "end_port", value)
+        if start_port is not None:
+            pulumi.set(__self__, "start_port", start_port)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -93,27 +62,39 @@ class FirewallRuleArgs:
 
     @property
     @pulumi.getter
-    def protocol(self) -> pulumi.Input[str]:
+    def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        This may be one of "tcp", "udp", or "icmp".
+        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
         """
-        return pulumi.get(self, "protocol")
+        return pulumi.get(self, "cidrs")
 
-    @protocol.setter
-    def protocol(self, value: pulumi.Input[str]):
-        pulumi.set(self, "protocol", value)
+    @cidrs.setter
+    def cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "cidrs", value)
 
     @property
-    @pulumi.getter(name="startPort")
-    def start_port(self) -> pulumi.Input[str]:
+    @pulumi.getter
+    def direction(self) -> Optional[pulumi.Input[str]]:
         """
-        The start port where traffic to be allowed.
+        will this rule affect ingress traffic
         """
-        return pulumi.get(self, "start_port")
+        return pulumi.get(self, "direction")
 
-    @start_port.setter
-    def start_port(self, value: pulumi.Input[str]):
-        pulumi.set(self, "start_port", value)
+    @direction.setter
+    def direction(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "direction", value)
+
+    @property
+    @pulumi.getter(name="endPort")
+    def end_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The end port where traffic to be allowed.
+        """
+        return pulumi.get(self, "end_port")
+
+    @end_port.setter
+    def end_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_port", value)
 
     @property
     @pulumi.getter
@@ -129,6 +110,18 @@ class FirewallRuleArgs:
 
     @property
     @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        This may be one of "tcp", "udp", or "icmp".
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
         The region for this rule
@@ -138,6 +131,18 @@ class FirewallRuleArgs:
     @region.setter
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="startPort")
+    def start_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        The start port where traffic to be allowed.
+        """
+        return pulumi.get(self, "start_port")
+
+    @start_port.setter
+    def start_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_port", value)
 
 
 @pulumi.input_type
@@ -370,25 +375,15 @@ class FirewallRule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallRuleArgs.__new__(FirewallRuleArgs)
 
-            if cidrs is None and not opts.urn:
-                raise TypeError("Missing required property 'cidrs'")
             __props__.__dict__["cidrs"] = cidrs
-            if direction is None and not opts.urn:
-                raise TypeError("Missing required property 'direction'")
             __props__.__dict__["direction"] = direction
-            if end_port is None and not opts.urn:
-                raise TypeError("Missing required property 'end_port'")
             __props__.__dict__["end_port"] = end_port
             if firewall_id is None and not opts.urn:
                 raise TypeError("Missing required property 'firewall_id'")
             __props__.__dict__["firewall_id"] = firewall_id
             __props__.__dict__["label"] = label
-            if protocol is None and not opts.urn:
-                raise TypeError("Missing required property 'protocol'")
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["region"] = region
-            if start_port is None and not opts.urn:
-                raise TypeError("Missing required property 'start_port'")
             __props__.__dict__["start_port"] = start_port
         super(FirewallRule, __self__).__init__(
             'civo:index/firewallRule:FirewallRule',
@@ -472,7 +467,7 @@ class FirewallRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def label(self) -> pulumi.Output[Optional[str]]:
+    def label(self) -> pulumi.Output[str]:
         """
         a string that will be the displayed name/reference for this rule (optional)
         """
@@ -488,7 +483,7 @@ class FirewallRule(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
         The region for this rule
         """

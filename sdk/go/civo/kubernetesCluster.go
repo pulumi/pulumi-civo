@@ -22,7 +22,7 @@ type KubernetesCluster struct {
 
 	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
 	// The date where the Kubernetes cluster was build.
 	BuiltAt pulumi.StringOutput `pulumi:"builtAt"`
@@ -40,7 +40,7 @@ type KubernetesCluster struct {
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
 	// The Ip of the Kubernetes master node.
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster.
+	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
@@ -91,7 +91,7 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 type kubernetesClusterState struct {
 	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications *string `pulumi:"applications"`
 	// The date where the Kubernetes cluster was build.
 	BuiltAt *string `pulumi:"builtAt"`
@@ -109,7 +109,7 @@ type kubernetesClusterState struct {
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// The Ip of the Kubernetes master node.
 	MasterIp *string `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster.
+	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
 	Name *string `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
@@ -132,7 +132,7 @@ type kubernetesClusterState struct {
 type KubernetesClusterState struct {
 	// The base URL of the API server on the Kubernetes master node.
 	ApiEndpoint pulumi.StringPtrInput
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrInput
 	// The date where the Kubernetes cluster was build.
 	BuiltAt pulumi.StringPtrInput
@@ -150,7 +150,7 @@ type KubernetesClusterState struct {
 	KubernetesVersion pulumi.StringPtrInput
 	// The Ip of the Kubernetes master node.
 	MasterIp pulumi.StringPtrInput
-	// A name for the Kubernetes cluster.
+	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
 	Name pulumi.StringPtrInput
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
@@ -175,11 +175,11 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications *string `pulumi:"applications"`
 	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// A name for the Kubernetes cluster.
+	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
 	Name *string `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
@@ -195,11 +195,11 @@ type kubernetesClusterArgs struct {
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. If you want to remove a default installed application, prefix it with a '-', e.g. -traefik
+	// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrInput
 	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion pulumi.StringPtrInput
-	// A name for the Kubernetes cluster.
+	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
 	Name pulumi.StringPtrInput
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
