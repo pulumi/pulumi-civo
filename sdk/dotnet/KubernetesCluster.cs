@@ -28,7 +28,7 @@ namespace Pulumi.Civo
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+        /// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
         /// </summary>
         [Output("applications")]
         public Output<string?> Applications { get; private set; } = null!;
@@ -180,7 +180,7 @@ namespace Pulumi.Civo
     public sealed class KubernetesClusterArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+        /// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
@@ -241,7 +241,7 @@ namespace Pulumi.Civo
         public Input<string>? ApiEndpoint { get; set; }
 
         /// <summary>
-        /// A comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+        /// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
