@@ -2,9 +2,10 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v0.10.7 of the Civo Terraform Provider
 
 ---
+
 
 ## 1.0.4 (2021-07-20)
 * Upgrade to v0.10.5 of the Civo Terraform Provider
