@@ -27,6 +27,8 @@ type KubernetesNodePool struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
+	// The region of the node pool, has to match that of the cluster.
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The size of each node.
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
@@ -40,6 +42,9 @@ func NewKubernetesNodePool(ctx *pulumi.Context,
 
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
+	}
+	if args.Region == nil {
+		return nil, errors.New("invalid value for required argument 'Region'")
 	}
 	var resource KubernetesNodePool
 	err := ctx.RegisterResource("civo:index/kubernetesNodePool:KubernetesNodePool", name, args, &resource, opts...)
@@ -67,6 +72,8 @@ type kubernetesNodePoolState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// The region of the node pool, has to match that of the cluster.
+	Region *string `pulumi:"region"`
 	// The size of each node.
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
@@ -76,6 +83,8 @@ type KubernetesNodePoolState struct {
 	ClusterId pulumi.StringPtrInput
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
+	// The region of the node pool, has to match that of the cluster.
+	Region pulumi.StringPtrInput
 	// The size of each node.
 	TargetNodesSize pulumi.StringPtrInput
 }
@@ -89,6 +98,8 @@ type kubernetesNodePoolArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// The region of the node pool, has to match that of the cluster.
+	Region string `pulumi:"region"`
 	// The size of each node.
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
@@ -99,6 +110,8 @@ type KubernetesNodePoolArgs struct {
 	ClusterId pulumi.StringInput
 	// The number of instances to create (The default at the time of writing is 3).
 	NumTargetNodes pulumi.IntPtrInput
+	// The region of the node pool, has to match that of the cluster.
+	Region pulumi.StringInput
 	// The size of each node.
 	TargetNodesSize pulumi.StringPtrInput
 }

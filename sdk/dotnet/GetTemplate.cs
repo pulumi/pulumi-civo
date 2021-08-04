@@ -31,7 +31,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// If is used, them all instances will be from that region.
+        /// If is used, them all template will be from that region, has to be declared here if is not declared in the provider
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }

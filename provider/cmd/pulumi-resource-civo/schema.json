@@ -1957,6 +1957,7 @@
                 "cpuCores",
                 "createdAt",
                 "diskGb",
+                "firewallId",
                 "hostname",
                 "initialPassword",
                 "networkId",
@@ -1966,7 +1967,8 @@
                 "ramMb",
                 "sourceId",
                 "sourceType",
-                "status"
+                "status",
+                "template"
             ],
             "inputProperties": {
                 "firewallId": {
@@ -2140,10 +2142,6 @@
                     "type": "string",
                     "description": "This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
                 },
-                "builtAt": {
-                    "type": "string",
-                    "description": "The date where the Kubernetes cluster was build.\n"
-                },
                 "createdAt": {
                     "type": "string",
                     "description": "The date where the Kubernetes cluster was create.\n"
@@ -2219,7 +2217,6 @@
             },
             "required": [
                 "apiEndpoint",
-                "builtAt",
                 "createdAt",
                 "dnsEntry",
                 "installedApplications",
@@ -2280,10 +2277,6 @@
                     "applications": {
                         "type": "string",
                         "description": "This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
-                    },
-                    "builtAt": {
-                        "type": "string",
-                        "description": "The date where the Kubernetes cluster was build.\n"
                     },
                     "createdAt": {
                         "type": "string",
@@ -2372,6 +2365,10 @@
                     "type": "integer",
                     "description": "The number of instances to create (The default at the time of writing is 3).\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region of the node pool, has to match that of the cluster.\n"
+                },
                 "targetNodesSize": {
                     "type": "string",
                     "description": "The size of each node.\n"
@@ -2380,6 +2377,7 @@
             "required": [
                 "clusterId",
                 "numTargetNodes",
+                "region",
                 "targetNodesSize"
             ],
             "inputProperties": {
@@ -2391,13 +2389,18 @@
                     "type": "integer",
                     "description": "The number of instances to create (The default at the time of writing is 3).\n"
                 },
+                "region": {
+                    "type": "string",
+                    "description": "The region of the node pool, has to match that of the cluster.\n"
+                },
                 "targetNodesSize": {
                     "type": "string",
                     "description": "The size of each node.\n"
                 }
             },
             "requiredInputs": [
-                "clusterId"
+                "clusterId",
+                "region"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering KubernetesNodePool resources.\n",
@@ -2409,6 +2412,10 @@
                     "numTargetNodes": {
                         "type": "integer",
                         "description": "The number of instances to create (The default at the time of writing is 3).\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of the node pool, has to match that of the cluster.\n"
                     },
                     "targetNodesSize": {
                         "type": "string",
@@ -3498,10 +3505,6 @@
                         "type": "string",
                         "description": "A list of application installed.\n"
                     },
-                    "builtAt": {
-                        "type": "string",
-                        "description": "The date where the Kubernetes cluster was build.\n"
-                    },
                     "createdAt": {
                         "type": "string",
                         "description": "The date where the Kubernetes cluster was create.\n"
@@ -3578,7 +3581,6 @@
                 "required": [
                     "apiEndpoint",
                     "applications",
-                    "builtAt",
                     "createdAt",
                     "dnsEntry",
                     "installedApplications",
@@ -3984,7 +3986,7 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "If is used, them all instances will be from that region.\n"
+                        "description": "If is used, them all template will be from that region, has to be declared here if is not declared in the provider\n"
                     },
                     "sorts": {
                         "type": "array",

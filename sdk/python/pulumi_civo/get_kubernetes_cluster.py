@@ -20,16 +20,13 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, api_endpoint=None, applications=None, built_at=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, pools=None, ready=None, region=None, status=None, tags=None, target_nodes_size=None):
+    def __init__(__self__, api_endpoint=None, applications=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, pools=None, ready=None, region=None, status=None, tags=None, target_nodes_size=None):
         if api_endpoint and not isinstance(api_endpoint, str):
             raise TypeError("Expected argument 'api_endpoint' to be a str")
         pulumi.set(__self__, "api_endpoint", api_endpoint)
         if applications and not isinstance(applications, str):
             raise TypeError("Expected argument 'applications' to be a str")
         pulumi.set(__self__, "applications", applications)
-        if built_at and not isinstance(built_at, str):
-            raise TypeError("Expected argument 'built_at' to be a str")
-        pulumi.set(__self__, "built_at", built_at)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -94,14 +91,6 @@ class GetKubernetesClusterResult:
         A list of application installed.
         """
         return pulumi.get(self, "applications")
-
-    @property
-    @pulumi.getter(name="builtAt")
-    def built_at(self) -> str:
-        """
-        The date where the Kubernetes cluster was build.
-        """
-        return pulumi.get(self, "built_at")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -235,7 +224,6 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
         return GetKubernetesClusterResult(
             api_endpoint=self.api_endpoint,
             applications=self.applications,
-            built_at=self.built_at,
             created_at=self.created_at,
             dns_entry=self.dns_entry,
             id=self.id,
@@ -302,7 +290,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
     return AwaitableGetKubernetesClusterResult(
         api_endpoint=__ret__.api_endpoint,
         applications=__ret__.applications,
-        built_at=__ret__.built_at,
         created_at=__ret__.created_at,
         dns_entry=__ret__.dns_entry,
         id=__ret__.id,

@@ -86,8 +86,6 @@ type LookupKubernetesClusterResult struct {
 	ApiEndpoint string `pulumi:"apiEndpoint"`
 	// A list of application installed.
 	Applications string `pulumi:"applications"`
-	// The date where the Kubernetes cluster was build.
-	BuiltAt string `pulumi:"builtAt"`
 	// The date where the Kubernetes cluster was create.
 	CreatedAt string `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.

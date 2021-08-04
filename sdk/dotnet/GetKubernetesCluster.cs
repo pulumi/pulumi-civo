@@ -104,10 +104,6 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string Applications;
         /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
-        public readonly string BuiltAt;
-        /// <summary>
         /// The date where the Kubernetes cluster was create.
         /// </summary>
         public readonly string CreatedAt;
@@ -173,8 +169,6 @@ namespace Pulumi.Civo
 
             string applications,
 
-            string builtAt,
-
             string createdAt,
 
             string dnsEntry,
@@ -209,7 +203,6 @@ namespace Pulumi.Civo
         {
             ApiEndpoint = apiEndpoint;
             Applications = applications;
-            BuiltAt = builtAt;
             CreatedAt = createdAt;
             DnsEntry = dnsEntry;
             Id = id;

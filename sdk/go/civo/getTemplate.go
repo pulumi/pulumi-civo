@@ -20,7 +20,7 @@ func LookupTemplate(ctx *pulumi.Context, args *LookupTemplateArgs, opts ...pulum
 type LookupTemplateArgs struct {
 	// Filter the results. The `filter` block is documented below.
 	Filters []GetTemplateFilter `pulumi:"filters"`
-	// If is used, them all instances will be from that region.
+	// If is used, them all template will be from that region, has to be declared here if is not declared in the provider
 	Region *string `pulumi:"region"`
 	// Sort the results. The `sort` block is documented below.
 	Sorts []GetTemplateSort `pulumi:"sorts"`
