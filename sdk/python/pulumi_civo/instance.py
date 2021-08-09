@@ -859,7 +859,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="firewallId")
-    def firewall_id(self) -> pulumi.Output[Optional[str]]:
+    def firewall_id(self) -> pulumi.Output[str]:
         """
         The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         """
@@ -1013,7 +1013,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def template(self) -> pulumi.Output[Optional[str]]:
+    def template(self) -> pulumi.Output[str]:
         """
         The ID for the template to use to build the instance.
         """

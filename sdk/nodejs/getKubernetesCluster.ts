@@ -80,10 +80,6 @@ export interface GetKubernetesClusterResult {
      */
     readonly applications: string;
     /**
-     * The date where the Kubernetes cluster was build.
-     */
-    readonly builtAt: string;
-    /**
      * The date where the Kubernetes cluster was create.
      */
     readonly createdAt: string;

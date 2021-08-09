@@ -59,7 +59,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
      */
-    public readonly firewallId!: pulumi.Output<string | undefined>;
+    public readonly firewallId!: pulumi.Output<string>;
     /**
      * The Instance hostname, if is not declare the provider will generate one for you
      */
@@ -133,7 +133,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The ID for the template to use to build the instance.
      */
-    public readonly template!: pulumi.Output<string | undefined>;
+    public readonly template!: pulumi.Output<string>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.

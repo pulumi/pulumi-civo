@@ -30,7 +30,7 @@ type Instance struct {
 	// The size of the disk.
 	DiskGb pulumi.IntOutput `pulumi:"diskGb"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
-	FirewallId pulumi.StringPtrOutput `pulumi:"firewallId"`
+	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// The Instance hostname, if is not declare the provider will generate one for you
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
 	// Instance initial password
@@ -68,7 +68,7 @@ type Instance struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID for the template to use to build the instance.
-	Template pulumi.StringPtrOutput `pulumi:"template"`
+	Template pulumi.StringOutput `pulumi:"template"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.

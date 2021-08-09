@@ -52,6 +52,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly numTargetNodes!: pulumi.Output<number>;
     /**
+     * The region of the node pool, has to match that of the cluster.
+     */
+    public readonly region!: pulumi.Output<string>;
+    /**
      * The size of each node.
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
@@ -71,14 +75,19 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             const state = argsOrState as KubernetesNodePoolState | undefined;
             inputs["clusterId"] = state ? state.clusterId : undefined;
             inputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
         } else {
             const args = argsOrState as KubernetesNodePoolArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
+            if ((!args || args.region === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'region'");
+            }
             inputs["clusterId"] = args ? args.clusterId : undefined;
             inputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
         }
         if (!opts.version) {
@@ -101,6 +110,10 @@ export interface KubernetesNodePoolState {
      */
     readonly numTargetNodes?: pulumi.Input<number>;
     /**
+     * The region of the node pool, has to match that of the cluster.
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
      * The size of each node.
      */
     readonly targetNodesSize?: pulumi.Input<string>;
@@ -118,6 +131,10 @@ export interface KubernetesNodePoolArgs {
      * The number of instances to create (The default at the time of writing is 3).
      */
     readonly numTargetNodes?: pulumi.Input<number>;
+    /**
+     * The region of the node pool, has to match that of the cluster.
+     */
+    readonly region: pulumi.Input<string>;
     /**
      * The size of each node.
      */

@@ -88,7 +88,7 @@ def get_template(filters: Optional[Sequence[pulumi.InputType['GetTemplateFilterA
     Use this data source to access information about an existing resource.
 
     :param Sequence[pulumi.InputType['GetTemplateFilterArgs']] filters: Filter the results. The `filter` block is documented below.
-    :param str region: If is used, them all instances will be from that region.
+    :param str region: If is used, them all template will be from that region, has to be declared here if is not declared in the provider
     :param Sequence[pulumi.InputType['GetTemplateSortArgs']] sorts: Sort the results. The `sort` block is documented below.
     """
     __args__ = dict()

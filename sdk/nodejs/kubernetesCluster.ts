@@ -51,10 +51,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly applications!: pulumi.Output<string | undefined>;
     /**
-     * The date where the Kubernetes cluster was build.
-     */
-    public /*out*/ readonly builtAt!: pulumi.Output<string>;
-    /**
      * The date where the Kubernetes cluster was create.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -132,7 +128,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
             const state = argsOrState as KubernetesClusterState | undefined;
             inputs["apiEndpoint"] = state ? state.apiEndpoint : undefined;
             inputs["applications"] = state ? state.applications : undefined;
-            inputs["builtAt"] = state ? state.builtAt : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["dnsEntry"] = state ? state.dnsEntry : undefined;
             inputs["installedApplications"] = state ? state.installedApplications : undefined;
@@ -160,7 +155,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
             inputs["tags"] = args ? args.tags : undefined;
             inputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
             inputs["apiEndpoint"] = undefined /*out*/;
-            inputs["builtAt"] = undefined /*out*/;
             inputs["createdAt"] = undefined /*out*/;
             inputs["dnsEntry"] = undefined /*out*/;
             inputs["installedApplications"] = undefined /*out*/;
@@ -190,10 +184,6 @@ export interface KubernetesClusterState {
      * This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
      */
     readonly applications?: pulumi.Input<string>;
-    /**
-     * The date where the Kubernetes cluster was build.
-     */
-    readonly builtAt?: pulumi.Input<string>;
     /**
      * The date where the Kubernetes cluster was create.
      */

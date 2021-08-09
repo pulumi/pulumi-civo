@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v0.10.9 of the Civo Terraform Provider
+  **Please Note:** `civo.KubernetesCluster` has had the `buildAt` output removed
 
 ---
 

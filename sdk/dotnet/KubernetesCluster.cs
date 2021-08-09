@@ -34,12 +34,6 @@ namespace Pulumi.Civo
         public Output<string?> Applications { get; private set; } = null!;
 
         /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
-        [Output("builtAt")]
-        public Output<string> BuiltAt { get; private set; } = null!;
-
-        /// <summary>
         /// The date where the Kubernetes cluster was create.
         /// </summary>
         [Output("createdAt")]
@@ -245,12 +239,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
-
-        /// <summary>
-        /// The date where the Kubernetes cluster was build.
-        /// </summary>
-        [Input("builtAt")]
-        public Input<string>? BuiltAt { get; set; }
 
         /// <summary>
         /// The date where the Kubernetes cluster was create.

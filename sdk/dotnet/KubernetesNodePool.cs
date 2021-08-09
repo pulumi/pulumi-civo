@@ -36,6 +36,12 @@ namespace Pulumi.Civo
         public Output<int> NumTargetNodes { get; private set; } = null!;
 
         /// <summary>
+        /// The region of the node pool, has to match that of the cluster.
+        /// </summary>
+        [Output("region")]
+        public Output<string> Region { get; private set; } = null!;
+
+        /// <summary>
         /// The size of each node.
         /// </summary>
         [Output("targetNodesSize")]
@@ -100,6 +106,12 @@ namespace Pulumi.Civo
         public Input<int>? NumTargetNodes { get; set; }
 
         /// <summary>
+        /// The region of the node pool, has to match that of the cluster.
+        /// </summary>
+        [Input("region", required: true)]
+        public Input<string> Region { get; set; } = null!;
+
+        /// <summary>
         /// The size of each node.
         /// </summary>
         [Input("targetNodesSize")]
@@ -123,6 +135,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
+
+        /// <summary>
+        /// The region of the node pool, has to match that of the cluster.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// The size of each node.

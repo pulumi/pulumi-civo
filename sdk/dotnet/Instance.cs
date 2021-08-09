@@ -46,7 +46,7 @@ namespace Pulumi.Civo
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         /// </summary>
         [Output("firewallId")]
-        public Output<string?> FirewallId { get; private set; } = null!;
+        public Output<string> FirewallId { get; private set; } = null!;
 
         /// <summary>
         /// The Instance hostname, if is not declare the provider will generate one for you
@@ -160,7 +160,7 @@ namespace Pulumi.Civo
         /// The ID for the template to use to build the instance.
         /// </summary>
         [Output("template")]
-        public Output<string?> Template { get; private set; } = null!;
+        public Output<string> Template { get; private set; } = null!;
 
 
         /// <summary>

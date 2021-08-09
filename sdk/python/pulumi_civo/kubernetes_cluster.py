@@ -153,7 +153,6 @@ class _KubernetesClusterState:
     def __init__(__self__, *,
                  api_endpoint: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[str]] = None,
-                 built_at: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dns_entry: Optional[pulumi.Input[str]] = None,
                  installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]]] = None,
@@ -174,7 +173,6 @@ class _KubernetesClusterState:
         Input properties used for looking up and filtering KubernetesCluster resources.
         :param pulumi.Input[str] api_endpoint: The base URL of the API server on the Kubernetes master node.
         :param pulumi.Input[str] applications: This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
-        :param pulumi.Input[str] built_at: The date where the Kubernetes cluster was build.
         :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
         :param pulumi.Input[str] dns_entry: The unique dns entry for the cluster in this case point to the master.
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
@@ -196,8 +194,6 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "api_endpoint", api_endpoint)
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
-        if built_at is not None:
-            pulumi.set(__self__, "built_at", built_at)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dns_entry is not None:
@@ -254,18 +250,6 @@ class _KubernetesClusterState:
     @applications.setter
     def applications(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "applications", value)
-
-    @property
-    @pulumi.getter(name="builtAt")
-    def built_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        The date where the Kubernetes cluster was build.
-        """
-        return pulumi.get(self, "built_at")
-
-    @built_at.setter
-    def built_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "built_at", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -551,7 +535,6 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["tags"] = tags
             __props__.__dict__["target_nodes_size"] = target_nodes_size
             __props__.__dict__["api_endpoint"] = None
-            __props__.__dict__["built_at"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dns_entry"] = None
             __props__.__dict__["installed_applications"] = None
@@ -573,7 +556,6 @@ class KubernetesCluster(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             api_endpoint: Optional[pulumi.Input[str]] = None,
             applications: Optional[pulumi.Input[str]] = None,
-            built_at: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dns_entry: Optional[pulumi.Input[str]] = None,
             installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
@@ -599,7 +581,6 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_endpoint: The base URL of the API server on the Kubernetes master node.
         :param pulumi.Input[str] applications: This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
-        :param pulumi.Input[str] built_at: The date where the Kubernetes cluster was build.
         :param pulumi.Input[str] created_at: The date where the Kubernetes cluster was create.
         :param pulumi.Input[str] dns_entry: The unique dns entry for the cluster in this case point to the master.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]] installed_applications: A unique ID that can be used to identify and reference a Kubernetes cluster.
@@ -623,7 +604,6 @@ class KubernetesCluster(pulumi.CustomResource):
 
         __props__.__dict__["api_endpoint"] = api_endpoint
         __props__.__dict__["applications"] = applications
-        __props__.__dict__["built_at"] = built_at
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dns_entry"] = dns_entry
         __props__.__dict__["installed_applications"] = installed_applications
@@ -657,14 +637,6 @@ class KubernetesCluster(pulumi.CustomResource):
         This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
         """
         return pulumi.get(self, "applications")
-
-    @property
-    @pulumi.getter(name="builtAt")
-    def built_at(self) -> pulumi.Output[str]:
-        """
-        The date where the Kubernetes cluster was build.
-        """
-        return pulumi.get(self, "built_at")
 
     @property
     @pulumi.getter(name="createdAt")

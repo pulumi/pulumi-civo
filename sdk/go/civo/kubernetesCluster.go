@@ -24,8 +24,6 @@ type KubernetesCluster struct {
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
 	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
-	// The date where the Kubernetes cluster was build.
-	BuiltAt pulumi.StringOutput `pulumi:"builtAt"`
 	// The date where the Kubernetes cluster was create.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.
@@ -93,8 +91,6 @@ type kubernetesClusterState struct {
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
 	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications *string `pulumi:"applications"`
-	// The date where the Kubernetes cluster was build.
-	BuiltAt *string `pulumi:"builtAt"`
 	// The date where the Kubernetes cluster was create.
 	CreatedAt *string `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.
@@ -134,8 +130,6 @@ type KubernetesClusterState struct {
 	ApiEndpoint pulumi.StringPtrInput
 	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrInput
-	// The date where the Kubernetes cluster was build.
-	BuiltAt pulumi.StringPtrInput
 	// The date where the Kubernetes cluster was create.
 	CreatedAt pulumi.StringPtrInput
 	// The unique dns entry for the cluster in this case point to the master.
