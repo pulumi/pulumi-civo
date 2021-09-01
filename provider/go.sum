@@ -213,6 +213,8 @@ github.com/civo/terraform-provider-civo v0.10.7 h1:CmTXQzvSQ7UmBsQ7T77aCaDlF2cy9
 github.com/civo/terraform-provider-civo v0.10.7/go.mod h1:B5JnaQOeR+c/S0tMMEyLXLrBa9HAFOMsm5qSXvaAEpw=
 github.com/civo/terraform-provider-civo v0.10.9 h1:TIuDlfj1chqXRF9qfoJZcowxREEnWnAv9UUbku2I2h4=
 github.com/civo/terraform-provider-civo v0.10.9/go.mod h1:B5JnaQOeR+c/S0tMMEyLXLrBa9HAFOMsm5qSXvaAEpw=
+github.com/civo/terraform-provider-civo v0.10.10 h1:BsbwkK/CmJtZHAJgE6VAI8Ece+3/o+Jz7aapywnT7rs=
+github.com/civo/terraform-provider-civo v0.10.10/go.mod h1:B5JnaQOeR+c/S0tMMEyLXLrBa9HAFOMsm5qSXvaAEpw=
 github.com/client9/misspell v0.3.4 h1:ta993UF76GwbvJcIo3Y68y/M3WxlpEHPWIGDkJYwzJI=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
