@@ -15,6 +15,9 @@ __all__ = [
     'KubernetesClusterPool',
     'KubernetesClusterPoolInstance',
     'LoadBalancerBackend',
+    'GetDiskImageDiskimageResult',
+    'GetDiskImageFilterResult',
+    'GetDiskImageSortResult',
     'GetInstancesFilterResult',
     'GetInstancesInstanceResult',
     'GetInstancesSizeFilterResult',
@@ -445,6 +448,134 @@ class LoadBalancerBackend(dict):
     @pulumi.getter
     def protocol(self) -> str:
         return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetDiskImageDiskimageResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 label: str,
+                 name: str,
+                 version: str):
+        """
+        :param str id: The id of the disk_image
+        :param str label: The label of the disk_image.
+        :param str name: A short human readable name for the disk_image
+        :param str version: The version of the disk_image.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The id of the disk_image
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def label(self) -> str:
+        """
+        The label of the disk_image.
+        """
+        return pulumi.get(self, "label")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        A short human readable name for the disk_image
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of the disk_image.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetDiskImageFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str],
+                 all: Optional[bool] = None,
+                 match_by: Optional[str] = None):
+        """
+        :param str key: Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        :param Sequence[str] values: Only retrieves the disk_image which keys has value that matches
+               one of the values provided here.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if match_by is not None:
+            pulumi.set(__self__, "match_by", match_by)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        Only retrieves the disk_image which keys has value that matches
+        one of the values provided here.
+        """
+        return pulumi.get(self, "values")
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[bool]:
+        return pulumi.get(self, "all")
+
+    @property
+    @pulumi.getter(name="matchBy")
+    def match_by(self) -> Optional[str]:
+        return pulumi.get(self, "match_by")
+
+
+@pulumi.output_type
+class GetDiskImageSortResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 direction: Optional[str] = None):
+        """
+        :param str key: Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
+        pulumi.set(__self__, "key", key)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+        return pulumi.get(self, "direction")
 
 
 @pulumi.output_type

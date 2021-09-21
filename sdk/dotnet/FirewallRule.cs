@@ -27,7 +27,7 @@ namespace Pulumi.Civo
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         /// </summary>
         [Output("cidrs")]
         public Output<ImmutableArray<string>> Cidrs { get; private set; } = null!;
@@ -120,11 +120,11 @@ namespace Pulumi.Civo
 
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
-        [Input("cidrs")]
+        [Input("cidrs", required: true)]
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -185,7 +185,7 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         /// </summary>
         public InputList<string> Cidrs
         {

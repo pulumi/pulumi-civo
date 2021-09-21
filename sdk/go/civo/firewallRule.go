@@ -26,7 +26,7 @@ import (
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
 	// will this rule affect ingress traffic
 	Direction pulumi.StringOutput `pulumi:"direction"`
@@ -51,6 +51,9 @@ func NewFirewallRule(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Cidrs == nil {
+		return nil, errors.New("invalid value for required argument 'Cidrs'")
+	}
 	if args.FirewallId == nil {
 		return nil, errors.New("invalid value for required argument 'FirewallId'")
 	}
@@ -76,7 +79,7 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
 	Cidrs []string `pulumi:"cidrs"`
 	// will this rule affect ingress traffic
 	Direction *string `pulumi:"direction"`
@@ -95,7 +98,7 @@ type firewallRuleState struct {
 }
 
 type FirewallRuleState struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
 	Cidrs pulumi.StringArrayInput
 	// will this rule affect ingress traffic
 	Direction pulumi.StringPtrInput
@@ -118,7 +121,7 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
 	Cidrs []string `pulumi:"cidrs"`
 	// will this rule affect ingress traffic
 	Direction *string `pulumi:"direction"`
@@ -138,7 +141,7 @@ type firewallRuleArgs struct {
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
-	// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
 	Cidrs pulumi.StringArrayInput
 	// will this rule affect ingress traffic
 	Direction pulumi.StringPtrInput

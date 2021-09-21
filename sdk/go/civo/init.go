@@ -42,8 +42,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Snapshot{}
 	case "civo:index/sshKey:SshKey":
 		r = &SshKey{}
-	case "civo:index/template:Template":
-		r = &Template{}
 	case "civo:index/volume:Volume":
 		r = &Volume{}
 	case "civo:index/volumeAttachment:VolumeAttachment":
@@ -132,11 +130,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/sshKey",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"civo",
-		"index/template",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

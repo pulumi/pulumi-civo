@@ -343,6 +343,130 @@
                 "protocol"
             ]
         },
+        "civo:index/getDiskImageDiskimage:getDiskImageDiskimage": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The id of the disk_image\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "description": "The label of the disk_image.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "description": "A short human readable name for the disk_image\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "version": {
+                    "type": "string",
+                    "description": "The version of the disk_image.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "label",
+                "name",
+                "version"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getDiskImageFilter:getDiskImageFilter": {
+            "properties": {
+                "all": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only retrieves the disk_image which keys has value that matches\none of the values provided here.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:index/getDiskImageSort:getDiskImageSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
+        },
         "civo:index/getInstancesFilter:getInstancesFilter": {
             "properties": {
                 "all": {
@@ -1729,7 +1853,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                    "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.\n"
                 },
                 "direction": {
                     "type": "string",
@@ -1776,7 +1900,7 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                    "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.\n"
                 },
                 "direction": {
                     "type": "string",
@@ -1808,6 +1932,7 @@
                 }
             },
             "requiredInputs": [
+                "cidrs",
                 "firewallId"
             ],
             "stateInputs": {
@@ -1818,7 +1943,7 @@
                         "items": {
                             "type": "string"
                         },
-                        "description": "the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).\n"
+                        "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.\n"
                     },
                     "direction": {
                         "type": "string",
@@ -1867,6 +1992,10 @@
                     "type": "integer",
                     "description": "The size of the disk.\n"
                 },
+                "diskImage": {
+                    "type": "string",
+                    "description": "The ID for the disk image to use to build the instance.\n"
+                },
                 "firewallId": {
                     "type": "string",
                     "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).\n"
@@ -1905,7 +2034,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create` or `none` (default: `create`).\n"
                 },
                 "ramMb": {
                     "type": "integer",
@@ -1950,13 +2079,15 @@
                 },
                 "template": {
                     "type": "string",
-                    "description": "The ID for the template to use to build the instance.\n"
+                    "description": "The ID for the template to use to build the instance.\n",
+                    "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                 }
             },
             "required": [
                 "cpuCores",
                 "createdAt",
                 "diskGb",
+                "diskImage",
                 "firewallId",
                 "hostname",
                 "initialPassword",
@@ -1971,6 +2102,10 @@
                 "template"
             ],
             "inputProperties": {
+                "diskImage": {
+                    "type": "string",
+                    "description": "The ID for the disk image to use to build the instance.\n"
+                },
                 "firewallId": {
                     "type": "string",
                     "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).\n"
@@ -1993,7 +2128,7 @@
                 },
                 "publicIpRequired": {
                     "type": "string",
-                    "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
+                    "description": "This should be either `create` or `none` (default: `create`).\n"
                 },
                 "region": {
                     "type": "string",
@@ -2024,7 +2159,8 @@
                 },
                 "template": {
                     "type": "string",
-                    "description": "The ID for the template to use to build the instance.\n"
+                    "description": "The ID for the template to use to build the instance.\n",
+                    "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                 }
             },
             "stateInputs": {
@@ -2041,6 +2177,10 @@
                     "diskGb": {
                         "type": "integer",
                         "description": "The size of the disk.\n"
+                    },
+                    "diskImage": {
+                        "type": "string",
+                        "description": "The ID for the disk image to use to build the instance.\n"
                     },
                     "firewallId": {
                         "type": "string",
@@ -2080,7 +2220,7 @@
                     },
                     "publicIpRequired": {
                         "type": "string",
-                        "description": "This should be either `create`, `none` or `move_ip_from:intances_id`.\n"
+                        "description": "This should be either `create` or `none` (default: `create`).\n"
                     },
                     "ramMb": {
                         "type": "integer",
@@ -2125,7 +2265,8 @@
                     },
                     "template": {
                         "type": "string",
-                        "description": "The ID for the template to use to build the instance.\n"
+                        "description": "The ID for the template to use to build the instance.\n",
+                        "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                     }
                 },
                 "type": "object"
@@ -2149,6 +2290,10 @@
                 "dnsEntry": {
                     "type": "string",
                     "description": "The unique dns entry for the cluster in this case point to the master.\n"
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The existing firewall ID to use for this cluster\n"
                 },
                 "installedApplications": {
                     "type": "array",
@@ -2219,6 +2364,7 @@
                 "apiEndpoint",
                 "createdAt",
                 "dnsEntry",
+                "firewallId",
                 "installedApplications",
                 "instances",
                 "kubeconfig",
@@ -2237,6 +2383,10 @@
                 "applications": {
                     "type": "string",
                     "description": "This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik\n"
+                },
+                "firewallId": {
+                    "type": "string",
+                    "description": "The existing firewall ID to use for this cluster\n"
                 },
                 "kubernetesVersion": {
                     "type": "string",
@@ -2285,6 +2435,10 @@
                     "dnsEntry": {
                         "type": "string",
                         "description": "The unique dns entry for the cluster in this case point to the master.\n"
+                    },
+                    "firewallId": {
+                        "type": "string",
+                        "description": "The existing firewall ID to use for this cluster\n"
                     },
                     "installedApplications": {
                         "type": "array",
@@ -2864,140 +3018,20 @@
                 "type": "object"
             }
         },
-        "civo:index/template:Template": {
-            "description": "Provides a Civo Template resource.\nThis can be used to create, modify, and delete Templates.\n\n\n## Import\n\nTemplate can be imported using the template `code`, e.g.\n\n```sh\n $ pulumi import civo:index/template:Template my-custom-template my-template-code\n```\n\n ",
-            "properties": {
-                "cloudConfig": {
-                    "type": "string",
-                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
-                },
-                "code": {
-                    "type": "string",
-                    "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
-                },
-                "defaultUsername": {
-                    "type": "string",
-                    "description": "The default username to suggest that the user creates\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A multi-line description of the template, in Markdown format\n"
-                },
-                "imageId": {
-                    "type": "string",
-                    "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "This is a short human readable name for the template\n"
-                },
-                "shortDescription": {
-                    "type": "string",
-                    "description": "A one line description of the template\n"
-                },
-                "volumeId": {
-                    "type": "string",
-                    "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
-                }
-            },
-            "required": [
-                "code",
-                "name"
-            ],
-            "inputProperties": {
-                "cloudConfig": {
-                    "type": "string",
-                    "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
-                },
-                "code": {
-                    "type": "string",
-                    "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
-                },
-                "defaultUsername": {
-                    "type": "string",
-                    "description": "The default username to suggest that the user creates\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "A multi-line description of the template, in Markdown format\n"
-                },
-                "imageId": {
-                    "type": "string",
-                    "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "This is a short human readable name for the template\n"
-                },
-                "shortDescription": {
-                    "type": "string",
-                    "description": "A one line description of the template\n"
-                },
-                "volumeId": {
-                    "type": "string",
-                    "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
-                }
-            },
-            "requiredInputs": [
-                "code"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering Template resources.\n",
-                "properties": {
-                    "cloudConfig": {
-                        "type": "string",
-                        "description": "Commonly referred to as 'user-data', this is a customisation script that is run after\nthe instance is first booted. We recommend using cloud-config as it's a great distribution-agnostic\nway of configuring cloud servers. If you put `$INITIAL_USER` in your script, this will automatically\nbe replaced by the initial user chosen when creating the instance, `$INITIAL_PASSWORD` will be\nreplaced with the random password generated by the system, `$HOSTNAME` is the fully qualified\ndomain name of the instance and `$SSH_KEY` will be the content of the SSH public key.\n(this is technically optional, but you won't really be able to use instances without it -\nsee our learn guide on templates for more information).\n"
-                    },
-                    "code": {
-                        "type": "string",
-                        "description": "This is a unqiue, alphanumerical, short, human readable code for the template.\n"
-                    },
-                    "defaultUsername": {
-                        "type": "string",
-                        "description": "The default username to suggest that the user creates\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "A multi-line description of the template, in Markdown format\n"
-                    },
-                    "imageId": {
-                        "type": "string",
-                        "description": "This is the Image ID of any default template or the ID of another template\neither owned by you or global (optional; but must be specified if no volume_id is specified).\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "This is a short human readable name for the template\n"
-                    },
-                    "shortDescription": {
-                        "type": "string",
-                        "description": "A one line description of the template\n"
-                    },
-                    "volumeId": {
-                        "type": "string",
-                        "description": "This is the ID of a bootable volume, either owned by you or global\n(optional; but must be specified if no image_id is specified)\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "civo:index/volume:Volume": {
-            "description": "Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    bootable: false,\n    sizeGb: 60,\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ndb = civo.Volume(\"db\",\n    bootable=False,\n    size_gb=60)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Civo.Volume(\"db\", new Civo.VolumeArgs\n        {\n            Bootable = false,\n            SizeGb = 60,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewVolume(ctx, \"db\", \u0026civo.VolumeArgs{\n\t\t\tBootable: pulumi.Bool(false),\n\t\t\tSizeGb:   pulumi.Int(60),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nVolumes can be imported using the `volume id`, e.g.\n\n```sh\n $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1\n```\n\n ",
+            "description": "Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    bootable: false,\n    sizeGb: 60,\n});\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nVolumes can be imported using the `volume id`, e.g.\n\n```sh\n $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1\n```\n\n ",
             "properties": {
-                "bootable": {
-                    "type": "boolean",
-                    "description": "Mark the volume as bootable.\n"
-                },
-                "createdAt": {
-                    "type": "string",
-                    "description": "The date of the creation of the volume.\n"
-                },
                 "mountPoint": {
                     "type": "string",
                     "description": "The mount point of the volume.\n"
                 },
                 "name": {
                     "type": "string",
-                    "description": "A name that you wish to use to refer to this volume .\n"
+                    "description": "A name that you wish to use to refer to this volume.\n"
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "The network that the volume belongs to.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3005,24 +3039,23 @@
                 },
                 "sizeGb": {
                     "type": "integer",
-                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.\n"
                 }
             },
             "required": [
-                "bootable",
-                "createdAt",
                 "mountPoint",
                 "name",
+                "networkId",
                 "sizeGb"
             ],
             "inputProperties": {
-                "bootable": {
-                    "type": "boolean",
-                    "description": "Mark the volume as bootable.\n"
-                },
                 "name": {
                     "type": "string",
-                    "description": "A name that you wish to use to refer to this volume .\n"
+                    "description": "A name that you wish to use to refer to this volume.\n"
+                },
+                "networkId": {
+                    "type": "string",
+                    "description": "The network that the volume belongs to.\n"
                 },
                 "region": {
                     "type": "string",
@@ -3030,31 +3063,27 @@
                 },
                 "sizeGb": {
                     "type": "integer",
-                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                    "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.\n"
                 }
             },
             "requiredInputs": [
-                "bootable",
+                "networkId",
                 "sizeGb"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Volume resources.\n",
                 "properties": {
-                    "bootable": {
-                        "type": "boolean",
-                        "description": "Mark the volume as bootable.\n"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "The date of the creation of the volume.\n"
-                    },
                     "mountPoint": {
                         "type": "string",
                         "description": "The mount point of the volume.\n"
                     },
                     "name": {
                         "type": "string",
-                        "description": "A name that you wish to use to refer to this volume .\n"
+                        "description": "A name that you wish to use to refer to this volume.\n"
+                    },
+                    "networkId": {
+                        "type": "string",
+                        "description": "The network that the volume belongs to.\n"
                     },
                     "region": {
                         "type": "string",
@@ -3062,18 +3091,22 @@
                     },
                     "sizeGb": {
                         "type": "integer",
-                        "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .\n"
+                        "description": "A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.\n"
                     }
                 },
                 "type": "object"
             }
         },
         "civo:index/volumeAttachment:VolumeAttachment": {
-            "description": "Manages attaching a Volume to a Instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    sizeGb: 60,\n    bootable: false,\n});\nconst foobar = new civo.VolumeAttachment(\"foobar\", {\n    instanceId: civo_instance[\"my-test-instance\"].id,\n    volumeId: db.id,\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ndb = civo.Volume(\"db\",\n    size_gb=60,\n    bootable=False)\nfoobar = civo.VolumeAttachment(\"foobar\",\n    instance_id=civo_instance[\"my-test-instance\"][\"id\"],\n    volume_id=db.id)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var db = new Civo.Volume(\"db\", new Civo.VolumeArgs\n        {\n            SizeGb = 60,\n            Bootable = false,\n        });\n        var foobar = new Civo.VolumeAttachment(\"foobar\", new Civo.VolumeAttachmentArgs\n        {\n            InstanceId = civo_instance.My_test_instance.Id,\n            VolumeId = db.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdb, err := civo.NewVolume(ctx, \"db\", \u0026civo.VolumeArgs{\n\t\t\tSizeGb:   pulumi.Int(60),\n\t\t\tBootable: pulumi.Bool(false),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewVolumeAttachment(ctx, \"foobar\", \u0026civo.VolumeAttachmentArgs{\n\t\t\tInstanceId: pulumi.Any(civo_instance.My - test - instance.Id),\n\t\t\tVolumeId:   db.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Manages attaching a Volume to a Instance.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst db = new civo.Volume(\"db\", {\n    sizeGb: 60,\n    bootable: false,\n});\nconst foobar = new civo.VolumeAttachment(\"foobar\", {\n    instanceId: civo_instance[\"my-test-instance\"].id,\n    volumeId: db.id,\n});\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
                 "instanceId": {
                     "type": "string",
                     "description": "ID of the instance to attach the volume to.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the volume attachment\n"
                 },
                 "volumeId": {
                     "type": "string",
@@ -3088,6 +3121,10 @@
                 "instanceId": {
                     "type": "string",
                     "description": "ID of the instance to attach the volume to.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region for the volume attachment\n"
                 },
                 "volumeId": {
                     "type": "string",
@@ -3105,6 +3142,10 @@
                         "type": "string",
                         "description": "ID of the instance to attach the volume to.\n"
                     },
+                    "region": {
+                        "type": "string",
+                        "description": "The region for the volume attachment\n"
+                    },
                     "volumeId": {
                         "type": "string",
                         "description": "ID of the Volume to be attached to the instance.\n"
@@ -3115,6 +3156,68 @@
         }
     },
     "functions": {
+        "civo:index/getDiskImage:getDiskImage": {
+            "description": "Get information on an disk image for use in other resources (e.g. creating a Instance).\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getDiskImage.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getDiskImageFilter:getDiskImageFilter"
+                        },
+                        "description": "Filter the results. The `filter` block is documented below.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "If is used, them all disk_image will be from that region, has to be declared here if is not declared in the provider\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getDiskImageSort:getDiskImageSort"
+                        },
+                        "description": "Sort the results. The `sort` block is documented below.\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getDiskImage.\n",
+                "properties": {
+                    "diskimages": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getDiskImageDiskimage:getDiskImageDiskimage"
+                        }
+                    },
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getDiskImageFilter:getDiskImageFilter"
+                        }
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "region": {
+                        "type": "string"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getDiskImageSort:getDiskImageSort"
+                        }
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "diskimages",
+                    "id"
+                ]
+            }
+        },
         "civo:index/getDnsDomainName:getDnsDomainName": {
             "inputs": {
                 "description": "A collection of arguments for invoking getDnsDomainName.\n",

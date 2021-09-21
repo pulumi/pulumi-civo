@@ -7,8 +7,8 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-func LookupTemplate(ctx *pulumi.Context, args *LookupTemplateArgs, opts ...pulumi.InvokeOption) (*LookupTemplateResult, error) {
-	var rv LookupTemplateResult
+func GetTemplate(ctx *pulumi.Context, args *GetTemplateArgs, opts ...pulumi.InvokeOption) (*GetTemplateResult, error) {
+	var rv GetTemplateResult
 	err := ctx.Invoke("civo:index/getTemplate:getTemplate", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -17,7 +17,7 @@ func LookupTemplate(ctx *pulumi.Context, args *LookupTemplateArgs, opts ...pulum
 }
 
 // A collection of arguments for invoking getTemplate.
-type LookupTemplateArgs struct {
+type GetTemplateArgs struct {
 	// Filter the results. The `filter` block is documented below.
 	Filters []GetTemplateFilter `pulumi:"filters"`
 	// If is used, them all template will be from that region, has to be declared here if is not declared in the provider
@@ -27,7 +27,7 @@ type LookupTemplateArgs struct {
 }
 
 // A collection of values returned by getTemplate.
-type LookupTemplateResult struct {
+type GetTemplateResult struct {
 	Filters []GetTemplateFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string                `pulumi:"id"`

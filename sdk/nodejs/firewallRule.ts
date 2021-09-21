@@ -47,7 +47,7 @@ export class FirewallRule extends pulumi.CustomResource {
     }
 
     /**
-     * the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
      */
     public readonly cidrs!: pulumi.Output<string[]>;
     /**
@@ -102,6 +102,9 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
+            if ((!args || args.cidrs === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'cidrs'");
+            }
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
@@ -126,7 +129,7 @@ export class FirewallRule extends pulumi.CustomResource {
  */
 export interface FirewallRuleState {
     /**
-     * the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
      */
     readonly cidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -164,9 +167,9 @@ export interface FirewallRuleState {
  */
 export interface FirewallRuleArgs {
     /**
-     * the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
      */
-    readonly cidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    readonly cidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * will this rule affect ingress traffic
      */

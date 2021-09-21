@@ -57,6 +57,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly diskGb!: pulumi.Output<number>;
     /**
+     * The ID for the disk image to use to build the instance.
+     */
+    public readonly diskImage!: pulumi.Output<string>;
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
      */
     public readonly firewallId!: pulumi.Output<string>;
@@ -93,7 +97,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either `create` or `none` (default: `create`).
      */
     public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
@@ -132,6 +136,8 @@ export class Instance extends pulumi.CustomResource {
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
      * The ID for the template to use to build the instance.
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     public readonly template!: pulumi.Output<string>;
 
@@ -151,6 +157,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["cpuCores"] = state ? state.cpuCores : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["diskGb"] = state ? state.diskGb : undefined;
+            inputs["diskImage"] = state ? state.diskImage : undefined;
             inputs["firewallId"] = state ? state.firewallId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
             inputs["initialPassword"] = state ? state.initialPassword : undefined;
@@ -174,6 +181,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
+            inputs["diskImage"] = args ? args.diskImage : undefined;
             inputs["firewallId"] = args ? args.firewallId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["initialUser"] = args ? args.initialUser : undefined;
@@ -223,6 +231,10 @@ export interface InstanceState {
      */
     readonly diskGb?: pulumi.Input<number>;
     /**
+     * The ID for the disk image to use to build the instance.
+     */
+    readonly diskImage?: pulumi.Input<string>;
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
      */
     readonly firewallId?: pulumi.Input<string>;
@@ -259,7 +271,7 @@ export interface InstanceState {
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either `create` or `none` (default: `create`).
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
@@ -298,6 +310,8 @@ export interface InstanceState {
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID for the template to use to build the instance.
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     readonly template?: pulumi.Input<string>;
 }
@@ -306,6 +320,10 @@ export interface InstanceState {
  * The set of arguments for constructing a Instance resource.
  */
 export interface InstanceArgs {
+    /**
+     * The ID for the disk image to use to build the instance.
+     */
+    readonly diskImage?: pulumi.Input<string>;
     /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
      */
@@ -327,7 +345,7 @@ export interface InstanceArgs {
      */
     readonly notes?: pulumi.Input<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either `create` or `none` (default: `create`).
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
@@ -356,6 +374,8 @@ export interface InstanceArgs {
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The ID for the template to use to build the instance.
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     readonly template?: pulumi.Input<string>;
 }

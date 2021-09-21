@@ -28,6 +28,8 @@ type KubernetesCluster struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.
 	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
+	// The existing firewall ID to use for this cluster
+	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
 	// A list of instance inside the pool
@@ -95,6 +97,8 @@ type kubernetesClusterState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master.
 	DnsEntry *string `pulumi:"dnsEntry"`
+	// The existing firewall ID to use for this cluster
+	FirewallId *string `pulumi:"firewallId"`
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
 	// A list of instance inside the pool
@@ -134,6 +138,8 @@ type KubernetesClusterState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The unique dns entry for the cluster in this case point to the master.
 	DnsEntry pulumi.StringPtrInput
+	// The existing firewall ID to use for this cluster
+	FirewallId pulumi.StringPtrInput
 	// A unique ID that can be used to identify and reference a Kubernetes cluster.
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
 	// A list of instance inside the pool
@@ -171,6 +177,8 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 type kubernetesClusterArgs struct {
 	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications *string `pulumi:"applications"`
+	// The existing firewall ID to use for this cluster
+	FirewallId *string `pulumi:"firewallId"`
 	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
@@ -191,6 +199,8 @@ type kubernetesClusterArgs struct {
 type KubernetesClusterArgs struct {
 	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
 	Applications pulumi.StringPtrInput
+	// The existing firewall ID to use for this cluster
+	FirewallId pulumi.StringPtrInput
 	// The version of k3s to install (The default is currently the latest available).
 	KubernetesVersion pulumi.StringPtrInput
 	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.

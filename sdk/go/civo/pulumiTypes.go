@@ -681,6 +681,357 @@ func (o LoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) LoadBalancerBac
 	}).(LoadBalancerBackendOutput)
 }
 
+type GetDiskImageDiskimage struct {
+	// The id of the disk_image
+	Id string `pulumi:"id"`
+	// The label of the disk_image.
+	Label string `pulumi:"label"`
+	// A short human readable name for the disk_image
+	Name string `pulumi:"name"`
+	// The version of the disk_image.
+	Version string `pulumi:"version"`
+}
+
+// GetDiskImageDiskimageInput is an input type that accepts GetDiskImageDiskimageArgs and GetDiskImageDiskimageOutput values.
+// You can construct a concrete instance of `GetDiskImageDiskimageInput` via:
+//
+//          GetDiskImageDiskimageArgs{...}
+type GetDiskImageDiskimageInput interface {
+	pulumi.Input
+
+	ToGetDiskImageDiskimageOutput() GetDiskImageDiskimageOutput
+	ToGetDiskImageDiskimageOutputWithContext(context.Context) GetDiskImageDiskimageOutput
+}
+
+type GetDiskImageDiskimageArgs struct {
+	// The id of the disk_image
+	Id pulumi.StringInput `pulumi:"id"`
+	// The label of the disk_image.
+	Label pulumi.StringInput `pulumi:"label"`
+	// A short human readable name for the disk_image
+	Name pulumi.StringInput `pulumi:"name"`
+	// The version of the disk_image.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetDiskImageDiskimageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageDiskimage)(nil)).Elem()
+}
+
+func (i GetDiskImageDiskimageArgs) ToGetDiskImageDiskimageOutput() GetDiskImageDiskimageOutput {
+	return i.ToGetDiskImageDiskimageOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageDiskimageArgs) ToGetDiskImageDiskimageOutputWithContext(ctx context.Context) GetDiskImageDiskimageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageDiskimageOutput)
+}
+
+// GetDiskImageDiskimageArrayInput is an input type that accepts GetDiskImageDiskimageArray and GetDiskImageDiskimageArrayOutput values.
+// You can construct a concrete instance of `GetDiskImageDiskimageArrayInput` via:
+//
+//          GetDiskImageDiskimageArray{ GetDiskImageDiskimageArgs{...} }
+type GetDiskImageDiskimageArrayInput interface {
+	pulumi.Input
+
+	ToGetDiskImageDiskimageArrayOutput() GetDiskImageDiskimageArrayOutput
+	ToGetDiskImageDiskimageArrayOutputWithContext(context.Context) GetDiskImageDiskimageArrayOutput
+}
+
+type GetDiskImageDiskimageArray []GetDiskImageDiskimageInput
+
+func (GetDiskImageDiskimageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageDiskimage)(nil)).Elem()
+}
+
+func (i GetDiskImageDiskimageArray) ToGetDiskImageDiskimageArrayOutput() GetDiskImageDiskimageArrayOutput {
+	return i.ToGetDiskImageDiskimageArrayOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageDiskimageArray) ToGetDiskImageDiskimageArrayOutputWithContext(ctx context.Context) GetDiskImageDiskimageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageDiskimageArrayOutput)
+}
+
+type GetDiskImageDiskimageOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageDiskimageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageDiskimage)(nil)).Elem()
+}
+
+func (o GetDiskImageDiskimageOutput) ToGetDiskImageDiskimageOutput() GetDiskImageDiskimageOutput {
+	return o
+}
+
+func (o GetDiskImageDiskimageOutput) ToGetDiskImageDiskimageOutputWithContext(ctx context.Context) GetDiskImageDiskimageOutput {
+	return o
+}
+
+// The id of the disk_image
+func (o GetDiskImageDiskimageOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The label of the disk_image.
+func (o GetDiskImageDiskimageOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Label }).(pulumi.StringOutput)
+}
+
+// A short human readable name for the disk_image
+func (o GetDiskImageDiskimageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The version of the disk_image.
+func (o GetDiskImageDiskimageOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDiskImageDiskimageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageDiskimageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageDiskimage)(nil)).Elem()
+}
+
+func (o GetDiskImageDiskimageArrayOutput) ToGetDiskImageDiskimageArrayOutput() GetDiskImageDiskimageArrayOutput {
+	return o
+}
+
+func (o GetDiskImageDiskimageArrayOutput) ToGetDiskImageDiskimageArrayOutputWithContext(ctx context.Context) GetDiskImageDiskimageArrayOutput {
+	return o
+}
+
+func (o GetDiskImageDiskimageArrayOutput) Index(i pulumi.IntInput) GetDiskImageDiskimageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDiskImageDiskimage {
+		return vs[0].([]GetDiskImageDiskimage)[vs[1].(int)]
+	}).(GetDiskImageDiskimageOutput)
+}
+
+type GetDiskImageFilter struct {
+	All *bool `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key     string  `pulumi:"key"`
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves the diskImage which keys has value that matches
+	// one of the values provided here.
+	Values []string `pulumi:"values"`
+}
+
+// GetDiskImageFilterInput is an input type that accepts GetDiskImageFilterArgs and GetDiskImageFilterOutput values.
+// You can construct a concrete instance of `GetDiskImageFilterInput` via:
+//
+//          GetDiskImageFilterArgs{...}
+type GetDiskImageFilterInput interface {
+	pulumi.Input
+
+	ToGetDiskImageFilterOutput() GetDiskImageFilterOutput
+	ToGetDiskImageFilterOutputWithContext(context.Context) GetDiskImageFilterOutput
+}
+
+type GetDiskImageFilterArgs struct {
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key     pulumi.StringInput    `pulumi:"key"`
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves the diskImage which keys has value that matches
+	// one of the values provided here.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetDiskImageFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageFilter)(nil)).Elem()
+}
+
+func (i GetDiskImageFilterArgs) ToGetDiskImageFilterOutput() GetDiskImageFilterOutput {
+	return i.ToGetDiskImageFilterOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageFilterArgs) ToGetDiskImageFilterOutputWithContext(ctx context.Context) GetDiskImageFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageFilterOutput)
+}
+
+// GetDiskImageFilterArrayInput is an input type that accepts GetDiskImageFilterArray and GetDiskImageFilterArrayOutput values.
+// You can construct a concrete instance of `GetDiskImageFilterArrayInput` via:
+//
+//          GetDiskImageFilterArray{ GetDiskImageFilterArgs{...} }
+type GetDiskImageFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetDiskImageFilterArrayOutput() GetDiskImageFilterArrayOutput
+	ToGetDiskImageFilterArrayOutputWithContext(context.Context) GetDiskImageFilterArrayOutput
+}
+
+type GetDiskImageFilterArray []GetDiskImageFilterInput
+
+func (GetDiskImageFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageFilter)(nil)).Elem()
+}
+
+func (i GetDiskImageFilterArray) ToGetDiskImageFilterArrayOutput() GetDiskImageFilterArrayOutput {
+	return i.ToGetDiskImageFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageFilterArray) ToGetDiskImageFilterArrayOutputWithContext(ctx context.Context) GetDiskImageFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageFilterArrayOutput)
+}
+
+type GetDiskImageFilterOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageFilter)(nil)).Elem()
+}
+
+func (o GetDiskImageFilterOutput) ToGetDiskImageFilterOutput() GetDiskImageFilterOutput {
+	return o
+}
+
+func (o GetDiskImageFilterOutput) ToGetDiskImageFilterOutputWithContext(ctx context.Context) GetDiskImageFilterOutput {
+	return o
+}
+
+func (o GetDiskImageFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDiskImageFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+func (o GetDiskImageFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o GetDiskImageFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDiskImageFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
+}
+
+// Only retrieves the diskImage which keys has value that matches
+// one of the values provided here.
+func (o GetDiskImageFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDiskImageFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetDiskImageFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageFilter)(nil)).Elem()
+}
+
+func (o GetDiskImageFilterArrayOutput) ToGetDiskImageFilterArrayOutput() GetDiskImageFilterArrayOutput {
+	return o
+}
+
+func (o GetDiskImageFilterArrayOutput) ToGetDiskImageFilterArrayOutputWithContext(ctx context.Context) GetDiskImageFilterArrayOutput {
+	return o
+}
+
+func (o GetDiskImageFilterArrayOutput) Index(i pulumi.IntInput) GetDiskImageFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDiskImageFilter {
+		return vs[0].([]GetDiskImageFilter)[vs[1].(int)]
+	}).(GetDiskImageFilterOutput)
+}
+
+type GetDiskImageSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction *string `pulumi:"direction"`
+	// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key string `pulumi:"key"`
+}
+
+// GetDiskImageSortInput is an input type that accepts GetDiskImageSortArgs and GetDiskImageSortOutput values.
+// You can construct a concrete instance of `GetDiskImageSortInput` via:
+//
+//          GetDiskImageSortArgs{...}
+type GetDiskImageSortInput interface {
+	pulumi.Input
+
+	ToGetDiskImageSortOutput() GetDiskImageSortOutput
+	ToGetDiskImageSortOutputWithContext(context.Context) GetDiskImageSortOutput
+}
+
+type GetDiskImageSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction pulumi.StringPtrInput `pulumi:"direction"`
+	// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetDiskImageSortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageSort)(nil)).Elem()
+}
+
+func (i GetDiskImageSortArgs) ToGetDiskImageSortOutput() GetDiskImageSortOutput {
+	return i.ToGetDiskImageSortOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageSortArgs) ToGetDiskImageSortOutputWithContext(ctx context.Context) GetDiskImageSortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageSortOutput)
+}
+
+// GetDiskImageSortArrayInput is an input type that accepts GetDiskImageSortArray and GetDiskImageSortArrayOutput values.
+// You can construct a concrete instance of `GetDiskImageSortArrayInput` via:
+//
+//          GetDiskImageSortArray{ GetDiskImageSortArgs{...} }
+type GetDiskImageSortArrayInput interface {
+	pulumi.Input
+
+	ToGetDiskImageSortArrayOutput() GetDiskImageSortArrayOutput
+	ToGetDiskImageSortArrayOutputWithContext(context.Context) GetDiskImageSortArrayOutput
+}
+
+type GetDiskImageSortArray []GetDiskImageSortInput
+
+func (GetDiskImageSortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageSort)(nil)).Elem()
+}
+
+func (i GetDiskImageSortArray) ToGetDiskImageSortArrayOutput() GetDiskImageSortArrayOutput {
+	return i.ToGetDiskImageSortArrayOutputWithContext(context.Background())
+}
+
+func (i GetDiskImageSortArray) ToGetDiskImageSortArrayOutputWithContext(ctx context.Context) GetDiskImageSortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageSortArrayOutput)
+}
+
+type GetDiskImageSortOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageSortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageSort)(nil)).Elem()
+}
+
+func (o GetDiskImageSortOutput) ToGetDiskImageSortOutput() GetDiskImageSortOutput {
+	return o
+}
+
+func (o GetDiskImageSortOutput) ToGetDiskImageSortOutputWithContext(ctx context.Context) GetDiskImageSortOutput {
+	return o
+}
+
+// The sort direction. This may be either `asc` or `desc`.
+func (o GetDiskImageSortOutput) Direction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDiskImageSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
+}
+
+// Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+func (o GetDiskImageSortOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageSort) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetDiskImageSortArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageSortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDiskImageSort)(nil)).Elem()
+}
+
+func (o GetDiskImageSortArrayOutput) ToGetDiskImageSortArrayOutput() GetDiskImageSortArrayOutput {
+	return o
+}
+
+func (o GetDiskImageSortArrayOutput) ToGetDiskImageSortArrayOutputWithContext(ctx context.Context) GetDiskImageSortArrayOutput {
+	return o
+}
+
+func (o GetDiskImageSortArrayOutput) Index(i pulumi.IntInput) GetDiskImageSortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDiskImageSort {
+		return vs[0].([]GetDiskImageSort)[vs[1].(int)]
+	}).(GetDiskImageSortOutput)
+}
+
 type GetInstancesFilter struct {
 	All *bool `pulumi:"all"`
 	// Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
@@ -3274,6 +3625,12 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesClusterPoolInstanceArrayOutput{})
 	pulumi.RegisterOutputType(LoadBalancerBackendOutput{})
 	pulumi.RegisterOutputType(LoadBalancerBackendArrayOutput{})
+	pulumi.RegisterOutputType(GetDiskImageDiskimageOutput{})
+	pulumi.RegisterOutputType(GetDiskImageDiskimageArrayOutput{})
+	pulumi.RegisterOutputType(GetDiskImageFilterOutput{})
+	pulumi.RegisterOutputType(GetDiskImageFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetDiskImageSortOutput{})
+	pulumi.RegisterOutputType(GetDiskImageSortArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesFilterOutput{})
 	pulumi.RegisterOutputType(GetInstancesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})

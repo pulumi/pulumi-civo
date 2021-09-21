@@ -11,31 +11,6 @@ namespace Pulumi.Civo
 {
     /// <summary>
     /// Manages attaching a Volume to a Instance.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var db = new Civo.Volume("db", new Civo.VolumeArgs
-    ///         {
-    ///             SizeGb = 60,
-    ///             Bootable = false,
-    ///         });
-    ///         var foobar = new Civo.VolumeAttachment("foobar", new Civo.VolumeAttachmentArgs
-    ///         {
-    ///             InstanceId = civo_instance.My_test_instance.Id,
-    ///             VolumeId = db.Id,
-    ///         });
-    ///     }
-    /// 
-    /// }
-    /// ```
     /// </summary>
     [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
     public partial class VolumeAttachment : Pulumi.CustomResource
@@ -45,6 +20,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
+
+        /// <summary>
+        /// The region for the volume attachment
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
         /// ID of the Volume to be attached to the instance.
@@ -105,6 +86,12 @@ namespace Pulumi.Civo
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
+        /// The region for the volume attachment
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
         /// ID of the Volume to be attached to the instance.
         /// </summary>
         [Input("volumeId", required: true)]
@@ -122,6 +109,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        /// <summary>
+        /// The region for the volume attachment
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         /// <summary>
         /// ID of the Volume to be attached to the instance.

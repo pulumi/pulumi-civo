@@ -4,6 +4,50 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface GetDiskImageDiskimage {
+    /**
+     * The id of the disk_image
+     */
+    id: string;
+    /**
+     * The label of the disk_image.
+     */
+    label: string;
+    /**
+     * A short human readable name for the disk_image
+     */
+    name: string;
+    /**
+     * The version of the disk_image.
+     */
+    version: string;
+}
+
+export interface GetDiskImageFilter {
+    all?: boolean;
+    /**
+     * Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+     */
+    key: string;
+    matchBy?: string;
+    /**
+     * Only retrieves the diskImage which keys has value that matches
+     * one of the values provided here.
+     */
+    values: string[];
+}
+
+export interface GetDiskImageSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: string;
+    /**
+     * Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+     */
+    key: string;
+}
+
 export interface GetInstancesFilter {
     all?: boolean;
     /**

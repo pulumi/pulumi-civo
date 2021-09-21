@@ -7,6 +7,7 @@ from .dns_domain_name import *
 from .dns_domain_record import *
 from .firewall import *
 from .firewall_rule import *
+from .get_disk_image import *
 from .get_dns_domain_name import *
 from .get_dns_domain_record import *
 from .get_instance import *
@@ -29,7 +30,6 @@ from .network import *
 from .provider import *
 from .snapshot import *
 from .ssh_key import *
-from .template import *
 from .volume import *
 from .volume_attachment import *
 from ._inputs import *
@@ -74,8 +74,6 @@ def _register_module():
                 return Snapshot(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/sshKey:SshKey":
                 return SshKey(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "civo:index/template:Template":
-                return Template(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/volume:Volume":
                 return Volume(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/volumeAttachment:VolumeAttachment":
@@ -96,7 +94,6 @@ def _register_module():
     pulumi.runtime.register_resource_module("civo", "index/network", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/snapshot", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/sshKey", _module_instance)
-    pulumi.runtime.register_resource_module("civo", "index/template", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/volume", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/volumeAttachment", _module_instance)
 

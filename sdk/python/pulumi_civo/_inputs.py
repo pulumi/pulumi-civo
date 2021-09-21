@@ -14,6 +14,8 @@ __all__ = [
     'KubernetesClusterPoolArgs',
     'KubernetesClusterPoolInstanceArgs',
     'LoadBalancerBackendArgs',
+    'GetDiskImageFilterArgs',
+    'GetDiskImageSortArgs',
     'GetInstancesFilterArgs',
     'GetInstancesSizeFilterArgs',
     'GetInstancesSizeSortArgs',
@@ -462,6 +464,107 @@ class LoadBalancerBackendArgs:
     @protocol.setter
     def protocol(self, value: pulumi.Input[str]):
         pulumi.set(self, "protocol", value)
+
+
+@pulumi.input_type
+class GetDiskImageFilterArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str],
+                 all: Optional[bool] = None,
+                 match_by: Optional[str] = None):
+        """
+        :param str key: Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        :param Sequence[str] values: Only retrieves the disk_image which keys has value that matches
+               one of the values provided here.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if match_by is not None:
+            pulumi.set(__self__, "match_by", match_by)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        Only retrieves the disk_image which keys has value that matches
+        one of the values provided here.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Sequence[str]):
+        pulumi.set(self, "values", value)
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[bool]:
+        return pulumi.get(self, "all")
+
+    @all.setter
+    def all(self, value: Optional[bool]):
+        pulumi.set(self, "all", value)
+
+    @property
+    @pulumi.getter(name="matchBy")
+    def match_by(self) -> Optional[str]:
+        return pulumi.get(self, "match_by")
+
+    @match_by.setter
+    def match_by(self, value: Optional[str]):
+        pulumi.set(self, "match_by", value)
+
+
+@pulumi.input_type
+class GetDiskImageSortArgs:
+    def __init__(__self__, *,
+                 key: str,
+                 direction: Optional[str] = None):
+        """
+        :param str key: Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
+        pulumi.set(__self__, "key", key)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: str):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+        return pulumi.get(self, "direction")
+
+    @direction.setter
+    def direction(self, value: Optional[str]):
+        pulumi.set(self, "direction", value)
 
 
 @pulumi.input_type

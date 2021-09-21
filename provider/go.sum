@@ -195,6 +195,8 @@ github.com/civo/civogo v0.2.47 h1:qMzlm75hYOfuuvB0BXBaWhe/073TxzMNpYWkNKb5JR8=
 github.com/civo/civogo v0.2.47/go.mod h1:SR0ZOhABfQHjgNQE3UyfX4gaYsrfslkPFRFMx5P29rg=
 github.com/civo/civogo v0.2.49 h1:tLIzbUIh3Za3Xc+dwR6IUrP1eF66P7N91kIe0S/jDhw=
 github.com/civo/civogo v0.2.49/go.mod h1:SR0ZOhABfQHjgNQE3UyfX4gaYsrfslkPFRFMx5P29rg=
+github.com/civo/civogo v0.2.52 h1:oeMmeGuJOZFJ+uruu13ywCWOxSa2+Lyk+ePc6rxC8gY=
+github.com/civo/civogo v0.2.52/go.mod h1:SR0ZOhABfQHjgNQE3UyfX4gaYsrfslkPFRFMx5P29rg=
 github.com/civo/terraform-provider-civo v0.9.23 h1:Hl0ZU7HQ0VQUfF7Pdy3R9W14sH7XW5fdzXUGdifhrxA=
 github.com/civo/terraform-provider-civo v0.9.23/go.mod h1:xhB7InPUorebHzIAGKL2m3TaHgzkU7/mn76gGpCTLnA=
 github.com/civo/terraform-provider-civo v0.10.0 h1:EpFlLmgSHkiC4+umW57LOXCo7sDKStp6lwNtL8rKgHs=
@@ -215,6 +217,8 @@ github.com/civo/terraform-provider-civo v0.10.9 h1:TIuDlfj1chqXRF9qfoJZcowxREEnW
 github.com/civo/terraform-provider-civo v0.10.9/go.mod h1:B5JnaQOeR+c/S0tMMEyLXLrBa9HAFOMsm5qSXvaAEpw=
 github.com/civo/terraform-provider-civo v0.10.10 h1:BsbwkK/CmJtZHAJgE6VAI8Ece+3/o+Jz7aapywnT7rs=
 github.com/civo/terraform-provider-civo v0.10.10/go.mod h1:B5JnaQOeR+c/S0tMMEyLXLrBa9HAFOMsm5qSXvaAEpw=
+github.com/civo/terraform-provider-civo v0.10.11 h1:FWwrYY8dcOncuKXNdaJAorb7BJDxfY7Fahrl2ij/iwM=
+github.com/civo/terraform-provider-civo v0.10.11/go.mod h1:g72Qc1mPrhYotYw6SHc1Sl+pQf5bJBwLRXvpXegYE0I=
 github.com/client9/misspell v0.3.4 h1:ta993UF76GwbvJcIo3Y68y/M3WxlpEHPWIGDkJYwzJI=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=

@@ -46,6 +46,12 @@ namespace Pulumi.Civo
         public Output<string> DnsEntry { get; private set; } = null!;
 
         /// <summary>
+        /// The existing firewall ID to use for this cluster
+        /// </summary>
+        [Output("firewallId")]
+        public Output<string> FirewallId { get; private set; } = null!;
+
+        /// <summary>
         /// A unique ID that can be used to identify and reference a Kubernetes cluster.
         /// </summary>
         [Output("installedApplications")]
@@ -180,6 +186,12 @@ namespace Pulumi.Civo
         public Input<string>? Applications { get; set; }
 
         /// <summary>
+        /// The existing firewall ID to use for this cluster
+        /// </summary>
+        [Input("firewallId")]
+        public Input<string>? FirewallId { get; set; }
+
+        /// <summary>
         /// The version of k3s to install (The default is currently the latest available).
         /// </summary>
         [Input("kubernetesVersion")]
@@ -251,6 +263,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("dnsEntry")]
         public Input<string>? DnsEntry { get; set; }
+
+        /// <summary>
+        /// The existing firewall ID to use for this cluster
+        /// </summary>
+        [Input("firewallId")]
+        public Input<string>? FirewallId { get; set; }
 
         [Input("installedApplications")]
         private InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>? _installedApplications;

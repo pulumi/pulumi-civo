@@ -13,6 +13,7 @@ __all__ = ['InstanceArgs', 'Instance']
 @pulumi.input_type
 class InstanceArgs:
     def __init__(__self__, *,
+                 disk_image: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  initial_user: Optional[pulumi.Input[str]] = None,
@@ -28,12 +29,13 @@ class InstanceArgs:
                  template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Instance resource.
+        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance.
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         :param pulumi.Input[str] hostname: The Instance hostname, if is not declare the provider will generate one for you
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
         :param pulumi.Input[str] notes: Add some notes to the instance.
-        :param pulumi.Input[str] public_ip_required: This should be either `create`, `none` or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip_required: This should be either `create` or `none` (default: `create`).
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -42,6 +44,8 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair.
         :param pulumi.Input[str] template: The ID for the template to use to build the instance.
         """
+        if disk_image is not None:
+            pulumi.set(__self__, "disk_image", disk_image)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
@@ -67,7 +71,22 @@ class InstanceArgs:
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if template is not None:
+            warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+            pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
+        if template is not None:
             pulumi.set(__self__, "template", template)
+
+    @property
+    @pulumi.getter(name="diskImage")
+    def disk_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID for the disk image to use to build the instance.
+        """
+        return pulumi.get(self, "disk_image")
+
+    @disk_image.setter
+    def disk_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "disk_image", value)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -133,7 +152,7 @@ class InstanceArgs:
     @pulumi.getter(name="publicIpRequired")
     def public_ip_required(self) -> Optional[pulumi.Input[str]]:
         """
-        This should be either `create`, `none` or `move_ip_from:intances_id`.
+        This should be either `create` or `none` (default: `create`).
         """
         return pulumi.get(self, "public_ip_required")
 
@@ -232,6 +251,7 @@ class _InstanceState:
                  cpu_cores: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  disk_gb: Optional[pulumi.Input[int]] = None,
+                 disk_image: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
@@ -258,6 +278,7 @@ class _InstanceState:
         :param pulumi.Input[int] cpu_cores: Total cpu of the inatance.
         :param pulumi.Input[str] created_at: The date of creation of the instance
         :param pulumi.Input[int] disk_gb: The size of the disk.
+        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance.
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         :param pulumi.Input[str] hostname: The Instance hostname, if is not declare the provider will generate one for you
         :param pulumi.Input[str] initial_password: Instance initial password
@@ -267,7 +288,7 @@ class _InstanceState:
         :param pulumi.Input[str] private_ip: The private ip.
         :param pulumi.Input[str] pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
         :param pulumi.Input[str] public_ip: The public ip.
-        :param pulumi.Input[str] public_ip_required: This should be either `create`, `none` or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip_required: This should be either `create` or `none` (default: `create`).
         :param pulumi.Input[int] ram_mb: Total ram of the instance.
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -284,6 +305,8 @@ class _InstanceState:
             pulumi.set(__self__, "created_at", created_at)
         if disk_gb is not None:
             pulumi.set(__self__, "disk_gb", disk_gb)
+        if disk_image is not None:
+            pulumi.set(__self__, "disk_image", disk_image)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
@@ -325,6 +348,9 @@ class _InstanceState:
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
         if template is not None:
+            warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+            pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
+        if template is not None:
             pulumi.set(__self__, "template", template)
 
     @property
@@ -362,6 +388,18 @@ class _InstanceState:
     @disk_gb.setter
     def disk_gb(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "disk_gb", value)
+
+    @property
+    @pulumi.getter(name="diskImage")
+    def disk_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID for the disk image to use to build the instance.
+        """
+        return pulumi.get(self, "disk_image")
+
+    @disk_image.setter
+    def disk_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "disk_image", value)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -475,7 +513,7 @@ class _InstanceState:
     @pulumi.getter(name="publicIpRequired")
     def public_ip_required(self) -> Optional[pulumi.Input[str]]:
         """
-        This should be either `create`, `none` or `move_ip_from:intances_id`.
+        This should be either `create` or `none` (default: `create`).
         """
         return pulumi.get(self, "public_ip_required")
 
@@ -615,6 +653,7 @@ class Instance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disk_image: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  initial_user: Optional[pulumi.Input[str]] = None,
@@ -643,12 +682,13 @@ class Instance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance.
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         :param pulumi.Input[str] hostname: The Instance hostname, if is not declare the provider will generate one for you
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified).
         :param pulumi.Input[str] notes: Add some notes to the instance.
-        :param pulumi.Input[str] public_ip_required: This should be either `create`, `none` or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip_required: This should be either `create` or `none` (default: `create`).
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
         :param pulumi.Input[str] script: the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -690,6 +730,7 @@ class Instance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 disk_image: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  initial_user: Optional[pulumi.Input[str]] = None,
@@ -715,6 +756,7 @@ class Instance(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
+            __props__.__dict__["disk_image"] = disk_image
             __props__.__dict__["firewall_id"] = firewall_id
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["initial_user"] = initial_user
@@ -727,6 +769,9 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["size"] = size
             __props__.__dict__["sshkey_id"] = sshkey_id
             __props__.__dict__["tags"] = tags
+            if template is not None and not opts.urn:
+                warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+                pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
             __props__.__dict__["template"] = template
             __props__.__dict__["cpu_cores"] = None
             __props__.__dict__["created_at"] = None
@@ -752,6 +797,7 @@ class Instance(pulumi.CustomResource):
             cpu_cores: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             disk_gb: Optional[pulumi.Input[int]] = None,
+            disk_image: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             initial_password: Optional[pulumi.Input[str]] = None,
@@ -783,6 +829,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[int] cpu_cores: Total cpu of the inatance.
         :param pulumi.Input[str] created_at: The date of creation of the instance
         :param pulumi.Input[int] disk_gb: The size of the disk.
+        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance.
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         :param pulumi.Input[str] hostname: The Instance hostname, if is not declare the provider will generate one for you
         :param pulumi.Input[str] initial_password: Instance initial password
@@ -792,7 +839,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] private_ip: The private ip.
         :param pulumi.Input[str] pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
         :param pulumi.Input[str] public_ip: The public ip.
-        :param pulumi.Input[str] public_ip_required: This should be either `create`, `none` or `move_ip_from:intances_id`.
+        :param pulumi.Input[str] public_ip_required: This should be either `create` or `none` (default: `create`).
         :param pulumi.Input[int] ram_mb: Total ram of the instance.
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider.
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
@@ -810,6 +857,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["cpu_cores"] = cpu_cores
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["disk_gb"] = disk_gb
+        __props__.__dict__["disk_image"] = disk_image
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["initial_password"] = initial_password
@@ -856,6 +904,14 @@ class Instance(pulumi.CustomResource):
         The size of the disk.
         """
         return pulumi.get(self, "disk_gb")
+
+    @property
+    @pulumi.getter(name="diskImage")
+    def disk_image(self) -> pulumi.Output[str]:
+        """
+        The ID for the disk image to use to build the instance.
+        """
+        return pulumi.get(self, "disk_image")
 
     @property
     @pulumi.getter(name="firewallId")
@@ -933,7 +989,7 @@ class Instance(pulumi.CustomResource):
     @pulumi.getter(name="publicIpRequired")
     def public_ip_required(self) -> pulumi.Output[Optional[str]]:
         """
-        This should be either `create`, `none` or `move_ip_from:intances_id`.
+        This should be either `create` or `none` (default: `create`).
         """
         return pulumi.get(self, "public_ip_required")
 

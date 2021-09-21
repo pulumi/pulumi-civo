@@ -29,6 +29,8 @@ type Instance struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb pulumi.IntOutput `pulumi:"diskGb"`
+	// The ID for the disk image to use to build the instance.
+	DiskImage pulumi.StringOutput `pulumi:"diskImage"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// The Instance hostname, if is not declare the provider will generate one for you
@@ -47,7 +49,7 @@ type Instance struct {
 	PseudoIp pulumi.StringOutput `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
-	// This should be either `create`, `none` or `move_ip_from:intances_id`.
+	// This should be either `create` or `none` (default: `create`).
 	PublicIpRequired pulumi.StringPtrOutput `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
@@ -68,6 +70,8 @@ type Instance struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID for the template to use to build the instance.
+	//
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringOutput `pulumi:"template"`
 }
 
@@ -106,6 +110,8 @@ type instanceState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The size of the disk.
 	DiskGb *int `pulumi:"diskGb"`
+	// The ID for the disk image to use to build the instance.
+	DiskImage *string `pulumi:"diskImage"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId *string `pulumi:"firewallId"`
 	// The Instance hostname, if is not declare the provider will generate one for you
@@ -124,7 +130,7 @@ type instanceState struct {
 	PseudoIp *string `pulumi:"pseudoIp"`
 	// The public ip.
 	PublicIp *string `pulumi:"publicIp"`
-	// This should be either `create`, `none` or `move_ip_from:intances_id`.
+	// This should be either `create` or `none` (default: `create`).
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// Total ram of the instance.
 	RamMb *int `pulumi:"ramMb"`
@@ -145,6 +151,8 @@ type instanceState struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags []string `pulumi:"tags"`
 	// The ID for the template to use to build the instance.
+	//
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template *string `pulumi:"template"`
 }
 
@@ -155,6 +163,8 @@ type InstanceState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The size of the disk.
 	DiskGb pulumi.IntPtrInput
+	// The ID for the disk image to use to build the instance.
+	DiskImage pulumi.StringPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringPtrInput
 	// The Instance hostname, if is not declare the provider will generate one for you
@@ -173,7 +183,7 @@ type InstanceState struct {
 	PseudoIp pulumi.StringPtrInput
 	// The public ip.
 	PublicIp pulumi.StringPtrInput
-	// This should be either `create`, `none` or `move_ip_from:intances_id`.
+	// This should be either `create` or `none` (default: `create`).
 	PublicIpRequired pulumi.StringPtrInput
 	// Total ram of the instance.
 	RamMb pulumi.IntPtrInput
@@ -194,6 +204,8 @@ type InstanceState struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags pulumi.StringArrayInput
 	// The ID for the template to use to build the instance.
+	//
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringPtrInput
 }
 
@@ -202,6 +214,8 @@ func (InstanceState) ElementType() reflect.Type {
 }
 
 type instanceArgs struct {
+	// The ID for the disk image to use to build the instance.
+	DiskImage *string `pulumi:"diskImage"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId *string `pulumi:"firewallId"`
 	// The Instance hostname, if is not declare the provider will generate one for you
@@ -212,7 +226,7 @@ type instanceArgs struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Add some notes to the instance.
 	Notes *string `pulumi:"notes"`
-	// This should be either `create`, `none` or `move_ip_from:intances_id`.
+	// This should be either `create` or `none` (default: `create`).
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region *string `pulumi:"region"`
@@ -227,11 +241,15 @@ type instanceArgs struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags []string `pulumi:"tags"`
 	// The ID for the template to use to build the instance.
+	//
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template *string `pulumi:"template"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
+	// The ID for the disk image to use to build the instance.
+	DiskImage pulumi.StringPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
 	FirewallId pulumi.StringPtrInput
 	// The Instance hostname, if is not declare the provider will generate one for you
@@ -242,7 +260,7 @@ type InstanceArgs struct {
 	NetworkId pulumi.StringPtrInput
 	// Add some notes to the instance.
 	Notes pulumi.StringPtrInput
-	// This should be either `create`, `none` or `move_ip_from:intances_id`.
+	// This should be either `create` or `none` (default: `create`).
 	PublicIpRequired pulumi.StringPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider.
 	Region pulumi.StringPtrInput
@@ -257,6 +275,8 @@ type InstanceArgs struct {
 	// An optional list of tags, represented as a key, value pair.
 	Tags pulumi.StringArrayInput
 	// The ID for the template to use to build the instance.
+	//
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringPtrInput
 }
 

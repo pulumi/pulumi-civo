@@ -59,6 +59,10 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly dnsEntry!: pulumi.Output<string>;
     /**
+     * The existing firewall ID to use for this cluster
+     */
+    public readonly firewallId!: pulumi.Output<string>;
+    /**
      * A unique ID that can be used to identify and reference a Kubernetes cluster.
      */
     public /*out*/ readonly installedApplications!: pulumi.Output<outputs.KubernetesClusterInstalledApplication[]>;
@@ -130,6 +134,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             inputs["applications"] = state ? state.applications : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["dnsEntry"] = state ? state.dnsEntry : undefined;
+            inputs["firewallId"] = state ? state.firewallId : undefined;
             inputs["installedApplications"] = state ? state.installedApplications : undefined;
             inputs["instances"] = state ? state.instances : undefined;
             inputs["kubeconfig"] = state ? state.kubeconfig : undefined;
@@ -147,6 +152,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
         } else {
             const args = argsOrState as KubernetesClusterArgs | undefined;
             inputs["applications"] = args ? args.applications : undefined;
+            inputs["firewallId"] = args ? args.firewallId : undefined;
             inputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["networkId"] = args ? args.networkId : undefined;
@@ -192,6 +198,10 @@ export interface KubernetesClusterState {
      * The unique dns entry for the cluster in this case point to the master.
      */
     readonly dnsEntry?: pulumi.Input<string>;
+    /**
+     * The existing firewall ID to use for this cluster
+     */
+    readonly firewallId?: pulumi.Input<string>;
     /**
      * A unique ID that can be used to identify and reference a Kubernetes cluster.
      */
@@ -256,6 +266,10 @@ export interface KubernetesClusterArgs {
      * This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
      */
     readonly applications?: pulumi.Input<string>;
+    /**
+     * The existing firewall ID to use for this cluster
+     */
+    readonly firewallId?: pulumi.Input<string>;
     /**
      * The version of k3s to install (The default is currently the latest available).
      */

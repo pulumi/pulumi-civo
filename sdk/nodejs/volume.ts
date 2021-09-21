@@ -56,27 +56,23 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
-     * Mark the volume as bootable.
-     */
-    public readonly bootable!: pulumi.Output<boolean>;
-    /**
-     * The date of the creation of the volume.
-     */
-    public /*out*/ readonly createdAt!: pulumi.Output<string>;
-    /**
      * The mount point of the volume.
      */
     public /*out*/ readonly mountPoint!: pulumi.Output<string>;
     /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The network that the volume belongs to.
+     */
+    public readonly networkId!: pulumi.Output<string>;
     /**
      * The region for the volume
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
      */
     public readonly sizeGb!: pulumi.Output<number>;
 
@@ -93,25 +89,23 @@ export class Volume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
-            inputs["bootable"] = state ? state.bootable : undefined;
-            inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["mountPoint"] = state ? state.mountPoint : undefined;
             inputs["name"] = state ? state.name : undefined;
+            inputs["networkId"] = state ? state.networkId : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["sizeGb"] = state ? state.sizeGb : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
-            if ((!args || args.bootable === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'bootable'");
+            if ((!args || args.networkId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'networkId'");
             }
             if ((!args || args.sizeGb === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sizeGb'");
             }
-            inputs["bootable"] = args ? args.bootable : undefined;
             inputs["name"] = args ? args.name : undefined;
+            inputs["networkId"] = args ? args.networkId : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["sizeGb"] = args ? args.sizeGb : undefined;
-            inputs["createdAt"] = undefined /*out*/;
             inputs["mountPoint"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -126,27 +120,23 @@ export class Volume extends pulumi.CustomResource {
  */
 export interface VolumeState {
     /**
-     * Mark the volume as bootable.
-     */
-    readonly bootable?: pulumi.Input<boolean>;
-    /**
-     * The date of the creation of the volume.
-     */
-    readonly createdAt?: pulumi.Input<string>;
-    /**
      * The mount point of the volume.
      */
     readonly mountPoint?: pulumi.Input<string>;
     /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume.
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The network that the volume belongs to.
+     */
+    readonly networkId?: pulumi.Input<string>;
     /**
      * The region for the volume
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
      */
     readonly sizeGb?: pulumi.Input<number>;
 }
@@ -156,19 +146,19 @@ export interface VolumeState {
  */
 export interface VolumeArgs {
     /**
-     * Mark the volume as bootable.
-     */
-    readonly bootable: pulumi.Input<boolean>;
-    /**
-     * A name that you wish to use to refer to this volume .
+     * A name that you wish to use to refer to this volume.
      */
     readonly name?: pulumi.Input<string>;
+    /**
+     * The network that the volume belongs to.
+     */
+    readonly networkId: pulumi.Input<string>;
     /**
      * The region for the volume
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+     * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
      */
     readonly sizeGb: pulumi.Input<number>;
 }

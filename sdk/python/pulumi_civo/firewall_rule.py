@@ -13,8 +13,8 @@ __all__ = ['FirewallRuleArgs', 'FirewallRule']
 @pulumi.input_type
 class FirewallRuleArgs:
     def __init__(__self__, *,
+                 cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
                  firewall_id: pulumi.Input[str],
-                 cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
@@ -23,8 +23,8 @@ class FirewallRuleArgs:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         :param pulumi.Input[str] firewall_id: The Firewall id
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
         :param pulumi.Input[str] direction: will this rule affect ingress traffic
         :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
         :param pulumi.Input[str] label: a string that will be the displayed name/reference for this rule (optional)
@@ -32,9 +32,8 @@ class FirewallRuleArgs:
         :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start port where traffic to be allowed.
         """
+        pulumi.set(__self__, "cidrs", cidrs)
         pulumi.set(__self__, "firewall_id", firewall_id)
-        if cidrs is not None:
-            pulumi.set(__self__, "cidrs", cidrs)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
         if end_port is not None:
@@ -49,6 +48,18 @@ class FirewallRuleArgs:
             pulumi.set(__self__, "start_port", start_port)
 
     @property
+    @pulumi.getter
+    def cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
+        """
+        return pulumi.get(self, "cidrs")
+
+    @cidrs.setter
+    def cidrs(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "cidrs", value)
+
+    @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> pulumi.Input[str]:
         """
@@ -59,18 +70,6 @@ class FirewallRuleArgs:
     @firewall_id.setter
     def firewall_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "firewall_id", value)
-
-    @property
-    @pulumi.getter
-    def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
-        """
-        return pulumi.get(self, "cidrs")
-
-    @cidrs.setter
-    def cidrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "cidrs", value)
 
     @property
     @pulumi.getter
@@ -158,7 +157,7 @@ class _FirewallRuleState:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallRule resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         :param pulumi.Input[str] direction: will this rule affect ingress traffic
         :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
         :param pulumi.Input[str] firewall_id: The Firewall id
@@ -188,7 +187,7 @@ class _FirewallRuleState:
     @pulumi.getter
     def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         """
         return pulumi.get(self, "cidrs")
 
@@ -311,7 +310,7 @@ class FirewallRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         :param pulumi.Input[str] direction: will this rule affect ingress traffic
         :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
         :param pulumi.Input[str] firewall_id: The Firewall id
@@ -375,6 +374,8 @@ class FirewallRule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallRuleArgs.__new__(FirewallRuleArgs)
 
+            if cidrs is None and not opts.urn:
+                raise TypeError("Missing required property 'cidrs'")
             __props__.__dict__["cidrs"] = cidrs
             __props__.__dict__["direction"] = direction
             __props__.__dict__["end_port"] = end_port
@@ -410,7 +411,7 @@ class FirewallRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         :param pulumi.Input[str] direction: will this rule affect ingress traffic
         :param pulumi.Input[str] end_port: The end port where traffic to be allowed.
         :param pulumi.Input[str] firewall_id: The Firewall id
@@ -437,7 +438,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def cidrs(self) -> pulumi.Output[Sequence[str]]:
         """
-        the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address.
         """
         return pulumi.get(self, "cidrs")
 

@@ -13,30 +13,6 @@ import (
 
 // Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
-//
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewVolume(ctx, "db", &civo.VolumeArgs{
-// 			Bootable: pulumi.Bool(false),
-// 			SizeGb:   pulumi.Int(60),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
-//
 // ## Import
 //
 // Volumes can be imported using the `volume id`, e.g.
@@ -47,17 +23,15 @@ import (
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// Mark the volume as bootable.
-	Bootable pulumi.BoolOutput `pulumi:"bootable"`
-	// The date of the creation of the volume.
-	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The mount point of the volume.
 	MountPoint pulumi.StringOutput `pulumi:"mountPoint"`
-	// A name that you wish to use to refer to this volume .
+	// A name that you wish to use to refer to this volume.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// The network that the volume belongs to.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// The region for the volume
 	Region pulumi.StringPtrOutput `pulumi:"region"`
-	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
 	SizeGb pulumi.IntOutput `pulumi:"sizeGb"`
 }
 
@@ -68,8 +42,8 @@ func NewVolume(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Bootable == nil {
-		return nil, errors.New("invalid value for required argument 'Bootable'")
+	if args.NetworkId == nil {
+		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
 	if args.SizeGb == nil {
 		return nil, errors.New("invalid value for required argument 'SizeGb'")
@@ -96,32 +70,28 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// Mark the volume as bootable.
-	Bootable *bool `pulumi:"bootable"`
-	// The date of the creation of the volume.
-	CreatedAt *string `pulumi:"createdAt"`
 	// The mount point of the volume.
 	MountPoint *string `pulumi:"mountPoint"`
-	// A name that you wish to use to refer to this volume .
+	// A name that you wish to use to refer to this volume.
 	Name *string `pulumi:"name"`
+	// The network that the volume belongs to.
+	NetworkId *string `pulumi:"networkId"`
 	// The region for the volume
 	Region *string `pulumi:"region"`
-	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
 	SizeGb *int `pulumi:"sizeGb"`
 }
 
 type VolumeState struct {
-	// Mark the volume as bootable.
-	Bootable pulumi.BoolPtrInput
-	// The date of the creation of the volume.
-	CreatedAt pulumi.StringPtrInput
 	// The mount point of the volume.
 	MountPoint pulumi.StringPtrInput
-	// A name that you wish to use to refer to this volume .
+	// A name that you wish to use to refer to this volume.
 	Name pulumi.StringPtrInput
+	// The network that the volume belongs to.
+	NetworkId pulumi.StringPtrInput
 	// The region for the volume
 	Region pulumi.StringPtrInput
-	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
 	SizeGb pulumi.IntPtrInput
 }
 
@@ -130,25 +100,25 @@ func (VolumeState) ElementType() reflect.Type {
 }
 
 type volumeArgs struct {
-	// Mark the volume as bootable.
-	Bootable bool `pulumi:"bootable"`
-	// A name that you wish to use to refer to this volume .
+	// A name that you wish to use to refer to this volume.
 	Name *string `pulumi:"name"`
+	// The network that the volume belongs to.
+	NetworkId string `pulumi:"networkId"`
 	// The region for the volume
 	Region *string `pulumi:"region"`
-	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
 	SizeGb int `pulumi:"sizeGb"`
 }
 
 // The set of arguments for constructing a Volume resource.
 type VolumeArgs struct {
-	// Mark the volume as bootable.
-	Bootable pulumi.BoolInput
-	// A name that you wish to use to refer to this volume .
+	// A name that you wish to use to refer to this volume.
 	Name pulumi.StringPtrInput
+	// The network that the volume belongs to.
+	NetworkId pulumi.StringInput
 	// The region for the volume
 	Region pulumi.StringPtrInput
-	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes.
 	SizeGb pulumi.IntInput
 }
 

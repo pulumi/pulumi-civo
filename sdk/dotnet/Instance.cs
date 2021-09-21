@@ -43,6 +43,12 @@ namespace Pulumi.Civo
         public Output<int> DiskGb { get; private set; } = null!;
 
         /// <summary>
+        /// The ID for the disk image to use to build the instance.
+        /// </summary>
+        [Output("diskImage")]
+        public Output<string> DiskImage { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         /// </summary>
         [Output("firewallId")]
@@ -97,7 +103,7 @@ namespace Pulumi.Civo
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either `create` or `none` (default: `create`).
         /// </summary>
         [Output("publicIpRequired")]
         public Output<string?> PublicIpRequired { get; private set; } = null!;
@@ -209,6 +215,12 @@ namespace Pulumi.Civo
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The ID for the disk image to use to build the instance.
+        /// </summary>
+        [Input("diskImage")]
+        public Input<string>? DiskImage { get; set; }
+
+        /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         /// </summary>
         [Input("firewallId")]
@@ -239,7 +251,7 @@ namespace Pulumi.Civo
         public Input<string>? Notes { get; set; }
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either `create` or `none` (default: `create`).
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
@@ -318,6 +330,12 @@ namespace Pulumi.Civo
         public Input<int>? DiskGb { get; set; }
 
         /// <summary>
+        /// The ID for the disk image to use to build the instance.
+        /// </summary>
+        [Input("diskImage")]
+        public Input<string>? DiskImage { get; set; }
+
+        /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
         /// </summary>
         [Input("firewallId")]
@@ -372,7 +390,7 @@ namespace Pulumi.Civo
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either `create` or `none` (default: `create`).
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
