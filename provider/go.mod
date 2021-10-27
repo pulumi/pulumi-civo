@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-civo/provider
+module github.com/pulumi/pulumi-civo/provider/v2
 
 go 1.16
 
@@ -8,9 +8,8 @@ replace (
 )
 
 require (
-	github.com/civo/terraform-provider-civo v0.10.10
-	github.com/hashicorp/terraform-plugin-sdk v1.14.0
+	github.com/civo/terraform-provider-civo v1.0.1
+	github.com/hashicorp/terraform-plugin-sdk v1.14.0 // indirect
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.0.0
-	github.com/pulumi/pulumi/pkg/v3 v3.0.0
 	github.com/pulumi/pulumi/sdk/v3 v3.0.0
 )

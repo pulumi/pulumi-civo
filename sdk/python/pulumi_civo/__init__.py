@@ -7,6 +7,7 @@ from .dns_domain_name import *
 from .dns_domain_record import *
 from .firewall import *
 from .firewall_rule import *
+from .get_disk_image import *
 from .get_dns_domain_name import *
 from .get_dns_domain_record import *
 from .get_instance import *
@@ -14,22 +15,17 @@ from .get_instances import *
 from .get_instances_size import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
-from .get_load_balancer import *
 from .get_network import *
 from .get_region import *
-from .get_snapshot import *
 from .get_ssh_key import *
 from .get_template import *
 from .get_volume import *
 from .instance import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
-from .load_balancer import *
 from .network import *
 from .provider import *
-from .snapshot import *
 from .ssh_key import *
-from .template import *
 from .volume import *
 from .volume_attachment import *
 from ._inputs import *
@@ -66,16 +62,10 @@ def _register_module():
                 return KubernetesCluster(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/kubernetesNodePool:KubernetesNodePool":
                 return KubernetesNodePool(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "civo:index/loadBalancer:LoadBalancer":
-                return LoadBalancer(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/network:Network":
                 return Network(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "civo:index/snapshot:Snapshot":
-                return Snapshot(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/sshKey:SshKey":
                 return SshKey(name, pulumi.ResourceOptions(urn=urn))
-            elif typ == "civo:index/template:Template":
-                return Template(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/volume:Volume":
                 return Volume(name, pulumi.ResourceOptions(urn=urn))
             elif typ == "civo:index/volumeAttachment:VolumeAttachment":
@@ -92,11 +82,8 @@ def _register_module():
     pulumi.runtime.register_resource_module("civo", "index/instance", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/kubernetesCluster", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/kubernetesNodePool", _module_instance)
-    pulumi.runtime.register_resource_module("civo", "index/loadBalancer", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/network", _module_instance)
-    pulumi.runtime.register_resource_module("civo", "index/snapshot", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/sshKey", _module_instance)
-    pulumi.runtime.register_resource_module("civo", "index/template", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/volume", _module_instance)
     pulumi.runtime.register_resource_module("civo", "index/volumeAttachment", _module_instance)
 

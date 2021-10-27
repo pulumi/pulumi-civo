@@ -12,49 +12,26 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class KubernetesClusterPoolInstanceGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Total cpu of the inatance.
-        /// </summary>
         [Input("cpuCores")]
         public Input<int>? CpuCores { get; set; }
 
-        /// <summary>
-        /// The size of the disk.
-        /// </summary>
         [Input("diskGb")]
         public Input<int>? DiskGb { get; set; }
 
-        /// <summary>
-        /// The hostname of the instance.
-        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
-        /// <summary>
-        /// Total ram of the instance
-        /// </summary>
         [Input("ramMb")]
         public Input<int>? RamMb { get; set; }
 
-        /// <summary>
-        /// The size of the instance.
-        /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
-        /// <summary>
-        /// The status of Kubernetes cluster.
-        /// * `ready` -If the Kubernetes cluster is ready.
-        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
-
-        /// <summary>
-        /// A space separated list of tags, to be used freely as required.
-        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());

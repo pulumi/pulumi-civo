@@ -19,8 +19,8 @@ package main
 import (
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 
-	civo "github.com/pulumi/pulumi-civo/provider"
-	"github.com/pulumi/pulumi-civo/provider/pkg/version"
+	civo "github.com/pulumi/pulumi-civo/provider/v2"
+	"github.com/pulumi/pulumi-civo/provider/v2/pkg/version"
 )
 
 func main() {

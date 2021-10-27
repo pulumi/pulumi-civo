@@ -8,9 +8,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
 
+// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+// here you can overwrite in a resource.
 func GetRegion(ctx *pulumi.Context) string {
 	return config.Get(ctx, "civo:region")
 }
+
+// This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
 func GetToken(ctx *pulumi.Context) string {
 	return config.Get(ctx, "civo:token")
 }

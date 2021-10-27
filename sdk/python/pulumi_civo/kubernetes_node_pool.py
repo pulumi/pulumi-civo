@@ -19,10 +19,10 @@ class KubernetesNodePoolArgs:
                  target_nodes_size: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KubernetesNodePool resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster to which the node pool is associated.
-        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster.
-        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
-        :param pulumi.Input[str] target_nodes_size: The size of each node.
+        :param pulumi.Input[str] cluster_id: The ID of your cluster
+        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
+        :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "region", region)
@@ -35,7 +35,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
         """
-        The ID of the Kubernetes cluster to which the node pool is associated.
+        The ID of your cluster
         """
         return pulumi.get(self, "cluster_id")
 
@@ -47,7 +47,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        The region of the node pool, has to match that of the cluster.
+        The region of the node pool, has to match that of the cluster
         """
         return pulumi.get(self, "region")
 
@@ -59,7 +59,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="numTargetNodes")
     def num_target_nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of instances to create (The default at the time of writing is 3).
+        the number of instances to create (optional, the default at the time of writing is 3)
         """
         return pulumi.get(self, "num_target_nodes")
 
@@ -71,7 +71,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node.
+        the size of each node (optional, the default is currently g3.k3s.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -84,18 +84,22 @@ class KubernetesNodePoolArgs:
 class _KubernetesNodePoolState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KubernetesNodePool resources.
-        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster to which the node pool is associated.
-        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
-        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster.
-        :param pulumi.Input[str] target_nodes_size: The size of each node.
+        :param pulumi.Input[str] cluster_id: The ID of your cluster
+        :param pulumi.Input[str] id: The ID of this resource.
+        :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
+        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if num_target_nodes is not None:
             pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if region is not None:
@@ -107,7 +111,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the Kubernetes cluster to which the node pool is associated.
+        The ID of your cluster
         """
         return pulumi.get(self, "cluster_id")
 
@@ -116,10 +120,22 @@ class _KubernetesNodePoolState:
         pulumi.set(self, "cluster_id", value)
 
     @property
+    @pulumi.getter
+    def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "id", value)
+
+    @property
     @pulumi.getter(name="numTargetNodes")
     def num_target_nodes(self) -> Optional[pulumi.Input[int]]:
         """
-        The number of instances to create (The default at the time of writing is 3).
+        the number of instances to create (optional, the default at the time of writing is 3)
         """
         return pulumi.get(self, "num_target_nodes")
 
@@ -131,7 +147,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region of the node pool, has to match that of the cluster.
+        The region of the node pool, has to match that of the cluster
         """
         return pulumi.get(self, "region")
 
@@ -143,7 +159,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node.
+        the size of each node (optional, the default is currently g3.k3s.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -163,11 +179,53 @@ class KubernetesNodePool(pulumi.CustomResource):
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the KubernetesCluster resource, this resource can be used to add additional ones to a cluster.
+        Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        xsmall = civo.get_instances_size(filters=[civo.GetInstancesSizeFilterArgs(
+                key="type",
+                values=["kubernetes"],
+            )],
+            sorts=[civo.GetInstancesSizeSortArgs(
+                key="ram",
+                direction="asc",
+            )])
+        # Create a cluster
+        my_cluster = civo.KubernetesCluster("my-cluster",
+            num_target_nodes=1,
+            target_nodes_size=xsmall.sizes[0].name)
+        # Add a node pool
+        front_end = civo.KubernetesNodePool("front-end",
+            cluster_id=my_cluster.id,
+            num_target_nodes=1,
+            region="LON1")
+        ```
+
+        <!-- schema generated by tfplugindocs -->
+        ## Schema
+
+        ### Required
+
+        - **cluster_id** (String) The ID of your cluster
+        - **region** (String) The region of the node pool, has to match that of the cluster
+
+        ### Optional
+
+        - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
+        - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
+
+        ### Read-Only
+
+        - **id** (String) The ID of this resource.
 
         ## Import
 
-        Then the Kubernetes cluster node pool can be imported using the cluster's and pool id `cluster_id:node_pool_id`, e.g.
+        Import is supported using the following syntax# using cluster_id:node_pool_id
 
         ```sh
          $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -175,10 +233,10 @@ class KubernetesNodePool(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster to which the node pool is associated.
-        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
-        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster.
-        :param pulumi.Input[str] target_nodes_size: The size of each node.
+        :param pulumi.Input[str] cluster_id: The ID of your cluster
+        :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
+        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
         """
         ...
     @overload
@@ -187,11 +245,53 @@ class KubernetesNodePool(pulumi.CustomResource):
                  args: KubernetesNodePoolArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the KubernetesCluster resource, this resource can be used to add additional ones to a cluster.
+        Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        xsmall = civo.get_instances_size(filters=[civo.GetInstancesSizeFilterArgs(
+                key="type",
+                values=["kubernetes"],
+            )],
+            sorts=[civo.GetInstancesSizeSortArgs(
+                key="ram",
+                direction="asc",
+            )])
+        # Create a cluster
+        my_cluster = civo.KubernetesCluster("my-cluster",
+            num_target_nodes=1,
+            target_nodes_size=xsmall.sizes[0].name)
+        # Add a node pool
+        front_end = civo.KubernetesNodePool("front-end",
+            cluster_id=my_cluster.id,
+            num_target_nodes=1,
+            region="LON1")
+        ```
+
+        <!-- schema generated by tfplugindocs -->
+        ## Schema
+
+        ### Required
+
+        - **cluster_id** (String) The ID of your cluster
+        - **region** (String) The region of the node pool, has to match that of the cluster
+
+        ### Optional
+
+        - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
+        - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
+
+        ### Read-Only
+
+        - **id** (String) The ID of this resource.
 
         ## Import
 
-        Then the Kubernetes cluster node pool can be imported using the cluster's and pool id `cluster_id:node_pool_id`, e.g.
+        Import is supported using the following syntax# using cluster_id:node_pool_id
 
         ```sh
          $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -236,6 +336,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
             __props__.__dict__["target_nodes_size"] = target_nodes_size
+            __props__.__dict__["id"] = None
         super(KubernetesNodePool, __self__).__init__(
             'civo:index/kubernetesNodePool:KubernetesNodePool',
             resource_name,
@@ -247,6 +348,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
+            id: Optional[pulumi.Input[str]] = None,
             num_target_nodes: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             target_nodes_size: Optional[pulumi.Input[str]] = None) -> 'KubernetesNodePool':
@@ -257,16 +359,18 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster to which the node pool is associated.
-        :param pulumi.Input[int] num_target_nodes: The number of instances to create (The default at the time of writing is 3).
-        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster.
-        :param pulumi.Input[str] target_nodes_size: The size of each node.
+        :param pulumi.Input[str] cluster_id: The ID of your cluster
+        :param pulumi.Input[str] id: The ID of this resource.
+        :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
+        :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _KubernetesNodePoolState.__new__(_KubernetesNodePoolState)
 
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["id"] = id
         __props__.__dict__["num_target_nodes"] = num_target_nodes
         __props__.__dict__["region"] = region
         __props__.__dict__["target_nodes_size"] = target_nodes_size
@@ -276,15 +380,23 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         """
-        The ID of the Kubernetes cluster to which the node pool is associated.
+        The ID of your cluster
         """
         return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Output[str]:
+        """
+        The ID of this resource.
+        """
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="numTargetNodes")
     def num_target_nodes(self) -> pulumi.Output[int]:
         """
-        The number of instances to create (The default at the time of writing is 3).
+        the number of instances to create (optional, the default at the time of writing is 3)
         """
         return pulumi.get(self, "num_target_nodes")
 
@@ -292,7 +404,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        The region of the node pool, has to match that of the cluster.
+        The region of the node pool, has to match that of the cluster
         """
         return pulumi.get(self, "region")
 
@@ -300,7 +412,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> pulumi.Output[str]:
         """
-        The size of each node.
+        the size of each node (optional, the default is currently g3.k3s.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 

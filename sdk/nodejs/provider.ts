@@ -51,6 +51,13 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+     * here you can overwrite in a resource.
+     */
     readonly region?: pulumi.Input<string>;
+    /**
+     * This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+     */
     readonly token?: pulumi.Input<string>;
 }

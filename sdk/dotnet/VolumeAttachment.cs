@@ -10,44 +10,46 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Manages attaching a Volume to a Instance.
+    /// Manages volume attachment/detachment to an instance.
     /// 
-    /// ## Example Usage
+    /// ## Schema
     /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
+    /// ### Required
     /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         var db = new Civo.Volume("db", new Civo.VolumeArgs
-    ///         {
-    ///             SizeGb = 60,
-    ///             Bootable = false,
-    ///         });
-    ///         var foobar = new Civo.VolumeAttachment("foobar", new Civo.VolumeAttachmentArgs
-    ///         {
-    ///             InstanceId = civo_instance.My_test_instance.Id,
-    ///             VolumeId = db.Id,
-    ///         });
-    ///     }
+    /// - **instance_id** (String) The ID of target instance for attachment
+    /// - **volume_id** (String) The ID of target volume for attachment
     /// 
-    /// }
-    /// ```
+    /// ### Optional
+    /// 
+    /// - **region** (String) The region for the volume attachment
+    /// 
+    /// ### Read-Only
+    /// 
+    /// - **id** (String) The ID of this resource.
     /// </summary>
     [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
     public partial class VolumeAttachment : Pulumi.CustomResource
     {
         /// <summary>
-        /// ID of the instance to attach the volume to.
+        /// The ID of this resource.
+        /// </summary>
+        [Output("id")]
+        public Output<string> Id { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of target instance for attachment
         /// </summary>
         [Output("instanceId")]
         public Output<string> InstanceId { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the Volume to be attached to the instance.
+        /// The region for the volume attachment
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of target volume for attachment
         /// </summary>
         [Output("volumeId")]
         public Output<string> VolumeId { get; private set; } = null!;
@@ -99,13 +101,19 @@ namespace Pulumi.Civo
     public sealed class VolumeAttachmentArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the instance to attach the volume to.
+        /// The ID of target instance for attachment
         /// </summary>
         [Input("instanceId", required: true)]
         public Input<string> InstanceId { get; set; } = null!;
 
         /// <summary>
-        /// ID of the Volume to be attached to the instance.
+        /// The region for the volume attachment
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The ID of target volume for attachment
         /// </summary>
         [Input("volumeId", required: true)]
         public Input<string> VolumeId { get; set; } = null!;
@@ -118,13 +126,25 @@ namespace Pulumi.Civo
     public sealed class VolumeAttachmentState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// ID of the instance to attach the volume to.
+        /// The ID of this resource.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The ID of target instance for attachment
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         /// <summary>
-        /// ID of the Volume to be attached to the instance.
+        /// The region for the volume attachment
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// The ID of target volume for attachment
         /// </summary>
         [Input("volumeId")]
         public Input<string>? VolumeId { get; set; }

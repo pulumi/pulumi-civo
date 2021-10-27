@@ -4,18 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
-export interface GetInstancesFilter {
+export interface GetDiskImageFilter {
     all?: boolean;
-    /**
-     * Filter the Instances by this key. This may be one of '`id`, `hostname`, `publicIp`, `privateIp`,
-     * `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-     */
     key: string;
     matchBy?: string;
-    /**
-     * A list of values to match against the `key` field. Only retrieves Instances
-     * where the `key` field takes on one or more of the values provided here.
-     */
+    values: string[];
+}
+
+export interface GetDiskImageSort {
+    direction?: string;
+    key: string;
+}
+
+export interface GetInstancesFilter {
+    all?: boolean;
+    key: string;
+    matchBy?: string;
     values: string[];
 }
 
@@ -32,200 +36,77 @@ export interface GetInstancesSizeSort {
 }
 
 export interface GetInstancesSort {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
     direction?: string;
-    /**
-     * Sort the Instance by this key. This may be one of `id`, `hostname`, `publicIp`, `privateIp`,
-     * `pseudoIp`, `size`, `cpuCores`, `ramMb`, `diskGb`, `template` or `createdAt`.
-     */
     key: string;
 }
 
 export interface GetKubernetesVersionFilter {
     all?: boolean;
-    /**
-     * Filter the sizes by this key. This may be one of `version`,
-     * `label`, `type`, `default`.
-     */
     key: string;
     matchBy?: string;
-    /**
-     * Only retrieves the version which keys has value that matches
-     * one of the values provided here.
-     */
     values: string[];
 }
 
 export interface GetKubernetesVersionSort {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
     direction?: string;
-    /**
-     * Sort the sizes by this key. This may be one of `version`.
-     */
     key: string;
 }
 
 export interface GetRegionFilter {
     all?: boolean;
-    /**
-     * Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
-     */
     key: string;
     matchBy?: string;
-    /**
-     * Only retrieves region which keys has value that matches one of the values provided here.
-     */
     values: string[];
 }
 
 export interface GetRegionSort {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
     direction?: string;
-    /**
-     * Sort the sizes by this key. This may be one of `code`,`name`.
-     */
     key: string;
 }
 
 export interface GetTemplateFilter {
     all?: boolean;
-    /**
-     * Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-     */
     key: string;
     matchBy?: string;
-    /**
-     * Only retrieves the template which keys has value that matches
-     * one of the values provided here.
-     */
     values: string[];
 }
 
 export interface GetTemplateSort {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
     direction?: string;
-    /**
-     * Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-     */
     key: string;
 }
 
 export interface KubernetesClusterInstalledApplication {
-    /**
-     * The name of the application
-     */
     application?: pulumi.Input<string>;
-    /**
-     * The category of the application
-     */
     category?: pulumi.Input<string>;
-    /**
-     * if installed or not
-     */
     installed?: pulumi.Input<boolean>;
-    /**
-     * The version of the application
-     */
     version?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterInstance {
-    /**
-     * Total cpu of the inatance.
-     */
     cpuCores?: pulumi.Input<number>;
-    /**
-     * The size of the disk.
-     */
     diskGb?: pulumi.Input<number>;
-    /**
-     * The hostname of the instance.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Total ram of the instance
-     */
     ramMb?: pulumi.Input<number>;
-    /**
-     * The size of the instance.
-     */
     size?: pulumi.Input<string>;
-    /**
-     * The status of Kubernetes cluster.
-     * * `ready` -If the Kubernetes cluster is ready.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * A space separated list of tags, to be used freely as required.
-     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface KubernetesClusterPool {
-    /**
-     * The size of the pool
-     */
     count?: pulumi.Input<number>;
-    /**
-     * The ID of the pool
-     */
     id?: pulumi.Input<string>;
-    /**
-     * A list of the instance in the pool
-     */
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * A list of instance inside the pool
-     */
     instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolInstance>[]>;
-    /**
-     * The size of the instance.
-     */
     size?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterPoolInstance {
-    /**
-     * Total cpu of the inatance.
-     */
     cpuCores?: pulumi.Input<number>;
-    /**
-     * The size of the disk.
-     */
     diskGb?: pulumi.Input<number>;
-    /**
-     * The hostname of the instance.
-     */
     hostname?: pulumi.Input<string>;
-    /**
-     * Total ram of the instance
-     */
     ramMb?: pulumi.Input<number>;
-    /**
-     * The size of the instance.
-     */
     size?: pulumi.Input<string>;
-    /**
-     * The status of Kubernetes cluster.
-     * * `ready` -If the Kubernetes cluster is ready.
-     */
     status?: pulumi.Input<string>;
-    /**
-     * A space separated list of tags, to be used freely as required.
-     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
-}
-
-export interface LoadBalancerBackend {
-    instanceId: pulumi.Input<string>;
-    port: pulumi.Input<number>;
-    protocol: pulumi.Input<string>;
 }

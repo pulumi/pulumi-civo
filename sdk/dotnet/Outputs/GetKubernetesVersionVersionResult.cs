@@ -13,21 +13,9 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesVersionVersionResult
     {
-        /// <summary>
-        /// If is the default version used in all cluster.
-        /// </summary>
         public readonly bool Default;
-        /// <summary>
-        /// The label of this version.
-        /// </summary>
         public readonly string Label;
-        /// <summary>
-        /// The type of the version can be `stable`, `legacy` etc...
-        /// </summary>
         public readonly string Type;
-        /// <summary>
-        /// A version of the kubernetes.
-        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

@@ -5,31 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Civo dns domain record resource.
+ * Provides a Civo DNS domain record resource.
  *
- * ## Example Usage
+ * ## Schema
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
+ * ### Required
  *
- * // Create a new domain record
- * const www = new civo.DnsDomainRecord("www", {
- *     domainId: civo_dns_domain_name.main.id,
- *     type: "A",
- *     value: civo_instance.foo.public_ip,
- *     ttl: 600,
- * }, {
- *     dependsOn: [
- *         civo_dns_domain_name.main,
- *         civo_instance.foo,
- *     ],
- * });
- * ```
+ * - **domain_id** (String) ID from domain name
+ * - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+ * - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+ * - **type** (String) The choice of RR type from a, cname, mx or txt
+ * - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+ *
+ * ### Optional
+ *
+ * - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+ *
+ * ### Read-Only
+ *
+ * - **account_id** (String) The account ID of this resource
+ * - **created_at** (String) Timestamp when this resource was created
+ * - **id** (String) The ID of this resource.
+ * - **updated_at** (String) Timestamp when this resource was updated
  *
  * ## Import
  *
- * Domains can be imported using the `id_domain:id_domain_record`, e.g.
+ * Import is supported using the following syntax# using domain_id:domain_record_id
  *
  * ```sh
  *  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -64,19 +65,24 @@ export class DnsDomainRecord extends pulumi.CustomResource {
     }
 
     /**
-     * The id account of the domain
+     * The account ID of this resource
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
-     * The date when it was created in UTC format
+     * Timestamp when this resource was created
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The id of the domain
+     * ID from domain name
      */
     public readonly domainId!: pulumi.Output<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The ID of this resource.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -84,15 +90,16 @@ export class DnsDomainRecord extends pulumi.CustomResource {
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     public readonly ttl!: pulumi.Output<number>;
     /**
-     * The choice of record type from A, CNAME, MX, SRV or TXT
+     * The choice of RR type from a, cname, mx or txt
      */
     public readonly type!: pulumi.Output<string>;
     /**
-     * The date when it was updated in UTC format
+     * Timestamp when this resource was updated
      */
     public /*out*/ readonly updatedAt!: pulumi.Output<string>;
     /**
@@ -116,6 +123,7 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["domainId"] = state ? state.domainId : undefined;
+            inputs["id"] = state ? state.id : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["priority"] = state ? state.priority : undefined;
             inputs["ttl"] = state ? state.ttl : undefined;
@@ -144,6 +152,7 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["value"] = args ? args.value : undefined;
             inputs["accountId"] = undefined /*out*/;
             inputs["createdAt"] = undefined /*out*/;
+            inputs["id"] = undefined /*out*/;
             inputs["updatedAt"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -158,19 +167,24 @@ export class DnsDomainRecord extends pulumi.CustomResource {
  */
 export interface DnsDomainRecordState {
     /**
-     * The id account of the domain
+     * The account ID of this resource
      */
     readonly accountId?: pulumi.Input<string>;
     /**
-     * The date when it was created in UTC format
+     * Timestamp when this resource was created
      */
     readonly createdAt?: pulumi.Input<string>;
     /**
-     * The id of the domain
+     * ID from domain name
      */
     readonly domainId?: pulumi.Input<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The ID of this resource.
+     */
+    readonly id?: pulumi.Input<string>;
+    /**
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -178,15 +192,16 @@ export interface DnsDomainRecordState {
      */
     readonly priority?: pulumi.Input<number>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     readonly ttl?: pulumi.Input<number>;
     /**
-     * The choice of record type from A, CNAME, MX, SRV or TXT
+     * The choice of RR type from a, cname, mx or txt
      */
     readonly type?: pulumi.Input<string>;
     /**
-     * The date when it was updated in UTC format
+     * Timestamp when this resource was updated
      */
     readonly updatedAt?: pulumi.Input<string>;
     /**
@@ -200,11 +215,12 @@ export interface DnsDomainRecordState {
  */
 export interface DnsDomainRecordArgs {
     /**
-     * The id of the domain
+     * ID from domain name
      */
     readonly domainId: pulumi.Input<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     readonly name?: pulumi.Input<string>;
     /**
@@ -212,11 +228,12 @@ export interface DnsDomainRecordArgs {
      */
     readonly priority?: pulumi.Input<number>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     readonly ttl: pulumi.Input<number>;
     /**
-     * The choice of record type from A, CNAME, MX, SRV or TXT
+     * The choice of RR type from a, cname, mx or txt
      */
     readonly type: pulumi.Input<string>;
     /**

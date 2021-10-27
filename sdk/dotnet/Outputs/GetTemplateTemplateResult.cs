@@ -13,21 +13,9 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetTemplateTemplateResult
     {
-        /// <summary>
-        /// The id of the template
-        /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// The label of the template.
-        /// </summary>
         public readonly string Label;
-        /// <summary>
-        /// A short human readable name for the template
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The version of the template.
-        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

@@ -7,6 +7,20 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+//
+// An error will be raised if the provided SSH key name does not exist in your Civo account.
+//
+// ## Schema
+//
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **name** (String) The name of the SSH key
+//
+// ### Read-Only
+//
+// - **fingerprint** (String) The fingerprint of the public key of the SSH key
 func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupSshKeyResult, error) {
 	var rv LookupSshKeyResult
 	err := ctx.Invoke("civo:index/getSshKey:getSshKey", args, &rv, opts...)
@@ -18,9 +32,7 @@ func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSshKey.
 type LookupSshKeyArgs struct {
-	// The ID of the ssh key.
-	Id *string `pulumi:"id"`
-	// The name of the ssh key.
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 

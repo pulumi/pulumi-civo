@@ -13,13 +13,7 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetRegionSortResult
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         public readonly string? Direction;
-        /// <summary>
-        /// Sort the sizes by this key. This may be one of `code`,`name`.
-        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

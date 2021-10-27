@@ -15,9 +15,6 @@ namespace Pulumi.Civo.Inputs
         [Input("all")]
         public bool? All { get; set; }
 
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
@@ -26,10 +23,6 @@ namespace Pulumi.Civo.Inputs
 
         [Input("values", required: true)]
         private List<string>? _values;
-
-        /// <summary>
-        /// Only retrieves region which keys has value that matches one of the values provided here.
-        /// </summary>
         public List<string> Values
         {
             get => _values ?? (_values = new List<string>());

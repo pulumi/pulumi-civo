@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-civo/sdk
+module github.com/pulumi/pulumi-civo/sdk/v2
 
 go 1.16
 

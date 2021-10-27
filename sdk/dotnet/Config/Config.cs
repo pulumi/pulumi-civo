@@ -8,8 +8,15 @@ namespace Pulumi.Civo
     public static class Config
     {
         private static readonly Pulumi.Config __config = new Pulumi.Config("civo");
+        /// <summary>
+        /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+        /// here you can overwrite in a resource.
+        /// </summary>
         public static string? Region { get; set; } = __config.Get("region");
 
+        /// <summary>
+        /// This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+        /// </summary>
         public static string? Token { get; set; } = __config.Get("token");
 
     }
