@@ -83,7 +83,6 @@ class VolumeArgs:
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
                  mount_point: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
@@ -91,15 +90,12 @@ class _VolumeState:
                  size_gb: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] mount_point: The mount point of the volume (from instance's perspective)
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
         :param pulumi.Input[str] network_id: The network that the volume belongs to
         :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if mount_point is not None:
             pulumi.set(__self__, "mount_point", mount_point)
         if name is not None:
@@ -110,18 +106,6 @@ class _VolumeState:
             pulumi.set(__self__, "region", region)
         if size_gb is not None:
             pulumi.set(__self__, "size_gb", size_gb)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -332,7 +316,6 @@ class Volume(pulumi.CustomResource):
             if size_gb is None and not opts.urn:
                 raise TypeError("Missing required property 'size_gb'")
             __props__.__dict__["size_gb"] = size_gb
-            __props__.__dict__["id"] = None
             __props__.__dict__["mount_point"] = None
         super(Volume, __self__).__init__(
             'civo:index/volume:Volume',
@@ -344,7 +327,6 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            id: Optional[pulumi.Input[str]] = None,
             mount_point: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
@@ -357,7 +339,6 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] mount_point: The mount point of the volume (from instance's perspective)
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
         :param pulumi.Input[str] network_id: The network that the volume belongs to
@@ -368,21 +349,12 @@ class Volume(pulumi.CustomResource):
 
         __props__ = _VolumeState.__new__(_VolumeState)
 
-        __props__.__dict__["id"] = id
         __props__.__dict__["mount_point"] = mount_point
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region"] = region
         __props__.__dict__["size_gb"] = size_gb
         return Volume(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="mountPoint")

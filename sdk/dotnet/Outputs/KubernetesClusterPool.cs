@@ -14,7 +14,6 @@ namespace Pulumi.Civo.Outputs
     public sealed class KubernetesClusterPool
     {
         public readonly int? Count;
-        public readonly string? Id;
         public readonly ImmutableArray<string> InstanceNames;
         public readonly ImmutableArray<Outputs.KubernetesClusterPoolInstance> Instances;
         public readonly string? Size;
@@ -23,8 +22,6 @@ namespace Pulumi.Civo.Outputs
         private KubernetesClusterPool(
             int? count,
 
-            string? id,
-
             ImmutableArray<string> instanceNames,
 
             ImmutableArray<Outputs.KubernetesClusterPoolInstance> instances,
@@ -32,7 +29,6 @@ namespace Pulumi.Civo.Outputs
             string? size)
         {
             Count = count;
-            Id = id;
             InstanceNames = instanceNames;
             Instances = instances;
             Size = size;

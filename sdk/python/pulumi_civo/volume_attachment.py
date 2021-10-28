@@ -67,37 +67,21 @@ class VolumeAttachmentArgs:
 @pulumi.input_type
 class _VolumeAttachmentState:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[str]] = None,
                  instance_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  volume_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VolumeAttachment resources.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] instance_id: The ID of target instance for attachment
         :param pulumi.Input[str] region: The region for the volume attachment
         :param pulumi.Input[str] volume_id: The ID of target volume for attachment
         """
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if instance_id is not None:
             pulumi.set(__self__, "instance_id", instance_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if volume_id is not None:
             pulumi.set(__self__, "volume_id", volume_id)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -157,11 +141,8 @@ class VolumeAttachment(pulumi.CustomResource):
 
         ### Optional
 
-        - **region** (String) The region for the volume attachment
-
-        ### Read-Only
-
         - **id** (String) The ID of this resource.
+        - **region** (String) The region for the volume attachment
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -187,11 +168,8 @@ class VolumeAttachment(pulumi.CustomResource):
 
         ### Optional
 
-        - **region** (String) The region for the volume attachment
-
-        ### Read-Only
-
         - **id** (String) The ID of this resource.
+        - **region** (String) The region for the volume attachment
 
         :param str resource_name: The name of the resource.
         :param VolumeAttachmentArgs args: The arguments to use to populate this resource's properties.
@@ -230,7 +208,6 @@ class VolumeAttachment(pulumi.CustomResource):
             if volume_id is None and not opts.urn:
                 raise TypeError("Missing required property 'volume_id'")
             __props__.__dict__["volume_id"] = volume_id
-            __props__.__dict__["id"] = None
         super(VolumeAttachment, __self__).__init__(
             'civo:index/volumeAttachment:VolumeAttachment',
             resource_name,
@@ -241,7 +218,6 @@ class VolumeAttachment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            id: Optional[pulumi.Input[str]] = None,
             instance_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             volume_id: Optional[pulumi.Input[str]] = None) -> 'VolumeAttachment':
@@ -252,7 +228,6 @@ class VolumeAttachment(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] instance_id: The ID of target instance for attachment
         :param pulumi.Input[str] region: The region for the volume attachment
         :param pulumi.Input[str] volume_id: The ID of target volume for attachment
@@ -261,19 +236,10 @@ class VolumeAttachment(pulumi.CustomResource):
 
         __props__ = _VolumeAttachmentState.__new__(_VolumeAttachmentState)
 
-        __props__.__dict__["id"] = id
         __props__.__dict__["instance_id"] = instance_id
         __props__.__dict__["region"] = region
         __props__.__dict__["volume_id"] = volume_id
         return VolumeAttachment(resource_name, opts=opts, __props__=__props__)
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceId")

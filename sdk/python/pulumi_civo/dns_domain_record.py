@@ -120,7 +120,6 @@ class _DnsDomainRecordState:
                  account_id: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  domain_id: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
@@ -132,7 +131,6 @@ class _DnsDomainRecordState:
         :param pulumi.Input[str] account_id: The account ID of this resource
         :param pulumi.Input[str] created_at: Timestamp when this resource was created
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
                amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
@@ -148,8 +146,6 @@ class _DnsDomainRecordState:
             pulumi.set(__self__, "created_at", created_at)
         if domain_id is not None:
             pulumi.set(__self__, "domain_id", domain_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if priority is not None:
@@ -198,18 +194,6 @@ class _DnsDomainRecordState:
     @domain_id.setter
     def domain_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "domain_id", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -313,13 +297,13 @@ class DnsDomainRecord(pulumi.CustomResource):
 
         ### Optional
 
+        - **id** (String) The ID of this resource.
         - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 
         ### Read-Only
 
         - **account_id** (String) The account ID of this resource
         - **created_at** (String) Timestamp when this resource was created
-        - **id** (String) The ID of this resource.
         - **updated_at** (String) Timestamp when this resource was updated
 
         ## Import
@@ -362,13 +346,13 @@ class DnsDomainRecord(pulumi.CustomResource):
 
         ### Optional
 
+        - **id** (String) The ID of this resource.
         - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 
         ### Read-Only
 
         - **account_id** (String) The account ID of this resource
         - **created_at** (String) Timestamp when this resource was created
-        - **id** (String) The ID of this resource.
         - **updated_at** (String) Timestamp when this resource was updated
 
         ## Import
@@ -428,7 +412,6 @@ class DnsDomainRecord(pulumi.CustomResource):
             __props__.__dict__["value"] = value
             __props__.__dict__["account_id"] = None
             __props__.__dict__["created_at"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["updated_at"] = None
         super(DnsDomainRecord, __self__).__init__(
             'civo:index/dnsDomainRecord:DnsDomainRecord',
@@ -443,7 +426,6 @@ class DnsDomainRecord(pulumi.CustomResource):
             account_id: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             domain_id: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             ttl: Optional[pulumi.Input[int]] = None,
@@ -460,7 +442,6 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The account ID of this resource
         :param pulumi.Input[str] created_at: Timestamp when this resource was created
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
                amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
@@ -477,7 +458,6 @@ class DnsDomainRecord(pulumi.CustomResource):
         __props__.__dict__["account_id"] = account_id
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["domain_id"] = domain_id
-        __props__.__dict__["id"] = id
         __props__.__dict__["name"] = name
         __props__.__dict__["priority"] = priority
         __props__.__dict__["ttl"] = ttl
@@ -509,14 +489,6 @@ class DnsDomainRecord(pulumi.CustomResource):
         ID from domain name
         """
         return pulumi.get(self, "domain_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

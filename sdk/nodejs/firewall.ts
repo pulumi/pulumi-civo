@@ -28,12 +28,9 @@ import * as utilities from "./utilities";
  *
  * ### Optional
  *
+ * - **id** (String) The ID of this resource.
  * - **network_id** (String) The firewall network, if is not defined we use the default network
  * - **region** (String) The firewall region, if is not defined we use the global defined in the provider
- *
- * ### Read-Only
- *
- * - **id** (String) The ID of this resource.
  *
  * ## Import
  *
@@ -72,10 +69,6 @@ export class Firewall extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The firewall name
      */
     public readonly name!: pulumi.Output<string>;
@@ -101,7 +94,6 @@ export class Firewall extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["networkId"] = state ? state.networkId : undefined;
             inputs["region"] = state ? state.region : undefined;
@@ -110,7 +102,6 @@ export class Firewall extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["networkId"] = args ? args.networkId : undefined;
             inputs["region"] = args ? args.region : undefined;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -123,10 +114,6 @@ export class Firewall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Firewall resources.
  */
 export interface FirewallState {
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * The firewall name
      */

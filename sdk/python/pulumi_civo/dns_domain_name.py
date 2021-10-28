@@ -38,18 +38,14 @@ class DnsDomainNameArgs:
 class _DnsDomainNameState:
     def __init__(__self__, *,
                  account_id: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsDomainName resources.
         :param pulumi.Input[str] account_id: The account ID of the domain
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: The name of the domain
         """
         if account_id is not None:
             pulumi.set(__self__, "account_id", account_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
 
@@ -64,18 +60,6 @@ class _DnsDomainNameState:
     @account_id.setter
     def account_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_id", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -117,10 +101,13 @@ class DnsDomainName(pulumi.CustomResource):
 
         - **name** (String) The name of the domain
 
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+
         ### Read-Only
 
         - **account_id** (String) The account ID of the domain
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -160,10 +147,13 @@ class DnsDomainName(pulumi.CustomResource):
 
         - **name** (String) The name of the domain
 
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+
         ### Read-Only
 
         - **account_id** (String) The account ID of the domain
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -203,7 +193,6 @@ class DnsDomainName(pulumi.CustomResource):
 
             __props__.__dict__["name"] = name
             __props__.__dict__["account_id"] = None
-            __props__.__dict__["id"] = None
         super(DnsDomainName, __self__).__init__(
             'civo:index/dnsDomainName:DnsDomainName',
             resource_name,
@@ -215,7 +204,6 @@ class DnsDomainName(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             account_id: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None) -> 'DnsDomainName':
         """
         Get an existing DnsDomainName resource's state with the given name, id, and optional extra
@@ -225,7 +213,6 @@ class DnsDomainName(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_id: The account ID of the domain
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: The name of the domain
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -233,7 +220,6 @@ class DnsDomainName(pulumi.CustomResource):
         __props__ = _DnsDomainNameState.__new__(_DnsDomainNameState)
 
         __props__.__dict__["account_id"] = account_id
-        __props__.__dict__["id"] = id
         __props__.__dict__["name"] = name
         return DnsDomainName(resource_name, opts=opts, __props__=__props__)
 
@@ -244,14 +230,6 @@ class DnsDomainName(pulumi.CustomResource):
         The account ID of the domain
         """
         return pulumi.get(self, "account_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

@@ -40,10 +40,13 @@ namespace Pulumi.Civo
     /// - **name** (String) a string that will be the reference for the SSH key.
     /// - **public_key** (String) a string containing the SSH public key.
     /// 
+    /// ### Optional
+    /// 
+    /// - **id** (String) The ID of this resource.
+    /// 
     /// ### Read-Only
     /// 
     /// - **fingerprint** (String) a string containing the SSH finger print.
-    /// - **id** (String) The ID of this resource.
     /// 
     /// ## Import
     /// 
@@ -61,12 +64,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("fingerprint")]
         public Output<string> Fingerprint { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// a string that will be the reference for the SSH key.
@@ -150,12 +147,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("fingerprint")]
         public Input<string>? Fingerprint { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// a string that will be the reference for the SSH key.

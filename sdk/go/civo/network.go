@@ -45,12 +45,12 @@ import (
 //
 // ### Optional
 //
+// - **id** (String) The ID of this resource.
 // - **region** (String) The region of the network
 //
 // ### Read-Only
 //
 // - **default** (Boolean) If the network is default, this will be `true`
-// - **id** (String) The ID of this resource
 // - **name** (String) The name of the network
 //
 // ## Import
@@ -65,8 +65,6 @@ type Network struct {
 
 	// If the network is default, this will be `true`
 	Default pulumi.BoolOutput `pulumi:"default"`
-	// The ID of this resource
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Name for the network
 	Label pulumi.StringOutput `pulumi:"label"`
 	// The name of the network
@@ -109,8 +107,6 @@ func GetNetwork(ctx *pulumi.Context,
 type networkState struct {
 	// If the network is default, this will be `true`
 	Default *bool `pulumi:"default"`
-	// The ID of this resource
-	Id *string `pulumi:"id"`
 	// Name for the network
 	Label *string `pulumi:"label"`
 	// The name of the network
@@ -122,8 +118,6 @@ type networkState struct {
 type NetworkState struct {
 	// If the network is default, this will be `true`
 	Default pulumi.BoolPtrInput
-	// The ID of this resource
-	Id pulumi.StringPtrInput
 	// Name for the network
 	Label pulumi.StringPtrInput
 	// The name of the network

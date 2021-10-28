@@ -95,7 +95,6 @@ export interface KubernetesClusterInstance {
 
 export interface KubernetesClusterPool {
     count?: pulumi.Input<number>;
-    id?: pulumi.Input<string>;
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
     instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolInstance>[]>;
     size?: pulumi.Input<string>;

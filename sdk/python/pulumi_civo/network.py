@@ -53,22 +53,18 @@ class NetworkArgs:
 class _NetworkState:
     def __init__(__self__, *,
                  default: Optional[pulumi.Input[bool]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
         :param pulumi.Input[bool] default: If the network is default, this will be `true`
-        :param pulumi.Input[str] id: The ID of this resource
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] name: The name of the network
         :param pulumi.Input[str] region: The region of the network
         """
         if default is not None:
             pulumi.set(__self__, "default", default)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if name is not None:
@@ -87,18 +83,6 @@ class _NetworkState:
     @default.setter
     def default(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "default", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -166,12 +150,12 @@ class Network(pulumi.CustomResource):
 
         ### Optional
 
+        - **id** (String) The ID of this resource.
         - **region** (String) The region of the network
 
         ### Read-Only
 
         - **default** (Boolean) If the network is default, this will be `true`
-        - **id** (String) The ID of this resource
         - **name** (String) The name of the network
 
         ## Import
@@ -214,12 +198,12 @@ class Network(pulumi.CustomResource):
 
         ### Optional
 
+        - **id** (String) The ID of this resource.
         - **region** (String) The region of the network
 
         ### Read-Only
 
         - **default** (Boolean) If the network is default, this will be `true`
-        - **id** (String) The ID of this resource
         - **name** (String) The name of the network
 
         ## Import
@@ -264,7 +248,6 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["label"] = label
             __props__.__dict__["region"] = region
             __props__.__dict__["default"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["name"] = None
         super(Network, __self__).__init__(
             'civo:index/network:Network',
@@ -277,7 +260,6 @@ class Network(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             default: Optional[pulumi.Input[bool]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Network':
@@ -289,7 +271,6 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] default: If the network is default, this will be `true`
-        :param pulumi.Input[str] id: The ID of this resource
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] name: The name of the network
         :param pulumi.Input[str] region: The region of the network
@@ -299,7 +280,6 @@ class Network(pulumi.CustomResource):
         __props__ = _NetworkState.__new__(_NetworkState)
 
         __props__.__dict__["default"] = default
-        __props__.__dict__["id"] = id
         __props__.__dict__["label"] = label
         __props__.__dict__["name"] = name
         __props__.__dict__["region"] = region
@@ -312,14 +292,6 @@ class Network(pulumi.CustomResource):
         If the network is default, this will be `true`
         """
         return pulumi.get(self, "default")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

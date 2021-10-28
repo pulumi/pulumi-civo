@@ -27,12 +27,12 @@ import * as utilities from "./utilities";
  *
  * ### Optional
  *
+ * - **id** (String) The ID of this resource.
  * - **region** (String) The region of the network
  *
  * ### Read-Only
  *
  * - **default** (Boolean) If the network is default, this will be `true`
- * - **id** (String) The ID of this resource
  * - **name** (String) The name of the network
  *
  * ## Import
@@ -76,10 +76,6 @@ export class Network extends pulumi.CustomResource {
      */
     public /*out*/ readonly default!: pulumi.Output<boolean>;
     /**
-     * The ID of this resource
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * Name for the network
      */
     public readonly label!: pulumi.Output<string>;
@@ -106,7 +102,6 @@ export class Network extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
             inputs["default"] = state ? state.default : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["label"] = state ? state.label : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["region"] = state ? state.region : undefined;
@@ -118,7 +113,6 @@ export class Network extends pulumi.CustomResource {
             inputs["label"] = args ? args.label : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["default"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
             inputs["name"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -136,10 +130,6 @@ export interface NetworkState {
      * If the network is default, this will be `true`
      */
     readonly default?: pulumi.Input<boolean>;
-    /**
-     * The ID of this resource
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Name for the network
      */

@@ -74,8 +74,6 @@ import (
 type Volume struct {
 	pulumi.CustomResourceState
 
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The mount point of the volume (from instance's perspective)
 	MountPoint pulumi.StringOutput `pulumi:"mountPoint"`
 	// A name that you wish to use to refer to this volume
@@ -123,8 +121,6 @@ func GetVolume(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Volume resources.
 type volumeState struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// The mount point of the volume (from instance's perspective)
 	MountPoint *string `pulumi:"mountPoint"`
 	// A name that you wish to use to refer to this volume
@@ -138,8 +134,6 @@ type volumeState struct {
 }
 
 type VolumeState struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// The mount point of the volume (from instance's perspective)
 	MountPoint pulumi.StringPtrInput
 	// A name that you wish to use to refer to this volume

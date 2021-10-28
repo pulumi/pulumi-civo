@@ -19,13 +19,13 @@ import * as utilities from "./utilities";
  *
  * ### Optional
  *
+ * - **id** (String) The ID of this resource.
  * - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
  *
  * ### Read-Only
  *
  * - **account_id** (String) The account ID of this resource
  * - **created_at** (String) Timestamp when this resource was created
- * - **id** (String) The ID of this resource.
  * - **updated_at** (String) Timestamp when this resource was updated
  *
  * ## Import
@@ -77,10 +77,6 @@ export class DnsDomainRecord extends pulumi.CustomResource {
      */
     public readonly domainId!: pulumi.Output<string>;
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
      * amex/root domain)
      */
@@ -123,7 +119,6 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["accountId"] = state ? state.accountId : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["domainId"] = state ? state.domainId : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["priority"] = state ? state.priority : undefined;
             inputs["ttl"] = state ? state.ttl : undefined;
@@ -152,7 +147,6 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             inputs["value"] = args ? args.value : undefined;
             inputs["accountId"] = undefined /*out*/;
             inputs["createdAt"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
             inputs["updatedAt"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -178,10 +172,6 @@ export interface DnsDomainRecordState {
      * ID from domain name
      */
     readonly domainId?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
      * amex/root domain)

@@ -25,10 +25,13 @@ import * as utilities from "./utilities";
  * - **name** (String) a string that will be the reference for the SSH key.
  * - **public_key** (String) a string containing the SSH public key.
  *
+ * ### Optional
+ *
+ * - **id** (String) The ID of this resource.
+ *
  * ### Read-Only
  *
  * - **fingerprint** (String) a string containing the SSH finger print.
- * - **id** (String) The ID of this resource.
  *
  * ## Import
  *
@@ -71,10 +74,6 @@ export class SshKey extends pulumi.CustomResource {
      */
     public /*out*/ readonly fingerprint!: pulumi.Output<string>;
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * a string that will be the reference for the SSH key.
      */
     public readonly name!: pulumi.Output<string>;
@@ -97,7 +96,6 @@ export class SshKey extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SshKeyState | undefined;
             inputs["fingerprint"] = state ? state.fingerprint : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["name"] = state ? state.name : undefined;
             inputs["publicKey"] = state ? state.publicKey : undefined;
         } else {
@@ -108,7 +106,6 @@ export class SshKey extends pulumi.CustomResource {
             inputs["name"] = args ? args.name : undefined;
             inputs["publicKey"] = args ? args.publicKey : undefined;
             inputs["fingerprint"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -125,10 +122,6 @@ export interface SshKeyState {
      * a string containing the SSH finger print.
      */
     readonly fingerprint?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * a string that will be the reference for the SSH key.
      */

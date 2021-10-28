@@ -22,12 +22,9 @@ import (
 //
 // ### Optional
 //
+// - **id** (String) The ID of this resource.
 // - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
 // - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
-//
-// ### Read-Only
-//
-// - **id** (String) The ID of this resource.
 //
 // ## Import
 //
@@ -41,8 +38,6 @@ type KubernetesNodePool struct {
 
 	// The ID of your cluster
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
@@ -88,8 +83,6 @@ func GetKubernetesNodePool(ctx *pulumi.Context,
 type kubernetesNodePoolState struct {
 	// The ID of your cluster
 	ClusterId *string `pulumi:"clusterId"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
@@ -101,8 +94,6 @@ type kubernetesNodePoolState struct {
 type KubernetesNodePoolState struct {
 	// The ID of your cluster
 	ClusterId pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
 	// The region of the node pool, has to match that of the cluster

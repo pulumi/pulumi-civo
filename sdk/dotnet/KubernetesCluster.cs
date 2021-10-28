@@ -85,6 +85,7 @@ namespace Pulumi.Civo
     /// ### Optional
     /// 
     /// - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
+    /// - **id** (String) The ID of this resource.
     /// - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
     /// - **name** (String) Name for your cluster, must be unique within your account
     /// - **network_id** (String) The network for the cluster, if not declare we use the default one
@@ -98,7 +99,6 @@ namespace Pulumi.Civo
     /// - **api_endpoint** (String) The API server endpoint of the cluster
     /// - **created_at** (String) The timestamp when the cluster was created
     /// - **dns_entry** (String) The DNS name of the cluster
-    /// - **id** (String) The ID of this resource.
     /// - **installed_applications** (List of Object) (see below for nested schema)
     /// - **instances** (List of Object) (see below for nested schema)
     /// - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
@@ -136,7 +136,6 @@ namespace Pulumi.Civo
     /// Read-Only:
     /// 
     /// - **count** (Number)
-    /// - **id** (String)
     /// - **instance_names** (Set of String)
     /// - **instances** (List of Object) (see below for nested schema)
     /// - **size** (String)
@@ -198,12 +197,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         [Output("installedApplications")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstalledApplication>> InstalledApplications { get; private set; } = null!;
@@ -424,12 +417,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         [Input("installedApplications")]
         private InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>? _installedApplications;

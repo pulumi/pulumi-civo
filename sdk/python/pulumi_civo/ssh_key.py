@@ -53,20 +53,16 @@ class SshKeyArgs:
 class _SshKeyState:
     def __init__(__self__, *,
                  fingerprint: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  public_key: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SshKey resources.
         :param pulumi.Input[str] fingerprint: a string containing the SSH finger print.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: a string that will be the reference for the SSH key.
         :param pulumi.Input[str] public_key: a string containing the SSH public key.
         """
         if fingerprint is not None:
             pulumi.set(__self__, "fingerprint", fingerprint)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if public_key is not None:
@@ -83,18 +79,6 @@ class _SshKeyState:
     @fingerprint.setter
     def fingerprint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fingerprint", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -149,10 +133,13 @@ class SshKey(pulumi.CustomResource):
         - **name** (String) a string that will be the reference for the SSH key.
         - **public_key** (String) a string containing the SSH public key.
 
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+
         ### Read-Only
 
         - **fingerprint** (String) a string containing the SSH finger print.
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -193,10 +180,13 @@ class SshKey(pulumi.CustomResource):
         - **name** (String) a string that will be the reference for the SSH key.
         - **public_key** (String) a string containing the SSH public key.
 
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+
         ### Read-Only
 
         - **fingerprint** (String) a string containing the SSH finger print.
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -240,7 +230,6 @@ class SshKey(pulumi.CustomResource):
                 raise TypeError("Missing required property 'public_key'")
             __props__.__dict__["public_key"] = public_key
             __props__.__dict__["fingerprint"] = None
-            __props__.__dict__["id"] = None
         super(SshKey, __self__).__init__(
             'civo:index/sshKey:SshKey',
             resource_name,
@@ -252,7 +241,6 @@ class SshKey(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             fingerprint: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             public_key: Optional[pulumi.Input[str]] = None) -> 'SshKey':
         """
@@ -263,7 +251,6 @@ class SshKey(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] fingerprint: a string containing the SSH finger print.
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] name: a string that will be the reference for the SSH key.
         :param pulumi.Input[str] public_key: a string containing the SSH public key.
         """
@@ -272,7 +259,6 @@ class SshKey(pulumi.CustomResource):
         __props__ = _SshKeyState.__new__(_SshKeyState)
 
         __props__.__dict__["fingerprint"] = fingerprint
-        __props__.__dict__["id"] = id
         __props__.__dict__["name"] = name
         __props__.__dict__["public_key"] = public_key
         return SshKey(resource_name, opts=opts, __props__=__props__)
@@ -284,14 +270,6 @@ class SshKey(pulumi.CustomResource):
         a string containing the SSH finger print.
         """
         return pulumi.get(self, "fingerprint")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

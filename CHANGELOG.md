@@ -2,7 +2,7 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.0.1 of the Civo Terraform Provider
+* Upgrade to v1.0.2 of the Civo Terraform Provider
   **Please Note the followign breaking changes:**
   * `civo.Snapshot` resource has been removed
   * `civo.LoadBalancer` resource has been removed

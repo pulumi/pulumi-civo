@@ -18,14 +18,11 @@ import * as utilities from "./utilities";
  *
  * - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
  * - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+ * - **id** (String) The ID of this resource.
  * - **label** (String) A string that will be the displayed name/reference for this rule
  * - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
  * - **region** (String) The region for this rule
  * - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
- *
- * ### Read-Only
- *
- * - **id** (String) The ID of this resource.
  *
  * ## Import
  *
@@ -81,10 +78,6 @@ export class FirewallRule extends pulumi.CustomResource {
      */
     public readonly firewallId!: pulumi.Output<string>;
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * A string that will be the displayed name/reference for this rule
      */
     public readonly label!: pulumi.Output<string>;
@@ -118,7 +111,6 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["direction"] = state ? state.direction : undefined;
             inputs["endPort"] = state ? state.endPort : undefined;
             inputs["firewallId"] = state ? state.firewallId : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["label"] = state ? state.label : undefined;
             inputs["protocol"] = state ? state.protocol : undefined;
             inputs["region"] = state ? state.region : undefined;
@@ -139,7 +131,6 @@ export class FirewallRule extends pulumi.CustomResource {
             inputs["protocol"] = args ? args.protocol : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["startPort"] = args ? args.startPort : undefined;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -169,10 +160,6 @@ export interface FirewallRuleState {
      * The Firewall ID
      */
     readonly firewallId?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * A string that will be the displayed name/reference for this rule
      */

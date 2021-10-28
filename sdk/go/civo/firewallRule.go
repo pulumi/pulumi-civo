@@ -24,14 +24,11 @@ import (
 //
 // - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
 // - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+// - **id** (String) The ID of this resource.
 // - **label** (String) A string that will be the displayed name/reference for this rule
 // - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
 // - **region** (String) The region for this rule
 // - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-//
-// ### Read-Only
-//
-// - **id** (String) The ID of this resource.
 //
 // ## Import
 //
@@ -52,8 +49,6 @@ type FirewallRule struct {
 	EndPort pulumi.StringOutput `pulumi:"endPort"`
 	// The Firewall ID
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringOutput `pulumi:"label"`
 	// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -108,8 +103,6 @@ type firewallRuleState struct {
 	EndPort *string `pulumi:"endPort"`
 	// The Firewall ID
 	FirewallId *string `pulumi:"firewallId"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label *string `pulumi:"label"`
 	// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -130,8 +123,6 @@ type FirewallRuleState struct {
 	EndPort pulumi.StringPtrInput
 	// The Firewall ID
 	FirewallId pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringPtrInput
 	// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)

@@ -20,10 +20,13 @@ import (
 // - **name** (String) a string that will be the reference for the SSH key.
 // - **public_key** (String) a string containing the SSH public key.
 //
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+//
 // ### Read-Only
 //
 // - **fingerprint** (String) a string containing the SSH finger print.
-// - **id** (String) The ID of this resource.
 //
 // ## Import
 //
@@ -37,8 +40,6 @@ type SshKey struct {
 
 	// a string containing the SSH finger print.
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// a string that will be the reference for the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// a string containing the SSH public key.
@@ -79,8 +80,6 @@ func GetSshKey(ctx *pulumi.Context,
 type sshKeyState struct {
 	// a string containing the SSH finger print.
 	Fingerprint *string `pulumi:"fingerprint"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// a string that will be the reference for the SSH key.
 	Name *string `pulumi:"name"`
 	// a string containing the SSH public key.
@@ -90,8 +89,6 @@ type sshKeyState struct {
 type SshKeyState struct {
 	// a string containing the SSH finger print.
 	Fingerprint pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// a string that will be the reference for the SSH key.
 	Name pulumi.StringPtrInput
 	// a string containing the SSH public key.

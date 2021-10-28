@@ -38,10 +38,13 @@ namespace Pulumi.Civo
     /// 
     /// - **name** (String) The name of the domain
     /// 
+    /// ### Optional
+    /// 
+    /// - **id** (String) The ID of this resource.
+    /// 
     /// ### Read-Only
     /// 
     /// - **account_id** (String) The account ID of the domain
-    /// - **id** (String) The ID of this resource.
     /// 
     /// ## Import
     /// 
@@ -59,12 +62,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// The name of the domain
@@ -136,12 +133,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The name of the domain

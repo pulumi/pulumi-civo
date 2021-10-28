@@ -72,12 +72,9 @@ namespace Pulumi.Civo
     /// 
     /// ### Optional
     /// 
+    /// - **id** (String) The ID of this resource.
     /// - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
     /// - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
-    /// 
-    /// ### Read-Only
-    /// 
-    /// - **id** (String) The ID of this resource.
     /// 
     /// ## Import
     /// 
@@ -95,12 +92,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
@@ -202,12 +193,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)

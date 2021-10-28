@@ -22,6 +22,7 @@ import (
 // ### Optional
 //
 // - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+// - **id** (String) The ID of this resource.
 // - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
 // - **name** (String) Name for your cluster, must be unique within your account
 // - **network_id** (String) The network for the cluster, if not declare we use the default one
@@ -35,7 +36,6 @@ import (
 // - **api_endpoint** (String) The API server endpoint of the cluster
 // - **created_at** (String) The timestamp when the cluster was created
 // - **dns_entry** (String) The DNS name of the cluster
-// - **id** (String) The ID of this resource.
 // - **installed_applications** (List of Object) (see below for nested schema)
 // - **instances** (List of Object) (see below for nested schema)
 // - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
@@ -73,7 +73,6 @@ import (
 // Read-Only:
 //
 // - **count** (Number)
-// - **id** (String)
 // - **instance_names** (Set of String)
 // - **instances** (List of Object) (see below for nested schema)
 // - **size** (String)
@@ -114,9 +113,7 @@ type KubernetesCluster struct {
 	// The DNS name of the cluster
 	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
 	// The existing firewall ID to use for this cluster
-	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
-	// The ID of this resource.
-	Id                    pulumi.StringOutput                              `pulumi:"id"`
+	FirewallId            pulumi.StringOutput                              `pulumi:"firewallId"`
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
 	Instances             KubernetesClusterInstanceArrayOutput             `pulumi:"instances"`
 	// The kubeconfig of the cluster
@@ -189,9 +186,7 @@ type kubernetesClusterState struct {
 	// The DNS name of the cluster
 	DnsEntry *string `pulumi:"dnsEntry"`
 	// The existing firewall ID to use for this cluster
-	FirewallId *string `pulumi:"firewallId"`
-	// The ID of this resource.
-	Id                    *string                                 `pulumi:"id"`
+	FirewallId            *string                                 `pulumi:"firewallId"`
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
 	Instances             []KubernetesClusterInstance             `pulumi:"instances"`
 	// The kubeconfig of the cluster
@@ -233,9 +228,7 @@ type KubernetesClusterState struct {
 	// The DNS name of the cluster
 	DnsEntry pulumi.StringPtrInput
 	// The existing firewall ID to use for this cluster
-	FirewallId pulumi.StringPtrInput
-	// The ID of this resource.
-	Id                    pulumi.StringPtrInput
+	FirewallId            pulumi.StringPtrInput
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
 	Instances             KubernetesClusterInstanceArrayInput
 	// The kubeconfig of the cluster

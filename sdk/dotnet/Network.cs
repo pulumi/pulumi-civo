@@ -40,12 +40,12 @@ namespace Pulumi.Civo
     /// 
     /// ### Optional
     /// 
+    /// - **id** (String) The ID of this resource.
     /// - **region** (String) The region of the network
     /// 
     /// ### Read-Only
     /// 
     /// - **default** (Boolean) If the network is default, this will be `true`
-    /// - **id** (String) The ID of this resource
     /// - **name** (String) The name of the network
     /// 
     /// ## Import
@@ -64,12 +64,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("default")]
         public Output<bool> Default { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// Name for the network
@@ -159,12 +153,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("default")]
         public Input<bool>? Default { get; set; }
-
-        /// <summary>
-        /// The ID of this resource
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// Name for the network

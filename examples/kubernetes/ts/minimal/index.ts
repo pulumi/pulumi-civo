@@ -2,9 +2,12 @@ import * as k8s from "@pulumi/kubernetes";
 import * as civo from "@pulumi/civo"
 import * as pulumi from "@pulumi/pulumi";
 
+const fw = new civo.Firewall("k8s-sample-fw")
+
 const cluster = new civo.KubernetesCluster("acc-test", {
     tags: "demo-kubernetes-typescript",
     region: "lon1",
+    firewallId: fw.id,
 });
 
 const k8sProvider = new k8s.Provider("acc-provider-test", {

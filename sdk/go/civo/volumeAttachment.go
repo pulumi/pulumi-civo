@@ -22,16 +22,11 @@ import (
 //
 // ### Optional
 //
-// - **region** (String) The region for the volume attachment
-//
-// ### Read-Only
-//
 // - **id** (String) The ID of this resource.
+// - **region** (String) The region for the volume attachment
 type VolumeAttachment struct {
 	pulumi.CustomResourceState
 
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The ID of target instance for attachment
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
 	// The region for the volume attachment
@@ -75,8 +70,6 @@ func GetVolumeAttachment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VolumeAttachment resources.
 type volumeAttachmentState struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// The ID of target instance for attachment
 	InstanceId *string `pulumi:"instanceId"`
 	// The region for the volume attachment
@@ -86,8 +79,6 @@ type volumeAttachmentState struct {
 }
 
 type VolumeAttachmentState struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// The ID of target instance for attachment
 	InstanceId pulumi.StringPtrInput
 	// The region for the volume attachment

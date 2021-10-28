@@ -40,10 +40,13 @@ import (
 //
 // - **name** (String) The name of the domain
 //
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+//
 // ### Read-Only
 //
 // - **account_id** (String) The account ID of the domain
-// - **id** (String) The ID of this resource.
 //
 // ## Import
 //
@@ -57,8 +60,6 @@ type DnsDomainName struct {
 
 	// The account ID of the domain
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The name of the domain
 	Name pulumi.StringOutput `pulumi:"name"`
 }
@@ -94,8 +95,6 @@ func GetDnsDomainName(ctx *pulumi.Context,
 type dnsDomainNameState struct {
 	// The account ID of the domain
 	AccountId *string `pulumi:"accountId"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// The name of the domain
 	Name *string `pulumi:"name"`
 }
@@ -103,8 +102,6 @@ type dnsDomainNameState struct {
 type DnsDomainNameState struct {
 	// The account ID of the domain
 	AccountId pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// The name of the domain
 	Name pulumi.StringPtrInput
 }

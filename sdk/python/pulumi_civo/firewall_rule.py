@@ -153,7 +153,6 @@ class _FirewallRuleState:
                  direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -165,7 +164,6 @@ class _FirewallRuleState:
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
         :param pulumi.Input[str] protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         :param pulumi.Input[str] region: The region for this rule
@@ -179,8 +177,6 @@ class _FirewallRuleState:
             pulumi.set(__self__, "end_port", end_port)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if protocol is not None:
@@ -238,18 +234,6 @@ class _FirewallRuleState:
     @firewall_id.setter
     def firewall_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firewall_id", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter
@@ -328,14 +312,11 @@ class FirewallRule(pulumi.CustomResource):
 
         - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
         - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+        - **id** (String) The ID of this resource.
         - **label** (String) A string that will be the displayed name/reference for this rule
         - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         - **region** (String) The region for this rule
         - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-
-        ### Read-Only
-
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -377,14 +358,11 @@ class FirewallRule(pulumi.CustomResource):
 
         - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
         - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+        - **id** (String) The ID of this resource.
         - **label** (String) A string that will be the displayed name/reference for this rule
         - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         - **region** (String) The region for this rule
         - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-
-        ### Read-Only
-
-        - **id** (String) The ID of this resource.
 
         ## Import
 
@@ -441,7 +419,6 @@ class FirewallRule(pulumi.CustomResource):
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["region"] = region
             __props__.__dict__["start_port"] = start_port
-            __props__.__dict__["id"] = None
         super(FirewallRule, __self__).__init__(
             'civo:index/firewallRule:FirewallRule',
             resource_name,
@@ -456,7 +433,6 @@ class FirewallRule(pulumi.CustomResource):
             direction: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -473,7 +449,6 @@ class FirewallRule(pulumi.CustomResource):
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
         :param pulumi.Input[str] protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         :param pulumi.Input[str] region: The region for this rule
@@ -487,7 +462,6 @@ class FirewallRule(pulumi.CustomResource):
         __props__.__dict__["direction"] = direction
         __props__.__dict__["end_port"] = end_port
         __props__.__dict__["firewall_id"] = firewall_id
-        __props__.__dict__["id"] = id
         __props__.__dict__["label"] = label
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["region"] = region
@@ -526,14 +500,6 @@ class FirewallRule(pulumi.CustomResource):
         The Firewall ID
         """
         return pulumi.get(self, "firewall_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter

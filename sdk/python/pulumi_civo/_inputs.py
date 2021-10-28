@@ -173,14 +173,11 @@ class KubernetesClusterInstanceArgs:
 class KubernetesClusterPoolArgs:
     def __init__(__self__, *,
                  count: Optional[pulumi.Input[int]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolInstanceArgs']]]] = None,
                  size: Optional[pulumi.Input[str]] = None):
         if count is not None:
             pulumi.set(__self__, "count", count)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
         if instances is not None:
@@ -196,15 +193,6 @@ class KubernetesClusterPoolArgs:
     @count.setter
     def count(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "count", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="instanceNames")

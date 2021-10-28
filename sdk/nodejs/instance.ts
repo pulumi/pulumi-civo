@@ -14,6 +14,7 @@ import * as utilities from "./utilities";
  * - **disk_image** (String) The ID for the disk image to use to build the instance
  * - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
  * - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+ * - **id** (String) The ID of this resource.
  * - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
  * - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
  * - **notes** (String) Add some notes to the instance
@@ -31,7 +32,6 @@ import * as utilities from "./utilities";
  * - **cpu_cores** (Number) Instance's CPU cores
  * - **created_at** (String) Timestamp when the instance was created
  * - **disk_gb** (Number) Instance's disk (GB)
- * - **id** (String) The ID of this resource.
  * - **initial_password** (String, Sensitive) Initial password for login
  * - **private_ip** (String) Instance's private IP address
  * - **public_ip** (String) Instance's public IP address
@@ -101,10 +101,6 @@ export class Instance extends pulumi.CustomResource {
      * A fully qualified domain name that should be set as the instance's hostname
      */
     public readonly hostname!: pulumi.Output<string>;
-    /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
     /**
      * Initial password for login
      */
@@ -203,7 +199,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["diskImage"] = state ? state.diskImage : undefined;
             inputs["firewallId"] = state ? state.firewallId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["initialPassword"] = state ? state.initialPassword : undefined;
             inputs["initialUser"] = state ? state.initialUser : undefined;
             inputs["networkId"] = state ? state.networkId : undefined;
@@ -241,7 +236,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["cpuCores"] = undefined /*out*/;
             inputs["createdAt"] = undefined /*out*/;
             inputs["diskGb"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
             inputs["initialPassword"] = undefined /*out*/;
             inputs["privateIp"] = undefined /*out*/;
             inputs["publicIp"] = undefined /*out*/;
@@ -286,10 +280,6 @@ export interface InstanceState {
      * A fully qualified domain name that should be set as the instance's hostname
      */
     readonly hostname?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * Initial password for login
      */

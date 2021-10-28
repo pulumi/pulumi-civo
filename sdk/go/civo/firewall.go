@@ -50,12 +50,9 @@ import (
 //
 // ### Optional
 //
+// - **id** (String) The ID of this resource.
 // - **network_id** (String) The firewall network, if is not defined we use the default network
 // - **region** (String) The firewall region, if is not defined we use the global defined in the provider
-//
-// ### Read-Only
-//
-// - **id** (String) The ID of this resource.
 //
 // ## Import
 //
@@ -67,8 +64,6 @@ import (
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The firewall name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The firewall network, if is not defined we use the default network
@@ -106,8 +101,6 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// The firewall name
 	Name *string `pulumi:"name"`
 	// The firewall network, if is not defined we use the default network
@@ -117,8 +110,6 @@ type firewallState struct {
 }
 
 type FirewallState struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// The firewall name
 	Name pulumi.StringPtrInput
 	// The firewall network, if is not defined we use the default network

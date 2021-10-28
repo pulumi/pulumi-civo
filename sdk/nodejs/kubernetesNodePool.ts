@@ -46,12 +46,9 @@ import * as utilities from "./utilities";
  *
  * ### Optional
  *
+ * - **id** (String) The ID of this resource.
  * - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
  * - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
- *
- * ### Read-Only
- *
- * - **id** (String) The ID of this resource.
  *
  * ## Import
  *
@@ -94,10 +91,6 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
     public readonly numTargetNodes!: pulumi.Output<number>;
@@ -124,7 +117,6 @@ export class KubernetesNodePool extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KubernetesNodePoolState | undefined;
             inputs["clusterId"] = state ? state.clusterId : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
@@ -140,7 +132,6 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             inputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -157,10 +148,6 @@ export interface KubernetesNodePoolState {
      * The ID of your cluster
      */
     readonly clusterId?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */

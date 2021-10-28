@@ -179,7 +179,6 @@ class _KubernetesClusterState:
                  created_at: Optional[pulumi.Input[str]] = None,
                  dns_entry: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstanceArgs']]]] = None,
                  kubeconfig: Optional[pulumi.Input[str]] = None,
@@ -205,7 +204,6 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] kubeconfig: The kubeconfig of the cluster
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] master_ip: The IP address of the master node
@@ -228,8 +226,6 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "dns_entry", dns_entry)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if installed_applications is not None:
             pulumi.set(__self__, "installed_applications", installed_applications)
         if instances is not None:
@@ -322,18 +318,6 @@ class _KubernetesClusterState:
     @firewall_id.setter
     def firewall_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firewall_id", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="installedApplications")
@@ -556,6 +540,7 @@ class KubernetesCluster(pulumi.CustomResource):
         ### Optional
 
         - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        - **id** (String) The ID of this resource.
         - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
         - **name** (String) Name for your cluster, must be unique within your account
         - **network_id** (String) The network for the cluster, if not declare we use the default one
@@ -569,7 +554,6 @@ class KubernetesCluster(pulumi.CustomResource):
         - **api_endpoint** (String) The API server endpoint of the cluster
         - **created_at** (String) The timestamp when the cluster was created
         - **dns_entry** (String) The DNS name of the cluster
-        - **id** (String) The ID of this resource.
         - **installed_applications** (List of Object) (see below for nested schema)
         - **instances** (List of Object) (see below for nested schema)
         - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
@@ -607,7 +591,6 @@ class KubernetesCluster(pulumi.CustomResource):
         Read-Only:
 
         - **count** (Number)
-        - **id** (String)
         - **instance_names** (Set of String)
         - **instances** (List of Object) (see below for nested schema)
         - **size** (String)
@@ -701,6 +684,7 @@ class KubernetesCluster(pulumi.CustomResource):
         ### Optional
 
         - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        - **id** (String) The ID of this resource.
         - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
         - **name** (String) Name for your cluster, must be unique within your account
         - **network_id** (String) The network for the cluster, if not declare we use the default one
@@ -714,7 +698,6 @@ class KubernetesCluster(pulumi.CustomResource):
         - **api_endpoint** (String) The API server endpoint of the cluster
         - **created_at** (String) The timestamp when the cluster was created
         - **dns_entry** (String) The DNS name of the cluster
-        - **id** (String) The ID of this resource.
         - **installed_applications** (List of Object) (see below for nested schema)
         - **instances** (List of Object) (see below for nested schema)
         - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
@@ -752,7 +735,6 @@ class KubernetesCluster(pulumi.CustomResource):
         Read-Only:
 
         - **count** (Number)
-        - **id** (String)
         - **instance_names** (Set of String)
         - **instances** (List of Object) (see below for nested schema)
         - **size** (String)
@@ -828,7 +810,6 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dns_entry"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["installed_applications"] = None
             __props__.__dict__["instances"] = None
             __props__.__dict__["kubeconfig"] = None
@@ -851,7 +832,6 @@ class KubernetesCluster(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             dns_entry: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
             instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]]] = None,
             kubeconfig: Optional[pulumi.Input[str]] = None,
@@ -882,7 +862,6 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] kubeconfig: The kubeconfig of the cluster
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] master_ip: The IP address of the master node
@@ -904,7 +883,6 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dns_entry"] = dns_entry
         __props__.__dict__["firewall_id"] = firewall_id
-        __props__.__dict__["id"] = id
         __props__.__dict__["installed_applications"] = installed_applications
         __props__.__dict__["instances"] = instances
         __props__.__dict__["kubeconfig"] = kubeconfig
@@ -964,14 +942,6 @@ class KubernetesCluster(pulumi.CustomResource):
         The existing firewall ID to use for this cluster
         """
         return pulumi.get(self, "firewall_id")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="installedApplications")

@@ -16,11 +16,8 @@ import * as utilities from "./utilities";
  *
  * ### Optional
  *
- * - **region** (String) The region for the volume attachment
- *
- * ### Read-Only
- *
  * - **id** (String) The ID of this resource.
+ * - **region** (String) The region for the volume attachment
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
@@ -51,10 +48,6 @@ export class VolumeAttachment extends pulumi.CustomResource {
     }
 
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The ID of target instance for attachment
      */
     public readonly instanceId!: pulumi.Output<string>;
@@ -80,7 +73,6 @@ export class VolumeAttachment extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeAttachmentState | undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
             inputs["region"] = state ? state.region : undefined;
             inputs["volumeId"] = state ? state.volumeId : undefined;
@@ -95,7 +87,6 @@ export class VolumeAttachment extends pulumi.CustomResource {
             inputs["instanceId"] = args ? args.instanceId : undefined;
             inputs["region"] = args ? args.region : undefined;
             inputs["volumeId"] = args ? args.volumeId : undefined;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -108,10 +99,6 @@ export class VolumeAttachment extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VolumeAttachment resources.
  */
 export interface VolumeAttachmentState {
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * The ID of target instance for attachment
      */

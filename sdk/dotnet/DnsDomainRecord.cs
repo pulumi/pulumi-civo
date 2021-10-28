@@ -24,13 +24,13 @@ namespace Pulumi.Civo
     /// 
     /// ### Optional
     /// 
+    /// - **id** (String) The ID of this resource.
     /// - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
     /// 
     /// ### Read-Only
     /// 
     /// - **account_id** (String) The account ID of this resource
     /// - **created_at** (String) Timestamp when this resource was created
-    /// - **id** (String) The ID of this resource.
     /// - **updated_at** (String) Timestamp when this resource was updated
     /// 
     /// ## Import
@@ -61,12 +61,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("domainId")]
         public Output<string> DomainId { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
@@ -214,12 +208,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("domainId")]
         public Input<string>? DomainId { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an

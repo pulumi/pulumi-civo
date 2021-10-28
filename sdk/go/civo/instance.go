@@ -19,6 +19,7 @@ import (
 // - **disk_image** (String) The ID for the disk image to use to build the instance
 // - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 // - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+// - **id** (String) The ID of this resource.
 // - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
 // - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
 // - **notes** (String) Add some notes to the instance
@@ -36,7 +37,6 @@ import (
 // - **cpu_cores** (Number) Instance's CPU cores
 // - **created_at** (String) Timestamp when the instance was created
 // - **disk_gb** (Number) Instance's disk (GB)
-// - **id** (String) The ID of this resource.
 // - **initial_password** (String, Sensitive) Initial password for login
 // - **private_ip** (String) Instance's private IP address
 // - **public_ip** (String) Instance's public IP address
@@ -68,8 +68,6 @@ type Instance struct {
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// Initial password for login
 	InitialPassword pulumi.StringOutput `pulumi:"initialPassword"`
 	// The name of the initial user created on the server (optional; this will default to the template's default_username and
@@ -156,8 +154,6 @@ type instanceState struct {
 	FirewallId *string `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname *string `pulumi:"hostname"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// Initial password for login
 	InitialPassword *string `pulumi:"initialPassword"`
 	// The name of the initial user created on the server (optional; this will default to the template's default_username and
@@ -216,8 +212,6 @@ type InstanceState struct {
 	FirewallId pulumi.StringPtrInput
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// Initial password for login
 	InitialPassword pulumi.StringPtrInput
 	// The name of the initial user created on the server (optional; this will default to the template's default_username and

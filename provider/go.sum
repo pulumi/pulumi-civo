@@ -138,8 +138,6 @@ github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5P
 github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
 github.com/civo/civogo v0.2.52 h1:oeMmeGuJOZFJ+uruu13ywCWOxSa2+Lyk+ePc6rxC8gY=
 github.com/civo/civogo v0.2.52/go.mod h1:SR0ZOhABfQHjgNQE3UyfX4gaYsrfslkPFRFMx5P29rg=
-github.com/civo/terraform-provider-civo v1.0.1 h1:nwLyOcdaByPvUQEiUaYLRg5F6RqJAcyXISRTRd1nRuU=
-github.com/civo/terraform-provider-civo v1.0.1/go.mod h1:g72Qc1mPrhYotYw6SHc1Sl+pQf5bJBwLRXvpXegYE0I=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cncf/udpa/go v0.0.0-20191209042840-269d4d468f6f/go.mod h1:M8M6+tZqaGXZJjfX53e64911xZQV5JYwmTeXPW+k8Sc=
 github.com/cncf/udpa/go v0.0.0-20200629203442-efcf912fb354/go.mod h1:WmhPx2Nbnhtbo57+VJT5O0JRkEi1Wbu0z5j0R8u5Hbk=
@@ -556,6 +554,8 @@ github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e h1:Di
 github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e/go.mod h1:sZ9FUzGO+yM41hsQHs/yIcj/Y993qMdBxBU5mpDmAfQ=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20210402103405-f5979773e8ba h1:aQEWrWBU1j7UVbZBp5YvnEjKQYTNUjbRk095S6cW7VA=
 github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20210402103405-f5979773e8ba/go.mod h1:z+cMZ0iswzZOahBJ3XmNWgWkVnAd2bl8g+FhyyuPDH4=
+github.com/pulumi/terraform-provider-civo v1.0.3-0.20211028132115-6eaf47914971 h1:C8XxMGRcK9HqLDPz1M4A5VYtXegrZq/K9oyblX8nGvM=
+github.com/pulumi/terraform-provider-civo v1.0.3-0.20211028132115-6eaf47914971/go.mod h1:g72Qc1mPrhYotYw6SHc1Sl+pQf5bJBwLRXvpXegYE0I=
 github.com/rjeczalik/notify v0.9.2/go.mod h1:aErll2f0sUX9PXZnVNyeiObbmTlk5jnMoCa4QEjJeqM=
 github.com/rogpeppe/fastuuid v0.0.0-20150106093220-6724a57986af/go.mod h1:XWv6SoW27p1b0cqNHllgS5HIMJraePCO15w5zCzIWYg=
 github.com/rogpeppe/go-internal v1.3.0/go.mod h1:M8bDsm7K2OlrFYOpmOWEs/qY81heoFRclV5y23lUDJ4=

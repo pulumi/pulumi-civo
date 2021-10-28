@@ -24,10 +24,13 @@ import * as utilities from "./utilities";
  *
  * - **name** (String) The name of the domain
  *
+ * ### Optional
+ *
+ * - **id** (String) The ID of this resource.
+ *
  * ### Read-Only
  *
  * - **account_id** (String) The account ID of the domain
- * - **id** (String) The ID of this resource.
  *
  * ## Import
  *
@@ -70,10 +73,6 @@ export class DnsDomainName extends pulumi.CustomResource {
      */
     public /*out*/ readonly accountId!: pulumi.Output<string>;
     /**
-     * The ID of this resource.
-     */
-    public /*out*/ readonly id!: pulumi.Output<string>;
-    /**
      * The name of the domain
      */
     public readonly name!: pulumi.Output<string>;
@@ -92,13 +91,11 @@ export class DnsDomainName extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as DnsDomainNameState | undefined;
             inputs["accountId"] = state ? state.accountId : undefined;
-            inputs["id"] = state ? state.id : undefined;
             inputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as DnsDomainNameArgs | undefined;
             inputs["name"] = args ? args.name : undefined;
             inputs["accountId"] = undefined /*out*/;
-            inputs["id"] = undefined /*out*/;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
@@ -115,10 +112,6 @@ export interface DnsDomainNameState {
      * The account ID of the domain
      */
     readonly accountId?: pulumi.Input<string>;
-    /**
-     * The ID of this resource.
-     */
-    readonly id?: pulumi.Input<string>;
     /**
      * The name of the domain
      */

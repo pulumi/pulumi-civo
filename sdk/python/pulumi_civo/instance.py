@@ -264,7 +264,6 @@ class _InstanceState:
                  disk_image: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
-                 id: Optional[pulumi.Input[str]] = None,
                  initial_password: Optional[pulumi.Input[str]] = None,
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
@@ -292,7 +291,6 @@ class _InstanceState:
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
                to all)
         :param pulumi.Input[str] hostname: A fully qualified domain name that should be set as the instance's hostname
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] initial_password: Initial password for login
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and
                fallback to civo)
@@ -328,8 +326,6 @@ class _InstanceState:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if initial_password is not None:
             pulumi.set(__self__, "initial_password", initial_password)
         if initial_user is not None:
@@ -442,18 +438,6 @@ class _InstanceState:
     @hostname.setter
     def hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
 
     @property
     @pulumi.getter(name="initialPassword")
@@ -706,6 +690,7 @@ class Instance(pulumi.CustomResource):
         - **disk_image** (String) The ID for the disk image to use to build the instance
         - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+        - **id** (String) The ID of this resource.
         - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
         - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
         - **notes** (String) Add some notes to the instance
@@ -723,7 +708,6 @@ class Instance(pulumi.CustomResource):
         - **cpu_cores** (Number) Instance's CPU cores
         - **created_at** (String) Timestamp when the instance was created
         - **disk_gb** (Number) Instance's disk (GB)
-        - **id** (String) The ID of this resource.
         - **initial_password** (String, Sensitive) Initial password for login
         - **private_ip** (String) Instance's private IP address
         - **public_ip** (String) Instance's public IP address
@@ -778,6 +762,7 @@ class Instance(pulumi.CustomResource):
         - **disk_image** (String) The ID for the disk image to use to build the instance
         - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+        - **id** (String) The ID of this resource.
         - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
         - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
         - **notes** (String) Add some notes to the instance
@@ -795,7 +780,6 @@ class Instance(pulumi.CustomResource):
         - **cpu_cores** (Number) Instance's CPU cores
         - **created_at** (String) Timestamp when the instance was created
         - **disk_gb** (Number) Instance's disk (GB)
-        - **id** (String) The ID of this resource.
         - **initial_password** (String, Sensitive) Initial password for login
         - **private_ip** (String) Instance's private IP address
         - **public_ip** (String) Instance's public IP address
@@ -873,7 +857,6 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["cpu_cores"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["disk_gb"] = None
-            __props__.__dict__["id"] = None
             __props__.__dict__["initial_password"] = None
             __props__.__dict__["private_ip"] = None
             __props__.__dict__["public_ip"] = None
@@ -897,7 +880,6 @@ class Instance(pulumi.CustomResource):
             disk_image: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
-            id: Optional[pulumi.Input[str]] = None,
             initial_password: Optional[pulumi.Input[str]] = None,
             initial_user: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
@@ -930,7 +912,6 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
                to all)
         :param pulumi.Input[str] hostname: A fully qualified domain name that should be set as the instance's hostname
-        :param pulumi.Input[str] id: The ID of this resource.
         :param pulumi.Input[str] initial_password: Initial password for login
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and
                fallback to civo)
@@ -964,7 +945,6 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["disk_image"] = disk_image
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["hostname"] = hostname
-        __props__.__dict__["id"] = id
         __props__.__dict__["initial_password"] = initial_password
         __props__.__dict__["initial_user"] = initial_user
         __props__.__dict__["network_id"] = network_id
@@ -1033,14 +1013,6 @@ class Instance(pulumi.CustomResource):
         A fully qualified domain name that should be set as the instance's hostname
         """
         return pulumi.get(self, "hostname")
-
-    @property
-    @pulumi.getter
-    def id(self) -> pulumi.Output[str]:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="initialPassword")

@@ -19,6 +19,7 @@ namespace Pulumi.Civo
     /// - **disk_image** (String) The ID for the disk image to use to build the instance
     /// - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
     /// - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+    /// - **id** (String) The ID of this resource.
     /// - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
     /// - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
     /// - **notes** (String) Add some notes to the instance
@@ -36,7 +37,6 @@ namespace Pulumi.Civo
     /// - **cpu_cores** (Number) Instance's CPU cores
     /// - **created_at** (String) Timestamp when the instance was created
     /// - **disk_gb** (Number) Instance's disk (GB)
-    /// - **id** (String) The ID of this resource.
     /// - **initial_password** (String, Sensitive) Initial password for login
     /// - **private_ip** (String) Instance's private IP address
     /// - **public_ip** (String) Instance's public IP address
@@ -92,12 +92,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
 
         /// <summary>
         /// Initial password for login
@@ -395,12 +389,6 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
-
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
 
         /// <summary>
         /// Initial password for login

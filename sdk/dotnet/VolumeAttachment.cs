@@ -21,21 +21,12 @@ namespace Pulumi.Civo
     /// 
     /// ### Optional
     /// 
-    /// - **region** (String) The region for the volume attachment
-    /// 
-    /// ### Read-Only
-    /// 
     /// - **id** (String) The ID of this resource.
+    /// - **region** (String) The region for the volume attachment
     /// </summary>
     [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
     public partial class VolumeAttachment : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
         /// <summary>
         /// The ID of target instance for attachment
         /// </summary>
@@ -125,12 +116,6 @@ namespace Pulumi.Civo
 
     public sealed class VolumeAttachmentState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         /// <summary>
         /// The ID of target instance for attachment
         /// </summary>

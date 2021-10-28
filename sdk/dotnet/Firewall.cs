@@ -46,12 +46,9 @@ namespace Pulumi.Civo
     /// 
     /// ### Optional
     /// 
+    /// - **id** (String) The ID of this resource.
     /// - **network_id** (String) The firewall network, if is not defined we use the default network
     /// - **region** (String) The firewall region, if is not defined we use the global defined in the provider
-    /// 
-    /// ### Read-Only
-    /// 
-    /// - **id** (String) The ID of this resource.
     /// 
     /// ## Import
     /// 
@@ -64,12 +61,6 @@ namespace Pulumi.Civo
     [CivoResourceType("civo:index/firewall:Firewall")]
     public partial class Firewall : Pulumi.CustomResource
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Output("id")]
-        public Output<string> Id { get; private set; } = null!;
-
         /// <summary>
         /// The firewall name
         /// </summary>
@@ -159,12 +150,6 @@ namespace Pulumi.Civo
 
     public sealed class FirewallState : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         /// <summary>
         /// The firewall name
         /// </summary>

@@ -25,13 +25,13 @@ import (
 //
 // ### Optional
 //
+// - **id** (String) The ID of this resource.
 // - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 //
 // ### Read-Only
 //
 // - **account_id** (String) The account ID of this resource
 // - **created_at** (String) Timestamp when this resource was created
-// - **id** (String) The ID of this resource.
 // - **updated_at** (String) Timestamp when this resource was updated
 //
 // ## Import
@@ -50,8 +50,6 @@ type DnsDomainRecord struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
-	// The ID of this resource.
-	Id pulumi.StringOutput `pulumi:"id"`
 	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
 	// amex/root domain)
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -115,8 +113,6 @@ type dnsDomainRecordState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId *string `pulumi:"domainId"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
 	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
 	// amex/root domain)
 	Name *string `pulumi:"name"`
@@ -140,8 +136,6 @@ type DnsDomainRecordState struct {
 	CreatedAt pulumi.StringPtrInput
 	// ID from domain name
 	DomainId pulumi.StringPtrInput
-	// The ID of this resource.
-	Id pulumi.StringPtrInput
 	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
 	// amex/root domain)
 	Name pulumi.StringPtrInput
