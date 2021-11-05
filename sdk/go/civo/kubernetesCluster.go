@@ -73,6 +73,7 @@ import (
 // Read-Only:
 //
 // - **count** (Number)
+// - **id** (String)
 // - **instance_names** (Set of String)
 // - **instances** (List of Object) (see below for nested schema)
 // - **size** (String)

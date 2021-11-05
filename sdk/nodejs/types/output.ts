@@ -193,6 +193,7 @@ export interface KubernetesClusterInstance {
 
 export interface KubernetesClusterPool {
     count: number;
+    id: string;
     instanceNames: string[];
     instances: outputs.KubernetesClusterPoolInstance[];
     size: string;

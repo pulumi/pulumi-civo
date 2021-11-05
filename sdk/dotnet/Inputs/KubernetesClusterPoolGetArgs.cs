@@ -15,6 +15,9 @@ namespace Pulumi.Civo.Inputs
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
         public InputList<string> InstanceNames

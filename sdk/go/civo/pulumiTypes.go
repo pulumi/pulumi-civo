@@ -254,6 +254,7 @@ func (o KubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) Kubernete
 
 type KubernetesClusterPool struct {
 	Count         *int                            `pulumi:"count"`
+	Id            *string                         `pulumi:"id"`
 	InstanceNames []string                        `pulumi:"instanceNames"`
 	Instances     []KubernetesClusterPoolInstance `pulumi:"instances"`
 	Size          *string                         `pulumi:"size"`
@@ -272,6 +273,7 @@ type KubernetesClusterPoolInput interface {
 
 type KubernetesClusterPoolArgs struct {
 	Count         pulumi.IntPtrInput                      `pulumi:"count"`
+	Id            pulumi.StringPtrInput                   `pulumi:"id"`
 	InstanceNames pulumi.StringArrayInput                 `pulumi:"instanceNames"`
 	Instances     KubernetesClusterPoolInstanceArrayInput `pulumi:"instances"`
 	Size          pulumi.StringPtrInput                   `pulumi:"size"`
@@ -330,6 +332,10 @@ func (o KubernetesClusterPoolOutput) ToKubernetesClusterPoolOutputWithContext(ct
 
 func (o KubernetesClusterPoolOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterPool) *int { return v.Count }).(pulumi.IntPtrOutput)
+}
+
+func (o KubernetesClusterPoolOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPool) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
 func (o KubernetesClusterPoolOutput) InstanceNames() pulumi.StringArrayOutput {

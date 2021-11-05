@@ -178,11 +178,14 @@ class KubernetesClusterPool(dict):
 
     def __init__(__self__, *,
                  count: Optional[int] = None,
+                 id: Optional[str] = None,
                  instance_names: Optional[Sequence[str]] = None,
                  instances: Optional[Sequence['outputs.KubernetesClusterPoolInstance']] = None,
                  size: Optional[str] = None):
         if count is not None:
             pulumi.set(__self__, "count", count)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
         if instances is not None:
@@ -194,6 +197,11 @@ class KubernetesClusterPool(dict):
     @pulumi.getter
     def count(self) -> Optional[int]:
         return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceNames")
