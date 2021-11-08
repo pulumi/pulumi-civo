@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/pulumi/pulumi-civo/sdk/go/civo"
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/%40pulumi%2Fcivo.svg)](https://www.npmjs.com/package/@pulumi/civo)
 [![Python version](https://badge.fury.io/py/pulumi-civo.svg)](https://pypi.org/project/pulumi-civo)
 [![NuGet version](https://badge.fury.io/nu/pulumi.civo.svg)](https://badge.fury.io/nu/pulumi.civo)
-[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-civo/sdk/go)](https://pkg.go.dev/github.com/pulumi/pulumi-civo/sdk/go)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/pulumi/pulumi-civo/sdk/v2/go)](https://pkg.go.dev/github.com/pulumi/pulumi-civo/sdk/v2/go)
 [![License](https://img.shields.io/npm/l/%40pulumi%2Fpulumi.svg)](https://github.com/pulumi/pulumi-civo/blob/master/LICENSE)
 
 # Civo Resource Provider
@@ -34,7 +34,7 @@ To use from Python, install using `pip`:
 
 To use from Go, use `go get` to grab the latest version of the library
 
-    $ go get github.com/pulumi/pulumi-civo/sdk/go/...
+    $ go get github.com/pulumi/pulumi-civo/sdk/v2
 
 ### .NET
 
