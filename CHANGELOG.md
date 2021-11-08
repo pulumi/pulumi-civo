@@ -2,6 +2,11 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
+_(none)_
+
+---
+
+## 2.0.0 (2021-11-08)
 * Upgrade to v1.0.3 of the Civo Terraform Provider
   **Please Note the followign breaking changes:**
   * `civo.Snapshot` resource has been removed
@@ -12,8 +17,6 @@ CHANGELOG
   * `civo.Volume` has had the `bootable` parameter removed
   * `civo.Instance` has had the `pseudoIp` output removed
   * `civo.getVolume` has had the `bootable` output removed
-
----
 
 ## 1.0.7 (2021-09-01)
 * Upgrade to v0.10.10 of the Civo Terraform Provider
