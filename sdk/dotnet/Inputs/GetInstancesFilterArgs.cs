@@ -15,10 +15,6 @@ namespace Pulumi.Civo.Inputs
         [Input("all")]
         public bool? All { get; set; }
 
-        /// <summary>
-        /// Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-        /// `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
@@ -27,11 +23,6 @@ namespace Pulumi.Civo.Inputs
 
         [Input("values", required: true)]
         private List<string>? _values;
-
-        /// <summary>
-        /// A list of values to match against the `key` field. Only retrieves Instances
-        /// where the `key` field takes on one or more of the values provided here.
-        /// </summary>
         public List<string> Values
         {
             get => _values ?? (_values = new List<string>());

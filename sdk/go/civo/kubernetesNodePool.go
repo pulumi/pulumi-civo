@@ -11,11 +11,24 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the KubernetesCluster resource, this resource can be used to add additional ones to a cluster.
+// Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **cluster_id** (String) The ID of your cluster
+// - **region** (String) The region of the node pool, has to match that of the cluster
+//
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
+// - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
 //
 // ## Import
 //
-// Then the Kubernetes cluster node pool can be imported using the cluster's and pool id `cluster_id:node_pool_id`, e.g.
+// Import is supported using the following syntax# using cluster_id:node_pool_id
 //
 // ```sh
 //  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -23,13 +36,13 @@ import (
 type KubernetesNodePool struct {
 	pulumi.CustomResourceState
 
-	// The ID of the Kubernetes cluster to which the node pool is associated.
+	// The ID of your cluster
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
-	// The number of instances to create (The default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
-	// The region of the node pool, has to match that of the cluster.
+	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The size of each node.
+	// the size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -68,24 +81,24 @@ func GetKubernetesNodePool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesNodePool resources.
 type kubernetesNodePoolState struct {
-	// The ID of the Kubernetes cluster to which the node pool is associated.
+	// The ID of your cluster
 	ClusterId *string `pulumi:"clusterId"`
-	// The number of instances to create (The default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
-	// The region of the node pool, has to match that of the cluster.
+	// The region of the node pool, has to match that of the cluster
 	Region *string `pulumi:"region"`
-	// The size of each node.
+	// the size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 type KubernetesNodePoolState struct {
-	// The ID of the Kubernetes cluster to which the node pool is associated.
+	// The ID of your cluster
 	ClusterId pulumi.StringPtrInput
-	// The number of instances to create (The default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
-	// The region of the node pool, has to match that of the cluster.
+	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringPtrInput
-	// The size of each node.
+	// the size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -94,25 +107,25 @@ func (KubernetesNodePoolState) ElementType() reflect.Type {
 }
 
 type kubernetesNodePoolArgs struct {
-	// The ID of the Kubernetes cluster to which the node pool is associated.
+	// The ID of your cluster
 	ClusterId string `pulumi:"clusterId"`
-	// The number of instances to create (The default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
-	// The region of the node pool, has to match that of the cluster.
+	// The region of the node pool, has to match that of the cluster
 	Region string `pulumi:"region"`
-	// The size of each node.
+	// the size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 // The set of arguments for constructing a KubernetesNodePool resource.
 type KubernetesNodePoolArgs struct {
-	// The ID of the Kubernetes cluster to which the node pool is associated.
+	// The ID of your cluster
 	ClusterId pulumi.StringInput
-	// The number of instances to create (The default at the time of writing is 3).
+	// the number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
-	// The region of the node pool, has to match that of the cluster.
+	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringInput
-	// The size of each node.
+	// the size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

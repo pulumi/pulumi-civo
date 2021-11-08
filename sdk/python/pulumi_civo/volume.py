@@ -13,18 +13,18 @@ __all__ = ['VolumeArgs', 'Volume']
 @pulumi.input_type
 class VolumeArgs:
     def __init__(__self__, *,
-                 bootable: pulumi.Input[bool],
+                 network_id: pulumi.Input[str],
                  size_gb: pulumi.Input[int],
                  name: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Volume resource.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[str] region: The region for the volume
+        :param pulumi.Input[str] network_id: The network that the volume belongs to
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
         """
-        pulumi.set(__self__, "bootable", bootable)
+        pulumi.set(__self__, "network_id", network_id)
         pulumi.set(__self__, "size_gb", size_gb)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -32,22 +32,22 @@ class VolumeArgs:
             pulumi.set(__self__, "region", region)
 
     @property
-    @pulumi.getter
-    def bootable(self) -> pulumi.Input[bool]:
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Input[str]:
         """
-        Mark the volume as bootable.
+        The network that the volume belongs to
         """
-        return pulumi.get(self, "bootable")
+        return pulumi.get(self, "network_id")
 
-    @bootable.setter
-    def bootable(self, value: pulumi.Input[bool]):
-        pulumi.set(self, "bootable", value)
+    @network_id.setter
+    def network_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "network_id", value)
 
     @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> pulumi.Input[int]:
         """
-        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         return pulumi.get(self, "size_gb")
 
@@ -59,7 +59,7 @@ class VolumeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A name that you wish to use to refer to this volume .
+        A name that you wish to use to refer to this volume
         """
         return pulumi.get(self, "name")
 
@@ -71,7 +71,7 @@ class VolumeArgs:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region for the volume
+        The region for the volume, if not declare we use the region in declared in the provider.
         """
         return pulumi.get(self, "region")
 
@@ -83,63 +83,35 @@ class VolumeArgs:
 @pulumi.input_type
 class _VolumeState:
     def __init__(__self__, *,
-                 bootable: Optional[pulumi.Input[bool]] = None,
-                 created_at: Optional[pulumi.Input[str]] = None,
                  mount_point: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Volume resources.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[str] created_at: The date of the creation of the volume.
-        :param pulumi.Input[str] mount_point: The mount point of the volume.
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[str] region: The region for the volume
-        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[str] mount_point: The mount point of the volume (from instance's perspective)
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[str] network_id: The network that the volume belongs to
+        :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
-        if bootable is not None:
-            pulumi.set(__self__, "bootable", bootable)
-        if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
         if mount_point is not None:
             pulumi.set(__self__, "mount_point", mount_point)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if network_id is not None:
+            pulumi.set(__self__, "network_id", network_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if size_gb is not None:
             pulumi.set(__self__, "size_gb", size_gb)
 
     @property
-    @pulumi.getter
-    def bootable(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Mark the volume as bootable.
-        """
-        return pulumi.get(self, "bootable")
-
-    @bootable.setter
-    def bootable(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "bootable", value)
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        The date of the creation of the volume.
-        """
-        return pulumi.get(self, "created_at")
-
-    @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "created_at", value)
-
-    @property
     @pulumi.getter(name="mountPoint")
     def mount_point(self) -> Optional[pulumi.Input[str]]:
         """
-        The mount point of the volume.
+        The mount point of the volume (from instance's perspective)
         """
         return pulumi.get(self, "mount_point")
 
@@ -151,7 +123,7 @@ class _VolumeState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        A name that you wish to use to refer to this volume .
+        A name that you wish to use to refer to this volume
         """
         return pulumi.get(self, "name")
 
@@ -160,10 +132,22 @@ class _VolumeState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The network that the volume belongs to
+        """
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_id", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        The region for the volume
+        The region for the volume, if not declare we use the region in declared in the provider.
         """
         return pulumi.get(self, "region")
 
@@ -175,7 +159,7 @@ class _VolumeState:
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> Optional[pulumi.Input[int]]:
         """
-        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         return pulumi.get(self, "size_gb")
 
@@ -189,13 +173,13 @@ class Volume(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bootable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
+        Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
 
         ## Example Usage
 
@@ -203,14 +187,35 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
+        default_network = civo.get_network(label="Default")
+        # Create volume
         db = civo.Volume("db",
-            bootable=False,
-            size_gb=60)
+            size_gb=5,
+            network_id=default_network.id,
+            opts=pulumi.ResourceOptions(depends_on=[default_network]))
         ```
+
+        <!-- schema generated by tfplugindocs -->
+        ## Schema
+
+        ### Required
+
+        - **name** (String) A name that you wish to use to refer to this volume
+        - **network_id** (String) The network that the volume belongs to
+        - **size_gb** (Number) A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
+
+        ### Optional
+
+        - **region** (String) The region for the volume, if not declare we use the region in declared in the provider.
+
+        ### Read-Only
+
+        - **id** (String) The ID of this resource.
+        - **mount_point** (String) The mount point of the volume (from instance's perspective)
 
         ## Import
 
-        Volumes can be imported using the `volume id`, e.g.
+        Import is supported using the following syntax# using ID
 
         ```sh
          $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
@@ -218,10 +223,10 @@ class Volume(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[str] region: The region for the volume
-        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[str] network_id: The network that the volume belongs to
+        :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         ...
     @overload
@@ -230,7 +235,7 @@ class Volume(pulumi.CustomResource):
                  args: VolumeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a Civo volume which can be attached to a Instance in order to provide expanded storage.
+        Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
 
         ## Example Usage
 
@@ -238,14 +243,35 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
+        default_network = civo.get_network(label="Default")
+        # Create volume
         db = civo.Volume("db",
-            bootable=False,
-            size_gb=60)
+            size_gb=5,
+            network_id=default_network.id,
+            opts=pulumi.ResourceOptions(depends_on=[default_network]))
         ```
+
+        <!-- schema generated by tfplugindocs -->
+        ## Schema
+
+        ### Required
+
+        - **name** (String) A name that you wish to use to refer to this volume
+        - **network_id** (String) The network that the volume belongs to
+        - **size_gb** (Number) A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
+
+        ### Optional
+
+        - **region** (String) The region for the volume, if not declare we use the region in declared in the provider.
+
+        ### Read-Only
+
+        - **id** (String) The ID of this resource.
+        - **mount_point** (String) The mount point of the volume (from instance's perspective)
 
         ## Import
 
-        Volumes can be imported using the `volume id`, e.g.
+        Import is supported using the following syntax# using ID
 
         ```sh
          $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
@@ -266,8 +292,8 @@ class Volume(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bootable: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size_gb: Optional[pulumi.Input[int]] = None,
                  __props__=None):
@@ -282,15 +308,14 @@ class Volume(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VolumeArgs.__new__(VolumeArgs)
 
-            if bootable is None and not opts.urn:
-                raise TypeError("Missing required property 'bootable'")
-            __props__.__dict__["bootable"] = bootable
             __props__.__dict__["name"] = name
+            if network_id is None and not opts.urn:
+                raise TypeError("Missing required property 'network_id'")
+            __props__.__dict__["network_id"] = network_id
             __props__.__dict__["region"] = region
             if size_gb is None and not opts.urn:
                 raise TypeError("Missing required property 'size_gb'")
             __props__.__dict__["size_gb"] = size_gb
-            __props__.__dict__["created_at"] = None
             __props__.__dict__["mount_point"] = None
         super(Volume, __self__).__init__(
             'civo:index/volume:Volume',
@@ -302,10 +327,9 @@ class Volume(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bootable: Optional[pulumi.Input[bool]] = None,
-            created_at: Optional[pulumi.Input[str]] = None,
             mount_point: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             size_gb: Optional[pulumi.Input[int]] = None) -> 'Volume':
         """
@@ -315,46 +339,28 @@ class Volume(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] bootable: Mark the volume as bootable.
-        :param pulumi.Input[str] created_at: The date of the creation of the volume.
-        :param pulumi.Input[str] mount_point: The mount point of the volume.
-        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume .
-        :param pulumi.Input[str] region: The region for the volume
-        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        :param pulumi.Input[str] mount_point: The mount point of the volume (from instance's perspective)
+        :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
+        :param pulumi.Input[str] network_id: The network that the volume belongs to
+        :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
+        :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _VolumeState.__new__(_VolumeState)
 
-        __props__.__dict__["bootable"] = bootable
-        __props__.__dict__["created_at"] = created_at
         __props__.__dict__["mount_point"] = mount_point
         __props__.__dict__["name"] = name
+        __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region"] = region
         __props__.__dict__["size_gb"] = size_gb
         return Volume(resource_name, opts=opts, __props__=__props__)
 
     @property
-    @pulumi.getter
-    def bootable(self) -> pulumi.Output[bool]:
-        """
-        Mark the volume as bootable.
-        """
-        return pulumi.get(self, "bootable")
-
-    @property
-    @pulumi.getter(name="createdAt")
-    def created_at(self) -> pulumi.Output[str]:
-        """
-        The date of the creation of the volume.
-        """
-        return pulumi.get(self, "created_at")
-
-    @property
     @pulumi.getter(name="mountPoint")
     def mount_point(self) -> pulumi.Output[str]:
         """
-        The mount point of the volume.
+        The mount point of the volume (from instance's perspective)
         """
         return pulumi.get(self, "mount_point")
 
@@ -362,15 +368,23 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        A name that you wish to use to refer to this volume .
+        A name that you wish to use to refer to this volume
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Output[str]:
+        """
+        The network that the volume belongs to
+        """
+        return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def region(self) -> pulumi.Output[Optional[str]]:
         """
-        The region for the volume
+        The region for the volume, if not declare we use the region in declared in the provider.
         """
         return pulumi.get(self, "region")
 
@@ -378,7 +392,7 @@ class Volume(pulumi.CustomResource):
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> pulumi.Output[int]:
         """
-        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes .
+        A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
         return pulumi.get(self, "size_gb")
 

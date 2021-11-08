@@ -34,14 +34,20 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+	// here you can overwrite in a resource.
 	Region *string `pulumi:"region"`
-	Token  *string `pulumi:"token"`
+	// This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+	Token *string `pulumi:"token"`
 }
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+	// here you can overwrite in a resource.
 	Region pulumi.StringPtrInput
-	Token  pulumi.StringPtrInput
+	// This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+	Token pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {

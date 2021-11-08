@@ -11,6 +11,60 @@ namespace Pulumi.Civo
 {
     public static class GetTemplate
     {
+        /// <summary>
+        /// `civo.getTemplate` data source is deprecated. Moving forward, please use `civo.getDiskImage` data source.
+        /// 
+        /// Get information on an template for use in other resources (e.g. creating a instance) with the ability to filter the results.
+        /// 
+        /// ## Schema
+        /// 
+        /// ### Optional
+        /// 
+        /// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
+        /// - **id** (String) The ID of this resource.
+        /// - **region** (String)
+        /// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
+        /// 
+        /// ### Read-Only
+        /// 
+        /// - **templates** (List of Object) (see below for nested schema)
+        /// 
+        /// &lt;a id="nestedblock--filter"&gt;&lt;/a&gt;
+        /// ### Nested Schema for `filter`
+        /// 
+        /// Required:
+        /// 
+        /// - **key** (String) Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        /// - **values** (List of String) Only retrieves `templates` which keys has value that matches one of the values provided here
+        /// 
+        /// Optional:
+        /// 
+        /// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        /// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        /// 
+        /// 
+        /// &lt;a id="nestedblock--sort"&gt;&lt;/a&gt;
+        /// ### Nested Schema for `sort`
+        /// 
+        /// Required:
+        /// 
+        /// - **key** (String) Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        /// 
+        /// Optional:
+        /// 
+        /// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
+        /// 
+        /// 
+        /// &lt;a id="nestedatt--templates"&gt;&lt;/a&gt;
+        /// ### Nested Schema for `templates`
+        /// 
+        /// Read-Only:
+        /// 
+        /// - **id** (String)
+        /// - **label** (String)
+        /// - **name** (String)
+        /// - **version** (String)
+        /// </summary>
         public static Task<GetTemplateResult> InvokeAsync(GetTemplateArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetTemplateResult>("civo:index/getTemplate:getTemplate", args ?? new GetTemplateArgs(), options.WithVersion());
     }
@@ -20,28 +74,17 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetTemplateFilterArgs>? _filters;
-
-        /// <summary>
-        /// Filter the results. The `filter` block is documented below.
-        /// </summary>
         public List<Inputs.GetTemplateFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetTemplateFilterArgs>());
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If is used, them all template will be from that region, has to be declared here if is not declared in the provider
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         [Input("sorts")]
         private List<Inputs.GetTemplateSortArgs>? _sorts;
-
-        /// <summary>
-        /// Sort the results. The `sort` block is documented below.
-        /// </summary>
         public List<Inputs.GetTemplateSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetTemplateSortArgs>());

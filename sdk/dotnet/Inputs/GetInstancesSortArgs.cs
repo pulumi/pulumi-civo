@@ -12,16 +12,9 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetInstancesSortArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
-        /// <summary>
-        /// Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-        /// `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 

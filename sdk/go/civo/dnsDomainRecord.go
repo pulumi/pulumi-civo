@@ -11,40 +11,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Civo dns domain record resource.
+// Provides a Civo DNS domain record resource.
 //
-// ## Example Usage
+// ## Schema
 //
-// ```go
-// package main
+// ### Required
 //
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
+// - **domain_id** (String) ID from domain name
+// - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+// - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+// - **type** (String) The choice of RR type from a, cname, mx or txt
+// - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewDnsDomainRecord(ctx, "www", &civo.DnsDomainRecordArgs{
-// 			DomainId: pulumi.Any(civo_dns_domain_name.Main.Id),
-// 			Type:     pulumi.String("A"),
-// 			Value:    pulumi.Any(civo_instance.Foo.Public_ip),
-// 			Ttl:      pulumi.Int(600),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			civo_dns_domain_name.Main,
-// 			civo_instance.Foo,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+//
+// ### Read-Only
+//
+// - **account_id** (String) The account ID of this resource
+// - **created_at** (String) Timestamp when this resource was created
+// - **updated_at** (String) Timestamp when this resource was updated
 //
 // ## Import
 //
-// Domains can be imported using the `id_domain:id_domain_record`, e.g.
+// Import is supported using the following syntax# using domain_id:domain_record_id
 //
 // ```sh
 //  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -52,21 +44,23 @@ import (
 type DnsDomainRecord struct {
 	pulumi.CustomResourceState
 
-	// The id account of the domain
+	// The account ID of this resource
 	AccountId pulumi.StringOutput `pulumi:"accountId"`
-	// The date when it was created in UTC format
+	// Timestamp when this resource was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The id of the domain
+	// ID from domain name
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+	// amex/root domain)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+	// is 600)
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
-	// The choice of record type from A, CNAME, MX, SRV or TXT
+	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringOutput `pulumi:"type"`
-	// The date when it was updated in UTC format
+	// Timestamp when this resource was updated
 	UpdatedAt pulumi.StringOutput `pulumi:"updatedAt"`
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value pulumi.StringOutput `pulumi:"value"`
@@ -113,42 +107,46 @@ func GetDnsDomainRecord(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsDomainRecord resources.
 type dnsDomainRecordState struct {
-	// The id account of the domain
+	// The account ID of this resource
 	AccountId *string `pulumi:"accountId"`
-	// The date when it was created in UTC format
+	// Timestamp when this resource was created
 	CreatedAt *string `pulumi:"createdAt"`
-	// The id of the domain
+	// ID from domain name
 	DomainId *string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+	// amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+	// is 600)
 	Ttl *int `pulumi:"ttl"`
-	// The choice of record type from A, CNAME, MX, SRV or TXT
+	// The choice of RR type from a, cname, mx or txt
 	Type *string `pulumi:"type"`
-	// The date when it was updated in UTC format
+	// Timestamp when this resource was updated
 	UpdatedAt *string `pulumi:"updatedAt"`
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value *string `pulumi:"value"`
 }
 
 type DnsDomainRecordState struct {
-	// The id account of the domain
+	// The account ID of this resource
 	AccountId pulumi.StringPtrInput
-	// The date when it was created in UTC format
+	// Timestamp when this resource was created
 	CreatedAt pulumi.StringPtrInput
-	// The id of the domain
+	// ID from domain name
 	DomainId pulumi.StringPtrInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+	// amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+	// is 600)
 	Ttl pulumi.IntPtrInput
-	// The choice of record type from A, CNAME, MX, SRV or TXT
+	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringPtrInput
-	// The date when it was updated in UTC format
+	// Timestamp when this resource was updated
 	UpdatedAt pulumi.StringPtrInput
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value pulumi.StringPtrInput
@@ -159,15 +157,17 @@ func (DnsDomainRecordState) ElementType() reflect.Type {
 }
 
 type dnsDomainRecordArgs struct {
-	// The id of the domain
+	// ID from domain name
 	DomainId string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+	// amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+	// is 600)
 	Ttl int `pulumi:"ttl"`
-	// The choice of record type from A, CNAME, MX, SRV or TXT
+	// The choice of RR type from a, cname, mx or txt
 	Type string `pulumi:"type"`
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value string `pulumi:"value"`
@@ -175,15 +175,17 @@ type dnsDomainRecordArgs struct {
 
 // The set of arguments for constructing a DnsDomainRecord resource.
 type DnsDomainRecordArgs struct {
-	// The id of the domain
+	// ID from domain name
 	DomainId pulumi.StringInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+	// amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+	// is 600)
 	Ttl pulumi.IntInput
-	// The choice of record type from A, CNAME, MX, SRV or TXT
+	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringInput
 	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 	Value pulumi.StringInput

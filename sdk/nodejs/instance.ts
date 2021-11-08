@@ -5,12 +5,44 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Civo Instance resource. This can be used to create,
- * modify, and delete Instances.
+ * Provides a Civo instance resource. This can be used to create, modify, and delete instances.
+ *
+ * ## Schema
+ *
+ * ### Optional
+ *
+ * - **disk_image** (String) The ID for the disk image to use to build the instance
+ * - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+ * - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+ * - **id** (String) The ID of this resource.
+ * - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+ * - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
+ * - **notes** (String) Add some notes to the instance
+ * - **public_ip_required** (String) This should be either 'none' or 'create' (default: 'create')
+ * - **region** (String) The region for the instance, if not declare we use the region in declared in the provider
+ * - **reverse_dns** (String) A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+ * - **script** (String) The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+ * - **size** (String) The name of the size, from the current list, e.g. g3.xsmall
+ * - **sshkey_id** (String) The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+ * - **tags** (Set of String) An optional list of tags, represented as a key, value pair
+ * - **template** (String, Deprecated) The ID for the template to use to build the instance
+ *
+ * ### Read-Only
+ *
+ * - **cpu_cores** (Number) Instance's CPU cores
+ * - **created_at** (String) Timestamp when the instance was created
+ * - **disk_gb** (Number) Instance's disk (GB)
+ * - **initial_password** (String, Sensitive) Initial password for login
+ * - **private_ip** (String) Instance's private IP address
+ * - **public_ip** (String) Instance's public IP address
+ * - **ram_mb** (Number) Instance's RAM (MB)
+ * - **source_id** (String) Instance's source ID
+ * - **source_type** (String) Instance's source type
+ * - **status** (String) Instance's status
  *
  * ## Import
  *
- * Instances can be imported using the instance `id`, e.g.
+ * Import is supported using the following syntax# using ID
  *
  * ```sh
  *  $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
@@ -45,93 +77,106 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * Total cpu of the inatance.
+     * Instance's CPU cores
      */
     public /*out*/ readonly cpuCores!: pulumi.Output<number>;
     /**
-     * The date of creation of the instance
+     * Timestamp when the instance was created
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The size of the disk.
+     * Instance's disk (GB)
      */
     public /*out*/ readonly diskGb!: pulumi.Output<number>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+     * The ID for the disk image to use to build the instance
+     */
+    public readonly diskImage!: pulumi.Output<string>;
+    /**
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     public readonly firewallId!: pulumi.Output<string>;
     /**
-     * The Instance hostname, if is not declare the provider will generate one for you
+     * A fully qualified domain name that should be set as the instance's hostname
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * Instance initial password
+     * Initial password for login
      */
     public /*out*/ readonly initialPassword!: pulumi.Output<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     public readonly initialUser!: pulumi.Output<string | undefined>;
     /**
-     * This must be the ID of the network from the network listing (optional; default network used when not specified).
+     * This must be the ID of the network from the network listing (optional; default network used when not specified)
      */
     public readonly networkId!: pulumi.Output<string>;
     /**
-     * Add some notes to the instance.
+     * Add some notes to the instance
      */
     public readonly notes!: pulumi.Output<string | undefined>;
     /**
-     * The private ip.
+     * Instance's private IP address
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
-     * Is the ip that is used to route the public ip from the internet to the instance using NAT
-     */
-    public /*out*/ readonly pseudoIp!: pulumi.Output<string>;
-    /**
-     * The public ip.
+     * Instance's public IP address
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either 'none' or 'create' (default: 'create')
      */
     public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
-     * Total ram of the instance.
+     * Instance's RAM (MB)
      */
     public /*out*/ readonly ramMb!: pulumi.Output<number>;
     /**
-     * The region for the instance, if not declare we use the region in declared in the provider.
+     * The region for the instance, if not declare we use the region in declared in the provider
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     public readonly reverseDns!: pulumi.Output<string | undefined>;
     /**
-     * the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     public readonly script!: pulumi.Output<string | undefined>;
     /**
-     * The name of the size, from the current list, e.g. g3.k3s.small (required).
+     * The name of the size, from the current list, e.g. g3.xsmall
      */
     public readonly size!: pulumi.Output<string | undefined>;
+    /**
+     * Instance's source ID
+     */
     public /*out*/ readonly sourceId!: pulumi.Output<string>;
+    /**
+     * Instance's source type
+     */
     public /*out*/ readonly sourceType!: pulumi.Output<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     public readonly sshkeyId!: pulumi.Output<string | undefined>;
     /**
-     * The status of the instance
+     * Instance's status
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * An optional list of tags, represented as a key, value pair.
+     * An optional list of tags, represented as a key, value pair
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
     /**
-     * The ID for the template to use to build the instance.
+     * The ID for the template to use to build the instance
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     public readonly template!: pulumi.Output<string>;
 
@@ -151,6 +196,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["cpuCores"] = state ? state.cpuCores : undefined;
             inputs["createdAt"] = state ? state.createdAt : undefined;
             inputs["diskGb"] = state ? state.diskGb : undefined;
+            inputs["diskImage"] = state ? state.diskImage : undefined;
             inputs["firewallId"] = state ? state.firewallId : undefined;
             inputs["hostname"] = state ? state.hostname : undefined;
             inputs["initialPassword"] = state ? state.initialPassword : undefined;
@@ -158,7 +204,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["networkId"] = state ? state.networkId : undefined;
             inputs["notes"] = state ? state.notes : undefined;
             inputs["privateIp"] = state ? state.privateIp : undefined;
-            inputs["pseudoIp"] = state ? state.pseudoIp : undefined;
             inputs["publicIp"] = state ? state.publicIp : undefined;
             inputs["publicIpRequired"] = state ? state.publicIpRequired : undefined;
             inputs["ramMb"] = state ? state.ramMb : undefined;
@@ -174,6 +219,7 @@ export class Instance extends pulumi.CustomResource {
             inputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
+            inputs["diskImage"] = args ? args.diskImage : undefined;
             inputs["firewallId"] = args ? args.firewallId : undefined;
             inputs["hostname"] = args ? args.hostname : undefined;
             inputs["initialUser"] = args ? args.initialUser : undefined;
@@ -192,7 +238,6 @@ export class Instance extends pulumi.CustomResource {
             inputs["diskGb"] = undefined /*out*/;
             inputs["initialPassword"] = undefined /*out*/;
             inputs["privateIp"] = undefined /*out*/;
-            inputs["pseudoIp"] = undefined /*out*/;
             inputs["publicIp"] = undefined /*out*/;
             inputs["ramMb"] = undefined /*out*/;
             inputs["sourceId"] = undefined /*out*/;
@@ -211,93 +256,106 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * Total cpu of the inatance.
+     * Instance's CPU cores
      */
     readonly cpuCores?: pulumi.Input<number>;
     /**
-     * The date of creation of the instance
+     * Timestamp when the instance was created
      */
     readonly createdAt?: pulumi.Input<string>;
     /**
-     * The size of the disk.
+     * Instance's disk (GB)
      */
     readonly diskGb?: pulumi.Input<number>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+     * The ID for the disk image to use to build the instance
+     */
+    readonly diskImage?: pulumi.Input<string>;
+    /**
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     readonly firewallId?: pulumi.Input<string>;
     /**
-     * The Instance hostname, if is not declare the provider will generate one for you
+     * A fully qualified domain name that should be set as the instance's hostname
      */
     readonly hostname?: pulumi.Input<string>;
     /**
-     * Instance initial password
+     * Initial password for login
      */
     readonly initialPassword?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     readonly initialUser?: pulumi.Input<string>;
     /**
-     * This must be the ID of the network from the network listing (optional; default network used when not specified).
+     * This must be the ID of the network from the network listing (optional; default network used when not specified)
      */
     readonly networkId?: pulumi.Input<string>;
     /**
-     * Add some notes to the instance.
+     * Add some notes to the instance
      */
     readonly notes?: pulumi.Input<string>;
     /**
-     * The private ip.
+     * Instance's private IP address
      */
     readonly privateIp?: pulumi.Input<string>;
     /**
-     * Is the ip that is used to route the public ip from the internet to the instance using NAT
-     */
-    readonly pseudoIp?: pulumi.Input<string>;
-    /**
-     * The public ip.
+     * Instance's public IP address
      */
     readonly publicIp?: pulumi.Input<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either 'none' or 'create' (default: 'create')
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
-     * Total ram of the instance.
+     * Instance's RAM (MB)
      */
     readonly ramMb?: pulumi.Input<number>;
     /**
-     * The region for the instance, if not declare we use the region in declared in the provider.
+     * The region for the instance, if not declare we use the region in declared in the provider
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     readonly reverseDns?: pulumi.Input<string>;
     /**
-     * the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     readonly script?: pulumi.Input<string>;
     /**
-     * The name of the size, from the current list, e.g. g3.k3s.small (required).
+     * The name of the size, from the current list, e.g. g3.xsmall
      */
     readonly size?: pulumi.Input<string>;
+    /**
+     * Instance's source ID
+     */
     readonly sourceId?: pulumi.Input<string>;
+    /**
+     * Instance's source type
+     */
     readonly sourceType?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     readonly sshkeyId?: pulumi.Input<string>;
     /**
-     * The status of the instance
+     * Instance's status
      */
     readonly status?: pulumi.Input<string>;
     /**
-     * An optional list of tags, represented as a key, value pair.
+     * An optional list of tags, represented as a key, value pair
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ID for the template to use to build the instance.
+     * The ID for the template to use to build the instance
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     readonly template?: pulumi.Input<string>;
 }
@@ -307,55 +365,66 @@ export interface InstanceState {
  */
 export interface InstanceArgs {
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+     * The ID for the disk image to use to build the instance
+     */
+    readonly diskImage?: pulumi.Input<string>;
+    /**
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     readonly firewallId?: pulumi.Input<string>;
     /**
-     * The Instance hostname, if is not declare the provider will generate one for you
+     * A fully qualified domain name that should be set as the instance's hostname
      */
     readonly hostname?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo).
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     readonly initialUser?: pulumi.Input<string>;
     /**
-     * This must be the ID of the network from the network listing (optional; default network used when not specified).
+     * This must be the ID of the network from the network listing (optional; default network used when not specified)
      */
     readonly networkId?: pulumi.Input<string>;
     /**
-     * Add some notes to the instance.
+     * Add some notes to the instance
      */
     readonly notes?: pulumi.Input<string>;
     /**
-     * This should be either `create`, `none` or `move_ip_from:intances_id`.
+     * This should be either 'none' or 'create' (default: 'create')
      */
     readonly publicIpRequired?: pulumi.Input<string>;
     /**
-     * The region for the instance, if not declare we use the region in declared in the provider.
+     * The region for the instance, if not declare we use the region in declared in the provider
      */
     readonly region?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     readonly reverseDns?: pulumi.Input<string>;
     /**
-     * the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     readonly script?: pulumi.Input<string>;
     /**
-     * The name of the size, from the current list, e.g. g3.k3s.small (required).
+     * The name of the size, from the current list, e.g. g3.xsmall
      */
     readonly size?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field).
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     readonly sshkeyId?: pulumi.Input<string>;
     /**
-     * An optional list of tags, represented as a key, value pair.
+     * An optional list of tags, represented as a key, value pair
      */
     readonly tags?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The ID for the template to use to build the instance.
+     * The ID for the template to use to build the instance
+     *
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
      */
     readonly template?: pulumi.Input<string>;
 }

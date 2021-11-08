@@ -14,15 +14,8 @@ namespace Pulumi.Civo.Outputs
     public sealed class GetTemplateFilterResult
     {
         public readonly bool? All;
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-        /// </summary>
         public readonly string Key;
         public readonly string? MatchBy;
-        /// <summary>
-        /// Only retrieves the template which keys has value that matches
-        /// one of the values provided here.
-        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

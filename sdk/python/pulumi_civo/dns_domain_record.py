@@ -21,11 +21,13 @@ class DnsDomainRecordArgs:
                  priority: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a DnsDomainRecord resource.
-        :param pulumi.Input[str] domain_id: The id of the domain
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
+        :param pulumi.Input[str] domain_id: ID from domain name
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
+        :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
         """
         pulumi.set(__self__, "domain_id", domain_id)
@@ -41,7 +43,7 @@ class DnsDomainRecordArgs:
     @pulumi.getter(name="domainId")
     def domain_id(self) -> pulumi.Input[str]:
         """
-        The id of the domain
+        ID from domain name
         """
         return pulumi.get(self, "domain_id")
 
@@ -53,7 +55,8 @@ class DnsDomainRecordArgs:
     @pulumi.getter
     def ttl(self) -> pulumi.Input[int]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 
@@ -65,7 +68,7 @@ class DnsDomainRecordArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        The choice of record type from A, CNAME, MX, SRV or TXT
+        The choice of RR type from a, cname, mx or txt
         """
         return pulumi.get(self, "type")
 
@@ -89,7 +92,8 @@ class DnsDomainRecordArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -124,14 +128,16 @@ class _DnsDomainRecordState:
                  value: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsDomainRecord resources.
-        :param pulumi.Input[str] account_id: The id account of the domain
-        :param pulumi.Input[str] created_at: The date when it was created in UTC format
-        :param pulumi.Input[str] domain_id: The id of the domain
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] account_id: The account ID of this resource
+        :param pulumi.Input[str] created_at: Timestamp when this resource was created
+        :param pulumi.Input[str] domain_id: ID from domain name
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
-        :param pulumi.Input[str] updated_at: The date when it was updated in UTC format
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
+        :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
+        :param pulumi.Input[str] updated_at: Timestamp when this resource was updated
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
         if account_id is not None:
@@ -157,7 +163,7 @@ class _DnsDomainRecordState:
     @pulumi.getter(name="accountId")
     def account_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id account of the domain
+        The account ID of this resource
         """
         return pulumi.get(self, "account_id")
 
@@ -169,7 +175,7 @@ class _DnsDomainRecordState:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date when it was created in UTC format
+        Timestamp when this resource was created
         """
         return pulumi.get(self, "created_at")
 
@@ -181,7 +187,7 @@ class _DnsDomainRecordState:
     @pulumi.getter(name="domainId")
     def domain_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the domain
+        ID from domain name
         """
         return pulumi.get(self, "domain_id")
 
@@ -193,7 +199,8 @@ class _DnsDomainRecordState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -217,7 +224,8 @@ class _DnsDomainRecordState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 
@@ -229,7 +237,7 @@ class _DnsDomainRecordState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        The choice of record type from A, CNAME, MX, SRV or TXT
+        The choice of RR type from a, cname, mx or txt
         """
         return pulumi.get(self, "type")
 
@@ -241,7 +249,7 @@ class _DnsDomainRecordState:
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> Optional[pulumi.Input[str]]:
         """
-        The date when it was updated in UTC format
+        Timestamp when this resource was updated
         """
         return pulumi.get(self, "updated_at")
 
@@ -275,29 +283,32 @@ class DnsDomainRecord(pulumi.CustomResource):
                  value: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a Civo dns domain record resource.
+        Provides a Civo DNS domain record resource.
 
-        ## Example Usage
+        ## Schema
 
-        ```python
-        import pulumi
-        import pulumi_civo as civo
+        ### Required
 
-        # Create a new domain record
-        www = civo.DnsDomainRecord("www",
-            domain_id=civo_dns_domain_name["main"]["id"],
-            type="A",
-            value=civo_instance["foo"]["public_ip"],
-            ttl=600,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    civo_dns_domain_name["main"],
-                    civo_instance["foo"],
-                ]))
-        ```
+        - **domain_id** (String) ID from domain name
+        - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        - **type** (String) The choice of RR type from a, cname, mx or txt
+        - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+        - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+
+        ### Read-Only
+
+        - **account_id** (String) The account ID of this resource
+        - **created_at** (String) Timestamp when this resource was created
+        - **updated_at** (String) Timestamp when this resource was updated
 
         ## Import
 
-        Domains can be imported using the `id_domain:id_domain_record`, e.g.
+        Import is supported using the following syntax# using domain_id:domain_record_id
 
         ```sh
          $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -305,11 +316,13 @@ class DnsDomainRecord(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] domain_id: The id of the domain
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] domain_id: ID from domain name
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
+        :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
         ...
@@ -319,29 +332,32 @@ class DnsDomainRecord(pulumi.CustomResource):
                  args: DnsDomainRecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a Civo dns domain record resource.
+        Provides a Civo DNS domain record resource.
 
-        ## Example Usage
+        ## Schema
 
-        ```python
-        import pulumi
-        import pulumi_civo as civo
+        ### Required
 
-        # Create a new domain record
-        www = civo.DnsDomainRecord("www",
-            domain_id=civo_dns_domain_name["main"]["id"],
-            type="A",
-            value=civo_instance["foo"]["public_ip"],
-            ttl=600,
-            opts=pulumi.ResourceOptions(depends_on=[
-                    civo_dns_domain_name["main"],
-                    civo_instance["foo"],
-                ]))
-        ```
+        - **domain_id** (String) ID from domain name
+        - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        - **type** (String) The choice of RR type from a, cname, mx or txt
+        - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+
+        ### Optional
+
+        - **id** (String) The ID of this resource.
+        - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+
+        ### Read-Only
+
+        - **account_id** (String) The account ID of this resource
+        - **created_at** (String) Timestamp when this resource was created
+        - **updated_at** (String) Timestamp when this resource was updated
 
         ## Import
 
-        Domains can be imported using the `id_domain:id_domain_record`, e.g.
+        Import is supported using the following syntax# using domain_id:domain_record_id
 
         ```sh
          $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -423,14 +439,16 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] account_id: The id account of the domain
-        :param pulumi.Input[str] created_at: The date when it was created in UTC format
-        :param pulumi.Input[str] domain_id: The id of the domain
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] account_id: The account ID of this resource
+        :param pulumi.Input[str] created_at: Timestamp when this resource was created
+        :param pulumi.Input[str] domain_id: ID from domain name
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-        :param pulumi.Input[str] type: The choice of record type from A, CNAME, MX, SRV or TXT
-        :param pulumi.Input[str] updated_at: The date when it was updated in UTC format
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
+        :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
+        :param pulumi.Input[str] updated_at: Timestamp when this resource was updated
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -452,7 +470,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="accountId")
     def account_id(self) -> pulumi.Output[str]:
         """
-        The id account of the domain
+        The account ID of this resource
         """
         return pulumi.get(self, "account_id")
 
@@ -460,7 +478,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
-        The date when it was created in UTC format
+        Timestamp when this resource was created
         """
         return pulumi.get(self, "created_at")
 
@@ -468,7 +486,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="domainId")
     def domain_id(self) -> pulumi.Output[str]:
         """
-        The id of the domain
+        ID from domain name
         """
         return pulumi.get(self, "domain_id")
 
@@ -476,7 +494,8 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -492,7 +511,8 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[int]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 
@@ -500,7 +520,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        The choice of record type from A, CNAME, MX, SRV or TXT
+        The choice of RR type from a, cname, mx or txt
         """
         return pulumi.get(self, "type")
 
@@ -508,7 +528,7 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> pulumi.Output[str]:
         """
-        The date when it was updated in UTC format
+        Timestamp when this resource was updated
         """
         return pulumi.get(self, "updated_at")
 

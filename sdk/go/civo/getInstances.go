@@ -7,6 +7,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
+//
+// Note: You can use the `Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
+//
+// ## Schema
+//
+// ### Optional
+//
+// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
+// - **id** (String) The ID of this resource.
+// - **region** (String) If used, all instances will be from the provided region
+// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
+//
+// ### Read-Only
+//
+// - **instances** (List of Object) (see below for nested schema)
+//
+// <a id="nestedblock--filter"></a>
+// ### Nested Schema for `filter`
+//
+// Required:
+//
+// - **key** (String) Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+// - **values** (List of String) Only retrieves `instances` which keys has value that matches one of the values provided here
+//
+// Optional:
+//
+// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+//
+// <a id="nestedblock--sort"></a>
+// ### Nested Schema for `sort`
+//
+// Required:
+//
+// - **key** (String) Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+//
+// Optional:
+//
+// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
+//
+// <a id="nestedatt--instances"></a>
+// ### Nested Schema for `instances`
+//
+// Read-Only:
+//
+// - **cpu_cores** (Number)
+// - **created_at** (String)
+// - **disk_gb** (Number)
+// - **firewall_id** (String)
+// - **hostname** (String)
+// - **id** (String)
+// - **initial_password** (String)
+// - **initial_user** (String)
+// - **network_id** (String)
+// - **notes** (String)
+// - **private_ip** (String)
+// - **pseudo_ip** (String)
+// - **public_ip** (String)
+// - **ram_mb** (Number)
+// - **region** (String)
+// - **reverse_dns** (String)
+// - **script** (String)
+// - **size** (String)
+// - **sshkey_id** (String)
+// - **status** (String)
+// - **tags** (Set of String)
+// - **template** (String)
 func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.InvokeOption) (*GetInstancesResult, error) {
 	var rv GetInstancesResult
 	err := ctx.Invoke("civo:index/getInstances:getInstances", args, &rv, opts...)
@@ -18,20 +86,16 @@ func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getInstances.
 type GetInstancesArgs struct {
-	// Filter the results. The `filter` block is documented below.
 	Filters []GetInstancesFilter `pulumi:"filters"`
-	// If is used, them all instances will be from that region.
-	Region *string `pulumi:"region"`
-	// Sort the results. The `sort` block is documented below.
-	Sorts []GetInstancesSort `pulumi:"sorts"`
+	Region  *string              `pulumi:"region"`
+	Sorts   []GetInstancesSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getInstances.
 type GetInstancesResult struct {
 	Filters []GetInstancesFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// A list of Instances satisfying any `filter` and `sort` criteria. Each instance has the following attributes:
+	Id        string                 `pulumi:"id"`
 	Instances []GetInstancesInstance `pulumi:"instances"`
 	Region    *string                `pulumi:"region"`
 	Sorts     []GetInstancesSort     `pulumi:"sorts"`

@@ -20,7 +20,7 @@ import (
 	"unicode"
 
 	"github.com/civo/terraform-provider-civo/civo"
-	"github.com/pulumi/pulumi-civo/provider/pkg/version"
+	"github.com/pulumi/pulumi-civo/provider/v2/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
@@ -85,10 +85,7 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_dns_domain_record":    {Tok: makeResource(mainMod, "DnsDomainRecord")},
 			"civo_firewall":             {Tok: makeResource(mainMod, "Firewall")},
 			"civo_firewall_rule":        {Tok: makeResource(mainMod, "FirewallRule")},
-			"civo_loadbalancer":         {Tok: makeResource(mainMod, "LoadBalancer")},
 			"civo_ssh_key":              {Tok: makeResource(mainMod, "SshKey")},
-			"civo_template":             {Tok: makeResource(mainMod, "Template")},
-			"civo_snapshot":             {Tok: makeResource(mainMod, "Snapshot")},
 			"civo_kubernetes_cluster":   {Tok: makeResource(mainMod, "KubernetesCluster")},
 			"civo_kubernetes_node_pool": {Tok: makeResource(mainMod, "KubernetesNodePool")},
 		},
@@ -103,10 +100,9 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_dns_domain_record":  {Tok: makeDataSource(mainMod, "getDnsDomainRecord")},
 			"civo_network":            {Tok: makeDataSource(mainMod, "getNetwork")},
 			"civo_volume":             {Tok: makeDataSource(mainMod, "getVolume")},
-			"civo_loadbalancer":       {Tok: makeDataSource(mainMod, "getLoadBalancer")},
 			"civo_ssh_key":            {Tok: makeDataSource(mainMod, "getSshKey")},
-			"civo_snapshot":           {Tok: makeDataSource(mainMod, "getSnapshot")},
 			"civo_region":             {Tok: makeDataSource(mainMod, "getRegion")},
+			"civo_disk_image":         {Tok: makeDataSource(mainMod, "getDiskImage")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

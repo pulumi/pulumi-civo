@@ -14,16 +14,8 @@ namespace Pulumi.Civo.Outputs
     public sealed class GetInstancesFilterResult
     {
         public readonly bool? All;
-        /// <summary>
-        /// Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-        /// `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        /// </summary>
         public readonly string Key;
         public readonly string? MatchBy;
-        /// <summary>
-        /// A list of values to match against the `key` field. Only retrieves Instances
-        /// where the `key` field takes on one or more of the values provided here.
-        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

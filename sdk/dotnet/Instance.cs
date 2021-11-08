@@ -10,12 +10,44 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Provides a Civo Instance resource. This can be used to create,
-    /// modify, and delete Instances.
+    /// Provides a Civo instance resource. This can be used to create, modify, and delete instances.
+    /// 
+    /// ## Schema
+    /// 
+    /// ### Optional
+    /// 
+    /// - **disk_image** (String) The ID for the disk image to use to build the instance
+    /// - **firewall_id** (String) The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+    /// - **hostname** (String) A fully qualified domain name that should be set as the instance's hostname
+    /// - **id** (String) The ID of this resource.
+    /// - **initial_user** (String) The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
+    /// - **network_id** (String) This must be the ID of the network from the network listing (optional; default network used when not specified)
+    /// - **notes** (String) Add some notes to the instance
+    /// - **public_ip_required** (String) This should be either 'none' or 'create' (default: 'create')
+    /// - **region** (String) The region for the instance, if not declare we use the region in declared in the provider
+    /// - **reverse_dns** (String) A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+    /// - **script** (String) The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+    /// - **size** (String) The name of the size, from the current list, e.g. g3.xsmall
+    /// - **sshkey_id** (String) The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
+    /// - **tags** (Set of String) An optional list of tags, represented as a key, value pair
+    /// - **template** (String, Deprecated) The ID for the template to use to build the instance
+    /// 
+    /// ### Read-Only
+    /// 
+    /// - **cpu_cores** (Number) Instance's CPU cores
+    /// - **created_at** (String) Timestamp when the instance was created
+    /// - **disk_gb** (Number) Instance's disk (GB)
+    /// - **initial_password** (String, Sensitive) Initial password for login
+    /// - **private_ip** (String) Instance's private IP address
+    /// - **public_ip** (String) Instance's public IP address
+    /// - **ram_mb** (Number) Instance's RAM (MB)
+    /// - **source_id** (String) Instance's source ID
+    /// - **source_type** (String) Instance's source type
+    /// - **status** (String) Instance's status
     /// 
     /// ## Import
     /// 
-    /// Instances can be imported using the instance `id`, e.g.
+    /// Import is supported using the following syntax# using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
@@ -25,139 +57,150 @@ namespace Pulumi.Civo
     public partial class Instance : Pulumi.CustomResource
     {
         /// <summary>
-        /// Total cpu of the inatance.
+        /// Instance's CPU cores
         /// </summary>
         [Output("cpuCores")]
         public Output<int> CpuCores { get; private set; } = null!;
 
         /// <summary>
-        /// The date of creation of the instance
+        /// Timestamp when the instance was created
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The size of the disk.
+        /// Instance's disk (GB)
         /// </summary>
         [Output("diskGb")]
         public Output<int> DiskGb { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        /// The ID for the disk image to use to build the instance
+        /// </summary>
+        [Output("diskImage")]
+        public Output<string> DiskImage { get; private set; } = null!;
+
+        /// <summary>
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
 
         /// <summary>
-        /// The Instance hostname, if is not declare the provider will generate one for you
+        /// A fully qualified domain name that should be set as the instance's hostname
         /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
         /// <summary>
-        /// Instance initial password
+        /// Initial password for login
         /// </summary>
         [Output("initialPassword")]
         public Output<string> InitialPassword { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Output("initialUser")]
         public Output<string?> InitialUser { get; private set; } = null!;
 
         /// <summary>
-        /// This must be the ID of the network from the network listing (optional; default network used when not specified).
+        /// This must be the ID of the network from the network listing (optional; default network used when not specified)
         /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// Add some notes to the instance.
+        /// Add some notes to the instance
         /// </summary>
         [Output("notes")]
         public Output<string?> Notes { get; private set; } = null!;
 
         /// <summary>
-        /// The private ip.
+        /// Instance's private IP address
         /// </summary>
         [Output("privateIp")]
         public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
-        /// Is the ip that is used to route the public ip from the internet to the instance using NAT
-        /// </summary>
-        [Output("pseudoIp")]
-        public Output<string> PseudoIp { get; private set; } = null!;
-
-        /// <summary>
-        /// The public ip.
+        /// Instance's public IP address
         /// </summary>
         [Output("publicIp")]
         public Output<string> PublicIp { get; private set; } = null!;
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either 'none' or 'create' (default: 'create')
         /// </summary>
         [Output("publicIpRequired")]
         public Output<string?> PublicIpRequired { get; private set; } = null!;
 
         /// <summary>
-        /// Total ram of the instance.
+        /// Instance's RAM (MB)
         /// </summary>
         [Output("ramMb")]
         public Output<int> RamMb { get; private set; } = null!;
 
         /// <summary>
-        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// The region for the instance, if not declare we use the region in declared in the provider
         /// </summary>
         [Output("region")]
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Output("reverseDns")]
         public Output<string?> ReverseDns { get; private set; } = null!;
 
         /// <summary>
-        /// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Output("script")]
         public Output<string?> Script { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
+        /// The name of the size, from the current list, e.g. g3.xsmall
         /// </summary>
         [Output("size")]
         public Output<string?> Size { get; private set; } = null!;
 
+        /// <summary>
+        /// Instance's source ID
+        /// </summary>
         [Output("sourceId")]
         public Output<string> SourceId { get; private set; } = null!;
 
+        /// <summary>
+        /// Instance's source type
+        /// </summary>
         [Output("sourceType")]
         public Output<string> SourceType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Output("sshkeyId")]
         public Output<string?> SshkeyId { get; private set; } = null!;
 
         /// <summary>
-        /// The status of the instance
+        /// Instance's status
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// An optional list of tags, represented as a key, value pair.
+        /// An optional list of tags, represented as a key, value pair
         /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The ID for the template to use to build the instance.
+        /// The ID for the template to use to build the instance
         /// </summary>
         [Output("template")]
         public Output<string> Template { get; private set; } = null!;
@@ -209,67 +252,78 @@ namespace Pulumi.Civo
     public sealed class InstanceArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        /// The ID for the disk image to use to build the instance
+        /// </summary>
+        [Input("diskImage")]
+        public Input<string>? DiskImage { get; set; }
+
+        /// <summary>
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// The Instance hostname, if is not declare the provider will generate one for you
+        /// A fully qualified domain name that should be set as the instance's hostname
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Input("initialUser")]
         public Input<string>? InitialUser { get; set; }
 
         /// <summary>
-        /// This must be the ID of the network from the network listing (optional; default network used when not specified).
+        /// This must be the ID of the network from the network listing (optional; default network used when not specified)
         /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
         /// <summary>
-        /// Add some notes to the instance.
+        /// Add some notes to the instance
         /// </summary>
         [Input("notes")]
         public Input<string>? Notes { get; set; }
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either 'none' or 'create' (default: 'create')
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
 
         /// <summary>
-        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// The region for the instance, if not declare we use the region in declared in the provider
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Input("reverseDns")]
         public Input<string>? ReverseDns { get; set; }
 
         /// <summary>
-        /// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Input("script")]
         public Input<string>? Script { get; set; }
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
+        /// The name of the size, from the current list, e.g. g3.xsmall
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Input("sshkeyId")]
         public Input<string>? SshkeyId { get; set; }
@@ -278,7 +332,7 @@ namespace Pulumi.Civo
         private InputList<string>? _tags;
 
         /// <summary>
-        /// An optional list of tags, represented as a key, value pair.
+        /// An optional list of tags, represented as a key, value pair
         /// </summary>
         public InputList<string> Tags
         {
@@ -287,7 +341,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// The ID for the template to use to build the instance.
+        /// The ID for the template to use to build the instance
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }
@@ -300,127 +354,138 @@ namespace Pulumi.Civo
     public sealed class InstanceState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Total cpu of the inatance.
+        /// Instance's CPU cores
         /// </summary>
         [Input("cpuCores")]
         public Input<int>? CpuCores { get; set; }
 
         /// <summary>
-        /// The date of creation of the instance
+        /// Timestamp when the instance was created
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The size of the disk.
+        /// Instance's disk (GB)
         /// </summary>
         [Input("diskGb")]
         public Input<int>? DiskGb { get; set; }
 
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all).
+        /// The ID for the disk image to use to build the instance
+        /// </summary>
+        [Input("diskImage")]
+        public Input<string>? DiskImage { get; set; }
+
+        /// <summary>
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// The Instance hostname, if is not declare the provider will generate one for you
+        /// A fully qualified domain name that should be set as the instance's hostname
         /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// Instance initial password
+        /// Initial password for login
         /// </summary>
         [Input("initialPassword")]
         public Input<string>? InitialPassword { get; set; }
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo).
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Input("initialUser")]
         public Input<string>? InitialUser { get; set; }
 
         /// <summary>
-        /// This must be the ID of the network from the network listing (optional; default network used when not specified).
+        /// This must be the ID of the network from the network listing (optional; default network used when not specified)
         /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
         /// <summary>
-        /// Add some notes to the instance.
+        /// Add some notes to the instance
         /// </summary>
         [Input("notes")]
         public Input<string>? Notes { get; set; }
 
         /// <summary>
-        /// The private ip.
+        /// Instance's private IP address
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
 
         /// <summary>
-        /// Is the ip that is used to route the public ip from the internet to the instance using NAT
-        /// </summary>
-        [Input("pseudoIp")]
-        public Input<string>? PseudoIp { get; set; }
-
-        /// <summary>
-        /// The public ip.
+        /// Instance's public IP address
         /// </summary>
         [Input("publicIp")]
         public Input<string>? PublicIp { get; set; }
 
         /// <summary>
-        /// This should be either `create`, `none` or `move_ip_from:intances_id`.
+        /// This should be either 'none' or 'create' (default: 'create')
         /// </summary>
         [Input("publicIpRequired")]
         public Input<string>? PublicIpRequired { get; set; }
 
         /// <summary>
-        /// Total ram of the instance.
+        /// Instance's RAM (MB)
         /// </summary>
         [Input("ramMb")]
         public Input<int>? RamMb { get; set; }
 
         /// <summary>
-        /// The region for the instance, if not declare we use the region in declared in the provider.
+        /// The region for the instance, if not declare we use the region in declared in the provider
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified).
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Input("reverseDns")]
         public Input<string>? ReverseDns { get; set; }
 
         /// <summary>
-        /// the contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Input("script")]
         public Input<string>? Script { get; set; }
 
         /// <summary>
-        /// The name of the size, from the current list, e.g. g3.k3s.small (required).
+        /// The name of the size, from the current list, e.g. g3.xsmall
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
+        /// <summary>
+        /// Instance's source ID
+        /// </summary>
         [Input("sourceId")]
         public Input<string>? SourceId { get; set; }
 
+        /// <summary>
+        /// Instance's source type
+        /// </summary>
         [Input("sourceType")]
         public Input<string>? SourceType { get; set; }
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field).
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Input("sshkeyId")]
         public Input<string>? SshkeyId { get; set; }
 
         /// <summary>
-        /// The status of the instance
+        /// Instance's status
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
@@ -429,7 +494,7 @@ namespace Pulumi.Civo
         private InputList<string>? _tags;
 
         /// <summary>
-        /// An optional list of tags, represented as a key, value pair.
+        /// An optional list of tags, represented as a key, value pair
         /// </summary>
         public InputList<string> Tags
         {
@@ -438,7 +503,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// The ID for the template to use to build the instance.
+        /// The ID for the template to use to build the instance
         /// </summary>
         [Input("template")]
         public Input<string>? Template { get; set; }

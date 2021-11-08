@@ -11,6 +11,22 @@ namespace Pulumi.Civo
 {
     public static class GetSshKey
     {
+        /// <summary>
+        /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+        /// 
+        /// An error will be raised if the provided SSH key name does not exist in your Civo account.
+        /// 
+        /// ## Schema
+        /// 
+        /// ### Optional
+        /// 
+        /// - **id** (String) The ID of this resource.
+        /// - **name** (String) The name of the SSH key
+        /// 
+        /// ### Read-Only
+        /// 
+        /// - **fingerprint** (String) The fingerprint of the public key of the SSH key
+        /// </summary>
         public static Task<GetSshKeyResult> InvokeAsync(GetSshKeyArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithVersion());
     }
@@ -18,15 +34,9 @@ namespace Pulumi.Civo
 
     public sealed class GetSshKeyArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of the ssh key.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the ssh key.
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 

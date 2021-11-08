@@ -17,6 +17,9 @@ class ProviderArgs:
                  token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
+        :param pulumi.Input[str] region: If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+               here you can overwrite in a resource.
+        :param pulumi.Input[str] token: This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
         """
         if region is not None:
             pulumi.set(__self__, "region", region)
@@ -26,6 +29,10 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
+        """
+        If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+        here you can overwrite in a resource.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -35,6 +42,9 @@ class ProviderArgs:
     @property
     @pulumi.getter
     def token(self) -> Optional[pulumi.Input[str]]:
+        """
+        This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+        """
         return pulumi.get(self, "token")
 
     @token.setter
@@ -58,6 +68,9 @@ class Provider(pulumi.ProviderResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] region: If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+               here you can overwrite in a resource.
+        :param pulumi.Input[str] token: This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
         """
         ...
     @overload

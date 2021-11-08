@@ -10,41 +10,32 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Provides a Civo dns domain record resource.
+    /// Provides a Civo DNS domain record resource.
     /// 
-    /// ## Example Usage
+    /// ## Schema
     /// 
-    /// ```csharp
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
+    /// ### Required
     /// 
-    /// class MyStack : Stack
-    /// {
-    ///     public MyStack()
-    ///     {
-    ///         // Create a new domain record
-    ///         var www = new Civo.DnsDomainRecord("www", new Civo.DnsDomainRecordArgs
-    ///         {
-    ///             DomainId = civo_dns_domain_name.Main.Id,
-    ///             Type = "A",
-    ///             Value = civo_instance.Foo.Public_ip,
-    ///             Ttl = 600,
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 civo_dns_domain_name.Main,
-    ///                 civo_instance.Foo,
-    ///             },
-    ///         });
-    ///     }
+    /// - **domain_id** (String) ID from domain name
+    /// - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+    /// - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+    /// - **type** (String) The choice of RR type from a, cname, mx or txt
+    /// - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
     /// 
-    /// }
-    /// ```
+    /// ### Optional
+    /// 
+    /// - **id** (String) The ID of this resource.
+    /// - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+    /// 
+    /// ### Read-Only
+    /// 
+    /// - **account_id** (String) The account ID of this resource
+    /// - **created_at** (String) Timestamp when this resource was created
+    /// - **updated_at** (String) Timestamp when this resource was updated
     /// 
     /// ## Import
     /// 
-    /// Domains can be imported using the `id_domain:id_domain_record`, e.g.
+    /// Import is supported using the following syntax# using domain_id:domain_record_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -54,25 +45,26 @@ namespace Pulumi.Civo
     public partial class DnsDomainRecord : Pulumi.CustomResource
     {
         /// <summary>
-        /// The id account of the domain
+        /// The account ID of this resource
         /// </summary>
         [Output("accountId")]
         public Output<string> AccountId { get; private set; } = null!;
 
         /// <summary>
-        /// The date when it was created in UTC format
+        /// Timestamp when this resource was created
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the domain
+        /// ID from domain name
         /// </summary>
         [Output("domainId")]
         public Output<string> DomainId { get; private set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        /// amex/root domain)
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -84,19 +76,20 @@ namespace Pulumi.Civo
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        /// is 600)
         /// </summary>
         [Output("ttl")]
         public Output<int> Ttl { get; private set; } = null!;
 
         /// <summary>
-        /// The choice of record type from A, CNAME, MX, SRV or TXT
+        /// The choice of RR type from a, cname, mx or txt
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
-        /// The date when it was updated in UTC format
+        /// Timestamp when this resource was updated
         /// </summary>
         [Output("updatedAt")]
         public Output<string> UpdatedAt { get; private set; } = null!;
@@ -154,13 +147,14 @@ namespace Pulumi.Civo
     public sealed class DnsDomainRecordArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id of the domain
+        /// ID from domain name
         /// </summary>
         [Input("domainId", required: true)]
         public Input<string> DomainId { get; set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        /// amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -172,13 +166,14 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        /// is 600)
         /// </summary>
         [Input("ttl", required: true)]
         public Input<int> Ttl { get; set; } = null!;
 
         /// <summary>
-        /// The choice of record type from A, CNAME, MX, SRV or TXT
+        /// The choice of RR type from a, cname, mx or txt
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -197,25 +192,26 @@ namespace Pulumi.Civo
     public sealed class DnsDomainRecordState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The id account of the domain
+        /// The account ID of this resource
         /// </summary>
         [Input("accountId")]
         public Input<string>? AccountId { get; set; }
 
         /// <summary>
-        /// The date when it was created in UTC format
+        /// Timestamp when this resource was created
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The id of the domain
+        /// ID from domain name
         /// </summary>
         [Input("domainId")]
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        /// amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -227,19 +223,20 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        /// is 600)
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
         /// <summary>
-        /// The choice of record type from A, CNAME, MX, SRV or TXT
+        /// The choice of RR type from a, cname, mx or txt
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
         /// <summary>
-        /// The date when it was updated in UTC format
+        /// Timestamp when this resource was updated
         /// </summary>
         [Input("updatedAt")]
         public Input<string>? UpdatedAt { get; set; }

@@ -11,13 +11,26 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Civo SSH key resource to allow you to manage SSH
-// keys for Instance access. Keys created with this resource
-// can be referenced in your instance configuration via their ID.
+// Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **name** (String) a string that will be the reference for the SSH key.
+// - **public_key** (String) a string containing the SSH public key.
+//
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+//
+// ### Read-Only
+//
+// - **fingerprint** (String) a string containing the SSH finger print.
 //
 // ## Import
 //
-// SSH Keys can be imported using the `ssh key id`, e.g.
+// Import is supported using the following syntax# using ID
 //
 // ```sh
 //  $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
@@ -25,12 +38,11 @@ import (
 type SshKey struct {
 	pulumi.CustomResourceState
 
-	// The fingerprint of the SSH key
+	// a string containing the SSH finger print.
 	Fingerprint pulumi.StringOutput `pulumi:"fingerprint"`
-	// The name of the SSH key for identification
+	// a string that will be the reference for the SSH key.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// The public key. If this is a file, it
-	// can be read using the file interpolation function.
+	// a string containing the SSH public key.
 	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
 }
 
@@ -66,22 +78,20 @@ func GetSshKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SshKey resources.
 type sshKeyState struct {
-	// The fingerprint of the SSH key
+	// a string containing the SSH finger print.
 	Fingerprint *string `pulumi:"fingerprint"`
-	// The name of the SSH key for identification
+	// a string that will be the reference for the SSH key.
 	Name *string `pulumi:"name"`
-	// The public key. If this is a file, it
-	// can be read using the file interpolation function.
+	// a string containing the SSH public key.
 	PublicKey *string `pulumi:"publicKey"`
 }
 
 type SshKeyState struct {
-	// The fingerprint of the SSH key
+	// a string containing the SSH finger print.
 	Fingerprint pulumi.StringPtrInput
-	// The name of the SSH key for identification
+	// a string that will be the reference for the SSH key.
 	Name pulumi.StringPtrInput
-	// The public key. If this is a file, it
-	// can be read using the file interpolation function.
+	// a string containing the SSH public key.
 	PublicKey pulumi.StringPtrInput
 }
 
@@ -90,19 +100,17 @@ func (SshKeyState) ElementType() reflect.Type {
 }
 
 type sshKeyArgs struct {
-	// The name of the SSH key for identification
+	// a string that will be the reference for the SSH key.
 	Name *string `pulumi:"name"`
-	// The public key. If this is a file, it
-	// can be read using the file interpolation function.
+	// a string containing the SSH public key.
 	PublicKey string `pulumi:"publicKey"`
 }
 
 // The set of arguments for constructing a SshKey resource.
 type SshKeyArgs struct {
-	// The name of the SSH key for identification
+	// a string that will be the reference for the SSH key.
 	Name pulumi.StringPtrInput
-	// The public key. If this is a file, it
-	// can be read using the file interpolation function.
+	// a string containing the SSH public key.
 	PublicKey pulumi.StringInput
 }
 

@@ -1,4 +1,5 @@
 // Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
+//go:build go || all
 // +build go all
 
 package examples
@@ -11,6 +12,7 @@ import (
 )
 
 func TestAccNetworkGo(t *testing.T) {
+	t.Skip("Temporarily skip while releasing new major version")
 	test := getGoBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: filepath.Join(getCwd(t), "network", "go"),
@@ -23,7 +25,7 @@ func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseGo := base.With(integration.ProgramTestOptions{
 		Dependencies: []string{
-			"github.com/pulumi/pulumi-civo/sdk",
+			"github.com/pulumi/pulumi-civo/sdk/v2",
 		},
 	})
 

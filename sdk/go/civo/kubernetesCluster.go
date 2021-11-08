@@ -7,12 +7,93 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
+//
+// ## Schema
+//
+// ### Required
+//
+// - **firewall_id** (String) The existing firewall ID to use for this cluster
+//
+// ### Optional
+//
+// - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+// - **id** (String) The ID of this resource.
+// - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
+// - **name** (String) Name for your cluster, must be unique within your account
+// - **network_id** (String) The network for the cluster, if not declare we use the default one
+// - **num_target_nodes** (Number) The number of instances to create (optional, the default at the time of writing is 3)
+// - **region** (String) The region for the cluster, if not declare we use the region in declared in the provider
+// - **tags** (String) Space separated list of tags, to be used freely as required
+// - **target_nodes_size** (String) The size of each node (optional, the default is currently g3.k3s.medium)
+//
+// ### Read-Only
+//
+// - **api_endpoint** (String) The API server endpoint of the cluster
+// - **created_at** (String) The timestamp when the cluster was created
+// - **dns_entry** (String) The DNS name of the cluster
+// - **installed_applications** (List of Object) (see below for nested schema)
+// - **instances** (List of Object) (see below for nested schema)
+// - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
+// - **master_ip** (String) The IP address of the master node
+// - **pools** (List of Object) (see below for nested schema)
+// - **ready** (Boolean) When cluster is ready, this will return `true`
+// - **status** (String) Status of the cluster
+//
+// <a id="nestedatt--installed_applications"></a>
+// ### Nested Schema for `installedApplications`
+//
+// Read-Only:
+//
+// - **application** (String)
+// - **category** (String)
+// - **installed** (Boolean)
+// - **version** (String)
+//
+// <a id="nestedatt--instances"></a>
+// ### Nested Schema for `instances`
+//
+// Read-Only:
+//
+// - **cpu_cores** (Number)
+// - **disk_gb** (Number)
+// - **hostname** (String)
+// - **ram_mb** (Number)
+// - **size** (String)
+// - **status** (String)
+// - **tags** (Set of String)
+//
+// <a id="nestedatt--pools"></a>
+// ### Nested Schema for `pools`
+//
+// Read-Only:
+//
+// - **count** (Number)
+// - **id** (String)
+// - **instance_names** (Set of String)
+// - **instances** (List of Object) (see below for nested schema)
+// - **size** (String)
+//
+// <a id="nestedobjatt--pools--instances"></a>
+// ### Nested Schema for `pools.instances`
+//
+// Read-Only:
+//
+// - **cpu_cores** (Number)
+// - **disk_gb** (Number)
+// - **hostname** (String)
+// - **ram_mb** (Number)
+// - **size** (String)
+// - **status** (String)
+// - **tags** (Set of String)
+//
 // ## Import
 //
-// Then the Kubernetes cluster can be imported using the cluster's `id`, e.g.
+// Import is supported using the following syntax# using ID
 //
 // ```sh
 //  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
@@ -20,41 +101,44 @@ import (
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
 
-	// The base URL of the API server on the Kubernetes master node.
+	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
-	// The date where the Kubernetes cluster was create.
+	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The unique dns entry for the cluster in this case point to the master.
+	// The DNS name of the cluster
 	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// The existing firewall ID to use for this cluster
+	FirewallId            pulumi.StringOutput                              `pulumi:"firewallId"`
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
-	// A list of instance inside the pool
-	Instances KubernetesClusterInstanceArrayOutput `pulumi:"instances"`
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
+	Instances             KubernetesClusterInstanceArrayOutput             `pulumi:"instances"`
+	// The kubeconfig of the cluster
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
-	// The version of k3s to install (The default is currently the latest available).
+	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
-	// The Ip of the Kubernetes master node.
+	// The IP address of the master node
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
+	// Name for your cluster, must be unique within your account
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
-	// The number of instances to create (The default at the time of writing is 3).
-	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
-	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
-	Pools KubernetesClusterPoolArrayOutput `pulumi:"pools"`
-	Ready pulumi.BoolOutput                `pulumi:"ready"`
-	// The region for the cluster.
+	// The number of instances to create (optional, the default at the time of writing is 3)
+	NumTargetNodes pulumi.IntOutput                 `pulumi:"numTargetNodes"`
+	Pools          KubernetesClusterPoolArrayOutput `pulumi:"pools"`
+	// When cluster is ready, this will return `true`
+	Ready pulumi.BoolOutput `pulumi:"ready"`
+	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
+	// Status of the cluster
 	Status pulumi.StringOutput `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
+	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// The size of each node (The default is currently g3.k3s.small)
+	// The size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -62,9 +146,12 @@ type KubernetesCluster struct {
 func NewKubernetesCluster(ctx *pulumi.Context,
 	name string, args *KubernetesClusterArgs, opts ...pulumi.ResourceOption) (*KubernetesCluster, error) {
 	if args == nil {
-		args = &KubernetesClusterArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.FirewallId == nil {
+		return nil, errors.New("invalid value for required argument 'FirewallId'")
+	}
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("civo:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -87,80 +174,86 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesCluster resources.
 type kubernetesClusterState struct {
-	// The base URL of the API server on the Kubernetes master node.
+	// The API server endpoint of the cluster
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
-	// The date where the Kubernetes cluster was create.
+	// The timestamp when the cluster was created
 	CreatedAt *string `pulumi:"createdAt"`
-	// The unique dns entry for the cluster in this case point to the master.
+	// The DNS name of the cluster
 	DnsEntry *string `pulumi:"dnsEntry"`
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// The existing firewall ID to use for this cluster
+	FirewallId            *string                                 `pulumi:"firewallId"`
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// A list of instance inside the pool
-	Instances []KubernetesClusterInstance `pulumi:"instances"`
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
+	Instances             []KubernetesClusterInstance             `pulumi:"instances"`
+	// The kubeconfig of the cluster
 	Kubeconfig *string `pulumi:"kubeconfig"`
-	// The version of k3s to install (The default is currently the latest available).
+	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// The Ip of the Kubernetes master node.
+	// The IP address of the master node
 	MasterIp *string `pulumi:"masterIp"`
-	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
+	// Name for your cluster, must be unique within your account
 	Name *string `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
-	// The number of instances to create (The default at the time of writing is 3).
-	NumTargetNodes *int `pulumi:"numTargetNodes"`
-	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
-	Pools []KubernetesClusterPool `pulumi:"pools"`
-	Ready *bool                   `pulumi:"ready"`
-	// The region for the cluster.
+	// The number of instances to create (optional, the default at the time of writing is 3)
+	NumTargetNodes *int                    `pulumi:"numTargetNodes"`
+	Pools          []KubernetesClusterPool `pulumi:"pools"`
+	// When cluster is ready, this will return `true`
+	Ready *bool `pulumi:"ready"`
+	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
+	// Status of the cluster
 	Status *string `pulumi:"status"`
-	// A space separated list of tags, to be used freely as required.
+	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
-	// The size of each node (The default is currently g3.k3s.small)
+	// The size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 type KubernetesClusterState struct {
-	// The base URL of the API server on the Kubernetes master node.
+	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringPtrInput
-	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
-	// The date where the Kubernetes cluster was create.
+	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringPtrInput
-	// The unique dns entry for the cluster in this case point to the master.
+	// The DNS name of the cluster
 	DnsEntry pulumi.StringPtrInput
-	// A unique ID that can be used to identify and reference a Kubernetes cluster.
+	// The existing firewall ID to use for this cluster
+	FirewallId            pulumi.StringPtrInput
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
-	// A list of instance inside the pool
-	Instances KubernetesClusterInstanceArrayInput
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format.
+	Instances             KubernetesClusterInstanceArrayInput
+	// The kubeconfig of the cluster
 	Kubeconfig pulumi.StringPtrInput
-	// The version of k3s to install (The default is currently the latest available).
+	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrInput
-	// The Ip of the Kubernetes master node.
+	// The IP address of the master node
 	MasterIp pulumi.StringPtrInput
-	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
+	// Name for your cluster, must be unique within your account
 	Name pulumi.StringPtrInput
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
-	// The number of instances to create (The default at the time of writing is 3).
+	// The number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
-	// A list of node pools associated with the cluster. Each node pool exports the following attributes:
-	Pools KubernetesClusterPoolArrayInput
+	Pools          KubernetesClusterPoolArrayInput
+	// When cluster is ready, this will return `true`
 	Ready pulumi.BoolPtrInput
-	// The region for the cluster.
+	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
-	// The status of Kubernetes cluster.
-	// * `ready` -If the Kubernetes cluster is ready.
+	// Status of the cluster
 	Status pulumi.StringPtrInput
-	// A space separated list of tags, to be used freely as required.
+	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
-	// The size of each node (The default is currently g3.k3s.small)
+	// The size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -169,41 +262,53 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
-	// The version of k3s to install (The default is currently the latest available).
+	// The existing firewall ID to use for this cluster
+	FirewallId string `pulumi:"firewallId"`
+	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
+	// Name for your cluster, must be unique within your account
 	Name *string `pulumi:"name"`
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
-	// The number of instances to create (The default at the time of writing is 3).
+	// The number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
-	// The region for the cluster.
+	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
-	// A space separated list of tags, to be used freely as required.
+	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
-	// The size of each node (The default is currently g3.k3s.small)
+	// The size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// This field is a case-sensitive, a comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
-	// The version of k3s to install (The default is currently the latest available).
+	// The existing firewall ID to use for this cluster
+	FirewallId pulumi.StringInput
+	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrInput
-	// A name for the Kubernetes cluster, if is not declare the provider will generate one for you.
+	// Name for your cluster, must be unique within your account
 	Name pulumi.StringPtrInput
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
-	// The number of instances to create (The default at the time of writing is 3).
+	// The number of instances to create (optional, the default at the time of writing is 3)
 	NumTargetNodes pulumi.IntPtrInput
-	// The region for the cluster.
+	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
-	// A space separated list of tags, to be used freely as required.
+	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
-	// The size of each node (The default is currently g3.k3s.small)
+	// The size of each node (optional, the default is currently g3.k3s.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

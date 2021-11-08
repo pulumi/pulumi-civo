@@ -5,23 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Manages attaching a Volume to a Instance.
+ * Manages volume attachment/detachment to an instance.
  *
- * ## Example Usage
+ * ## Schema
  *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
+ * ### Required
  *
- * const db = new civo.Volume("db", {
- *     sizeGb: 60,
- *     bootable: false,
- * });
- * const foobar = new civo.VolumeAttachment("foobar", {
- *     instanceId: civo_instance["my-test-instance"].id,
- *     volumeId: db.id,
- * });
- * ```
+ * - **instance_id** (String) The ID of target instance for attachment
+ * - **volume_id** (String) The ID of target volume for attachment
+ *
+ * ### Optional
+ *
+ * - **id** (String) The ID of this resource.
+ * - **region** (String) The region for the volume attachment
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
@@ -52,11 +48,15 @@ export class VolumeAttachment extends pulumi.CustomResource {
     }
 
     /**
-     * ID of the instance to attach the volume to.
+     * The ID of target instance for attachment
      */
     public readonly instanceId!: pulumi.Output<string>;
     /**
-     * ID of the Volume to be attached to the instance.
+     * The region for the volume attachment
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of target volume for attachment
      */
     public readonly volumeId!: pulumi.Output<string>;
 
@@ -74,6 +74,7 @@ export class VolumeAttachment extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VolumeAttachmentState | undefined;
             inputs["instanceId"] = state ? state.instanceId : undefined;
+            inputs["region"] = state ? state.region : undefined;
             inputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
             const args = argsOrState as VolumeAttachmentArgs | undefined;
@@ -84,6 +85,7 @@ export class VolumeAttachment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'volumeId'");
             }
             inputs["instanceId"] = args ? args.instanceId : undefined;
+            inputs["region"] = args ? args.region : undefined;
             inputs["volumeId"] = args ? args.volumeId : undefined;
         }
         if (!opts.version) {
@@ -98,11 +100,15 @@ export class VolumeAttachment extends pulumi.CustomResource {
  */
 export interface VolumeAttachmentState {
     /**
-     * ID of the instance to attach the volume to.
+     * The ID of target instance for attachment
      */
     readonly instanceId?: pulumi.Input<string>;
     /**
-     * ID of the Volume to be attached to the instance.
+     * The region for the volume attachment
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
+     * The ID of target volume for attachment
      */
     readonly volumeId?: pulumi.Input<string>;
 }
@@ -112,11 +118,15 @@ export interface VolumeAttachmentState {
  */
 export interface VolumeAttachmentArgs {
     /**
-     * ID of the instance to attach the volume to.
+     * The ID of target instance for attachment
      */
     readonly instanceId: pulumi.Input<string>;
     /**
-     * ID of the Volume to be attached to the instance.
+     * The region for the volume attachment
+     */
+    readonly region?: pulumi.Input<string>;
+    /**
+     * The ID of target volume for attachment
      */
     readonly volumeId: pulumi.Input<string>;
 }

@@ -11,23 +11,19 @@ namespace Pulumi.Civo.Outputs
 {
 
     [OutputType]
-    public sealed class LoadBalancerBackend
+    public sealed class GetDiskImageSortResult
     {
-        public readonly string InstanceId;
-        public readonly int Port;
-        public readonly string Protocol;
+        public readonly string? Direction;
+        public readonly string Key;
 
         [OutputConstructor]
-        private LoadBalancerBackend(
-            string instanceId,
+        private GetDiskImageSortResult(
+            string? direction,
 
-            int port,
-
-            string protocol)
+            string key)
         {
-            InstanceId = instanceId;
-            Port = port;
-            Protocol = protocol;
+            Direction = direction;
+            Key = key;
         }
     }
 }

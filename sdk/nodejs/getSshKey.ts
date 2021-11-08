@@ -5,6 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+ *
+ * An error will be raised if the provided SSH key name does not exist in your Civo account.
+ *
+ * ## Schema
+ *
+ * ### Optional
+ *
+ * - **id** (String) The ID of this resource.
+ * - **name** (String) The name of the SSH key
+ *
+ * ### Read-Only
+ *
+ * - **fingerprint** (String) The fingerprint of the public key of the SSH key
+ */
 export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetSshKeyResult> {
     args = args || {};
     if (!opts) {
@@ -24,13 +40,7 @@ export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getSshKey.
  */
 export interface GetSshKeyArgs {
-    /**
-     * The ID of the ssh key.
-     */
     readonly id?: string;
-    /**
-     * The name of the ssh key.
-     */
     readonly name?: string;
 }
 

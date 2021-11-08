@@ -13,25 +13,10 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class KubernetesClusterPool
     {
-        /// <summary>
-        /// The size of the pool
-        /// </summary>
         public readonly int? Count;
-        /// <summary>
-        /// The ID of the pool
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// A list of the instance in the pool
-        /// </summary>
         public readonly ImmutableArray<string> InstanceNames;
-        /// <summary>
-        /// A list of instance inside the pool
-        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesClusterPoolInstance> Instances;
-        /// <summary>
-        /// The size of the instance.
-        /// </summary>
         public readonly string? Size;
 
         [OutputConstructor]

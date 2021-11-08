@@ -10,14 +10,28 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Provides a Civo Cloud Firewall Rule resource.
-    /// This can be used to create, modify, and delete Firewalls Rules.
-    /// This resource don't have an update option because the backend don't have the
-    /// support for that, so in this case we use ForceNew for all object in the resource.
+    /// Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.
+    /// 
+    /// ## Schema
+    /// 
+    /// ### Required
+    /// 
+    /// - **cidr** (Set of String) The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+    /// - **firewall_id** (String) The Firewall ID
+    /// 
+    /// ### Optional
+    /// 
+    /// - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
+    /// - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+    /// - **id** (String) The ID of this resource.
+    /// - **label** (String) A string that will be the displayed name/reference for this rule
+    /// - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+    /// - **region** (String) The region for this rule
+    /// - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
     /// 
     /// ## Import
     /// 
-    /// Firewalls can be imported using the firewall `firewall_id:firewall_rule_id`, e.g.
+    /// Import is supported using the following syntax# using firewall_id:firewall_rule_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -27,37 +41,38 @@ namespace Pulumi.Civo
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        /// to open just for a specific IP address)
         /// </summary>
         [Output("cidrs")]
         public Output<ImmutableArray<string>> Cidrs { get; private set; } = null!;
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic (only `ingress` is supported now)
         /// </summary>
         [Output("direction")]
         public Output<string> Direction { get; private set; } = null!;
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Output("endPort")]
         public Output<string> EndPort { get; private set; } = null!;
 
         /// <summary>
-        /// The Firewall id
+        /// The Firewall ID
         /// </summary>
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule
         /// </summary>
         [Output("label")]
         public Output<string> Label { get; private set; } = null!;
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         /// </summary>
         [Output("protocol")]
         public Output<string> Protocol { get; private set; } = null!;
@@ -69,7 +84,7 @@ namespace Pulumi.Civo
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Output("startPort")]
         public Output<string> StartPort { get; private set; } = null!;
@@ -120,11 +135,12 @@ namespace Pulumi.Civo
 
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
-        [Input("cidrs")]
+        [Input("cidrs", required: true)]
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        /// to open just for a specific IP address)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -133,31 +149,31 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic (only `ingress` is supported now)
         /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Input("endPort")]
         public Input<string>? EndPort { get; set; }
 
         /// <summary>
-        /// The Firewall id
+        /// The Firewall ID
         /// </summary>
         [Input("firewallId", required: true)]
         public Input<string> FirewallId { get; set; } = null!;
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule
         /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -169,7 +185,7 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Input("startPort")]
         public Input<string>? StartPort { get; set; }
@@ -185,7 +201,8 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// the IP address of the other end (i.e. not your instance) to affect, or a valid network CIDR (defaults to being globally applied, i.e. 0.0.0.0/0).
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        /// to open just for a specific IP address)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -194,31 +211,31 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// will this rule affect ingress traffic
+        /// Will this rule affect ingress traffic (only `ingress` is supported now)
         /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// The end port where traffic to be allowed.
+        /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         /// </summary>
         [Input("endPort")]
         public Input<string>? EndPort { get; set; }
 
         /// <summary>
-        /// The Firewall id
+        /// The Firewall ID
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
 
         /// <summary>
-        /// a string that will be the displayed name/reference for this rule (optional)
+        /// A string that will be the displayed name/reference for this rule
         /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
         /// <summary>
-        /// This may be one of "tcp", "udp", or "icmp".
+        /// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
@@ -230,7 +247,7 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The start port where traffic to be allowed.
+        /// The start of the port range to configure for this rule (or the single port if required)
         /// </summary>
         [Input("startPort")]
         public Input<string>? StartPort { get; set; }

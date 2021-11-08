@@ -14,7 +14,9 @@ __all__ = [
     'KubernetesClusterInstance',
     'KubernetesClusterPool',
     'KubernetesClusterPoolInstance',
-    'LoadBalancerBackend',
+    'GetDiskImageDiskimageResult',
+    'GetDiskImageFilterResult',
+    'GetDiskImageSortResult',
     'GetInstancesFilterResult',
     'GetInstancesInstanceResult',
     'GetInstancesSizeFilterResult',
@@ -28,7 +30,6 @@ __all__ = [
     'GetKubernetesVersionFilterResult',
     'GetKubernetesVersionSortResult',
     'GetKubernetesVersionVersionResult',
-    'GetLoadBalancerBackendResult',
     'GetRegionFilterResult',
     'GetRegionRegionResult',
     'GetRegionSortResult',
@@ -44,12 +45,6 @@ class KubernetesClusterInstalledApplication(dict):
                  category: Optional[str] = None,
                  installed: Optional[bool] = None,
                  version: Optional[str] = None):
-        """
-        :param str application: The name of the application
-        :param str category: The category of the application
-        :param bool installed: if installed or not
-        :param str version: The version of the application
-        """
         if application is not None:
             pulumi.set(__self__, "application", application)
         if category is not None:
@@ -62,33 +57,21 @@ class KubernetesClusterInstalledApplication(dict):
     @property
     @pulumi.getter
     def application(self) -> Optional[str]:
-        """
-        The name of the application
-        """
         return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
     def category(self) -> Optional[str]:
-        """
-        The category of the application
-        """
         return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
     def installed(self) -> Optional[bool]:
-        """
-        if installed or not
-        """
         return pulumi.get(self, "installed")
 
     @property
     @pulumi.getter
     def version(self) -> Optional[str]:
-        """
-        The version of the application
-        """
         return pulumi.get(self, "version")
 
 
@@ -123,16 +106,6 @@ class KubernetesClusterInstance(dict):
                  size: Optional[str] = None,
                  status: Optional[str] = None,
                  tags: Optional[Sequence[str]] = None):
-        """
-        :param int cpu_cores: Total cpu of the inatance.
-        :param int disk_gb: The size of the disk.
-        :param str hostname: The hostname of the instance.
-        :param int ram_mb: Total ram of the instance
-        :param str size: The size of the instance.
-        :param str status: The status of Kubernetes cluster.
-               * `ready` -If the Kubernetes cluster is ready.
-        :param Sequence[str] tags: A space separated list of tags, to be used freely as required.
-        """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
         if disk_gb is not None:
@@ -151,58 +124,36 @@ class KubernetesClusterInstance(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> Optional[int]:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> Optional[int]:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> Optional[int]:
-        """
-        Total ram of the instance
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
-        """
-        A space separated list of tags, to be used freely as required.
-        """
         return pulumi.get(self, "tags")
 
 
@@ -231,13 +182,6 @@ class KubernetesClusterPool(dict):
                  instance_names: Optional[Sequence[str]] = None,
                  instances: Optional[Sequence['outputs.KubernetesClusterPoolInstance']] = None,
                  size: Optional[str] = None):
-        """
-        :param int count: The size of the pool
-        :param str id: The ID of the pool
-        :param Sequence[str] instance_names: A list of the instance in the pool
-        :param Sequence['KubernetesClusterPoolInstanceArgs'] instances: A list of instance inside the pool
-        :param str size: The size of the instance.
-        """
         if count is not None:
             pulumi.set(__self__, "count", count)
         if id is not None:
@@ -252,41 +196,26 @@ class KubernetesClusterPool(dict):
     @property
     @pulumi.getter
     def count(self) -> Optional[int]:
-        """
-        The size of the pool
-        """
         return pulumi.get(self, "count")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of the pool
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Optional[Sequence[str]]:
-        """
-        A list of the instance in the pool
-        """
         return pulumi.get(self, "instance_names")
 
     @property
     @pulumi.getter
     def instances(self) -> Optional[Sequence['outputs.KubernetesClusterPoolInstance']]:
-        """
-        A list of instance inside the pool
-        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
 
@@ -321,16 +250,6 @@ class KubernetesClusterPoolInstance(dict):
                  size: Optional[str] = None,
                  status: Optional[str] = None,
                  tags: Optional[Sequence[str]] = None):
-        """
-        :param int cpu_cores: Total cpu of the inatance.
-        :param int disk_gb: The size of the disk.
-        :param str hostname: The hostname of the instance.
-        :param int ram_mb: Total ram of the instance
-        :param str size: The size of the instance.
-        :param str status: The status of Kubernetes cluster.
-               * `ready` -If the Kubernetes cluster is ready.
-        :param Sequence[str] tags: A space separated list of tags, to be used freely as required.
-        """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
         if disk_gb is not None:
@@ -349,117 +268,79 @@ class KubernetesClusterPoolInstance(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> Optional[int]:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> Optional[int]:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> Optional[int]:
-        """
-        Total ram of the instance
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def size(self) -> Optional[str]:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> Optional[str]:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Optional[Sequence[str]]:
-        """
-        A space separated list of tags, to be used freely as required.
-        """
         return pulumi.get(self, "tags")
 
 
 @pulumi.output_type
-class LoadBalancerBackend(dict):
-    @staticmethod
-    def __key_warning(key: str):
-        suggest = None
-        if key == "instanceId":
-            suggest = "instance_id"
-
-        if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in LoadBalancerBackend. Access the value via the '{suggest}' property getter instead.")
-
-    def __getitem__(self, key: str) -> Any:
-        LoadBalancerBackend.__key_warning(key)
-        return super().__getitem__(key)
-
-    def get(self, key: str, default = None) -> Any:
-        LoadBalancerBackend.__key_warning(key)
-        return super().get(key, default)
-
+class GetDiskImageDiskimageResult(dict):
     def __init__(__self__, *,
-                 instance_id: str,
-                 port: int,
-                 protocol: str):
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> str:
-        return pulumi.get(self, "instance_id")
+                 id: str,
+                 label: str,
+                 name: str,
+                 version: str):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "label", label)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "version", version)
 
     @property
     @pulumi.getter
-    def port(self) -> int:
-        return pulumi.get(self, "port")
+    def id(self) -> str:
+        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
-    def protocol(self) -> str:
-        return pulumi.get(self, "protocol")
+    def label(self) -> str:
+        return pulumi.get(self, "label")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type
-class GetInstancesFilterResult(dict):
+class GetDiskImageFilterResult(dict):
     def __init__(__self__, *,
                  key: str,
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
-        """
-        :param str key: Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-               `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        :param Sequence[str] values: A list of values to match against the `key` field. Only retrieves Instances
-               where the `key` field takes on one or more of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -470,19 +351,66 @@ class GetInstancesFilterResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the Instances by this key. This may be one of '`id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        A list of values to match against the `key` field. Only retrieves Instances
-        where the `key` field takes on one or more of the values provided here.
-        """
+        return pulumi.get(self, "values")
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[bool]:
+        return pulumi.get(self, "all")
+
+    @property
+    @pulumi.getter(name="matchBy")
+    def match_by(self) -> Optional[str]:
+        return pulumi.get(self, "match_by")
+
+
+@pulumi.output_type
+class GetDiskImageSortResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 direction: Optional[str] = None):
+        pulumi.set(__self__, "key", key)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> Optional[str]:
+        return pulumi.get(self, "direction")
+
+
+@pulumi.output_type
+class GetInstancesFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str],
+                 all: Optional[bool] = None,
+                 match_by: Optional[str] = None):
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if match_by is not None:
+            pulumi.set(__self__, "match_by", match_by)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
         return pulumi.get(self, "values")
 
     @property
@@ -521,30 +449,6 @@ class GetInstancesInstanceResult(dict):
                  status: str,
                  tags: Sequence[str],
                  template: str):
-        """
-        :param int cpu_cores: Total cpu of the inatance.
-        :param str created_at: The date of creation of the instance
-        :param int disk_gb: The size of the disk.
-        :param str firewall_id: The ID of the firewall used.
-        :param str hostname: The Instance hostname.
-        :param str id: The ID of the Instance.
-        :param str initial_password: Instance initial password
-        :param str initial_user: The name of the initial user created on the server.
-        :param str network_id: This will be the ID of the network.
-        :param str notes: The notes of the instance.
-        :param str private_ip: The private ip.
-        :param str pseudo_ip: Is the ip that is used to route the public ip from the internet to the instance using NAT
-        :param str public_ip: The public ip.
-        :param int ram_mb: Total ram of the instance.
-        :param str region: If is used, them all instances will be from that region.
-        :param str reverse_dns: A fully qualified domain name.
-        :param str script: the contents of a script uploaded
-        :param str size: The name of the size.
-        :param str sshkey_id: The ID SSH.
-        :param str status: The status of the instance
-        :param Sequence[str] tags: An optional list of tags
-        :param str template: The ID for the template to used to build the instance.
-        """
         pulumi.set(__self__, "cpu_cores", cpu_cores)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "disk_gb", disk_gb)
@@ -571,177 +475,111 @@ class GetInstancesInstanceResult(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date of creation of the instance
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> int:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> str:
-        """
-        The ID of the firewall used.
-        """
         return pulumi.get(self, "firewall_id")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
-        """
-        The Instance hostname.
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of the Instance.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> str:
-        """
-        Instance initial password
-        """
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="initialUser")
     def initial_user(self) -> str:
-        """
-        The name of the initial user created on the server.
-        """
         return pulumi.get(self, "initial_user")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
-        """
-        This will be the ID of the network.
-        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def notes(self) -> str:
-        """
-        The notes of the instance.
-        """
         return pulumi.get(self, "notes")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
-        """
-        The private ip.
-        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="pseudoIp")
     def pseudo_ip(self) -> str:
-        """
-        Is the ip that is used to route the public ip from the internet to the instance using NAT
-        """
         return pulumi.get(self, "pseudo_ip")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
-        """
-        The public ip.
-        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> int:
-        """
-        Total ram of the instance.
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        If is used, them all instances will be from that region.
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> str:
-        """
-        A fully qualified domain name.
-        """
         return pulumi.get(self, "reverse_dns")
 
     @property
     @pulumi.getter
     def script(self) -> str:
-        """
-        the contents of a script uploaded
-        """
         return pulumi.get(self, "script")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The name of the size.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="sshkeyId")
     def sshkey_id(self) -> str:
-        """
-        The ID SSH.
-        """
         return pulumi.get(self, "sshkey_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of the instance
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        An optional list of tags
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def template(self) -> str:
-        """
-        The ID for the template to used to build the instance.
-        """
         return pulumi.get(self, "template")
 
 
@@ -859,11 +697,6 @@ class GetInstancesSortResult(dict):
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-               `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -871,18 +704,11 @@ class GetInstancesSortResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the Instance by this key. This may be one of `id`, `hostname`, `public_ip`, `private_ip`,
-        `pseudo_ip`, `size`, `cpu_cores`, `ram_mb`, `disk_gb`, `template` or `created_at`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
 
@@ -893,12 +719,6 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
                  category: str,
                  installed: bool,
                  version: str):
-        """
-        :param str application: The name of the application
-        :param str category: The category of the application
-        :param bool installed: if installed or not
-        :param str version: The version of the application
-        """
         pulumi.set(__self__, "application", application)
         pulumi.set(__self__, "category", category)
         pulumi.set(__self__, "installed", installed)
@@ -907,33 +727,21 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
     @property
     @pulumi.getter
     def application(self) -> str:
-        """
-        The name of the application
-        """
         return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
     def category(self) -> str:
-        """
-        The category of the application
-        """
         return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
     def installed(self) -> bool:
-        """
-        if installed or not
-        """
         return pulumi.get(self, "installed")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        The version of the application
-        """
         return pulumi.get(self, "version")
 
 
@@ -947,16 +755,6 @@ class GetKubernetesClusterInstanceResult(dict):
                  size: str,
                  status: str,
                  tags: Sequence[str]):
-        """
-        :param int cpu_cores: Total cpu of the inatance.
-        :param int disk_gb: The size of the disk.
-        :param str hostname: The hostname of the instance.
-        :param int ram_mb: Total ram of the instance
-        :param str size: The size of the instance.
-        :param str status: The status of Kubernetes cluster.
-               * `ready` -If the Kubernetes cluster is ready.
-        :param Sequence[str] tags: The tag of the instances
-        """
         pulumi.set(__self__, "cpu_cores", cpu_cores)
         pulumi.set(__self__, "disk_gb", disk_gb)
         pulumi.set(__self__, "hostname", hostname)
@@ -968,58 +766,36 @@ class GetKubernetesClusterInstanceResult(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> int:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> int:
-        """
-        Total ram of the instance
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tag of the instances
-        """
         return pulumi.get(self, "tags")
 
 
@@ -1031,13 +807,6 @@ class GetKubernetesClusterPoolResult(dict):
                  instance_names: Sequence[str],
                  instances: Sequence['outputs.GetKubernetesClusterPoolInstanceResult'],
                  size: str):
-        """
-        :param int count: The size of the pool
-        :param str id: The ID of the kubernetes Cluster
-        :param Sequence[str] instance_names: A list of the instance in the pool
-        :param Sequence['GetKubernetesClusterPoolInstanceArgs'] instances: A list of instance inside the pool
-        :param str size: The size of the instance.
-        """
         pulumi.set(__self__, "count", count)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_names", instance_names)
@@ -1047,41 +816,26 @@ class GetKubernetesClusterPoolResult(dict):
     @property
     @pulumi.getter
     def count(self) -> int:
-        """
-        The size of the pool
-        """
         return pulumi.get(self, "count")
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of the kubernetes Cluster
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Sequence[str]:
-        """
-        A list of the instance in the pool
-        """
         return pulumi.get(self, "instance_names")
 
     @property
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetKubernetesClusterPoolInstanceResult']:
-        """
-        A list of instance inside the pool
-        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
 
@@ -1095,16 +849,6 @@ class GetKubernetesClusterPoolInstanceResult(dict):
                  size: str,
                  status: str,
                  tags: Sequence[str]):
-        """
-        :param int cpu_cores: Total cpu of the inatance.
-        :param int disk_gb: The size of the disk.
-        :param str hostname: The hostname of the instance.
-        :param int ram_mb: Total ram of the instance
-        :param str size: The size of the instance.
-        :param str status: The status of Kubernetes cluster.
-               * `ready` -If the Kubernetes cluster is ready.
-        :param Sequence[str] tags: The tag of the instances
-        """
         pulumi.set(__self__, "cpu_cores", cpu_cores)
         pulumi.set(__self__, "disk_gb", disk_gb)
         pulumi.set(__self__, "hostname", hostname)
@@ -1116,58 +860,36 @@ class GetKubernetesClusterPoolInstanceResult(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
-        """
-        Total cpu of the inatance.
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> int:
-        """
-        The size of the disk.
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
-        """
-        The hostname of the instance.
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> int:
-        """
-        Total ram of the instance
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The size of the instance.
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of Kubernetes cluster.
-        * `ready` -If the Kubernetes cluster is ready.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        The tag of the instances
-        """
         return pulumi.get(self, "tags")
 
 
@@ -1178,12 +900,6 @@ class GetKubernetesVersionFilterResult(dict):
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
-        """
-        :param str key: Filter the sizes by this key. This may be one of `version`,
-               `label`, `type`, `default`.
-        :param Sequence[str] values: Only retrieves the version which keys has value that matches
-               one of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -1194,19 +910,11 @@ class GetKubernetesVersionFilterResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the sizes by this key. This may be one of `version`,
-        `label`, `type`, `default`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        Only retrieves the version which keys has value that matches
-        one of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @property
@@ -1225,10 +933,6 @@ class GetKubernetesVersionSortResult(dict):
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the sizes by this key. This may be one of `version`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -1236,17 +940,11 @@ class GetKubernetesVersionSortResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the sizes by this key. This may be one of `version`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
 
@@ -1257,12 +955,6 @@ class GetKubernetesVersionVersionResult(dict):
                  label: str,
                  type: str,
                  version: str):
-        """
-        :param bool default: If is the default version used in all cluster.
-        :param str label: The label of this version.
-        :param str type: The type of the version can be `stable`, `legacy` etc...
-        :param str version: A version of the kubernetes.
-        """
         pulumi.set(__self__, "default", default)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "type", type)
@@ -1271,74 +963,22 @@ class GetKubernetesVersionVersionResult(dict):
     @property
     @pulumi.getter
     def default(self) -> bool:
-        """
-        If is the default version used in all cluster.
-        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def label(self) -> str:
-        """
-        The label of this version.
-        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The type of the version can be `stable`, `legacy` etc...
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        A version of the kubernetes.
-        """
         return pulumi.get(self, "version")
-
-
-@pulumi.output_type
-class GetLoadBalancerBackendResult(dict):
-    def __init__(__self__, *,
-                 instance_id: str,
-                 port: int,
-                 protocol: str):
-        """
-        :param str instance_id: The instance id
-        :param int port: The port set in the configuration.
-        :param str protocol: The protocol used in the configuration.
-        """
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "port", port)
-        pulumi.set(__self__, "protocol", protocol)
-
-    @property
-    @pulumi.getter(name="instanceId")
-    def instance_id(self) -> str:
-        """
-        The instance id
-        """
-        return pulumi.get(self, "instance_id")
-
-    @property
-    @pulumi.getter
-    def port(self) -> int:
-        """
-        The port set in the configuration.
-        """
-        return pulumi.get(self, "port")
-
-    @property
-    @pulumi.getter
-    def protocol(self) -> str:
-        """
-        The protocol used in the configuration.
-        """
-        return pulumi.get(self, "protocol")
 
 
 @pulumi.output_type
@@ -1348,10 +988,6 @@ class GetRegionFilterResult(dict):
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
-        """
-        :param str key: Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
-        :param Sequence[str] values: Only retrieves region which keys has value that matches one of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -1362,17 +998,11 @@ class GetRegionFilterResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        Only retrieves region which keys has value that matches one of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @property
@@ -1424,10 +1054,6 @@ class GetRegionSortResult(dict):
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the sizes by this key. This may be one of `code`,`name`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -1435,17 +1061,11 @@ class GetRegionSortResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the sizes by this key. This may be one of `code`,`name`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
 
@@ -1456,11 +1076,6 @@ class GetTemplateFilterResult(dict):
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
-        """
-        :param str key: Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-        :param Sequence[str] values: Only retrieves the template which keys has value that matches
-               one of the values provided here.
-        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -1471,18 +1086,11 @@ class GetTemplateFilterResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Filter the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
-        """
-        Only retrieves the template which keys has value that matches
-        one of the values provided here.
-        """
         return pulumi.get(self, "values")
 
     @property
@@ -1501,10 +1109,6 @@ class GetTemplateSortResult(dict):
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
-        """
-        :param str key: Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-        :param str direction: The sort direction. This may be either `asc` or `desc`.
-        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -1512,17 +1116,11 @@ class GetTemplateSortResult(dict):
     @property
     @pulumi.getter
     def key(self) -> str:
-        """
-        Sort the sizes by this key. This may be one of `id`,`name`,`version`,`label`.
-        """
         return pulumi.get(self, "key")
 
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
-        """
-        The sort direction. This may be either `asc` or `desc`.
-        """
         return pulumi.get(self, "direction")
 
 
@@ -1533,12 +1131,6 @@ class GetTemplateTemplateResult(dict):
                  label: str,
                  name: str,
                  version: str):
-        """
-        :param str id: The id of the template
-        :param str label: The label of the template.
-        :param str name: A short human readable name for the template
-        :param str version: The version of the template.
-        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "name", name)
@@ -1547,33 +1139,21 @@ class GetTemplateTemplateResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The id of the template
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> str:
-        """
-        The label of the template.
-        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        A short human readable name for the template
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        The version of the template.
-        """
         return pulumi.get(self, "version")
 
 

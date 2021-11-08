@@ -61,10 +61,20 @@ def get_ssh_key(id: Optional[str] = None,
                 name: Optional[str] = None,
                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSshKeyResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
 
-    :param str id: The ID of the ssh key.
-    :param str name: The name of the ssh key.
+    An error will be raised if the provided SSH key name does not exist in your Civo account.
+
+    ## Schema
+
+    ### Optional
+
+    - **id** (String) The ID of this resource.
+    - **name** (String) The name of the SSH key
+
+    ### Read-Only
+
+    - **fingerprint** (String) The fingerprint of the public key of the SSH key
     """
     __args__ = dict()
     __args__['id'] = id

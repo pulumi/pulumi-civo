@@ -14,14 +14,8 @@ namespace Pulumi.Civo.Outputs
     public sealed class GetRegionFilterResult
     {
         public readonly bool? All;
-        /// <summary>
-        /// Filter the sizes by this key. This may be one of `code`, `name`, `country`, `default`.
-        /// </summary>
         public readonly string Key;
         public readonly string? MatchBy;
-        /// <summary>
-        /// Only retrieves region which keys has value that matches one of the values provided here.
-        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

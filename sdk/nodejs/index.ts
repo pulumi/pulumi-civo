@@ -9,6 +9,7 @@ export * from "./dnsDomainName";
 export * from "./dnsDomainRecord";
 export * from "./firewall";
 export * from "./firewallRule";
+export * from "./getDiskImage";
 export * from "./getDnsDomainName";
 export * from "./getDnsDomainRecord";
 export * from "./getInstance";
@@ -16,22 +17,17 @@ export * from "./getInstances";
 export * from "./getInstancesSize";
 export * from "./getKubernetesCluster";
 export * from "./getKubernetesVersion";
-export * from "./getLoadBalancer";
 export * from "./getNetwork";
 export * from "./getRegion";
-export * from "./getSnapshot";
 export * from "./getSshKey";
 export * from "./getTemplate";
 export * from "./getVolume";
 export * from "./instance";
 export * from "./kubernetesCluster";
 export * from "./kubernetesNodePool";
-export * from "./loadBalancer";
 export * from "./network";
 export * from "./provider";
-export * from "./snapshot";
 export * from "./sshKey";
-export * from "./template";
 export * from "./volume";
 export * from "./volumeAttachment";
 
@@ -52,11 +48,8 @@ import { FirewallRule } from "./firewallRule";
 import { Instance } from "./instance";
 import { KubernetesCluster } from "./kubernetesCluster";
 import { KubernetesNodePool } from "./kubernetesNodePool";
-import { LoadBalancer } from "./loadBalancer";
 import { Network } from "./network";
-import { Snapshot } from "./snapshot";
 import { SshKey } from "./sshKey";
-import { Template } from "./template";
 import { Volume } from "./volume";
 import { VolumeAttachment } from "./volumeAttachment";
 
@@ -78,16 +71,10 @@ const _module = {
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "civo:index/kubernetesNodePool:KubernetesNodePool":
                 return new KubernetesNodePool(name, <any>undefined, { urn })
-            case "civo:index/loadBalancer:LoadBalancer":
-                return new LoadBalancer(name, <any>undefined, { urn })
             case "civo:index/network:Network":
                 return new Network(name, <any>undefined, { urn })
-            case "civo:index/snapshot:Snapshot":
-                return new Snapshot(name, <any>undefined, { urn })
             case "civo:index/sshKey:SshKey":
                 return new SshKey(name, <any>undefined, { urn })
-            case "civo:index/template:Template":
-                return new Template(name, <any>undefined, { urn })
             case "civo:index/volume:Volume":
                 return new Volume(name, <any>undefined, { urn })
             case "civo:index/volumeAttachment:VolumeAttachment":
@@ -104,11 +91,8 @@ pulumi.runtime.registerResourceModule("civo", "index/firewallRule", _module)
 pulumi.runtime.registerResourceModule("civo", "index/instance", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesNodePool", _module)
-pulumi.runtime.registerResourceModule("civo", "index/loadBalancer", _module)
 pulumi.runtime.registerResourceModule("civo", "index/network", _module)
-pulumi.runtime.registerResourceModule("civo", "index/snapshot", _module)
 pulumi.runtime.registerResourceModule("civo", "index/sshKey", _module)
-pulumi.runtime.registerResourceModule("civo", "index/template", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volume", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volumeAttachment", _module)
 

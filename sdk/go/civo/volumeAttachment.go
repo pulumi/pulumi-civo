@@ -11,44 +11,27 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Manages attaching a Volume to a Instance.
+// Manages volume attachment/detachment to an instance.
 //
-// ## Example Usage
+// ## Schema
 //
-// ```go
-// package main
+// ### Required
 //
-// import (
-// 	"github.com/pulumi/pulumi-civo/sdk/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// )
+// - **instance_id** (String) The ID of target instance for attachment
+// - **volume_id** (String) The ID of target volume for attachment
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		db, err := civo.NewVolume(ctx, "db", &civo.VolumeArgs{
-// 			SizeGb:   pulumi.Int(60),
-// 			Bootable: pulumi.Bool(false),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = civo.NewVolumeAttachment(ctx, "foobar", &civo.VolumeAttachmentArgs{
-// 			InstanceId: pulumi.Any(civo_instance.My - test - instance.Id),
-// 			VolumeId:   db.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
-// ```
+// ### Optional
+//
+// - **id** (String) The ID of this resource.
+// - **region** (String) The region for the volume attachment
 type VolumeAttachment struct {
 	pulumi.CustomResourceState
 
-	// ID of the instance to attach the volume to.
+	// The ID of target instance for attachment
 	InstanceId pulumi.StringOutput `pulumi:"instanceId"`
-	// ID of the Volume to be attached to the instance.
+	// The region for the volume attachment
+	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// The ID of target volume for attachment
 	VolumeId pulumi.StringOutput `pulumi:"volumeId"`
 }
 
@@ -87,16 +70,20 @@ func GetVolumeAttachment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VolumeAttachment resources.
 type volumeAttachmentState struct {
-	// ID of the instance to attach the volume to.
+	// The ID of target instance for attachment
 	InstanceId *string `pulumi:"instanceId"`
-	// ID of the Volume to be attached to the instance.
+	// The region for the volume attachment
+	Region *string `pulumi:"region"`
+	// The ID of target volume for attachment
 	VolumeId *string `pulumi:"volumeId"`
 }
 
 type VolumeAttachmentState struct {
-	// ID of the instance to attach the volume to.
+	// The ID of target instance for attachment
 	InstanceId pulumi.StringPtrInput
-	// ID of the Volume to be attached to the instance.
+	// The region for the volume attachment
+	Region pulumi.StringPtrInput
+	// The ID of target volume for attachment
 	VolumeId pulumi.StringPtrInput
 }
 
@@ -105,17 +92,21 @@ func (VolumeAttachmentState) ElementType() reflect.Type {
 }
 
 type volumeAttachmentArgs struct {
-	// ID of the instance to attach the volume to.
+	// The ID of target instance for attachment
 	InstanceId string `pulumi:"instanceId"`
-	// ID of the Volume to be attached to the instance.
+	// The region for the volume attachment
+	Region *string `pulumi:"region"`
+	// The ID of target volume for attachment
 	VolumeId string `pulumi:"volumeId"`
 }
 
 // The set of arguments for constructing a VolumeAttachment resource.
 type VolumeAttachmentArgs struct {
-	// ID of the instance to attach the volume to.
+	// The ID of target instance for attachment
 	InstanceId pulumi.StringInput
-	// ID of the Volume to be attached to the instance.
+	// The region for the volume attachment
+	Region pulumi.StringPtrInput
+	// The ID of target volume for attachment
 	VolumeId pulumi.StringInput
 }
 

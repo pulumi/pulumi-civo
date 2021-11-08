@@ -12,24 +12,14 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class KubernetesClusterPoolGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The size of the pool
-        /// </summary>
         [Input("count")]
         public Input<int>? Count { get; set; }
 
-        /// <summary>
-        /// The ID of the pool
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
-
-        /// <summary>
-        /// A list of the instance in the pool
-        /// </summary>
         public InputList<string> InstanceNames
         {
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
@@ -38,19 +28,12 @@ namespace Pulumi.Civo.Inputs
 
         [Input("instances")]
         private InputList<Inputs.KubernetesClusterPoolInstanceGetArgs>? _instances;
-
-        /// <summary>
-        /// A list of instance inside the pool
-        /// </summary>
         public InputList<Inputs.KubernetesClusterPoolInstanceGetArgs> Instances
         {
             get => _instances ?? (_instances = new InputList<Inputs.KubernetesClusterPoolInstanceGetArgs>());
             set => _instances = value;
         }
 
-        /// <summary>
-        /// The size of the instance.
-        /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }
 
