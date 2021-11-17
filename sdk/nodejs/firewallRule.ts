@@ -7,26 +7,9 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.
  *
- * ## Schema
- *
- * ### Required
- *
- * - **cidr** (Set of String) The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
- * - **firewall_id** (String) The Firewall ID
- *
- * ### Optional
- *
- * - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
- * - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
- * - **id** (String) The ID of this resource.
- * - **label** (String) A string that will be the displayed name/reference for this rule
- * - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
- * - **region** (String) The region for this rule
- * - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
- *
  * ## Import
  *
- * Import is supported using the following syntax# using firewall_id:firewall_rule_id
+ * # using firewall_id:firewall_rule_id
  *
  * ```sh
  *  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -61,8 +44,7 @@ export class FirewallRule extends pulumi.CustomResource {
     }
 
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     public readonly cidrs!: pulumi.Output<string[]>;
     /**
@@ -103,18 +85,18 @@ export class FirewallRule extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallRuleArgs | FirewallRuleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallRuleState | undefined;
-            inputs["cidrs"] = state ? state.cidrs : undefined;
-            inputs["direction"] = state ? state.direction : undefined;
-            inputs["endPort"] = state ? state.endPort : undefined;
-            inputs["firewallId"] = state ? state.firewallId : undefined;
-            inputs["label"] = state ? state.label : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["cidrs"] = state ? state.cidrs : undefined;
+            resourceInputs["direction"] = state ? state.direction : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["firewallId"] = state ? state.firewallId : undefined;
+            resourceInputs["label"] = state ? state.label : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
             if ((!args || args.cidrs === undefined) && !opts.urn) {
@@ -123,19 +105,19 @@ export class FirewallRule extends pulumi.CustomResource {
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
-            inputs["cidrs"] = args ? args.cidrs : undefined;
-            inputs["direction"] = args ? args.direction : undefined;
-            inputs["endPort"] = args ? args.endPort : undefined;
-            inputs["firewallId"] = args ? args.firewallId : undefined;
-            inputs["label"] = args ? args.label : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["cidrs"] = args ? args.cidrs : undefined;
+            resourceInputs["direction"] = args ? args.direction : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["firewallId"] = args ? args.firewallId : undefined;
+            resourceInputs["label"] = args ? args.label : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(FirewallRule.__pulumiType, name, inputs, opts);
+        super(FirewallRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -144,38 +126,37 @@ export class FirewallRule extends pulumi.CustomResource {
  */
 export interface FirewallRuleState {
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
-    readonly cidrs?: pulumi.Input<pulumi.Input<string>[]>;
+    cidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Will this rule affect ingress traffic (only `ingress` is supported now)
      */
-    readonly direction?: pulumi.Input<string>;
+    direction?: pulumi.Input<string>;
     /**
      * The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
      */
-    readonly endPort?: pulumi.Input<string>;
+    endPort?: pulumi.Input<string>;
     /**
      * The Firewall ID
      */
-    readonly firewallId?: pulumi.Input<string>;
+    firewallId?: pulumi.Input<string>;
     /**
      * A string that will be the displayed name/reference for this rule
      */
-    readonly label?: pulumi.Input<string>;
+    label?: pulumi.Input<string>;
     /**
      * The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
      */
-    readonly protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
     /**
      * The region for this rule
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The start of the port range to configure for this rule (or the single port if required)
      */
-    readonly startPort?: pulumi.Input<string>;
+    startPort?: pulumi.Input<string>;
 }
 
 /**
@@ -183,36 +164,35 @@ export interface FirewallRuleState {
  */
 export interface FirewallRuleArgs {
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
-    readonly cidrs: pulumi.Input<pulumi.Input<string>[]>;
+    cidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Will this rule affect ingress traffic (only `ingress` is supported now)
      */
-    readonly direction?: pulumi.Input<string>;
+    direction?: pulumi.Input<string>;
     /**
      * The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
      */
-    readonly endPort?: pulumi.Input<string>;
+    endPort?: pulumi.Input<string>;
     /**
      * The Firewall ID
      */
-    readonly firewallId: pulumi.Input<string>;
+    firewallId: pulumi.Input<string>;
     /**
      * A string that will be the displayed name/reference for this rule
      */
-    readonly label?: pulumi.Input<string>;
+    label?: pulumi.Input<string>;
     /**
      * The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
      */
-    readonly protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
     /**
      * The region for this rule
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The start of the port range to configure for this rule (or the single port if required)
      */
-    readonly startPort?: pulumi.Input<string>;
+    startPort?: pulumi.Input<string>;
 }

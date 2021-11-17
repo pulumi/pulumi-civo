@@ -5,6 +5,9 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetDiskImageDiskimage {
+    /**
+     * The ID of this resource.
+     */
     id: string;
     label: string;
     name: string;
@@ -12,21 +15,51 @@ export interface GetDiskImageDiskimage {
 }
 
 export interface GetDiskImageFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `diskimages` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
 export interface GetDiskImageSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
 }
 
 export interface GetInstancesFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `instances` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
@@ -36,6 +69,9 @@ export interface GetInstancesInstance {
     diskGb: number;
     firewallId: string;
     hostname: string;
+    /**
+     * The ID of this resource.
+     */
     id: string;
     initialPassword: string;
     initialUser: string;
@@ -45,6 +81,9 @@ export interface GetInstancesInstance {
     pseudoIp: string;
     publicIp: string;
     ramMb: number;
+    /**
+     * If used, all instances will be from the provided region
+     */
     region: string;
     reverseDns: string;
     script: string;
@@ -56,9 +95,21 @@ export interface GetInstancesInstance {
 }
 
 export interface GetInstancesSizeFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `sizes` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
@@ -73,12 +124,24 @@ export interface GetInstancesSizeSize {
 }
 
 export interface GetInstancesSizeSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
     key: string;
 }
 
 export interface GetInstancesSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+     */
     key: string;
 }
 
@@ -95,12 +158,21 @@ export interface GetKubernetesClusterInstance {
     hostname: string;
     ramMb: number;
     size: string;
+    /**
+     * The status of Kubernetes cluster
+     */
     status: string;
+    /**
+     * A list of tags
+     */
     tags: string[];
 }
 
 export interface GetKubernetesClusterPool {
     count: number;
+    /**
+     * The ID of this resource.
+     */
     id: string;
     instanceNames: string[];
     instances: outputs.GetKubernetesClusterPoolInstance[];
@@ -113,19 +185,43 @@ export interface GetKubernetesClusterPoolInstance {
     hostname: string;
     ramMb: number;
     size: string;
+    /**
+     * The status of Kubernetes cluster
+     */
     status: string;
+    /**
+     * A list of tags
+     */
     tags: string[];
 }
 
 export interface GetKubernetesVersionFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `versions` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
 export interface GetKubernetesVersionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
     key: string;
 }
 
@@ -137,9 +233,21 @@ export interface GetKubernetesVersionVersion {
 }
 
 export interface GetRegionFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `regions` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
@@ -151,23 +259,50 @@ export interface GetRegionRegion {
 }
 
 export interface GetRegionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
     key: string;
 }
 
 export interface GetTemplateFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `templates` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
 export interface GetTemplateSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
 }
 
 export interface GetTemplateTemplate {
+    /**
+     * The ID of this resource.
+     */
     id: string;
     label: string;
     name: string;
@@ -187,12 +322,21 @@ export interface KubernetesClusterInstance {
     hostname: string;
     ramMb: number;
     size: string;
+    /**
+     * Status of the cluster
+     */
     status: string;
+    /**
+     * Space separated list of tags, to be used freely as required
+     */
     tags: string[];
 }
 
 export interface KubernetesClusterPool {
     count: number;
+    /**
+     * The ID of this resource.
+     */
     id: string;
     instanceNames: string[];
     instances: outputs.KubernetesClusterPoolInstance[];
@@ -205,6 +349,12 @@ export interface KubernetesClusterPoolInstance {
     hostname: string;
     ramMb: number;
     size: string;
+    /**
+     * Status of the cluster
+     */
     status: string;
+    /**
+     * Space separated list of tags, to be used freely as required
+     */
     tags: string[];
 }

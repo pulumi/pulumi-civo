@@ -19,6 +19,20 @@ namespace Pulumi.Civo
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+        /// here you can overwrite in a resource.
+        /// </summary>
+        [Output("region")]
+        public Output<string?> Region { get; private set; } = null!;
+
+        /// <summary>
+        /// This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+        /// </summary>
+        [Output("token")]
+        public Output<string?> Token { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a Provider resource with the given unique name, arguments, and options.
         /// </summary>
         ///

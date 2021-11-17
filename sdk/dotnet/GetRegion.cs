@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -13,57 +14,15 @@ namespace Pulumi.Civo
     {
         /// <summary>
         /// Retrieves information about the region that Civo supports, with the ability to filter the results.
-        /// 
-        /// ## Schema
-        /// 
-        /// ### Optional
-        /// 
-        /// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-        /// - **id** (String) The ID of this resource.
-        /// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-        /// 
-        /// ### Read-Only
-        /// 
-        /// - **regions** (List of Object) (see below for nested schema)
-        /// 
-        /// &lt;a id="nestedblock--filter"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `filter`
-        /// 
-        /// Required:
-        /// 
-        /// - **key** (String) Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
-        /// - **values** (List of String) Only retrieves `regions` which keys has value that matches one of the values provided here
-        /// 
-        /// Optional:
-        /// 
-        /// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-        /// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-        /// 
-        /// 
-        /// &lt;a id="nestedblock--sort"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `sort`
-        /// 
-        /// Required:
-        /// 
-        /// - **key** (String) Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
-        /// 
-        /// Optional:
-        /// 
-        /// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-        /// 
-        /// 
-        /// &lt;a id="nestedatt--regions"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `regions`
-        /// 
-        /// Read-Only:
-        /// 
-        /// - **code** (String)
-        /// - **country** (String)
-        /// - **default** (Boolean)
-        /// - **name** (String)
         /// </summary>
         public static Task<GetRegionResult> InvokeAsync(GetRegionArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Retrieves information about the region that Civo supports, with the ability to filter the results.
+        /// </summary>
+        public static Output<GetRegionResult> Invoke(GetRegionInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionInvokeArgs(), options.WithVersion());
     }
 
 
@@ -71,6 +30,10 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetRegionFilterArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public List<Inputs.GetRegionFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetRegionFilterArgs>());
@@ -79,6 +42,10 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetRegionSortArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public List<Inputs.GetRegionSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetRegionSortArgs>());
@@ -90,16 +57,53 @@ namespace Pulumi.Civo
         }
     }
 
+    public sealed class GetRegionInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("filters")]
+        private InputList<Inputs.GetRegionFilterInputArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
+        public InputList<Inputs.GetRegionFilterInputArgs> Filters
+        {
+            get => _filters ?? (_filters = new InputList<Inputs.GetRegionFilterInputArgs>());
+            set => _filters = value;
+        }
+
+        [Input("sorts")]
+        private InputList<Inputs.GetRegionSortInputArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
+        public InputList<Inputs.GetRegionSortInputArgs> Sorts
+        {
+            get => _sorts ?? (_sorts = new InputList<Inputs.GetRegionSortInputArgs>());
+            set => _sorts = value;
+        }
+
+        public GetRegionInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetRegionResult
     {
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRegionFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetRegionRegionResult> Regions;
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetRegionSortResult> Sorts;
 
         [OutputConstructor]

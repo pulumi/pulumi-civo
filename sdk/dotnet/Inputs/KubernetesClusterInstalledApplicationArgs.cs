@@ -9,4 +9,23 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo.Inputs
 {
+
+    public sealed class KubernetesClusterInstalledApplicationArgs : Pulumi.ResourceArgs
+    {
+        [Input("application")]
+        public Input<string>? Application { get; set; }
+
+        [Input("category")]
+        public Input<string>? Category { get; set; }
+
+        [Input("installed")]
+        public Input<bool>? Installed { get; set; }
+
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        public KubernetesClusterInstalledApplicationArgs()
+        {
+        }
+    }
 }

@@ -13,22 +13,9 @@ import (
 
 // Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
 //
-// ## Schema
-//
-// ### Required
-//
-// - **cluster_id** (String) The ID of your cluster
-// - **region** (String) The region of the node pool, has to match that of the cluster
-//
-// ### Optional
-//
-// - **id** (String) The ID of this resource.
-// - **num_target_nodes** (Number) the number of instances to create (optional, the default at the time of writing is 3)
-// - **target_nodes_size** (String) the size of each node (optional, the default is currently g3.k3s.medium)
-//
 // ## Import
 //
-// Import is supported using the following syntax# using cluster_id:node_pool_id
+// # using cluster_id:node_pool_id
 //
 // ```sh
 //  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -141,7 +128,7 @@ type KubernetesNodePoolInput interface {
 }
 
 func (*KubernetesNodePool) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesNodePool)(nil))
+	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
 }
 
 func (i *KubernetesNodePool) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {
@@ -150,35 +137,6 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutput() KubernetesNodePoolOutp
 
 func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.Context) KubernetesNodePoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolOutput)
-}
-
-func (i *KubernetesNodePool) ToKubernetesNodePoolPtrOutput() KubernetesNodePoolPtrOutput {
-	return i.ToKubernetesNodePoolPtrOutputWithContext(context.Background())
-}
-
-func (i *KubernetesNodePool) ToKubernetesNodePoolPtrOutputWithContext(ctx context.Context) KubernetesNodePoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolPtrOutput)
-}
-
-type KubernetesNodePoolPtrInput interface {
-	pulumi.Input
-
-	ToKubernetesNodePoolPtrOutput() KubernetesNodePoolPtrOutput
-	ToKubernetesNodePoolPtrOutputWithContext(ctx context.Context) KubernetesNodePoolPtrOutput
-}
-
-type kubernetesNodePoolPtrType KubernetesNodePoolArgs
-
-func (*kubernetesNodePoolPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesNodePool)(nil))
-}
-
-func (i *kubernetesNodePoolPtrType) ToKubernetesNodePoolPtrOutput() KubernetesNodePoolPtrOutput {
-	return i.ToKubernetesNodePoolPtrOutputWithContext(context.Background())
-}
-
-func (i *kubernetesNodePoolPtrType) ToKubernetesNodePoolPtrOutputWithContext(ctx context.Context) KubernetesNodePoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolPtrOutput)
 }
 
 // KubernetesNodePoolArrayInput is an input type that accepts KubernetesNodePoolArray and KubernetesNodePoolArrayOutput values.
@@ -195,7 +153,7 @@ type KubernetesNodePoolArrayInput interface {
 type KubernetesNodePoolArray []KubernetesNodePoolInput
 
 func (KubernetesNodePoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*KubernetesNodePool)(nil))
+	return reflect.TypeOf((*[]*KubernetesNodePool)(nil)).Elem()
 }
 
 func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutput() KubernetesNodePoolArrayOutput {
@@ -220,7 +178,7 @@ type KubernetesNodePoolMapInput interface {
 type KubernetesNodePoolMap map[string]KubernetesNodePoolInput
 
 func (KubernetesNodePoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*KubernetesNodePool)(nil))
+	return reflect.TypeOf((*map[string]*KubernetesNodePool)(nil)).Elem()
 }
 
 func (i KubernetesNodePoolMap) ToKubernetesNodePoolMapOutput() KubernetesNodePoolMapOutput {
@@ -231,12 +189,10 @@ func (i KubernetesNodePoolMap) ToKubernetesNodePoolMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolMapOutput)
 }
 
-type KubernetesNodePoolOutput struct {
-	*pulumi.OutputState
-}
+type KubernetesNodePoolOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesNodePool)(nil))
+	return reflect.TypeOf((**KubernetesNodePool)(nil)).Elem()
 }
 
 func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutput() KubernetesNodePoolOutput {
@@ -247,36 +203,10 @@ func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutputWithContext(ctx cont
 	return o
 }
 
-func (o KubernetesNodePoolOutput) ToKubernetesNodePoolPtrOutput() KubernetesNodePoolPtrOutput {
-	return o.ToKubernetesNodePoolPtrOutputWithContext(context.Background())
-}
-
-func (o KubernetesNodePoolOutput) ToKubernetesNodePoolPtrOutputWithContext(ctx context.Context) KubernetesNodePoolPtrOutput {
-	return o.ApplyT(func(v KubernetesNodePool) *KubernetesNodePool {
-		return &v
-	}).(KubernetesNodePoolPtrOutput)
-}
-
-type KubernetesNodePoolPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (KubernetesNodePoolPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesNodePool)(nil))
-}
-
-func (o KubernetesNodePoolPtrOutput) ToKubernetesNodePoolPtrOutput() KubernetesNodePoolPtrOutput {
-	return o
-}
-
-func (o KubernetesNodePoolPtrOutput) ToKubernetesNodePoolPtrOutputWithContext(ctx context.Context) KubernetesNodePoolPtrOutput {
-	return o
-}
-
 type KubernetesNodePoolArrayOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]KubernetesNodePool)(nil))
+	return reflect.TypeOf((*[]*KubernetesNodePool)(nil)).Elem()
 }
 
 func (o KubernetesNodePoolArrayOutput) ToKubernetesNodePoolArrayOutput() KubernetesNodePoolArrayOutput {
@@ -288,15 +218,15 @@ func (o KubernetesNodePoolArrayOutput) ToKubernetesNodePoolArrayOutputWithContex
 }
 
 func (o KubernetesNodePoolArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePool {
-		return vs[0].([]KubernetesNodePool)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesNodePool {
+		return vs[0].([]*KubernetesNodePool)[vs[1].(int)]
 	}).(KubernetesNodePoolOutput)
 }
 
 type KubernetesNodePoolMapOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]KubernetesNodePool)(nil))
+	return reflect.TypeOf((*map[string]*KubernetesNodePool)(nil)).Elem()
 }
 
 func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutput() KubernetesNodePoolMapOutput {
@@ -308,14 +238,16 @@ func (o KubernetesNodePoolMapOutput) ToKubernetesNodePoolMapOutputWithContext(ct
 }
 
 func (o KubernetesNodePoolMapOutput) MapIndex(k pulumi.StringInput) KubernetesNodePoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) KubernetesNodePool {
-		return vs[0].(map[string]KubernetesNodePool)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *KubernetesNodePool {
+		return vs[0].(map[string]*KubernetesNodePool)[vs[1].(string)]
 	}).(KubernetesNodePoolOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolInput)(nil)).Elem(), &KubernetesNodePool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolArrayInput)(nil)).Elem(), KubernetesNodePoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolMapInput)(nil)).Elem(), KubernetesNodePoolMap{})
 	pulumi.RegisterOutputType(KubernetesNodePoolOutput{})
-	pulumi.RegisterOutputType(KubernetesNodePoolPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesNodePoolMapOutput{})
 }

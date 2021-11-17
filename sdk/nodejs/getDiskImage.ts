@@ -7,53 +7,6 @@ import * as utilities from "./utilities";
 
 /**
  * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
- *
- * ## Schema
- *
- * ### Optional
- *
- * - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
- * - **id** (String) The ID of this resource.
- * - **region** (String) If is used, all disk image will be from this region. Required if no region is set in provider.
- * - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
- *
- * ### Read-Only
- *
- * - **diskimages** (List of Object) (see below for nested schema)
- *
- * <a id="nestedblock--filter"></a>
- * ### Nested Schema for `filter`
- *
- * Required:
- *
- * - **key** (String) Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
- * - **values** (List of String) Only retrieves `diskimages` which keys has value that matches one of the values provided here
- *
- * Optional:
- *
- * - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
- * - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
- *
- * <a id="nestedblock--sort"></a>
- * ### Nested Schema for `sort`
- *
- * Required:
- *
- * - **key** (String) Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
- *
- * Optional:
- *
- * - **direction** (String) The sort direction. This may be either `asc` or `desc`.
- *
- * <a id="nestedatt--diskimages"></a>
- * ### Nested Schema for `diskimages`
- *
- * Read-Only:
- *
- * - **id** (String)
- * - **label** (String)
- * - **name** (String)
- * - **version** (String)
  */
 export function getDiskImage(args?: GetDiskImageArgs, opts?: pulumi.InvokeOptions): Promise<GetDiskImageResult> {
     args = args || {};
@@ -75,9 +28,18 @@ export function getDiskImage(args?: GetDiskImageArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getDiskImage.
  */
 export interface GetDiskImageArgs {
-    readonly filters?: inputs.GetDiskImageFilter[];
-    readonly region?: string;
-    readonly sorts?: inputs.GetDiskImageSort[];
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: inputs.GetDiskImageFilter[];
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
+    region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: inputs.GetDiskImageSort[];
 }
 
 /**
@@ -85,11 +47,42 @@ export interface GetDiskImageArgs {
  */
 export interface GetDiskImageResult {
     readonly diskimages: outputs.GetDiskImageDiskimage[];
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetDiskImageFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
     readonly region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetDiskImageSort[];
+}
+
+export function getDiskImageOutput(args?: GetDiskImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDiskImageResult> {
+    return pulumi.output(args).apply(a => getDiskImage(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getDiskImage.
+ */
+export interface GetDiskImageOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.GetDiskImageFilterArgs>[]>;
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
+    region?: pulumi.Input<string>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: pulumi.Input<pulumi.Input<inputs.GetDiskImageSortArgs>[]>;
 }

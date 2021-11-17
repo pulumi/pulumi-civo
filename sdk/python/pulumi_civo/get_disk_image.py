@@ -14,6 +14,7 @@ __all__ = [
     'GetDiskImageResult',
     'AwaitableGetDiskImageResult',
     'get_disk_image',
+    'get_disk_image_output',
 ]
 
 @pulumi.output_type
@@ -46,6 +47,9 @@ class GetDiskImageResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetDiskImageFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -59,11 +63,17 @@ class GetDiskImageResult:
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        If is used, all disk image will be from this region. Required if no region is set in provider.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetDiskImageSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -87,52 +97,10 @@ def get_disk_image(filters: Optional[Sequence[pulumi.InputType['GetDiskImageFilt
     """
     Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
 
-    ## Schema
 
-    ### Optional
-
-    - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-    - **id** (String) The ID of this resource.
-    - **region** (String) If is used, all disk image will be from this region. Required if no region is set in provider.
-    - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-
-    ### Read-Only
-
-    - **diskimages** (List of Object) (see below for nested schema)
-
-    <a id="nestedblock--filter"></a>
-    ### Nested Schema for `filter`
-
-    Required:
-
-    - **key** (String) Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-    - **values** (List of String) Only retrieves `diskimages` which keys has value that matches one of the values provided here
-
-    Optional:
-
-    - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-    - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-
-    <a id="nestedblock--sort"></a>
-    ### Nested Schema for `sort`
-
-    Required:
-
-    - **key** (String) Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-
-    Optional:
-
-    - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-
-    <a id="nestedatt--diskimages"></a>
-    ### Nested Schema for `diskimages`
-
-    Read-Only:
-
-    - **id** (String)
-    - **label** (String)
-    - **name** (String)
-    - **version** (String)
+    :param Sequence[pulumi.InputType['GetDiskImageFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If is used, all disk image will be from this region. Required if no region is set in provider.
+    :param Sequence[pulumi.InputType['GetDiskImageSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -150,3 +118,19 @@ def get_disk_image(filters: Optional[Sequence[pulumi.InputType['GetDiskImageFilt
         id=__ret__.id,
         region=__ret__.region,
         sorts=__ret__.sorts)
+
+
+@_utilities.lift_output_func(get_disk_image)
+def get_disk_image_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDiskImageFilterArgs']]]]] = None,
+                          region: Optional[pulumi.Input[Optional[str]]] = None,
+                          sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDiskImageSortArgs']]]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDiskImageResult]:
+    """
+    Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetDiskImageFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If is used, all disk image will be from this region. Required if no region is set in provider.
+    :param Sequence[pulumi.InputType['GetDiskImageSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    """
+    ...

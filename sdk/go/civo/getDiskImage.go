@@ -4,57 +4,13 @@
 package civo
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
-//
-// ## Schema
-//
-// ### Optional
-//
-// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-// - **id** (String) The ID of this resource.
-// - **region** (String) If is used, all disk image will be from this region. Required if no region is set in provider.
-// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-//
-// ### Read-Only
-//
-// - **diskimages** (List of Object) (see below for nested schema)
-//
-// <a id="nestedblock--filter"></a>
-// ### Nested Schema for `filter`
-//
-// Required:
-//
-// - **key** (String) Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-// - **values** (List of String) Only retrieves `diskimages` which keys has value that matches one of the values provided here
-//
-// Optional:
-//
-// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-//
-// <a id="nestedblock--sort"></a>
-// ### Nested Schema for `sort`
-//
-// Required:
-//
-// - **key** (String) Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-//
-// Optional:
-//
-// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-//
-// <a id="nestedatt--diskimages"></a>
-// ### Nested Schema for `diskimages`
-//
-// Read-Only:
-//
-// - **id** (String)
-// - **label** (String)
-// - **name** (String)
-// - **version** (String)
 func GetDiskImage(ctx *pulumi.Context, args *GetDiskImageArgs, opts ...pulumi.InvokeOption) (*GetDiskImageResult, error) {
 	var rv GetDiskImageResult
 	err := ctx.Invoke("civo:index/getDiskImage:getDiskImage", args, &rv, opts...)
@@ -66,17 +22,89 @@ func GetDiskImage(ctx *pulumi.Context, args *GetDiskImageArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getDiskImage.
 type GetDiskImageArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetDiskImageFilter `pulumi:"filters"`
-	Region  *string              `pulumi:"region"`
-	Sorts   []GetDiskImageSort   `pulumi:"sorts"`
+	// If is used, all disk image will be from this region. Required if no region is set in provider.
+	Region *string `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetDiskImageSort `pulumi:"sorts"`
 }
 
 // A collection of values returned by getDiskImage.
 type GetDiskImageResult struct {
 	Diskimages []GetDiskImageDiskimage `pulumi:"diskimages"`
-	Filters    []GetDiskImageFilter    `pulumi:"filters"`
+	// One or more key/value pairs on which to filter results
+	Filters []GetDiskImageFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string             `pulumi:"id"`
-	Region *string            `pulumi:"region"`
-	Sorts  []GetDiskImageSort `pulumi:"sorts"`
+	Id string `pulumi:"id"`
+	// If is used, all disk image will be from this region. Required if no region is set in provider.
+	Region *string `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetDiskImageSort `pulumi:"sorts"`
+}
+
+func GetDiskImageOutput(ctx *pulumi.Context, args GetDiskImageOutputArgs, opts ...pulumi.InvokeOption) GetDiskImageResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetDiskImageResult, error) {
+			args := v.(GetDiskImageArgs)
+			r, err := GetDiskImage(ctx, &args, opts...)
+			return *r, err
+		}).(GetDiskImageResultOutput)
+}
+
+// A collection of arguments for invoking getDiskImage.
+type GetDiskImageOutputArgs struct {
+	// One or more key/value pairs on which to filter results
+	Filters GetDiskImageFilterArrayInput `pulumi:"filters"`
+	// If is used, all disk image will be from this region. Required if no region is set in provider.
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts GetDiskImageSortArrayInput `pulumi:"sorts"`
+}
+
+func (GetDiskImageOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getDiskImage.
+type GetDiskImageResultOutput struct{ *pulumi.OutputState }
+
+func (GetDiskImageResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskImageResult)(nil)).Elem()
+}
+
+func (o GetDiskImageResultOutput) ToGetDiskImageResultOutput() GetDiskImageResultOutput {
+	return o
+}
+
+func (o GetDiskImageResultOutput) ToGetDiskImageResultOutputWithContext(ctx context.Context) GetDiskImageResultOutput {
+	return o
+}
+
+func (o GetDiskImageResultOutput) Diskimages() GetDiskImageDiskimageArrayOutput {
+	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageDiskimage { return v.Diskimages }).(GetDiskImageDiskimageArrayOutput)
+}
+
+// One or more key/value pairs on which to filter results
+func (o GetDiskImageResultOutput) Filters() GetDiskImageFilterArrayOutput {
+	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageFilter { return v.Filters }).(GetDiskImageFilterArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetDiskImageResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDiskImageResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// If is used, all disk image will be from this region. Required if no region is set in provider.
+func (o GetDiskImageResultOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDiskImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// One or more key/direction pairs on which to sort results
+func (o GetDiskImageResultOutput) Sorts() GetDiskImageSortArrayOutput {
+	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageSort { return v.Sorts }).(GetDiskImageSortArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetDiskImageResultOutput{})
 }

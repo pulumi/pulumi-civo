@@ -123,13 +123,15 @@ func (o KubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInpu
 }
 
 type KubernetesClusterInstance struct {
-	CpuCores *int     `pulumi:"cpuCores"`
-	DiskGb   *int     `pulumi:"diskGb"`
-	Hostname *string  `pulumi:"hostname"`
-	RamMb    *int     `pulumi:"ramMb"`
-	Size     *string  `pulumi:"size"`
-	Status   *string  `pulumi:"status"`
-	Tags     []string `pulumi:"tags"`
+	CpuCores *int    `pulumi:"cpuCores"`
+	DiskGb   *int    `pulumi:"diskGb"`
+	Hostname *string `pulumi:"hostname"`
+	RamMb    *int    `pulumi:"ramMb"`
+	Size     *string `pulumi:"size"`
+	// Status of the cluster
+	Status *string `pulumi:"status"`
+	// Space separated list of tags, to be used freely as required
+	Tags []string `pulumi:"tags"`
 }
 
 // KubernetesClusterInstanceInput is an input type that accepts KubernetesClusterInstanceArgs and KubernetesClusterInstanceOutput values.
@@ -144,13 +146,15 @@ type KubernetesClusterInstanceInput interface {
 }
 
 type KubernetesClusterInstanceArgs struct {
-	CpuCores pulumi.IntPtrInput      `pulumi:"cpuCores"`
-	DiskGb   pulumi.IntPtrInput      `pulumi:"diskGb"`
-	Hostname pulumi.StringPtrInput   `pulumi:"hostname"`
-	RamMb    pulumi.IntPtrInput      `pulumi:"ramMb"`
-	Size     pulumi.StringPtrInput   `pulumi:"size"`
-	Status   pulumi.StringPtrInput   `pulumi:"status"`
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores pulumi.IntPtrInput    `pulumi:"cpuCores"`
+	DiskGb   pulumi.IntPtrInput    `pulumi:"diskGb"`
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	RamMb    pulumi.IntPtrInput    `pulumi:"ramMb"`
+	Size     pulumi.StringPtrInput `pulumi:"size"`
+	// Status of the cluster
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Space separated list of tags, to be used freely as required
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (KubernetesClusterInstanceArgs) ElementType() reflect.Type {
@@ -224,10 +228,12 @@ func (o KubernetesClusterInstanceOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Status of the cluster
 func (o KubernetesClusterInstanceOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Space separated list of tags, to be used freely as required
 func (o KubernetesClusterInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -253,7 +259,8 @@ func (o KubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) Kubernete
 }
 
 type KubernetesClusterPool struct {
-	Count         *int                            `pulumi:"count"`
+	Count *int `pulumi:"count"`
+	// The ID of this resource.
 	Id            *string                         `pulumi:"id"`
 	InstanceNames []string                        `pulumi:"instanceNames"`
 	Instances     []KubernetesClusterPoolInstance `pulumi:"instances"`
@@ -272,7 +279,8 @@ type KubernetesClusterPoolInput interface {
 }
 
 type KubernetesClusterPoolArgs struct {
-	Count         pulumi.IntPtrInput                      `pulumi:"count"`
+	Count pulumi.IntPtrInput `pulumi:"count"`
+	// The ID of this resource.
 	Id            pulumi.StringPtrInput                   `pulumi:"id"`
 	InstanceNames pulumi.StringArrayInput                 `pulumi:"instanceNames"`
 	Instances     KubernetesClusterPoolInstanceArrayInput `pulumi:"instances"`
@@ -334,6 +342,7 @@ func (o KubernetesClusterPoolOutput) Count() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterPool) *int { return v.Count }).(pulumi.IntPtrOutput)
 }
 
+// The ID of this resource.
 func (o KubernetesClusterPoolOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterPool) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -371,13 +380,15 @@ func (o KubernetesClusterPoolArrayOutput) Index(i pulumi.IntInput) KubernetesClu
 }
 
 type KubernetesClusterPoolInstance struct {
-	CpuCores *int     `pulumi:"cpuCores"`
-	DiskGb   *int     `pulumi:"diskGb"`
-	Hostname *string  `pulumi:"hostname"`
-	RamMb    *int     `pulumi:"ramMb"`
-	Size     *string  `pulumi:"size"`
-	Status   *string  `pulumi:"status"`
-	Tags     []string `pulumi:"tags"`
+	CpuCores *int    `pulumi:"cpuCores"`
+	DiskGb   *int    `pulumi:"diskGb"`
+	Hostname *string `pulumi:"hostname"`
+	RamMb    *int    `pulumi:"ramMb"`
+	Size     *string `pulumi:"size"`
+	// Status of the cluster
+	Status *string `pulumi:"status"`
+	// Space separated list of tags, to be used freely as required
+	Tags []string `pulumi:"tags"`
 }
 
 // KubernetesClusterPoolInstanceInput is an input type that accepts KubernetesClusterPoolInstanceArgs and KubernetesClusterPoolInstanceOutput values.
@@ -392,13 +403,15 @@ type KubernetesClusterPoolInstanceInput interface {
 }
 
 type KubernetesClusterPoolInstanceArgs struct {
-	CpuCores pulumi.IntPtrInput      `pulumi:"cpuCores"`
-	DiskGb   pulumi.IntPtrInput      `pulumi:"diskGb"`
-	Hostname pulumi.StringPtrInput   `pulumi:"hostname"`
-	RamMb    pulumi.IntPtrInput      `pulumi:"ramMb"`
-	Size     pulumi.StringPtrInput   `pulumi:"size"`
-	Status   pulumi.StringPtrInput   `pulumi:"status"`
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores pulumi.IntPtrInput    `pulumi:"cpuCores"`
+	DiskGb   pulumi.IntPtrInput    `pulumi:"diskGb"`
+	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
+	RamMb    pulumi.IntPtrInput    `pulumi:"ramMb"`
+	Size     pulumi.StringPtrInput `pulumi:"size"`
+	// Status of the cluster
+	Status pulumi.StringPtrInput `pulumi:"status"`
+	// Space separated list of tags, to be used freely as required
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (KubernetesClusterPoolInstanceArgs) ElementType() reflect.Type {
@@ -472,10 +485,12 @@ func (o KubernetesClusterPoolInstanceOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterPoolInstance) *string { return v.Size }).(pulumi.StringPtrOutput)
 }
 
+// Status of the cluster
 func (o KubernetesClusterPoolInstanceOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterPoolInstance) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
 
+// Space separated list of tags, to be used freely as required
 func (o KubernetesClusterPoolInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterPoolInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -501,6 +516,7 @@ func (o KubernetesClusterPoolInstanceArrayOutput) Index(i pulumi.IntInput) Kuber
 }
 
 type GetDiskImageDiskimage struct {
+	// The ID of this resource.
 	Id      string `pulumi:"id"`
 	Label   string `pulumi:"label"`
 	Name    string `pulumi:"name"`
@@ -519,6 +535,7 @@ type GetDiskImageDiskimageInput interface {
 }
 
 type GetDiskImageDiskimageArgs struct {
+	// The ID of this resource.
 	Id      pulumi.StringInput `pulumi:"id"`
 	Label   pulumi.StringInput `pulumi:"label"`
 	Name    pulumi.StringInput `pulumi:"name"`
@@ -576,6 +593,7 @@ func (o GetDiskImageDiskimageOutput) ToGetDiskImageDiskimageOutputWithContext(ct
 	return o
 }
 
+// The ID of this resource.
 func (o GetDiskImageDiskimageOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -613,10 +631,14 @@ func (o GetDiskImageDiskimageArrayOutput) Index(i pulumi.IntInput) GetDiskImageD
 }
 
 type GetDiskImageFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `diskimages` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetDiskImageFilterInput is an input type that accepts GetDiskImageFilterArgs and GetDiskImageFilterOutput values.
@@ -631,10 +653,14 @@ type GetDiskImageFilterInput interface {
 }
 
 type GetDiskImageFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `diskimages` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetDiskImageFilterArgs) ElementType() reflect.Type {
@@ -688,18 +714,22 @@ func (o GetDiskImageFilterOutput) ToGetDiskImageFilterOutputWithContext(ctx cont
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetDiskImageFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetDiskImageFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
 func (o GetDiskImageFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDiskImageFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetDiskImageFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDiskImageFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `diskimages` which keys has value that matches one of the values provided here
 func (o GetDiskImageFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetDiskImageFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -725,8 +755,10 @@ func (o GetDiskImageFilterArrayOutput) Index(i pulumi.IntInput) GetDiskImageFilt
 }
 
 type GetDiskImageSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key string `pulumi:"key"`
 }
 
 // GetDiskImageSortInput is an input type that accepts GetDiskImageSortArgs and GetDiskImageSortOutput values.
@@ -741,8 +773,10 @@ type GetDiskImageSortInput interface {
 }
 
 type GetDiskImageSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetDiskImageSortArgs) ElementType() reflect.Type {
@@ -796,10 +830,12 @@ func (o GetDiskImageSortOutput) ToGetDiskImageSortOutputWithContext(ctx context.
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetDiskImageSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDiskImageSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
 func (o GetDiskImageSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDiskImageSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -825,10 +861,14 @@ func (o GetDiskImageSortArrayOutput) Index(i pulumi.IntInput) GetDiskImageSortOu
 }
 
 type GetInstancesFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `instances` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetInstancesFilterInput is an input type that accepts GetInstancesFilterArgs and GetInstancesFilterOutput values.
@@ -843,10 +883,14 @@ type GetInstancesFilterInput interface {
 }
 
 type GetInstancesFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `instances` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetInstancesFilterArgs) ElementType() reflect.Type {
@@ -900,18 +944,22 @@ func (o GetInstancesFilterOutput) ToGetInstancesFilterOutputWithContext(ctx cont
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetInstancesFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetInstancesFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
 func (o GetInstancesFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetInstancesFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `instances` which keys has value that matches one of the values provided here
 func (o GetInstancesFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstancesFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -937,28 +985,30 @@ func (o GetInstancesFilterArrayOutput) Index(i pulumi.IntInput) GetInstancesFilt
 }
 
 type GetInstancesInstance struct {
-	CpuCores        int      `pulumi:"cpuCores"`
-	CreatedAt       string   `pulumi:"createdAt"`
-	DiskGb          int      `pulumi:"diskGb"`
-	FirewallId      string   `pulumi:"firewallId"`
-	Hostname        string   `pulumi:"hostname"`
-	Id              string   `pulumi:"id"`
-	InitialPassword string   `pulumi:"initialPassword"`
-	InitialUser     string   `pulumi:"initialUser"`
-	NetworkId       string   `pulumi:"networkId"`
-	Notes           string   `pulumi:"notes"`
-	PrivateIp       string   `pulumi:"privateIp"`
-	PseudoIp        string   `pulumi:"pseudoIp"`
-	PublicIp        string   `pulumi:"publicIp"`
-	RamMb           int      `pulumi:"ramMb"`
-	Region          string   `pulumi:"region"`
-	ReverseDns      string   `pulumi:"reverseDns"`
-	Script          string   `pulumi:"script"`
-	Size            string   `pulumi:"size"`
-	SshkeyId        string   `pulumi:"sshkeyId"`
-	Status          string   `pulumi:"status"`
-	Tags            []string `pulumi:"tags"`
-	Template        string   `pulumi:"template"`
+	CpuCores   int    `pulumi:"cpuCores"`
+	CreatedAt  string `pulumi:"createdAt"`
+	DiskGb     int    `pulumi:"diskGb"`
+	FirewallId string `pulumi:"firewallId"`
+	Hostname   string `pulumi:"hostname"`
+	// The ID of this resource.
+	Id              string `pulumi:"id"`
+	InitialPassword string `pulumi:"initialPassword"`
+	InitialUser     string `pulumi:"initialUser"`
+	NetworkId       string `pulumi:"networkId"`
+	Notes           string `pulumi:"notes"`
+	PrivateIp       string `pulumi:"privateIp"`
+	PseudoIp        string `pulumi:"pseudoIp"`
+	PublicIp        string `pulumi:"publicIp"`
+	RamMb           int    `pulumi:"ramMb"`
+	// If used, all instances will be from the provided region
+	Region     string   `pulumi:"region"`
+	ReverseDns string   `pulumi:"reverseDns"`
+	Script     string   `pulumi:"script"`
+	Size       string   `pulumi:"size"`
+	SshkeyId   string   `pulumi:"sshkeyId"`
+	Status     string   `pulumi:"status"`
+	Tags       []string `pulumi:"tags"`
+	Template   string   `pulumi:"template"`
 }
 
 // GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
@@ -973,28 +1023,30 @@ type GetInstancesInstanceInput interface {
 }
 
 type GetInstancesInstanceArgs struct {
-	CpuCores        pulumi.IntInput         `pulumi:"cpuCores"`
-	CreatedAt       pulumi.StringInput      `pulumi:"createdAt"`
-	DiskGb          pulumi.IntInput         `pulumi:"diskGb"`
-	FirewallId      pulumi.StringInput      `pulumi:"firewallId"`
-	Hostname        pulumi.StringInput      `pulumi:"hostname"`
-	Id              pulumi.StringInput      `pulumi:"id"`
-	InitialPassword pulumi.StringInput      `pulumi:"initialPassword"`
-	InitialUser     pulumi.StringInput      `pulumi:"initialUser"`
-	NetworkId       pulumi.StringInput      `pulumi:"networkId"`
-	Notes           pulumi.StringInput      `pulumi:"notes"`
-	PrivateIp       pulumi.StringInput      `pulumi:"privateIp"`
-	PseudoIp        pulumi.StringInput      `pulumi:"pseudoIp"`
-	PublicIp        pulumi.StringInput      `pulumi:"publicIp"`
-	RamMb           pulumi.IntInput         `pulumi:"ramMb"`
-	Region          pulumi.StringInput      `pulumi:"region"`
-	ReverseDns      pulumi.StringInput      `pulumi:"reverseDns"`
-	Script          pulumi.StringInput      `pulumi:"script"`
-	Size            pulumi.StringInput      `pulumi:"size"`
-	SshkeyId        pulumi.StringInput      `pulumi:"sshkeyId"`
-	Status          pulumi.StringInput      `pulumi:"status"`
-	Tags            pulumi.StringArrayInput `pulumi:"tags"`
-	Template        pulumi.StringInput      `pulumi:"template"`
+	CpuCores   pulumi.IntInput    `pulumi:"cpuCores"`
+	CreatedAt  pulumi.StringInput `pulumi:"createdAt"`
+	DiskGb     pulumi.IntInput    `pulumi:"diskGb"`
+	FirewallId pulumi.StringInput `pulumi:"firewallId"`
+	Hostname   pulumi.StringInput `pulumi:"hostname"`
+	// The ID of this resource.
+	Id              pulumi.StringInput `pulumi:"id"`
+	InitialPassword pulumi.StringInput `pulumi:"initialPassword"`
+	InitialUser     pulumi.StringInput `pulumi:"initialUser"`
+	NetworkId       pulumi.StringInput `pulumi:"networkId"`
+	Notes           pulumi.StringInput `pulumi:"notes"`
+	PrivateIp       pulumi.StringInput `pulumi:"privateIp"`
+	PseudoIp        pulumi.StringInput `pulumi:"pseudoIp"`
+	PublicIp        pulumi.StringInput `pulumi:"publicIp"`
+	RamMb           pulumi.IntInput    `pulumi:"ramMb"`
+	// If used, all instances will be from the provided region
+	Region     pulumi.StringInput      `pulumi:"region"`
+	ReverseDns pulumi.StringInput      `pulumi:"reverseDns"`
+	Script     pulumi.StringInput      `pulumi:"script"`
+	Size       pulumi.StringInput      `pulumi:"size"`
+	SshkeyId   pulumi.StringInput      `pulumi:"sshkeyId"`
+	Status     pulumi.StringInput      `pulumi:"status"`
+	Tags       pulumi.StringArrayInput `pulumi:"tags"`
+	Template   pulumi.StringInput      `pulumi:"template"`
 }
 
 func (GetInstancesInstanceArgs) ElementType() reflect.Type {
@@ -1068,6 +1120,7 @@ func (o GetInstancesInstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
+// The ID of this resource.
 func (o GetInstancesInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1104,6 +1157,7 @@ func (o GetInstancesInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
+// If used, all instances will be from the provided region
 func (o GetInstancesInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -1157,10 +1211,14 @@ func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesIn
 }
 
 type GetInstancesSizeFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `sizes` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetInstancesSizeFilterInput is an input type that accepts GetInstancesSizeFilterArgs and GetInstancesSizeFilterOutput values.
@@ -1175,10 +1233,14 @@ type GetInstancesSizeFilterInput interface {
 }
 
 type GetInstancesSizeFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `sizes` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetInstancesSizeFilterArgs) ElementType() reflect.Type {
@@ -1232,18 +1294,22 @@ func (o GetInstancesSizeFilterOutput) ToGetInstancesSizeFilterOutputWithContext(
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetInstancesSizeFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetInstancesSizeFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
 func (o GetInstancesSizeFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSizeFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetInstancesSizeFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesSizeFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `sizes` which keys has value that matches one of the values provided here
 func (o GetInstancesSizeFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstancesSizeFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -1399,8 +1465,10 @@ func (o GetInstancesSizeSizeArrayOutput) Index(i pulumi.IntInput) GetInstancesSi
 }
 
 type GetInstancesSizeSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key string `pulumi:"key"`
 }
 
 // GetInstancesSizeSortInput is an input type that accepts GetInstancesSizeSortArgs and GetInstancesSizeSortOutput values.
@@ -1415,8 +1483,10 @@ type GetInstancesSizeSortInput interface {
 }
 
 type GetInstancesSizeSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetInstancesSizeSortArgs) ElementType() reflect.Type {
@@ -1470,10 +1540,12 @@ func (o GetInstancesSizeSortOutput) ToGetInstancesSizeSortOutputWithContext(ctx 
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetInstancesSizeSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesSizeSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
 func (o GetInstancesSizeSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSizeSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1499,8 +1571,10 @@ func (o GetInstancesSizeSortArrayOutput) Index(i pulumi.IntInput) GetInstancesSi
 }
 
 type GetInstancesSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+	Key string `pulumi:"key"`
 }
 
 // GetInstancesSortInput is an input type that accepts GetInstancesSortArgs and GetInstancesSortOutput values.
@@ -1515,8 +1589,10 @@ type GetInstancesSortInput interface {
 }
 
 type GetInstancesSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetInstancesSortArgs) ElementType() reflect.Type {
@@ -1570,10 +1646,12 @@ func (o GetInstancesSortOutput) ToGetInstancesSortOutputWithContext(ctx context.
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetInstancesSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
 func (o GetInstancesSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -1711,13 +1789,15 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntI
 }
 
 type GetKubernetesClusterInstance struct {
-	CpuCores int      `pulumi:"cpuCores"`
-	DiskGb   int      `pulumi:"diskGb"`
-	Hostname string   `pulumi:"hostname"`
-	RamMb    int      `pulumi:"ramMb"`
-	Size     string   `pulumi:"size"`
-	Status   string   `pulumi:"status"`
-	Tags     []string `pulumi:"tags"`
+	CpuCores int    `pulumi:"cpuCores"`
+	DiskGb   int    `pulumi:"diskGb"`
+	Hostname string `pulumi:"hostname"`
+	RamMb    int    `pulumi:"ramMb"`
+	Size     string `pulumi:"size"`
+	// The status of Kubernetes cluster
+	Status string `pulumi:"status"`
+	// A list of tags
+	Tags []string `pulumi:"tags"`
 }
 
 // GetKubernetesClusterInstanceInput is an input type that accepts GetKubernetesClusterInstanceArgs and GetKubernetesClusterInstanceOutput values.
@@ -1732,13 +1812,15 @@ type GetKubernetesClusterInstanceInput interface {
 }
 
 type GetKubernetesClusterInstanceArgs struct {
-	CpuCores pulumi.IntInput         `pulumi:"cpuCores"`
-	DiskGb   pulumi.IntInput         `pulumi:"diskGb"`
-	Hostname pulumi.StringInput      `pulumi:"hostname"`
-	RamMb    pulumi.IntInput         `pulumi:"ramMb"`
-	Size     pulumi.StringInput      `pulumi:"size"`
-	Status   pulumi.StringInput      `pulumi:"status"`
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores pulumi.IntInput    `pulumi:"cpuCores"`
+	DiskGb   pulumi.IntInput    `pulumi:"diskGb"`
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	RamMb    pulumi.IntInput    `pulumi:"ramMb"`
+	Size     pulumi.StringInput `pulumi:"size"`
+	// The status of Kubernetes cluster
+	Status pulumi.StringInput `pulumi:"status"`
+	// A list of tags
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetKubernetesClusterInstanceArgs) ElementType() reflect.Type {
@@ -1812,10 +1894,12 @@ func (o GetKubernetesClusterInstanceOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// The status of Kubernetes cluster
 func (o GetKubernetesClusterInstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// A list of tags
 func (o GetKubernetesClusterInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesClusterInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -1841,7 +1925,8 @@ func (o GetKubernetesClusterInstanceArrayOutput) Index(i pulumi.IntInput) GetKub
 }
 
 type GetKubernetesClusterPool struct {
-	Count         int                                `pulumi:"count"`
+	Count int `pulumi:"count"`
+	// The ID of this resource.
 	Id            string                             `pulumi:"id"`
 	InstanceNames []string                           `pulumi:"instanceNames"`
 	Instances     []GetKubernetesClusterPoolInstance `pulumi:"instances"`
@@ -1860,7 +1945,8 @@ type GetKubernetesClusterPoolInput interface {
 }
 
 type GetKubernetesClusterPoolArgs struct {
-	Count         pulumi.IntInput                            `pulumi:"count"`
+	Count pulumi.IntInput `pulumi:"count"`
+	// The ID of this resource.
 	Id            pulumi.StringInput                         `pulumi:"id"`
 	InstanceNames pulumi.StringArrayInput                    `pulumi:"instanceNames"`
 	Instances     GetKubernetesClusterPoolInstanceArrayInput `pulumi:"instances"`
@@ -1922,6 +2008,7 @@ func (o GetKubernetesClusterPoolOutput) Count() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPool) int { return v.Count }).(pulumi.IntOutput)
 }
 
+// The ID of this resource.
 func (o GetKubernetesClusterPoolOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPool) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1959,13 +2046,15 @@ func (o GetKubernetesClusterPoolArrayOutput) Index(i pulumi.IntInput) GetKuberne
 }
 
 type GetKubernetesClusterPoolInstance struct {
-	CpuCores int      `pulumi:"cpuCores"`
-	DiskGb   int      `pulumi:"diskGb"`
-	Hostname string   `pulumi:"hostname"`
-	RamMb    int      `pulumi:"ramMb"`
-	Size     string   `pulumi:"size"`
-	Status   string   `pulumi:"status"`
-	Tags     []string `pulumi:"tags"`
+	CpuCores int    `pulumi:"cpuCores"`
+	DiskGb   int    `pulumi:"diskGb"`
+	Hostname string `pulumi:"hostname"`
+	RamMb    int    `pulumi:"ramMb"`
+	Size     string `pulumi:"size"`
+	// The status of Kubernetes cluster
+	Status string `pulumi:"status"`
+	// A list of tags
+	Tags []string `pulumi:"tags"`
 }
 
 // GetKubernetesClusterPoolInstanceInput is an input type that accepts GetKubernetesClusterPoolInstanceArgs and GetKubernetesClusterPoolInstanceOutput values.
@@ -1980,13 +2069,15 @@ type GetKubernetesClusterPoolInstanceInput interface {
 }
 
 type GetKubernetesClusterPoolInstanceArgs struct {
-	CpuCores pulumi.IntInput         `pulumi:"cpuCores"`
-	DiskGb   pulumi.IntInput         `pulumi:"diskGb"`
-	Hostname pulumi.StringInput      `pulumi:"hostname"`
-	RamMb    pulumi.IntInput         `pulumi:"ramMb"`
-	Size     pulumi.StringInput      `pulumi:"size"`
-	Status   pulumi.StringInput      `pulumi:"status"`
-	Tags     pulumi.StringArrayInput `pulumi:"tags"`
+	CpuCores pulumi.IntInput    `pulumi:"cpuCores"`
+	DiskGb   pulumi.IntInput    `pulumi:"diskGb"`
+	Hostname pulumi.StringInput `pulumi:"hostname"`
+	RamMb    pulumi.IntInput    `pulumi:"ramMb"`
+	Size     pulumi.StringInput `pulumi:"size"`
+	// The status of Kubernetes cluster
+	Status pulumi.StringInput `pulumi:"status"`
+	// A list of tags
+	Tags pulumi.StringArrayInput `pulumi:"tags"`
 }
 
 func (GetKubernetesClusterPoolInstanceArgs) ElementType() reflect.Type {
@@ -2060,10 +2151,12 @@ func (o GetKubernetesClusterPoolInstanceOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// The status of Kubernetes cluster
 func (o GetKubernetesClusterPoolInstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// A list of tags
 func (o GetKubernetesClusterPoolInstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPoolInstance) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
@@ -2089,10 +2182,14 @@ func (o GetKubernetesClusterPoolInstanceArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetKubernetesVersionFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `versions` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetKubernetesVersionFilterInput is an input type that accepts GetKubernetesVersionFilterArgs and GetKubernetesVersionFilterOutput values.
@@ -2107,10 +2204,14 @@ type GetKubernetesVersionFilterInput interface {
 }
 
 type GetKubernetesVersionFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `versions` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetKubernetesVersionFilterArgs) ElementType() reflect.Type {
@@ -2164,18 +2265,22 @@ func (o GetKubernetesVersionFilterOutput) ToGetKubernetesVersionFilterOutputWith
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetKubernetesVersionFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
 func (o GetKubernetesVersionFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetKubernetesVersionFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `versions` which keys has value that matches one of the values provided here
 func (o GetKubernetesVersionFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesVersionFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -2201,8 +2306,10 @@ func (o GetKubernetesVersionFilterArrayOutput) Index(i pulumi.IntInput) GetKuber
 }
 
 type GetKubernetesVersionSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+	Key string `pulumi:"key"`
 }
 
 // GetKubernetesVersionSortInput is an input type that accepts GetKubernetesVersionSortArgs and GetKubernetesVersionSortOutput values.
@@ -2217,8 +2324,10 @@ type GetKubernetesVersionSortInput interface {
 }
 
 type GetKubernetesVersionSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetKubernetesVersionSortArgs) ElementType() reflect.Type {
@@ -2272,10 +2381,12 @@ func (o GetKubernetesVersionSortOutput) ToGetKubernetesVersionSortOutputWithCont
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetKubernetesVersionSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetKubernetesVersionSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
 func (o GetKubernetesVersionSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -2413,10 +2524,14 @@ func (o GetKubernetesVersionVersionArrayOutput) Index(i pulumi.IntInput) GetKube
 }
 
 type GetRegionFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `regions` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetRegionFilterInput is an input type that accepts GetRegionFilterArgs and GetRegionFilterOutput values.
@@ -2431,10 +2546,14 @@ type GetRegionFilterInput interface {
 }
 
 type GetRegionFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `regions` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetRegionFilterArgs) ElementType() reflect.Type {
@@ -2488,18 +2607,22 @@ func (o GetRegionFilterOutput) ToGetRegionFilterOutputWithContext(ctx context.Co
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetRegionFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetRegionFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
 func (o GetRegionFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegionFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetRegionFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetRegionFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `regions` which keys has value that matches one of the values provided here
 func (o GetRegionFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetRegionFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -2637,8 +2760,10 @@ func (o GetRegionRegionArrayOutput) Index(i pulumi.IntInput) GetRegionRegionOutp
 }
 
 type GetRegionSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+	Key string `pulumi:"key"`
 }
 
 // GetRegionSortInput is an input type that accepts GetRegionSortArgs and GetRegionSortOutput values.
@@ -2653,8 +2778,10 @@ type GetRegionSortInput interface {
 }
 
 type GetRegionSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetRegionSortArgs) ElementType() reflect.Type {
@@ -2708,10 +2835,12 @@ func (o GetRegionSortOutput) ToGetRegionSortOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetRegionSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetRegionSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
 func (o GetRegionSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetRegionSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -2737,10 +2866,14 @@ func (o GetRegionSortArrayOutput) Index(i pulumi.IntInput) GetRegionSortOutput {
 }
 
 type GetTemplateFilter struct {
-	All     *bool    `pulumi:"all"`
-	Key     string   `pulumi:"key"`
-	MatchBy *string  `pulumi:"matchBy"`
-	Values  []string `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `templates` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
 }
 
 // GetTemplateFilterInput is an input type that accepts GetTemplateFilterArgs and GetTemplateFilterOutput values.
@@ -2755,10 +2888,14 @@ type GetTemplateFilterInput interface {
 }
 
 type GetTemplateFilterArgs struct {
-	All     pulumi.BoolPtrInput     `pulumi:"all"`
-	Key     pulumi.StringInput      `pulumi:"key"`
-	MatchBy pulumi.StringPtrInput   `pulumi:"matchBy"`
-	Values  pulumi.StringArrayInput `pulumi:"values"`
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `templates` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
 }
 
 func (GetTemplateFilterArgs) ElementType() reflect.Type {
@@ -2812,18 +2949,22 @@ func (o GetTemplateFilterOutput) ToGetTemplateFilterOutputWithContext(ctx contex
 	return o
 }
 
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 func (o GetTemplateFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetTemplateFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
+// Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
 func (o GetTemplateFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateFilter) string { return v.Key }).(pulumi.StringOutput)
 }
 
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 func (o GetTemplateFilterOutput) MatchBy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTemplateFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
 }
 
+// Only retrieves `templates` which keys has value that matches one of the values provided here
 func (o GetTemplateFilterOutput) Values() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetTemplateFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
 }
@@ -2849,8 +2990,10 @@ func (o GetTemplateFilterArrayOutput) Index(i pulumi.IntInput) GetTemplateFilter
 }
 
 type GetTemplateSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	Key       string  `pulumi:"key"`
+	// Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key string `pulumi:"key"`
 }
 
 // GetTemplateSortInput is an input type that accepts GetTemplateSortArgs and GetTemplateSortOutput values.
@@ -2865,8 +3008,10 @@ type GetTemplateSortInput interface {
 }
 
 type GetTemplateSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	Key       pulumi.StringInput    `pulumi:"key"`
+	// Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
 }
 
 func (GetTemplateSortArgs) ElementType() reflect.Type {
@@ -2920,10 +3065,12 @@ func (o GetTemplateSortOutput) ToGetTemplateSortOutputWithContext(ctx context.Co
 	return o
 }
 
+// The sort direction. This may be either `asc` or `desc`.
 func (o GetTemplateSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetTemplateSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
+// Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
 func (o GetTemplateSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateSort) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -2949,6 +3096,7 @@ func (o GetTemplateSortArrayOutput) Index(i pulumi.IntInput) GetTemplateSortOutp
 }
 
 type GetTemplateTemplate struct {
+	// The ID of this resource.
 	Id      string `pulumi:"id"`
 	Label   string `pulumi:"label"`
 	Name    string `pulumi:"name"`
@@ -2967,6 +3115,7 @@ type GetTemplateTemplateInput interface {
 }
 
 type GetTemplateTemplateArgs struct {
+	// The ID of this resource.
 	Id      pulumi.StringInput `pulumi:"id"`
 	Label   pulumi.StringInput `pulumi:"label"`
 	Name    pulumi.StringInput `pulumi:"name"`
@@ -3024,6 +3173,7 @@ func (o GetTemplateTemplateOutput) ToGetTemplateTemplateOutputWithContext(ctx co
 	return o
 }
 
+// The ID of this resource.
 func (o GetTemplateTemplateOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetTemplateTemplate) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -3061,6 +3211,58 @@ func (o GetTemplateTemplateArrayOutput) Index(i pulumi.IntInput) GetTemplateTemp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstanceInput)(nil)).Elem(), KubernetesClusterInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstanceArrayInput)(nil)).Elem(), KubernetesClusterInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolInput)(nil)).Elem(), KubernetesClusterPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolArrayInput)(nil)).Elem(), KubernetesClusterPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolInstanceInput)(nil)).Elem(), KubernetesClusterPoolInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolInstanceArrayInput)(nil)).Elem(), KubernetesClusterPoolInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageDiskimageInput)(nil)).Elem(), GetDiskImageDiskimageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageDiskimageArrayInput)(nil)).Elem(), GetDiskImageDiskimageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageFilterInput)(nil)).Elem(), GetDiskImageFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageFilterArrayInput)(nil)).Elem(), GetDiskImageFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageSortInput)(nil)).Elem(), GetDiskImageSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageSortArrayInput)(nil)).Elem(), GetDiskImageSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesFilterInput)(nil)).Elem(), GetInstancesFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesFilterArrayInput)(nil)).Elem(), GetInstancesFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeFilterInput)(nil)).Elem(), GetInstancesSizeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeFilterArrayInput)(nil)).Elem(), GetInstancesSizeFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSizeInput)(nil)).Elem(), GetInstancesSizeSizeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSizeArrayInput)(nil)).Elem(), GetInstancesSizeSizeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSortInput)(nil)).Elem(), GetInstancesSizeSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSortArrayInput)(nil)).Elem(), GetInstancesSizeSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSortInput)(nil)).Elem(), GetInstancesSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSortArrayInput)(nil)).Elem(), GetInstancesSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterInstalledApplicationInput)(nil)).Elem(), GetKubernetesClusterInstalledApplicationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), GetKubernetesClusterInstalledApplicationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterInstanceInput)(nil)).Elem(), GetKubernetesClusterInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterInstanceArrayInput)(nil)).Elem(), GetKubernetesClusterInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterPoolInput)(nil)).Elem(), GetKubernetesClusterPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterPoolArrayInput)(nil)).Elem(), GetKubernetesClusterPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterPoolInstanceInput)(nil)).Elem(), GetKubernetesClusterPoolInstanceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterPoolInstanceArrayInput)(nil)).Elem(), GetKubernetesClusterPoolInstanceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionFilterInput)(nil)).Elem(), GetKubernetesVersionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionFilterArrayInput)(nil)).Elem(), GetKubernetesVersionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionSortInput)(nil)).Elem(), GetKubernetesVersionSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionSortArrayInput)(nil)).Elem(), GetKubernetesVersionSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionVersionInput)(nil)).Elem(), GetKubernetesVersionVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionVersionArrayInput)(nil)).Elem(), GetKubernetesVersionVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionFilterInput)(nil)).Elem(), GetRegionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionFilterArrayInput)(nil)).Elem(), GetRegionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionRegionInput)(nil)).Elem(), GetRegionRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionRegionArrayInput)(nil)).Elem(), GetRegionRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionSortInput)(nil)).Elem(), GetRegionSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionSortArrayInput)(nil)).Elem(), GetRegionSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateFilterInput)(nil)).Elem(), GetTemplateFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateFilterArrayInput)(nil)).Elem(), GetTemplateFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateSortInput)(nil)).Elem(), GetTemplateSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateSortArrayInput)(nil)).Elem(), GetTemplateSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateTemplateInput)(nil)).Elem(), GetTemplateTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTemplateTemplateArrayInput)(nil)).Elem(), GetTemplateTemplateArray{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstanceOutput{})

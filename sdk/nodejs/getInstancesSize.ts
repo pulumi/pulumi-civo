@@ -7,55 +7,6 @@ import * as utilities from "./utilities";
 
 /**
  * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
- *
- * ## Schema
- *
- * ### Optional
- *
- * - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
- * - **id** (String) The ID of this resource.
- * - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
- *
- * ### Read-Only
- *
- * - **sizes** (List of Object) (see below for nested schema)
- *
- * <a id="nestedblock--filter"></a>
- * ### Nested Schema for `filter`
- *
- * Required:
- *
- * - **key** (String) Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
- * - **values** (List of String) Only retrieves `sizes` which keys has value that matches one of the values provided here
- *
- * Optional:
- *
- * - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
- * - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
- *
- * <a id="nestedblock--sort"></a>
- * ### Nested Schema for `sort`
- *
- * Required:
- *
- * - **key** (String) Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
- *
- * Optional:
- *
- * - **direction** (String) The sort direction. This may be either `asc` or `desc`.
- *
- * <a id="nestedatt--sizes"></a>
- * ### Nested Schema for `sizes`
- *
- * Read-Only:
- *
- * - **cpu** (Number)
- * - **description** (String)
- * - **disk** (Number)
- * - **name** (String)
- * - **ram** (Number)
- * - **selectable** (Boolean)
- * - **type** (String)
  */
 export function getInstancesSize(args?: GetInstancesSizeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancesSizeResult> {
     args = args || {};
@@ -76,19 +27,49 @@ export function getInstancesSize(args?: GetInstancesSizeArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getInstancesSize.
  */
 export interface GetInstancesSizeArgs {
-    readonly filters?: inputs.GetInstancesSizeFilter[];
-    readonly sorts?: inputs.GetInstancesSizeSort[];
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: inputs.GetInstancesSizeFilter[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: inputs.GetInstancesSizeSort[];
 }
 
 /**
  * A collection of values returned by getInstancesSize.
  */
 export interface GetInstancesSizeResult {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetInstancesSizeFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly sizes: outputs.GetInstancesSizeSize[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetInstancesSizeSort[];
+}
+
+export function getInstancesSizeOutput(args?: GetInstancesSizeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancesSizeResult> {
+    return pulumi.output(args).apply(a => getInstancesSize(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getInstancesSize.
+ */
+export interface GetInstancesSizeOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.GetInstancesSizeFilterArgs>[]>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: pulumi.Input<pulumi.Input<inputs.GetInstancesSizeSortArgs>[]>;
 }

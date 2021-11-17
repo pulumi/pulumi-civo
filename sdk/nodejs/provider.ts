@@ -25,6 +25,15 @@ export class Provider extends pulumi.ProviderResource {
         return obj['__pulumiType'] === Provider.__pulumiType;
     }
 
+    /**
+     * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+     * here you can overwrite in a resource.
+     */
+    public readonly region!: pulumi.Output<string | undefined>;
+    /**
+     * This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+     */
+    public readonly token!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Provider resource with the given unique name, arguments, and options.
@@ -34,16 +43,16 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            inputs["region"] = args ? args.region : undefined;
-            inputs["token"] = args ? args.token : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["token"] = args ? args.token : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(Provider.__pulumiType, name, inputs, opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -55,9 +64,9 @@ export interface ProviderArgs {
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
      */
-    readonly token?: pulumi.Input<string>;
+    token?: pulumi.Input<string>;
 }

@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Manages volume attachment/detachment to an instance.
- *
- * ## Schema
- *
- * ### Required
- *
- * - **instance_id** (String) The ID of target instance for attachment
- * - **volume_id** (String) The ID of target volume for attachment
- *
- * ### Optional
- *
- * - **id** (String) The ID of this resource.
- * - **region** (String) The region for the volume attachment
  */
 export class VolumeAttachment extends pulumi.CustomResource {
     /**
@@ -69,13 +57,13 @@ export class VolumeAttachment extends pulumi.CustomResource {
      */
     constructor(name: string, args: VolumeAttachmentArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VolumeAttachmentArgs | VolumeAttachmentState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeAttachmentState | undefined;
-            inputs["instanceId"] = state ? state.instanceId : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["volumeId"] = state ? state.volumeId : undefined;
+            resourceInputs["instanceId"] = state ? state.instanceId : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["volumeId"] = state ? state.volumeId : undefined;
         } else {
             const args = argsOrState as VolumeAttachmentArgs | undefined;
             if ((!args || args.instanceId === undefined) && !opts.urn) {
@@ -84,14 +72,14 @@ export class VolumeAttachment extends pulumi.CustomResource {
             if ((!args || args.volumeId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'volumeId'");
             }
-            inputs["instanceId"] = args ? args.instanceId : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["volumeId"] = args ? args.volumeId : undefined;
+            resourceInputs["instanceId"] = args ? args.instanceId : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["volumeId"] = args ? args.volumeId : undefined;
         }
         if (!opts.version) {
             opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
         }
-        super(VolumeAttachment.__pulumiType, name, inputs, opts);
+        super(VolumeAttachment.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -102,15 +90,15 @@ export interface VolumeAttachmentState {
     /**
      * The ID of target instance for attachment
      */
-    readonly instanceId?: pulumi.Input<string>;
+    instanceId?: pulumi.Input<string>;
     /**
      * The region for the volume attachment
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The ID of target volume for attachment
      */
-    readonly volumeId?: pulumi.Input<string>;
+    volumeId?: pulumi.Input<string>;
 }
 
 /**
@@ -120,13 +108,13 @@ export interface VolumeAttachmentArgs {
     /**
      * The ID of target instance for attachment
      */
-    readonly instanceId: pulumi.Input<string>;
+    instanceId: pulumi.Input<string>;
     /**
      * The region for the volume attachment
      */
-    readonly region?: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
     /**
      * The ID of target volume for attachment
      */
-    readonly volumeId: pulumi.Input<string>;
+    volumeId: pulumi.Input<string>;
 }

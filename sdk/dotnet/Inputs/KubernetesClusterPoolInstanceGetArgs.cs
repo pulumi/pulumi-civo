@@ -27,11 +27,18 @@ namespace Pulumi.Civo.Inputs
         [Input("size")]
         public Input<string>? Size { get; set; }
 
+        /// <summary>
+        /// Status of the cluster
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Space separated list of tags, to be used freely as required
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());

@@ -4,59 +4,13 @@
 package civo
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-//
-// ## Schema
-//
-// ### Optional
-//
-// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-// - **id** (String) The ID of this resource.
-// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-//
-// ### Read-Only
-//
-// - **sizes** (List of Object) (see below for nested schema)
-//
-// <a id="nestedblock--filter"></a>
-// ### Nested Schema for `filter`
-//
-// Required:
-//
-// - **key** (String) Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-// - **values** (List of String) Only retrieves `sizes` which keys has value that matches one of the values provided here
-//
-// Optional:
-//
-// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-//
-// <a id="nestedblock--sort"></a>
-// ### Nested Schema for `sort`
-//
-// Required:
-//
-// - **key** (String) Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-//
-// Optional:
-//
-// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-//
-// <a id="nestedatt--sizes"></a>
-// ### Nested Schema for `sizes`
-//
-// Read-Only:
-//
-// - **cpu** (Number)
-// - **description** (String)
-// - **disk** (Number)
-// - **name** (String)
-// - **ram** (Number)
-// - **selectable** (Boolean)
-// - **type** (String)
 func GetInstancesSize(ctx *pulumi.Context, args *GetInstancesSizeArgs, opts ...pulumi.InvokeOption) (*GetInstancesSizeResult, error) {
 	var rv GetInstancesSizeResult
 	err := ctx.Invoke("civo:index/getInstancesSize:getInstancesSize", args, &rv, opts...)
@@ -68,15 +22,78 @@ func GetInstancesSize(ctx *pulumi.Context, args *GetInstancesSizeArgs, opts ...p
 
 // A collection of arguments for invoking getInstancesSize.
 type GetInstancesSizeArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesSizeFilter `pulumi:"filters"`
-	Sorts   []GetInstancesSizeSort   `pulumi:"sorts"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetInstancesSizeSort `pulumi:"sorts"`
 }
 
 // A collection of values returned by getInstancesSize.
 type GetInstancesSizeResult struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesSizeFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id    string                 `pulumi:"id"`
 	Sizes []GetInstancesSizeSize `pulumi:"sizes"`
+	// One or more key/direction pairs on which to sort results
 	Sorts []GetInstancesSizeSort `pulumi:"sorts"`
+}
+
+func GetInstancesSizeOutput(ctx *pulumi.Context, args GetInstancesSizeOutputArgs, opts ...pulumi.InvokeOption) GetInstancesSizeResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetInstancesSizeResult, error) {
+			args := v.(GetInstancesSizeArgs)
+			r, err := GetInstancesSize(ctx, &args, opts...)
+			return *r, err
+		}).(GetInstancesSizeResultOutput)
+}
+
+// A collection of arguments for invoking getInstancesSize.
+type GetInstancesSizeOutputArgs struct {
+	// One or more key/value pairs on which to filter results
+	Filters GetInstancesSizeFilterArrayInput `pulumi:"filters"`
+	// One or more key/direction pairs on which to sort results
+	Sorts GetInstancesSizeSortArrayInput `pulumi:"sorts"`
+}
+
+func (GetInstancesSizeOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesSizeArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getInstancesSize.
+type GetInstancesSizeResultOutput struct{ *pulumi.OutputState }
+
+func (GetInstancesSizeResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetInstancesSizeResult)(nil)).Elem()
+}
+
+func (o GetInstancesSizeResultOutput) ToGetInstancesSizeResultOutput() GetInstancesSizeResultOutput {
+	return o
+}
+
+func (o GetInstancesSizeResultOutput) ToGetInstancesSizeResultOutputWithContext(ctx context.Context) GetInstancesSizeResultOutput {
+	return o
+}
+
+// One or more key/value pairs on which to filter results
+func (o GetInstancesSizeResultOutput) Filters() GetInstancesSizeFilterArrayOutput {
+	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeFilter { return v.Filters }).(GetInstancesSizeFilterArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetInstancesSizeResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetInstancesSizeResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetInstancesSizeResultOutput) Sizes() GetInstancesSizeSizeArrayOutput {
+	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeSize { return v.Sizes }).(GetInstancesSizeSizeArrayOutput)
+}
+
+// One or more key/direction pairs on which to sort results
+func (o GetInstancesSizeResultOutput) Sorts() GetInstancesSizeSortArrayOutput {
+	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeSort { return v.Sorts }).(GetInstancesSizeSortArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetInstancesSizeResultOutput{})
 }

@@ -11,18 +11,6 @@ namespace Pulumi.Civo
 {
     /// <summary>
     /// Manages volume attachment/detachment to an instance.
-    /// 
-    /// ## Schema
-    /// 
-    /// ### Required
-    /// 
-    /// - **instance_id** (String) The ID of target instance for attachment
-    /// - **volume_id** (String) The ID of target volume for attachment
-    /// 
-    /// ### Optional
-    /// 
-    /// - **id** (String) The ID of this resource.
-    /// - **region** (String) The region for the volume attachment
     /// </summary>
     [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
     public partial class VolumeAttachment : Pulumi.CustomResource

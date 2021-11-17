@@ -13,30 +13,9 @@ import (
 
 // Provides a Civo DNS domain record resource.
 //
-// ## Schema
-//
-// ### Required
-//
-// - **domain_id** (String) ID from domain name
-// - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-// - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-// - **type** (String) The choice of RR type from a, cname, mx or txt
-// - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-//
-// ### Optional
-//
-// - **id** (String) The ID of this resource.
-// - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-//
-// ### Read-Only
-//
-// - **account_id** (String) The account ID of this resource
-// - **created_at** (String) Timestamp when this resource was created
-// - **updated_at** (String) Timestamp when this resource was updated
-//
 // ## Import
 //
-// Import is supported using the following syntax# using domain_id:domain_record_id
+// # using domain_id:domain_record_id
 //
 // ```sh
 //  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -50,13 +29,11 @@ type DnsDomainRecord struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -113,13 +90,11 @@ type dnsDomainRecordState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId *string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl *int `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type *string `pulumi:"type"`
@@ -136,13 +111,11 @@ type DnsDomainRecordState struct {
 	CreatedAt pulumi.StringPtrInput
 	// ID from domain name
 	DomainId pulumi.StringPtrInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntPtrInput
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringPtrInput
@@ -159,13 +132,11 @@ func (DnsDomainRecordState) ElementType() reflect.Type {
 type dnsDomainRecordArgs struct {
 	// ID from domain name
 	DomainId string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl int `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type string `pulumi:"type"`
@@ -177,13 +148,11 @@ type dnsDomainRecordArgs struct {
 type DnsDomainRecordArgs struct {
 	// ID from domain name
 	DomainId pulumi.StringInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntInput
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringInput
@@ -203,7 +172,7 @@ type DnsDomainRecordInput interface {
 }
 
 func (*DnsDomainRecord) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsDomainRecord)(nil))
+	return reflect.TypeOf((**DnsDomainRecord)(nil)).Elem()
 }
 
 func (i *DnsDomainRecord) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
@@ -212,35 +181,6 @@ func (i *DnsDomainRecord) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
 
 func (i *DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordOutput)
-}
-
-func (i *DnsDomainRecord) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
-	return i.ToDnsDomainRecordPtrOutputWithContext(context.Background())
-}
-
-func (i *DnsDomainRecord) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordPtrOutput)
-}
-
-type DnsDomainRecordPtrInput interface {
-	pulumi.Input
-
-	ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput
-	ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput
-}
-
-type dnsDomainRecordPtrType DnsDomainRecordArgs
-
-func (*dnsDomainRecordPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsDomainRecord)(nil))
-}
-
-func (i *dnsDomainRecordPtrType) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
-	return i.ToDnsDomainRecordPtrOutputWithContext(context.Background())
-}
-
-func (i *dnsDomainRecordPtrType) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordPtrOutput)
 }
 
 // DnsDomainRecordArrayInput is an input type that accepts DnsDomainRecordArray and DnsDomainRecordArrayOutput values.
@@ -257,7 +197,7 @@ type DnsDomainRecordArrayInput interface {
 type DnsDomainRecordArray []DnsDomainRecordInput
 
 func (DnsDomainRecordArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DnsDomainRecord)(nil))
+	return reflect.TypeOf((*[]*DnsDomainRecord)(nil)).Elem()
 }
 
 func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutput() DnsDomainRecordArrayOutput {
@@ -282,7 +222,7 @@ type DnsDomainRecordMapInput interface {
 type DnsDomainRecordMap map[string]DnsDomainRecordInput
 
 func (DnsDomainRecordMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DnsDomainRecord)(nil))
+	return reflect.TypeOf((*map[string]*DnsDomainRecord)(nil)).Elem()
 }
 
 func (i DnsDomainRecordMap) ToDnsDomainRecordMapOutput() DnsDomainRecordMapOutput {
@@ -293,12 +233,10 @@ func (i DnsDomainRecordMap) ToDnsDomainRecordMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordMapOutput)
 }
 
-type DnsDomainRecordOutput struct {
-	*pulumi.OutputState
-}
+type DnsDomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainRecordOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsDomainRecord)(nil))
+	return reflect.TypeOf((**DnsDomainRecord)(nil)).Elem()
 }
 
 func (o DnsDomainRecordOutput) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
@@ -309,36 +247,10 @@ func (o DnsDomainRecordOutput) ToDnsDomainRecordOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o DnsDomainRecordOutput) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
-	return o.ToDnsDomainRecordPtrOutputWithContext(context.Background())
-}
-
-func (o DnsDomainRecordOutput) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
-	return o.ApplyT(func(v DnsDomainRecord) *DnsDomainRecord {
-		return &v
-	}).(DnsDomainRecordPtrOutput)
-}
-
-type DnsDomainRecordPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DnsDomainRecordPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsDomainRecord)(nil))
-}
-
-func (o DnsDomainRecordPtrOutput) ToDnsDomainRecordPtrOutput() DnsDomainRecordPtrOutput {
-	return o
-}
-
-func (o DnsDomainRecordPtrOutput) ToDnsDomainRecordPtrOutputWithContext(ctx context.Context) DnsDomainRecordPtrOutput {
-	return o
-}
-
 type DnsDomainRecordArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainRecordArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DnsDomainRecord)(nil))
+	return reflect.TypeOf((*[]*DnsDomainRecord)(nil)).Elem()
 }
 
 func (o DnsDomainRecordArrayOutput) ToDnsDomainRecordArrayOutput() DnsDomainRecordArrayOutput {
@@ -350,15 +262,15 @@ func (o DnsDomainRecordArrayOutput) ToDnsDomainRecordArrayOutputWithContext(ctx 
 }
 
 func (o DnsDomainRecordArrayOutput) Index(i pulumi.IntInput) DnsDomainRecordOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsDomainRecord {
-		return vs[0].([]DnsDomainRecord)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsDomainRecord {
+		return vs[0].([]*DnsDomainRecord)[vs[1].(int)]
 	}).(DnsDomainRecordOutput)
 }
 
 type DnsDomainRecordMapOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainRecordMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DnsDomainRecord)(nil))
+	return reflect.TypeOf((*map[string]*DnsDomainRecord)(nil)).Elem()
 }
 
 func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutput() DnsDomainRecordMapOutput {
@@ -370,14 +282,16 @@ func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutputWithContext(ctx cont
 }
 
 func (o DnsDomainRecordMapOutput) MapIndex(k pulumi.StringInput) DnsDomainRecordOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsDomainRecord {
-		return vs[0].(map[string]DnsDomainRecord)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DnsDomainRecord {
+		return vs[0].(map[string]*DnsDomainRecord)[vs[1].(string)]
 	}).(DnsDomainRecordOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsDomainRecordInput)(nil)).Elem(), &DnsDomainRecord{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsDomainRecordArrayInput)(nil)).Elem(), DnsDomainRecordArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsDomainRecordMapInput)(nil)).Elem(), DnsDomainRecordMap{})
 	pulumi.RegisterOutputType(DnsDomainRecordOutput{})
-	pulumi.RegisterOutputType(DnsDomainRecordPtrOutput{})
 	pulumi.RegisterOutputType(DnsDomainRecordArrayOutput{})
 	pulumi.RegisterOutputType(DnsDomainRecordMapOutput{})
 }

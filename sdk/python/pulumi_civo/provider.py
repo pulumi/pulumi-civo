@@ -121,3 +121,20 @@ class Provider(pulumi.ProviderResource):
             __props__,
             opts)
 
+    @property
+    @pulumi.getter
+    def region(self) -> pulumi.Output[Optional[str]]:
+        """
+        If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+        here you can overwrite in a resource.
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter
+    def token(self) -> pulumi.Output[Optional[str]]:
+        """
+        This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+        """
+        return pulumi.get(self, "token")
+

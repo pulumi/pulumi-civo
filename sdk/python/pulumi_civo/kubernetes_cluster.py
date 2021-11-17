@@ -27,11 +27,7 @@ class KubernetesClusterArgs:
         """
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
-        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-               of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-               kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-               For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-               'MariaDB:5GB'.
+        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
@@ -74,11 +70,7 @@ class KubernetesClusterArgs:
     @pulumi.getter
     def applications(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-        'MariaDB:5GB'.
+        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         """
         return pulumi.get(self, "applications")
 
@@ -196,11 +188,7 @@ class _KubernetesClusterState:
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
         :param pulumi.Input[str] api_endpoint: The API server endpoint of the cluster
-        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-               of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-               kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-               For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-               'MariaDB:5GB'.
+        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
@@ -271,11 +259,7 @@ class _KubernetesClusterState:
     @pulumi.getter
     def applications(self) -> Optional[pulumi.Input[str]]:
         """
-        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-        'MariaDB:5GB'.
+        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         """
         return pulumi.get(self, "applications")
 
@@ -497,121 +481,9 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        xsmall = civo.get_instances_size(filters=[civo.GetInstancesSizeFilterArgs(
-                key="type",
-                values=["kubernetes"],
-            )],
-            sorts=[civo.GetInstancesSizeSortArgs(
-                key="ram",
-                direction="asc",
-            )])
-        # Create a firewall
-        my_firewall = civo.Firewall("my-firewall")
-        # Create a firewall rule
-        kubernetes = civo.FirewallRule("kubernetes",
-            firewall_id=my_firewall.id,
-            protocol="tcp",
-            start_port="6443",
-            end_port="6443",
-            cidrs=["0.0.0.0/0"],
-            direction="ingress",
-            label="kubernetes-api-server")
-        # Create a cluster
-        my_cluster = civo.KubernetesCluster("my-cluster",
-            applications="Portainer,Linkerd:Linkerd & Jaeger",
-            num_target_nodes=2,
-            target_nodes_size=xsmall.sizes[0].name,
-            firewall_id=my_firewall.id)
-        ```
-
-        <!-- schema generated by tfplugindocs -->
-        ## Schema
-
-        ### Required
-
-        - **firewall_id** (String) The existing firewall ID to use for this cluster
-
-        ### Optional
-
-        - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
-        - **id** (String) The ID of this resource.
-        - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
-        - **name** (String) Name for your cluster, must be unique within your account
-        - **network_id** (String) The network for the cluster, if not declare we use the default one
-        - **num_target_nodes** (Number) The number of instances to create (optional, the default at the time of writing is 3)
-        - **region** (String) The region for the cluster, if not declare we use the region in declared in the provider
-        - **tags** (String) Space separated list of tags, to be used freely as required
-        - **target_nodes_size** (String) The size of each node (optional, the default is currently g3.k3s.medium)
-
-        ### Read-Only
-
-        - **api_endpoint** (String) The API server endpoint of the cluster
-        - **created_at** (String) The timestamp when the cluster was created
-        - **dns_entry** (String) The DNS name of the cluster
-        - **installed_applications** (List of Object) (see below for nested schema)
-        - **instances** (List of Object) (see below for nested schema)
-        - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
-        - **master_ip** (String) The IP address of the master node
-        - **pools** (List of Object) (see below for nested schema)
-        - **ready** (Boolean) When cluster is ready, this will return `true`
-        - **status** (String) Status of the cluster
-
-        <a id="nestedatt--installed_applications"></a>
-        ### Nested Schema for `installed_applications`
-
-        Read-Only:
-
-        - **application** (String)
-        - **category** (String)
-        - **installed** (Boolean)
-        - **version** (String)
-
-        <a id="nestedatt--instances"></a>
-        ### Nested Schema for `instances`
-
-        Read-Only:
-
-        - **cpu_cores** (Number)
-        - **disk_gb** (Number)
-        - **hostname** (String)
-        - **ram_mb** (Number)
-        - **size** (String)
-        - **status** (String)
-        - **tags** (Set of String)
-
-        <a id="nestedatt--pools"></a>
-        ### Nested Schema for `pools`
-
-        Read-Only:
-
-        - **count** (Number)
-        - **id** (String)
-        - **instance_names** (Set of String)
-        - **instances** (List of Object) (see below for nested schema)
-        - **size** (String)
-
-        <a id="nestedobjatt--pools--instances"></a>
-        ### Nested Schema for `pools.instances`
-
-        Read-Only:
-
-        - **cpu_cores** (Number)
-        - **disk_gb** (Number)
-        - **hostname** (String)
-        - **ram_mb** (Number)
-        - **size** (String)
-        - **status** (String)
-        - **tags** (Set of String)
-
         ## Import
 
-        Import is supported using the following syntax# using ID
+        # using ID
 
         ```sh
          $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
@@ -619,11 +491,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-               of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-               kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-               For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-               'MariaDB:5GB'.
+        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
@@ -642,121 +510,9 @@ class KubernetesCluster(pulumi.CustomResource):
         """
         Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        xsmall = civo.get_instances_size(filters=[civo.GetInstancesSizeFilterArgs(
-                key="type",
-                values=["kubernetes"],
-            )],
-            sorts=[civo.GetInstancesSizeSortArgs(
-                key="ram",
-                direction="asc",
-            )])
-        # Create a firewall
-        my_firewall = civo.Firewall("my-firewall")
-        # Create a firewall rule
-        kubernetes = civo.FirewallRule("kubernetes",
-            firewall_id=my_firewall.id,
-            protocol="tcp",
-            start_port="6443",
-            end_port="6443",
-            cidrs=["0.0.0.0/0"],
-            direction="ingress",
-            label="kubernetes-api-server")
-        # Create a cluster
-        my_cluster = civo.KubernetesCluster("my-cluster",
-            applications="Portainer,Linkerd:Linkerd & Jaeger",
-            num_target_nodes=2,
-            target_nodes_size=xsmall.sizes[0].name,
-            firewall_id=my_firewall.id)
-        ```
-
-        <!-- schema generated by tfplugindocs -->
-        ## Schema
-
-        ### Required
-
-        - **firewall_id** (String) The existing firewall ID to use for this cluster
-
-        ### Optional
-
-        - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
-        - **id** (String) The ID of this resource.
-        - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
-        - **name** (String) Name for your cluster, must be unique within your account
-        - **network_id** (String) The network for the cluster, if not declare we use the default one
-        - **num_target_nodes** (Number) The number of instances to create (optional, the default at the time of writing is 3)
-        - **region** (String) The region for the cluster, if not declare we use the region in declared in the provider
-        - **tags** (String) Space separated list of tags, to be used freely as required
-        - **target_nodes_size** (String) The size of each node (optional, the default is currently g3.k3s.medium)
-
-        ### Read-Only
-
-        - **api_endpoint** (String) The API server endpoint of the cluster
-        - **created_at** (String) The timestamp when the cluster was created
-        - **dns_entry** (String) The DNS name of the cluster
-        - **installed_applications** (List of Object) (see below for nested schema)
-        - **instances** (List of Object) (see below for nested schema)
-        - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
-        - **master_ip** (String) The IP address of the master node
-        - **pools** (List of Object) (see below for nested schema)
-        - **ready** (Boolean) When cluster is ready, this will return `true`
-        - **status** (String) Status of the cluster
-
-        <a id="nestedatt--installed_applications"></a>
-        ### Nested Schema for `installed_applications`
-
-        Read-Only:
-
-        - **application** (String)
-        - **category** (String)
-        - **installed** (Boolean)
-        - **version** (String)
-
-        <a id="nestedatt--instances"></a>
-        ### Nested Schema for `instances`
-
-        Read-Only:
-
-        - **cpu_cores** (Number)
-        - **disk_gb** (Number)
-        - **hostname** (String)
-        - **ram_mb** (Number)
-        - **size** (String)
-        - **status** (String)
-        - **tags** (Set of String)
-
-        <a id="nestedatt--pools"></a>
-        ### Nested Schema for `pools`
-
-        Read-Only:
-
-        - **count** (Number)
-        - **id** (String)
-        - **instance_names** (Set of String)
-        - **instances** (List of Object) (see below for nested schema)
-        - **size** (String)
-
-        <a id="nestedobjatt--pools--instances"></a>
-        ### Nested Schema for `pools.instances`
-
-        Read-Only:
-
-        - **cpu_cores** (Number)
-        - **disk_gb** (Number)
-        - **hostname** (String)
-        - **ram_mb** (Number)
-        - **size** (String)
-        - **status** (String)
-        - **tags** (Set of String)
-
         ## Import
 
-        Import is supported using the following syntax# using ID
+        # using ID
 
         ```sh
          $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
@@ -856,11 +612,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_endpoint: The API server endpoint of the cluster
-        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-               of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-               kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-               For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-               'MariaDB:5GB'.
+        :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
@@ -913,11 +665,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter
     def applications(self) -> pulumi.Output[Optional[str]]:
         """
-        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-        'MariaDB:5GB'.
+        Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         """
         return pulumi.get(self, "applications")
 

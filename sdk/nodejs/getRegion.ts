@@ -7,52 +7,6 @@ import * as utilities from "./utilities";
 
 /**
  * Retrieves information about the region that Civo supports, with the ability to filter the results.
- *
- * ## Schema
- *
- * ### Optional
- *
- * - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
- * - **id** (String) The ID of this resource.
- * - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
- *
- * ### Read-Only
- *
- * - **regions** (List of Object) (see below for nested schema)
- *
- * <a id="nestedblock--filter"></a>
- * ### Nested Schema for `filter`
- *
- * Required:
- *
- * - **key** (String) Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
- * - **values** (List of String) Only retrieves `regions` which keys has value that matches one of the values provided here
- *
- * Optional:
- *
- * - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
- * - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
- *
- * <a id="nestedblock--sort"></a>
- * ### Nested Schema for `sort`
- *
- * Required:
- *
- * - **key** (String) Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
- *
- * Optional:
- *
- * - **direction** (String) The sort direction. This may be either `asc` or `desc`.
- *
- * <a id="nestedatt--regions"></a>
- * ### Nested Schema for `regions`
- *
- * Read-Only:
- *
- * - **code** (String)
- * - **country** (String)
- * - **default** (Boolean)
- * - **name** (String)
  */
 export function getRegion(args?: GetRegionArgs, opts?: pulumi.InvokeOptions): Promise<GetRegionResult> {
     args = args || {};
@@ -73,19 +27,49 @@ export function getRegion(args?: GetRegionArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getRegion.
  */
 export interface GetRegionArgs {
-    readonly filters?: inputs.GetRegionFilter[];
-    readonly sorts?: inputs.GetRegionSort[];
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: inputs.GetRegionFilter[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: inputs.GetRegionSort[];
 }
 
 /**
  * A collection of values returned by getRegion.
  */
 export interface GetRegionResult {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetRegionFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly regions: outputs.GetRegionRegion[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetRegionSort[];
+}
+
+export function getRegionOutput(args?: GetRegionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionResult> {
+    return pulumi.output(args).apply(a => getRegion(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getRegion.
+ */
+export interface GetRegionOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
+    filters?: pulumi.Input<pulumi.Input<inputs.GetRegionFilterArgs>[]>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
+    sorts?: pulumi.Input<pulumi.Input<inputs.GetRegionSortArgs>[]>;
 }

@@ -132,18 +132,6 @@ class VolumeAttachment(pulumi.CustomResource):
         """
         Manages volume attachment/detachment to an instance.
 
-        ## Schema
-
-        ### Required
-
-        - **instance_id** (String) The ID of target instance for attachment
-        - **volume_id** (String) The ID of target volume for attachment
-
-        ### Optional
-
-        - **id** (String) The ID of this resource.
-        - **region** (String) The region for the volume attachment
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The ID of target instance for attachment
@@ -158,18 +146,6 @@ class VolumeAttachment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Manages volume attachment/detachment to an instance.
-
-        ## Schema
-
-        ### Required
-
-        - **instance_id** (String) The ID of target instance for attachment
-        - **volume_id** (String) The ID of target volume for attachment
-
-        ### Optional
-
-        - **id** (String) The ID of this resource.
-        - **region** (String) The region for the volume attachment
 
         :param str resource_name: The name of the resource.
         :param VolumeAttachmentArgs args: The arguments to use to populate this resource's properties.

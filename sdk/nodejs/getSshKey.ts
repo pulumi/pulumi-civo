@@ -2,24 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
  * Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
  *
  * An error will be raised if the provided SSH key name does not exist in your Civo account.
- *
- * ## Schema
- *
- * ### Optional
- *
- * - **id** (String) The ID of this resource.
- * - **name** (String) The name of the SSH key
- *
- * ### Read-Only
- *
- * - **fingerprint** (String) The fingerprint of the public key of the SSH key
  */
 export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetSshKeyResult> {
     args = args || {};
@@ -40,15 +28,48 @@ export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getSshKey.
  */
 export interface GetSshKeyArgs {
-    readonly id?: string;
-    readonly name?: string;
+    /**
+     * The ID of this resource.
+     */
+    id?: string;
+    /**
+     * The name of the SSH key
+     */
+    name?: string;
 }
 
 /**
  * A collection of values returned by getSshKey.
  */
 export interface GetSshKeyResult {
+    /**
+     * The fingerprint of the public key of the SSH key
+     */
     readonly fingerprint: string;
+    /**
+     * The ID of this resource.
+     */
     readonly id?: string;
+    /**
+     * The name of the SSH key
+     */
     readonly name?: string;
+}
+
+export function getSshKeyOutput(args?: GetSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSshKeyResult> {
+    return pulumi.output(args).apply(a => getSshKey(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking getSshKey.
+ */
+export interface GetSshKeyOutputArgs {
+    /**
+     * The ID of this resource.
+     */
+    id?: pulumi.Input<string>;
+    /**
+     * The name of the SSH key
+     */
+    name?: pulumi.Input<string>;
 }
