@@ -9,4 +9,44 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo.Inputs
 {
+
+    public sealed class KubernetesClusterInstanceArgs : Pulumi.ResourceArgs
+    {
+        [Input("cpuCores")]
+        public Input<int>? CpuCores { get; set; }
+
+        [Input("diskGb")]
+        public Input<int>? DiskGb { get; set; }
+
+        [Input("hostname")]
+        public Input<string>? Hostname { get; set; }
+
+        [Input("ramMb")]
+        public Input<int>? RamMb { get; set; }
+
+        [Input("size")]
+        public Input<string>? Size { get; set; }
+
+        /// <summary>
+        /// Status of the cluster
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        [Input("tags")]
+        private InputList<string>? _tags;
+
+        /// <summary>
+        /// Space separated list of tags, to be used freely as required
+        /// </summary>
+        public InputList<string> Tags
+        {
+            get => _tags ?? (_tags = new InputList<string>());
+            set => _tags = value;
+        }
+
+        public KubernetesClusterInstanceArgs()
+        {
+        }
+    }
 }

@@ -10,15 +10,21 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetInstancesSortArgs : Pulumi.InvokeArgs
+    public sealed class GetInstancesSortInputArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
-        public string? Direction { get; set; }
+        public Input<string>? Direction { get; set; }
 
+        /// <summary>
+        /// Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+        /// </summary>
         [Input("key", required: true)]
-        public string Key { get; set; } = null!;
+        public Input<string> Key { get; set; } = null!;
 
-        public GetInstancesSortArgs()
+        public GetInstancesSortInputArgs()
         {
         }
     }

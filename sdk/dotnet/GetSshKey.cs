@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -15,28 +16,31 @@ namespace Pulumi.Civo
         /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
         /// 
         /// An error will be raised if the provided SSH key name does not exist in your Civo account.
-        /// 
-        /// ## Schema
-        /// 
-        /// ### Optional
-        /// 
-        /// - **id** (String) The ID of this resource.
-        /// - **name** (String) The name of the SSH key
-        /// 
-        /// ### Read-Only
-        /// 
-        /// - **fingerprint** (String) The fingerprint of the public key of the SSH key
         /// </summary>
         public static Task<GetSshKeyResult> InvokeAsync(GetSshKeyArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+        /// 
+        /// An error will be raised if the provided SSH key name does not exist in your Civo account.
+        /// </summary>
+        public static Output<GetSshKeyResult> Invoke(GetSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithVersion());
     }
 
 
     public sealed class GetSshKeyArgs : Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -45,12 +49,40 @@ namespace Pulumi.Civo
         }
     }
 
+    public sealed class GetSshKeyInvokeArgs : Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        public GetSshKeyInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetSshKeyResult
     {
+        /// <summary>
+        /// The fingerprint of the public key of the SSH key
+        /// </summary>
         public readonly string Fingerprint;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

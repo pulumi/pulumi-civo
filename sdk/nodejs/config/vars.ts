@@ -4,14 +4,29 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
-let __config = new pulumi.Config("civo");
+declare var exports: any;
+const __config = new pulumi.Config("civo");
 
 /**
  * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
  * here you can overwrite in a resource.
  */
-export let region: string | undefined = __config.get("region");
+export declare const region: string | undefined;
+Object.defineProperty(exports, "region", {
+    get() {
+        return __config.get("region");
+    },
+    enumerable: true,
+});
+
 /**
  * This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
  */
-export let token: string | undefined = __config.get("token");
+export declare const token: string | undefined;
+Object.defineProperty(exports, "token", {
+    get() {
+        return __config.get("token");
+    },
+    enumerable: true,
+});
+

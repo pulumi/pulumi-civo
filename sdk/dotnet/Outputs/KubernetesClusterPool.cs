@@ -14,6 +14,9 @@ namespace Pulumi.Civo.Outputs
     public sealed class KubernetesClusterPool
     {
         public readonly int? Count;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
         public readonly ImmutableArray<string> InstanceNames;
         public readonly ImmutableArray<Outputs.KubernetesClusterPoolInstance> Instances;

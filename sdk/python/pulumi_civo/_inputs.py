@@ -90,6 +90,10 @@ class KubernetesClusterInstanceArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] status: Status of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Space separated list of tags, to be used freely as required
+        """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
         if disk_gb is not None:
@@ -153,6 +157,9 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -162,6 +169,9 @@ class KubernetesClusterInstanceArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Space separated list of tags, to be used freely as required
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -177,6 +187,9 @@ class KubernetesClusterPoolArgs:
                  instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  instances: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolInstanceArgs']]]] = None,
                  size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: The ID of this resource.
+        """
         if count is not None:
             pulumi.set(__self__, "count", count)
         if id is not None:
@@ -200,6 +213,9 @@ class KubernetesClusterPoolArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -244,6 +260,10 @@ class KubernetesClusterPoolInstanceArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] status: Status of the cluster
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Space separated list of tags, to be used freely as required
+        """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
         if disk_gb is not None:
@@ -307,6 +327,9 @@ class KubernetesClusterPoolInstanceArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -316,6 +339,9 @@ class KubernetesClusterPoolInstanceArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Space separated list of tags, to be used freely as required
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -330,6 +356,12 @@ class GetDiskImageFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        :param Sequence[str] values: Only retrieves `diskimages` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -340,6 +372,9 @@ class GetDiskImageFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -349,6 +384,9 @@ class GetDiskImageFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `diskimages` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -358,6 +396,9 @@ class GetDiskImageFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -367,6 +408,9 @@ class GetDiskImageFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -379,6 +423,10 @@ class GetDiskImageSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -386,6 +434,9 @@ class GetDiskImageSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -395,6 +446,9 @@ class GetDiskImageSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -409,6 +463,12 @@ class GetInstancesFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+        :param Sequence[str] values: Only retrieves `instances` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -419,6 +479,9 @@ class GetInstancesFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -428,6 +491,9 @@ class GetInstancesFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `instances` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -437,6 +503,9 @@ class GetInstancesFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -446,6 +515,9 @@ class GetInstancesFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -460,6 +532,12 @@ class GetInstancesSizeFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param Sequence[str] values: Only retrieves `sizes` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -470,6 +548,9 @@ class GetInstancesSizeFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -479,6 +560,9 @@ class GetInstancesSizeFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `sizes` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -488,6 +572,9 @@ class GetInstancesSizeFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -497,6 +584,9 @@ class GetInstancesSizeFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -509,6 +599,10 @@ class GetInstancesSizeSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -516,6 +610,9 @@ class GetInstancesSizeSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -525,6 +622,9 @@ class GetInstancesSizeSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -537,6 +637,10 @@ class GetInstancesSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -544,6 +648,9 @@ class GetInstancesSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -553,6 +660,9 @@ class GetInstancesSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -567,6 +677,12 @@ class GetKubernetesVersionFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        :param Sequence[str] values: Only retrieves `versions` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -577,6 +693,9 @@ class GetKubernetesVersionFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -586,6 +705,9 @@ class GetKubernetesVersionFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `versions` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -595,6 +717,9 @@ class GetKubernetesVersionFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -604,6 +729,9 @@ class GetKubernetesVersionFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -616,6 +744,10 @@ class GetKubernetesVersionSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -623,6 +755,9 @@ class GetKubernetesVersionSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -632,6 +767,9 @@ class GetKubernetesVersionSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -646,6 +784,12 @@ class GetRegionFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        :param Sequence[str] values: Only retrieves `regions` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -656,6 +800,9 @@ class GetRegionFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -665,6 +812,9 @@ class GetRegionFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `regions` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -674,6 +824,9 @@ class GetRegionFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -683,6 +836,9 @@ class GetRegionFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -695,6 +851,10 @@ class GetRegionSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -702,6 +862,9 @@ class GetRegionSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -711,6 +874,9 @@ class GetRegionSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -725,6 +891,12 @@ class GetTemplateFilterArgs:
                  values: Sequence[str],
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
+        """
+        :param str key: Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        :param Sequence[str] values: Only retrieves `templates` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "values", values)
         if all is not None:
@@ -735,6 +907,9 @@ class GetTemplateFilterArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -744,6 +919,9 @@ class GetTemplateFilterArgs:
     @property
     @pulumi.getter
     def values(self) -> Sequence[str]:
+        """
+        Only retrieves `templates` which keys has value that matches one of the values provided here
+        """
         return pulumi.get(self, "values")
 
     @values.setter
@@ -753,6 +931,9 @@ class GetTemplateFilterArgs:
     @property
     @pulumi.getter
     def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
         return pulumi.get(self, "all")
 
     @all.setter
@@ -762,6 +943,9 @@ class GetTemplateFilterArgs:
     @property
     @pulumi.getter(name="matchBy")
     def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
         return pulumi.get(self, "match_by")
 
     @match_by.setter
@@ -774,6 +958,10 @@ class GetTemplateSortArgs:
     def __init__(__self__, *,
                  key: str,
                  direction: Optional[str] = None):
+        """
+        :param str key: Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
         pulumi.set(__self__, "key", key)
         if direction is not None:
             pulumi.set(__self__, "direction", direction)
@@ -781,6 +969,9 @@ class GetTemplateSortArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -790,6 +981,9 @@ class GetTemplateSortArgs:
     @property
     @pulumi.getter
     def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter

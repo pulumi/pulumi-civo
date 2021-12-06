@@ -9,4 +9,39 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Civo.Inputs
 {
+
+    public sealed class KubernetesClusterPoolArgs : Pulumi.ResourceArgs
+    {
+        [Input("count")]
+        public Input<int>? Count { get; set; }
+
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
+        [Input("instanceNames")]
+        private InputList<string>? _instanceNames;
+        public InputList<string> InstanceNames
+        {
+            get => _instanceNames ?? (_instanceNames = new InputList<string>());
+            set => _instanceNames = value;
+        }
+
+        [Input("instances")]
+        private InputList<Inputs.KubernetesClusterPoolInstanceArgs>? _instances;
+        public InputList<Inputs.KubernetesClusterPoolInstanceArgs> Instances
+        {
+            get => _instances ?? (_instances = new InputList<Inputs.KubernetesClusterPoolInstanceArgs>());
+            set => _instances = value;
+        }
+
+        [Input("size")]
+        public Input<string>? Size { get; set; }
+
+        public KubernetesClusterPoolArgs()
+        {
+        }
+    }
 }

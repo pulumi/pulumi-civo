@@ -4,23 +4,15 @@
 package civo
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
 //
 // An error will be raised if the provided SSH key name does not exist in your Civo account.
-//
-// ## Schema
-//
-// ### Optional
-//
-// - **id** (String) The ID of this resource.
-// - **name** (String) The name of the SSH key
-//
-// ### Read-Only
-//
-// - **fingerprint** (String) The fingerprint of the public key of the SSH key
 func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.InvokeOption) (*LookupSshKeyResult, error) {
 	var rv LookupSshKeyResult
 	err := ctx.Invoke("civo:index/getSshKey:getSshKey", args, &rv, opts...)
@@ -32,13 +24,73 @@ func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSshKey.
 type LookupSshKeyArgs struct {
-	Id   *string `pulumi:"id"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The name of the SSH key
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getSshKey.
 type LookupSshKeyResult struct {
-	Fingerprint string  `pulumi:"fingerprint"`
-	Id          *string `pulumi:"id"`
-	Name        *string `pulumi:"name"`
+	// The fingerprint of the public key of the SSH key
+	Fingerprint string `pulumi:"fingerprint"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The name of the SSH key
+	Name *string `pulumi:"name"`
+}
+
+func LookupSshKeyOutput(ctx *pulumi.Context, args LookupSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupSshKeyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSshKeyResult, error) {
+			args := v.(LookupSshKeyArgs)
+			r, err := LookupSshKey(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSshKeyResultOutput)
+}
+
+// A collection of arguments for invoking getSshKey.
+type LookupSshKeyOutputArgs struct {
+	// The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the SSH key
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (LookupSshKeyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSshKeyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getSshKey.
+type LookupSshKeyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSshKeyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSshKeyResult)(nil)).Elem()
+}
+
+func (o LookupSshKeyResultOutput) ToLookupSshKeyResultOutput() LookupSshKeyResultOutput {
+	return o
+}
+
+func (o LookupSshKeyResultOutput) ToLookupSshKeyResultOutputWithContext(ctx context.Context) LookupSshKeyResultOutput {
+	return o
+}
+
+// The fingerprint of the public key of the SSH key
+func (o LookupSshKeyResultOutput) Fingerprint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSshKeyResult) string { return v.Fingerprint }).(pulumi.StringOutput)
+}
+
+// The ID of this resource.
+func (o LookupSshKeyResultOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSshKeyResult) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// The name of the SSH key
+func (o LookupSshKeyResultOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSshKeyResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSshKeyResultOutput{})
 }

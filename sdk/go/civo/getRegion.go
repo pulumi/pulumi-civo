@@ -4,56 +4,13 @@
 package civo
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieves information about the region that Civo supports, with the ability to filter the results.
-//
-// ## Schema
-//
-// ### Optional
-//
-// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-// - **id** (String) The ID of this resource.
-// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-//
-// ### Read-Only
-//
-// - **regions** (List of Object) (see below for nested schema)
-//
-// <a id="nestedblock--filter"></a>
-// ### Nested Schema for `filter`
-//
-// Required:
-//
-// - **key** (String) Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
-// - **values** (List of String) Only retrieves `regions` which keys has value that matches one of the values provided here
-//
-// Optional:
-//
-// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-//
-// <a id="nestedblock--sort"></a>
-// ### Nested Schema for `sort`
-//
-// Required:
-//
-// - **key** (String) Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
-//
-// Optional:
-//
-// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-//
-// <a id="nestedatt--regions"></a>
-// ### Nested Schema for `regions`
-//
-// Read-Only:
-//
-// - **code** (String)
-// - **country** (String)
-// - **default** (Boolean)
-// - **name** (String)
 func GetRegion(ctx *pulumi.Context, args *GetRegionArgs, opts ...pulumi.InvokeOption) (*GetRegionResult, error) {
 	var rv GetRegionResult
 	err := ctx.Invoke("civo:index/getRegion:getRegion", args, &rv, opts...)
@@ -65,15 +22,78 @@ func GetRegion(ctx *pulumi.Context, args *GetRegionArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getRegion.
 type GetRegionArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetRegionFilter `pulumi:"filters"`
-	Sorts   []GetRegionSort   `pulumi:"sorts"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetRegionSort `pulumi:"sorts"`
 }
 
 // A collection of values returned by getRegion.
 type GetRegionResult struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetRegionFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string            `pulumi:"id"`
 	Regions []GetRegionRegion `pulumi:"regions"`
-	Sorts   []GetRegionSort   `pulumi:"sorts"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetRegionSort `pulumi:"sorts"`
+}
+
+func GetRegionOutput(ctx *pulumi.Context, args GetRegionOutputArgs, opts ...pulumi.InvokeOption) GetRegionResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRegionResult, error) {
+			args := v.(GetRegionArgs)
+			r, err := GetRegion(ctx, &args, opts...)
+			return *r, err
+		}).(GetRegionResultOutput)
+}
+
+// A collection of arguments for invoking getRegion.
+type GetRegionOutputArgs struct {
+	// One or more key/value pairs on which to filter results
+	Filters GetRegionFilterArrayInput `pulumi:"filters"`
+	// One or more key/direction pairs on which to sort results
+	Sorts GetRegionSortArrayInput `pulumi:"sorts"`
+}
+
+func (GetRegionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionArgs)(nil)).Elem()
+}
+
+// A collection of values returned by getRegion.
+type GetRegionResultOutput struct{ *pulumi.OutputState }
+
+func (GetRegionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRegionResult)(nil)).Elem()
+}
+
+func (o GetRegionResultOutput) ToGetRegionResultOutput() GetRegionResultOutput {
+	return o
+}
+
+func (o GetRegionResultOutput) ToGetRegionResultOutputWithContext(ctx context.Context) GetRegionResultOutput {
+	return o
+}
+
+// One or more key/value pairs on which to filter results
+func (o GetRegionResultOutput) Filters() GetRegionFilterArrayOutput {
+	return o.ApplyT(func(v GetRegionResult) []GetRegionFilter { return v.Filters }).(GetRegionFilterArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRegionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRegionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetRegionResultOutput) Regions() GetRegionRegionArrayOutput {
+	return o.ApplyT(func(v GetRegionResult) []GetRegionRegion { return v.Regions }).(GetRegionRegionArrayOutput)
+}
+
+// One or more key/direction pairs on which to sort results
+func (o GetRegionResultOutput) Sorts() GetRegionSortArrayOutput {
+	return o.ApplyT(func(v GetRegionResult) []GetRegionSort { return v.Sorts }).(GetRegionSortArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRegionResultOutput{})
 }

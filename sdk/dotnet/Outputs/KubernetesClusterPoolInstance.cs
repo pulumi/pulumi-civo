@@ -18,7 +18,13 @@ namespace Pulumi.Civo.Outputs
         public readonly string? Hostname;
         public readonly int? RamMb;
         public readonly string? Size;
+        /// <summary>
+        /// Status of the cluster
+        /// </summary>
         public readonly string? Status;
+        /// <summary>
+        /// Space separated list of tags, to be used freely as required
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]

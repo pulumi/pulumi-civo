@@ -18,7 +18,13 @@ namespace Pulumi.Civo.Outputs
         public readonly string Hostname;
         public readonly int RamMb;
         public readonly string Size;
+        /// <summary>
+        /// The status of Kubernetes cluster
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A list of tags
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
 
         [OutputConstructor]

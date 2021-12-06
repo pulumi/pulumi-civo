@@ -13,7 +13,13 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesVersionSortResult
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         public readonly string? Direction;
+        /// <summary>
+        /// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

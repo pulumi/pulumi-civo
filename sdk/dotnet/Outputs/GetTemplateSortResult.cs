@@ -13,7 +13,13 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetTemplateSortResult
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         public readonly string? Direction;
+        /// <summary>
+        /// Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

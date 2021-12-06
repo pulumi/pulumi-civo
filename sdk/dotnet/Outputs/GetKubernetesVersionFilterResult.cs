@@ -13,9 +13,21 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesVersionFilterResult
     {
+        /// <summary>
+        /// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        /// </summary>
         public readonly bool? All;
+        /// <summary>
+        /// Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        /// </summary>
         public readonly string? MatchBy;
+        /// <summary>
+        /// Only retrieves `versions` which keys has value that matches one of the values provided here
+        /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]

@@ -12,30 +12,9 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo DNS domain record resource.
     /// 
-    /// ## Schema
-    /// 
-    /// ### Required
-    /// 
-    /// - **domain_id** (String) ID from domain name
-    /// - **name** (String) The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
-    /// - **ttl** (Number) How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
-    /// - **type** (String) The choice of RR type from a, cname, mx or txt
-    /// - **value** (String) The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-    /// 
-    /// ### Optional
-    /// 
-    /// - **id** (String) The ID of this resource.
-    /// - **priority** (Number) Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-    /// 
-    /// ### Read-Only
-    /// 
-    /// - **account_id** (String) The account ID of this resource
-    /// - **created_at** (String) Timestamp when this resource was created
-    /// - **updated_at** (String) Timestamp when this resource was updated
-    /// 
     /// ## Import
     /// 
-    /// Import is supported using the following syntax# using domain_id:domain_record_id
+    /// # using domain_id:domain_record_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -63,8 +42,7 @@ namespace Pulumi.Civo
         public Output<string> DomainId { get; private set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -76,8 +54,7 @@ namespace Pulumi.Civo
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Output("ttl")]
         public Output<int> Ttl { get; private set; } = null!;
@@ -153,8 +130,7 @@ namespace Pulumi.Civo
         public Input<string> DomainId { get; set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -166,8 +142,7 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Input("ttl", required: true)]
         public Input<int> Ttl { get; set; } = null!;
@@ -210,8 +185,7 @@ namespace Pulumi.Civo
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -223,8 +197,7 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }

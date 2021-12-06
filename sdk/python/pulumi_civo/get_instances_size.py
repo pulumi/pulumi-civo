@@ -14,6 +14,7 @@ __all__ = [
     'GetInstancesSizeResult',
     'AwaitableGetInstancesSizeResult',
     'get_instances_size',
+    'get_instances_size_output',
 ]
 
 @pulumi.output_type
@@ -38,6 +39,9 @@ class GetInstancesSizeResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetInstancesSizeFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -56,6 +60,9 @@ class GetInstancesSizeResult:
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetInstancesSizeSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -77,54 +84,9 @@ def get_instances_size(filters: Optional[Sequence[pulumi.InputType['GetInstances
     """
     Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
 
-    ## Schema
 
-    ### Optional
-
-    - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-    - **id** (String) The ID of this resource.
-    - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-
-    ### Read-Only
-
-    - **sizes** (List of Object) (see below for nested schema)
-
-    <a id="nestedblock--filter"></a>
-    ### Nested Schema for `filter`
-
-    Required:
-
-    - **key** (String) Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-    - **values** (List of String) Only retrieves `sizes` which keys has value that matches one of the values provided here
-
-    Optional:
-
-    - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-    - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-
-    <a id="nestedblock--sort"></a>
-    ### Nested Schema for `sort`
-
-    Required:
-
-    - **key** (String) Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-
-    Optional:
-
-    - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-
-    <a id="nestedatt--sizes"></a>
-    ### Nested Schema for `sizes`
-
-    Read-Only:
-
-    - **cpu** (Number)
-    - **description** (String)
-    - **disk** (Number)
-    - **name** (String)
-    - **ram** (Number)
-    - **selectable** (Boolean)
-    - **type** (String)
+    :param Sequence[pulumi.InputType['GetInstancesSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetInstancesSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -140,3 +102,17 @@ def get_instances_size(filters: Optional[Sequence[pulumi.InputType['GetInstances
         id=__ret__.id,
         sizes=__ret__.sizes,
         sorts=__ret__.sorts)
+
+
+@_utilities.lift_output_func(get_instances_size)
+def get_instances_size_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetInstancesSizeFilterArgs']]]]] = None,
+                              sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetInstancesSizeSortArgs']]]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancesSizeResult]:
+    """
+    Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetInstancesSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetInstancesSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    """
+    ...

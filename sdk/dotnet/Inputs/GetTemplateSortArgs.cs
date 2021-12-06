@@ -10,15 +10,21 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetTemplateSortArgs : Pulumi.InvokeArgs
+    public sealed class GetTemplateSortInputArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
-        public string? Direction { get; set; }
+        public Input<string>? Direction { get; set; }
 
+        /// <summary>
+        /// Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+        /// </summary>
         [Input("key", required: true)]
-        public string Key { get; set; } = null!;
+        public Input<string> Key { get; set; } = null!;
 
-        public GetTemplateSortArgs()
+        public GetTemplateSortInputArgs()
         {
         }
     }

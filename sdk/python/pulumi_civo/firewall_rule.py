@@ -23,8 +23,7 @@ class FirewallRuleArgs:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-               to open just for a specific IP address)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         :param pulumi.Input[str] firewall_id: The Firewall ID
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
@@ -52,8 +51,7 @@ class FirewallRuleArgs:
     @pulumi.getter
     def cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 
@@ -159,8 +157,7 @@ class _FirewallRuleState:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallRule resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-               to open just for a specific IP address)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -190,8 +187,7 @@ class _FirewallRuleState:
     @pulumi.getter
     def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 
@@ -301,26 +297,9 @@ class FirewallRule(pulumi.CustomResource):
         """
         Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.
 
-        ## Schema
-
-        ### Required
-
-        - **cidr** (Set of String) The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        - **firewall_id** (String) The Firewall ID
-
-        ### Optional
-
-        - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
-        - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
-        - **id** (String) The ID of this resource.
-        - **label** (String) A string that will be the displayed name/reference for this rule
-        - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
-        - **region** (String) The region for this rule
-        - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-
         ## Import
 
-        Import is supported using the following syntax# using firewall_id:firewall_rule_id
+        # using firewall_id:firewall_rule_id
 
         ```sh
          $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -328,8 +307,7 @@ class FirewallRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-               to open just for a specific IP address)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -347,26 +325,9 @@ class FirewallRule(pulumi.CustomResource):
         """
         Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.
 
-        ## Schema
-
-        ### Required
-
-        - **cidr** (Set of String) The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        - **firewall_id** (String) The Firewall ID
-
-        ### Optional
-
-        - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
-        - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
-        - **id** (String) The ID of this resource.
-        - **label** (String) A string that will be the displayed name/reference for this rule
-        - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
-        - **region** (String) The region for this rule
-        - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-
         ## Import
 
-        Import is supported using the following syntax# using firewall_id:firewall_rule_id
+        # using firewall_id:firewall_rule_id
 
         ```sh
          $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -444,8 +405,7 @@ class FirewallRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-               to open just for a specific IP address)
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -472,8 +432,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def cidrs(self) -> pulumi.Output[Sequence[str]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 

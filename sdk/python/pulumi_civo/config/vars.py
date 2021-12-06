@@ -8,21 +8,24 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'region',
-    'token',
-]
+import types
 
 __config__ = pulumi.Config('civo')
 
-region = __config__.get('region')
-"""
-If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
-here you can overwrite in a resource.
-"""
 
-token = __config__.get('token')
-"""
-This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def region(self) -> Optional[str]:
+        """
+        If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
+        here you can overwrite in a resource.
+        """
+        return __config__.get('region')
+
+    @property
+    def token(self) -> Optional[str]:
+        """
+        This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
+        """
+        return __config__.get('token')
 

@@ -15,6 +15,9 @@ namespace Pulumi.Civo.Inputs
         [Input("count")]
         public Input<int>? Count { get; set; }
 
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

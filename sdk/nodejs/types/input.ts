@@ -5,74 +5,362 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface GetDiskImageFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `diskimages` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
+export interface GetDiskImageFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `diskimages` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetDiskImageSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
+    key: pulumi.Input<string>;
+}
+
 export interface GetDiskImageSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
 }
 
 export interface GetInstancesFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `instances` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
+export interface GetInstancesFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `tags`, `template`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `instances` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetInstancesSizeFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `sizes` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface GetInstancesSizeFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `sizes` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
 export interface GetInstancesSizeSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
     key: string;
+}
+
+export interface GetInstancesSizeSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     */
+    key: pulumi.Input<string>;
 }
 
 export interface GetInstancesSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+     */
     key: string;
+}
+
+export interface GetInstancesSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort instances by this key. This may be one of `cpuCores`, `createdAt`, `diskGb`, `firewallId`, `hostname`, `id`, `initialPassword`, `initialUser`, `networkId`, `notes`, `privateIp`, `pseudoIp`, `publicIp`, `ramMb`, `region`, `reverseDns`, `script`, `size`, `sshkeyId`, `status`, `template`.
+     */
+    key: pulumi.Input<string>;
 }
 
 export interface GetKubernetesVersionFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `versions` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
+export interface GetKubernetesVersionFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `versions` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetKubernetesVersionSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
+    key: pulumi.Input<string>;
+}
+
 export interface GetKubernetesVersionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
     key: string;
 }
 
+export interface GetRegionFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `regions` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface GetRegionFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `regions` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
 export interface GetRegionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
     key: string;
+}
+
+export interface GetRegionSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     */
+    key: pulumi.Input<string>;
 }
 
 export interface GetTemplateFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
     all?: boolean;
+    /**
+     * Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
     matchBy?: string;
+    /**
+     * Only retrieves `templates` which keys has value that matches one of the values provided here
+     */
     values: string[];
 }
 
+export interface GetTemplateFilterArgs {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: pulumi.Input<boolean>;
+    /**
+     * Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: pulumi.Input<string>;
+    /**
+     * Only retrieves `templates` which keys has value that matches one of the values provided here
+     */
+    values: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetTemplateSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
+    key: pulumi.Input<string>;
+}
+
 export interface GetTemplateSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
     direction?: string;
+    /**
+     * Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.
+     */
     key: string;
 }
 
@@ -89,12 +377,21 @@ export interface KubernetesClusterInstance {
     hostname?: pulumi.Input<string>;
     ramMb?: pulumi.Input<number>;
     size?: pulumi.Input<string>;
+    /**
+     * Status of the cluster
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Space separated list of tags, to be used freely as required
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface KubernetesClusterPool {
     count?: pulumi.Input<number>;
+    /**
+     * The ID of this resource.
+     */
     id?: pulumi.Input<string>;
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
     instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolInstance>[]>;
@@ -107,6 +404,13 @@ export interface KubernetesClusterPoolInstance {
     hostname?: pulumi.Input<string>;
     ramMb?: pulumi.Input<number>;
     size?: pulumi.Input<string>;
+    /**
+     * Status of the cluster
+     */
     status?: pulumi.Input<string>;
+    /**
+     * Space separated list of tags, to be used freely as required
+     */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
 }
+

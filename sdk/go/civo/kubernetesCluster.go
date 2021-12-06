@@ -13,87 +13,9 @@ import (
 
 // Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
 //
-// ## Schema
-//
-// ### Required
-//
-// - **firewall_id** (String) The existing firewall ID to use for this cluster
-//
-// ### Optional
-//
-// - **applications** (String) Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
-// - **id** (String) The ID of this resource.
-// - **kubernetes_version** (String) The version of k3s to install (optional, the default is currently the latest available)
-// - **name** (String) Name for your cluster, must be unique within your account
-// - **network_id** (String) The network for the cluster, if not declare we use the default one
-// - **num_target_nodes** (Number) The number of instances to create (optional, the default at the time of writing is 3)
-// - **region** (String) The region for the cluster, if not declare we use the region in declared in the provider
-// - **tags** (String) Space separated list of tags, to be used freely as required
-// - **target_nodes_size** (String) The size of each node (optional, the default is currently g3.k3s.medium)
-//
-// ### Read-Only
-//
-// - **api_endpoint** (String) The API server endpoint of the cluster
-// - **created_at** (String) The timestamp when the cluster was created
-// - **dns_entry** (String) The DNS name of the cluster
-// - **installed_applications** (List of Object) (see below for nested schema)
-// - **instances** (List of Object) (see below for nested schema)
-// - **kubeconfig** (String, Sensitive) The kubeconfig of the cluster
-// - **master_ip** (String) The IP address of the master node
-// - **pools** (List of Object) (see below for nested schema)
-// - **ready** (Boolean) When cluster is ready, this will return `true`
-// - **status** (String) Status of the cluster
-//
-// <a id="nestedatt--installed_applications"></a>
-// ### Nested Schema for `installedApplications`
-//
-// Read-Only:
-//
-// - **application** (String)
-// - **category** (String)
-// - **installed** (Boolean)
-// - **version** (String)
-//
-// <a id="nestedatt--instances"></a>
-// ### Nested Schema for `instances`
-//
-// Read-Only:
-//
-// - **cpu_cores** (Number)
-// - **disk_gb** (Number)
-// - **hostname** (String)
-// - **ram_mb** (Number)
-// - **size** (String)
-// - **status** (String)
-// - **tags** (Set of String)
-//
-// <a id="nestedatt--pools"></a>
-// ### Nested Schema for `pools`
-//
-// Read-Only:
-//
-// - **count** (Number)
-// - **id** (String)
-// - **instance_names** (Set of String)
-// - **instances** (List of Object) (see below for nested schema)
-// - **size** (String)
-//
-// <a id="nestedobjatt--pools--instances"></a>
-// ### Nested Schema for `pools.instances`
-//
-// Read-Only:
-//
-// - **cpu_cores** (Number)
-// - **disk_gb** (Number)
-// - **hostname** (String)
-// - **ram_mb** (Number)
-// - **size** (String)
-// - **status** (String)
-// - **tags** (Set of String)
-//
 // ## Import
 //
-// Import is supported using the following syntax# using ID
+// # using ID
 //
 // ```sh
 //  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
@@ -103,11 +25,7 @@ type KubernetesCluster struct {
 
 	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
 	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
@@ -176,11 +94,7 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 type kubernetesClusterState struct {
 	// The API server endpoint of the cluster
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The timestamp when the cluster was created
 	CreatedAt *string `pulumi:"createdAt"`
@@ -218,11 +132,7 @@ type kubernetesClusterState struct {
 type KubernetesClusterState struct {
 	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringPtrInput
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringPtrInput
@@ -262,11 +172,7 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The existing firewall ID to use for this cluster
 	FirewallId string `pulumi:"firewallId"`
@@ -288,11 +194,7 @@ type kubernetesClusterArgs struct {
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The existing firewall ID to use for this cluster
 	FirewallId pulumi.StringInput
@@ -324,7 +226,7 @@ type KubernetesClusterInput interface {
 }
 
 func (*KubernetesCluster) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesCluster)(nil))
+	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
 }
 
 func (i *KubernetesCluster) ToKubernetesClusterOutput() KubernetesClusterOutput {
@@ -333,35 +235,6 @@ func (i *KubernetesCluster) ToKubernetesClusterOutput() KubernetesClusterOutput 
 
 func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Context) KubernetesClusterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterOutput)
-}
-
-func (i *KubernetesCluster) ToKubernetesClusterPtrOutput() KubernetesClusterPtrOutput {
-	return i.ToKubernetesClusterPtrOutputWithContext(context.Background())
-}
-
-func (i *KubernetesCluster) ToKubernetesClusterPtrOutputWithContext(ctx context.Context) KubernetesClusterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPtrOutput)
-}
-
-type KubernetesClusterPtrInput interface {
-	pulumi.Input
-
-	ToKubernetesClusterPtrOutput() KubernetesClusterPtrOutput
-	ToKubernetesClusterPtrOutputWithContext(ctx context.Context) KubernetesClusterPtrOutput
-}
-
-type kubernetesClusterPtrType KubernetesClusterArgs
-
-func (*kubernetesClusterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesCluster)(nil))
-}
-
-func (i *kubernetesClusterPtrType) ToKubernetesClusterPtrOutput() KubernetesClusterPtrOutput {
-	return i.ToKubernetesClusterPtrOutputWithContext(context.Background())
-}
-
-func (i *kubernetesClusterPtrType) ToKubernetesClusterPtrOutputWithContext(ctx context.Context) KubernetesClusterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPtrOutput)
 }
 
 // KubernetesClusterArrayInput is an input type that accepts KubernetesClusterArray and KubernetesClusterArrayOutput values.
@@ -378,7 +251,7 @@ type KubernetesClusterArrayInput interface {
 type KubernetesClusterArray []KubernetesClusterInput
 
 func (KubernetesClusterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*KubernetesCluster)(nil))
+	return reflect.TypeOf((*[]*KubernetesCluster)(nil)).Elem()
 }
 
 func (i KubernetesClusterArray) ToKubernetesClusterArrayOutput() KubernetesClusterArrayOutput {
@@ -403,7 +276,7 @@ type KubernetesClusterMapInput interface {
 type KubernetesClusterMap map[string]KubernetesClusterInput
 
 func (KubernetesClusterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*KubernetesCluster)(nil))
+	return reflect.TypeOf((*map[string]*KubernetesCluster)(nil)).Elem()
 }
 
 func (i KubernetesClusterMap) ToKubernetesClusterMapOutput() KubernetesClusterMapOutput {
@@ -414,12 +287,10 @@ func (i KubernetesClusterMap) ToKubernetesClusterMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterMapOutput)
 }
 
-type KubernetesClusterOutput struct {
-	*pulumi.OutputState
-}
+type KubernetesClusterOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubernetesCluster)(nil))
+	return reflect.TypeOf((**KubernetesCluster)(nil)).Elem()
 }
 
 func (o KubernetesClusterOutput) ToKubernetesClusterOutput() KubernetesClusterOutput {
@@ -430,36 +301,10 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx contex
 	return o
 }
 
-func (o KubernetesClusterOutput) ToKubernetesClusterPtrOutput() KubernetesClusterPtrOutput {
-	return o.ToKubernetesClusterPtrOutputWithContext(context.Background())
-}
-
-func (o KubernetesClusterOutput) ToKubernetesClusterPtrOutputWithContext(ctx context.Context) KubernetesClusterPtrOutput {
-	return o.ApplyT(func(v KubernetesCluster) *KubernetesCluster {
-		return &v
-	}).(KubernetesClusterPtrOutput)
-}
-
-type KubernetesClusterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (KubernetesClusterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubernetesCluster)(nil))
-}
-
-func (o KubernetesClusterPtrOutput) ToKubernetesClusterPtrOutput() KubernetesClusterPtrOutput {
-	return o
-}
-
-func (o KubernetesClusterPtrOutput) ToKubernetesClusterPtrOutputWithContext(ctx context.Context) KubernetesClusterPtrOutput {
-	return o
-}
-
 type KubernetesClusterArrayOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]KubernetesCluster)(nil))
+	return reflect.TypeOf((*[]*KubernetesCluster)(nil)).Elem()
 }
 
 func (o KubernetesClusterArrayOutput) ToKubernetesClusterArrayOutput() KubernetesClusterArrayOutput {
@@ -471,15 +316,15 @@ func (o KubernetesClusterArrayOutput) ToKubernetesClusterArrayOutputWithContext(
 }
 
 func (o KubernetesClusterArrayOutput) Index(i pulumi.IntInput) KubernetesClusterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesCluster {
-		return vs[0].([]KubernetesCluster)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *KubernetesCluster {
+		return vs[0].([]*KubernetesCluster)[vs[1].(int)]
 	}).(KubernetesClusterOutput)
 }
 
 type KubernetesClusterMapOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]KubernetesCluster)(nil))
+	return reflect.TypeOf((*map[string]*KubernetesCluster)(nil)).Elem()
 }
 
 func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutput() KubernetesClusterMapOutput {
@@ -491,14 +336,16 @@ func (o KubernetesClusterMapOutput) ToKubernetesClusterMapOutputWithContext(ctx 
 }
 
 func (o KubernetesClusterMapOutput) MapIndex(k pulumi.StringInput) KubernetesClusterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) KubernetesCluster {
-		return vs[0].(map[string]KubernetesCluster)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *KubernetesCluster {
+		return vs[0].(map[string]*KubernetesCluster)[vs[1].(string)]
 	}).(KubernetesClusterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInput)(nil)).Elem(), &KubernetesCluster{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterArrayInput)(nil)).Elem(), KubernetesClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterMapInput)(nil)).Elem(), KubernetesClusterMap{})
 	pulumi.RegisterOutputType(KubernetesClusterOutput{})
-	pulumi.RegisterOutputType(KubernetesClusterPtrOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterMapOutput{})
 }

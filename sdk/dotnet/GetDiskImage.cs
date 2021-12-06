@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -13,58 +14,15 @@ namespace Pulumi.Civo
     {
         /// <summary>
         /// Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
-        /// 
-        /// ## Schema
-        /// 
-        /// ### Optional
-        /// 
-        /// - **filter** (Block Set) One or more key/value pairs on which to filter results (see below for nested schema)
-        /// - **id** (String) The ID of this resource.
-        /// - **region** (String) If is used, all disk image will be from this region. Required if no region is set in provider.
-        /// - **sort** (Block List) One or more key/direction pairs on which to sort results (see below for nested schema)
-        /// 
-        /// ### Read-Only
-        /// 
-        /// - **diskimages** (List of Object) (see below for nested schema)
-        /// 
-        /// &lt;a id="nestedblock--filter"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `filter`
-        /// 
-        /// Required:
-        /// 
-        /// - **key** (String) Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-        /// - **values** (List of String) Only retrieves `diskimages` which keys has value that matches one of the values provided here
-        /// 
-        /// Optional:
-        /// 
-        /// - **all** (Boolean) Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-        /// - **match_by** (String) One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-        /// 
-        /// 
-        /// &lt;a id="nestedblock--sort"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `sort`
-        /// 
-        /// Required:
-        /// 
-        /// - **key** (String) Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-        /// 
-        /// Optional:
-        /// 
-        /// - **direction** (String) The sort direction. This may be either `asc` or `desc`.
-        /// 
-        /// 
-        /// &lt;a id="nestedatt--diskimages"&gt;&lt;/a&gt;
-        /// ### Nested Schema for `diskimages`
-        /// 
-        /// Read-Only:
-        /// 
-        /// - **id** (String)
-        /// - **label** (String)
-        /// - **name** (String)
-        /// - **version** (String)
         /// </summary>
         public static Task<GetDiskImageResult> InvokeAsync(GetDiskImageArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDiskImageResult>("civo:index/getDiskImage:getDiskImage", args ?? new GetDiskImageArgs(), options.WithVersion());
+
+        /// <summary>
+        /// Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+        /// </summary>
+        public static Output<GetDiskImageResult> Invoke(GetDiskImageInvokeArgs? args = null, InvokeOptions? options = null)
+            => Pulumi.Deployment.Instance.Invoke<GetDiskImageResult>("civo:index/getDiskImage:getDiskImage", args ?? new GetDiskImageInvokeArgs(), options.WithVersion());
     }
 
 
@@ -72,17 +30,28 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetDiskImageFilterArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public List<Inputs.GetDiskImageFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetDiskImageFilterArgs>());
             set => _filters = value;
         }
 
+        /// <summary>
+        /// If is used, all disk image will be from this region. Required if no region is set in provider.
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         [Input("sorts")]
         private List<Inputs.GetDiskImageSortArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public List<Inputs.GetDiskImageSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetDiskImageSortArgs>());
@@ -94,17 +63,63 @@ namespace Pulumi.Civo
         }
     }
 
+    public sealed class GetDiskImageInvokeArgs : Pulumi.InvokeArgs
+    {
+        [Input("filters")]
+        private InputList<Inputs.GetDiskImageFilterInputArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
+        public InputList<Inputs.GetDiskImageFilterInputArgs> Filters
+        {
+            get => _filters ?? (_filters = new InputList<Inputs.GetDiskImageFilterInputArgs>());
+            set => _filters = value;
+        }
+
+        /// <summary>
+        /// If is used, all disk image will be from this region. Required if no region is set in provider.
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
+
+        [Input("sorts")]
+        private InputList<Inputs.GetDiskImageSortInputArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
+        public InputList<Inputs.GetDiskImageSortInputArgs> Sorts
+        {
+            get => _sorts ?? (_sorts = new InputList<Inputs.GetDiskImageSortInputArgs>());
+            set => _sorts = value;
+        }
+
+        public GetDiskImageInvokeArgs()
+        {
+        }
+    }
+
 
     [OutputType]
     public sealed class GetDiskImageResult
     {
         public readonly ImmutableArray<Outputs.GetDiskImageDiskimageResult> Diskimages;
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDiskImageFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// If is used, all disk image will be from this region. Required if no region is set in provider.
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDiskImageSortResult> Sorts;
 
         [OutputConstructor]

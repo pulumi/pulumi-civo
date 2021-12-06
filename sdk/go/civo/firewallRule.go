@@ -13,26 +13,9 @@ import (
 
 // Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.
 //
-// ## Schema
-//
-// ### Required
-//
-// - **cidr** (Set of String) The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-// - **firewall_id** (String) The Firewall ID
-//
-// ### Optional
-//
-// - **direction** (String) Will this rule affect ingress traffic (only `ingress` is supported now)
-// - **end_port** (String) The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
-// - **id** (String) The ID of this resource.
-// - **label** (String) A string that will be the displayed name/reference for this rule
-// - **protocol** (String) The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
-// - **region** (String) The region for this rule
-// - **start_port** (String) The start of the port range to configure for this rule (or the single port if required)
-//
 // ## Import
 //
-// Import is supported using the following syntax# using firewall_id:firewall_rule_id
+// # using firewall_id:firewall_rule_id
 //
 // ```sh
 //  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -40,8 +23,7 @@ import (
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
 	// Will this rule affect ingress traffic (only `ingress` is supported now)
 	Direction pulumi.StringOutput `pulumi:"direction"`
@@ -94,8 +76,7 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
 	// Will this rule affect ingress traffic (only `ingress` is supported now)
 	Direction *string `pulumi:"direction"`
@@ -114,8 +95,7 @@ type firewallRuleState struct {
 }
 
 type FirewallRuleState struct {
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
 	// Will this rule affect ingress traffic (only `ingress` is supported now)
 	Direction pulumi.StringPtrInput
@@ -138,8 +118,7 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
 	// Will this rule affect ingress traffic (only `ingress` is supported now)
 	Direction *string `pulumi:"direction"`
@@ -159,8 +138,7 @@ type firewallRuleArgs struct {
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
 	// Will this rule affect ingress traffic (only `ingress` is supported now)
 	Direction pulumi.StringPtrInput
@@ -190,7 +168,7 @@ type FirewallRuleInput interface {
 }
 
 func (*FirewallRule) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallRule)(nil))
+	return reflect.TypeOf((**FirewallRule)(nil)).Elem()
 }
 
 func (i *FirewallRule) ToFirewallRuleOutput() FirewallRuleOutput {
@@ -199,35 +177,6 @@ func (i *FirewallRule) ToFirewallRuleOutput() FirewallRuleOutput {
 
 func (i *FirewallRule) ToFirewallRuleOutputWithContext(ctx context.Context) FirewallRuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRuleOutput)
-}
-
-func (i *FirewallRule) ToFirewallRulePtrOutput() FirewallRulePtrOutput {
-	return i.ToFirewallRulePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallRule) ToFirewallRulePtrOutputWithContext(ctx context.Context) FirewallRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallRulePtrOutput)
-}
-
-type FirewallRulePtrInput interface {
-	pulumi.Input
-
-	ToFirewallRulePtrOutput() FirewallRulePtrOutput
-	ToFirewallRulePtrOutputWithContext(ctx context.Context) FirewallRulePtrOutput
-}
-
-type firewallRulePtrType FirewallRuleArgs
-
-func (*firewallRulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallRule)(nil))
-}
-
-func (i *firewallRulePtrType) ToFirewallRulePtrOutput() FirewallRulePtrOutput {
-	return i.ToFirewallRulePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallRulePtrType) ToFirewallRulePtrOutputWithContext(ctx context.Context) FirewallRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallRulePtrOutput)
 }
 
 // FirewallRuleArrayInput is an input type that accepts FirewallRuleArray and FirewallRuleArrayOutput values.
@@ -244,7 +193,7 @@ type FirewallRuleArrayInput interface {
 type FirewallRuleArray []FirewallRuleInput
 
 func (FirewallRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallRule)(nil))
+	return reflect.TypeOf((*[]*FirewallRule)(nil)).Elem()
 }
 
 func (i FirewallRuleArray) ToFirewallRuleArrayOutput() FirewallRuleArrayOutput {
@@ -269,7 +218,7 @@ type FirewallRuleMapInput interface {
 type FirewallRuleMap map[string]FirewallRuleInput
 
 func (FirewallRuleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallRule)(nil))
+	return reflect.TypeOf((*map[string]*FirewallRule)(nil)).Elem()
 }
 
 func (i FirewallRuleMap) ToFirewallRuleMapOutput() FirewallRuleMapOutput {
@@ -280,12 +229,10 @@ func (i FirewallRuleMap) ToFirewallRuleMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRuleMapOutput)
 }
 
-type FirewallRuleOutput struct {
-	*pulumi.OutputState
-}
+type FirewallRuleOutput struct{ *pulumi.OutputState }
 
 func (FirewallRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallRule)(nil))
+	return reflect.TypeOf((**FirewallRule)(nil)).Elem()
 }
 
 func (o FirewallRuleOutput) ToFirewallRuleOutput() FirewallRuleOutput {
@@ -296,36 +243,10 @@ func (o FirewallRuleOutput) ToFirewallRuleOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o FirewallRuleOutput) ToFirewallRulePtrOutput() FirewallRulePtrOutput {
-	return o.ToFirewallRulePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallRuleOutput) ToFirewallRulePtrOutputWithContext(ctx context.Context) FirewallRulePtrOutput {
-	return o.ApplyT(func(v FirewallRule) *FirewallRule {
-		return &v
-	}).(FirewallRulePtrOutput)
-}
-
-type FirewallRulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallRulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallRule)(nil))
-}
-
-func (o FirewallRulePtrOutput) ToFirewallRulePtrOutput() FirewallRulePtrOutput {
-	return o
-}
-
-func (o FirewallRulePtrOutput) ToFirewallRulePtrOutputWithContext(ctx context.Context) FirewallRulePtrOutput {
-	return o
-}
-
 type FirewallRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallRule)(nil))
+	return reflect.TypeOf((*[]*FirewallRule)(nil)).Elem()
 }
 
 func (o FirewallRuleArrayOutput) ToFirewallRuleArrayOutput() FirewallRuleArrayOutput {
@@ -337,15 +258,15 @@ func (o FirewallRuleArrayOutput) ToFirewallRuleArrayOutputWithContext(ctx contex
 }
 
 func (o FirewallRuleArrayOutput) Index(i pulumi.IntInput) FirewallRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallRule {
-		return vs[0].([]FirewallRule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallRule {
+		return vs[0].([]*FirewallRule)[vs[1].(int)]
 	}).(FirewallRuleOutput)
 }
 
 type FirewallRuleMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallRuleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallRule)(nil))
+	return reflect.TypeOf((*map[string]*FirewallRule)(nil)).Elem()
 }
 
 func (o FirewallRuleMapOutput) ToFirewallRuleMapOutput() FirewallRuleMapOutput {
@@ -357,14 +278,16 @@ func (o FirewallRuleMapOutput) ToFirewallRuleMapOutputWithContext(ctx context.Co
 }
 
 func (o FirewallRuleMapOutput) MapIndex(k pulumi.StringInput) FirewallRuleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallRule {
-		return vs[0].(map[string]FirewallRule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallRule {
+		return vs[0].(map[string]*FirewallRule)[vs[1].(string)]
 	}).(FirewallRuleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRuleInput)(nil)).Elem(), &FirewallRule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRuleArrayInput)(nil)).Elem(), FirewallRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRuleMapInput)(nil)).Elem(), FirewallRuleMap{})
 	pulumi.RegisterOutputType(FirewallRuleOutput{})
-	pulumi.RegisterOutputType(FirewallRulePtrOutput{})
 	pulumi.RegisterOutputType(FirewallRuleArrayOutput{})
 	pulumi.RegisterOutputType(FirewallRuleMapOutput{})
 }
