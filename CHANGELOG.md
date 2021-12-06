@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to terraform-bridge 3.13.0
-* Upgrade to pulumi 3.19.0
+_(none)_
 
 ---
+
+## 2.1.0 (2021-12-06)
+* Upgrade to terraform-bridge 3.13.0
+* Upgrade to pulumi 3.19.0
 
 ## 2.0.0 (2021-11-08)
 * Upgrade to v1.0.3 of the Civo Terraform Provider
