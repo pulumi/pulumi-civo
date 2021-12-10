@@ -1369,129 +1369,6 @@
             "required": [
                 "key"
             ]
-        },
-        "civo:index/getTemplateFilter:getTemplateFilter": {
-            "properties": {
-                "all": {
-                    "type": "boolean",
-                    "description": "Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "key": {
-                    "type": "string",
-                    "description": "Filter templates by this key. This may be one of `id`, `label`, `name`, `version`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "matchBy": {
-                    "type": "string",
-                    "description": "One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "values": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Only retrieves `templates` which keys has value that matches one of the values provided here\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "key",
-                "values"
-            ]
-        },
-        "civo:index/getTemplateSort:getTemplateSort": {
-            "properties": {
-                "direction": {
-                    "type": "string",
-                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "key": {
-                    "type": "string",
-                    "description": "Sort templates by this key. This may be one of `id`, `label`, `name`, `version`.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "key"
-            ]
-        },
-        "civo:index/getTemplateTemplate:getTemplateTemplate": {
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "label": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "name": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "version": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "id",
-                "label",
-                "name",
-                "version"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredInputs": []
-                }
-            }
         }
     },
     "provider": {
@@ -2888,6 +2765,52 @@
                 ]
             }
         },
+        "civo:index/getFirewall:getFirewall": {
+            "description": "Retrieve information about a firewall for use in other resources.\n\nThis data source provides all of the firewall's properties as configured on your Civo account.\n\nFirewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getFirewall.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Kubernetes Cluster\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where cluster is running\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getFirewall.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Kubernetes Cluster\n"
+                    },
+                    "networkId": {
+                        "type": "string",
+                        "description": "The id of the associated network\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where cluster is running\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "networkId"
+                ]
+            }
+        },
         "civo:index/getInstance:getInstance": {
             "description": "Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.\n\nNote: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst myhostaname = civo.getInstance({\n    hostname: \"myhostname.com\",\n});\nexport const instanceOutput = myhostaname.then(myhostaname =\u003e myhostaname.publicIp);\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmyhostaname = civo.get_instance(hostname=\"myhostname.com\")\npulumi.export(\"instanceOutput\", myhostaname.public_ip)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var myhostaname = Output.Create(Civo.GetInstance.InvokeAsync(new Civo.GetInstanceArgs\n        {\n            Hostname = \"myhostname.com\",\n        }));\n        this.InstanceOutput = myhostaname.Apply(myhostaname =\u003e myhostaname.PublicIp);\n    }\n\n    [Output(\"instanceOutput\")]\n    public Output\u003cstring\u003e InstanceOutput { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"myhostname.com\"\n\t\tmyhostaname, err := civo.LookupInstance(ctx, \u0026GetInstanceArgs{\n\t\t\tHostname: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"instanceOutput\", myhostaname.PublicIp)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -3471,69 +3394,6 @@
                 "type": "object",
                 "required": [
                     "fingerprint"
-                ]
-            }
-        },
-        "civo:index/getTemplate:getTemplate": {
-            "description": "`civo.getTemplate` data source is deprecated. Moving forward, please use `civo.getDiskImage` data source.\n\nGet information on an template for use in other resources (e.g. creating a instance) with the ability to filter the results.\n",
-            "inputs": {
-                "description": "A collection of arguments for invoking getTemplate.\n",
-                "properties": {
-                    "filters": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getTemplateFilter:getTemplateFilter"
-                        },
-                        "description": "One or more key/value pairs on which to filter results\n"
-                    },
-                    "region": {
-                        "type": "string"
-                    },
-                    "sorts": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getTemplateSort:getTemplateSort"
-                        },
-                        "description": "One or more key/direction pairs on which to sort results\n"
-                    }
-                },
-                "type": "object"
-            },
-            "outputs": {
-                "description": "A collection of values returned by getTemplate.\n",
-                "properties": {
-                    "filters": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getTemplateFilter:getTemplateFilter"
-                        },
-                        "description": "One or more key/value pairs on which to filter results\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    },
-                    "region": {
-                        "type": "string"
-                    },
-                    "sorts": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getTemplateSort:getTemplateSort"
-                        },
-                        "description": "One or more key/direction pairs on which to sort results\n"
-                    },
-                    "templates": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getTemplateTemplate:getTemplateTemplate"
-                        }
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "templates",
-                    "id"
                 ]
             }
         },

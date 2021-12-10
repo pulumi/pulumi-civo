@@ -12,6 +12,7 @@ from .firewall_rule import *
 from .get_disk_image import *
 from .get_dns_domain_name import *
 from .get_dns_domain_record import *
+from .get_firewall import *
 from .get_instance import *
 from .get_instances import *
 from .get_instances_size import *
@@ -20,7 +21,6 @@ from .get_kubernetes_version import *
 from .get_network import *
 from .get_region import *
 from .get_ssh_key import *
-from .get_template import *
 from .get_volume import *
 from .instance import *
 from .kubernetes_cluster import *

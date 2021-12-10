@@ -2,7 +2,8 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-_(none)_
+* Upgrade to v1.0.6 of the Civo Terraform Provider
+  **Please Note:** `civo.getTemplate` has been removed due to removal in the upstream library
 
 ---
 
@@ -12,7 +13,7 @@ _(none)_
 
 ## 2.0.0 (2021-11-08)
 * Upgrade to v1.0.3 of the Civo Terraform Provider
-  **Please Note the followign breaking changes:**
+  **Please Note the following breaking changes:**
   * `civo.Snapshot` resource has been removed
   * `civo.LoadBalancer` resource has been removed
   * `civo.Template` resource has been removed
