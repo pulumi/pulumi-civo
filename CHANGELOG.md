@@ -2,10 +2,13 @@ CHANGELOG
 =========
 
 ## HEAD (Unreleased)
-* Upgrade to v1.0.6 of the Civo Terraform Provider
-  **Please Note:** `civo.getTemplate` has been removed due to removal in the upstream library
+_(none)_
 
 ---
+
+## 2.1.1 (2021-12-10)
+* Upgrade to v1.0.6 of the Civo Terraform Provider
+  **Please Note:** `civo.getTemplate` has been removed due to removal in the upstream library
 
 ## 2.1.0 (2021-12-06)
 * Upgrade to terraform-bridge 3.13.0
