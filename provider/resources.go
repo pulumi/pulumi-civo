@@ -91,7 +91,6 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"civo_kubernetes_cluster": {Tok: makeDataSource(mainMod, "getKubernetesCluster")},
-			"civo_template":           {Tok: makeDataSource(mainMod, "getTemplate")},
 			"civo_kubernetes_version": {Tok: makeDataSource(mainMod, "getKubernetesVersion")},
 			"civo_instances_size":     {Tok: makeDataSource(mainMod, "getInstancesSize")},
 			"civo_instances":          {Tok: makeDataSource(mainMod, "getInstances")},
@@ -103,6 +102,7 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_ssh_key":            {Tok: makeDataSource(mainMod, "getSshKey")},
 			"civo_region":             {Tok: makeDataSource(mainMod, "getRegion")},
 			"civo_disk_image":         {Tok: makeDataSource(mainMod, "getDiskImage")},
+			"civo_firewall":           {Tok: makeDataSource(mainMod, "getFirewall")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
