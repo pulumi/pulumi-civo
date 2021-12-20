@@ -17,7 +17,31 @@ namespace Pulumi.Civo
         /// 
         /// This data source provides all of the firewall's properties as configured on your Civo account.
         /// 
-        /// Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+        /// Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Civo.GetFirewall.InvokeAsync(new Civo.GetFirewallArgs
+        ///         {
+        ///             Name = "test-firewall",
+        ///             Region = "NYC1",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetFirewallResult> InvokeAsync(GetFirewallArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithVersion());
@@ -27,7 +51,31 @@ namespace Pulumi.Civo
         /// 
         /// This data source provides all of the firewall's properties as configured on your Civo account.
         /// 
-        /// Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+        /// Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// class MyStack : Stack
+        /// {
+        ///     public MyStack()
+        ///     {
+        ///         var test = Output.Create(Civo.GetFirewall.InvokeAsync(new Civo.GetFirewallArgs
+        ///         {
+        ///             Name = "test-firewall",
+        ///             Region = "NYC1",
+        ///         }));
+        ///     }
+        /// 
+        /// }
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetFirewallResult> Invoke(GetFirewallInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithVersion());
@@ -43,13 +91,13 @@ namespace Pulumi.Civo
         public string? Id { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes Cluster
+        /// The name of the firewall
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The region where cluster is running
+        /// The region where the firewall is
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -68,13 +116,13 @@ namespace Pulumi.Civo
         public Input<string>? Id { get; set; }
 
         /// <summary>
-        /// The name of the Kubernetes Cluster
+        /// The name of the firewall
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region where cluster is running
+        /// The region where the firewall is
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -93,7 +141,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string? Id;
         /// <summary>
-        /// The name of the Kubernetes Cluster
+        /// The name of the firewall
         /// </summary>
         public readonly string? Name;
         /// <summary>
@@ -101,7 +149,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string NetworkId;
         /// <summary>
-        /// The region where cluster is running
+        /// The region where the firewall is
         /// </summary>
         public readonly string? Region;
 

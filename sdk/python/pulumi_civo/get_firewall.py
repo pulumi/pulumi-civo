@@ -46,7 +46,7 @@ class GetFirewallResult:
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        The name of the Kubernetes Cluster
+        The name of the firewall
         """
         return pulumi.get(self, "name")
 
@@ -62,7 +62,7 @@ class GetFirewallResult:
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region where cluster is running
+        The region where the firewall is
         """
         return pulumi.get(self, "region")
 
@@ -88,12 +88,22 @@ def get_firewall(id: Optional[str] = None,
 
     This data source provides all of the firewall's properties as configured on your Civo account.
 
-    Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+    Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    test = civo.get_firewall(name="test-firewall",
+        region="NYC1")
+    ```
 
 
     :param str id: The ID of this resource.
-    :param str name: The name of the Kubernetes Cluster
-    :param str region: The region where cluster is running
+    :param str name: The name of the firewall
+    :param str region: The region where the firewall is
     """
     __args__ = dict()
     __args__['id'] = id
@@ -122,11 +132,21 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     This data source provides all of the firewall's properties as configured on your Civo account.
 
-    Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+    Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    test = civo.get_firewall(name="test-firewall",
+        region="NYC1")
+    ```
 
 
     :param str id: The ID of this resource.
-    :param str name: The name of the Kubernetes Cluster
-    :param str region: The region where cluster is running
+    :param str name: The name of the firewall
+    :param str region: The region where the firewall is
     """
     ...
