@@ -9,7 +9,19 @@ import * as utilities from "./utilities";
  *
  * This data source provides all of the firewall's properties as configured on your Civo account.
  *
- * Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+ * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const test = pulumi.output(civo.getFirewall({
+ *     name: "test-firewall",
+ *     region: "NYC1",
+ * }));
+ * ```
  */
 export function getFirewall(args?: GetFirewallArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallResult> {
     args = args || {};
@@ -36,11 +48,11 @@ export interface GetFirewallArgs {
      */
     id?: string;
     /**
-     * The name of the Kubernetes Cluster
+     * The name of the firewall
      */
     name?: string;
     /**
-     * The region where cluster is running
+     * The region where the firewall is
      */
     region?: string;
 }
@@ -54,7 +66,7 @@ export interface GetFirewallResult {
      */
     readonly id?: string;
     /**
-     * The name of the Kubernetes Cluster
+     * The name of the firewall
      */
     readonly name?: string;
     /**
@@ -62,7 +74,7 @@ export interface GetFirewallResult {
      */
     readonly networkId: string;
     /**
-     * The region where cluster is running
+     * The region where the firewall is
      */
     readonly region?: string;
 }
@@ -80,11 +92,11 @@ export interface GetFirewallOutputArgs {
      */
     id?: pulumi.Input<string>;
     /**
-     * The name of the Kubernetes Cluster
+     * The name of the firewall
      */
     name?: pulumi.Input<string>;
     /**
-     * The region where cluster is running
+     * The region where the firewall is
      */
     region?: pulumi.Input<string>;
 }

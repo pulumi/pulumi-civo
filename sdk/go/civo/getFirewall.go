@@ -14,7 +14,33 @@ import (
 //
 // This data source provides all of the firewall's properties as configured on your Civo account.
 //
-// Firewalls may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+// Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		opt0 := "test-firewall"
+// 		opt1 := "NYC1"
+// 		_, err := civo.LookupFirewall(ctx, &GetFirewallArgs{
+// 			Name:   &opt0,
+// 			Region: &opt1,
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
 func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulumi.InvokeOption) (*LookupFirewallResult, error) {
 	var rv LookupFirewallResult
 	err := ctx.Invoke("civo:index/getFirewall:getFirewall", args, &rv, opts...)
@@ -28,9 +54,9 @@ func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulum
 type LookupFirewallArgs struct {
 	// The ID of this resource.
 	Id *string `pulumi:"id"`
-	// The name of the Kubernetes Cluster
+	// The name of the firewall
 	Name *string `pulumi:"name"`
-	// The region where cluster is running
+	// The region where the firewall is
 	Region *string `pulumi:"region"`
 }
 
@@ -38,11 +64,11 @@ type LookupFirewallArgs struct {
 type LookupFirewallResult struct {
 	// The ID of this resource.
 	Id *string `pulumi:"id"`
-	// The name of the Kubernetes Cluster
+	// The name of the firewall
 	Name *string `pulumi:"name"`
 	// The id of the associated network
 	NetworkId string `pulumi:"networkId"`
-	// The region where cluster is running
+	// The region where the firewall is
 	Region *string `pulumi:"region"`
 }
 
@@ -59,9 +85,9 @@ func LookupFirewallOutput(ctx *pulumi.Context, args LookupFirewallOutputArgs, op
 type LookupFirewallOutputArgs struct {
 	// The ID of this resource.
 	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the Kubernetes Cluster
+	// The name of the firewall
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The region where cluster is running
+	// The region where the firewall is
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -89,7 +115,7 @@ func (o LookupFirewallResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the Kubernetes Cluster
+// The name of the firewall
 func (o LookupFirewallResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
@@ -99,7 +125,7 @@ func (o LookupFirewallResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
-// The region where cluster is running
+// The region where the firewall is
 func (o LookupFirewallResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
