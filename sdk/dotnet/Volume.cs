@@ -55,6 +55,12 @@ namespace Pulumi.Civo
     public partial class Volume : Pulumi.CustomResource
     {
         /// <summary>
+        /// The ID of this resource.
+        /// </summary>
+        [Output("id")]
+        public Output<string> Id { get; private set; } = null!;
+
+        /// <summary>
         /// The mount point of the volume (from instance's perspective)
         /// </summary>
         [Output("mountPoint")]
@@ -161,6 +167,12 @@ namespace Pulumi.Civo
 
     public sealed class VolumeState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
+        [Input("id")]
+        public Input<string>? Id { get; set; }
+
         /// <summary>
         /// The mount point of the volume (from instance's perspective)
         /// </summary>

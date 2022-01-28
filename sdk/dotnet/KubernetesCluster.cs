@@ -36,6 +36,12 @@ namespace Pulumi.Civo
         public Output<string?> Applications { get; private set; } = null!;
 
         /// <summary>
+        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        /// </summary>
+        [Output("cni")]
+        public Output<string> Cni { get; private set; } = null!;
+
+        /// <summary>
         /// The timestamp when the cluster was created
         /// </summary>
         [Output("createdAt")]
@@ -123,7 +129,7 @@ namespace Pulumi.Civo
         public Output<string?> Tags { get; private set; } = null!;
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g3.k3s.medium)
+        /// The size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Output("targetNodesSize")]
         public Output<string> TargetNodesSize { get; private set; } = null!;
@@ -181,6 +187,12 @@ namespace Pulumi.Civo
         public Input<string>? Applications { get; set; }
 
         /// <summary>
+        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        /// </summary>
+        [Input("cni")]
+        public Input<string>? Cni { get; set; }
+
+        /// <summary>
         /// The existing firewall ID to use for this cluster
         /// </summary>
         [Input("firewallId", required: true)]
@@ -223,7 +235,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g3.k3s.medium)
+        /// The size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
@@ -246,6 +258,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
+
+        /// <summary>
+        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        /// </summary>
+        [Input("cni")]
+        public Input<string>? Cni { get; set; }
 
         /// <summary>
         /// The timestamp when the cluster was created
@@ -350,7 +368,7 @@ namespace Pulumi.Civo
         public Input<string>? Tags { get; set; }
 
         /// <summary>
-        /// The size of each node (optional, the default is currently g3.k3s.medium)
+        /// The size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }

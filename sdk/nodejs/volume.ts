@@ -62,6 +62,10 @@ export class Volume extends pulumi.CustomResource {
     }
 
     /**
+     * The ID of this resource.
+     */
+    public /*out*/ readonly id!: pulumi.Output<string>;
+    /**
      * The mount point of the volume (from instance's perspective)
      */
     public /*out*/ readonly mountPoint!: pulumi.Output<string>;
@@ -95,6 +99,7 @@ export class Volume extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VolumeState | undefined;
+            resourceInputs["id"] = state ? state.id : undefined;
             resourceInputs["mountPoint"] = state ? state.mountPoint : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
@@ -112,6 +117,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["sizeGb"] = args ? args.sizeGb : undefined;
+            resourceInputs["id"] = undefined /*out*/;
             resourceInputs["mountPoint"] = undefined /*out*/;
         }
         if (!opts.version) {
@@ -125,6 +131,10 @@ export class Volume extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Volume resources.
  */
 export interface VolumeState {
+    /**
+     * The ID of this resource.
+     */
+    id?: pulumi.Input<string>;
     /**
      * The mount point of the volume (from instance's perspective)
      */

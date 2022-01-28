@@ -27,6 +27,8 @@ type KubernetesCluster struct {
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
 	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni pulumi.StringOutput `pulumi:"cni"`
 	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The DNS name of the cluster
@@ -56,7 +58,7 @@ type KubernetesCluster struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g3.k3s.medium)
+	// The size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -96,6 +98,8 @@ type kubernetesClusterState struct {
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
 	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni *string `pulumi:"cni"`
 	// The timestamp when the cluster was created
 	CreatedAt *string `pulumi:"createdAt"`
 	// The DNS name of the cluster
@@ -125,7 +129,7 @@ type kubernetesClusterState struct {
 	Status *string `pulumi:"status"`
 	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g3.k3s.medium)
+	// The size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -134,6 +138,8 @@ type KubernetesClusterState struct {
 	ApiEndpoint pulumi.StringPtrInput
 	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni pulumi.StringPtrInput
 	// The timestamp when the cluster was created
 	CreatedAt pulumi.StringPtrInput
 	// The DNS name of the cluster
@@ -163,7 +169,7 @@ type KubernetesClusterState struct {
 	Status pulumi.StringPtrInput
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g3.k3s.medium)
+	// The size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -174,6 +180,8 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 type kubernetesClusterArgs struct {
 	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni *string `pulumi:"cni"`
 	// The existing firewall ID to use for this cluster
 	FirewallId string `pulumi:"firewallId"`
 	// The version of k3s to install (optional, the default is currently the latest available)
@@ -188,7 +196,7 @@ type kubernetesClusterArgs struct {
 	Region *string `pulumi:"region"`
 	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
-	// The size of each node (optional, the default is currently g3.k3s.medium)
+	// The size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -196,6 +204,8 @@ type kubernetesClusterArgs struct {
 type KubernetesClusterArgs struct {
 	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni pulumi.StringPtrInput
 	// The existing firewall ID to use for this cluster
 	FirewallId pulumi.StringInput
 	// The version of k3s to install (optional, the default is currently the latest available)
@@ -210,7 +220,7 @@ type KubernetesClusterArgs struct {
 	Region pulumi.StringPtrInput
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
-	// The size of each node (optional, the default is currently g3.k3s.medium)
+	// The size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

@@ -56,7 +56,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * the size of each node (optional, the default is currently g3.k3s.medium)
+     * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
 
@@ -114,7 +114,7 @@ export interface KubernetesNodePoolState {
      */
     region?: pulumi.Input<string>;
     /**
-     * the size of each node (optional, the default is currently g3.k3s.medium)
+     * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     targetNodesSize?: pulumi.Input<string>;
 }
@@ -136,7 +136,7 @@ export interface KubernetesNodePoolArgs {
      */
     region: pulumi.Input<string>;
     /**
-     * the size of each node (optional, the default is currently g3.k3s.medium)
+     * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     targetNodesSize?: pulumi.Input<string>;
 }

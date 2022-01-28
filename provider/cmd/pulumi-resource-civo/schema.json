@@ -2043,6 +2043,10 @@
                     "type": "string",
                     "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
                 },
+                "cni": {
+                    "type": "string",
+                    "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "The timestamp when the cluster was created\n"
@@ -2115,11 +2119,12 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "required": [
                 "apiEndpoint",
+                "cni",
                 "createdAt",
                 "dnsEntry",
                 "firewallId",
@@ -2141,6 +2146,10 @@
                 "applications": {
                     "type": "string",
                     "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                },
+                "cni": {
+                    "type": "string",
+                    "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
                 },
                 "firewallId": {
                     "type": "string",
@@ -2172,7 +2181,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "requiredInputs": [
@@ -2188,6 +2197,10 @@
                     "applications": {
                         "type": "string",
                         "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                    },
+                    "cni": {
+                        "type": "string",
+                        "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
                     },
                     "createdAt": {
                         "type": "string",
@@ -2261,7 +2274,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                        "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                     }
                 },
                 "type": "object"
@@ -2284,7 +2297,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "required": [
@@ -2308,7 +2321,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "requiredInputs": [
@@ -2332,7 +2345,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                        "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                     }
                 },
                 "type": "object"
@@ -2455,6 +2468,10 @@
         "civo:index/volume:Volume": {
             "description": "Provides a Civo volume which can be attached to an instance in order to provide expanded storage.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst defaultNetwork = civo.getNetwork({\n    label: \"Default\",\n});\n// Create volume\nconst db = new civo.Volume(\"db\", {\n    sizeGb: 5,\n    networkId: defaultNetwork.then(defaultNetwork =\u003e defaultNetwork.id),\n}, {\n    dependsOn: [defaultNetwork],\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ndefault_network = civo.get_network(label=\"Default\")\n# Create volume\ndb = civo.Volume(\"db\",\n    size_gb=5,\n    network_id=default_network.id,\n    opts=pulumi.ResourceOptions(depends_on=[default_network]))\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var defaultNetwork = Output.Create(Civo.GetNetwork.InvokeAsync(new Civo.GetNetworkArgs\n        {\n            Label = \"Default\",\n        }));\n        // Create volume\n        var db = new Civo.Volume(\"db\", new Civo.VolumeArgs\n        {\n            SizeGb = 5,\n            NetworkId = defaultNetwork.Apply(defaultNetwork =\u003e defaultNetwork.Id),\n        }, new CustomResourceOptions\n        {\n            DependsOn = \n            {\n                defaultNetwork,\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\topt0 := \"Default\"\n\t\tdefaultNetwork, err := civo.LookupNetwork(ctx, \u0026GetNetworkArgs{\n\t\t\tLabel: \u0026opt0,\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewVolume(ctx, \"db\", \u0026civo.VolumeArgs{\n\t\t\tSizeGb:    pulumi.Int(5),\n\t\t\tNetworkId: pulumi.String(defaultNetwork.Id),\n\t\t}, pulumi.DependsOn([]pulumi.Resource{\n\t\t\tdefaultNetwork,\n\t\t}))\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# using ID\n\n```sh\n $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1\n```\n\n ",
             "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "The ID of this resource.\n"
+                },
                 "mountPoint": {
                     "type": "string",
                     "description": "The mount point of the volume (from instance's perspective)\n"
@@ -2477,6 +2494,7 @@
                 }
             },
             "required": [
+                "id",
                 "mountPoint",
                 "name",
                 "networkId",
@@ -2507,6 +2525,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Volume resources.\n",
                 "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of this resource.\n"
+                    },
                     "mountPoint": {
                         "type": "string",
                         "description": "The mount point of the volume (from instance's perspective)\n"
@@ -3103,6 +3125,10 @@
                         "type": "string",
                         "description": "A list of application installed\n"
                     },
+                    "cni": {
+                        "type": "string",
+                        "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "The date where the Kubernetes cluster was create\n"
@@ -3178,6 +3204,7 @@
                 "required": [
                     "apiEndpoint",
                     "applications",
+                    "cni",
                     "createdAt",
                     "dnsEntry",
                     "installedApplications",

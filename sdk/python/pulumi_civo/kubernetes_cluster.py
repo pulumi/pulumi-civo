@@ -17,6 +17,7 @@ class KubernetesClusterArgs:
     def __init__(__self__, *,
                  firewall_id: pulumi.Input[str],
                  applications: Optional[pulumi.Input[str]] = None,
+                 cni: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
@@ -28,17 +29,20 @@ class KubernetesClusterArgs:
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
         :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
-        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
         pulumi.set(__self__, "firewall_id", firewall_id)
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if cni is not None:
+            pulumi.set(__self__, "cni", cni)
         if kubernetes_version is not None:
             pulumi.set(__self__, "kubernetes_version", kubernetes_version)
         if name is not None:
@@ -77,6 +81,18 @@ class KubernetesClusterArgs:
     @applications.setter
     def applications(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "applications", value)
+
+    @property
+    @pulumi.getter
+    def cni(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        """
+        return pulumi.get(self, "cni")
+
+    @cni.setter
+    def cni(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cni", value)
 
     @property
     @pulumi.getter(name="kubernetesVersion")
@@ -154,7 +170,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node (optional, the default is currently g3.k3s.medium)
+        The size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -168,6 +184,7 @@ class _KubernetesClusterState:
     def __init__(__self__, *,
                  api_endpoint: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[str]] = None,
+                 cni: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  dns_entry: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
@@ -189,6 +206,7 @@ class _KubernetesClusterState:
         Input properties used for looking up and filtering KubernetesCluster resources.
         :param pulumi.Input[str] api_endpoint: The API server endpoint of the cluster
         :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
@@ -202,12 +220,14 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] status: Status of the cluster
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
-        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
         if api_endpoint is not None:
             pulumi.set(__self__, "api_endpoint", api_endpoint)
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
+        if cni is not None:
+            pulumi.set(__self__, "cni", cni)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if dns_entry is not None:
@@ -266,6 +286,18 @@ class _KubernetesClusterState:
     @applications.setter
     def applications(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "applications", value)
+
+    @property
+    @pulumi.getter
+    def cni(self) -> Optional[pulumi.Input[str]]:
+        """
+        The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        """
+        return pulumi.get(self, "cni")
+
+    @cni.setter
+    def cni(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cni", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -454,7 +486,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        The size of each node (optional, the default is currently g3.k3s.medium)
+        The size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -469,6 +501,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  applications: Optional[pulumi.Input[str]] = None,
+                 cni: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -492,6 +525,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
@@ -499,7 +533,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
-        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
         ...
     @overload
@@ -534,6 +568,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  applications: Optional[pulumi.Input[str]] = None,
+                 cni: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -555,6 +590,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__ = KubernetesClusterArgs.__new__(KubernetesClusterArgs)
 
             __props__.__dict__["applications"] = applications
+            __props__.__dict__["cni"] = cni
             if firewall_id is None and not opts.urn:
                 raise TypeError("Missing required property 'firewall_id'")
             __props__.__dict__["firewall_id"] = firewall_id
@@ -587,6 +623,7 @@ class KubernetesCluster(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             api_endpoint: Optional[pulumi.Input[str]] = None,
             applications: Optional[pulumi.Input[str]] = None,
+            cni: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             dns_entry: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
@@ -613,6 +650,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_endpoint: The API server endpoint of the cluster
         :param pulumi.Input[str] applications: Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+        :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         :param pulumi.Input[str] created_at: The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
@@ -626,7 +664,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] status: Status of the cluster
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
-        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -634,6 +672,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
         __props__.__dict__["api_endpoint"] = api_endpoint
         __props__.__dict__["applications"] = applications
+        __props__.__dict__["cni"] = cni
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["dns_entry"] = dns_entry
         __props__.__dict__["firewall_id"] = firewall_id
@@ -668,6 +707,14 @@ class KubernetesCluster(pulumi.CustomResource):
         Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
         """
         return pulumi.get(self, "applications")
+
+    @property
+    @pulumi.getter
+    def cni(self) -> pulumi.Output[str]:
+        """
+        The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        """
+        return pulumi.get(self, "cni")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -792,7 +839,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> pulumi.Output[str]:
         """
-        The size of each node (optional, the default is currently g3.k3s.medium)
+        The size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
