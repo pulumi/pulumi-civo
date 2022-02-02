@@ -28,9 +28,7 @@ export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getDnsDomainName:getDnsDomainName", {
         "id": args.id,
         "name": args.name,

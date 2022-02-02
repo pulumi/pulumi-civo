@@ -90,9 +90,7 @@ export class Firewall extends pulumi.CustomResource {
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Firewall.__pulumiType, name, resourceInputs, opts);
     }
 }

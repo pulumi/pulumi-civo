@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -44,7 +43,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFirewallResult> InvokeAsync(GetFirewallArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information about a firewall for use in other resources.
@@ -78,7 +77,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFirewallResult> Invoke(GetFirewallInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -49,9 +49,7 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["token"] = args ? args.token : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

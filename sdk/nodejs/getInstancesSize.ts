@@ -14,9 +14,7 @@ export function getInstancesSize(args?: GetInstancesSizeArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getInstancesSize:getInstancesSize", {
         "filters": args.filters,
         "sorts": args.sorts,

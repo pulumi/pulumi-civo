@@ -114,9 +114,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["sizeGb"] = args ? args.sizeGb : undefined;
             resourceInputs["mountPoint"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Volume.__pulumiType, name, resourceInputs, opts);
     }
 }

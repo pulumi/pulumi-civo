@@ -126,9 +126,7 @@ export class DnsDomainRecord extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(DnsDomainRecord.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -18,7 +17,7 @@ namespace Pulumi.Civo
         /// An error will be raised if the provided SSH key name does not exist in your Civo account.
         /// </summary>
         public static Task<GetSshKeyResult> InvokeAsync(GetSshKeyArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
@@ -26,7 +25,7 @@ namespace Pulumi.Civo
         /// An error will be raised if the provided SSH key name does not exist in your Civo account.
         /// </summary>
         public static Output<GetSshKeyResult> Invoke(GetSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 

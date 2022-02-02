@@ -90,9 +90,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(KubernetesNodePool.__pulumiType, name, resourceInputs, opts);
     }
 }

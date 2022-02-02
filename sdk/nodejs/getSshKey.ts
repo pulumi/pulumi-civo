@@ -15,9 +15,7 @@ export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Pr
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getSshKey:getSshKey", {
         "id": args.id,
         "name": args.name,

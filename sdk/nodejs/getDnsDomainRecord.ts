@@ -31,9 +31,7 @@ export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", {
         "domainId": args.domainId,
         "name": args.name,

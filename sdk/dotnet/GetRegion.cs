@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -16,13 +15,13 @@ namespace Pulumi.Civo
         /// Retrieves information about the region that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Task<GetRegionResult> InvokeAsync(GetRegionArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about the region that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Output<GetRegionResult> Invoke(GetRegionInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionInvokeArgs(), options.WithDefaults());
     }
 
 

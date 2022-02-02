@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -16,13 +15,13 @@ namespace Pulumi.Civo
         /// Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Task<GetInstancesSizeResult> InvokeAsync(GetInstancesSizeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstancesSizeResult>("civo:index/getInstancesSize:getInstancesSize", args ?? new GetInstancesSizeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetInstancesSizeResult>("civo:index/getInstancesSize:getInstancesSize", args ?? new GetInstancesSizeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Output<GetInstancesSizeResult> Invoke(GetInstancesSizeInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstancesSizeResult>("civo:index/getInstancesSize:getInstancesSize", args ?? new GetInstancesSizeInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetInstancesSizeResult>("civo:index/getInstancesSize:getInstancesSize", args ?? new GetInstancesSizeInvokeArgs(), options.WithDefaults());
     }
 
 

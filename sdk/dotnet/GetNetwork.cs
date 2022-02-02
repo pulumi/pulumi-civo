@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -44,7 +43,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkResult> InvokeAsync(GetNetworkArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information about a network for use in other resources.
@@ -78,7 +77,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkResult> Invoke(GetNetworkInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithDefaults());
     }
 
 

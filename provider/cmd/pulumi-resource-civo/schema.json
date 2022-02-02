@@ -3465,6 +3465,7 @@
             }
         },
         "go": {
+            "generateExtraInputTypes": true,
             "generateResourceContainerTypes": true,
             "importBasePath": "github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
         },

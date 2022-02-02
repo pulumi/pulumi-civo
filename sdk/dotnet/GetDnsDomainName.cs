@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -47,7 +46,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDnsDomainNameResult> InvokeAsync(GetDnsDomainNameArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a domain. This data source provides the name and the id.
@@ -84,7 +83,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDnsDomainNameResult> Invoke(GetDnsDomainNameInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameInvokeArgs(), options.WithDefaults());
     }
 
 

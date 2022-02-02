@@ -14,9 +14,7 @@ export function getDiskImage(args?: GetDiskImageArgs, opts?: pulumi.InvokeOption
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getDiskImage:getDiskImage", {
         "filters": args.filters,
         "region": args.region,
