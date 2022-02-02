@@ -76,9 +76,7 @@ export class VolumeAttachment extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["volumeId"] = args ? args.volumeId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(VolumeAttachment.__pulumiType, name, resourceInputs, opts);
     }
 }

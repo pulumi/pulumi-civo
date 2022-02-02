@@ -98,9 +98,7 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["default"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Network.__pulumiType, name, resourceInputs, opts);
     }
 }

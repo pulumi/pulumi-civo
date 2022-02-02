@@ -91,9 +91,7 @@ export class SshKey extends pulumi.CustomResource {
             resourceInputs["publicKey"] = args ? args.publicKey : undefined;
             resourceInputs["fingerprint"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SshKey.__pulumiType, name, resourceInputs, opts);
     }
 }

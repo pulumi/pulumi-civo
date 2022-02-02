@@ -114,9 +114,7 @@ export class FirewallRule extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["startPort"] = args ? args.startPort : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FirewallRule.__pulumiType, name, resourceInputs, opts);
     }
 }

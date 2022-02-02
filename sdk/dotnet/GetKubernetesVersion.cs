@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -49,7 +48,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetKubernetesVersionResult> InvokeAsync(GetKubernetesVersionArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionArgs(), options.WithDefaults());
 
         /// <summary>
         /// Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
@@ -88,7 +87,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetKubernetesVersionResult> Invoke(GetKubernetesVersionInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
-using Pulumi.Utilities;
 
 namespace Pulumi.Civo
 {
@@ -52,7 +51,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetDnsDomainRecordResult> InvokeAsync(GetDnsDomainRecordArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
@@ -94,7 +93,7 @@ namespace Pulumi.Civo
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetDnsDomainRecordResult> Invoke(GetDnsDomainRecordInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordInvokeArgs(), options.WithVersion());
+            => Pulumi.Deployment.Instance.Invoke<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordInvokeArgs(), options.WithDefaults());
     }
 
 
