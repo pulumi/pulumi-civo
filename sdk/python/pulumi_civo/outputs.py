@@ -33,6 +33,9 @@ __all__ = [
     'GetRegionFilterResult',
     'GetRegionRegionResult',
     'GetRegionSortResult',
+    'GetSizeFilterResult',
+    'GetSizeSizeResult',
+    'GetSizeSortResult',
 ]
 
 @pulumi.output_type
@@ -1262,6 +1265,143 @@ class GetRegionSortResult(dict):
     def key(self) -> str:
         """
         Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def direction(self) -> Optional[str]:
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+        return pulumi.get(self, "direction")
+
+
+@pulumi.output_type
+class GetSizeFilterResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 values: Sequence[str],
+                 all: Optional[bool] = None,
+                 match_by: Optional[str] = None):
+        """
+        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param Sequence[str] values: Only retrieves `sizes` which keys has value that matches one of the values provided here
+        :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "values", values)
+        if all is not None:
+            pulumi.set(__self__, "all", all)
+        if match_by is not None:
+            pulumi.set(__self__, "match_by", match_by)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        Only retrieves `sizes` which keys has value that matches one of the values provided here
+        """
+        return pulumi.get(self, "values")
+
+    @property
+    @pulumi.getter
+    def all(self) -> Optional[bool]:
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        return pulumi.get(self, "all")
+
+    @property
+    @pulumi.getter(name="matchBy")
+    def match_by(self) -> Optional[str]:
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+        return pulumi.get(self, "match_by")
+
+
+@pulumi.output_type
+class GetSizeSizeResult(dict):
+    def __init__(__self__, *,
+                 cpu: int,
+                 description: str,
+                 disk: int,
+                 name: str,
+                 ram: int,
+                 selectable: bool,
+                 type: str):
+        pulumi.set(__self__, "cpu", cpu)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "disk", disk)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "ram", ram)
+        pulumi.set(__self__, "selectable", selectable)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def cpu(self) -> int:
+        return pulumi.get(self, "cpu")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def disk(self) -> int:
+        return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def ram(self) -> int:
+        return pulumi.get(self, "ram")
+
+    @property
+    @pulumi.getter
+    def selectable(self) -> bool:
+        return pulumi.get(self, "selectable")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetSizeSortResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 direction: Optional[str] = None):
+        """
+        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str direction: The sort direction. This may be either `asc` or `desc`.
+        """
+        pulumi.set(__self__, "key", key)
+        if direction is not None:
+            pulumi.set(__self__, "direction", direction)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
         """
         return pulumi.get(self, "key")
 

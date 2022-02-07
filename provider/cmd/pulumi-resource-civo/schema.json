@@ -1369,6 +1369,155 @@
             "required": [
                 "key"
             ]
+        },
+        "civo:index/getSizeFilter:getSizeFilter": {
+            "properties": {
+                "all": {
+                    "type": "boolean",
+                    "description": "Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "matchBy": {
+                    "type": "string",
+                    "description": "One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "values": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Only retrieves `sizes` which keys has value that matches one of the values provided here\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key",
+                "values"
+            ]
+        },
+        "civo:index/getSizeSize:getSizeSize": {
+            "properties": {
+                "cpu": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "description": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "disk": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "name": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ram": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "selectable": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "cpu",
+                "description",
+                "disk",
+                "name",
+                "ram",
+                "selectable",
+                "type"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getSizeSort:getSizeSort": {
+            "properties": {
+                "direction": {
+                    "type": "string",
+                    "description": "The sort direction. This may be either `asc` or `desc`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "description": "Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "key"
+            ]
         }
     },
     "provider": {
@@ -2043,6 +2192,10 @@
                     "type": "string",
                     "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
                 },
+                "cni": {
+                    "type": "string",
+                    "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "The timestamp when the cluster was created\n"
@@ -2115,11 +2268,12 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "required": [
                 "apiEndpoint",
+                "cni",
                 "createdAt",
                 "dnsEntry",
                 "firewallId",
@@ -2141,6 +2295,10 @@
                 "applications": {
                     "type": "string",
                     "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                },
+                "cni": {
+                    "type": "string",
+                    "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
                 },
                 "firewallId": {
                     "type": "string",
@@ -2172,7 +2330,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "requiredInputs": [
@@ -2188,6 +2346,10 @@
                     "applications": {
                         "type": "string",
                         "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                    },
+                    "cni": {
+                        "type": "string",
+                        "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
                     },
                     "createdAt": {
                         "type": "string",
@@ -2261,7 +2423,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (optional, the default is currently g3.k3s.medium)\n"
+                        "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
                     }
                 },
                 "type": "object"
@@ -2284,7 +2446,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "required": [
@@ -2308,7 +2470,7 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 }
             },
             "requiredInputs": [
@@ -2332,7 +2494,7 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "the size of each node (optional, the default is currently g3.k3s.medium)\n"
+                        "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                     }
                 },
                 "type": "object"
@@ -3103,6 +3265,10 @@
                         "type": "string",
                         "description": "A list of application installed\n"
                     },
+                    "cni": {
+                        "type": "string",
+                        "description": "The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`\n"
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "The date where the Kubernetes cluster was create\n"
@@ -3178,6 +3344,7 @@
                 "required": [
                     "apiEndpoint",
                     "applications",
+                    "cni",
                     "createdAt",
                     "dnsEntry",
                     "installedApplications",
@@ -3355,6 +3522,63 @@
                 "type": "object",
                 "required": [
                     "regions",
+                    "id"
+                ]
+            }
+        },
+        "civo:index/getSize:getSize": {
+            "description": "Retrieves information about the sizes that Civo supports, with the ability to filter the results.\n",
+            "inputs": {
+                "description": "A collection of arguments for invoking getSize.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getSizeFilter:getSizeFilter"
+                        },
+                        "description": "One or more key/value pairs on which to filter results\n"
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getSizeSort:getSizeSort"
+                        },
+                        "description": "One or more key/direction pairs on which to sort results\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getSize.\n",
+                "properties": {
+                    "filters": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getSizeFilter:getSizeFilter"
+                        },
+                        "description": "One or more key/value pairs on which to filter results\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "sizes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getSizeSize:getSizeSize"
+                        }
+                    },
+                    "sorts": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getSizeSort:getSizeSort"
+                        },
+                        "description": "One or more key/direction pairs on which to sort results\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "sizes",
                     "id"
                 ]
             }

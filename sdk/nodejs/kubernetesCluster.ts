@@ -53,6 +53,10 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly applications!: pulumi.Output<string | undefined>;
     /**
+     * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     */
+    public readonly cni!: pulumi.Output<string>;
+    /**
      * The timestamp when the cluster was created
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
@@ -108,7 +112,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
-     * The size of each node (optional, the default is currently g3.k3s.medium)
+     * The size of each node (optional, the default is currently g4s.kube.medium)
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
 
@@ -127,6 +131,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             const state = argsOrState as KubernetesClusterState | undefined;
             resourceInputs["apiEndpoint"] = state ? state.apiEndpoint : undefined;
             resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["cni"] = state ? state.cni : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dnsEntry"] = state ? state.dnsEntry : undefined;
             resourceInputs["firewallId"] = state ? state.firewallId : undefined;
@@ -150,6 +155,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'firewallId'");
             }
             resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["cni"] = args ? args.cni : undefined;
             resourceInputs["firewallId"] = args ? args.firewallId : undefined;
             resourceInputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -186,6 +192,10 @@ export interface KubernetesClusterState {
      * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
+    /**
+     * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     */
+    cni?: pulumi.Input<string>;
     /**
      * The timestamp when the cluster was created
      */
@@ -242,7 +252,7 @@ export interface KubernetesClusterState {
      */
     tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g3.k3s.medium)
+     * The size of each node (optional, the default is currently g4s.kube.medium)
      */
     targetNodesSize?: pulumi.Input<string>;
 }
@@ -255,6 +265,10 @@ export interface KubernetesClusterArgs {
      * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
+    /**
+     * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     */
+    cni?: pulumi.Input<string>;
     /**
      * The existing firewall ID to use for this cluster
      */
@@ -284,7 +298,7 @@ export interface KubernetesClusterArgs {
      */
     tags?: pulumi.Input<string>;
     /**
-     * The size of each node (optional, the default is currently g3.k3s.medium)
+     * The size of each node (optional, the default is currently g4s.kube.medium)
      */
     targetNodesSize?: pulumi.Input<string>;
 }

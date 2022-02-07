@@ -103,6 +103,7 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_region":             {Tok: makeDataSource(mainMod, "getRegion")},
 			"civo_disk_image":         {Tok: makeDataSource(mainMod, "getDiskImage")},
 			"civo_firewall":           {Tok: makeDataSource(mainMod, "getFirewall")},
+			"civo_size":               {Tok: makeDataSource(mainMod, "getSize")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions

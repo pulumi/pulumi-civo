@@ -67,6 +67,10 @@ export interface GetKubernetesClusterResult {
      */
     readonly applications: string;
     /**
+     * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     */
+    readonly cni: string;
+    /**
      * The date where the Kubernetes cluster was create
      */
     readonly createdAt: string;

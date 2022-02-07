@@ -30,6 +30,7 @@
         "getKubernetesVersion.ts",
         "getNetwork.ts",
         "getRegion.ts",
+        "getSize.ts",
         "getSshKey.ts",
         "getVolume.ts",
         "index.ts",

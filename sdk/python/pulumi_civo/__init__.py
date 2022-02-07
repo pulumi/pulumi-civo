@@ -20,6 +20,7 @@ from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
 from .get_network import *
 from .get_region import *
+from .get_size import *
 from .get_ssh_key import *
 from .get_volume import *
 from .instance import *

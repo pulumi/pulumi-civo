@@ -22,7 +22,7 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
-        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "region", region)
@@ -71,7 +71,7 @@ class KubernetesNodePoolArgs:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        the size of each node (optional, the default is currently g3.k3s.medium)
+        the size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -92,7 +92,7 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
-        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -143,7 +143,7 @@ class _KubernetesNodePoolState:
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
-        the size of each node (optional, the default is currently g3.k3s.medium)
+        the size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 
@@ -178,7 +178,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
-        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
         ...
     @overload
@@ -260,7 +260,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
-        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g3.k3s.medium)
+        :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -300,7 +300,7 @@ class KubernetesNodePool(pulumi.CustomResource):
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> pulumi.Output[str]:
         """
-        the size of each node (optional, the default is currently g3.k3s.medium)
+        the size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
 

@@ -20,6 +20,7 @@ export * from "./getKubernetesCluster";
 export * from "./getKubernetesVersion";
 export * from "./getNetwork";
 export * from "./getRegion";
+export * from "./getSize";
 export * from "./getSshKey";
 export * from "./getVolume";
 export * from "./instance";

@@ -42,7 +42,7 @@ namespace Pulumi.Civo
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// the size of each node (optional, the default is currently g3.k3s.medium)
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Output("targetNodesSize")]
         public Output<string> TargetNodesSize { get; private set; } = null!;
@@ -112,7 +112,7 @@ namespace Pulumi.Civo
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// the size of each node (optional, the default is currently g3.k3s.medium)
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
@@ -143,7 +143,7 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// the size of each node (optional, the default is currently g3.k3s.medium)
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
