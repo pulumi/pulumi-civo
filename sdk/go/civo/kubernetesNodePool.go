@@ -29,7 +29,7 @@ type KubernetesNodePool struct {
 	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringOutput `pulumi:"region"`
-	// the size of each node (optional, the default is currently g3.k3s.medium)
+	// the size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -74,7 +74,7 @@ type kubernetesNodePoolState struct {
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region *string `pulumi:"region"`
-	// the size of each node (optional, the default is currently g3.k3s.medium)
+	// the size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -85,7 +85,7 @@ type KubernetesNodePoolState struct {
 	NumTargetNodes pulumi.IntPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringPtrInput
-	// the size of each node (optional, the default is currently g3.k3s.medium)
+	// the size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -100,7 +100,7 @@ type kubernetesNodePoolArgs struct {
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region string `pulumi:"region"`
-	// the size of each node (optional, the default is currently g3.k3s.medium)
+	// the size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -112,7 +112,7 @@ type KubernetesNodePoolArgs struct {
 	NumTargetNodes pulumi.IntPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringInput
-	// the size of each node (optional, the default is currently g3.k3s.medium)
+	// the size of each node (optional, the default is currently g4s.kube.medium)
 	TargetNodesSize pulumi.StringPtrInput
 }
 

@@ -63,6 +63,8 @@ type LookupKubernetesClusterResult struct {
 	ApiEndpoint string `pulumi:"apiEndpoint"`
 	// A list of application installed
 	Applications string `pulumi:"applications"`
+	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+	Cni string `pulumi:"cni"`
 	// The date where the Kubernetes cluster was create
 	CreatedAt string `pulumi:"createdAt"`
 	// The unique dns entry for the cluster in this case point to the master
@@ -140,6 +142,11 @@ func (o LookupKubernetesClusterResultOutput) ApiEndpoint() pulumi.StringOutput {
 // A list of application installed
 func (o LookupKubernetesClusterResultOutput) Applications() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Applications }).(pulumi.StringOutput)
+}
+
+// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+func (o LookupKubernetesClusterResultOutput) Cni() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Cni }).(pulumi.StringOutput)
 }
 
 // The date where the Kubernetes cluster was create

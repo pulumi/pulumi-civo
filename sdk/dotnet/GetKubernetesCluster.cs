@@ -144,6 +144,10 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string Applications;
         /// <summary>
+        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        /// </summary>
+        public readonly string Cni;
+        /// <summary>
         /// The date where the Kubernetes cluster was create
         /// </summary>
         public readonly string CreatedAt;
@@ -205,6 +209,8 @@ namespace Pulumi.Civo
 
             string applications,
 
+            string cni,
+
             string createdAt,
 
             string dnsEntry,
@@ -239,6 +245,7 @@ namespace Pulumi.Civo
         {
             ApiEndpoint = apiEndpoint;
             Applications = applications;
+            Cni = cni;
             CreatedAt = createdAt;
             DnsEntry = dnsEntry;
             Id = id;

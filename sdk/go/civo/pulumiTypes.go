@@ -2865,6 +2865,366 @@ func (o GetRegionSortArrayOutput) Index(i pulumi.IntInput) GetRegionSortOutput {
 	}).(GetRegionSortOutput)
 }
 
+type GetSizeFilter struct {
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `sizes` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
+}
+
+// GetSizeFilterInput is an input type that accepts GetSizeFilterArgs and GetSizeFilterOutput values.
+// You can construct a concrete instance of `GetSizeFilterInput` via:
+//
+//          GetSizeFilterArgs{...}
+type GetSizeFilterInput interface {
+	pulumi.Input
+
+	ToGetSizeFilterOutput() GetSizeFilterOutput
+	ToGetSizeFilterOutputWithContext(context.Context) GetSizeFilterOutput
+}
+
+type GetSizeFilterArgs struct {
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `sizes` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetSizeFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeFilter)(nil)).Elem()
+}
+
+func (i GetSizeFilterArgs) ToGetSizeFilterOutput() GetSizeFilterOutput {
+	return i.ToGetSizeFilterOutputWithContext(context.Background())
+}
+
+func (i GetSizeFilterArgs) ToGetSizeFilterOutputWithContext(ctx context.Context) GetSizeFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeFilterOutput)
+}
+
+// GetSizeFilterArrayInput is an input type that accepts GetSizeFilterArray and GetSizeFilterArrayOutput values.
+// You can construct a concrete instance of `GetSizeFilterArrayInput` via:
+//
+//          GetSizeFilterArray{ GetSizeFilterArgs{...} }
+type GetSizeFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetSizeFilterArrayOutput() GetSizeFilterArrayOutput
+	ToGetSizeFilterArrayOutputWithContext(context.Context) GetSizeFilterArrayOutput
+}
+
+type GetSizeFilterArray []GetSizeFilterInput
+
+func (GetSizeFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeFilter)(nil)).Elem()
+}
+
+func (i GetSizeFilterArray) ToGetSizeFilterArrayOutput() GetSizeFilterArrayOutput {
+	return i.ToGetSizeFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetSizeFilterArray) ToGetSizeFilterArrayOutputWithContext(ctx context.Context) GetSizeFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeFilterArrayOutput)
+}
+
+type GetSizeFilterOutput struct{ *pulumi.OutputState }
+
+func (GetSizeFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeFilter)(nil)).Elem()
+}
+
+func (o GetSizeFilterOutput) ToGetSizeFilterOutput() GetSizeFilterOutput {
+	return o
+}
+
+func (o GetSizeFilterOutput) ToGetSizeFilterOutputWithContext(ctx context.Context) GetSizeFilterOutput {
+	return o
+}
+
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+func (o GetSizeFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetSizeFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+func (o GetSizeFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+func (o GetSizeFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSizeFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
+}
+
+// Only retrieves `sizes` which keys has value that matches one of the values provided here
+func (o GetSizeFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSizeFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetSizeFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSizeFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeFilter)(nil)).Elem()
+}
+
+func (o GetSizeFilterArrayOutput) ToGetSizeFilterArrayOutput() GetSizeFilterArrayOutput {
+	return o
+}
+
+func (o GetSizeFilterArrayOutput) ToGetSizeFilterArrayOutputWithContext(ctx context.Context) GetSizeFilterArrayOutput {
+	return o
+}
+
+func (o GetSizeFilterArrayOutput) Index(i pulumi.IntInput) GetSizeFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSizeFilter {
+		return vs[0].([]GetSizeFilter)[vs[1].(int)]
+	}).(GetSizeFilterOutput)
+}
+
+type GetSizeSize struct {
+	Cpu         int    `pulumi:"cpu"`
+	Description string `pulumi:"description"`
+	Disk        int    `pulumi:"disk"`
+	Name        string `pulumi:"name"`
+	Ram         int    `pulumi:"ram"`
+	Selectable  bool   `pulumi:"selectable"`
+	Type        string `pulumi:"type"`
+}
+
+// GetSizeSizeInput is an input type that accepts GetSizeSizeArgs and GetSizeSizeOutput values.
+// You can construct a concrete instance of `GetSizeSizeInput` via:
+//
+//          GetSizeSizeArgs{...}
+type GetSizeSizeInput interface {
+	pulumi.Input
+
+	ToGetSizeSizeOutput() GetSizeSizeOutput
+	ToGetSizeSizeOutputWithContext(context.Context) GetSizeSizeOutput
+}
+
+type GetSizeSizeArgs struct {
+	Cpu         pulumi.IntInput    `pulumi:"cpu"`
+	Description pulumi.StringInput `pulumi:"description"`
+	Disk        pulumi.IntInput    `pulumi:"disk"`
+	Name        pulumi.StringInput `pulumi:"name"`
+	Ram         pulumi.IntInput    `pulumi:"ram"`
+	Selectable  pulumi.BoolInput   `pulumi:"selectable"`
+	Type        pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetSizeSizeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeSize)(nil)).Elem()
+}
+
+func (i GetSizeSizeArgs) ToGetSizeSizeOutput() GetSizeSizeOutput {
+	return i.ToGetSizeSizeOutputWithContext(context.Background())
+}
+
+func (i GetSizeSizeArgs) ToGetSizeSizeOutputWithContext(ctx context.Context) GetSizeSizeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSizeOutput)
+}
+
+// GetSizeSizeArrayInput is an input type that accepts GetSizeSizeArray and GetSizeSizeArrayOutput values.
+// You can construct a concrete instance of `GetSizeSizeArrayInput` via:
+//
+//          GetSizeSizeArray{ GetSizeSizeArgs{...} }
+type GetSizeSizeArrayInput interface {
+	pulumi.Input
+
+	ToGetSizeSizeArrayOutput() GetSizeSizeArrayOutput
+	ToGetSizeSizeArrayOutputWithContext(context.Context) GetSizeSizeArrayOutput
+}
+
+type GetSizeSizeArray []GetSizeSizeInput
+
+func (GetSizeSizeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeSize)(nil)).Elem()
+}
+
+func (i GetSizeSizeArray) ToGetSizeSizeArrayOutput() GetSizeSizeArrayOutput {
+	return i.ToGetSizeSizeArrayOutputWithContext(context.Background())
+}
+
+func (i GetSizeSizeArray) ToGetSizeSizeArrayOutputWithContext(ctx context.Context) GetSizeSizeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSizeArrayOutput)
+}
+
+type GetSizeSizeOutput struct{ *pulumi.OutputState }
+
+func (GetSizeSizeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeSize)(nil)).Elem()
+}
+
+func (o GetSizeSizeOutput) ToGetSizeSizeOutput() GetSizeSizeOutput {
+	return o
+}
+
+func (o GetSizeSizeOutput) ToGetSizeSizeOutputWithContext(ctx context.Context) GetSizeSizeOutput {
+	return o
+}
+
+func (o GetSizeSizeOutput) Cpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSizeSize) int { return v.Cpu }).(pulumi.IntOutput)
+}
+
+func (o GetSizeSizeOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeSize) string { return v.Description }).(pulumi.StringOutput)
+}
+
+func (o GetSizeSizeOutput) Disk() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSizeSize) int { return v.Disk }).(pulumi.IntOutput)
+}
+
+func (o GetSizeSizeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeSize) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetSizeSizeOutput) Ram() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSizeSize) int { return v.Ram }).(pulumi.IntOutput)
+}
+
+func (o GetSizeSizeOutput) Selectable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetSizeSize) bool { return v.Selectable }).(pulumi.BoolOutput)
+}
+
+func (o GetSizeSizeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeSize) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetSizeSizeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSizeSizeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeSize)(nil)).Elem()
+}
+
+func (o GetSizeSizeArrayOutput) ToGetSizeSizeArrayOutput() GetSizeSizeArrayOutput {
+	return o
+}
+
+func (o GetSizeSizeArrayOutput) ToGetSizeSizeArrayOutputWithContext(ctx context.Context) GetSizeSizeArrayOutput {
+	return o
+}
+
+func (o GetSizeSizeArrayOutput) Index(i pulumi.IntInput) GetSizeSizeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSizeSize {
+		return vs[0].([]GetSizeSize)[vs[1].(int)]
+	}).(GetSizeSizeOutput)
+}
+
+type GetSizeSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction *string `pulumi:"direction"`
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key string `pulumi:"key"`
+}
+
+// GetSizeSortInput is an input type that accepts GetSizeSortArgs and GetSizeSortOutput values.
+// You can construct a concrete instance of `GetSizeSortInput` via:
+//
+//          GetSizeSortArgs{...}
+type GetSizeSortInput interface {
+	pulumi.Input
+
+	ToGetSizeSortOutput() GetSizeSortOutput
+	ToGetSizeSortOutputWithContext(context.Context) GetSizeSortOutput
+}
+
+type GetSizeSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction pulumi.StringPtrInput `pulumi:"direction"`
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetSizeSortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeSort)(nil)).Elem()
+}
+
+func (i GetSizeSortArgs) ToGetSizeSortOutput() GetSizeSortOutput {
+	return i.ToGetSizeSortOutputWithContext(context.Background())
+}
+
+func (i GetSizeSortArgs) ToGetSizeSortOutputWithContext(ctx context.Context) GetSizeSortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSortOutput)
+}
+
+// GetSizeSortArrayInput is an input type that accepts GetSizeSortArray and GetSizeSortArrayOutput values.
+// You can construct a concrete instance of `GetSizeSortArrayInput` via:
+//
+//          GetSizeSortArray{ GetSizeSortArgs{...} }
+type GetSizeSortArrayInput interface {
+	pulumi.Input
+
+	ToGetSizeSortArrayOutput() GetSizeSortArrayOutput
+	ToGetSizeSortArrayOutputWithContext(context.Context) GetSizeSortArrayOutput
+}
+
+type GetSizeSortArray []GetSizeSortInput
+
+func (GetSizeSortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeSort)(nil)).Elem()
+}
+
+func (i GetSizeSortArray) ToGetSizeSortArrayOutput() GetSizeSortArrayOutput {
+	return i.ToGetSizeSortArrayOutputWithContext(context.Background())
+}
+
+func (i GetSizeSortArray) ToGetSizeSortArrayOutputWithContext(ctx context.Context) GetSizeSortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSortArrayOutput)
+}
+
+type GetSizeSortOutput struct{ *pulumi.OutputState }
+
+func (GetSizeSortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSizeSort)(nil)).Elem()
+}
+
+func (o GetSizeSortOutput) ToGetSizeSortOutput() GetSizeSortOutput {
+	return o
+}
+
+func (o GetSizeSortOutput) ToGetSizeSortOutputWithContext(ctx context.Context) GetSizeSortOutput {
+	return o
+}
+
+// The sort direction. This may be either `asc` or `desc`.
+func (o GetSizeSortOutput) Direction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSizeSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
+}
+
+// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+func (o GetSizeSortOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeSort) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetSizeSortArrayOutput struct{ *pulumi.OutputState }
+
+func (GetSizeSortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetSizeSort)(nil)).Elem()
+}
+
+func (o GetSizeSortArrayOutput) ToGetSizeSortArrayOutput() GetSizeSortArrayOutput {
+	return o
+}
+
+func (o GetSizeSortArrayOutput) ToGetSizeSortArrayOutputWithContext(ctx context.Context) GetSizeSortArrayOutput {
+	return o
+}
+
+func (o GetSizeSortArrayOutput) Index(i pulumi.IntInput) GetSizeSortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSizeSort {
+		return vs[0].([]GetSizeSort)[vs[1].(int)]
+	}).(GetSizeSortOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArray{})
@@ -2912,6 +3272,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionRegionArrayInput)(nil)).Elem(), GetRegionRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionSortInput)(nil)).Elem(), GetRegionSortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionSortArrayInput)(nil)).Elem(), GetRegionSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeFilterInput)(nil)).Elem(), GetSizeFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeFilterArrayInput)(nil)).Elem(), GetSizeFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSizeInput)(nil)).Elem(), GetSizeSizeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSizeArrayInput)(nil)).Elem(), GetSizeSizeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSortInput)(nil)).Elem(), GetSizeSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSortArrayInput)(nil)).Elem(), GetSizeSortArray{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstanceOutput{})
@@ -2958,4 +3324,10 @@ func init() {
 	pulumi.RegisterOutputType(GetRegionRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionSortOutput{})
 	pulumi.RegisterOutputType(GetRegionSortArrayOutput{})
+	pulumi.RegisterOutputType(GetSizeFilterOutput{})
+	pulumi.RegisterOutputType(GetSizeFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetSizeSizeOutput{})
+	pulumi.RegisterOutputType(GetSizeSizeArrayOutput{})
+	pulumi.RegisterOutputType(GetSizeSortOutput{})
+	pulumi.RegisterOutputType(GetSizeSortArrayOutput{})
 }
