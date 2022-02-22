@@ -23,9 +23,11 @@ import (
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
+	// the action of the rule can be allow or deny
+	Action pulumi.StringOutput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
-	// Will this rule affect ingress traffic (only `ingress` is supported now)
+	// The direction of the rule can be ingress or egress
 	Direction pulumi.StringOutput `pulumi:"direction"`
 	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
 	EndPort pulumi.StringOutput `pulumi:"endPort"`
@@ -48,8 +50,14 @@ func NewFirewallRule(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Action == nil {
+		return nil, errors.New("invalid value for required argument 'Action'")
+	}
 	if args.Cidrs == nil {
 		return nil, errors.New("invalid value for required argument 'Cidrs'")
+	}
+	if args.Direction == nil {
+		return nil, errors.New("invalid value for required argument 'Direction'")
 	}
 	if args.FirewallId == nil {
 		return nil, errors.New("invalid value for required argument 'FirewallId'")
@@ -76,9 +84,11 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
+	// the action of the rule can be allow or deny
+	Action *string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	// Will this rule affect ingress traffic (only `ingress` is supported now)
+	// The direction of the rule can be ingress or egress
 	Direction *string `pulumi:"direction"`
 	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
 	EndPort *string `pulumi:"endPort"`
@@ -95,9 +105,11 @@ type firewallRuleState struct {
 }
 
 type FirewallRuleState struct {
+	// the action of the rule can be allow or deny
+	Action pulumi.StringPtrInput
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
-	// Will this rule affect ingress traffic (only `ingress` is supported now)
+	// The direction of the rule can be ingress or egress
 	Direction pulumi.StringPtrInput
 	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
 	EndPort pulumi.StringPtrInput
@@ -118,10 +130,12 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
+	// the action of the rule can be allow or deny
+	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	// Will this rule affect ingress traffic (only `ingress` is supported now)
-	Direction *string `pulumi:"direction"`
+	// The direction of the rule can be ingress or egress
+	Direction string `pulumi:"direction"`
 	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
 	EndPort *string `pulumi:"endPort"`
 	// The Firewall ID
@@ -138,10 +152,12 @@ type firewallRuleArgs struct {
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
+	// the action of the rule can be allow or deny
+	Action pulumi.StringInput
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
-	// Will this rule affect ingress traffic (only `ingress` is supported now)
-	Direction pulumi.StringPtrInput
+	// The direction of the rule can be ingress or egress
+	Direction pulumi.StringInput
 	// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
 	EndPort pulumi.StringPtrInput
 	// The Firewall ID

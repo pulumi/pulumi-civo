@@ -24,13 +24,19 @@ namespace Pulumi.Civo
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
+        /// the action of the rule can be allow or deny
+        /// </summary>
+        [Output("action")]
+        public Output<string> Action { get; private set; } = null!;
+
+        /// <summary>
         /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         /// </summary>
         [Output("cidrs")]
         public Output<ImmutableArray<string>> Cidrs { get; private set; } = null!;
 
         /// <summary>
-        /// Will this rule affect ingress traffic (only `ingress` is supported now)
+        /// The direction of the rule can be ingress or egress
         /// </summary>
         [Output("direction")]
         public Output<string> Direction { get; private set; } = null!;
@@ -117,6 +123,12 @@ namespace Pulumi.Civo
 
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// the action of the rule can be allow or deny
+        /// </summary>
+        [Input("action", required: true)]
+        public Input<string> Action { get; set; } = null!;
+
         [Input("cidrs", required: true)]
         private InputList<string>? _cidrs;
 
@@ -130,10 +142,10 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// Will this rule affect ingress traffic (only `ingress` is supported now)
+        /// The direction of the rule can be ingress or egress
         /// </summary>
-        [Input("direction")]
-        public Input<string>? Direction { get; set; }
+        [Input("direction", required: true)]
+        public Input<string> Direction { get; set; } = null!;
 
         /// <summary>
         /// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
@@ -178,6 +190,12 @@ namespace Pulumi.Civo
 
     public sealed class FirewallRuleState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// the action of the rule can be allow or deny
+        /// </summary>
+        [Input("action")]
+        public Input<string>? Action { get; set; }
+
         [Input("cidrs")]
         private InputList<string>? _cidrs;
 
@@ -191,7 +209,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// Will this rule affect ingress traffic (only `ingress` is supported now)
+        /// The direction of the rule can be ingress or egress
         /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
