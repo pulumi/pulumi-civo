@@ -13,21 +13,37 @@ __all__ = ['FirewallArgs', 'Firewall']
 @pulumi.input_type
 class FirewallArgs:
     def __init__(__self__, *,
+                 create_default_rules: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
+        if create_default_rules is not None:
+            pulumi.set(__self__, "create_default_rules", create_default_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
             pulumi.set(__self__, "network_id", network_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="createDefaultRules")
+    def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        """
+        return pulumi.get(self, "create_default_rules")
+
+    @create_default_rules.setter
+    def create_default_rules(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "create_default_rules", value)
 
     @property
     @pulumi.getter
@@ -69,21 +85,37 @@ class FirewallArgs:
 @pulumi.input_type
 class _FirewallState:
     def __init__(__self__, *,
+                 create_default_rules: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
+        if create_default_rules is not None:
+            pulumi.set(__self__, "create_default_rules", create_default_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
             pulumi.set(__self__, "network_id", network_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="createDefaultRules")
+    def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        """
+        return pulumi.get(self, "create_default_rules")
+
+    @create_default_rules.setter
+    def create_default_rules(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "create_default_rules", value)
 
     @property
     @pulumi.getter
@@ -127,6 +159,7 @@ class Firewall(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 create_default_rules: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -156,6 +189,7 @@ class Firewall(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
@@ -204,6 +238,7 @@ class Firewall(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 create_default_rules: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -219,6 +254,7 @@ class Firewall(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallArgs.__new__(FirewallArgs)
 
+            __props__.__dict__["create_default_rules"] = create_default_rules
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["region"] = region
@@ -232,6 +268,7 @@ class Firewall(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            create_default_rules: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Firewall':
@@ -242,6 +279,7 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
@@ -250,10 +288,19 @@ class Firewall(pulumi.CustomResource):
 
         __props__ = _FirewallState.__new__(_FirewallState)
 
+        __props__.__dict__["create_default_rules"] = create_default_rules
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region"] = region
         return Firewall(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="createDefaultRules")
+    def create_default_rules(self) -> pulumi.Output[Optional[bool]]:
+        """
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        """
+        return pulumi.get(self, "create_default_rules")
 
     @property
     @pulumi.getter

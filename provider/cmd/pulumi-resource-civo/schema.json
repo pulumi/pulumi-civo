@@ -1709,6 +1709,10 @@
         "civo:index/firewall:Firewall": {
             "description": "Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\n// Create a network\nconst customNet = new civo.Network(\"customNet\", {label: \"my-custom-network\"});\n// Create a firewall\nconst www = new civo.Firewall(\"www\", {networkId: customNet.id});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\n# Create a network\ncustom_net = civo.Network(\"customNet\", label=\"my-custom-network\")\n# Create a firewall\nwww = civo.Firewall(\"www\", network_id=custom_net.id)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Create a network\n        var customNet = new Civo.Network(\"customNet\", new Civo.NetworkArgs\n        {\n            Label = \"my-custom-network\",\n        });\n        // Create a firewall\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n            NetworkId = customNet.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcustomNet, err := civo.NewNetwork(ctx, \"customNet\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"my-custom-network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewFirewall(ctx, \"www\", \u0026civo.FirewallArgs{\n\t\t\tNetworkId: customNet.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# using ID\n\n```sh\n $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
             "properties": {
+                "createDefaultRules": {
+                    "type": "boolean",
+                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The firewall name\n"
@@ -1727,6 +1731,10 @@
                 "networkId"
             ],
             "inputProperties": {
+                "createDefaultRules": {
+                    "type": "boolean",
+                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n"
+                },
                 "name": {
                     "type": "string",
                     "description": "The firewall name\n"
@@ -1743,6 +1751,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Firewall resources.\n",
                 "properties": {
+                    "createDefaultRules": {
+                        "type": "boolean",
+                        "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n"
+                    },
                     "name": {
                         "type": "string",
                         "description": "The firewall name\n"
@@ -1762,6 +1774,10 @@
         "civo:index/firewallRule:FirewallRule": {
             "description": "Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.\n\n\n## Import\n\n# using firewall_id:firewall_rule_id\n\n```sh\n $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7\n```\n\n ",
             "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "the action of the rule can be allow or deny\n"
+                },
                 "cidrs": {
                     "type": "array",
                     "items": {
@@ -1771,7 +1787,7 @@
                 },
                 "direction": {
                     "type": "string",
-                    "description": "Will this rule affect ingress traffic (only `ingress` is supported now)\n"
+                    "description": "The direction of the rule can be ingress or egress\n"
                 },
                 "endPort": {
                     "type": "string",
@@ -1799,6 +1815,7 @@
                 }
             },
             "required": [
+                "action",
                 "cidrs",
                 "direction",
                 "endPort",
@@ -1809,6 +1826,10 @@
                 "startPort"
             ],
             "inputProperties": {
+                "action": {
+                    "type": "string",
+                    "description": "the action of the rule can be allow or deny\n"
+                },
                 "cidrs": {
                     "type": "array",
                     "items": {
@@ -1818,7 +1839,7 @@
                 },
                 "direction": {
                     "type": "string",
-                    "description": "Will this rule affect ingress traffic (only `ingress` is supported now)\n"
+                    "description": "The direction of the rule can be ingress or egress\n"
                 },
                 "endPort": {
                     "type": "string",
@@ -1846,12 +1867,18 @@
                 }
             },
             "requiredInputs": [
+                "action",
                 "cidrs",
+                "direction",
                 "firewallId"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering FirewallRule resources.\n",
                 "properties": {
+                    "action": {
+                        "type": "string",
+                        "description": "the action of the rule can be allow or deny\n"
+                    },
                     "cidrs": {
                         "type": "array",
                         "items": {
@@ -1861,7 +1888,7 @@
                     },
                     "direction": {
                         "type": "string",
-                        "description": "Will this rule affect ingress traffic (only `ingress` is supported now)\n"
+                        "description": "The direction of the rule can be ingress or egress\n"
                     },
                     "endPort": {
                         "type": "string",

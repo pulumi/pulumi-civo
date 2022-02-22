@@ -56,6 +56,10 @@ export class Firewall extends pulumi.CustomResource {
     }
 
     /**
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     */
+    public readonly createDefaultRules!: pulumi.Output<boolean | undefined>;
+    /**
      * The firewall name
      */
     public readonly name!: pulumi.Output<string>;
@@ -81,11 +85,13 @@ export class Firewall extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallState | undefined;
+            resourceInputs["createDefaultRules"] = state ? state.createDefaultRules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as FirewallArgs | undefined;
+            resourceInputs["createDefaultRules"] = args ? args.createDefaultRules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -99,6 +105,10 @@ export class Firewall extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Firewall resources.
  */
 export interface FirewallState {
+    /**
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     */
+    createDefaultRules?: pulumi.Input<boolean>;
     /**
      * The firewall name
      */
@@ -117,6 +127,10 @@ export interface FirewallState {
  * The set of arguments for constructing a Firewall resource.
  */
 export interface FirewallArgs {
+    /**
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     */
+    createDefaultRules?: pulumi.Input<boolean>;
     /**
      * The firewall name
      */

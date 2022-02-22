@@ -49,6 +49,12 @@ namespace Pulumi.Civo
     public partial class Firewall : Pulumi.CustomResource
     {
         /// <summary>
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// </summary>
+        [Output("createDefaultRules")]
+        public Output<bool?> CreateDefaultRules { get; private set; } = null!;
+
+        /// <summary>
         /// The firewall name
         /// </summary>
         [Output("name")]
@@ -113,6 +119,12 @@ namespace Pulumi.Civo
     public sealed class FirewallArgs : Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// </summary>
+        [Input("createDefaultRules")]
+        public Input<bool>? CreateDefaultRules { get; set; }
+
+        /// <summary>
         /// The firewall name
         /// </summary>
         [Input("name")]
@@ -137,6 +149,12 @@ namespace Pulumi.Civo
 
     public sealed class FirewallState : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// </summary>
+        [Input("createDefaultRules")]
+        public Input<bool>? CreateDefaultRules { get; set; }
+
         /// <summary>
         /// The firewall name
         /// </summary>

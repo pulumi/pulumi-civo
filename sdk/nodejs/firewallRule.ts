@@ -44,11 +44,15 @@ export class FirewallRule extends pulumi.CustomResource {
     }
 
     /**
+     * the action of the rule can be allow or deny
+     */
+    public readonly action!: pulumi.Output<string>;
+    /**
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     public readonly cidrs!: pulumi.Output<string[]>;
     /**
-     * Will this rule affect ingress traffic (only `ingress` is supported now)
+     * The direction of the rule can be ingress or egress
      */
     public readonly direction!: pulumi.Output<string>;
     /**
@@ -89,6 +93,7 @@ export class FirewallRule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallRuleState | undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["cidrs"] = state ? state.cidrs : undefined;
             resourceInputs["direction"] = state ? state.direction : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
@@ -99,12 +104,19 @@ export class FirewallRule extends pulumi.CustomResource {
             resourceInputs["startPort"] = state ? state.startPort : undefined;
         } else {
             const args = argsOrState as FirewallRuleArgs | undefined;
+            if ((!args || args.action === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'action'");
+            }
             if ((!args || args.cidrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cidrs'");
+            }
+            if ((!args || args.direction === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'direction'");
             }
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
+            resourceInputs["action"] = args ? args.action : undefined;
             resourceInputs["cidrs"] = args ? args.cidrs : undefined;
             resourceInputs["direction"] = args ? args.direction : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
@@ -124,11 +136,15 @@ export class FirewallRule extends pulumi.CustomResource {
  */
 export interface FirewallRuleState {
     /**
+     * the action of the rule can be allow or deny
+     */
+    action?: pulumi.Input<string>;
+    /**
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Will this rule affect ingress traffic (only `ingress` is supported now)
+     * The direction of the rule can be ingress or egress
      */
     direction?: pulumi.Input<string>;
     /**
@@ -162,13 +178,17 @@ export interface FirewallRuleState {
  */
 export interface FirewallRuleArgs {
     /**
+     * the action of the rule can be allow or deny
+     */
+    action: pulumi.Input<string>;
+    /**
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Will this rule affect ingress traffic (only `ingress` is supported now)
+     * The direction of the rule can be ingress or egress
      */
-    direction?: pulumi.Input<string>;
+    direction: pulumi.Input<string>;
     /**
      * The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
      */

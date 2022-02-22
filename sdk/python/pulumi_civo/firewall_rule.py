@@ -13,9 +13,10 @@ __all__ = ['FirewallRuleArgs', 'FirewallRule']
 @pulumi.input_type
 class FirewallRuleArgs:
     def __init__(__self__, *,
+                 action: pulumi.Input[str],
                  cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 direction: pulumi.Input[str],
                  firewall_id: pulumi.Input[str],
-                 direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -23,19 +24,20 @@ class FirewallRuleArgs:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
+        :param pulumi.Input[str] action: the action of the rule can be allow or deny
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] firewall_id: The Firewall ID
-        :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
         :param pulumi.Input[str] protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
+        pulumi.set(__self__, "action", action)
         pulumi.set(__self__, "cidrs", cidrs)
+        pulumi.set(__self__, "direction", direction)
         pulumi.set(__self__, "firewall_id", firewall_id)
-        if direction is not None:
-            pulumi.set(__self__, "direction", direction)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
         if label is not None:
@@ -46,6 +48,18 @@ class FirewallRuleArgs:
             pulumi.set(__self__, "region", region)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+
+    @property
+    @pulumi.getter
+    def action(self) -> pulumi.Input[str]:
+        """
+        the action of the rule can be allow or deny
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: pulumi.Input[str]):
+        pulumi.set(self, "action", value)
 
     @property
     @pulumi.getter
@@ -60,6 +74,18 @@ class FirewallRuleArgs:
         pulumi.set(self, "cidrs", value)
 
     @property
+    @pulumi.getter
+    def direction(self) -> pulumi.Input[str]:
+        """
+        The direction of the rule can be ingress or egress
+        """
+        return pulumi.get(self, "direction")
+
+    @direction.setter
+    def direction(self, value: pulumi.Input[str]):
+        pulumi.set(self, "direction", value)
+
+    @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> pulumi.Input[str]:
         """
@@ -70,18 +96,6 @@ class FirewallRuleArgs:
     @firewall_id.setter
     def firewall_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "firewall_id", value)
-
-    @property
-    @pulumi.getter
-    def direction(self) -> Optional[pulumi.Input[str]]:
-        """
-        Will this rule affect ingress traffic (only `ingress` is supported now)
-        """
-        return pulumi.get(self, "direction")
-
-    @direction.setter
-    def direction(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "direction", value)
 
     @property
     @pulumi.getter(name="endPort")
@@ -147,6 +161,7 @@ class FirewallRuleArgs:
 @pulumi.input_type
 class _FirewallRuleState:
     def __init__(__self__, *,
+                 action: Optional[pulumi.Input[str]] = None,
                  cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
@@ -157,8 +172,9 @@ class _FirewallRuleState:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallRule resources.
+        :param pulumi.Input[str] action: the action of the rule can be allow or deny
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
+        :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
@@ -166,6 +182,8 @@ class _FirewallRuleState:
         :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
         if cidrs is not None:
             pulumi.set(__self__, "cidrs", cidrs)
         if direction is not None:
@@ -185,6 +203,18 @@ class _FirewallRuleState:
 
     @property
     @pulumi.getter
+    def action(self) -> Optional[pulumi.Input[str]]:
+        """
+        the action of the rule can be allow or deny
+        """
+        return pulumi.get(self, "action")
+
+    @action.setter
+    def action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "action", value)
+
+    @property
+    @pulumi.getter
     def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
         The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
@@ -199,7 +229,7 @@ class _FirewallRuleState:
     @pulumi.getter
     def direction(self) -> Optional[pulumi.Input[str]]:
         """
-        Will this rule affect ingress traffic (only `ingress` is supported now)
+        The direction of the rule can be ingress or egress
         """
         return pulumi.get(self, "direction")
 
@@ -285,6 +315,7 @@ class FirewallRule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action: Optional[pulumi.Input[str]] = None,
                  cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
@@ -307,8 +338,9 @@ class FirewallRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action: the action of the rule can be allow or deny
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
+        :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
@@ -348,6 +380,7 @@ class FirewallRule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 action: Optional[pulumi.Input[str]] = None,
                  cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  direction: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[str]] = None,
@@ -368,9 +401,14 @@ class FirewallRule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallRuleArgs.__new__(FirewallRuleArgs)
 
+            if action is None and not opts.urn:
+                raise TypeError("Missing required property 'action'")
+            __props__.__dict__["action"] = action
             if cidrs is None and not opts.urn:
                 raise TypeError("Missing required property 'cidrs'")
             __props__.__dict__["cidrs"] = cidrs
+            if direction is None and not opts.urn:
+                raise TypeError("Missing required property 'direction'")
             __props__.__dict__["direction"] = direction
             __props__.__dict__["end_port"] = end_port
             if firewall_id is None and not opts.urn:
@@ -390,6 +428,7 @@ class FirewallRule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            action: Optional[pulumi.Input[str]] = None,
             cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             direction: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[str]] = None,
@@ -405,8 +444,9 @@ class FirewallRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] action: the action of the rule can be allow or deny
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        :param pulumi.Input[str] direction: Will this rule affect ingress traffic (only `ingress` is supported now)
+        :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
@@ -418,6 +458,7 @@ class FirewallRule(pulumi.CustomResource):
 
         __props__ = _FirewallRuleState.__new__(_FirewallRuleState)
 
+        __props__.__dict__["action"] = action
         __props__.__dict__["cidrs"] = cidrs
         __props__.__dict__["direction"] = direction
         __props__.__dict__["end_port"] = end_port
@@ -427,6 +468,14 @@ class FirewallRule(pulumi.CustomResource):
         __props__.__dict__["region"] = region
         __props__.__dict__["start_port"] = start_port
         return FirewallRule(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def action(self) -> pulumi.Output[str]:
+        """
+        the action of the rule can be allow or deny
+        """
+        return pulumi.get(self, "action")
 
     @property
     @pulumi.getter
@@ -440,7 +489,7 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def direction(self) -> pulumi.Output[str]:
         """
-        Will this rule affect ingress traffic (only `ingress` is supported now)
+        The direction of the rule can be ingress or egress
         """
         return pulumi.get(self, "direction")
 
