@@ -28,11 +28,9 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "test-network"
-// 		opt1 := "NYC1"
 // 		_, err := civo.LookupNetwork(ctx, &GetNetworkArgs{
-// 			Label:  &opt0,
-// 			Region: &opt1,
+// 			Label:  pulumi.StringRef("test-network"),
+// 			Region: pulumi.StringRef("NYC1"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
