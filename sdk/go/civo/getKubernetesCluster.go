@@ -26,9 +26,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "my-super-cluster"
 // 		my_cluster, err := civo.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
-// 			Name: &opt0,
+// 			Name: pulumi.StringRef("my-super-cluster"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err

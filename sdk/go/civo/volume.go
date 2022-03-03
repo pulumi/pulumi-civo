@@ -25,9 +25,8 @@ import (
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "Default"
 // 		defaultNetwork, err := civo.LookupNetwork(ctx, &GetNetworkArgs{
-// 			Label: &opt0,
+// 			Label: pulumi.StringRef("Default"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
