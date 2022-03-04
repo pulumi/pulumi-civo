@@ -2523,6 +2523,124 @@ func (o GetKubernetesVersionVersionArrayOutput) Index(i pulumi.IntInput) GetKube
 	}).(GetKubernetesVersionVersionOutput)
 }
 
+type GetLoadBalancerBackend struct {
+	HealthCheckPort int    `pulumi:"healthCheckPort"`
+	Ip              string `pulumi:"ip"`
+	Protocol        string `pulumi:"protocol"`
+	SourcePort      int    `pulumi:"sourcePort"`
+	TargetPort      int    `pulumi:"targetPort"`
+}
+
+// GetLoadBalancerBackendInput is an input type that accepts GetLoadBalancerBackendArgs and GetLoadBalancerBackendOutput values.
+// You can construct a concrete instance of `GetLoadBalancerBackendInput` via:
+//
+//          GetLoadBalancerBackendArgs{...}
+type GetLoadBalancerBackendInput interface {
+	pulumi.Input
+
+	ToGetLoadBalancerBackendOutput() GetLoadBalancerBackendOutput
+	ToGetLoadBalancerBackendOutputWithContext(context.Context) GetLoadBalancerBackendOutput
+}
+
+type GetLoadBalancerBackendArgs struct {
+	HealthCheckPort pulumi.IntInput    `pulumi:"healthCheckPort"`
+	Ip              pulumi.StringInput `pulumi:"ip"`
+	Protocol        pulumi.StringInput `pulumi:"protocol"`
+	SourcePort      pulumi.IntInput    `pulumi:"sourcePort"`
+	TargetPort      pulumi.IntInput    `pulumi:"targetPort"`
+}
+
+func (GetLoadBalancerBackendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadBalancerBackend)(nil)).Elem()
+}
+
+func (i GetLoadBalancerBackendArgs) ToGetLoadBalancerBackendOutput() GetLoadBalancerBackendOutput {
+	return i.ToGetLoadBalancerBackendOutputWithContext(context.Background())
+}
+
+func (i GetLoadBalancerBackendArgs) ToGetLoadBalancerBackendOutputWithContext(ctx context.Context) GetLoadBalancerBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerBackendOutput)
+}
+
+// GetLoadBalancerBackendArrayInput is an input type that accepts GetLoadBalancerBackendArray and GetLoadBalancerBackendArrayOutput values.
+// You can construct a concrete instance of `GetLoadBalancerBackendArrayInput` via:
+//
+//          GetLoadBalancerBackendArray{ GetLoadBalancerBackendArgs{...} }
+type GetLoadBalancerBackendArrayInput interface {
+	pulumi.Input
+
+	ToGetLoadBalancerBackendArrayOutput() GetLoadBalancerBackendArrayOutput
+	ToGetLoadBalancerBackendArrayOutputWithContext(context.Context) GetLoadBalancerBackendArrayOutput
+}
+
+type GetLoadBalancerBackendArray []GetLoadBalancerBackendInput
+
+func (GetLoadBalancerBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadBalancerBackend)(nil)).Elem()
+}
+
+func (i GetLoadBalancerBackendArray) ToGetLoadBalancerBackendArrayOutput() GetLoadBalancerBackendArrayOutput {
+	return i.ToGetLoadBalancerBackendArrayOutputWithContext(context.Background())
+}
+
+func (i GetLoadBalancerBackendArray) ToGetLoadBalancerBackendArrayOutputWithContext(ctx context.Context) GetLoadBalancerBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerBackendArrayOutput)
+}
+
+type GetLoadBalancerBackendOutput struct{ *pulumi.OutputState }
+
+func (GetLoadBalancerBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetLoadBalancerBackend)(nil)).Elem()
+}
+
+func (o GetLoadBalancerBackendOutput) ToGetLoadBalancerBackendOutput() GetLoadBalancerBackendOutput {
+	return o
+}
+
+func (o GetLoadBalancerBackendOutput) ToGetLoadBalancerBackendOutputWithContext(ctx context.Context) GetLoadBalancerBackendOutput {
+	return o
+}
+
+func (o GetLoadBalancerBackendOutput) HealthCheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoadBalancerBackend) int { return v.HealthCheckPort }).(pulumi.IntOutput)
+}
+
+func (o GetLoadBalancerBackendOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadBalancerBackend) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o GetLoadBalancerBackendOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLoadBalancerBackend) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o GetLoadBalancerBackendOutput) SourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoadBalancerBackend) int { return v.SourcePort }).(pulumi.IntOutput)
+}
+
+func (o GetLoadBalancerBackendOutput) TargetPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetLoadBalancerBackend) int { return v.TargetPort }).(pulumi.IntOutput)
+}
+
+type GetLoadBalancerBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (GetLoadBalancerBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetLoadBalancerBackend)(nil)).Elem()
+}
+
+func (o GetLoadBalancerBackendArrayOutput) ToGetLoadBalancerBackendArrayOutput() GetLoadBalancerBackendArrayOutput {
+	return o
+}
+
+func (o GetLoadBalancerBackendArrayOutput) ToGetLoadBalancerBackendArrayOutputWithContext(ctx context.Context) GetLoadBalancerBackendArrayOutput {
+	return o
+}
+
+func (o GetLoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) GetLoadBalancerBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetLoadBalancerBackend {
+		return vs[0].([]GetLoadBalancerBackend)[vs[1].(int)]
+	}).(GetLoadBalancerBackendOutput)
+}
+
 type GetRegionFilter struct {
 	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 	All *bool `pulumi:"all"`
@@ -3266,6 +3384,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionSortArrayInput)(nil)).Elem(), GetKubernetesVersionSortArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionVersionInput)(nil)).Elem(), GetKubernetesVersionVersionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesVersionVersionArrayInput)(nil)).Elem(), GetKubernetesVersionVersionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerBackendInput)(nil)).Elem(), GetLoadBalancerBackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetLoadBalancerBackendArrayInput)(nil)).Elem(), GetLoadBalancerBackendArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionFilterInput)(nil)).Elem(), GetRegionFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionFilterArrayInput)(nil)).Elem(), GetRegionFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionRegionInput)(nil)).Elem(), GetRegionRegionArgs{})
@@ -3318,6 +3438,8 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesVersionSortArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesVersionVersionOutput{})
 	pulumi.RegisterOutputType(GetKubernetesVersionVersionArrayOutput{})
+	pulumi.RegisterOutputType(GetLoadBalancerBackendOutput{})
+	pulumi.RegisterOutputType(GetLoadBalancerBackendArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionFilterOutput{})
 	pulumi.RegisterOutputType(GetRegionFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionRegionOutput{})

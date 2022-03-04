@@ -30,6 +30,7 @@ __all__ = [
     'GetKubernetesVersionFilterResult',
     'GetKubernetesVersionSortResult',
     'GetKubernetesVersionVersionResult',
+    'GetLoadBalancerBackendResult',
     'GetRegionFilterResult',
     'GetRegionRegionResult',
     'GetRegionSortResult',
@@ -1159,6 +1160,46 @@ class GetKubernetesVersionVersionResult(dict):
     @pulumi.getter
     def version(self) -> str:
         return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetLoadBalancerBackendResult(dict):
+    def __init__(__self__, *,
+                 health_check_port: int,
+                 ip: str,
+                 protocol: str,
+                 source_port: int,
+                 target_port: int):
+        pulumi.set(__self__, "health_check_port", health_check_port)
+        pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "source_port", source_port)
+        pulumi.set(__self__, "target_port", target_port)
+
+    @property
+    @pulumi.getter(name="healthCheckPort")
+    def health_check_port(self) -> int:
+        return pulumi.get(self, "health_check_port")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter(name="sourcePort")
+    def source_port(self) -> int:
+        return pulumi.get(self, "source_port")
+
+    @property
+    @pulumi.getter(name="targetPort")
+    def target_port(self) -> int:
+        return pulumi.get(self, "target_port")
 
 
 @pulumi.output_type

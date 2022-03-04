@@ -1248,6 +1248,63 @@
                 }
             }
         },
+        "civo:index/getLoadBalancerBackend:getLoadBalancerBackend": {
+            "properties": {
+                "healthCheckPort": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "ip": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "sourcePort": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "targetPort": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "healthCheckPort",
+                "ip",
+                "protocol",
+                "sourcePort",
+                "targetPort"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "civo:index/getRegionFilter:getRegionFilter": {
             "properties": {
                 "all": {
@@ -3442,6 +3499,96 @@
                 "required": [
                     "versions",
                     "id"
+                ]
+            }
+        },
+        "civo:index/getLoadBalancer:getLoadBalancer": {
+            "description": "Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.\n\nAn error will be raised if the provided load balancer name does not exist in your Civo account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst my-lb = civo.getLoadBalancer({\n    name: \"lb-name\",\n});\nexport const civoLoadbalancerOutput = my_lb.then(my_lb =\u003e my_lb.publicIp);\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_lb = civo.get_load_balancer(name=\"lb-name\")\npulumi.export(\"civoLoadbalancerOutput\", my_lb.public_ip)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_lb = Output.Create(Civo.GetLoadBalancer.InvokeAsync(new Civo.GetLoadBalancerArgs\n        {\n            Name = \"lb-name\",\n        }));\n        this.CivoLoadbalancerOutput = my_lb.Apply(my_lb =\u003e my_lb.PublicIp);\n    }\n\n    [Output(\"civoLoadbalancerOutput\")]\n    public Output\u003cstring\u003e CivoLoadbalancerOutput { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmy_lb, err := civo.GetLoadBalancer(ctx, \u0026GetLoadBalancerArgs{\n\t\t\tName: pulumi.StringRef(\"lb-name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"civoLoadbalancerOutput\", my_lb.PublicIp)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getLoadBalancer.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getLoadBalancer.\n",
+                "properties": {
+                    "algorithm": {
+                        "type": "string",
+                        "description": "The algorithm used by the load balancer\n"
+                    },
+                    "backends": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/getLoadBalancerBackend:getLoadBalancerBackend"
+                        }
+                    },
+                    "clusterId": {
+                        "type": "string",
+                        "description": "The cluster id of the load balancer\n"
+                    },
+                    "enableProxyProtocol": {
+                        "type": "string",
+                        "description": "The enabled proxy protocol of the load balancer\n"
+                    },
+                    "externalTrafficPolicy": {
+                        "type": "string",
+                        "description": "The external traffic policy of the load balancer\n"
+                    },
+                    "firewallId": {
+                        "type": "string",
+                        "description": "The firewall id of the load balancer\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')\n"
+                    },
+                    "privateIp": {
+                        "type": "string",
+                        "description": "The private ip of the load balancer\n"
+                    },
+                    "publicIp": {
+                        "type": "string",
+                        "description": "The public ip of the load balancer\n"
+                    },
+                    "sessionAffinity": {
+                        "type": "string",
+                        "description": "The session affinity of the load balancer\n"
+                    },
+                    "sessionAffinityConfigTimeout": {
+                        "type": "integer",
+                        "description": "The session affinity config timeout of the load balancer\n"
+                    },
+                    "state": {
+                        "type": "string",
+                        "description": "The state of the load balancer\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "algorithm",
+                    "backends",
+                    "clusterId",
+                    "enableProxyProtocol",
+                    "externalTrafficPolicy",
+                    "firewallId",
+                    "privateIp",
+                    "publicIp",
+                    "sessionAffinity",
+                    "sessionAffinityConfigTimeout",
+                    "state"
                 ]
             }
         },

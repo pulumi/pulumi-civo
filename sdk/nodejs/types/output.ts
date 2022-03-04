@@ -232,6 +232,14 @@ export interface GetKubernetesVersionVersion {
     version: string;
 }
 
+export interface GetLoadBalancerBackend {
+    healthCheckPort: number;
+    ip: string;
+    protocol: string;
+    sourcePort: number;
+    targetPort: number;
+}
+
 export interface GetRegionFilter {
     /**
      * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.

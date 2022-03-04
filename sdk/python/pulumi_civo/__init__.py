@@ -18,6 +18,7 @@ from .get_instances import *
 from .get_instances_size import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
+from .get_load_balancer import *
 from .get_network import *
 from .get_region import *
 from .get_size import *
