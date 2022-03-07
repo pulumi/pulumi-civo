@@ -222,17 +222,6 @@ export interface GetKubernetesVersionFilterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface GetKubernetesVersionSortArgs {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
-    direction?: pulumi.Input<string>;
-    /**
-     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
-     */
-    key: pulumi.Input<string>;
-}
-
 export interface GetKubernetesVersionSort {
     /**
      * The sort direction. This may be either `asc` or `desc`.
@@ -242,6 +231,17 @@ export interface GetKubernetesVersionSort {
      * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
      */
     key: string;
+}
+
+export interface GetKubernetesVersionSortArgs {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: pulumi.Input<string>;
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     */
+    key: pulumi.Input<string>;
 }
 
 export interface GetRegionFilterArgs {

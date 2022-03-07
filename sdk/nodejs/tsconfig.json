@@ -28,6 +28,7 @@
         "getInstancesSize.ts",
         "getKubernetesCluster.ts",
         "getKubernetesVersion.ts",
+        "getLoadBalancer.ts",
         "getNetwork.ts",
         "getRegion.ts",
         "getSize.ts",

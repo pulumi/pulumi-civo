@@ -18,6 +18,7 @@ export * from "./getInstances";
 export * from "./getInstancesSize";
 export * from "./getKubernetesCluster";
 export * from "./getKubernetesVersion";
+export * from "./getLoadBalancer";
 export * from "./getNetwork";
 export * from "./getRegion";
 export * from "./getSize";
