@@ -21,7 +21,7 @@ class GetKubernetesClusterResult:
     """
     A collection of values returned by getKubernetesCluster.
     """
-    def __init__(__self__, api_endpoint=None, applications=None, cni=None, created_at=None, dns_entry=None, id=None, installed_applications=None, instances=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, pools=None, ready=None, region=None, status=None, tags=None, target_nodes_size=None):
+    def __init__(__self__, api_endpoint=None, applications=None, cni=None, created_at=None, dns_entry=None, id=None, installed_applications=None, kubeconfig=None, kubernetes_version=None, master_ip=None, name=None, num_target_nodes=None, pools=None, ready=None, region=None, status=None, tags=None, target_nodes_size=None):
         if api_endpoint and not isinstance(api_endpoint, str):
             raise TypeError("Expected argument 'api_endpoint' to be a str")
         pulumi.set(__self__, "api_endpoint", api_endpoint)
@@ -43,9 +43,6 @@ class GetKubernetesClusterResult:
         if installed_applications and not isinstance(installed_applications, list):
             raise TypeError("Expected argument 'installed_applications' to be a list")
         pulumi.set(__self__, "installed_applications", installed_applications)
-        if instances and not isinstance(instances, list):
-            raise TypeError("Expected argument 'instances' to be a list")
-        pulumi.set(__self__, "instances", instances)
         if kubeconfig and not isinstance(kubeconfig, str):
             raise TypeError("Expected argument 'kubeconfig' to be a str")
         pulumi.set(__self__, "kubeconfig", kubeconfig)
@@ -60,6 +57,10 @@ class GetKubernetesClusterResult:
         pulumi.set(__self__, "name", name)
         if num_target_nodes and not isinstance(num_target_nodes, int):
             raise TypeError("Expected argument 'num_target_nodes' to be a int")
+        if num_target_nodes is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
+            pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated and will be removed in a future version of the provider""")
+
         pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if pools and not isinstance(pools, list):
             raise TypeError("Expected argument 'pools' to be a list")
@@ -78,6 +79,10 @@ class GetKubernetesClusterResult:
         pulumi.set(__self__, "tags", tags)
         if target_nodes_size and not isinstance(target_nodes_size, str):
             raise TypeError("Expected argument 'target_nodes_size' to be a str")
+        if target_nodes_size is not None:
+            warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
+            pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated and will be removed in a future version of the provider""")
+
         pulumi.set(__self__, "target_nodes_size", target_nodes_size)
 
     @property
@@ -132,11 +137,6 @@ class GetKubernetesClusterResult:
     @pulumi.getter(name="installedApplications")
     def installed_applications(self) -> Sequence['outputs.GetKubernetesClusterInstalledApplicationResult']:
         return pulumi.get(self, "installed_applications")
-
-    @property
-    @pulumi.getter
-    def instances(self) -> Sequence['outputs.GetKubernetesClusterInstanceResult']:
-        return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
@@ -237,7 +237,6 @@ class AwaitableGetKubernetesClusterResult(GetKubernetesClusterResult):
             dns_entry=self.dns_entry,
             id=self.id,
             installed_applications=self.installed_applications,
-            instances=self.instances,
             kubeconfig=self.kubeconfig,
             kubernetes_version=self.kubernetes_version,
             master_ip=self.master_ip,
@@ -293,7 +292,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
         dns_entry=__ret__.dns_entry,
         id=__ret__.id,
         installed_applications=__ret__.installed_applications,
-        instances=__ret__.instances,
         kubeconfig=__ret__.kubeconfig,
         kubernetes_version=__ret__.kubernetes_version,
         master_ip=__ret__.master_ip,

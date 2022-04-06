@@ -48,9 +48,19 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly clusterId!: pulumi.Output<string>;
     /**
+     * Instance names in the nodepool
+     */
+    public /*out*/ readonly instanceNames!: pulumi.Output<string[]>;
+    /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
-    public readonly numTargetNodes!: pulumi.Output<number>;
+    public readonly nodeCount!: pulumi.Output<number>;
+    /**
+     * the number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field is deprecated, please use `node_count` instead
+     */
+    public readonly numTargetNodes!: pulumi.Output<number | undefined>;
     /**
      * The region of the node pool, has to match that of the cluster
      */
@@ -58,7 +68,13 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     /**
      * the size of each node (optional, the default is currently g4s.kube.medium)
      */
-    public readonly targetNodesSize!: pulumi.Output<string>;
+    public readonly size!: pulumi.Output<string>;
+    /**
+     * the size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field is deprecated, please use `size` instead
+     */
+    public readonly targetNodesSize!: pulumi.Output<string | undefined>;
 
     /**
      * Create a KubernetesNodePool resource with the given unique name, arguments, and options.
@@ -74,8 +90,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KubernetesNodePoolState | undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["instanceNames"] = state ? state.instanceNames : undefined;
+            resourceInputs["nodeCount"] = state ? state.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
         } else {
             const args = argsOrState as KubernetesNodePoolArgs | undefined;
@@ -86,9 +105,12 @@ export class KubernetesNodePool extends pulumi.CustomResource {
                 throw new Error("Missing required property 'region'");
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["nodeCount"] = args ? args.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
+            resourceInputs["instanceNames"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(KubernetesNodePool.__pulumiType, name, resourceInputs, opts);
@@ -104,7 +126,17 @@ export interface KubernetesNodePoolState {
      */
     clusterId?: pulumi.Input<string>;
     /**
+     * Instance names in the nodepool
+     */
+    instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * the number of instances to create (optional, the default at the time of writing is 3)
+     */
+    nodeCount?: pulumi.Input<number>;
+    /**
+     * the number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field is deprecated, please use `node_count` instead
      */
     numTargetNodes?: pulumi.Input<number>;
     /**
@@ -113,6 +145,12 @@ export interface KubernetesNodePoolState {
     region?: pulumi.Input<string>;
     /**
      * the size of each node (optional, the default is currently g4s.kube.medium)
+     */
+    size?: pulumi.Input<string>;
+    /**
+     * the size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field is deprecated, please use `size` instead
      */
     targetNodesSize?: pulumi.Input<string>;
 }
@@ -128,6 +166,12 @@ export interface KubernetesNodePoolArgs {
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
+    nodeCount?: pulumi.Input<number>;
+    /**
+     * the number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field is deprecated, please use `node_count` instead
+     */
     numTargetNodes?: pulumi.Input<number>;
     /**
      * The region of the node pool, has to match that of the cluster
@@ -135,6 +179,12 @@ export interface KubernetesNodePoolArgs {
     region: pulumi.Input<string>;
     /**
      * the size of each node (optional, the default is currently g4s.kube.medium)
+     */
+    size?: pulumi.Input<string>;
+    /**
+     * the size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field is deprecated, please use `size` instead
      */
     targetNodesSize?: pulumi.Input<string>;
 }

@@ -71,7 +71,6 @@ type LookupKubernetesClusterResult struct {
 	// The ID of this resource.
 	Id                    *string                                    `pulumi:"id"`
 	InstalledApplications []GetKubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	Instances             []GetKubernetesClusterInstance             `pulumi:"instances"`
 	// A representation of the Kubernetes cluster's kubeconfig in yaml format
 	Kubeconfig string `pulumi:"kubeconfig"`
 	// The version of Kubernetes
@@ -81,6 +80,8 @@ type LookupKubernetesClusterResult struct {
 	// The name of the Kubernetes Cluster
 	Name *string `pulumi:"name"`
 	// The size of the Kubernetes cluster
+	//
+	// Deprecated: This field is deprecated and will be removed in a future version of the provider
 	NumTargetNodes int                        `pulumi:"numTargetNodes"`
 	Pools          []GetKubernetesClusterPool `pulumi:"pools"`
 	// If the Kubernetes cluster is ready
@@ -92,6 +93,8 @@ type LookupKubernetesClusterResult struct {
 	// A list of tags
 	Tags string `pulumi:"tags"`
 	// The size of each node
+	//
+	// Deprecated: This field is deprecated and will be removed in a future version of the provider
 	TargetNodesSize string `pulumi:"targetNodesSize"`
 }
 
@@ -169,10 +172,6 @@ func (o LookupKubernetesClusterResultOutput) InstalledApplications() GetKubernet
 	}).(GetKubernetesClusterInstalledApplicationArrayOutput)
 }
 
-func (o LookupKubernetesClusterResultOutput) Instances() GetKubernetesClusterInstanceArrayOutput {
-	return o.ApplyT(func(v LookupKubernetesClusterResult) []GetKubernetesClusterInstance { return v.Instances }).(GetKubernetesClusterInstanceArrayOutput)
-}
-
 // A representation of the Kubernetes cluster's kubeconfig in yaml format
 func (o LookupKubernetesClusterResultOutput) Kubeconfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Kubeconfig }).(pulumi.StringOutput)
@@ -194,6 +193,8 @@ func (o LookupKubernetesClusterResultOutput) Name() pulumi.StringPtrOutput {
 }
 
 // The size of the Kubernetes cluster
+//
+// Deprecated: This field is deprecated and will be removed in a future version of the provider
 func (o LookupKubernetesClusterResultOutput) NumTargetNodes() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) int { return v.NumTargetNodes }).(pulumi.IntOutput)
 }
@@ -223,6 +224,8 @@ func (o LookupKubernetesClusterResultOutput) Tags() pulumi.StringOutput {
 }
 
 // The size of each node
+//
+// Deprecated: This field is deprecated and will be removed in a future version of the provider
 func (o LookupKubernetesClusterResultOutput) TargetNodesSize() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.TargetNodesSize }).(pulumi.StringOutput)
 }

@@ -25,12 +25,22 @@ type KubernetesNodePool struct {
 
 	// The ID of your cluster
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// Instance names in the nodepool
+	InstanceNames pulumi.StringArrayOutput `pulumi:"instanceNames"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
-	NumTargetNodes pulumi.IntOutput `pulumi:"numTargetNodes"`
+	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field is deprecated, please use `node_count` instead
+	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringOutput `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
+	Size pulumi.StringOutput `pulumi:"size"`
+	// the size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field is deprecated, please use `size` instead
+	TargetNodesSize pulumi.StringPtrOutput `pulumi:"targetNodesSize"`
 }
 
 // NewKubernetesNodePool registers a new resource with the given unique name, arguments, and options.
@@ -70,22 +80,42 @@ func GetKubernetesNodePool(ctx *pulumi.Context,
 type kubernetesNodePoolState struct {
 	// The ID of your cluster
 	ClusterId *string `pulumi:"clusterId"`
+	// Instance names in the nodepool
+	InstanceNames []string `pulumi:"instanceNames"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
+	NodeCount *int `pulumi:"nodeCount"`
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region *string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
+	Size *string `pulumi:"size"`
+	// the size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field is deprecated, please use `size` instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
 type KubernetesNodePoolState struct {
 	// The ID of your cluster
 	ClusterId pulumi.StringPtrInput
+	// Instance names in the nodepool
+	InstanceNames pulumi.StringArrayInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
+	NodeCount pulumi.IntPtrInput
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes pulumi.IntPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringPtrInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
+	Size pulumi.StringPtrInput
+	// the size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field is deprecated, please use `size` instead
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -97,10 +127,18 @@ type kubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId string `pulumi:"clusterId"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
+	NodeCount *int `pulumi:"nodeCount"`
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// The region of the node pool, has to match that of the cluster
 	Region string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
+	Size *string `pulumi:"size"`
+	// the size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field is deprecated, please use `size` instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -109,10 +147,18 @@ type KubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId pulumi.StringInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
+	NodeCount pulumi.IntPtrInput
+	// the number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes pulumi.IntPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
+	Size pulumi.StringPtrInput
+	// the size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field is deprecated, please use `size` instead
 	TargetNodesSize pulumi.StringPtrInput
 }
 

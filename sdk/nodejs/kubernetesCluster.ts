@@ -69,7 +69,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly firewallId!: pulumi.Output<string>;
     public /*out*/ readonly installedApplications!: pulumi.Output<outputs.KubernetesClusterInstalledApplication[]>;
-    public /*out*/ readonly instances!: pulumi.Output<outputs.KubernetesClusterInstance[]>;
     /**
      * The kubeconfig of the cluster
      */
@@ -92,9 +91,11 @@ export class KubernetesCluster extends pulumi.CustomResource {
     public readonly networkId!: pulumi.Output<string>;
     /**
      * The number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     public readonly numTargetNodes!: pulumi.Output<number>;
-    public /*out*/ readonly pools!: pulumi.Output<outputs.KubernetesClusterPool[]>;
+    public readonly pools!: pulumi.Output<outputs.KubernetesClusterPools>;
     /**
      * When cluster is ready, this will return `true`
      */
@@ -113,6 +114,8 @@ export class KubernetesCluster extends pulumi.CustomResource {
     public readonly tags!: pulumi.Output<string | undefined>;
     /**
      * The size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
 
@@ -136,7 +139,6 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["dnsEntry"] = state ? state.dnsEntry : undefined;
             resourceInputs["firewallId"] = state ? state.firewallId : undefined;
             resourceInputs["installedApplications"] = state ? state.installedApplications : undefined;
-            resourceInputs["instances"] = state ? state.instances : undefined;
             resourceInputs["kubeconfig"] = state ? state.kubeconfig : undefined;
             resourceInputs["kubernetesVersion"] = state ? state.kubernetesVersion : undefined;
             resourceInputs["masterIp"] = state ? state.masterIp : undefined;
@@ -154,6 +156,9 @@ export class KubernetesCluster extends pulumi.CustomResource {
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
+            if ((!args || args.pools === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'pools'");
+            }
             resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["cni"] = args ? args.cni : undefined;
             resourceInputs["firewallId"] = args ? args.firewallId : undefined;
@@ -161,6 +166,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
+            resourceInputs["pools"] = args ? args.pools : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
@@ -168,10 +174,8 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dnsEntry"] = undefined /*out*/;
             resourceInputs["installedApplications"] = undefined /*out*/;
-            resourceInputs["instances"] = undefined /*out*/;
             resourceInputs["kubeconfig"] = undefined /*out*/;
             resourceInputs["masterIp"] = undefined /*out*/;
-            resourceInputs["pools"] = undefined /*out*/;
             resourceInputs["ready"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
         }
@@ -209,7 +213,6 @@ export interface KubernetesClusterState {
      */
     firewallId?: pulumi.Input<string>;
     installedApplications?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstalledApplication>[]>;
-    instances?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstance>[]>;
     /**
      * The kubeconfig of the cluster
      */
@@ -232,9 +235,11 @@ export interface KubernetesClusterState {
     networkId?: pulumi.Input<string>;
     /**
      * The number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     numTargetNodes?: pulumi.Input<number>;
-    pools?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPool>[]>;
+    pools?: pulumi.Input<inputs.KubernetesClusterPools>;
     /**
      * When cluster is ready, this will return `true`
      */
@@ -253,6 +258,8 @@ export interface KubernetesClusterState {
     tags?: pulumi.Input<string>;
     /**
      * The size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     targetNodesSize?: pulumi.Input<string>;
 }
@@ -287,8 +294,11 @@ export interface KubernetesClusterArgs {
     networkId?: pulumi.Input<string>;
     /**
      * The number of instances to create (optional, the default at the time of writing is 3)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     numTargetNodes?: pulumi.Input<number>;
+    pools: pulumi.Input<inputs.KubernetesClusterPools>;
     /**
      * The region for the cluster, if not declare we use the region in declared in the provider
      */
@@ -299,6 +309,8 @@ export interface KubernetesClusterArgs {
     tags?: pulumi.Input<string>;
     /**
      * The size of each node (optional, the default is currently g4s.kube.medium)
+     *
+     * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     targetNodesSize?: pulumi.Input<string>;
 }

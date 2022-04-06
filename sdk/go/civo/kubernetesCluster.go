@@ -36,7 +36,6 @@ type KubernetesCluster struct {
 	// The existing firewall ID to use for this cluster
 	FirewallId            pulumi.StringOutput                              `pulumi:"firewallId"`
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
-	Instances             KubernetesClusterInstanceArrayOutput             `pulumi:"instances"`
 	// The kubeconfig of the cluster
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
 	// The version of k3s to install (optional, the default is currently the latest available)
@@ -48,8 +47,10 @@ type KubernetesCluster struct {
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// The number of instances to create (optional, the default at the time of writing is 3)
-	NumTargetNodes pulumi.IntOutput                 `pulumi:"numTargetNodes"`
-	Pools          KubernetesClusterPoolArrayOutput `pulumi:"pools"`
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
+	NumTargetNodes pulumi.IntOutput             `pulumi:"numTargetNodes"`
+	Pools          KubernetesClusterPoolsOutput `pulumi:"pools"`
 	// When cluster is ready, this will return `true`
 	Ready pulumi.BoolOutput `pulumi:"ready"`
 	// The region for the cluster, if not declare we use the region in declared in the provider
@@ -59,6 +60,8 @@ type KubernetesCluster struct {
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
 	// The size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
 }
 
@@ -71,6 +74,9 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 
 	if args.FirewallId == nil {
 		return nil, errors.New("invalid value for required argument 'FirewallId'")
+	}
+	if args.Pools == nil {
+		return nil, errors.New("invalid value for required argument 'Pools'")
 	}
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("civo:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
@@ -107,7 +113,6 @@ type kubernetesClusterState struct {
 	// The existing firewall ID to use for this cluster
 	FirewallId            *string                                 `pulumi:"firewallId"`
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	Instances             []KubernetesClusterInstance             `pulumi:"instances"`
 	// The kubeconfig of the cluster
 	Kubeconfig *string `pulumi:"kubeconfig"`
 	// The version of k3s to install (optional, the default is currently the latest available)
@@ -119,8 +124,10 @@ type kubernetesClusterState struct {
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
 	// The number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes *int                    `pulumi:"numTargetNodes"`
-	Pools          []KubernetesClusterPool `pulumi:"pools"`
+	Pools          *KubernetesClusterPools `pulumi:"pools"`
 	// When cluster is ready, this will return `true`
 	Ready *bool `pulumi:"ready"`
 	// The region for the cluster, if not declare we use the region in declared in the provider
@@ -130,6 +137,8 @@ type kubernetesClusterState struct {
 	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
 	// The size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -147,7 +156,6 @@ type KubernetesClusterState struct {
 	// The existing firewall ID to use for this cluster
 	FirewallId            pulumi.StringPtrInput
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
-	Instances             KubernetesClusterInstanceArrayInput
 	// The kubeconfig of the cluster
 	Kubeconfig pulumi.StringPtrInput
 	// The version of k3s to install (optional, the default is currently the latest available)
@@ -159,8 +167,10 @@ type KubernetesClusterState struct {
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
 	// The number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes pulumi.IntPtrInput
-	Pools          KubernetesClusterPoolArrayInput
+	Pools          KubernetesClusterPoolsPtrInput
 	// When cluster is ready, this will return `true`
 	Ready pulumi.BoolPtrInput
 	// The region for the cluster, if not declare we use the region in declared in the provider
@@ -170,6 +180,8 @@ type KubernetesClusterState struct {
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
 	// The size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringPtrInput
 }
 
@@ -191,12 +203,17 @@ type kubernetesClusterArgs struct {
 	// The network for the cluster, if not declare we use the default one
 	NetworkId *string `pulumi:"networkId"`
 	// The number of instances to create (optional, the default at the time of writing is 3)
-	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
+	NumTargetNodes *int                   `pulumi:"numTargetNodes"`
+	Pools          KubernetesClusterPools `pulumi:"pools"`
 	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
 	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
 	// The size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
 }
 
@@ -215,12 +232,17 @@ type KubernetesClusterArgs struct {
 	// The network for the cluster, if not declare we use the default one
 	NetworkId pulumi.StringPtrInput
 	// The number of instances to create (optional, the default at the time of writing is 3)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes pulumi.IntPtrInput
+	Pools          KubernetesClusterPoolsInput
 	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
 	// The size of each node (optional, the default is currently g4s.kube.medium)
+	//
+	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringPtrInput
 }
 

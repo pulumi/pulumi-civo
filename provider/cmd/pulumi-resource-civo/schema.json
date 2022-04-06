@@ -72,98 +72,11 @@
                 }
             }
         },
-        "civo:index/KubernetesClusterInstance:KubernetesClusterInstance": {
+        "civo:index/KubernetesClusterPools:KubernetesClusterPools": {
             "properties": {
-                "cpuCores": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "diskGb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "hostname": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "ramMb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "size": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the cluster\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Space separated list of tags, to be used freely as required\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "cpuCores",
-                        "diskGb",
-                        "hostname",
-                        "ramMb",
-                        "size",
-                        "status",
-                        "tags"
-                    ]
-                }
-            }
-        },
-        "civo:index/KubernetesClusterPool:KubernetesClusterPool": {
-            "properties": {
-                "count": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "id": {
                     "type": "string",
-                    "description": "The ID of this resource.\n",
+                    "description": "Nodepool ID\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -175,17 +88,16 @@
                     "items": {
                         "type": "string"
                     },
+                    "description": "Instance names in the nodepool\n",
                     "language": {
                         "python": {
                             "mapCase": false
                         }
                     }
                 },
-                "instances": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/civo:index/KubernetesClusterPoolInstance:KubernetesClusterPoolInstance"
-                    },
+                "nodeCount": {
+                    "type": "integer",
+                    "description": "Number of nodes in the nodepool\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -194,6 +106,7 @@
                 },
                 "size": {
                     "type": "string",
+                    "description": "Size of the nodes in the nodepool\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -202,93 +115,17 @@
                 }
             },
             "type": "object",
+            "required": [
+                "nodeCount",
+                "size"
+            ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "count",
                         "id",
                         "instanceNames",
-                        "instances",
+                        "nodeCount",
                         "size"
-                    ]
-                }
-            }
-        },
-        "civo:index/KubernetesClusterPoolInstance:KubernetesClusterPoolInstance": {
-            "properties": {
-                "cpuCores": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "diskGb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "hostname": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "ramMb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "size": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "status": {
-                    "type": "string",
-                    "description": "Status of the cluster\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "Space separated list of tags, to be used freely as required\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "language": {
-                "nodejs": {
-                    "requiredOutputs": [
-                        "cpuCores",
-                        "diskGb",
-                        "hostname",
-                        "ramMb",
-                        "size",
-                        "status",
-                        "tags"
                     ]
                 }
             }
@@ -902,96 +739,8 @@
                 }
             }
         },
-        "civo:index/getKubernetesClusterInstance:getKubernetesClusterInstance": {
-            "properties": {
-                "cpuCores": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "diskGb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "hostname": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "ramMb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "size": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "status": {
-                    "type": "string",
-                    "description": "The status of Kubernetes cluster\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of tags\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "cpuCores",
-                "diskGb",
-                "hostname",
-                "ramMb",
-                "size",
-                "status",
-                "tags"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredInputs": []
-                }
-            }
-        },
         "civo:index/getKubernetesClusterPool:getKubernetesClusterPool": {
             "properties": {
-                "count": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "id": {
                     "type": "string",
                     "description": "The ID of this resource.\n",
@@ -1012,11 +761,8 @@
                         }
                     }
                 },
-                "instances": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/civo:index/getKubernetesClusterPoolInstance:getKubernetesClusterPoolInstance"
-                    },
+                "nodeCount": {
+                    "type": "integer",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -1034,91 +780,10 @@
             },
             "type": "object",
             "required": [
-                "count",
                 "id",
                 "instanceNames",
-                "instances",
+                "nodeCount",
                 "size"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredInputs": []
-                }
-            }
-        },
-        "civo:index/getKubernetesClusterPoolInstance:getKubernetesClusterPoolInstance": {
-            "properties": {
-                "cpuCores": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "diskGb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "hostname": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "ramMb": {
-                    "type": "integer",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "size": {
-                    "type": "string",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "status": {
-                    "type": "string",
-                    "description": "The status of Kubernetes cluster\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
-                "tags": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "A list of tags\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                }
-            },
-            "type": "object",
-            "required": [
-                "cpuCores",
-                "diskGb",
-                "hostname",
-                "ramMb",
-                "size",
-                "status",
-                "tags"
             ],
             "language": {
                 "nodejs": {
@@ -2298,12 +1963,6 @@
                         "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
                     }
                 },
-                "instances": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
-                    }
-                },
                 "kubeconfig": {
                     "type": "string",
                     "description": "The kubeconfig of the cluster\n"
@@ -2326,13 +1985,11 @@
                 },
                 "numTargetNodes": {
                     "type": "integer",
-                    "description": "The number of instances to create (optional, the default at the time of writing is 3)\n"
+                    "description": "The number of instances to create (optional, the default at the time of writing is 3)\n",
+                    "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
                 },
                 "pools": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/types/civo:index/KubernetesClusterPool:KubernetesClusterPool"
-                    }
+                    "$ref": "#/types/civo:index/KubernetesClusterPools:KubernetesClusterPools"
                 },
                 "ready": {
                     "type": "boolean",
@@ -2352,7 +2009,8 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n",
+                    "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
                 }
             },
             "required": [
@@ -2362,7 +2020,6 @@
                 "dnsEntry",
                 "firewallId",
                 "installedApplications",
-                "instances",
                 "kubeconfig",
                 "kubernetesVersion",
                 "masterIp",
@@ -2402,7 +2059,11 @@
                 },
                 "numTargetNodes": {
                     "type": "integer",
-                    "description": "The number of instances to create (optional, the default at the time of writing is 3)\n"
+                    "description": "The number of instances to create (optional, the default at the time of writing is 3)\n",
+                    "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
+                },
+                "pools": {
+                    "$ref": "#/types/civo:index/KubernetesClusterPools:KubernetesClusterPools"
                 },
                 "region": {
                     "type": "string",
@@ -2414,11 +2075,13 @@
                 },
                 "targetNodesSize": {
                     "type": "string",
-                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
+                    "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n",
+                    "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
                 }
             },
             "requiredInputs": [
-                "firewallId"
+                "firewallId",
+                "pools"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering KubernetesCluster resources.\n",
@@ -2453,12 +2116,6 @@
                             "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
                         }
                     },
-                    "instances": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/KubernetesClusterInstance:KubernetesClusterInstance"
-                        }
-                    },
                     "kubeconfig": {
                         "type": "string",
                         "description": "The kubeconfig of the cluster\n"
@@ -2481,13 +2138,11 @@
                     },
                     "numTargetNodes": {
                         "type": "integer",
-                        "description": "The number of instances to create (optional, the default at the time of writing is 3)\n"
+                        "description": "The number of instances to create (optional, the default at the time of writing is 3)\n",
+                        "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
                     },
                     "pools": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/KubernetesClusterPool:KubernetesClusterPool"
-                        }
+                        "$ref": "#/types/civo:index/KubernetesClusterPools:KubernetesClusterPools"
                     },
                     "ready": {
                         "type": "boolean",
@@ -2507,7 +2162,8 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n"
+                        "description": "The size of each node (optional, the default is currently g4s.kube.medium)\n",
+                        "deprecationMessage": "This field will be deprecated in the next major release, please use the 'pools' field instead"
                     }
                 },
                 "type": "object"
@@ -2520,41 +2176,69 @@
                     "type": "string",
                     "description": "The ID of your cluster\n"
                 },
-                "numTargetNodes": {
+                "instanceNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Instance names in the nodepool\n"
+                },
+                "nodeCount": {
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
+                    "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                 },
                 "region": {
                     "type": "string",
                     "description": "The region of the node pool, has to match that of the cluster\n"
                 },
-                "targetNodesSize": {
+                "size": {
                     "type": "string",
                     "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
+                    "deprecationMessage": "This field is deprecated, please use `size` instead"
                 }
             },
             "required": [
                 "clusterId",
-                "numTargetNodes",
+                "instanceNames",
+                "nodeCount",
                 "region",
-                "targetNodesSize"
+                "size"
             ],
             "inputProperties": {
                 "clusterId": {
                     "type": "string",
                     "description": "The ID of your cluster\n"
                 },
-                "numTargetNodes": {
+                "nodeCount": {
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                },
+                "numTargetNodes": {
+                    "type": "integer",
+                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
+                    "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                 },
                 "region": {
                     "type": "string",
                     "description": "The region of the node pool, has to match that of the cluster\n"
                 },
-                "targetNodesSize": {
+                "size": {
                     "type": "string",
                     "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                },
+                "targetNodesSize": {
+                    "type": "string",
+                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
+                    "deprecationMessage": "This field is deprecated, please use `size` instead"
                 }
             },
             "requiredInputs": [
@@ -2568,17 +2252,34 @@
                         "type": "string",
                         "description": "The ID of your cluster\n"
                     },
-                    "numTargetNodes": {
+                    "instanceNames": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Instance names in the nodepool\n"
+                    },
+                    "nodeCount": {
                         "type": "integer",
                         "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                    },
+                    "numTargetNodes": {
+                        "type": "integer",
+                        "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
+                        "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                     },
                     "region": {
                         "type": "string",
                         "description": "The region of the node pool, has to match that of the cluster\n"
                     },
-                    "targetNodesSize": {
+                    "size": {
                         "type": "string",
                         "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                    },
+                    "targetNodesSize": {
+                        "type": "string",
+                        "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
+                        "deprecationMessage": "This field is deprecated, please use `size` instead"
                     }
                 },
                 "type": "object"
@@ -3371,12 +3072,6 @@
                             "$ref": "#/types/civo:index/getKubernetesClusterInstalledApplication:getKubernetesClusterInstalledApplication"
                         }
                     },
-                    "instances": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/civo:index/getKubernetesClusterInstance:getKubernetesClusterInstance"
-                        }
-                    },
                     "kubeconfig": {
                         "type": "string",
                         "description": "A representation of the Kubernetes cluster's kubeconfig in yaml format\n"
@@ -3395,7 +3090,8 @@
                     },
                     "numTargetNodes": {
                         "type": "integer",
-                        "description": "The size of the Kubernetes cluster\n"
+                        "description": "The size of the Kubernetes cluster\n",
+                        "deprecationMessage": "This field is deprecated and will be removed in a future version of the provider"
                     },
                     "pools": {
                         "type": "array",
@@ -3421,7 +3117,8 @@
                     },
                     "targetNodesSize": {
                         "type": "string",
-                        "description": "The size of each node\n"
+                        "description": "The size of each node\n",
+                        "deprecationMessage": "This field is deprecated and will be removed in a future version of the provider"
                     }
                 },
                 "type": "object",
@@ -3432,7 +3129,6 @@
                     "createdAt",
                     "dnsEntry",
                     "installedApplications",
-                    "instances",
                     "kubeconfig",
                     "kubernetesVersion",
                     "masterIp",
@@ -3503,7 +3199,7 @@
             }
         },
         "civo:index/getLoadBalancer:getLoadBalancer": {
-            "description": "Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.\n\nAn error will be raised if the provided load balancer name does not exist in your Civo account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst my-lb = civo.getLoadBalancer({\n    name: \"lb-name\",\n});\nexport const civoLoadbalancerOutput = my_lb.then(my_lb =\u003e my_lb.publicIp);\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_lb = civo.get_load_balancer(name=\"lb-name\")\npulumi.export(\"civoLoadbalancerOutput\", my_lb.public_ip)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_lb = Output.Create(Civo.GetLoadBalancer.InvokeAsync(new Civo.GetLoadBalancerArgs\n        {\n            Name = \"lb-name\",\n        }));\n        this.CivoLoadbalancerOutput = my_lb.Apply(my_lb =\u003e my_lb.PublicIp);\n    }\n\n    [Output(\"civoLoadbalancerOutput\")]\n    public Output\u003cstring\u003e CivoLoadbalancerOutput { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmy_lb, err := civo.GetLoadBalancer(ctx, \u0026GetLoadBalancerArgs{\n\t\t\tName: pulumi.StringRef(\"lb-name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"civoLoadbalancerOutput\", my_lb.PublicIp)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.\n\nAn error will be raised if the provided load balancer name does not exist in your Civo account.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst my-lb = civo.getLoadBalancer({\n    name: \"lb-name\",\n    region: \"LON1\",\n});\nexport const civoLoadbalancerOutput = my_lb.then(my_lb =\u003e my_lb.publicIp);\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nmy_lb = civo.get_load_balancer(name=\"lb-name\",\n    region=\"LON1\")\npulumi.export(\"civoLoadbalancerOutput\", my_lb.public_ip)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var my_lb = Output.Create(Civo.GetLoadBalancer.InvokeAsync(new Civo.GetLoadBalancerArgs\n        {\n            Name = \"lb-name\",\n            Region = \"LON1\",\n        }));\n        this.CivoLoadbalancerOutput = my_lb.Apply(my_lb =\u003e my_lb.PublicIp);\n    }\n\n    [Output(\"civoLoadbalancerOutput\")]\n    public Output\u003cstring\u003e CivoLoadbalancerOutput { get; set; }\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tmy_lb, err := civo.GetLoadBalancer(ctx, \u0026GetLoadBalancerArgs{\n\t\t\tName:   pulumi.StringRef(\"lb-name\"),\n\t\t\tRegion: pulumi.StringRef(\"LON1\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tctx.Export(\"civoLoadbalancerOutput\", my_lb.PublicIp)\n\t\treturn nil\n\t})\n}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getLoadBalancer.\n",
                 "properties": {
@@ -3514,6 +3210,10 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider\n"
                     }
                 },
                 "type": "object"
@@ -3562,6 +3262,10 @@
                     "publicIp": {
                         "type": "string",
                         "description": "The public ip of the load balancer\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider\n"
                     },
                     "sessionAffinity": {
                         "type": "string",

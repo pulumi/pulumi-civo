@@ -21,7 +21,7 @@ class GetLoadBalancerResult:
     """
     A collection of values returned by getLoadBalancer.
     """
-    def __init__(__self__, algorithm=None, backends=None, cluster_id=None, enable_proxy_protocol=None, external_traffic_policy=None, firewall_id=None, id=None, name=None, private_ip=None, public_ip=None, session_affinity=None, session_affinity_config_timeout=None, state=None):
+    def __init__(__self__, algorithm=None, backends=None, cluster_id=None, enable_proxy_protocol=None, external_traffic_policy=None, firewall_id=None, id=None, name=None, private_ip=None, public_ip=None, region=None, session_affinity=None, session_affinity_config_timeout=None, state=None):
         if algorithm and not isinstance(algorithm, str):
             raise TypeError("Expected argument 'algorithm' to be a str")
         pulumi.set(__self__, "algorithm", algorithm)
@@ -52,6 +52,9 @@ class GetLoadBalancerResult:
         if public_ip and not isinstance(public_ip, str):
             raise TypeError("Expected argument 'public_ip' to be a str")
         pulumi.set(__self__, "public_ip", public_ip)
+        if region and not isinstance(region, str):
+            raise TypeError("Expected argument 'region' to be a str")
+        pulumi.set(__self__, "region", region)
         if session_affinity and not isinstance(session_affinity, str):
             raise TypeError("Expected argument 'session_affinity' to be a str")
         pulumi.set(__self__, "session_affinity", session_affinity)
@@ -140,6 +143,14 @@ class GetLoadBalancerResult:
         return pulumi.get(self, "public_ip")
 
     @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        """
+        return pulumi.get(self, "region")
+
+    @property
     @pulumi.getter(name="sessionAffinity")
     def session_affinity(self) -> str:
         """
@@ -180,6 +191,7 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
             name=self.name,
             private_ip=self.private_ip,
             public_ip=self.public_ip,
+            region=self.region,
             session_affinity=self.session_affinity,
             session_affinity_config_timeout=self.session_affinity_config_timeout,
             state=self.state)
@@ -187,6 +199,7 @@ class AwaitableGetLoadBalancerResult(GetLoadBalancerResult):
 
 def get_load_balancer(id: Optional[str] = None,
                       name: Optional[str] = None,
+                      region: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLoadBalancerResult:
     """
     Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
@@ -199,17 +212,20 @@ def get_load_balancer(id: Optional[str] = None,
     import pulumi
     import pulumi_civo as civo
 
-    my_lb = civo.get_load_balancer(name="lb-name")
+    my_lb = civo.get_load_balancer(name="lb-name",
+        region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
 
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
+    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
     """
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
+    __args__['region'] = region
     if opts is None:
         opts = pulumi.InvokeOptions()
     if opts.version is None:
@@ -227,6 +243,7 @@ def get_load_balancer(id: Optional[str] = None,
         name=__ret__.name,
         private_ip=__ret__.private_ip,
         public_ip=__ret__.public_ip,
+        region=__ret__.region,
         session_affinity=__ret__.session_affinity,
         session_affinity_config_timeout=__ret__.session_affinity_config_timeout,
         state=__ret__.state)
@@ -235,6 +252,7 @@ def get_load_balancer(id: Optional[str] = None,
 @_utilities.lift_output_func(get_load_balancer)
 def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
+                             region: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLoadBalancerResult]:
     """
     Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
@@ -247,12 +265,14 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_civo as civo
 
-    my_lb = civo.get_load_balancer(name="lb-name")
+    my_lb = civo.get_load_balancer(name="lb-name",
+        region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
 
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
+    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
     """
     ...

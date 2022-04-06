@@ -160,7 +160,6 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string? Id;
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> InstalledApplications;
-        public readonly ImmutableArray<Outputs.GetKubernetesClusterInstanceResult> Instances;
         /// <summary>
         /// A representation of the Kubernetes cluster's kubeconfig in yaml format
         /// </summary>
@@ -219,8 +218,6 @@ namespace Pulumi.Civo
 
             ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> installedApplications,
 
-            ImmutableArray<Outputs.GetKubernetesClusterInstanceResult> instances,
-
             string kubeconfig,
 
             string kubernetesVersion,
@@ -250,7 +247,6 @@ namespace Pulumi.Civo
             DnsEntry = dnsEntry;
             Id = id;
             InstalledApplications = installedApplications;
-            Instances = instances;
             Kubeconfig = kubeconfig;
             KubernetesVersion = kubernetesVersion;
             MasterIp = masterIp;

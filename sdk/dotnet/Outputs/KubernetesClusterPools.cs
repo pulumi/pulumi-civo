@@ -11,33 +11,38 @@ namespace Pulumi.Civo.Outputs
 {
 
     [OutputType]
-    public sealed class KubernetesClusterPool
+    public sealed class KubernetesClusterPools
     {
-        public readonly int? Count;
         /// <summary>
-        /// The ID of this resource.
+        /// Nodepool ID
         /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Instance names in the nodepool
+        /// </summary>
         public readonly ImmutableArray<string> InstanceNames;
-        public readonly ImmutableArray<Outputs.KubernetesClusterPoolInstance> Instances;
-        public readonly string? Size;
+        /// <summary>
+        /// Number of nodes in the nodepool
+        /// </summary>
+        public readonly int NodeCount;
+        /// <summary>
+        /// Size of the nodes in the nodepool
+        /// </summary>
+        public readonly string Size;
 
         [OutputConstructor]
-        private KubernetesClusterPool(
-            int? count,
-
+        private KubernetesClusterPools(
             string? id,
 
             ImmutableArray<string> instanceNames,
 
-            ImmutableArray<Outputs.KubernetesClusterPoolInstance> instances,
+            int nodeCount,
 
-            string? size)
+            string size)
         {
-            Count = count;
             Id = id;
             InstanceNames = instanceNames;
-            Instances = instances;
+            NodeCount = nodeCount;
             Size = size;
         }
     }
