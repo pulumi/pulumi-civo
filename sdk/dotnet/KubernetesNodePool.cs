@@ -30,10 +30,22 @@ namespace Pulumi.Civo
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
+        /// Instance names in the nodepool
+        /// </summary>
+        [Output("instanceNames")]
+        public Output<ImmutableArray<string>> InstanceNames { get; private set; } = null!;
+
+        /// <summary>
+        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// </summary>
+        [Output("nodeCount")]
+        public Output<int> NodeCount { get; private set; } = null!;
+
+        /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Output("numTargetNodes")]
-        public Output<int> NumTargetNodes { get; private set; } = null!;
+        public Output<int?> NumTargetNodes { get; private set; } = null!;
 
         /// <summary>
         /// The region of the node pool, has to match that of the cluster
@@ -44,8 +56,14 @@ namespace Pulumi.Civo
         /// <summary>
         /// the size of each node (optional, the default is currently g4s.kube.medium)
         /// </summary>
+        [Output("size")]
+        public Output<string> Size { get; private set; } = null!;
+
+        /// <summary>
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
+        /// </summary>
         [Output("targetNodesSize")]
-        public Output<string> TargetNodesSize { get; private set; } = null!;
+        public Output<string?> TargetNodesSize { get; private set; } = null!;
 
 
         /// <summary>
@@ -102,6 +120,12 @@ namespace Pulumi.Civo
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
+        [Input("nodeCount")]
+        public Input<int>? NodeCount { get; set; }
+
+        /// <summary>
+        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
 
@@ -110,6 +134,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
+
+        /// <summary>
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
+        /// </summary>
+        [Input("size")]
+        public Input<string>? Size { get; set; }
 
         /// <summary>
         /// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -130,6 +160,24 @@ namespace Pulumi.Civo
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        [Input("instanceNames")]
+        private InputList<string>? _instanceNames;
+
+        /// <summary>
+        /// Instance names in the nodepool
+        /// </summary>
+        public InputList<string> InstanceNames
+        {
+            get => _instanceNames ?? (_instanceNames = new InputList<string>());
+            set => _instanceNames = value;
+        }
+
+        /// <summary>
+        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// </summary>
+        [Input("nodeCount")]
+        public Input<int>? NodeCount { get; set; }
+
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
@@ -141,6 +189,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// the size of each node (optional, the default is currently g4s.kube.medium)
+        /// </summary>
+        [Input("size")]
+        public Input<string>? Size { get; set; }
 
         /// <summary>
         /// the size of each node (optional, the default is currently g4s.kube.medium)

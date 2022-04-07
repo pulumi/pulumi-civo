@@ -152,47 +152,14 @@ export interface GetKubernetesClusterInstalledApplication {
     version: string;
 }
 
-export interface GetKubernetesClusterInstance {
-    cpuCores: number;
-    diskGb: number;
-    hostname: string;
-    ramMb: number;
-    size: string;
-    /**
-     * The status of Kubernetes cluster
-     */
-    status: string;
-    /**
-     * A list of tags
-     */
-    tags: string[];
-}
-
 export interface GetKubernetesClusterPool {
-    count: number;
     /**
      * The ID of this resource.
      */
     id: string;
     instanceNames: string[];
-    instances: outputs.GetKubernetesClusterPoolInstance[];
+    nodeCount: number;
     size: string;
-}
-
-export interface GetKubernetesClusterPoolInstance {
-    cpuCores: number;
-    diskGb: number;
-    hostname: string;
-    ramMb: number;
-    size: string;
-    /**
-     * The status of Kubernetes cluster
-     */
-    status: string;
-    /**
-     * A list of tags
-     */
-    tags: string[];
 }
 
 export interface GetKubernetesVersionFilter {
@@ -324,45 +291,22 @@ export interface KubernetesClusterInstalledApplication {
     version: string;
 }
 
-export interface KubernetesClusterInstance {
-    cpuCores: number;
-    diskGb: number;
-    hostname: string;
-    ramMb: number;
-    size: string;
+export interface KubernetesClusterPools {
     /**
-     * Status of the cluster
-     */
-    status: string;
-    /**
-     * Space separated list of tags, to be used freely as required
-     */
-    tags: string[];
-}
-
-export interface KubernetesClusterPool {
-    count: number;
-    /**
-     * The ID of this resource.
+     * Nodepool ID
      */
     id: string;
+    /**
+     * Instance names in the nodepool
+     */
     instanceNames: string[];
-    instances: outputs.KubernetesClusterPoolInstance[];
+    /**
+     * Number of nodes in the nodepool
+     */
+    nodeCount: number;
+    /**
+     * Size of the nodes in the nodepool
+     */
     size: string;
 }
 
-export interface KubernetesClusterPoolInstance {
-    cpuCores: number;
-    diskGb: number;
-    hostname: string;
-    ramMb: number;
-    size: string;
-    /**
-     * Status of the cluster
-     */
-    status: string;
-    /**
-     * Space separated list of tags, to be used freely as required
-     */
-    tags: string[];
-}

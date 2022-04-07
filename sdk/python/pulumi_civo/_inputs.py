@@ -10,9 +10,7 @@ from . import _utilities
 
 __all__ = [
     'KubernetesClusterInstalledApplicationArgs',
-    'KubernetesClusterInstanceArgs',
-    'KubernetesClusterPoolArgs',
-    'KubernetesClusterPoolInstanceArgs',
+    'KubernetesClusterPoolsArgs',
     'GetDiskImageFilterArgs',
     'GetDiskImageSortArgs',
     'GetInstancesFilterArgs',
@@ -81,140 +79,54 @@ class KubernetesClusterInstalledApplicationArgs:
 
 
 @pulumi.input_type
-class KubernetesClusterInstanceArgs:
+class KubernetesClusterPoolsArgs:
     def __init__(__self__, *,
-                 cpu_cores: Optional[pulumi.Input[int]] = None,
-                 disk_gb: Optional[pulumi.Input[int]] = None,
-                 hostname: Optional[pulumi.Input[str]] = None,
-                 ram_mb: Optional[pulumi.Input[int]] = None,
-                 size: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[str] status: Status of the cluster
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Space separated list of tags, to be used freely as required
-        """
-        if cpu_cores is not None:
-            pulumi.set(__self__, "cpu_cores", cpu_cores)
-        if disk_gb is not None:
-            pulumi.set(__self__, "disk_gb", disk_gb)
-        if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
-        if ram_mb is not None:
-            pulumi.set(__self__, "ram_mb", ram_mb)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
-
-    @property
-    @pulumi.getter(name="cpuCores")
-    def cpu_cores(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "cpu_cores")
-
-    @cpu_cores.setter
-    def cpu_cores(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "cpu_cores", value)
-
-    @property
-    @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "disk_gb")
-
-    @disk_gb.setter
-    def disk_gb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "disk_gb", value)
-
-    @property
-    @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "hostname")
-
-    @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter(name="ramMb")
-    def ram_mb(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "ram_mb")
-
-    @ram_mb.setter
-    def ram_mb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "ram_mb", value)
-
-    @property
-    @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "size")
-
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "size", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status of the cluster
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Space separated list of tags, to be used freely as required
-        """
-        return pulumi.get(self, "tags")
-
-    @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "tags", value)
-
-
-@pulumi.input_type
-class KubernetesClusterPoolArgs:
-    def __init__(__self__, *,
-                 count: Optional[pulumi.Input[int]] = None,
+                 node_count: pulumi.Input[int],
+                 size: pulumi.Input[str],
                  id: Optional[pulumi.Input[str]] = None,
-                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolInstanceArgs']]]] = None,
-                 size: Optional[pulumi.Input[str]] = None):
+                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] id: The ID of this resource.
+        :param pulumi.Input[int] node_count: Number of nodes in the nodepool
+        :param pulumi.Input[str] size: Size of the nodes in the nodepool
+        :param pulumi.Input[str] id: Nodepool ID
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
         """
-        if count is not None:
-            pulumi.set(__self__, "count", count)
+        pulumi.set(__self__, "node_count", node_count)
+        pulumi.set(__self__, "size", size)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
-        if instances is not None:
-            pulumi.set(__self__, "instances", instances)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter(name="nodeCount")
+    def node_count(self) -> pulumi.Input[int]:
+        """
+        Number of nodes in the nodepool
+        """
+        return pulumi.get(self, "node_count")
+
+    @node_count.setter
+    def node_count(self, value: pulumi.Input[int]):
+        pulumi.set(self, "node_count", value)
 
     @property
     @pulumi.getter
-    def count(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "count")
+    def size(self) -> pulumi.Input[str]:
+        """
+        Size of the nodes in the nodepool
+        """
+        return pulumi.get(self, "size")
 
-    @count.setter
-    def count(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "count", value)
+    @size.setter
+    def size(self, value: pulumi.Input[str]):
+        pulumi.set(self, "size", value)
 
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of this resource.
+        Nodepool ID
         """
         return pulumi.get(self, "id")
 
@@ -225,128 +137,14 @@ class KubernetesClusterPoolArgs:
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Instance names in the nodepool
+        """
         return pulumi.get(self, "instance_names")
 
     @instance_names.setter
     def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
-
-    @property
-    @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolInstanceArgs']]]]:
-        return pulumi.get(self, "instances")
-
-    @instances.setter
-    def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolInstanceArgs']]]]):
-        pulumi.set(self, "instances", value)
-
-    @property
-    @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "size")
-
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "size", value)
-
-
-@pulumi.input_type
-class KubernetesClusterPoolInstanceArgs:
-    def __init__(__self__, *,
-                 cpu_cores: Optional[pulumi.Input[int]] = None,
-                 disk_gb: Optional[pulumi.Input[int]] = None,
-                 hostname: Optional[pulumi.Input[str]] = None,
-                 ram_mb: Optional[pulumi.Input[int]] = None,
-                 size: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
-        """
-        :param pulumi.Input[str] status: Status of the cluster
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Space separated list of tags, to be used freely as required
-        """
-        if cpu_cores is not None:
-            pulumi.set(__self__, "cpu_cores", cpu_cores)
-        if disk_gb is not None:
-            pulumi.set(__self__, "disk_gb", disk_gb)
-        if hostname is not None:
-            pulumi.set(__self__, "hostname", hostname)
-        if ram_mb is not None:
-            pulumi.set(__self__, "ram_mb", ram_mb)
-        if size is not None:
-            pulumi.set(__self__, "size", size)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
-        if tags is not None:
-            pulumi.set(__self__, "tags", tags)
-
-    @property
-    @pulumi.getter(name="cpuCores")
-    def cpu_cores(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "cpu_cores")
-
-    @cpu_cores.setter
-    def cpu_cores(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "cpu_cores", value)
-
-    @property
-    @pulumi.getter(name="diskGb")
-    def disk_gb(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "disk_gb")
-
-    @disk_gb.setter
-    def disk_gb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "disk_gb", value)
-
-    @property
-    @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "hostname")
-
-    @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "hostname", value)
-
-    @property
-    @pulumi.getter(name="ramMb")
-    def ram_mb(self) -> Optional[pulumi.Input[int]]:
-        return pulumi.get(self, "ram_mb")
-
-    @ram_mb.setter
-    def ram_mb(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "ram_mb", value)
-
-    @property
-    @pulumi.getter
-    def size(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "size")
-
-    @size.setter
-    def size(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "size", value)
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status of the cluster
-        """
-        return pulumi.get(self, "status")
-
-    @status.setter
-    def status(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "status", value)
-
-    @property
-    @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        Space separated list of tags, to be used freely as required
-        """
-        return pulumi.get(self, "tags")
-
-    @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
-        pulumi.set(self, "tags", value)
 
 
 @pulumi.input_type

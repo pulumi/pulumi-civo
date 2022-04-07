@@ -31,6 +31,7 @@ namespace Pulumi.Civo
         ///         var my_lb = Output.Create(Civo.GetLoadBalancer.InvokeAsync(new Civo.GetLoadBalancerArgs
         ///         {
         ///             Name = "lb-name",
+        ///             Region = "LON1",
         ///         }));
         ///         this.CivoLoadbalancerOutput = my_lb.Apply(my_lb =&gt; my_lb.PublicIp);
         ///     }
@@ -65,6 +66,7 @@ namespace Pulumi.Civo
         ///         var my_lb = Output.Create(Civo.GetLoadBalancer.InvokeAsync(new Civo.GetLoadBalancerArgs
         ///         {
         ///             Name = "lb-name",
+        ///             Region = "LON1",
         ///         }));
         ///         this.CivoLoadbalancerOutput = my_lb.Apply(my_lb =&gt; my_lb.PublicIp);
         ///     }
@@ -95,6 +97,12 @@ namespace Pulumi.Civo
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// </summary>
+        [Input("region")]
+        public string? Region { get; set; }
+
         public GetLoadBalancerArgs()
         {
         }
@@ -113,6 +121,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// </summary>
+        [Input("region")]
+        public Input<string>? Region { get; set; }
 
         public GetLoadBalancerInvokeArgs()
         {
@@ -161,6 +175,10 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string PublicIp;
         /// <summary>
+        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// </summary>
+        public readonly string? Region;
+        /// <summary>
         /// The session affinity of the load balancer
         /// </summary>
         public readonly string SessionAffinity;
@@ -195,6 +213,8 @@ namespace Pulumi.Civo
 
             string publicIp,
 
+            string? region,
+
             string sessionAffinity,
 
             int sessionAffinityConfigTimeout,
@@ -211,6 +231,7 @@ namespace Pulumi.Civo
             Name = name;
             PrivateIp = privateIp;
             PublicIp = publicIp;
+            Region = region;
             SessionAffinity = sessionAffinity;
             SessionAffinityConfigTimeout = sessionAffinityConfigTimeout;
             State = state;

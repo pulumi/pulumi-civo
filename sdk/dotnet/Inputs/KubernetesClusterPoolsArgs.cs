@@ -10,37 +10,39 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class KubernetesClusterPoolArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterPoolsArgs : Pulumi.ResourceArgs
     {
-        [Input("count")]
-        public Input<int>? Count { get; set; }
-
         /// <summary>
-        /// The ID of this resource.
+        /// Nodepool ID
         /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
+
+        /// <summary>
+        /// Instance names in the nodepool
+        /// </summary>
         public InputList<string> InstanceNames
         {
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
             set => _instanceNames = value;
         }
 
-        [Input("instances")]
-        private InputList<Inputs.KubernetesClusterPoolInstanceArgs>? _instances;
-        public InputList<Inputs.KubernetesClusterPoolInstanceArgs> Instances
-        {
-            get => _instances ?? (_instances = new InputList<Inputs.KubernetesClusterPoolInstanceArgs>());
-            set => _instances = value;
-        }
+        /// <summary>
+        /// Number of nodes in the nodepool
+        /// </summary>
+        [Input("nodeCount", required: true)]
+        public Input<int> NodeCount { get; set; } = null!;
 
-        [Input("size")]
-        public Input<string>? Size { get; set; }
+        /// <summary>
+        /// Size of the nodes in the nodepool
+        /// </summary>
+        [Input("size", required: true)]
+        public Input<string> Size { get; set; } = null!;
 
-        public KubernetesClusterPoolArgs()
+        public KubernetesClusterPoolsArgs()
         {
         }
     }

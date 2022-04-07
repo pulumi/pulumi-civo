@@ -83,7 +83,6 @@ export interface GetKubernetesClusterResult {
      */
     readonly id?: string;
     readonly installedApplications: outputs.GetKubernetesClusterInstalledApplication[];
-    readonly instances: outputs.GetKubernetesClusterInstance[];
     /**
      * A representation of the Kubernetes cluster's kubeconfig in yaml format
      */
@@ -102,6 +101,8 @@ export interface GetKubernetesClusterResult {
     readonly name?: string;
     /**
      * The size of the Kubernetes cluster
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider
      */
     readonly numTargetNodes: number;
     readonly pools: outputs.GetKubernetesClusterPool[];
@@ -123,6 +124,8 @@ export interface GetKubernetesClusterResult {
     readonly tags: string;
     /**
      * The size of each node
+     *
+     * @deprecated This field is deprecated and will be removed in a future version of the provider
      */
     readonly targetNodesSize: string;
 }

@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  *
  * const my-lb = civo.getLoadBalancer({
  *     name: "lb-name",
+ *     region: "LON1",
  * });
  * export const civoLoadbalancerOutput = my_lb.then(my_lb => my_lb.publicIp);
  * ```
@@ -32,6 +33,7 @@ export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.Invoke
     return pulumi.runtime.invoke("civo:index/getLoadBalancer:getLoadBalancer", {
         "id": args.id,
         "name": args.name,
+        "region": args.region,
     }, opts);
 }
 
@@ -47,6 +49,10 @@ export interface GetLoadBalancerArgs {
      * The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
      */
     name?: string;
+    /**
+     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     */
+    region?: string;
 }
 
 /**
@@ -91,6 +97,10 @@ export interface GetLoadBalancerResult {
      */
     readonly publicIp: string;
     /**
+     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     */
+    readonly region?: string;
+    /**
      * The session affinity of the load balancer
      */
     readonly sessionAffinity: string;
@@ -120,4 +130,8 @@ export interface GetLoadBalancerOutputArgs {
      * The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
      */
     name?: pulumi.Input<string>;
+    /**
+     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     */
+    region?: pulumi.Input<string>;
 }

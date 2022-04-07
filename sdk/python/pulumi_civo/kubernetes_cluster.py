@@ -16,6 +16,7 @@ __all__ = ['KubernetesClusterArgs', 'KubernetesCluster']
 class KubernetesClusterArgs:
     def __init__(__self__, *,
                  firewall_id: pulumi.Input[str],
+                 pools: pulumi.Input['KubernetesClusterPoolsArgs'],
                  applications: Optional[pulumi.Input[str]] = None,
                  cni: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
@@ -39,6 +40,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
         pulumi.set(__self__, "firewall_id", firewall_id)
+        pulumi.set(__self__, "pools", pools)
         if applications is not None:
             pulumi.set(__self__, "applications", applications)
         if cni is not None:
@@ -50,11 +52,17 @@ class KubernetesClusterArgs:
         if network_id is not None:
             pulumi.set(__self__, "network_id", network_id)
         if num_target_nodes is not None:
+            warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+            pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
+        if num_target_nodes is not None:
             pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if target_nodes_size is not None:
+            warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+            pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
             pulumi.set(__self__, "target_nodes_size", target_nodes_size)
 
@@ -69,6 +77,15 @@ class KubernetesClusterArgs:
     @firewall_id.setter
     def firewall_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "firewall_id", value)
+
+    @property
+    @pulumi.getter
+    def pools(self) -> pulumi.Input['KubernetesClusterPoolsArgs']:
+        return pulumi.get(self, "pools")
+
+    @pools.setter
+    def pools(self, value: pulumi.Input['KubernetesClusterPoolsArgs']):
+        pulumi.set(self, "pools", value)
 
     @property
     @pulumi.getter
@@ -189,14 +206,13 @@ class _KubernetesClusterState:
                  dns_entry: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]]] = None,
-                 instances: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstanceArgs']]]] = None,
                  kubeconfig: Optional[pulumi.Input[str]] = None,
                  kubernetes_version: Optional[pulumi.Input[str]] = None,
                  master_ip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
-                 pools: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolArgs']]]] = None,
+                 pools: Optional[pulumi.Input['KubernetesClusterPoolsArgs']] = None,
                  ready: Optional[pulumi.Input[bool]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -236,8 +252,6 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if installed_applications is not None:
             pulumi.set(__self__, "installed_applications", installed_applications)
-        if instances is not None:
-            pulumi.set(__self__, "instances", instances)
         if kubeconfig is not None:
             pulumi.set(__self__, "kubeconfig", kubeconfig)
         if kubernetes_version is not None:
@@ -248,6 +262,9 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
             pulumi.set(__self__, "network_id", network_id)
+        if num_target_nodes is not None:
+            warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+            pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if num_target_nodes is not None:
             pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if pools is not None:
@@ -260,6 +277,9 @@ class _KubernetesClusterState:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if target_nodes_size is not None:
+            warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+            pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
             pulumi.set(__self__, "target_nodes_size", target_nodes_size)
 
@@ -346,15 +366,6 @@ class _KubernetesClusterState:
 
     @property
     @pulumi.getter
-    def instances(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstanceArgs']]]]:
-        return pulumi.get(self, "instances")
-
-    @instances.setter
-    def instances(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstanceArgs']]]]):
-        pulumi.set(self, "instances", value)
-
-    @property
-    @pulumi.getter
     def kubeconfig(self) -> Optional[pulumi.Input[str]]:
         """
         The kubeconfig of the cluster
@@ -427,11 +438,11 @@ class _KubernetesClusterState:
 
     @property
     @pulumi.getter
-    def pools(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolArgs']]]]:
+    def pools(self) -> Optional[pulumi.Input['KubernetesClusterPoolsArgs']]:
         return pulumi.get(self, "pools")
 
     @pools.setter
-    def pools(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolArgs']]]]):
+    def pools(self, value: Optional[pulumi.Input['KubernetesClusterPoolsArgs']]):
         pulumi.set(self, "pools", value)
 
     @property
@@ -507,6 +518,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
+                 pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
@@ -574,6 +586,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
+                 pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
@@ -597,18 +610,25 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["kubernetes_version"] = kubernetes_version
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
+            if num_target_nodes is not None and not opts.urn:
+                warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+                pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
             __props__.__dict__["num_target_nodes"] = num_target_nodes
+            if pools is None and not opts.urn:
+                raise TypeError("Missing required property 'pools'")
+            __props__.__dict__["pools"] = pools
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
+            if target_nodes_size is not None and not opts.urn:
+                warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
+                pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
             __props__.__dict__["target_nodes_size"] = target_nodes_size
             __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dns_entry"] = None
             __props__.__dict__["installed_applications"] = None
-            __props__.__dict__["instances"] = None
             __props__.__dict__["kubeconfig"] = None
             __props__.__dict__["master_ip"] = None
-            __props__.__dict__["pools"] = None
             __props__.__dict__["ready"] = None
             __props__.__dict__["status"] = None
         super(KubernetesCluster, __self__).__init__(
@@ -628,14 +648,13 @@ class KubernetesCluster(pulumi.CustomResource):
             dns_entry: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
-            instances: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstanceArgs']]]]] = None,
             kubeconfig: Optional[pulumi.Input[str]] = None,
             kubernetes_version: Optional[pulumi.Input[str]] = None,
             master_ip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             num_target_nodes: Optional[pulumi.Input[int]] = None,
-            pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterPoolArgs']]]]] = None,
+            pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
             ready: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -677,7 +696,6 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["dns_entry"] = dns_entry
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["installed_applications"] = installed_applications
-        __props__.__dict__["instances"] = instances
         __props__.__dict__["kubeconfig"] = kubeconfig
         __props__.__dict__["kubernetes_version"] = kubernetes_version
         __props__.__dict__["master_ip"] = master_ip
@@ -747,11 +765,6 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def instances(self) -> pulumi.Output[Sequence['outputs.KubernetesClusterInstance']]:
-        return pulumi.get(self, "instances")
-
-    @property
-    @pulumi.getter
     def kubeconfig(self) -> pulumi.Output[str]:
         """
         The kubeconfig of the cluster
@@ -800,7 +813,7 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def pools(self) -> pulumi.Output[Sequence['outputs.KubernetesClusterPool']]:
+    def pools(self) -> pulumi.Output['outputs.KubernetesClusterPools']:
         return pulumi.get(self, "pools")
 
     @property

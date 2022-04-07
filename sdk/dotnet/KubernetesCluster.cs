@@ -62,9 +62,6 @@ namespace Pulumi.Civo
         [Output("installedApplications")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstalledApplication>> InstalledApplications { get; private set; } = null!;
 
-        [Output("instances")]
-        public Output<ImmutableArray<Outputs.KubernetesClusterInstance>> Instances { get; private set; } = null!;
-
         /// <summary>
         /// The kubeconfig of the cluster
         /// </summary>
@@ -102,7 +99,7 @@ namespace Pulumi.Civo
         public Output<int> NumTargetNodes { get; private set; } = null!;
 
         [Output("pools")]
-        public Output<ImmutableArray<Outputs.KubernetesClusterPool>> Pools { get; private set; } = null!;
+        public Output<Outputs.KubernetesClusterPools> Pools { get; private set; } = null!;
 
         /// <summary>
         /// When cluster is ready, this will return `true`
@@ -222,6 +219,9 @@ namespace Pulumi.Civo
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
 
+        [Input("pools", required: true)]
+        public Input<Inputs.KubernetesClusterPoolsArgs> Pools { get; set; } = null!;
+
         /// <summary>
         /// The region for the cluster, if not declare we use the region in declared in the provider
         /// </summary>
@@ -291,14 +291,6 @@ namespace Pulumi.Civo
             set => _installedApplications = value;
         }
 
-        [Input("instances")]
-        private InputList<Inputs.KubernetesClusterInstanceGetArgs>? _instances;
-        public InputList<Inputs.KubernetesClusterInstanceGetArgs> Instances
-        {
-            get => _instances ?? (_instances = new InputList<Inputs.KubernetesClusterInstanceGetArgs>());
-            set => _instances = value;
-        }
-
         /// <summary>
         /// The kubeconfig of the cluster
         /// </summary>
@@ -336,12 +328,7 @@ namespace Pulumi.Civo
         public Input<int>? NumTargetNodes { get; set; }
 
         [Input("pools")]
-        private InputList<Inputs.KubernetesClusterPoolGetArgs>? _pools;
-        public InputList<Inputs.KubernetesClusterPoolGetArgs> Pools
-        {
-            get => _pools ?? (_pools = new InputList<Inputs.KubernetesClusterPoolGetArgs>());
-            set => _pools = value;
-        }
+        public Input<Inputs.KubernetesClusterPoolsGetArgs>? Pools { get; set; }
 
         /// <summary>
         /// When cluster is ready, this will return `true`
