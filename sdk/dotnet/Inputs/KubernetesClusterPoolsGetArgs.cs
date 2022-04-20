@@ -12,12 +12,6 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class KubernetesClusterPoolsGetArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Nodepool ID
-        /// </summary>
-        [Input("id")]
-        public Input<string>? Id { get; set; }
-
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
 
@@ -29,6 +23,12 @@ namespace Pulumi.Civo.Inputs
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
             set => _instanceNames = value;
         }
+
+        /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
+        [Input("label")]
+        public Input<string>? Label { get; set; }
 
         /// <summary>
         /// Number of nodes in the nodepool

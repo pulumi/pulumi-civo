@@ -44,7 +44,7 @@ export class FirewallRule extends pulumi.CustomResource {
     }
 
     /**
-     * the action of the rule can be allow or deny
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     public readonly action!: pulumi.Output<string>;
     /**
@@ -136,7 +136,7 @@ export class FirewallRule extends pulumi.CustomResource {
  */
 export interface FirewallRuleState {
     /**
-     * the action of the rule can be allow or deny
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     action?: pulumi.Input<string>;
     /**
@@ -178,7 +178,7 @@ export interface FirewallRuleState {
  */
 export interface FirewallRuleArgs {
     /**
-     * the action of the rule can be allow or deny
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     action: pulumi.Input<string>;
     /**

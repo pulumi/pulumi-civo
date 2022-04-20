@@ -24,7 +24,7 @@ namespace Pulumi.Civo
     public partial class FirewallRule : Pulumi.CustomResource
     {
         /// <summary>
-        /// the action of the rule can be allow or deny
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
@@ -124,7 +124,7 @@ namespace Pulumi.Civo
     public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// the action of the rule can be allow or deny
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -191,7 +191,7 @@ namespace Pulumi.Civo
     public sealed class FirewallRuleState : Pulumi.ResourceArgs
     {
         /// <summary>
-        /// the action of the rule can be allow or deny
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }

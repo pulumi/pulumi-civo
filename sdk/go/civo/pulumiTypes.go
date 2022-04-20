@@ -123,10 +123,10 @@ func (o KubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInpu
 }
 
 type KubernetesClusterPools struct {
-	// Nodepool ID
-	Id *string `pulumi:"id"`
 	// Instance names in the nodepool
 	InstanceNames []string `pulumi:"instanceNames"`
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label *string `pulumi:"label"`
 	// Number of nodes in the nodepool
 	NodeCount int `pulumi:"nodeCount"`
 	// Size of the nodes in the nodepool
@@ -145,10 +145,10 @@ type KubernetesClusterPoolsInput interface {
 }
 
 type KubernetesClusterPoolsArgs struct {
-	// Nodepool ID
-	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Instance names in the nodepool
 	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label pulumi.StringPtrInput `pulumi:"label"`
 	// Number of nodes in the nodepool
 	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
 	// Size of the nodes in the nodepool
@@ -232,14 +232,14 @@ func (o KubernetesClusterPoolsOutput) ToKubernetesClusterPoolsPtrOutputWithConte
 	}).(KubernetesClusterPoolsPtrOutput)
 }
 
-// Nodepool ID
-func (o KubernetesClusterPoolsOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v KubernetesClusterPools) *string { return v.Id }).(pulumi.StringPtrOutput)
-}
-
 // Instance names in the nodepool
 func (o KubernetesClusterPoolsOutput) InstanceNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterPools) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
+}
+
+// Node pool label, if you don't provide one, we will generate one for you
+func (o KubernetesClusterPoolsOutput) Label() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPools) *string { return v.Label }).(pulumi.StringPtrOutput)
 }
 
 // Number of nodes in the nodepool
@@ -276,16 +276,6 @@ func (o KubernetesClusterPoolsPtrOutput) Elem() KubernetesClusterPoolsOutput {
 	}).(KubernetesClusterPoolsOutput)
 }
 
-// Nodepool ID
-func (o KubernetesClusterPoolsPtrOutput) Id() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *KubernetesClusterPools) *string {
-		if v == nil {
-			return nil
-		}
-		return v.Id
-	}).(pulumi.StringPtrOutput)
-}
-
 // Instance names in the nodepool
 func (o KubernetesClusterPoolsPtrOutput) InstanceNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubernetesClusterPools) []string {
@@ -294,6 +284,16 @@ func (o KubernetesClusterPoolsPtrOutput) InstanceNames() pulumi.StringArrayOutpu
 		}
 		return v.InstanceNames
 	}).(pulumi.StringArrayOutput)
+}
+
+// Node pool label, if you don't provide one, we will generate one for you
+func (o KubernetesClusterPoolsPtrOutput) Label() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterPools) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Label
+	}).(pulumi.StringPtrOutput)
 }
 
 // Number of nodes in the nodepool
@@ -1590,9 +1590,8 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntI
 }
 
 type GetKubernetesClusterPool struct {
-	// The ID of this resource.
-	Id            string   `pulumi:"id"`
 	InstanceNames []string `pulumi:"instanceNames"`
+	Label         string   `pulumi:"label"`
 	NodeCount     int      `pulumi:"nodeCount"`
 	Size          string   `pulumi:"size"`
 }
@@ -1609,9 +1608,8 @@ type GetKubernetesClusterPoolInput interface {
 }
 
 type GetKubernetesClusterPoolArgs struct {
-	// The ID of this resource.
-	Id            pulumi.StringInput      `pulumi:"id"`
 	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
+	Label         pulumi.StringInput      `pulumi:"label"`
 	NodeCount     pulumi.IntInput         `pulumi:"nodeCount"`
 	Size          pulumi.StringInput      `pulumi:"size"`
 }
@@ -1667,13 +1665,12 @@ func (o GetKubernetesClusterPoolOutput) ToGetKubernetesClusterPoolOutputWithCont
 	return o
 }
 
-// The ID of this resource.
-func (o GetKubernetesClusterPoolOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetKubernetesClusterPool) string { return v.Id }).(pulumi.StringOutput)
-}
-
 func (o GetKubernetesClusterPoolOutput) InstanceNames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPool) []string { return v.InstanceNames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetKubernetesClusterPoolOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) string { return v.Label }).(pulumi.StringOutput)
 }
 
 func (o GetKubernetesClusterPoolOutput) NodeCount() pulumi.IntOutput {

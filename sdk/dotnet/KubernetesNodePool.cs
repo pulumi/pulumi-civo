@@ -36,6 +36,12 @@ namespace Pulumi.Civo
         public Output<ImmutableArray<string>> InstanceNames { get; private set; } = null!;
 
         /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
+        [Output("label")]
+        public Output<string> Label { get; private set; } = null!;
+
+        /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Output("nodeCount")]
@@ -118,6 +124,12 @@ namespace Pulumi.Civo
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
+        [Input("label")]
+        public Input<string>? Label { get; set; }
+
+        /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Input("nodeCount")]
@@ -171,6 +183,12 @@ namespace Pulumi.Civo
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
             set => _instanceNames = value;
         }
+
+        /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
+        [Input("label")]
+        public Input<string>? Label { get; set; }
 
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)

@@ -13,26 +13,23 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterPoolResult
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
-        public readonly string Id;
         public readonly ImmutableArray<string> InstanceNames;
+        public readonly string Label;
         public readonly int NodeCount;
         public readonly string Size;
 
         [OutputConstructor]
         private GetKubernetesClusterPoolResult(
-            string id,
-
             ImmutableArray<string> instanceNames,
+
+            string label,
 
             int nodeCount,
 
             string size)
         {
-            Id = id;
             InstanceNames = instanceNames;
+            Label = label;
             NodeCount = nodeCount;
             Size = size;
         }

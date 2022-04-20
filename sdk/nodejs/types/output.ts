@@ -153,11 +153,8 @@ export interface GetKubernetesClusterInstalledApplication {
 }
 
 export interface GetKubernetesClusterPool {
-    /**
-     * The ID of this resource.
-     */
-    id: string;
     instanceNames: string[];
+    label: string;
     nodeCount: number;
     size: string;
 }
@@ -293,13 +290,13 @@ export interface KubernetesClusterInstalledApplication {
 
 export interface KubernetesClusterPools {
     /**
-     * Nodepool ID
-     */
-    id: string;
-    /**
      * Instance names in the nodepool
      */
     instanceNames: string[];
+    /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
+    label: string;
     /**
      * Number of nodes in the nodepool
      */

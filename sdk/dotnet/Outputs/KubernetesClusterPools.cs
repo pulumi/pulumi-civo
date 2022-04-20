@@ -14,13 +14,13 @@ namespace Pulumi.Civo.Outputs
     public sealed class KubernetesClusterPools
     {
         /// <summary>
-        /// Nodepool ID
-        /// </summary>
-        public readonly string? Id;
-        /// <summary>
         /// Instance names in the nodepool
         /// </summary>
         public readonly ImmutableArray<string> InstanceNames;
+        /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
+        public readonly string? Label;
         /// <summary>
         /// Number of nodes in the nodepool
         /// </summary>
@@ -32,16 +32,16 @@ namespace Pulumi.Civo.Outputs
 
         [OutputConstructor]
         private KubernetesClusterPools(
-            string? id,
-
             ImmutableArray<string> instanceNames,
+
+            string? label,
 
             int nodeCount,
 
             string size)
         {
-            Id = id;
             InstanceNames = instanceNames;
+            Label = label;
             NodeCount = nodeCount;
             Size = size;
         }

@@ -52,6 +52,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public /*out*/ readonly instanceNames!: pulumi.Output<string[]>;
     /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
+    public readonly label!: pulumi.Output<string>;
+    /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
     public readonly nodeCount!: pulumi.Output<number>;
@@ -91,6 +95,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             const state = argsOrState as KubernetesNodePoolState | undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["instanceNames"] = state ? state.instanceNames : undefined;
+            resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["nodeCount"] = state ? state.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
@@ -105,6 +110,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
                 throw new Error("Missing required property 'region'");
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["nodeCount"] = args ? args.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -129,6 +135,10 @@ export interface KubernetesNodePoolState {
      * Instance names in the nodepool
      */
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
+    label?: pulumi.Input<string>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
@@ -163,6 +173,10 @@ export interface KubernetesNodePoolArgs {
      * The ID of your cluster
      */
     clusterId: pulumi.Input<string>;
+    /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
+    label?: pulumi.Input<string>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */

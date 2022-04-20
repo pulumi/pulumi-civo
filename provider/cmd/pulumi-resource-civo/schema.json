@@ -74,21 +74,21 @@
         },
         "civo:index/KubernetesClusterPools:KubernetesClusterPools": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "Nodepool ID\n",
-                    "language": {
-                        "python": {
-                            "mapCase": false
-                        }
-                    }
-                },
                 "instanceNames": {
                     "type": "array",
                     "items": {
                         "type": "string"
                     },
                     "description": "Instance names in the nodepool\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Node pool label, if you don't provide one, we will generate one for you\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -122,8 +122,8 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
-                        "id",
                         "instanceNames",
+                        "label",
                         "nodeCount",
                         "size"
                     ]
@@ -741,20 +741,19 @@
         },
         "civo:index/getKubernetesClusterPool:getKubernetesClusterPool": {
             "properties": {
-                "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n",
+                "instanceNames": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
                     "language": {
                         "python": {
                             "mapCase": false
                         }
                     }
                 },
-                "instanceNames": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
+                "label": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -780,8 +779,8 @@
             },
             "type": "object",
             "required": [
-                "id",
                 "instanceNames",
+                "label",
                 "nodeCount",
                 "size"
             ],
@@ -1498,7 +1497,7 @@
             "properties": {
                 "action": {
                     "type": "string",
-                    "description": "the action of the rule can be allow or deny\n"
+                    "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n"
                 },
                 "cidrs": {
                     "type": "array",
@@ -1550,7 +1549,7 @@
             "inputProperties": {
                 "action": {
                     "type": "string",
-                    "description": "the action of the rule can be allow or deny\n"
+                    "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n"
                 },
                 "cidrs": {
                     "type": "array",
@@ -1599,7 +1598,7 @@
                 "properties": {
                     "action": {
                         "type": "string",
-                        "description": "the action of the rule can be allow or deny\n"
+                        "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n"
                     },
                     "cidrs": {
                         "type": "array",
@@ -2183,6 +2182,10 @@
                     },
                     "description": "Instance names in the nodepool\n"
                 },
+                "label": {
+                    "type": "string",
+                    "description": "Node pool label, if you don't provide one, we will generate one for you\n"
+                },
                 "nodeCount": {
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
@@ -2209,6 +2212,7 @@
             "required": [
                 "clusterId",
                 "instanceNames",
+                "label",
                 "nodeCount",
                 "region",
                 "size"
@@ -2217,6 +2221,10 @@
                 "clusterId": {
                     "type": "string",
                     "description": "The ID of your cluster\n"
+                },
+                "label": {
+                    "type": "string",
+                    "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                 },
                 "nodeCount": {
                     "type": "integer",
@@ -2258,6 +2266,10 @@
                             "type": "string"
                         },
                         "description": "Instance names in the nodepool\n"
+                    },
+                    "label": {
+                        "type": "string",
+                        "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                     },
                     "nodeCount": {
                         "type": "integer",
