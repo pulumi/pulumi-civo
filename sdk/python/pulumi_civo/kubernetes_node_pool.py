@@ -15,6 +15,7 @@ class KubernetesNodePoolArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
                  region: pulumi.Input[str],
+                 label: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -23,6 +24,7 @@ class KubernetesNodePoolArgs:
         The set of arguments for constructing a KubernetesNodePool resource.
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
+        :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         :param pulumi.Input[int] node_count: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] size: the size of each node (optional, the default is currently g4s.kube.medium)
@@ -30,6 +32,8 @@ class KubernetesNodePoolArgs:
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "region", region)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
         if num_target_nodes is not None:
@@ -68,6 +72,18 @@ class KubernetesNodePoolArgs:
     @region.setter
     def region(self, value: pulumi.Input[str]):
         pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[pulumi.Input[str]]:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "label", value)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -123,6 +139,7 @@ class _KubernetesNodePoolState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 label: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -132,6 +149,7 @@ class _KubernetesNodePoolState:
         Input properties used for looking up and filtering KubernetesNodePool resources.
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
+        :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         :param pulumi.Input[int] node_count: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
@@ -142,6 +160,8 @@ class _KubernetesNodePoolState:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
         if node_count is not None:
             pulumi.set(__self__, "node_count", node_count)
         if num_target_nodes is not None:
@@ -182,6 +202,18 @@ class _KubernetesNodePoolState:
     @instance_names.setter
     def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[pulumi.Input[str]]:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "label", value)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -250,6 +282,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 label: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -270,6 +303,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: The ID of your cluster
+        :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         :param pulumi.Input[int] node_count: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
@@ -309,6 +343,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 label: Optional[pulumi.Input[str]] = None,
                  node_count: Optional[pulumi.Input[int]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -329,6 +364,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["label"] = label
             __props__.__dict__["node_count"] = node_count
             if num_target_nodes is not None and not opts.urn:
                 warnings.warn("""This field is deprecated, please use `node_count` instead""", DeprecationWarning)
@@ -355,6 +391,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            label: Optional[pulumi.Input[str]] = None,
             node_count: Optional[pulumi.Input[int]] = None,
             num_target_nodes: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
@@ -369,6 +406,7 @@ class KubernetesNodePool(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] cluster_id: The ID of your cluster
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
+        :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         :param pulumi.Input[int] node_count: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[int] num_target_nodes: the number of instances to create (optional, the default at the time of writing is 3)
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
@@ -381,6 +419,7 @@ class KubernetesNodePool(pulumi.CustomResource):
 
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["instance_names"] = instance_names
+        __props__.__dict__["label"] = label
         __props__.__dict__["node_count"] = node_count
         __props__.__dict__["num_target_nodes"] = num_target_nodes
         __props__.__dict__["region"] = region
@@ -403,6 +442,14 @@ class KubernetesNodePool(pulumi.CustomResource):
         Instance names in the nodepool
         """
         return pulumi.get(self, "instance_names")
+
+    @property
+    @pulumi.getter
+    def label(self) -> pulumi.Output[str]:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        return pulumi.get(self, "label")
 
     @property
     @pulumi.getter(name="nodeCount")

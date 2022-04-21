@@ -83,20 +83,20 @@ class KubernetesClusterPoolsArgs:
     def __init__(__self__, *,
                  node_count: pulumi.Input[int],
                  size: pulumi.Input[str],
-                 id: Optional[pulumi.Input[str]] = None,
-                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 label: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[int] node_count: Number of nodes in the nodepool
         :param pulumi.Input[str] size: Size of the nodes in the nodepool
-        :param pulumi.Input[str] id: Nodepool ID
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
+        :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         """
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -123,18 +123,6 @@ class KubernetesClusterPoolsArgs:
         pulumi.set(self, "size", value)
 
     @property
-    @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[str]]:
-        """
-        Nodepool ID
-        """
-        return pulumi.get(self, "id")
-
-    @id.setter
-    def id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "id", value)
-
-    @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -145,6 +133,18 @@ class KubernetesClusterPoolsArgs:
     @instance_names.setter
     def instance_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "instance_names", value)
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[pulumi.Input[str]]:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        return pulumi.get(self, "label")
+
+    @label.setter
+    def label(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "label", value)
 
 
 @pulumi.input_type

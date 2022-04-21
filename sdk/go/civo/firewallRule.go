@@ -23,7 +23,7 @@ import (
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
-	// the action of the rule can be allow or deny
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
@@ -84,7 +84,7 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
-	// the action of the rule can be allow or deny
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action *string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
@@ -105,7 +105,7 @@ type firewallRuleState struct {
 }
 
 type FirewallRuleState struct {
-	// the action of the rule can be allow or deny
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringPtrInput
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
@@ -130,7 +130,7 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
-	// the action of the rule can be allow or deny
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
@@ -152,7 +152,7 @@ type firewallRuleArgs struct {
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
-	// the action of the rule can be allow or deny
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringInput
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput

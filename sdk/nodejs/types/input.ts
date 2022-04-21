@@ -373,13 +373,13 @@ export interface KubernetesClusterInstalledApplication {
 
 export interface KubernetesClusterPools {
     /**
-     * Nodepool ID
-     */
-    id?: pulumi.Input<string>;
-    /**
      * Instance names in the nodepool
      */
     instanceNames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
+    label?: pulumi.Input<string>;
     /**
      * Number of nodes in the nodepool
      */

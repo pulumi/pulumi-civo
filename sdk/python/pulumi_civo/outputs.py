@@ -95,20 +95,20 @@ class KubernetesClusterPools(dict):
     def __init__(__self__, *,
                  node_count: int,
                  size: str,
-                 id: Optional[str] = None,
-                 instance_names: Optional[Sequence[str]] = None):
+                 instance_names: Optional[Sequence[str]] = None,
+                 label: Optional[str] = None):
         """
         :param int node_count: Number of nodes in the nodepool
         :param str size: Size of the nodes in the nodepool
-        :param str id: Nodepool ID
         :param Sequence[str] instance_names: Instance names in the nodepool
+        :param str label: Node pool label, if you don't provide one, we will generate one for you
         """
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
-        if id is not None:
-            pulumi.set(__self__, "id", id)
         if instance_names is not None:
             pulumi.set(__self__, "instance_names", instance_names)
+        if label is not None:
+            pulumi.set(__self__, "label", label)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -127,20 +127,20 @@ class KubernetesClusterPools(dict):
         return pulumi.get(self, "size")
 
     @property
-    @pulumi.getter
-    def id(self) -> Optional[str]:
-        """
-        Nodepool ID
-        """
-        return pulumi.get(self, "id")
-
-    @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Optional[Sequence[str]]:
         """
         Instance names in the nodepool
         """
         return pulumi.get(self, "instance_names")
+
+    @property
+    @pulumi.getter
+    def label(self) -> Optional[str]:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        return pulumi.get(self, "label")
 
 
 @pulumi.output_type
@@ -690,30 +690,24 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
 @pulumi.output_type
 class GetKubernetesClusterPoolResult(dict):
     def __init__(__self__, *,
-                 id: str,
                  instance_names: Sequence[str],
+                 label: str,
                  node_count: int,
                  size: str):
-        """
-        :param str id: The ID of this resource.
-        """
-        pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_names", instance_names)
+        pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
-
-    @property
-    @pulumi.getter
-    def id(self) -> str:
-        """
-        The ID of this resource.
-        """
-        return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Sequence[str]:
         return pulumi.get(self, "instance_names")
+
+    @property
+    @pulumi.getter
+    def label(self) -> str:
+        return pulumi.get(self, "label")
 
     @property
     @pulumi.getter(name="nodeCount")

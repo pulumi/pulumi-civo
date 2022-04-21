@@ -27,6 +27,8 @@ type KubernetesNodePool struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Instance names in the nodepool
 	InstanceNames pulumi.StringArrayOutput `pulumi:"instanceNames"`
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label pulumi.StringOutput `pulumi:"label"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
@@ -82,6 +84,8 @@ type kubernetesNodePoolState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// Instance names in the nodepool
 	InstanceNames []string `pulumi:"instanceNames"`
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label *string `pulumi:"label"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount *int `pulumi:"nodeCount"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
@@ -103,6 +107,8 @@ type KubernetesNodePoolState struct {
 	ClusterId pulumi.StringPtrInput
 	// Instance names in the nodepool
 	InstanceNames pulumi.StringArrayInput
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label pulumi.StringPtrInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntPtrInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
@@ -126,6 +132,8 @@ func (KubernetesNodePoolState) ElementType() reflect.Type {
 type kubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId string `pulumi:"clusterId"`
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label *string `pulumi:"label"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount *int `pulumi:"nodeCount"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
@@ -146,6 +154,8 @@ type kubernetesNodePoolArgs struct {
 type KubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId pulumi.StringInput
+	// Node pool label, if you don't provide one, we will generate one for you
+	Label pulumi.StringPtrInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntPtrInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
