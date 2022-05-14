@@ -259,6 +259,51 @@ func (o FirewallRuleOutput) ToFirewallRuleOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+func (o FirewallRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
+}
+
+// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+func (o FirewallRuleOutput) Cidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringArrayOutput { return v.Cidrs }).(pulumi.StringArrayOutput)
+}
+
+// The direction of the rule can be ingress or egress
+func (o FirewallRuleOutput) Direction() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Direction }).(pulumi.StringOutput)
+}
+
+// The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
+func (o FirewallRuleOutput) EndPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.EndPort }).(pulumi.StringOutput)
+}
+
+// The Firewall ID
+func (o FirewallRuleOutput) FirewallId() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.FirewallId }).(pulumi.StringOutput)
+}
+
+// A string that will be the displayed name/reference for this rule
+func (o FirewallRuleOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
+}
+
+// The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+func (o FirewallRuleOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// The region for this rule
+func (o FirewallRuleOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// The start of the port range to configure for this rule (or the single port if required)
+func (o FirewallRuleOutput) StartPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.StartPort }).(pulumi.StringOutput)
+}
+
 type FirewallRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallRuleArrayOutput) ElementType() reflect.Type {

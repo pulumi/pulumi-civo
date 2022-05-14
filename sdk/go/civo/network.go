@@ -215,6 +215,26 @@ func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOu
 	return o
 }
 
+// If the network is default, this will be `true`
+func (o NetworkOutput) Default() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Network) pulumi.BoolOutput { return v.Default }).(pulumi.BoolOutput)
+}
+
+// Name for the network
+func (o NetworkOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
+}
+
+// The name of the network
+func (o NetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The region of the network
+func (o NetworkOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
 type NetworkArrayOutput struct{ *pulumi.OutputState }
 
 func (NetworkArrayOutput) ElementType() reflect.Type {

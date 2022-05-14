@@ -219,6 +219,21 @@ func (o SshKeyOutput) ToSshKeyOutputWithContext(ctx context.Context) SshKeyOutpu
 	return o
 }
 
+// a string containing the SSH finger print.
+func (o SshKeyOutput) Fingerprint() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshKey) pulumi.StringOutput { return v.Fingerprint }).(pulumi.StringOutput)
+}
+
+// a string that will be the reference for the SSH key.
+func (o SshKeyOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// a string containing the SSH public key.
+func (o SshKeyOutput) PublicKey() pulumi.StringOutput {
+	return o.ApplyT(func(v *SshKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
+}
+
 type SshKeyArrayOutput struct{ *pulumi.OutputState }
 
 func (SshKeyArrayOutput) ElementType() reflect.Type {

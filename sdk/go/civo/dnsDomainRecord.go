@@ -247,6 +247,51 @@ func (o DnsDomainRecordOutput) ToDnsDomainRecordOutputWithContext(ctx context.Co
 	return o
 }
 
+// The account ID of this resource
+func (o DnsDomainRecordOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// Timestamp when this resource was created
+func (o DnsDomainRecordOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// ID from domain name
+func (o DnsDomainRecordOutput) DomainId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.DomainId }).(pulumi.StringOutput)
+}
+
+// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+func (o DnsDomainRecordOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
+func (o DnsDomainRecordOutput) Priority() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
+}
+
+// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+func (o DnsDomainRecordOutput) Ttl() pulumi.IntOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
+}
+
+// The choice of RR type from a, cname, mx or txt
+func (o DnsDomainRecordOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// Timestamp when this resource was updated
+func (o DnsDomainRecordOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+func (o DnsDomainRecordOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.Value }).(pulumi.StringOutput)
+}
+
 type DnsDomainRecordArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainRecordArrayOutput) ElementType() reflect.Type {

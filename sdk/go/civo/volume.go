@@ -241,6 +241,31 @@ func (o VolumeOutput) ToVolumeOutputWithContext(ctx context.Context) VolumeOutpu
 	return o
 }
 
+// The mount point of the volume (from instance's perspective)
+func (o VolumeOutput) MountPoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.MountPoint }).(pulumi.StringOutput)
+}
+
+// A name that you wish to use to refer to this volume
+func (o VolumeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The network that the volume belongs to
+func (o VolumeOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
+}
+
+// The region for the volume, if not declare we use the region in declared in the provider.
+func (o VolumeOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
+func (o VolumeOutput) SizeGb() pulumi.IntOutput {
+	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.SizeGb }).(pulumi.IntOutput)
+}
+
 type VolumeArrayOutput struct{ *pulumi.OutputState }
 
 func (VolumeArrayOutput) ElementType() reflect.Type {

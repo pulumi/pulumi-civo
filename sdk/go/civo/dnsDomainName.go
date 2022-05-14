@@ -193,6 +193,16 @@ func (o DnsDomainNameOutput) ToDnsDomainNameOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The account ID of the domain
+func (o DnsDomainNameOutput) AccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainName) pulumi.StringOutput { return v.AccountId }).(pulumi.StringOutput)
+}
+
+// The name of the domain
+func (o DnsDomainNameOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *DnsDomainName) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
 type DnsDomainNameArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainNameArrayOutput) ElementType() reflect.Type {

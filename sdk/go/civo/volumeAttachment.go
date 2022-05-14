@@ -185,6 +185,21 @@ func (o VolumeAttachmentOutput) ToVolumeAttachmentOutputWithContext(ctx context.
 	return o
 }
 
+// The ID of target instance for attachment
+func (o VolumeAttachmentOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VolumeAttachment) pulumi.StringOutput { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// The region for the volume attachment
+func (o VolumeAttachmentOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VolumeAttachment) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
+// The ID of target volume for attachment
+func (o VolumeAttachmentOutput) VolumeId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VolumeAttachment) pulumi.StringOutput { return v.VolumeId }).(pulumi.StringOutput)
+}
+
 type VolumeAttachmentArrayOutput struct{ *pulumi.OutputState }
 
 func (VolumeAttachmentArrayOutput) ElementType() reflect.Type {
