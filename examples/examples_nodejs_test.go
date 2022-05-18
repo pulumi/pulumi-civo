@@ -1,4 +1,5 @@
 // Copyright 2016-2020, Pulumi Corporation.  All rights reserved.
+//go:build nodejs || all
 // +build nodejs all
 
 package examples
@@ -20,6 +21,7 @@ func TestAccNetworkTs(t *testing.T) {
 }
 
 func TestKubernetesMinimalTs(t *testing.T) {
+	t.Skip("Civo API returns intermittent 500 error on deleting firewalls; see https://github.com/civo/terraform-provider-civo/issues/138")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			RunUpdateTest: false,
