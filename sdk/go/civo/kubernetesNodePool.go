@@ -259,6 +259,50 @@ func (o KubernetesNodePoolOutput) ToKubernetesNodePoolOutputWithContext(ctx cont
 	return o
 }
 
+// The ID of your cluster
+func (o KubernetesNodePoolOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Instance names in the nodepool
+func (o KubernetesNodePoolOutput) InstanceNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringArrayOutput { return v.InstanceNames }).(pulumi.StringArrayOutput)
+}
+
+// Node pool label, if you don't provide one, we will generate one for you
+func (o KubernetesNodePoolOutput) Label() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
+}
+
+// the number of instances to create (optional, the default at the time of writing is 3)
+func (o KubernetesNodePoolOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+// the number of instances to create (optional, the default at the time of writing is 3)
+//
+// Deprecated: This field is deprecated, please use `node_count` instead
+func (o KubernetesNodePoolOutput) NumTargetNodes() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.NumTargetNodes }).(pulumi.IntPtrOutput)
+}
+
+// The region of the node pool, has to match that of the cluster
+func (o KubernetesNodePoolOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// the size of each node (optional, the default is currently g4s.kube.medium)
+func (o KubernetesNodePoolOutput) Size() pulumi.StringOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
+}
+
+// the size of each node (optional, the default is currently g4s.kube.medium)
+//
+// Deprecated: This field is deprecated, please use `size` instead
+func (o KubernetesNodePoolOutput) TargetNodesSize() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.TargetNodesSize }).(pulumi.StringPtrOutput)
+}
+
 type KubernetesNodePoolArrayOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolArrayOutput) ElementType() reflect.Type {

@@ -225,6 +225,26 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
+// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+func (o FirewallOutput) CreateDefaultRules() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.BoolPtrOutput { return v.CreateDefaultRules }).(pulumi.BoolPtrOutput)
+}
+
+// The firewall name
+func (o FirewallOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// The firewall network, if is not defined we use the default network
+func (o FirewallOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
+}
+
+// The firewall region, if is not defined we use the global defined in the provider
+func (o FirewallOutput) Region() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+}
+
 type FirewallArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallArrayOutput) ElementType() reflect.Type {
