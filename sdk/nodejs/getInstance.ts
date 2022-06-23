@@ -8,18 +8,6 @@ import * as utilities from "./utilities";
  * Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
  *
  * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const myhostaname = civo.getInstance({
- *     hostname: "myhostname.com",
- * });
- * export const instanceOutput = myhostaname.then(myhostaname => myhostaname.publicIp);
- * ```
  */
 export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     args = args || {};

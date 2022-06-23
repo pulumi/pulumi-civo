@@ -7,18 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * // Create a network
- * const customNet = new civo.Network("customNet", {label: "my-custom-network"});
- * // Create a firewall
- * const www = new civo.Firewall("www", {networkId: customNet.id});
- * ```
- *
  * ## Import
  *
  * # using ID

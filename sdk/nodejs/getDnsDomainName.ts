@@ -8,19 +8,6 @@ import * as utilities from "./utilities";
  * Get information on a domain. This data source provides the name and the id.
  *
  * An error will be raised if the provided domain name is not in your Civo account.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const domain = civo.getDnsDomainName({
- *     name: "domain.com",
- * });
- * export const domainOutput = domain.then(domain => domain.name);
- * export const domainIdOutput = domain.then(domain => domain.id);
- * ```
  */
 export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainNameResult> {
     args = args || {};
