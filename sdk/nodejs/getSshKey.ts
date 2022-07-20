@@ -26,13 +26,7 @@ export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getSshKey.
  */
 export interface GetSshKeyArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
-    /**
-     * The name of the SSH key
-     */
     name?: string;
 }
 
@@ -40,17 +34,8 @@ export interface GetSshKeyArgs {
  * A collection of values returned by getSshKey.
  */
 export interface GetSshKeyResult {
-    /**
-     * The fingerprint of the public key of the SSH key
-     */
     readonly fingerprint: string;
-    /**
-     * The ID of this resource.
-     */
     readonly id?: string;
-    /**
-     * The name of the SSH key
-     */
     readonly name?: string;
 }
 
@@ -62,12 +47,6 @@ export function getSshKeyOutput(args?: GetSshKeyOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getSshKey.
  */
 export interface GetSshKeyOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The name of the SSH key
-     */
     name?: pulumi.Input<string>;
 }

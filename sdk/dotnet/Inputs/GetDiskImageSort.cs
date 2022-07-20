@@ -12,15 +12,9 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetDiskImageSortArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
-        /// <summary>
-        /// Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 

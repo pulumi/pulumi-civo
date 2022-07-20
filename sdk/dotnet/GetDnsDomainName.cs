@@ -89,15 +89,9 @@ namespace Pulumi.Civo
 
     public sealed class GetDnsDomainNameArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the domain
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -108,15 +102,9 @@ namespace Pulumi.Civo
 
     public sealed class GetDnsDomainNameInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the domain
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -129,13 +117,7 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetDnsDomainNameResult
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of the domain
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

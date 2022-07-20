@@ -22,25 +22,19 @@ func GetDiskImage(ctx *pulumi.Context, args *GetDiskImageArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getDiskImage.
 type GetDiskImageArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetDiskImageFilter `pulumi:"filters"`
-	// If is used, all disk image will be from this region. Required if no region is set in provider.
-	Region *string `pulumi:"region"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetDiskImageSort `pulumi:"sorts"`
+	Region  *string              `pulumi:"region"`
+	Sorts   []GetDiskImageSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getDiskImage.
 type GetDiskImageResult struct {
 	Diskimages []GetDiskImageDiskimage `pulumi:"diskimages"`
-	// One or more key/value pairs on which to filter results
-	Filters []GetDiskImageFilter `pulumi:"filters"`
+	Filters    []GetDiskImageFilter    `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
-	// If is used, all disk image will be from this region. Required if no region is set in provider.
-	Region *string `pulumi:"region"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetDiskImageSort `pulumi:"sorts"`
+	Id     string             `pulumi:"id"`
+	Region *string            `pulumi:"region"`
+	Sorts  []GetDiskImageSort `pulumi:"sorts"`
 }
 
 func GetDiskImageOutput(ctx *pulumi.Context, args GetDiskImageOutputArgs, opts ...pulumi.InvokeOption) GetDiskImageResultOutput {
@@ -58,12 +52,9 @@ func GetDiskImageOutput(ctx *pulumi.Context, args GetDiskImageOutputArgs, opts .
 
 // A collection of arguments for invoking getDiskImage.
 type GetDiskImageOutputArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters GetDiskImageFilterArrayInput `pulumi:"filters"`
-	// If is used, all disk image will be from this region. Required if no region is set in provider.
-	Region pulumi.StringPtrInput `pulumi:"region"`
-	// One or more key/direction pairs on which to sort results
-	Sorts GetDiskImageSortArrayInput `pulumi:"sorts"`
+	Region  pulumi.StringPtrInput        `pulumi:"region"`
+	Sorts   GetDiskImageSortArrayInput   `pulumi:"sorts"`
 }
 
 func (GetDiskImageOutputArgs) ElementType() reflect.Type {
@@ -89,7 +80,6 @@ func (o GetDiskImageResultOutput) Diskimages() GetDiskImageDiskimageArrayOutput 
 	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageDiskimage { return v.Diskimages }).(GetDiskImageDiskimageArrayOutput)
 }
 
-// One or more key/value pairs on which to filter results
 func (o GetDiskImageResultOutput) Filters() GetDiskImageFilterArrayOutput {
 	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageFilter { return v.Filters }).(GetDiskImageFilterArrayOutput)
 }
@@ -99,12 +89,10 @@ func (o GetDiskImageResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDiskImageResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// If is used, all disk image will be from this region. Required if no region is set in provider.
 func (o GetDiskImageResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetDiskImageResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// One or more key/direction pairs on which to sort results
 func (o GetDiskImageResultOutput) Sorts() GetDiskImageSortArrayOutput {
 	return o.ApplyT(func(v GetDiskImageResult) []GetDiskImageSort { return v.Sorts }).(GetDiskImageSortArrayOutput)
 }

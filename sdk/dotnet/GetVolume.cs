@@ -77,21 +77,12 @@ namespace Pulumi.Civo
 
     public sealed class GetVolumeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the volume
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The region where volume is running
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -102,21 +93,12 @@ namespace Pulumi.Civo
 
     public sealed class GetVolumeInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the volume
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region where volume is running
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -129,29 +111,11 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetVolumeResult
     {
-        /// <summary>
-        /// The date of the creation of the volume
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The mount point of the volume
-        /// </summary>
         public readonly string MountPoint;
-        /// <summary>
-        /// The name of the volume
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The region where volume is running
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// The size of the volume (in GB)
-        /// </summary>
         public readonly int SizeGb;
 
         [OutputConstructor]

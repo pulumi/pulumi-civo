@@ -13,13 +13,7 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetSizeSortResult
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         public readonly string? Direction;
-        /// <summary>
-        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

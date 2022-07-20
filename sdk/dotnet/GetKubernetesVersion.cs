@@ -95,10 +95,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetKubernetesVersionFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetKubernetesVersionFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetKubernetesVersionFilterArgs>());
@@ -107,10 +103,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetKubernetesVersionSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetKubernetesVersionSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetKubernetesVersionSortArgs>());
@@ -126,10 +118,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetKubernetesVersionFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetKubernetesVersionFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetKubernetesVersionFilterInputArgs>());
@@ -138,10 +126,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private InputList<Inputs.GetKubernetesVersionSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetKubernetesVersionSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetKubernetesVersionSortInputArgs>());
@@ -157,17 +141,11 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetKubernetesVersionResult
     {
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesVersionFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesVersionSortResult> Sorts;
         public readonly ImmutableArray<Outputs.GetKubernetesVersionVersionResult> Versions;
 

@@ -29,10 +29,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetSizeFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetSizeFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetSizeFilterArgs>());
@@ -41,10 +37,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetSizeSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetSizeSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetSizeSortArgs>());
@@ -60,10 +52,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetSizeFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetSizeFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetSizeFilterInputArgs>());
@@ -72,10 +60,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private InputList<Inputs.GetSizeSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetSizeSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetSizeSortInputArgs>());
@@ -91,18 +75,12 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetSizeResult
     {
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetSizeFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetSizeSizeResult> Sizes;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetSizeSortResult> Sorts;
 
         [OutputConstructor]

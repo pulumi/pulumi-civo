@@ -49,17 +49,13 @@ func LookupDnsDomainName(ctx *pulumi.Context, args *LookupDnsDomainNameArgs, opt
 
 // A collection of arguments for invoking getDnsDomainName.
 type LookupDnsDomainNameArgs struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The name of the domain
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getDnsDomainName.
 type LookupDnsDomainNameResult struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The name of the domain
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
@@ -78,9 +74,7 @@ func LookupDnsDomainNameOutput(ctx *pulumi.Context, args LookupDnsDomainNameOutp
 
 // A collection of arguments for invoking getDnsDomainName.
 type LookupDnsDomainNameOutputArgs struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the domain
+	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -103,12 +97,10 @@ func (o LookupDnsDomainNameResultOutput) ToLookupDnsDomainNameResultOutputWithCo
 	return o
 }
 
-// The ID of this resource.
 func (o LookupDnsDomainNameResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDnsDomainNameResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the domain
 func (o LookupDnsDomainNameResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupDnsDomainNameResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

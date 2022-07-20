@@ -41,17 +41,8 @@ export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getNetwork.
  */
 export interface GetNetworkArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
-    /**
-     * The label of an existing network
-     */
     label?: string;
-    /**
-     * The region of an existing network
-     */
     region?: string;
 }
 
@@ -59,25 +50,10 @@ export interface GetNetworkArgs {
  * A collection of values returned by getNetwork.
  */
 export interface GetNetworkResult {
-    /**
-     * If is the default network
-     */
     readonly default: boolean;
-    /**
-     * The ID of this resource.
-     */
     readonly id?: string;
-    /**
-     * The label of an existing network
-     */
     readonly label?: string;
-    /**
-     * The name of the network
-     */
     readonly name: string;
-    /**
-     * The region of an existing network
-     */
     readonly region?: string;
 }
 
@@ -89,16 +65,7 @@ export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getNetwork.
  */
 export interface GetNetworkOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The label of an existing network
-     */
     label?: pulumi.Input<string>;
-    /**
-     * The region of an existing network
-     */
     region?: pulumi.Input<string>;
 }

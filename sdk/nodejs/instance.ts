@@ -60,7 +60,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly diskImage!: pulumi.Output<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     public readonly firewallId!: pulumi.Output<string>;
     /**
@@ -72,7 +73,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly initialPassword!: pulumi.Output<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     public readonly initialUser!: pulumi.Output<string | undefined>;
     /**
@@ -104,11 +106,13 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     public readonly reverseDns!: pulumi.Output<string | undefined>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     public readonly script!: pulumi.Output<string | undefined>;
     /**
@@ -124,7 +128,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly sourceType!: pulumi.Output<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     public readonly sshkeyId!: pulumi.Output<string | undefined>;
     /**
@@ -232,7 +237,8 @@ export interface InstanceState {
      */
     diskImage?: pulumi.Input<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     firewallId?: pulumi.Input<string>;
     /**
@@ -244,7 +250,8 @@ export interface InstanceState {
      */
     initialPassword?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     initialUser?: pulumi.Input<string>;
     /**
@@ -276,11 +283,13 @@ export interface InstanceState {
      */
     region?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     reverseDns?: pulumi.Input<string>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     script?: pulumi.Input<string>;
     /**
@@ -296,7 +305,8 @@ export interface InstanceState {
      */
     sourceType?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     sshkeyId?: pulumi.Input<string>;
     /**
@@ -324,7 +334,8 @@ export interface InstanceArgs {
      */
     diskImage?: pulumi.Input<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     firewallId?: pulumi.Input<string>;
     /**
@@ -332,7 +343,8 @@ export interface InstanceArgs {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's default_username and
+     * fallback to civo)
      */
     initialUser?: pulumi.Input<string>;
     /**
@@ -352,11 +364,13 @@ export interface InstanceArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     reverseDns?: pulumi.Input<string>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     script?: pulumi.Input<string>;
     /**
@@ -364,7 +378,8 @@ export interface InstanceArgs {
      */
     size?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initial_password field)
      */
     sshkeyId?: pulumi.Input<string>;
     /**

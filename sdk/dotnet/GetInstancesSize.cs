@@ -29,10 +29,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetInstancesSizeFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetInstancesSizeFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetInstancesSizeFilterArgs>());
@@ -41,10 +37,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetInstancesSizeSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetInstancesSizeSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetInstancesSizeSortArgs>());
@@ -60,10 +52,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetInstancesSizeFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetInstancesSizeFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetInstancesSizeFilterInputArgs>());
@@ -72,10 +60,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private InputList<Inputs.GetInstancesSizeSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetInstancesSizeSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetInstancesSizeSortInputArgs>());
@@ -91,18 +75,12 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetInstancesSizeResult
     {
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesSizeFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetInstancesSizeSizeResult> Sizes;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesSizeSortResult> Sorts;
 
         [OutputConstructor]

@@ -31,15 +31,9 @@ namespace Pulumi.Civo
 
     public sealed class GetSshKeyArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the SSH key
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -50,15 +44,9 @@ namespace Pulumi.Civo
 
     public sealed class GetSshKeyInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the SSH key
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -71,17 +59,8 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetSshKeyResult
     {
-        /// <summary>
-        /// The fingerprint of the public key of the SSH key
-        /// </summary>
         public readonly string Fingerprint;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of the SSH key
-        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

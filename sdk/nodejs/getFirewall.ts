@@ -41,17 +41,8 @@ export function getFirewall(args?: GetFirewallArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getFirewall.
  */
 export interface GetFirewallArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
-    /**
-     * The name of the firewall
-     */
     name?: string;
-    /**
-     * The region where the firewall is
-     */
     region?: string;
 }
 
@@ -59,21 +50,9 @@ export interface GetFirewallArgs {
  * A collection of values returned by getFirewall.
  */
 export interface GetFirewallResult {
-    /**
-     * The ID of this resource.
-     */
     readonly id?: string;
-    /**
-     * The name of the firewall
-     */
     readonly name?: string;
-    /**
-     * The id of the associated network
-     */
     readonly networkId: string;
-    /**
-     * The region where the firewall is
-     */
     readonly region?: string;
 }
 
@@ -85,16 +64,7 @@ export function getFirewallOutput(args?: GetFirewallOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getFirewall.
  */
 export interface GetFirewallOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The name of the firewall
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The region where the firewall is
-     */
     region?: pulumi.Input<string>;
 }

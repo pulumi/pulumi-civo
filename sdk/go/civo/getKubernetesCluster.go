@@ -48,52 +48,31 @@ func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterA
 
 // A collection of arguments for invoking getKubernetesCluster.
 type LookupKubernetesClusterArgs struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The name of the Kubernetes Cluster
-	Name *string `pulumi:"name"`
-	// The region where cluster is running
+	Id     *string `pulumi:"id"`
+	Name   *string `pulumi:"name"`
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getKubernetesCluster.
 type LookupKubernetesClusterResult struct {
-	// The base URL of the API server on the Kubernetes master node
-	ApiEndpoint string `pulumi:"apiEndpoint"`
-	// A list of application installed
-	Applications string `pulumi:"applications"`
-	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
-	Cni string `pulumi:"cni"`
-	// The date where the Kubernetes cluster was create
-	CreatedAt string `pulumi:"createdAt"`
-	// The unique dns entry for the cluster in this case point to the master
-	DnsEntry string `pulumi:"dnsEntry"`
-	// The ID of this resource.
+	ApiEndpoint           string                                     `pulumi:"apiEndpoint"`
+	Applications          string                                     `pulumi:"applications"`
+	Cni                   string                                     `pulumi:"cni"`
+	CreatedAt             string                                     `pulumi:"createdAt"`
+	DnsEntry              string                                     `pulumi:"dnsEntry"`
 	Id                    *string                                    `pulumi:"id"`
 	InstalledApplications []GetKubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// A representation of the Kubernetes cluster's kubeconfig in yaml format
-	Kubeconfig string `pulumi:"kubeconfig"`
-	// The version of Kubernetes
-	KubernetesVersion string `pulumi:"kubernetesVersion"`
-	// The IP of the Kubernetes master node
-	MasterIp string `pulumi:"masterIp"`
-	// The name of the Kubernetes Cluster
-	Name *string `pulumi:"name"`
-	// The size of the Kubernetes cluster
-	//
+	Kubeconfig            string                                     `pulumi:"kubeconfig"`
+	KubernetesVersion     string                                     `pulumi:"kubernetesVersion"`
+	MasterIp              string                                     `pulumi:"masterIp"`
+	Name                  *string                                    `pulumi:"name"`
 	// Deprecated: This field is deprecated and will be removed in a future version of the provider
 	NumTargetNodes int                        `pulumi:"numTargetNodes"`
 	Pools          []GetKubernetesClusterPool `pulumi:"pools"`
-	// If the Kubernetes cluster is ready
-	Ready bool `pulumi:"ready"`
-	// The region where cluster is running
-	Region *string `pulumi:"region"`
-	// The status of Kubernetes cluster
-	Status string `pulumi:"status"`
-	// A list of tags
-	Tags string `pulumi:"tags"`
-	// The size of each node
-	//
+	Ready          bool                       `pulumi:"ready"`
+	Region         *string                    `pulumi:"region"`
+	Status         string                     `pulumi:"status"`
+	Tags           []string                   `pulumi:"tags"`
 	// Deprecated: This field is deprecated and will be removed in a future version of the provider
 	TargetNodesSize string `pulumi:"targetNodesSize"`
 }
@@ -113,11 +92,8 @@ func LookupKubernetesClusterOutput(ctx *pulumi.Context, args LookupKubernetesClu
 
 // A collection of arguments for invoking getKubernetesCluster.
 type LookupKubernetesClusterOutputArgs struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the Kubernetes Cluster
-	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The region where cluster is running
+	Id     pulumi.StringPtrInput `pulumi:"id"`
+	Name   pulumi.StringPtrInput `pulumi:"name"`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -140,32 +116,26 @@ func (o LookupKubernetesClusterResultOutput) ToLookupKubernetesClusterResultOutp
 	return o
 }
 
-// The base URL of the API server on the Kubernetes master node
 func (o LookupKubernetesClusterResultOutput) ApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
-// A list of application installed
 func (o LookupKubernetesClusterResultOutput) Applications() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Applications }).(pulumi.StringOutput)
 }
 
-// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 func (o LookupKubernetesClusterResultOutput) Cni() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Cni }).(pulumi.StringOutput)
 }
 
-// The date where the Kubernetes cluster was create
 func (o LookupKubernetesClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The unique dns entry for the cluster in this case point to the master
 func (o LookupKubernetesClusterResultOutput) DnsEntry() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.DnsEntry }).(pulumi.StringOutput)
 }
 
-// The ID of this resource.
 func (o LookupKubernetesClusterResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -176,28 +146,22 @@ func (o LookupKubernetesClusterResultOutput) InstalledApplications() GetKubernet
 	}).(GetKubernetesClusterInstalledApplicationArrayOutput)
 }
 
-// A representation of the Kubernetes cluster's kubeconfig in yaml format
 func (o LookupKubernetesClusterResultOutput) Kubeconfig() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Kubeconfig }).(pulumi.StringOutput)
 }
 
-// The version of Kubernetes
 func (o LookupKubernetesClusterResultOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.KubernetesVersion }).(pulumi.StringOutput)
 }
 
-// The IP of the Kubernetes master node
 func (o LookupKubernetesClusterResultOutput) MasterIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.MasterIp }).(pulumi.StringOutput)
 }
 
-// The name of the Kubernetes Cluster
 func (o LookupKubernetesClusterResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
-// The size of the Kubernetes cluster
-//
 // Deprecated: This field is deprecated and will be removed in a future version of the provider
 func (o LookupKubernetesClusterResultOutput) NumTargetNodes() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) int { return v.NumTargetNodes }).(pulumi.IntOutput)
@@ -207,28 +171,22 @@ func (o LookupKubernetesClusterResultOutput) Pools() GetKubernetesClusterPoolArr
 	return o.ApplyT(func(v LookupKubernetesClusterResult) []GetKubernetesClusterPool { return v.Pools }).(GetKubernetesClusterPoolArrayOutput)
 }
 
-// If the Kubernetes cluster is ready
 func (o LookupKubernetesClusterResultOutput) Ready() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) bool { return v.Ready }).(pulumi.BoolOutput)
 }
 
-// The region where cluster is running
 func (o LookupKubernetesClusterResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-// The status of Kubernetes cluster
 func (o LookupKubernetesClusterResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
-// A list of tags
-func (o LookupKubernetesClusterResultOutput) Tags() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Tags }).(pulumi.StringOutput)
+func (o LookupKubernetesClusterResultOutput) Tags() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupKubernetesClusterResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
-// The size of each node
-//
 // Deprecated: This field is deprecated and will be removed in a future version of the provider
 func (o LookupKubernetesClusterResultOutput) TargetNodesSize() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.TargetNodesSize }).(pulumi.StringOutput)

@@ -83,21 +83,12 @@ namespace Pulumi.Civo
 
     public sealed class GetFirewallArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the firewall
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The region where the firewall is
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -108,21 +99,12 @@ namespace Pulumi.Civo
 
     public sealed class GetFirewallInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the firewall
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region where the firewall is
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -135,21 +117,9 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetFirewallResult
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of the firewall
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The id of the associated network
-        /// </summary>
         public readonly string NetworkId;
-        /// <summary>
-        /// The region where the firewall is
-        /// </summary>
         public readonly string? Region;
 
         [OutputConstructor]

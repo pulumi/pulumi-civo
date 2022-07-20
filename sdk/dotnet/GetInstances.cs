@@ -101,28 +101,17 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetInstancesFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetInstancesFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetInstancesFilterArgs>());
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         [Input("sorts")]
         private List<Inputs.GetInstancesSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetInstancesSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetInstancesSortArgs>());
@@ -138,28 +127,17 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetInstancesFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetInstancesFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetInstancesFilterInputArgs>());
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         [Input("sorts")]
         private InputList<Inputs.GetInstancesSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetInstancesSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetInstancesSortInputArgs>());
@@ -175,22 +153,13 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetInstancesResult
     {
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetInstancesInstanceResult> Instances;
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetInstancesSortResult> Sorts;
 
         [OutputConstructor]

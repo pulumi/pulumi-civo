@@ -22,20 +22,16 @@ func GetSize(ctx *pulumi.Context, args *GetSizeArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getSize.
 type GetSizeArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetSizeFilter `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetSizeSort `pulumi:"sorts"`
+	Sorts   []GetSizeSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getSize.
 type GetSizeResult struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetSizeFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id    string        `pulumi:"id"`
 	Sizes []GetSizeSize `pulumi:"sizes"`
-	// One or more key/direction pairs on which to sort results
 	Sorts []GetSizeSort `pulumi:"sorts"`
 }
 
@@ -54,10 +50,8 @@ func GetSizeOutput(ctx *pulumi.Context, args GetSizeOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getSize.
 type GetSizeOutputArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters GetSizeFilterArrayInput `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts GetSizeSortArrayInput `pulumi:"sorts"`
+	Sorts   GetSizeSortArrayInput   `pulumi:"sorts"`
 }
 
 func (GetSizeOutputArgs) ElementType() reflect.Type {
@@ -79,7 +73,6 @@ func (o GetSizeResultOutput) ToGetSizeResultOutputWithContext(ctx context.Contex
 	return o
 }
 
-// One or more key/value pairs on which to filter results
 func (o GetSizeResultOutput) Filters() GetSizeFilterArrayOutput {
 	return o.ApplyT(func(v GetSizeResult) []GetSizeFilter { return v.Filters }).(GetSizeFilterArrayOutput)
 }
@@ -93,7 +86,6 @@ func (o GetSizeResultOutput) Sizes() GetSizeSizeArrayOutput {
 	return o.ApplyT(func(v GetSizeResult) []GetSizeSize { return v.Sizes }).(GetSizeSizeArrayOutput)
 }
 
-// One or more key/direction pairs on which to sort results
 func (o GetSizeResultOutput) Sorts() GetSizeSortArrayOutput {
 	return o.ApplyT(func(v GetSizeResult) []GetSizeSort { return v.Sorts }).(GetSizeSortArrayOutput)
 }

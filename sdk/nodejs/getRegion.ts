@@ -25,13 +25,7 @@ export function getRegion(args?: GetRegionArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getRegion.
  */
 export interface GetRegionArgs {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     filters?: inputs.GetRegionFilter[];
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     sorts?: inputs.GetRegionSort[];
 }
 
@@ -39,18 +33,12 @@ export interface GetRegionArgs {
  * A collection of values returned by getRegion.
  */
 export interface GetRegionResult {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     readonly filters?: outputs.GetRegionFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly regions: outputs.GetRegionRegion[];
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     readonly sorts?: outputs.GetRegionSort[];
 }
 
@@ -62,12 +50,6 @@ export function getRegionOutput(args?: GetRegionOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getRegion.
  */
 export interface GetRegionOutputArgs {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetRegionFilterArgs>[]>;
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetRegionSortArgs>[]>;
 }

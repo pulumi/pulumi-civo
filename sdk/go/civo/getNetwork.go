@@ -50,26 +50,18 @@ func LookupNetwork(ctx *pulumi.Context, args *LookupNetworkArgs, opts ...pulumi.
 
 // A collection of arguments for invoking getNetwork.
 type LookupNetworkArgs struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The label of an existing network
-	Label *string `pulumi:"label"`
-	// The region of an existing network
+	Id     *string `pulumi:"id"`
+	Label  *string `pulumi:"label"`
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getNetwork.
 type LookupNetworkResult struct {
-	// If is the default network
-	Default bool `pulumi:"default"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The label of an existing network
-	Label *string `pulumi:"label"`
-	// The name of the network
-	Name string `pulumi:"name"`
-	// The region of an existing network
-	Region *string `pulumi:"region"`
+	Default bool    `pulumi:"default"`
+	Id      *string `pulumi:"id"`
+	Label   *string `pulumi:"label"`
+	Name    string  `pulumi:"name"`
+	Region  *string `pulumi:"region"`
 }
 
 func LookupNetworkOutput(ctx *pulumi.Context, args LookupNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkResultOutput {
@@ -87,11 +79,8 @@ func LookupNetworkOutput(ctx *pulumi.Context, args LookupNetworkOutputArgs, opts
 
 // A collection of arguments for invoking getNetwork.
 type LookupNetworkOutputArgs struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The label of an existing network
-	Label pulumi.StringPtrInput `pulumi:"label"`
-	// The region of an existing network
+	Id     pulumi.StringPtrInput `pulumi:"id"`
+	Label  pulumi.StringPtrInput `pulumi:"label"`
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -114,27 +103,22 @@ func (o LookupNetworkResultOutput) ToLookupNetworkResultOutputWithContext(ctx co
 	return o
 }
 
-// If is the default network
 func (o LookupNetworkResultOutput) Default() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupNetworkResult) bool { return v.Default }).(pulumi.BoolOutput)
 }
 
-// The ID of this resource.
 func (o LookupNetworkResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNetworkResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The label of an existing network
 func (o LookupNetworkResultOutput) Label() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNetworkResult) *string { return v.Label }).(pulumi.StringPtrOutput)
 }
 
-// The name of the network
 func (o LookupNetworkResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNetworkResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// The region of an existing network
 func (o LookupNetworkResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupNetworkResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }

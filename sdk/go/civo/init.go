@@ -30,12 +30,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallRule{}
 	case "civo:index/instance:Instance":
 		r = &Instance{}
+	case "civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment":
+		r = &InstanceReservedIpAssignment{}
 	case "civo:index/kubernetesCluster:KubernetesCluster":
 		r = &KubernetesCluster{}
 	case "civo:index/kubernetesNodePool:KubernetesNodePool":
 		r = &KubernetesNodePool{}
 	case "civo:index/network:Network":
 		r = &Network{}
+	case "civo:index/reservedIp:ReservedIp":
+		r = &ReservedIp{}
 	case "civo:index/sshKey:SshKey":
 		r = &SshKey{}
 	case "civo:index/volume:Volume":
@@ -97,6 +101,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"civo",
+		"index/instanceReservedIpAssignment",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"civo",
 		"index/kubernetesCluster",
 		&module{version},
 	)
@@ -108,6 +117,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/network",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"civo",
+		"index/reservedIp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

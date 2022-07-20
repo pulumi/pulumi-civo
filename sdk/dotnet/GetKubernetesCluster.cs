@@ -83,21 +83,12 @@ namespace Pulumi.Civo
 
     public sealed class GetKubernetesClusterArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the Kubernetes Cluster
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The region where cluster is running
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -108,21 +99,12 @@ namespace Pulumi.Civo
 
     public sealed class GetKubernetesClusterInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the Kubernetes Cluster
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region where cluster is running
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -135,71 +117,23 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetKubernetesClusterResult
     {
-        /// <summary>
-        /// The base URL of the API server on the Kubernetes master node
-        /// </summary>
         public readonly string ApiEndpoint;
-        /// <summary>
-        /// A list of application installed
-        /// </summary>
         public readonly string Applications;
-        /// <summary>
-        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
-        /// </summary>
         public readonly string Cni;
-        /// <summary>
-        /// The date where the Kubernetes cluster was create
-        /// </summary>
         public readonly string CreatedAt;
-        /// <summary>
-        /// The unique dns entry for the cluster in this case point to the master
-        /// </summary>
         public readonly string DnsEntry;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> InstalledApplications;
-        /// <summary>
-        /// A representation of the Kubernetes cluster's kubeconfig in yaml format
-        /// </summary>
         public readonly string Kubeconfig;
-        /// <summary>
-        /// The version of Kubernetes
-        /// </summary>
         public readonly string KubernetesVersion;
-        /// <summary>
-        /// The IP of the Kubernetes master node
-        /// </summary>
         public readonly string MasterIp;
-        /// <summary>
-        /// The name of the Kubernetes Cluster
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The size of the Kubernetes cluster
-        /// </summary>
         public readonly int NumTargetNodes;
         public readonly ImmutableArray<Outputs.GetKubernetesClusterPoolResult> Pools;
-        /// <summary>
-        /// If the Kubernetes cluster is ready
-        /// </summary>
         public readonly bool Ready;
-        /// <summary>
-        /// The region where cluster is running
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// The status of Kubernetes cluster
-        /// </summary>
         public readonly string Status;
-        /// <summary>
-        /// A list of tags
-        /// </summary>
-        public readonly string Tags;
-        /// <summary>
-        /// The size of each node
-        /// </summary>
+        public readonly ImmutableArray<string> Tags;
         public readonly string TargetNodesSize;
 
         [OutputConstructor]
@@ -236,7 +170,7 @@ namespace Pulumi.Civo
 
             string status,
 
-            string tags,
+            ImmutableArray<string> tags,
 
             string targetNodesSize)
         {

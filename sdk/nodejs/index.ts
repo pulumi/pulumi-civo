@@ -21,14 +21,17 @@ export * from "./getKubernetesVersion";
 export * from "./getLoadBalancer";
 export * from "./getNetwork";
 export * from "./getRegion";
+export * from "./getReservedIp";
 export * from "./getSize";
 export * from "./getSshKey";
 export * from "./getVolume";
 export * from "./instance";
+export * from "./instanceReservedIpAssignment";
 export * from "./kubernetesCluster";
 export * from "./kubernetesNodePool";
 export * from "./network";
 export * from "./provider";
+export * from "./reservedIp";
 export * from "./sshKey";
 export * from "./volume";
 export * from "./volumeAttachment";
@@ -48,9 +51,11 @@ import { DnsDomainRecord } from "./dnsDomainRecord";
 import { Firewall } from "./firewall";
 import { FirewallRule } from "./firewallRule";
 import { Instance } from "./instance";
+import { InstanceReservedIpAssignment } from "./instanceReservedIpAssignment";
 import { KubernetesCluster } from "./kubernetesCluster";
 import { KubernetesNodePool } from "./kubernetesNodePool";
 import { Network } from "./network";
+import { ReservedIp } from "./reservedIp";
 import { SshKey } from "./sshKey";
 import { Volume } from "./volume";
 import { VolumeAttachment } from "./volumeAttachment";
@@ -69,12 +74,16 @@ const _module = {
                 return new FirewallRule(name, <any>undefined, { urn })
             case "civo:index/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
+            case "civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment":
+                return new InstanceReservedIpAssignment(name, <any>undefined, { urn })
             case "civo:index/kubernetesCluster:KubernetesCluster":
                 return new KubernetesCluster(name, <any>undefined, { urn })
             case "civo:index/kubernetesNodePool:KubernetesNodePool":
                 return new KubernetesNodePool(name, <any>undefined, { urn })
             case "civo:index/network:Network":
                 return new Network(name, <any>undefined, { urn })
+            case "civo:index/reservedIp:ReservedIp":
+                return new ReservedIp(name, <any>undefined, { urn })
             case "civo:index/sshKey:SshKey":
                 return new SshKey(name, <any>undefined, { urn })
             case "civo:index/volume:Volume":
@@ -91,9 +100,11 @@ pulumi.runtime.registerResourceModule("civo", "index/dnsDomainRecord", _module)
 pulumi.runtime.registerResourceModule("civo", "index/firewall", _module)
 pulumi.runtime.registerResourceModule("civo", "index/firewallRule", _module)
 pulumi.runtime.registerResourceModule("civo", "index/instance", _module)
+pulumi.runtime.registerResourceModule("civo", "index/instanceReservedIpAssignment", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("civo", "index/network", _module)
+pulumi.runtime.registerResourceModule("civo", "index/reservedIp", _module)
 pulumi.runtime.registerResourceModule("civo", "index/sshKey", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volume", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volumeAttachment", _module)

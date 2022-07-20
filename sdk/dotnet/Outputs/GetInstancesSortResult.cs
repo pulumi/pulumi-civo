@@ -13,13 +13,7 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetInstancesSortResult
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         public readonly string? Direction;
-        /// <summary>
-        /// Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
-        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

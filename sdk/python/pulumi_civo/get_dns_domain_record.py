@@ -55,25 +55,16 @@ class GetDnsDomainRecordResult:
     @property
     @pulumi.getter(name="accountId")
     def account_id(self) -> str:
-        """
-        The ID account of the domain
-        """
         return pulumi.get(self, "account_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date when it was created in UTC format
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="domainId")
     def domain_id(self) -> str:
-        """
-        The ID of the domain
-        """
         return pulumi.get(self, "domain_id")
 
     @property
@@ -87,49 +78,31 @@ class GetDnsDomainRecordResult:
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        The name of the record
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> int:
-        """
-        The priority of the record
-        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter
     def ttl(self) -> int:
-        """
-        How long caching DNS servers should cache this record
-        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        The choice of record type from A, CNAME, MX, SRV or TXT
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="updatedAt")
     def updated_at(self) -> str:
-        """
-        The date when it was updated in UTC format
-        """
         return pulumi.get(self, "updated_at")
 
     @property
     @pulumi.getter
     def value(self) -> str:
-        """
-        The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-        """
         return pulumi.get(self, "value")
 
 
@@ -171,10 +144,6 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
     pulumi.export("recordType", www.type)
     pulumi.export("recordTtl", www.ttl)
     ```
-
-
-    :param str domain_id: The ID of the domain
-    :param str name: The name of the record
     """
     __args__ = dict()
     __args__['domainId'] = domain_id
@@ -219,9 +188,5 @@ def get_dns_domain_record_output(domain_id: Optional[pulumi.Input[str]] = None,
     pulumi.export("recordType", www.type)
     pulumi.export("recordTtl", www.ttl)
     ```
-
-
-    :param str domain_id: The ID of the domain
-    :param str name: The name of the record
     """
     ...
