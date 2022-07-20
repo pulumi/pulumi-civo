@@ -91,177 +91,111 @@ class GetInstanceResult:
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
-        """
-        Total cpu of the inatance
-        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date of creation of the instance
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> int:
-        """
-        The size of the disk
-        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> str:
-        """
-        The ID of the firewall used
-        """
         return pulumi.get(self, "firewall_id")
 
     @property
     @pulumi.getter
     def hostname(self) -> Optional[str]:
-        """
-        The hostname of the Instance
-        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> str:
-        """
-        Instance initial password
-        """
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="initialUser")
     def initial_user(self) -> str:
-        """
-        The name of the initial user created on the server
-        """
         return pulumi.get(self, "initial_user")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
-        """
-        his will be the ID of the network
-        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def notes(self) -> str:
-        """
-        The notes of the instance
-        """
         return pulumi.get(self, "notes")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
-        """
-        The private IP
-        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="pseudoIp")
     def pseudo_ip(self) -> str:
-        """
-        Is the ip that is used to route the public ip from the internet to the instance using NAT
-        """
         return pulumi.get(self, "pseudo_ip")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
-        """
-        The public IP
-        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> int:
-        """
-        Total ram of the instance
-        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        """
-        The region of an existing Instance
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> str:
-        """
-        A fully qualified domain name
-        """
         return pulumi.get(self, "reverse_dns")
 
     @property
     @pulumi.getter
     def script(self) -> str:
-        """
-        The contents of a script uploaded
-        """
         return pulumi.get(self, "script")
 
     @property
     @pulumi.getter
     def size(self) -> str:
-        """
-        The name of the size
-        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="sshkeyId")
     def sshkey_id(self) -> str:
-        """
-        The ID SSH key
-        """
         return pulumi.get(self, "sshkey_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of the instance
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
-        """
-        An optional list of tags
-        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def template(self) -> str:
-        """
-        The ID for the disk image/template to used to build the instance
-        """
         return pulumi.get(self, "template")
 
 
@@ -313,11 +247,6 @@ def get_instance(hostname: Optional[str] = None,
     myhostaname = civo.get_instance(hostname="myhostname.com")
     pulumi.export("instanceOutput", myhostaname.public_ip)
     ```
-
-
-    :param str hostname: The hostname of the Instance
-    :param str id: The ID of this resource.
-    :param str region: The region of an existing Instance
     """
     __args__ = dict()
     __args__['hostname'] = hostname
@@ -373,10 +302,5 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     myhostaname = civo.get_instance(hostname="myhostname.com")
     pulumi.export("instanceOutput", myhostaname.public_ip)
     ```
-
-
-    :param str hostname: The hostname of the Instance
-    :param str id: The ID of this resource.
-    :param str region: The region of an existing Instance
     """
     ...

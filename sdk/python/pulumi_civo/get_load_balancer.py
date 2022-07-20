@@ -68,9 +68,6 @@ class GetLoadBalancerResult:
     @property
     @pulumi.getter
     def algorithm(self) -> str:
-        """
-        The algorithm used by the load balancer
-        """
         return pulumi.get(self, "algorithm")
 
     @property
@@ -81,97 +78,61 @@ class GetLoadBalancerResult:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
-        """
-        The cluster id of the load balancer
-        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="enableProxyProtocol")
     def enable_proxy_protocol(self) -> str:
-        """
-        The enabled proxy protocol of the load balancer
-        """
         return pulumi.get(self, "enable_proxy_protocol")
 
     @property
     @pulumi.getter(name="externalTrafficPolicy")
     def external_traffic_policy(self) -> str:
-        """
-        The external traffic policy of the load balancer
-        """
         return pulumi.get(self, "external_traffic_policy")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> str:
-        """
-        The firewall id of the load balancer
-        """
         return pulumi.get(self, "firewall_id")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
-        """
-        The private ip of the load balancer
-        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
-        """
-        The public ip of the load balancer
-        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        """
-        The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="sessionAffinity")
     def session_affinity(self) -> str:
-        """
-        The session affinity of the load balancer
-        """
         return pulumi.get(self, "session_affinity")
 
     @property
     @pulumi.getter(name="sessionAffinityConfigTimeout")
     def session_affinity_config_timeout(self) -> int:
-        """
-        The session affinity config timeout of the load balancer
-        """
         return pulumi.get(self, "session_affinity_config_timeout")
 
     @property
     @pulumi.getter
     def state(self) -> str:
-        """
-        The state of the load balancer
-        """
         return pulumi.get(self, "state")
 
 
@@ -216,11 +177,6 @@ def get_load_balancer(id: Optional[str] = None,
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
-
-
-    :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-    :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
     """
     __args__ = dict()
     __args__['id'] = id
@@ -269,10 +225,5 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
-
-
-    :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-    :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
     """
     ...

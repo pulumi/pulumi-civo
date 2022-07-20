@@ -40,17 +40,8 @@ export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pul
  * A collection of arguments for invoking getKubernetesCluster.
  */
 export interface GetKubernetesClusterArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
-    /**
-     * The name of the Kubernetes Cluster
-     */
     name?: string;
-    /**
-     * The region where cluster is running
-     */
     region?: string;
 }
 
@@ -58,73 +49,27 @@ export interface GetKubernetesClusterArgs {
  * A collection of values returned by getKubernetesCluster.
  */
 export interface GetKubernetesClusterResult {
-    /**
-     * The base URL of the API server on the Kubernetes master node
-     */
     readonly apiEndpoint: string;
-    /**
-     * A list of application installed
-     */
     readonly applications: string;
-    /**
-     * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
-     */
     readonly cni: string;
-    /**
-     * The date where the Kubernetes cluster was create
-     */
     readonly createdAt: string;
-    /**
-     * The unique dns entry for the cluster in this case point to the master
-     */
     readonly dnsEntry: string;
-    /**
-     * The ID of this resource.
-     */
     readonly id?: string;
     readonly installedApplications: outputs.GetKubernetesClusterInstalledApplication[];
-    /**
-     * A representation of the Kubernetes cluster's kubeconfig in yaml format
-     */
     readonly kubeconfig: string;
-    /**
-     * The version of Kubernetes
-     */
     readonly kubernetesVersion: string;
-    /**
-     * The IP of the Kubernetes master node
-     */
     readonly masterIp: string;
-    /**
-     * The name of the Kubernetes Cluster
-     */
     readonly name?: string;
     /**
-     * The size of the Kubernetes cluster
-     *
      * @deprecated This field is deprecated and will be removed in a future version of the provider
      */
     readonly numTargetNodes: number;
     readonly pools: outputs.GetKubernetesClusterPool[];
-    /**
-     * If the Kubernetes cluster is ready
-     */
     readonly ready: boolean;
-    /**
-     * The region where cluster is running
-     */
     readonly region?: string;
-    /**
-     * The status of Kubernetes cluster
-     */
     readonly status: string;
+    readonly tags: string[];
     /**
-     * A list of tags
-     */
-    readonly tags: string;
-    /**
-     * The size of each node
-     *
      * @deprecated This field is deprecated and will be removed in a future version of the provider
      */
     readonly targetNodesSize: string;
@@ -138,16 +83,7 @@ export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs
  * A collection of arguments for invoking getKubernetesCluster.
  */
 export interface GetKubernetesClusterOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The name of the Kubernetes Cluster
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The region where cluster is running
-     */
     region?: pulumi.Input<string>;
 }

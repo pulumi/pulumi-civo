@@ -21,14 +21,17 @@ from .get_kubernetes_version import *
 from .get_load_balancer import *
 from .get_network import *
 from .get_region import *
+from .get_reserved_ip import *
 from .get_size import *
 from .get_ssh_key import *
 from .get_volume import *
 from .instance import *
+from .instance_reserved_ip_assignment import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .network import *
 from .provider import *
+from .reserved_ip import *
 from .ssh_key import *
 from .volume import *
 from .volume_attachment import *
@@ -87,6 +90,14 @@ _utilities.register(
  },
  {
   "pkg": "civo",
+  "mod": "index/instanceReservedIpAssignment",
+  "fqn": "pulumi_civo",
+  "classes": {
+   "civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment": "InstanceReservedIpAssignment"
+  }
+ },
+ {
+  "pkg": "civo",
   "mod": "index/kubernetesCluster",
   "fqn": "pulumi_civo",
   "classes": {
@@ -107,6 +118,14 @@ _utilities.register(
   "fqn": "pulumi_civo",
   "classes": {
    "civo:index/network:Network": "Network"
+  }
+ },
+ {
+  "pkg": "civo",
+  "mod": "index/reservedIp",
+  "fqn": "pulumi_civo",
+  "classes": {
+   "civo:index/reservedIp:ReservedIp": "ReservedIp"
   }
  },
  {

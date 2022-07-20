@@ -24,20 +24,15 @@ func LookupSshKey(ctx *pulumi.Context, args *LookupSshKeyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getSshKey.
 type LookupSshKeyArgs struct {
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The name of the SSH key
+	Id   *string `pulumi:"id"`
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getSshKey.
 type LookupSshKeyResult struct {
-	// The fingerprint of the public key of the SSH key
-	Fingerprint string `pulumi:"fingerprint"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
-	// The name of the SSH key
-	Name *string `pulumi:"name"`
+	Fingerprint string  `pulumi:"fingerprint"`
+	Id          *string `pulumi:"id"`
+	Name        *string `pulumi:"name"`
 }
 
 func LookupSshKeyOutput(ctx *pulumi.Context, args LookupSshKeyOutputArgs, opts ...pulumi.InvokeOption) LookupSshKeyResultOutput {
@@ -55,9 +50,7 @@ func LookupSshKeyOutput(ctx *pulumi.Context, args LookupSshKeyOutputArgs, opts .
 
 // A collection of arguments for invoking getSshKey.
 type LookupSshKeyOutputArgs struct {
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
-	// The name of the SSH key
+	Id   pulumi.StringPtrInput `pulumi:"id"`
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -80,17 +73,14 @@ func (o LookupSshKeyResultOutput) ToLookupSshKeyResultOutputWithContext(ctx cont
 	return o
 }
 
-// The fingerprint of the public key of the SSH key
 func (o LookupSshKeyResultOutput) Fingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSshKeyResult) string { return v.Fingerprint }).(pulumi.StringOutput)
 }
 
-// The ID of this resource.
 func (o LookupSshKeyResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSshKeyResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-// The name of the SSH key
 func (o LookupSshKeyResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupSshKeyResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }

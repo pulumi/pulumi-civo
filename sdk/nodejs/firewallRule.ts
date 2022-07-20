@@ -44,11 +44,13 @@ export class FirewallRule extends pulumi.CustomResource {
     }
 
     /**
-     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+     * traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     public readonly action!: pulumi.Output<string>;
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+     * to open just for a specific IP address)
      */
     public readonly cidrs!: pulumi.Output<string[]>;
     /**
@@ -136,11 +138,13 @@ export class FirewallRule extends pulumi.CustomResource {
  */
 export interface FirewallRuleState {
     /**
-     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+     * traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     action?: pulumi.Input<string>;
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+     * to open just for a specific IP address)
      */
     cidrs?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -178,11 +182,13 @@ export interface FirewallRuleState {
  */
 export interface FirewallRuleArgs {
     /**
-     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+     * The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+     * traffic. Similarly, setting `action = 'deny'` will deny the traffic.
      */
     action: pulumi.Input<string>;
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+     * to open just for a specific IP address)
      */
     cidrs: pulumi.Input<pulumi.Input<string>[]>;
     /**

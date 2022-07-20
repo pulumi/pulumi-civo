@@ -29,10 +29,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetRegionFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetRegionFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetRegionFilterArgs>());
@@ -41,10 +37,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetRegionSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetRegionSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetRegionSortArgs>());
@@ -60,10 +52,6 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetRegionFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetRegionFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetRegionFilterInputArgs>());
@@ -72,10 +60,6 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private InputList<Inputs.GetRegionSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetRegionSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetRegionSortInputArgs>());
@@ -91,18 +75,12 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetRegionResult
     {
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetRegionFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetRegionRegionResult> Regions;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetRegionSortResult> Sorts;
 
         [OutputConstructor]

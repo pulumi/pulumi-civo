@@ -31,17 +31,11 @@ class GetDnsDomainNameResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the domain
-        """
         return pulumi.get(self, "name")
 
 
@@ -73,10 +67,6 @@ def get_dns_domain_name(id: Optional[str] = None,
     pulumi.export("domainOutput", domain.name)
     pulumi.export("domainIdOutput", domain.id)
     ```
-
-
-    :param str id: The ID of this resource.
-    :param str name: The name of the domain
     """
     __args__ = dict()
     __args__['id'] = id
@@ -111,9 +101,5 @@ def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     pulumi.export("domainOutput", domain.name)
     pulumi.export("domainIdOutput", domain.id)
     ```
-
-
-    :param str id: The ID of this resource.
-    :param str name: The name of the domain
     """
     ...

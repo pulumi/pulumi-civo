@@ -56,7 +56,8 @@ export class DnsDomainRecord extends pulumi.CustomResource {
      */
     public readonly domainId!: pulumi.Output<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -64,7 +65,8 @@ export class DnsDomainRecord extends pulumi.CustomResource {
      */
     public readonly priority!: pulumi.Output<number | undefined>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     public readonly ttl!: pulumi.Output<number>;
     /**
@@ -148,7 +150,8 @@ export interface DnsDomainRecordState {
      */
     domainId?: pulumi.Input<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     name?: pulumi.Input<string>;
     /**
@@ -156,7 +159,8 @@ export interface DnsDomainRecordState {
      */
     priority?: pulumi.Input<number>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     ttl?: pulumi.Input<number>;
     /**
@@ -182,7 +186,8 @@ export interface DnsDomainRecordArgs {
      */
     domainId: pulumi.Input<string>;
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+     * amex/root domain)
      */
     name?: pulumi.Input<string>;
     /**
@@ -190,7 +195,8 @@ export interface DnsDomainRecordArgs {
      */
     priority?: pulumi.Input<number>;
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+     * is 600)
      */
     ttl: pulumi.Input<number>;
     /**

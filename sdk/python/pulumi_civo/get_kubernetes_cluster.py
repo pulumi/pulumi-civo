@@ -74,8 +74,8 @@ class GetKubernetesClusterResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
-        if tags and not isinstance(tags, str):
-            raise TypeError("Expected argument 'tags' to be a str")
+        if tags and not isinstance(tags, list):
+            raise TypeError("Expected argument 'tags' to be a list")
         pulumi.set(__self__, "tags", tags)
         if target_nodes_size and not isinstance(target_nodes_size, str):
             raise TypeError("Expected argument 'target_nodes_size' to be a str")
@@ -88,49 +88,31 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="apiEndpoint")
     def api_endpoint(self) -> str:
-        """
-        The base URL of the API server on the Kubernetes master node
-        """
         return pulumi.get(self, "api_endpoint")
 
     @property
     @pulumi.getter
     def applications(self) -> str:
-        """
-        A list of application installed
-        """
         return pulumi.get(self, "applications")
 
     @property
     @pulumi.getter
     def cni(self) -> str:
-        """
-        The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
-        """
         return pulumi.get(self, "cni")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
-        """
-        The date where the Kubernetes cluster was create
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="dnsEntry")
     def dns_entry(self) -> str:
-        """
-        The unique dns entry for the cluster in this case point to the master
-        """
         return pulumi.get(self, "dns_entry")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -141,41 +123,26 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter
     def kubeconfig(self) -> str:
-        """
-        A representation of the Kubernetes cluster's kubeconfig in yaml format
-        """
         return pulumi.get(self, "kubeconfig")
 
     @property
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> str:
-        """
-        The version of Kubernetes
-        """
         return pulumi.get(self, "kubernetes_version")
 
     @property
     @pulumi.getter(name="masterIp")
     def master_ip(self) -> str:
-        """
-        The IP of the Kubernetes master node
-        """
         return pulumi.get(self, "master_ip")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        The name of the Kubernetes Cluster
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="numTargetNodes")
     def num_target_nodes(self) -> int:
-        """
-        The size of the Kubernetes cluster
-        """
         return pulumi.get(self, "num_target_nodes")
 
     @property
@@ -186,41 +153,26 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter
     def ready(self) -> bool:
-        """
-        If the Kubernetes cluster is ready
-        """
         return pulumi.get(self, "ready")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
-        """
-        The region where cluster is running
-        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def status(self) -> str:
-        """
-        The status of Kubernetes cluster
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
-    def tags(self) -> str:
-        """
-        A list of tags
-        """
+    def tags(self) -> Sequence[str]:
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="targetNodesSize")
     def target_nodes_size(self) -> str:
-        """
-        The size of each node
-        """
         return pulumi.get(self, "target_nodes_size")
 
 
@@ -268,11 +220,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
     my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
     pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
     ```
-
-
-    :param str id: The ID of this resource.
-    :param str name: The name of the Kubernetes Cluster
-    :param str region: The region where cluster is running
     """
     __args__ = dict()
     __args__['id'] = id
@@ -324,10 +271,5 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = No
     my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
     pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
     ```
-
-
-    :param str id: The ID of this resource.
-    :param str name: The name of the Kubernetes Cluster
-    :param str region: The region where cluster is running
     """
     ...

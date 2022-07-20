@@ -39,9 +39,6 @@ class GetSizeResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetSizeFilterResult']]:
-        """
-        One or more key/value pairs on which to filter results
-        """
         return pulumi.get(self, "filters")
 
     @property
@@ -60,9 +57,6 @@ class GetSizeResult:
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetSizeSortResult']]:
-        """
-        One or more key/direction pairs on which to sort results
-        """
         return pulumi.get(self, "sorts")
 
 
@@ -83,10 +77,6 @@ def get_size(filters: Optional[Sequence[pulumi.InputType['GetSizeFilterArgs']]] 
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSizeResult:
     """
     Retrieves information about the sizes that Civo supports, with the ability to filter the results.
-
-
-    :param Sequence[pulumi.InputType['GetSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -110,9 +100,5 @@ def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.Inpu
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSizeResult]:
     """
     Retrieves information about the sizes that Civo supports, with the ability to filter the results.
-
-
-    :param Sequence[pulumi.InputType['GetSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

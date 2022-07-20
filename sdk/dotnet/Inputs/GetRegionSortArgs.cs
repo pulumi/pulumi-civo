@@ -12,15 +12,9 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetRegionSortInputArgs : Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
-        /// <summary>
-        /// Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
-        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

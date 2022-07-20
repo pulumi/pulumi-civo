@@ -48,7 +48,8 @@ namespace Pulumi.Civo
         public Output<string> DiskImage { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
@@ -66,7 +67,8 @@ namespace Pulumi.Civo
         public Output<string> InitialPassword { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Output("initialUser")]
         public Output<string?> InitialUser { get; private set; } = null!;
@@ -114,13 +116,15 @@ namespace Pulumi.Civo
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Output("reverseDns")]
         public Output<string?> ReverseDns { get; private set; } = null!;
 
         /// <summary>
-        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Output("script")]
         public Output<string?> Script { get; private set; } = null!;
@@ -144,7 +148,8 @@ namespace Pulumi.Civo
         public Output<string> SourceType { get; private set; } = null!;
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Output("sshkeyId")]
         public Output<string?> SshkeyId { get; private set; } = null!;
@@ -220,7 +225,8 @@ namespace Pulumi.Civo
         public Input<string>? DiskImage { get; set; }
 
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
@@ -232,7 +238,8 @@ namespace Pulumi.Civo
         public Input<string>? Hostname { get; set; }
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Input("initialUser")]
         public Input<string>? InitialUser { get; set; }
@@ -262,13 +269,15 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Input("reverseDns")]
         public Input<string>? ReverseDns { get; set; }
 
         /// <summary>
-        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Input("script")]
         public Input<string>? Script { get; set; }
@@ -280,7 +289,8 @@ namespace Pulumi.Civo
         public Input<string>? Size { get; set; }
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Input("sshkeyId")]
         public Input<string>? SshkeyId { get; set; }
@@ -335,7 +345,8 @@ namespace Pulumi.Civo
         public Input<string>? DiskImage { get; set; }
 
         /// <summary>
-        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+        /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+        /// to all)
         /// </summary>
         [Input("firewallId")]
         public Input<string>? FirewallId { get; set; }
@@ -353,7 +364,8 @@ namespace Pulumi.Civo
         public Input<string>? InitialPassword { get; set; }
 
         /// <summary>
-        /// The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
+        /// The name of the initial user created on the server (optional; this will default to the template's default_username and
+        /// fallback to civo)
         /// </summary>
         [Input("initialUser")]
         public Input<string>? InitialUser { get; set; }
@@ -401,13 +413,15 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+        /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+        /// unspecified)
         /// </summary>
         [Input("reverseDns")]
         public Input<string>? ReverseDns { get; set; }
 
         /// <summary>
-        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+        /// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+        /// read/write/executable only by root and then will be executed at the end of the cloud initialization
         /// </summary>
         [Input("script")]
         public Input<string>? Script { get; set; }
@@ -431,7 +445,8 @@ namespace Pulumi.Civo
         public Input<string>? SourceType { get; set; }
 
         /// <summary>
-        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
+        /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+        /// random password will be set and returned in the initial_password field)
         /// </summary>
         [Input("sshkeyId")]
         public Input<string>? SshkeyId { get; set; }

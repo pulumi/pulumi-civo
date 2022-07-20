@@ -22,21 +22,17 @@ func GetRegion(ctx *pulumi.Context, args *GetRegionArgs, opts ...pulumi.InvokeOp
 
 // A collection of arguments for invoking getRegion.
 type GetRegionArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetRegionFilter `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetRegionSort `pulumi:"sorts"`
+	Sorts   []GetRegionSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getRegion.
 type GetRegionResult struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetRegionFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id      string            `pulumi:"id"`
 	Regions []GetRegionRegion `pulumi:"regions"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetRegionSort `pulumi:"sorts"`
+	Sorts   []GetRegionSort   `pulumi:"sorts"`
 }
 
 func GetRegionOutput(ctx *pulumi.Context, args GetRegionOutputArgs, opts ...pulumi.InvokeOption) GetRegionResultOutput {
@@ -54,10 +50,8 @@ func GetRegionOutput(ctx *pulumi.Context, args GetRegionOutputArgs, opts ...pulu
 
 // A collection of arguments for invoking getRegion.
 type GetRegionOutputArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters GetRegionFilterArrayInput `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts GetRegionSortArrayInput `pulumi:"sorts"`
+	Sorts   GetRegionSortArrayInput   `pulumi:"sorts"`
 }
 
 func (GetRegionOutputArgs) ElementType() reflect.Type {
@@ -79,7 +73,6 @@ func (o GetRegionResultOutput) ToGetRegionResultOutputWithContext(ctx context.Co
 	return o
 }
 
-// One or more key/value pairs on which to filter results
 func (o GetRegionResultOutput) Filters() GetRegionFilterArrayOutput {
 	return o.ApplyT(func(v GetRegionResult) []GetRegionFilter { return v.Filters }).(GetRegionFilterArrayOutput)
 }
@@ -93,7 +86,6 @@ func (o GetRegionResultOutput) Regions() GetRegionRegionArrayOutput {
 	return o.ApplyT(func(v GetRegionResult) []GetRegionRegion { return v.Regions }).(GetRegionRegionArrayOutput)
 }
 
-// One or more key/direction pairs on which to sort results
 func (o GetRegionResultOutput) Sorts() GetRegionSortArrayOutput {
 	return o.ApplyT(func(v GetRegionResult) []GetRegionSort { return v.Sorts }).(GetRegionSortArrayOutput)
 }

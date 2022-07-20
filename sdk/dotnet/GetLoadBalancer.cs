@@ -85,21 +85,12 @@ namespace Pulumi.Civo
 
     public sealed class GetLoadBalancerArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
-        /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -110,21 +101,12 @@ namespace Pulumi.Civo
 
     public sealed class GetLoadBalancerInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -137,58 +119,19 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetLoadBalancerResult
     {
-        /// <summary>
-        /// The algorithm used by the load balancer
-        /// </summary>
         public readonly string Algorithm;
         public readonly ImmutableArray<Outputs.GetLoadBalancerBackendResult> Backends;
-        /// <summary>
-        /// The cluster id of the load balancer
-        /// </summary>
         public readonly string ClusterId;
-        /// <summary>
-        /// The enabled proxy protocol of the load balancer
-        /// </summary>
         public readonly string EnableProxyProtocol;
-        /// <summary>
-        /// The external traffic policy of the load balancer
-        /// </summary>
         public readonly string ExternalTrafficPolicy;
-        /// <summary>
-        /// The firewall id of the load balancer
-        /// </summary>
         public readonly string FirewallId;
-        /// <summary>
-        /// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// The private ip of the load balancer
-        /// </summary>
         public readonly string PrivateIp;
-        /// <summary>
-        /// The public ip of the load balancer
-        /// </summary>
         public readonly string PublicIp;
-        /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// The session affinity of the load balancer
-        /// </summary>
         public readonly string SessionAffinity;
-        /// <summary>
-        /// The session affinity config timeout of the load balancer
-        /// </summary>
         public readonly int SessionAffinityConfigTimeout;
-        /// <summary>
-        /// The state of the load balancer
-        /// </summary>
         public readonly string State;
 
         [OutputConstructor]

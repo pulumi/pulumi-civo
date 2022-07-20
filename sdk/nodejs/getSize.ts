@@ -25,13 +25,7 @@ export function getSize(args?: GetSizeArgs, opts?: pulumi.InvokeOptions): Promis
  * A collection of arguments for invoking getSize.
  */
 export interface GetSizeArgs {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     filters?: inputs.GetSizeFilter[];
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     sorts?: inputs.GetSizeSort[];
 }
 
@@ -39,18 +33,12 @@ export interface GetSizeArgs {
  * A collection of values returned by getSize.
  */
 export interface GetSizeResult {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     readonly filters?: outputs.GetSizeFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly sizes: outputs.GetSizeSize[];
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     readonly sorts?: outputs.GetSizeSort[];
 }
 
@@ -62,12 +50,6 @@ export function getSizeOutput(args?: GetSizeOutputArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getSize.
  */
 export interface GetSizeOutputArgs {
-    /**
-     * One or more key/value pairs on which to filter results
-     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetSizeFilterArgs>[]>;
-    /**
-     * One or more key/direction pairs on which to sort results
-     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetSizeSortArgs>[]>;
 }

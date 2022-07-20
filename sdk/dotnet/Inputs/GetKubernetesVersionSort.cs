@@ -12,15 +12,9 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class GetKubernetesVersionSortArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The sort direction. This may be either `asc` or `desc`.
-        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
-        /// <summary>
-        /// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
-        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 

@@ -42,13 +42,7 @@ export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.I
  * A collection of arguments for invoking getDnsDomainRecord.
  */
 export interface GetDnsDomainRecordArgs {
-    /**
-     * The ID of the domain
-     */
     domainId: string;
-    /**
-     * The name of the record
-     */
     name: string;
 }
 
@@ -56,45 +50,18 @@ export interface GetDnsDomainRecordArgs {
  * A collection of values returned by getDnsDomainRecord.
  */
 export interface GetDnsDomainRecordResult {
-    /**
-     * The ID account of the domain
-     */
     readonly accountId: string;
-    /**
-     * The date when it was created in UTC format
-     */
     readonly createdAt: string;
-    /**
-     * The ID of the domain
-     */
     readonly domainId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
-    /**
-     * The name of the record
-     */
     readonly name: string;
-    /**
-     * The priority of the record
-     */
     readonly priority: number;
-    /**
-     * How long caching DNS servers should cache this record
-     */
     readonly ttl: number;
-    /**
-     * The choice of record type from A, CNAME, MX, SRV or TXT
-     */
     readonly type: string;
-    /**
-     * The date when it was updated in UTC format
-     */
     readonly updatedAt: string;
-    /**
-     * The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-     */
     readonly value: string;
 }
 
@@ -106,12 +73,6 @@ export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opt
  * A collection of arguments for invoking getDnsDomainRecord.
  */
 export interface GetDnsDomainRecordOutputArgs {
-    /**
-     * The ID of the domain
-     */
     domainId: pulumi.Input<string>;
-    /**
-     * The name of the record
-     */
     name: pulumi.Input<string>;
 }

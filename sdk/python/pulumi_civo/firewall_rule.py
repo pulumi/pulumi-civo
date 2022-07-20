@@ -24,8 +24,10 @@ class FirewallRuleArgs:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallRule resource.
-        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+               traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+               to open just for a specific IP address)
         :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] firewall_id: The Firewall ID
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
@@ -53,7 +55,8 @@ class FirewallRuleArgs:
     @pulumi.getter
     def action(self) -> pulumi.Input[str]:
         """
-        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+        traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         """
         return pulumi.get(self, "action")
 
@@ -65,7 +68,8 @@ class FirewallRuleArgs:
     @pulumi.getter
     def cidrs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 
@@ -172,8 +176,10 @@ class _FirewallRuleState:
                  start_port: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallRule resources.
-        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+               traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+               to open just for a specific IP address)
         :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -205,7 +211,8 @@ class _FirewallRuleState:
     @pulumi.getter
     def action(self) -> Optional[pulumi.Input[str]]:
         """
-        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+        traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         """
         return pulumi.get(self, "action")
 
@@ -217,7 +224,8 @@ class _FirewallRuleState:
     @pulumi.getter
     def cidrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 
@@ -338,8 +346,10 @@ class FirewallRule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+               traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+               to open just for a specific IP address)
         :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -444,8 +454,10 @@ class FirewallRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+               traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+               to open just for a specific IP address)
         :param pulumi.Input[str] direction: The direction of the rule can be ingress or egress
         :param pulumi.Input[str] end_port: The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
         :param pulumi.Input[str] firewall_id: The Firewall ID
@@ -473,7 +485,8 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def action(self) -> pulumi.Output[str]:
         """
-        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
+        traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         """
         return pulumi.get(self, "action")
 
@@ -481,7 +494,8 @@ class FirewallRule(pulumi.CustomResource):
     @pulumi.getter
     def cidrs(self) -> pulumi.Output[Sequence[str]]:
         """
-        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
+        to open just for a specific IP address)
         """
         return pulumi.get(self, "cidrs")
 

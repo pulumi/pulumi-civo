@@ -22,20 +22,16 @@ func GetInstancesSize(ctx *pulumi.Context, args *GetInstancesSizeArgs, opts ...p
 
 // A collection of arguments for invoking getInstancesSize.
 type GetInstancesSizeArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesSizeFilter `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts []GetInstancesSizeSort `pulumi:"sorts"`
+	Sorts   []GetInstancesSizeSort   `pulumi:"sorts"`
 }
 
 // A collection of values returned by getInstancesSize.
 type GetInstancesSizeResult struct {
-	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesSizeFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id    string                 `pulumi:"id"`
 	Sizes []GetInstancesSizeSize `pulumi:"sizes"`
-	// One or more key/direction pairs on which to sort results
 	Sorts []GetInstancesSizeSort `pulumi:"sorts"`
 }
 
@@ -54,10 +50,8 @@ func GetInstancesSizeOutput(ctx *pulumi.Context, args GetInstancesSizeOutputArgs
 
 // A collection of arguments for invoking getInstancesSize.
 type GetInstancesSizeOutputArgs struct {
-	// One or more key/value pairs on which to filter results
 	Filters GetInstancesSizeFilterArrayInput `pulumi:"filters"`
-	// One or more key/direction pairs on which to sort results
-	Sorts GetInstancesSizeSortArrayInput `pulumi:"sorts"`
+	Sorts   GetInstancesSizeSortArrayInput   `pulumi:"sorts"`
 }
 
 func (GetInstancesSizeOutputArgs) ElementType() reflect.Type {
@@ -79,7 +73,6 @@ func (o GetInstancesSizeResultOutput) ToGetInstancesSizeResultOutputWithContext(
 	return o
 }
 
-// One or more key/value pairs on which to filter results
 func (o GetInstancesSizeResultOutput) Filters() GetInstancesSizeFilterArrayOutput {
 	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeFilter { return v.Filters }).(GetInstancesSizeFilterArrayOutput)
 }
@@ -93,7 +86,6 @@ func (o GetInstancesSizeResultOutput) Sizes() GetInstancesSizeSizeArrayOutput {
 	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeSize { return v.Sizes }).(GetInstancesSizeSizeArrayOutput)
 }
 
-// One or more key/direction pairs on which to sort results
 func (o GetInstancesSizeResultOutput) Sorts() GetInstancesSizeSortArrayOutput {
 	return o.ApplyT(func(v GetInstancesSizeResult) []GetInstancesSizeSort { return v.Sorts }).(GetInstancesSizeSortArrayOutput)
 }

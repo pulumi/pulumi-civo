@@ -38,17 +38,8 @@ export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Pr
  * A collection of arguments for invoking getVolume.
  */
 export interface GetVolumeArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: string;
-    /**
-     * The name of the volume
-     */
     name?: string;
-    /**
-     * The region where volume is running
-     */
     region?: string;
 }
 
@@ -56,29 +47,11 @@ export interface GetVolumeArgs {
  * A collection of values returned by getVolume.
  */
 export interface GetVolumeResult {
-    /**
-     * The date of the creation of the volume
-     */
     readonly createdAt: string;
-    /**
-     * The ID of this resource.
-     */
     readonly id?: string;
-    /**
-     * The mount point of the volume
-     */
     readonly mountPoint: string;
-    /**
-     * The name of the volume
-     */
     readonly name?: string;
-    /**
-     * The region where volume is running
-     */
     readonly region?: string;
-    /**
-     * The size of the volume (in GB)
-     */
     readonly sizeGb: number;
 }
 
@@ -90,16 +63,7 @@ export function getVolumeOutput(args?: GetVolumeOutputArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getVolume.
  */
 export interface GetVolumeOutputArgs {
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
-    /**
-     * The name of the volume
-     */
     name?: pulumi.Input<string>;
-    /**
-     * The region where volume is running
-     */
     region?: pulumi.Input<string>;
 }

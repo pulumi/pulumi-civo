@@ -83,21 +83,12 @@ namespace Pulumi.Civo
 
     public sealed class GetNetworkArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        /// <summary>
-        /// The label of an existing network
-        /// </summary>
         [Input("label")]
         public string? Label { get; set; }
 
-        /// <summary>
-        /// The region of an existing network
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -108,21 +99,12 @@ namespace Pulumi.Civo
 
     public sealed class GetNetworkInvokeArgs : Pulumi.InvokeArgs
     {
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        /// <summary>
-        /// The label of an existing network
-        /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
-        /// <summary>
-        /// The region of an existing network
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
@@ -135,25 +117,10 @@ namespace Pulumi.Civo
     [OutputType]
     public sealed class GetNetworkResult
     {
-        /// <summary>
-        /// If is the default network
-        /// </summary>
         public readonly bool Default;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string? Id;
-        /// <summary>
-        /// The label of an existing network
-        /// </summary>
         public readonly string? Label;
-        /// <summary>
-        /// The name of the network
-        /// </summary>
         public readonly string Name;
-        /// <summary>
-        /// The region of an existing network
-        /// </summary>
         public readonly string? Region;
 
         [OutputConstructor]

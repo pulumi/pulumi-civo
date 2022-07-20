@@ -22,10 +22,12 @@ class DnsDomainRecordArgs:
         """
         The set of arguments for constructing a DnsDomainRecord resource.
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
         :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
         """
         pulumi.set(__self__, "domain_id", domain_id)
@@ -53,7 +55,8 @@ class DnsDomainRecordArgs:
     @pulumi.getter
     def ttl(self) -> pulumi.Input[int]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 
@@ -89,7 +92,8 @@ class DnsDomainRecordArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -127,9 +131,11 @@ class _DnsDomainRecordState:
         :param pulumi.Input[str] account_id: The account ID of this resource
         :param pulumi.Input[str] created_at: Timestamp when this resource was created
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
         :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] updated_at: Timestamp when this resource was updated
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
@@ -193,7 +199,8 @@ class _DnsDomainRecordState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -217,7 +224,8 @@ class _DnsDomainRecordState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 
@@ -288,9 +296,11 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
         :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
         """
@@ -390,9 +400,11 @@ class DnsDomainRecord(pulumi.CustomResource):
         :param pulumi.Input[str] account_id: The account ID of this resource
         :param pulumi.Input[str] created_at: Timestamp when this resource was created
         :param pulumi.Input[str] domain_id: ID from domain name
-        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        :param pulumi.Input[str] name: The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+               amex/root domain)
         :param pulumi.Input[int] priority: Useful for MX records only, the priority mail should be attempted it (defaults to 10)
-        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        :param pulumi.Input[int] ttl: How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+               is 600)
         :param pulumi.Input[str] type: The choice of RR type from a, cname, mx or txt
         :param pulumi.Input[str] updated_at: Timestamp when this resource was updated
         :param pulumi.Input[str] value: The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
@@ -440,7 +452,8 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+        The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
+        amex/root domain)
         """
         return pulumi.get(self, "name")
 
@@ -456,7 +469,8 @@ class DnsDomainRecord(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[int]:
         """
-        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
+        How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
+        is 600)
         """
         return pulumi.get(self, "ttl")
 

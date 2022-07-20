@@ -29,28 +29,17 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private List<Inputs.GetDiskImageFilterArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public List<Inputs.GetDiskImageFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetDiskImageFilterArgs>());
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If is used, all disk image will be from this region. Required if no region is set in provider.
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         [Input("sorts")]
         private List<Inputs.GetDiskImageSortArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public List<Inputs.GetDiskImageSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetDiskImageSortArgs>());
@@ -66,28 +55,17 @@ namespace Pulumi.Civo
     {
         [Input("filters")]
         private InputList<Inputs.GetDiskImageFilterInputArgs>? _filters;
-
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public InputList<Inputs.GetDiskImageFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetDiskImageFilterInputArgs>());
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If is used, all disk image will be from this region. Required if no region is set in provider.
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         [Input("sorts")]
         private InputList<Inputs.GetDiskImageSortInputArgs>? _sorts;
-
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public InputList<Inputs.GetDiskImageSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetDiskImageSortInputArgs>());
@@ -104,21 +82,12 @@ namespace Pulumi.Civo
     public sealed class GetDiskImageResult
     {
         public readonly ImmutableArray<Outputs.GetDiskImageDiskimageResult> Diskimages;
-        /// <summary>
-        /// One or more key/value pairs on which to filter results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetDiskImageFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
-        /// <summary>
-        /// If is used, all disk image will be from this region. Required if no region is set in provider.
-        /// </summary>
         public readonly string? Region;
-        /// <summary>
-        /// One or more key/direction pairs on which to sort results
-        /// </summary>
         public readonly ImmutableArray<Outputs.GetDiskImageSortResult> Sorts;
 
         [OutputConstructor]
