@@ -20,6 +20,7 @@ export * from "./getKubernetesCluster";
 export * from "./getKubernetesVersion";
 export * from "./getLoadBalancer";
 export * from "./getNetwork";
+export * from "./getObjectStore";
 export * from "./getRegion";
 export * from "./getReservedIp";
 export * from "./getSize";
@@ -30,6 +31,7 @@ export * from "./instanceReservedIpAssignment";
 export * from "./kubernetesCluster";
 export * from "./kubernetesNodePool";
 export * from "./network";
+export * from "./objectStore";
 export * from "./provider";
 export * from "./reservedIp";
 export * from "./sshKey";
@@ -55,6 +57,7 @@ import { InstanceReservedIpAssignment } from "./instanceReservedIpAssignment";
 import { KubernetesCluster } from "./kubernetesCluster";
 import { KubernetesNodePool } from "./kubernetesNodePool";
 import { Network } from "./network";
+import { ObjectStore } from "./objectStore";
 import { ReservedIp } from "./reservedIp";
 import { SshKey } from "./sshKey";
 import { Volume } from "./volume";
@@ -82,6 +85,8 @@ const _module = {
                 return new KubernetesNodePool(name, <any>undefined, { urn })
             case "civo:index/network:Network":
                 return new Network(name, <any>undefined, { urn })
+            case "civo:index/objectStore:ObjectStore":
+                return new ObjectStore(name, <any>undefined, { urn })
             case "civo:index/reservedIp:ReservedIp":
                 return new ReservedIp(name, <any>undefined, { urn })
             case "civo:index/sshKey:SshKey":
@@ -104,6 +109,7 @@ pulumi.runtime.registerResourceModule("civo", "index/instanceReservedIpAssignmen
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesCluster", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("civo", "index/network", _module)
+pulumi.runtime.registerResourceModule("civo", "index/objectStore", _module)
 pulumi.runtime.registerResourceModule("civo", "index/reservedIp", _module)
 pulumi.runtime.registerResourceModule("civo", "index/sshKey", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volume", _module)

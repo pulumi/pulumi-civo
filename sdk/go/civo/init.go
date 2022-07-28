@@ -38,6 +38,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &KubernetesNodePool{}
 	case "civo:index/network:Network":
 		r = &Network{}
+	case "civo:index/objectStore:ObjectStore":
+		r = &ObjectStore{}
 	case "civo:index/reservedIp:ReservedIp":
 		r = &ReservedIp{}
 	case "civo:index/sshKey:SshKey":
@@ -117,6 +119,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/network",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"civo",
+		"index/objectStore",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

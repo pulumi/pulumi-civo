@@ -20,6 +20,7 @@ from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
 from .get_load_balancer import *
 from .get_network import *
+from .get_object_store import *
 from .get_region import *
 from .get_reserved_ip import *
 from .get_size import *
@@ -30,6 +31,7 @@ from .instance_reserved_ip_assignment import *
 from .kubernetes_cluster import *
 from .kubernetes_node_pool import *
 from .network import *
+from .object_store import *
 from .provider import *
 from .reserved_ip import *
 from .ssh_key import *
@@ -118,6 +120,14 @@ _utilities.register(
   "fqn": "pulumi_civo",
   "classes": {
    "civo:index/network:Network": "Network"
+  }
+ },
+ {
+  "pkg": "civo",
+  "mod": "index/objectStore",
+  "fqn": "pulumi_civo",
+  "classes": {
+   "civo:index/objectStore:ObjectStore": "ObjectStore"
   }
  },
  {
