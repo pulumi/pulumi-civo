@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
- * import * from "fs";
+ * import * as fs from "fs";
  *
  * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub")});
  * ```

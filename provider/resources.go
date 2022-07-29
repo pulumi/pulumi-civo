@@ -90,6 +90,7 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_kubernetes_node_pool":            {Tok: makeResource(mainMod, "KubernetesNodePool")},
 			"civo_instance_reserved_ip_assignment": {Tok: makeResource(mainMod, "InstanceReservedIpAssignment")},
 			"civo_reserved_ip":                     {Tok: makeResource(mainMod, "ReservedIp")},
+			"civo_object_store":                    {Tok: makeResource(mainMod, "ObjectStore")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"civo_kubernetes_cluster": {Tok: makeDataSource(mainMod, "getKubernetesCluster")},
@@ -108,6 +109,7 @@ func Provider() tfbridge.ProviderInfo {
 			"civo_size":               {Tok: makeDataSource(mainMod, "getSize")},
 			"civo_loadbalancer":       {Tok: makeDataSource(mainMod, "getLoadBalancer")},
 			"civo_reserved_ip":        {Tok: makeDataSource(mainMod, "getReservedIp")},
+			"civo_object_store":       {Tok: makeDataSource(mainMod, "getObjectStore")},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
