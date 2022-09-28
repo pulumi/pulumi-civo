@@ -12,23 +12,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class KubernetesClusterInstalledApplication {
-    private final @Nullable String application;
-    private final @Nullable String category;
-    private final @Nullable Boolean installed;
-    private final @Nullable String version;
+    private @Nullable String application;
+    private @Nullable String category;
+    private @Nullable Boolean installed;
+    private @Nullable String version;
 
-    @CustomType.Constructor
-    private KubernetesClusterInstalledApplication(
-        @CustomType.Parameter("application") @Nullable String application,
-        @CustomType.Parameter("category") @Nullable String category,
-        @CustomType.Parameter("installed") @Nullable Boolean installed,
-        @CustomType.Parameter("version") @Nullable String version) {
-        this.application = application;
-        this.category = category;
-        this.installed = installed;
-        this.version = version;
-    }
-
+    private KubernetesClusterInstalledApplication() {}
     public Optional<String> application() {
         return Optional.ofNullable(this.application);
     }
@@ -49,17 +38,13 @@ public final class KubernetesClusterInstalledApplication {
     public static Builder builder(KubernetesClusterInstalledApplication defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String application;
         private @Nullable String category;
         private @Nullable Boolean installed;
         private @Nullable String version;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(KubernetesClusterInstalledApplication defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.application = defaults.application;
@@ -68,23 +53,33 @@ public final class KubernetesClusterInstalledApplication {
     	      this.version = defaults.version;
         }
 
+        @CustomType.Setter
         public Builder application(@Nullable String application) {
             this.application = application;
             return this;
         }
+        @CustomType.Setter
         public Builder category(@Nullable String category) {
             this.category = category;
             return this;
         }
+        @CustomType.Setter
         public Builder installed(@Nullable Boolean installed) {
             this.installed = installed;
             return this;
         }
+        @CustomType.Setter
         public Builder version(@Nullable String version) {
             this.version = version;
             return this;
-        }        public KubernetesClusterInstalledApplication build() {
-            return new KubernetesClusterInstalledApplication(application, category, installed, version);
+        }
+        public KubernetesClusterInstalledApplication build() {
+            final var o = new KubernetesClusterInstalledApplication();
+            o.application = application;
+            o.category = category;
+            o.installed = installed;
+            o.version = version;
+            return o;
         }
     }
 }

@@ -17,16 +17,32 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
 
     public static final GetInstancesSizeArgs Empty = new GetInstancesSizeArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<GetInstancesSizeFilterArgs>> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<Output<List<GetInstancesSizeFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable Output<List<GetInstancesSizeSortArgs>> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<Output<List<GetInstancesSizeSortArgs>>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -56,28 +72,64 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
             $ = new GetInstancesSizeArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<GetInstancesSizeFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<GetInstancesSizeFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetInstancesSizeFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable Output<List<GetInstancesSizeSortArgs>> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(List<GetInstancesSizeSortArgs> sorts) {
             return sorts(Output.of(sorts));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetInstancesSizeSortArgs... sorts) {
             return sorts(List.of(sorts));
         }

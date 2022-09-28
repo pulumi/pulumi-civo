@@ -13,140 +13,269 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstanceResult {
-    private final Integer cpuCores;
-    private final String createdAt;
-    private final Integer diskGb;
-    private final String firewallId;
-    private final @Nullable String hostname;
-    private final @Nullable String id;
-    private final String initialPassword;
-    private final String initialUser;
-    private final String networkId;
-    private final String notes;
-    private final String privateIp;
-    private final String pseudoIp;
-    private final String publicIp;
-    private final Integer ramMb;
-    private final @Nullable String region;
-    private final String reverseDns;
-    private final String script;
-    private final String size;
-    private final String sshkeyId;
-    private final String status;
-    private final List<String> tags;
-    private final String template;
+    /**
+     * @return Total cpu of the inatance
+     * 
+     */
+    private Integer cpuCores;
+    /**
+     * @return The date of creation of the instance
+     * 
+     */
+    private String createdAt;
+    /**
+     * @return The size of the disk
+     * 
+     */
+    private Integer diskGb;
+    /**
+     * @return The ID of the firewall used
+     * 
+     */
+    private String firewallId;
+    /**
+     * @return The hostname of the Instance
+     * 
+     */
+    private @Nullable String hostname;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
+    private @Nullable String id;
+    /**
+     * @return Instance initial password
+     * 
+     */
+    private String initialPassword;
+    /**
+     * @return The name of the initial user created on the server
+     * 
+     */
+    private String initialUser;
+    /**
+     * @return his will be the ID of the network
+     * 
+     */
+    private String networkId;
+    /**
+     * @return The notes of the instance
+     * 
+     */
+    private String notes;
+    /**
+     * @return The private IP
+     * 
+     */
+    private String privateIp;
+    /**
+     * @return Is the ip that is used to route the public ip from the internet to the instance using NAT
+     * 
+     */
+    private String pseudoIp;
+    /**
+     * @return The public IP
+     * 
+     */
+    private String publicIp;
+    /**
+     * @return Total ram of the instance
+     * 
+     */
+    private Integer ramMb;
+    /**
+     * @return The region of an existing Instance
+     * 
+     */
+    private @Nullable String region;
+    /**
+     * @return A fully qualified domain name
+     * 
+     */
+    private String reverseDns;
+    /**
+     * @return The contents of a script uploaded
+     * 
+     */
+    private String script;
+    /**
+     * @return The name of the size
+     * 
+     */
+    private String size;
+    /**
+     * @return The ID SSH key
+     * 
+     */
+    private String sshkeyId;
+    /**
+     * @return The status of the instance
+     * 
+     */
+    private String status;
+    /**
+     * @return An optional list of tags
+     * 
+     */
+    private List<String> tags;
+    /**
+     * @return The ID for the disk image/template to used to build the instance
+     * 
+     */
+    private String template;
 
-    @CustomType.Constructor
-    private GetInstanceResult(
-        @CustomType.Parameter("cpuCores") Integer cpuCores,
-        @CustomType.Parameter("createdAt") String createdAt,
-        @CustomType.Parameter("diskGb") Integer diskGb,
-        @CustomType.Parameter("firewallId") String firewallId,
-        @CustomType.Parameter("hostname") @Nullable String hostname,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("initialPassword") String initialPassword,
-        @CustomType.Parameter("initialUser") String initialUser,
-        @CustomType.Parameter("networkId") String networkId,
-        @CustomType.Parameter("notes") String notes,
-        @CustomType.Parameter("privateIp") String privateIp,
-        @CustomType.Parameter("pseudoIp") String pseudoIp,
-        @CustomType.Parameter("publicIp") String publicIp,
-        @CustomType.Parameter("ramMb") Integer ramMb,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("reverseDns") String reverseDns,
-        @CustomType.Parameter("script") String script,
-        @CustomType.Parameter("size") String size,
-        @CustomType.Parameter("sshkeyId") String sshkeyId,
-        @CustomType.Parameter("status") String status,
-        @CustomType.Parameter("tags") List<String> tags,
-        @CustomType.Parameter("template") String template) {
-        this.cpuCores = cpuCores;
-        this.createdAt = createdAt;
-        this.diskGb = diskGb;
-        this.firewallId = firewallId;
-        this.hostname = hostname;
-        this.id = id;
-        this.initialPassword = initialPassword;
-        this.initialUser = initialUser;
-        this.networkId = networkId;
-        this.notes = notes;
-        this.privateIp = privateIp;
-        this.pseudoIp = pseudoIp;
-        this.publicIp = publicIp;
-        this.ramMb = ramMb;
-        this.region = region;
-        this.reverseDns = reverseDns;
-        this.script = script;
-        this.size = size;
-        this.sshkeyId = sshkeyId;
-        this.status = status;
-        this.tags = tags;
-        this.template = template;
-    }
-
+    private GetInstanceResult() {}
+    /**
+     * @return Total cpu of the inatance
+     * 
+     */
     public Integer cpuCores() {
         return this.cpuCores;
     }
+    /**
+     * @return The date of creation of the instance
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The size of the disk
+     * 
+     */
     public Integer diskGb() {
         return this.diskGb;
     }
+    /**
+     * @return The ID of the firewall used
+     * 
+     */
     public String firewallId() {
         return this.firewallId;
     }
+    /**
+     * @return The hostname of the Instance
+     * 
+     */
     public Optional<String> hostname() {
         return Optional.ofNullable(this.hostname);
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return Instance initial password
+     * 
+     */
     public String initialPassword() {
         return this.initialPassword;
     }
+    /**
+     * @return The name of the initial user created on the server
+     * 
+     */
     public String initialUser() {
         return this.initialUser;
     }
+    /**
+     * @return his will be the ID of the network
+     * 
+     */
     public String networkId() {
         return this.networkId;
     }
+    /**
+     * @return The notes of the instance
+     * 
+     */
     public String notes() {
         return this.notes;
     }
+    /**
+     * @return The private IP
+     * 
+     */
     public String privateIp() {
         return this.privateIp;
     }
+    /**
+     * @return Is the ip that is used to route the public ip from the internet to the instance using NAT
+     * 
+     */
     public String pseudoIp() {
         return this.pseudoIp;
     }
+    /**
+     * @return The public IP
+     * 
+     */
     public String publicIp() {
         return this.publicIp;
     }
+    /**
+     * @return Total ram of the instance
+     * 
+     */
     public Integer ramMb() {
         return this.ramMb;
     }
+    /**
+     * @return The region of an existing Instance
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return A fully qualified domain name
+     * 
+     */
     public String reverseDns() {
         return this.reverseDns;
     }
+    /**
+     * @return The contents of a script uploaded
+     * 
+     */
     public String script() {
         return this.script;
     }
+    /**
+     * @return The name of the size
+     * 
+     */
     public String size() {
         return this.size;
     }
+    /**
+     * @return The ID SSH key
+     * 
+     */
     public String sshkeyId() {
         return this.sshkeyId;
     }
+    /**
+     * @return The status of the instance
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return An optional list of tags
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
+    /**
+     * @return The ID for the disk image/template to used to build the instance
+     * 
+     */
     public String template() {
         return this.template;
     }
@@ -158,7 +287,7 @@ public final class GetInstanceResult {
     public static Builder builder(GetInstanceResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Integer cpuCores;
         private String createdAt;
@@ -182,11 +311,7 @@ public final class GetInstanceResult {
         private String status;
         private List<String> tags;
         private String template;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetInstanceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cpuCores = defaults.cpuCores;
@@ -213,86 +338,107 @@ public final class GetInstanceResult {
     	      this.template = defaults.template;
         }
 
+        @CustomType.Setter
         public Builder cpuCores(Integer cpuCores) {
             this.cpuCores = Objects.requireNonNull(cpuCores);
             return this;
         }
+        @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
             return this;
         }
+        @CustomType.Setter
         public Builder diskGb(Integer diskGb) {
             this.diskGb = Objects.requireNonNull(diskGb);
             return this;
         }
+        @CustomType.Setter
         public Builder firewallId(String firewallId) {
             this.firewallId = Objects.requireNonNull(firewallId);
             return this;
         }
+        @CustomType.Setter
         public Builder hostname(@Nullable String hostname) {
             this.hostname = hostname;
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder initialPassword(String initialPassword) {
             this.initialPassword = Objects.requireNonNull(initialPassword);
             return this;
         }
+        @CustomType.Setter
         public Builder initialUser(String initialUser) {
             this.initialUser = Objects.requireNonNull(initialUser);
             return this;
         }
+        @CustomType.Setter
         public Builder networkId(String networkId) {
             this.networkId = Objects.requireNonNull(networkId);
             return this;
         }
+        @CustomType.Setter
         public Builder notes(String notes) {
             this.notes = Objects.requireNonNull(notes);
             return this;
         }
+        @CustomType.Setter
         public Builder privateIp(String privateIp) {
             this.privateIp = Objects.requireNonNull(privateIp);
             return this;
         }
+        @CustomType.Setter
         public Builder pseudoIp(String pseudoIp) {
             this.pseudoIp = Objects.requireNonNull(pseudoIp);
             return this;
         }
+        @CustomType.Setter
         public Builder publicIp(String publicIp) {
             this.publicIp = Objects.requireNonNull(publicIp);
             return this;
         }
+        @CustomType.Setter
         public Builder ramMb(Integer ramMb) {
             this.ramMb = Objects.requireNonNull(ramMb);
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder reverseDns(String reverseDns) {
             this.reverseDns = Objects.requireNonNull(reverseDns);
             return this;
         }
+        @CustomType.Setter
         public Builder script(String script) {
             this.script = Objects.requireNonNull(script);
             return this;
         }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
         }
+        @CustomType.Setter
         public Builder sshkeyId(String sshkeyId) {
             this.sshkeyId = Objects.requireNonNull(sshkeyId);
             return this;
         }
+        @CustomType.Setter
         public Builder status(String status) {
             this.status = Objects.requireNonNull(status);
             return this;
         }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             this.tags = Objects.requireNonNull(tags);
             return this;
@@ -300,11 +446,36 @@ public final class GetInstanceResult {
         public Builder tags(String... tags) {
             return tags(List.of(tags));
         }
+        @CustomType.Setter
         public Builder template(String template) {
             this.template = Objects.requireNonNull(template);
             return this;
-        }        public GetInstanceResult build() {
-            return new GetInstanceResult(cpuCores, createdAt, diskGb, firewallId, hostname, id, initialPassword, initialUser, networkId, notes, privateIp, pseudoIp, publicIp, ramMb, region, reverseDns, script, size, sshkeyId, status, tags, template);
+        }
+        public GetInstanceResult build() {
+            final var o = new GetInstanceResult();
+            o.cpuCores = cpuCores;
+            o.createdAt = createdAt;
+            o.diskGb = diskGb;
+            o.firewallId = firewallId;
+            o.hostname = hostname;
+            o.id = id;
+            o.initialPassword = initialPassword;
+            o.initialUser = initialUser;
+            o.networkId = networkId;
+            o.notes = notes;
+            o.privateIp = privateIp;
+            o.pseudoIp = pseudoIp;
+            o.publicIp = publicIp;
+            o.ramMb = ramMb;
+            o.region = region;
+            o.reverseDns = reverseDns;
+            o.script = script;
+            o.size = size;
+            o.sshkeyId = sshkeyId;
+            o.status = status;
+            o.tags = tags;
+            o.template = template;
+            return o;
         }
     }
 }

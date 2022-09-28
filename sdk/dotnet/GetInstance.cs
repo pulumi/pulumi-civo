@@ -21,29 +21,28 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myhostaname = Civo.GetInstance.Invoke(new()
         ///     {
-        ///         var myhostaname = Output.Create(Civo.GetInstance.InvokeAsync(new Civo.GetInstanceArgs
-        ///         {
-        ///             Hostname = "myhostname.com",
-        ///         }));
-        ///         this.InstanceOutput = myhostaname.Apply(myhostaname =&gt; myhostaname.PublicIp);
-        ///     }
+        ///         Hostname = "myhostname.com",
+        ///     });
         /// 
-        ///     [Output("instanceOutput")]
-        ///     public Output&lt;string&gt; InstanceOutput { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["instanceOutput"] = myhostaname.Apply(getInstanceResult =&gt; getInstanceResult.PublicIp),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstanceResult> InvokeAsync(GetInstanceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("civo:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstanceResult>("civo:index/getInstance:getInstance", args ?? new GetInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
@@ -55,89 +54,174 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var myhostaname = Civo.GetInstance.Invoke(new()
         ///     {
-        ///         var myhostaname = Output.Create(Civo.GetInstance.InvokeAsync(new Civo.GetInstanceArgs
-        ///         {
-        ///             Hostname = "myhostname.com",
-        ///         }));
-        ///         this.InstanceOutput = myhostaname.Apply(myhostaname =&gt; myhostaname.PublicIp);
-        ///     }
+        ///         Hostname = "myhostname.com",
+        ///     });
         /// 
-        ///     [Output("instanceOutput")]
-        ///     public Output&lt;string&gt; InstanceOutput { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["instanceOutput"] = myhostaname.Apply(getInstanceResult =&gt; getInstanceResult.PublicIp),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstanceResult> Invoke(GetInstanceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("civo:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetInstanceResult>("civo:index/getInstance:getInstance", args ?? new GetInstanceInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetInstanceArgs : Pulumi.InvokeArgs
+    public sealed class GetInstanceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The hostname of the Instance
+        /// </summary>
         [Input("hostname")]
         public string? Hostname { get; set; }
 
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The region of an existing Instance
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetInstanceArgs()
         {
         }
+        public static new GetInstanceArgs Empty => new GetInstanceArgs();
     }
 
-    public sealed class GetInstanceInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The hostname of the Instance
+        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The region of an existing Instance
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetInstanceInvokeArgs()
         {
         }
+        public static new GetInstanceInvokeArgs Empty => new GetInstanceInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetInstanceResult
     {
+        /// <summary>
+        /// Total cpu of the inatance
+        /// </summary>
         public readonly int CpuCores;
+        /// <summary>
+        /// The date of creation of the instance
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// The size of the disk
+        /// </summary>
         public readonly int DiskGb;
+        /// <summary>
+        /// The ID of the firewall used
+        /// </summary>
         public readonly string FirewallId;
+        /// <summary>
+        /// The hostname of the Instance
+        /// </summary>
         public readonly string? Hostname;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Instance initial password
+        /// </summary>
         public readonly string InitialPassword;
+        /// <summary>
+        /// The name of the initial user created on the server
+        /// </summary>
         public readonly string InitialUser;
+        /// <summary>
+        /// his will be the ID of the network
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// The notes of the instance
+        /// </summary>
         public readonly string Notes;
+        /// <summary>
+        /// The private IP
+        /// </summary>
         public readonly string PrivateIp;
+        /// <summary>
+        /// Is the ip that is used to route the public ip from the internet to the instance using NAT
+        /// </summary>
         public readonly string PseudoIp;
+        /// <summary>
+        /// The public IP
+        /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// Total ram of the instance
+        /// </summary>
         public readonly int RamMb;
+        /// <summary>
+        /// The region of an existing Instance
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// A fully qualified domain name
+        /// </summary>
         public readonly string ReverseDns;
+        /// <summary>
+        /// The contents of a script uploaded
+        /// </summary>
         public readonly string Script;
+        /// <summary>
+        /// The name of the size
+        /// </summary>
         public readonly string Size;
+        /// <summary>
+        /// The ID SSH key
+        /// </summary>
         public readonly string SshkeyId;
+        /// <summary>
+        /// The status of the instance
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// An optional list of tags
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The ID for the disk image/template to used to build the instance
+        /// </summary>
         public readonly string Template;
 
         [OutputConstructor]

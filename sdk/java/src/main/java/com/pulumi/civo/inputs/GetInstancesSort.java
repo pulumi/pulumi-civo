@@ -14,16 +14,32 @@ public final class GetInstancesSort extends com.pulumi.resources.InvokeArgs {
 
     public static final GetInstancesSort Empty = new GetInstancesSort();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable String direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -53,11 +69,23 @@ public final class GetInstancesSort extends com.pulumi.resources.InvokeArgs {
             $ = new GetInstancesSort(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable String direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param key Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;

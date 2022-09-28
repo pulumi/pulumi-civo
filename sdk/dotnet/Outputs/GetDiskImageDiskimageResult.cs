@@ -13,6 +13,9 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetDiskImageDiskimageResult
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string Id;
         public readonly string Label;
         public readonly string Name;

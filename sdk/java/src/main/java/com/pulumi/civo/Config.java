@@ -11,6 +11,13 @@ public final class Config {
 
     private static final com.pulumi.Config config = com.pulumi.Config.of("civo");
 /**
+ * The Base URL to use for CIVO API.
+ * 
+ */
+    public Optional<String> apiEndpoint() {
+        return Codegen.stringProp("apiEndpoint").config(config).get();
+    }
+/**
  * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
  * here you can overwrite in a resource.
  * 

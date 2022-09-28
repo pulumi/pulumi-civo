@@ -14,27 +14,28 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesSizeResult {
-    private final @Nullable List<GetInstancesSizeFilter> filters;
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
+    private @Nullable List<GetInstancesSizeFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final List<GetInstancesSizeSize> sizes;
-    private final @Nullable List<GetInstancesSizeSort> sorts;
+    private String id;
+    private List<GetInstancesSizeSize> sizes;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
+    private @Nullable List<GetInstancesSizeSort> sorts;
 
-    @CustomType.Constructor
-    private GetInstancesSizeResult(
-        @CustomType.Parameter("filters") @Nullable List<GetInstancesSizeFilter> filters,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("sizes") List<GetInstancesSizeSize> sizes,
-        @CustomType.Parameter("sorts") @Nullable List<GetInstancesSizeSort> sorts) {
-        this.filters = filters;
-        this.id = id;
-        this.sizes = sizes;
-        this.sorts = sorts;
-    }
-
+    private GetInstancesSizeResult() {}
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetInstancesSizeFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -48,6 +49,10 @@ public final class GetInstancesSizeResult {
     public List<GetInstancesSizeSize> sizes() {
         return this.sizes;
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetInstancesSizeSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }
@@ -59,17 +64,13 @@ public final class GetInstancesSizeResult {
     public static Builder builder(GetInstancesSizeResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<GetInstancesSizeFilter> filters;
         private String id;
         private List<GetInstancesSizeSize> sizes;
         private @Nullable List<GetInstancesSizeSort> sorts;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetInstancesSizeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filters = defaults.filters;
@@ -78,6 +79,7 @@ public final class GetInstancesSizeResult {
     	      this.sorts = defaults.sorts;
         }
 
+        @CustomType.Setter
         public Builder filters(@Nullable List<GetInstancesSizeFilter> filters) {
             this.filters = filters;
             return this;
@@ -85,10 +87,12 @@ public final class GetInstancesSizeResult {
         public Builder filters(GetInstancesSizeFilter... filters) {
             return filters(List.of(filters));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder sizes(List<GetInstancesSizeSize> sizes) {
             this.sizes = Objects.requireNonNull(sizes);
             return this;
@@ -96,14 +100,21 @@ public final class GetInstancesSizeResult {
         public Builder sizes(GetInstancesSizeSize... sizes) {
             return sizes(List.of(sizes));
         }
+        @CustomType.Setter
         public Builder sorts(@Nullable List<GetInstancesSizeSort> sorts) {
             this.sorts = sorts;
             return this;
         }
         public Builder sorts(GetInstancesSizeSort... sorts) {
             return sorts(List.of(sorts));
-        }        public GetInstancesSizeResult build() {
-            return new GetInstancesSizeResult(filters, id, sizes, sorts);
+        }
+        public GetInstancesSizeResult build() {
+            final var o = new GetInstancesSizeResult();
+            o.filters = filters;
+            o.id = id;
+            o.sizes = sizes;
+            o.sorts = sorts;
+            return o;
         }
     }
 }

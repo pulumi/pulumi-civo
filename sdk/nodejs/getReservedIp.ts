@@ -21,7 +21,13 @@ export function getReservedIp(args?: GetReservedIpArgs, opts?: pulumi.InvokeOpti
  * A collection of arguments for invoking getReservedIp.
  */
 export interface GetReservedIpArgs {
+    /**
+     * ID for the ip address
+     */
     id?: string;
+    /**
+     * Name for the ip address
+     */
     name?: string;
 }
 
@@ -29,11 +35,29 @@ export interface GetReservedIpArgs {
  * A collection of values returned by getReservedIp.
  */
 export interface GetReservedIpResult {
+    /**
+     * ID for the ip address
+     */
     readonly id?: string;
+    /**
+     * The ID of the instance the IP is attached to
+     */
     readonly instanceId: string;
+    /**
+     * The name of the instance the IP is attached to
+     */
     readonly instanceName: string;
+    /**
+     * The IP Address requested
+     */
     readonly ip: string;
+    /**
+     * Name for the ip address
+     */
     readonly name?: string;
+    /**
+     * The region the ip address is in
+     */
     readonly region: string;
 }
 
@@ -45,6 +69,12 @@ export function getReservedIpOutput(args?: GetReservedIpOutputArgs, opts?: pulum
  * A collection of arguments for invoking getReservedIp.
  */
 export interface GetReservedIpOutputArgs {
+    /**
+     * ID for the ip address
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name for the ip address
+     */
     name?: pulumi.Input<string>;
 }

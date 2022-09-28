@@ -15,33 +15,31 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var my_user = new Civo.SshKey("my-user", new()
     ///     {
-    ///         var my_user = new Civo.SshKey("my-user", new Civo.SshKeyArgs
-    ///         {
-    ///             PublicKey = File.ReadAllText("~/.ssh/id_rsa.pub"),
-    ///         });
-    ///     }
+    ///         PublicKey = File.ReadAllText("~/.ssh/id_rsa.pub"),
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/sshKey:SshKey")]
-    public partial class SshKey : Pulumi.CustomResource
+    public partial class SshKey : global::Pulumi.CustomResource
     {
         /// <summary>
         /// a string containing the SSH finger print.
@@ -105,7 +103,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class SshKeyArgs : Pulumi.ResourceArgs
+    public sealed class SshKeyArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// a string that will be the reference for the SSH key.
@@ -122,9 +120,10 @@ namespace Pulumi.Civo
         public SshKeyArgs()
         {
         }
+        public static new SshKeyArgs Empty => new SshKeyArgs();
     }
 
-    public sealed class SshKeyState : Pulumi.ResourceArgs
+    public sealed class SshKeyState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// a string containing the SSH finger print.
@@ -147,5 +146,6 @@ namespace Pulumi.Civo
         public SshKeyState()
         {
         }
+        public static new SshKeyState Empty => new SshKeyState();
     }
 }

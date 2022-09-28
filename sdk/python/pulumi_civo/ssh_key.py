@@ -128,7 +128,7 @@ class SshKey(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
@@ -159,7 +159,7 @@ class SshKey(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e

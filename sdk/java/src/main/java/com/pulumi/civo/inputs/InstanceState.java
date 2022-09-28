@@ -78,16 +78,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-     * to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
     @Import(name="firewallId")
     private @Nullable Output<String> firewallId;
 
     /**
-     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-     * to all)
+     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
     public Optional<Output<String>> firewallId() {
@@ -125,16 +123,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-     * fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
      * 
      */
     @Import(name="initialUser")
     private @Nullable Output<String> initialUser;
 
     /**
-     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-     * fallback to civo)
+     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
      * 
      */
     public Optional<Output<String>> initialUser() {
@@ -247,16 +243,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-     * unspecified)
+     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
     @Import(name="reverseDns")
     private @Nullable Output<String> reverseDns;
 
     /**
-     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-     * unspecified)
+     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
     public Optional<Output<String>> reverseDns() {
@@ -264,16 +258,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-     * read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     @Import(name="script")
     private @Nullable Output<String> script;
 
     /**
-     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-     * read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     public Optional<Output<String>> script() {
@@ -326,16 +318,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-     * random password will be set and returned in the initial_password field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
     @Import(name="sshkeyId")
     private @Nullable Output<String> sshkeyId;
 
     /**
-     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-     * random password will be set and returned in the initial_password field)
+     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
     public Optional<Output<String>> sshkeyId() {
@@ -527,8 +517,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-         * to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
          * 
          * @return builder
          * 
@@ -539,8 +528,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-         * to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
          * 
          * @return builder
          * 
@@ -592,8 +580,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-         * fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
          * 
          * @return builder
          * 
@@ -604,8 +591,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-         * fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
          * 
          * @return builder
          * 
@@ -762,8 +748,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-         * unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
          * 
          * @return builder
          * 
@@ -774,8 +759,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-         * unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
          * 
          * @return builder
          * 
@@ -785,8 +769,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-         * read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -797,8 +780,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-         * read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -871,8 +853,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-         * random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 
@@ -883,8 +864,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-         * random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 

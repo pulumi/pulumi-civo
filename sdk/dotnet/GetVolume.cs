@@ -21,26 +21,24 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var mysql = Civo.GetVolume.Invoke(new()
         ///     {
-        ///         var mysql = Output.Create(Civo.GetVolume.InvokeAsync(new Civo.GetVolumeArgs
-        ///         {
-        ///             Name = "database-mysql",
-        ///         }));
-        ///     }
+        ///         Name = "database-mysql",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetVolumeResult> InvokeAsync(GetVolumeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
@@ -52,70 +50,106 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var mysql = Civo.GetVolume.Invoke(new()
         ///     {
-        ///         var mysql = Output.Create(Civo.GetVolume.InvokeAsync(new Civo.GetVolumeArgs
-        ///         {
-        ///             Name = "database-mysql",
-        ///         }));
-        ///     }
+        ///         Name = "database-mysql",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetVolumeResult> Invoke(GetVolumeInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetVolumeArgs : Pulumi.InvokeArgs
+    public sealed class GetVolumeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the volume
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region where volume is running
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetVolumeArgs()
         {
         }
+        public static new GetVolumeArgs Empty => new GetVolumeArgs();
     }
 
-    public sealed class GetVolumeInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetVolumeInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The name of the volume
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The region where volume is running
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetVolumeInvokeArgs()
         {
         }
+        public static new GetVolumeInvokeArgs Empty => new GetVolumeInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetVolumeResult
     {
+        /// <summary>
+        /// The date of the creation of the volume
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The mount point of the volume
+        /// </summary>
         public readonly string MountPoint;
+        /// <summary>
+        /// The name of the volume
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The region where volume is running
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// The size of the volume (in GB)
+        /// </summary>
         public readonly int SizeGb;
 
         [OutputConstructor]

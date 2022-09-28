@@ -12,62 +12,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetObjectStoreResult {
-    private final String accessKeyId;
-    private final String endpoint;
-    private final String generatedName;
-    private final @Nullable String id;
-    private final @Nullable Integer maxSizeGb;
-    private final @Nullable String name;
-    private final @Nullable String region;
-    private final String secretAccessKey;
-    private final String status;
+    /**
+     * @return The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
+    private String accessKeyId;
+    /**
+     * @return The endpoint of the Object Store
+     * 
+     */
+    private String bucketUrl;
+    /**
+     * @return The ID of the Object Store
+     * 
+     */
+    private @Nullable String id;
+    /**
+     * @return The maximum size of the Object Store
+     * 
+     */
+    private Integer maxSizeGb;
+    /**
+     * @return The name of the Object Store
+     * 
+     */
+    private @Nullable String name;
+    /**
+     * @return The region of an existing Object Store
+     * 
+     */
+    private @Nullable String region;
+    /**
+     * @return The status of the Object Store
+     * 
+     */
+    private String status;
 
-    @CustomType.Constructor
-    private GetObjectStoreResult(
-        @CustomType.Parameter("accessKeyId") String accessKeyId,
-        @CustomType.Parameter("endpoint") String endpoint,
-        @CustomType.Parameter("generatedName") String generatedName,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("maxSizeGb") @Nullable Integer maxSizeGb,
-        @CustomType.Parameter("name") @Nullable String name,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("secretAccessKey") String secretAccessKey,
-        @CustomType.Parameter("status") String status) {
-        this.accessKeyId = accessKeyId;
-        this.endpoint = endpoint;
-        this.generatedName = generatedName;
-        this.id = id;
-        this.maxSizeGb = maxSizeGb;
-        this.name = name;
-        this.region = region;
-        this.secretAccessKey = secretAccessKey;
-        this.status = status;
-    }
-
+    private GetObjectStoreResult() {}
+    /**
+     * @return The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
     public String accessKeyId() {
         return this.accessKeyId;
     }
-    public String endpoint() {
-        return this.endpoint;
+    /**
+     * @return The endpoint of the Object Store
+     * 
+     */
+    public String bucketUrl() {
+        return this.bucketUrl;
     }
-    public String generatedName() {
-        return this.generatedName;
-    }
+    /**
+     * @return The ID of the Object Store
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
-    public Optional<Integer> maxSizeGb() {
-        return Optional.ofNullable(this.maxSizeGb);
+    /**
+     * @return The maximum size of the Object Store
+     * 
+     */
+    public Integer maxSizeGb() {
+        return this.maxSizeGb;
     }
+    /**
+     * @return The name of the Object Store
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The region of an existing Object Store
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
-    public String secretAccessKey() {
-        return this.secretAccessKey;
-    }
+    /**
+     * @return The status of the Object Store
+     * 
+     */
     public String status() {
         return this.status;
     }
@@ -79,72 +106,72 @@ public final class GetObjectStoreResult {
     public static Builder builder(GetObjectStoreResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accessKeyId;
-        private String endpoint;
-        private String generatedName;
+        private String bucketUrl;
         private @Nullable String id;
-        private @Nullable Integer maxSizeGb;
+        private Integer maxSizeGb;
         private @Nullable String name;
         private @Nullable String region;
-        private String secretAccessKey;
         private String status;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetObjectStoreResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accessKeyId = defaults.accessKeyId;
-    	      this.endpoint = defaults.endpoint;
-    	      this.generatedName = defaults.generatedName;
+    	      this.bucketUrl = defaults.bucketUrl;
     	      this.id = defaults.id;
     	      this.maxSizeGb = defaults.maxSizeGb;
     	      this.name = defaults.name;
     	      this.region = defaults.region;
-    	      this.secretAccessKey = defaults.secretAccessKey;
     	      this.status = defaults.status;
         }
 
+        @CustomType.Setter
         public Builder accessKeyId(String accessKeyId) {
             this.accessKeyId = Objects.requireNonNull(accessKeyId);
             return this;
         }
-        public Builder endpoint(String endpoint) {
-            this.endpoint = Objects.requireNonNull(endpoint);
+        @CustomType.Setter
+        public Builder bucketUrl(String bucketUrl) {
+            this.bucketUrl = Objects.requireNonNull(bucketUrl);
             return this;
         }
-        public Builder generatedName(String generatedName) {
-            this.generatedName = Objects.requireNonNull(generatedName);
-            return this;
-        }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
-        public Builder maxSizeGb(@Nullable Integer maxSizeGb) {
-            this.maxSizeGb = maxSizeGb;
+        @CustomType.Setter
+        public Builder maxSizeGb(Integer maxSizeGb) {
+            this.maxSizeGb = Objects.requireNonNull(maxSizeGb);
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
-        public Builder secretAccessKey(String secretAccessKey) {
-            this.secretAccessKey = Objects.requireNonNull(secretAccessKey);
-            return this;
-        }
+        @CustomType.Setter
         public Builder status(String status) {
             this.status = Objects.requireNonNull(status);
             return this;
-        }        public GetObjectStoreResult build() {
-            return new GetObjectStoreResult(accessKeyId, endpoint, generatedName, id, maxSizeGb, name, region, secretAccessKey, status);
+        }
+        public GetObjectStoreResult build() {
+            final var o = new GetObjectStoreResult();
+            o.accessKeyId = accessKeyId;
+            o.bucketUrl = bucketUrl;
+            o.id = id;
+            o.maxSizeGb = maxSizeGb;
+            o.name = name;
+            o.region = region;
+            o.status = status;
+            return o;
         }
     }
 }

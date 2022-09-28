@@ -13,6 +13,32 @@ import (
 // Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 //
 // Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.LookupObjectStore(ctx, &GetObjectStoreArgs{
+//				Name: pulumi.StringRef("backup-server"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupObjectStore(ctx *pulumi.Context, args *LookupObjectStoreArgs, opts ...pulumi.InvokeOption) (*LookupObjectStoreResult, error) {
 	var rv LookupObjectStoreResult
 	err := ctx.Invoke("civo:index/getObjectStore:getObjectStore", args, &rv, opts...)
@@ -24,23 +50,30 @@ func LookupObjectStore(ctx *pulumi.Context, args *LookupObjectStoreArgs, opts ..
 
 // A collection of arguments for invoking getObjectStore.
 type LookupObjectStoreArgs struct {
-	Id        *string `pulumi:"id"`
-	MaxSizeGb *int    `pulumi:"maxSizeGb"`
-	Name      *string `pulumi:"name"`
-	Region    *string `pulumi:"region"`
+	// The ID of the Object Store
+	Id *string `pulumi:"id"`
+	// The name of the Object Store
+	Name *string `pulumi:"name"`
+	// The region of an existing Object Store
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getObjectStore.
 type LookupObjectStoreResult struct {
-	AccessKeyId     string  `pulumi:"accessKeyId"`
-	Endpoint        string  `pulumi:"endpoint"`
-	GeneratedName   string  `pulumi:"generatedName"`
-	Id              *string `pulumi:"id"`
-	MaxSizeGb       *int    `pulumi:"maxSizeGb"`
-	Name            *string `pulumi:"name"`
-	Region          *string `pulumi:"region"`
-	SecretAccessKey string  `pulumi:"secretAccessKey"`
-	Status          string  `pulumi:"status"`
+	// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+	AccessKeyId string `pulumi:"accessKeyId"`
+	// The endpoint of the Object Store
+	BucketUrl string `pulumi:"bucketUrl"`
+	// The ID of the Object Store
+	Id *string `pulumi:"id"`
+	// The maximum size of the Object Store
+	MaxSizeGb int `pulumi:"maxSizeGb"`
+	// The name of the Object Store
+	Name *string `pulumi:"name"`
+	// The region of an existing Object Store
+	Region *string `pulumi:"region"`
+	// The status of the Object Store
+	Status string `pulumi:"status"`
 }
 
 func LookupObjectStoreOutput(ctx *pulumi.Context, args LookupObjectStoreOutputArgs, opts ...pulumi.InvokeOption) LookupObjectStoreResultOutput {
@@ -58,10 +91,12 @@ func LookupObjectStoreOutput(ctx *pulumi.Context, args LookupObjectStoreOutputAr
 
 // A collection of arguments for invoking getObjectStore.
 type LookupObjectStoreOutputArgs struct {
-	Id        pulumi.StringPtrInput `pulumi:"id"`
-	MaxSizeGb pulumi.IntPtrInput    `pulumi:"maxSizeGb"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
-	Region    pulumi.StringPtrInput `pulumi:"region"`
+	// The ID of the Object Store
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the Object Store
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The region of an existing Object Store
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupObjectStoreOutputArgs) ElementType() reflect.Type {
@@ -83,38 +118,37 @@ func (o LookupObjectStoreResultOutput) ToLookupObjectStoreResultOutputWithContex
 	return o
 }
 
+// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
 func (o LookupObjectStoreResultOutput) AccessKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.AccessKeyId }).(pulumi.StringOutput)
 }
 
-func (o LookupObjectStoreResultOutput) Endpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.Endpoint }).(pulumi.StringOutput)
+// The endpoint of the Object Store
+func (o LookupObjectStoreResultOutput) BucketUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.BucketUrl }).(pulumi.StringOutput)
 }
 
-func (o LookupObjectStoreResultOutput) GeneratedName() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.GeneratedName }).(pulumi.StringOutput)
-}
-
+// The ID of the Object Store
 func (o LookupObjectStoreResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupObjectStoreResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupObjectStoreResultOutput) MaxSizeGb() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v LookupObjectStoreResult) *int { return v.MaxSizeGb }).(pulumi.IntPtrOutput)
+// The maximum size of the Object Store
+func (o LookupObjectStoreResultOutput) MaxSizeGb() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupObjectStoreResult) int { return v.MaxSizeGb }).(pulumi.IntOutput)
 }
 
+// The name of the Object Store
 func (o LookupObjectStoreResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupObjectStoreResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The region of an existing Object Store
 func (o LookupObjectStoreResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupObjectStoreResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
-func (o LookupObjectStoreResultOutput) SecretAccessKey() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.SecretAccessKey }).(pulumi.StringOutput)
-}
-
+// The status of the Object Store
 func (o LookupObjectStoreResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupObjectStoreResult) string { return v.Status }).(pulumi.StringOutput)
 }

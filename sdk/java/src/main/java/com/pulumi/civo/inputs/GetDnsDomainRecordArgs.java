@@ -13,16 +13,32 @@ public final class GetDnsDomainRecordArgs extends com.pulumi.resources.InvokeArg
 
     public static final GetDnsDomainRecordArgs Empty = new GetDnsDomainRecordArgs();
 
+    /**
+     * The ID of the domain
+     * 
+     */
     @Import(name="domainId", required=true)
     private Output<String> domainId;
 
+    /**
+     * @return The ID of the domain
+     * 
+     */
     public Output<String> domainId() {
         return this.domainId;
     }
 
+    /**
+     * The name of the record
+     * 
+     */
     @Import(name="name", required=true)
     private Output<String> name;
 
+    /**
+     * @return The name of the record
+     * 
+     */
     public Output<String> name() {
         return this.name;
     }
@@ -52,20 +68,44 @@ public final class GetDnsDomainRecordArgs extends com.pulumi.resources.InvokeArg
             $ = new GetDnsDomainRecordArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param domainId The ID of the domain
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainId(Output<String> domainId) {
             $.domainId = domainId;
             return this;
         }
 
+        /**
+         * @param domainId The ID of the domain
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainId(String domainId) {
             return domainId(Output.of(domainId));
         }
 
+        /**
+         * @param name The name of the record
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The name of the record
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

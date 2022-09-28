@@ -17,23 +17,47 @@ public final class GetInstancesPlainArgs extends com.pulumi.resources.InvokeArgs
 
     public static final GetInstancesPlainArgs Empty = new GetInstancesPlainArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable List<GetInstancesFilter> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<List<GetInstancesFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * If used, all instances will be from the provided region
+     * 
+     */
     @Import(name="region")
     private @Nullable String region;
 
+    /**
+     * @return If used, all instances will be from the provided region
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable List<GetInstancesSort> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<List<GetInstancesSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -64,25 +88,55 @@ public final class GetInstancesPlainArgs extends com.pulumi.resources.InvokeArgs
             $ = new GetInstancesPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable List<GetInstancesFilter> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetInstancesFilter... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param region If used, all instances will be from the provided region
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable List<GetInstancesSort> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetInstancesSort... sorts) {
             return sorts(List.of(sorts));
         }

@@ -18,23 +18,47 @@ public final class GetDiskImageArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDiskImageArgs Empty = new GetDiskImageArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<GetDiskImageFilterArgs>> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<Output<List<GetDiskImageFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return If is used, all disk image will be from this region. Required if no region is set in provider.
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable Output<List<GetDiskImageSortArgs>> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<Output<List<GetDiskImageSortArgs>>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -65,37 +89,85 @@ public final class GetDiskImageArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetDiskImageArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<GetDiskImageFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<GetDiskImageFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetDiskImageFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param region If is used, all disk image will be from this region. Required if no region is set in provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region If is used, all disk image will be from this region. Required if no region is set in provider.
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable Output<List<GetDiskImageSortArgs>> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(List<GetDiskImageSortArgs> sorts) {
             return sorts(Output.of(sorts));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetDiskImageSortArgs... sorts) {
             return sorts(List.of(sorts));
         }

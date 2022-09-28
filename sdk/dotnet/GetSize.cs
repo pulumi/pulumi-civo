@@ -15,20 +15,24 @@ namespace Pulumi.Civo
         /// Retrieves information about the sizes that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Task<GetSizeResult> InvokeAsync(GetSizeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieves information about the sizes that Civo supports, with the ability to filter the results.
         /// </summary>
         public static Output<GetSizeResult> Invoke(GetSizeInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetSizeArgs : Pulumi.InvokeArgs
+    public sealed class GetSizeArgs : global::Pulumi.InvokeArgs
     {
         [Input("filters")]
         private List<Inputs.GetSizeFilterArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public List<Inputs.GetSizeFilterArgs> Filters
         {
             get => _filters ?? (_filters = new List<Inputs.GetSizeFilterArgs>());
@@ -37,6 +41,10 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private List<Inputs.GetSizeSortArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public List<Inputs.GetSizeSortArgs> Sorts
         {
             get => _sorts ?? (_sorts = new List<Inputs.GetSizeSortArgs>());
@@ -46,12 +54,17 @@ namespace Pulumi.Civo
         public GetSizeArgs()
         {
         }
+        public static new GetSizeArgs Empty => new GetSizeArgs();
     }
 
-    public sealed class GetSizeInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetSizeInvokeArgs : global::Pulumi.InvokeArgs
     {
         [Input("filters")]
         private InputList<Inputs.GetSizeFilterInputArgs>? _filters;
+
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public InputList<Inputs.GetSizeFilterInputArgs> Filters
         {
             get => _filters ?? (_filters = new InputList<Inputs.GetSizeFilterInputArgs>());
@@ -60,6 +73,10 @@ namespace Pulumi.Civo
 
         [Input("sorts")]
         private InputList<Inputs.GetSizeSortInputArgs>? _sorts;
+
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public InputList<Inputs.GetSizeSortInputArgs> Sorts
         {
             get => _sorts ?? (_sorts = new InputList<Inputs.GetSizeSortInputArgs>());
@@ -69,18 +86,25 @@ namespace Pulumi.Civo
         public GetSizeInvokeArgs()
         {
         }
+        public static new GetSizeInvokeArgs Empty => new GetSizeInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetSizeResult
     {
+        /// <summary>
+        /// One or more key/value pairs on which to filter results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetSizeFilterResult> Filters;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly ImmutableArray<Outputs.GetSizeSizeResult> Sizes;
+        /// <summary>
+        /// One or more key/direction pairs on which to sort results
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetSizeSortResult> Sorts;
 
         [OutputConstructor]

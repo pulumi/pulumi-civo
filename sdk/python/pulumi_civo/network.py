@@ -144,7 +144,7 @@ class Network(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -175,7 +175,7 @@ class Network(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -275,7 +275,7 @@ class Network(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
         The region of the network
         """

@@ -10,27 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class KubernetesClusterPoolsGetArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterPoolsGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("instanceNames")]
         private InputList<string>? _instanceNames;
+
+        /// <summary>
+        /// Instance names in the nodepool
+        /// </summary>
         public InputList<string> InstanceNames
         {
             get => _instanceNames ?? (_instanceNames = new InputList<string>());
             set => _instanceNames = value;
         }
 
+        /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
+        /// <summary>
+        /// Number of nodes in the nodepool
+        /// </summary>
         [Input("nodeCount", required: true)]
         public Input<int> NodeCount { get; set; } = null!;
 
+        /// <summary>
+        /// Size of the nodes in the nodepool
+        /// </summary>
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
 
         public KubernetesClusterPoolsGetArgs()
         {
         }
+        public static new KubernetesClusterPoolsGetArgs Empty => new KubernetesClusterPoolsGetArgs();
     }
 }

@@ -14,27 +14,28 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSizeResult {
-    private final @Nullable List<GetSizeFilter> filters;
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
+    private @Nullable List<GetSizeFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final List<GetSizeSize> sizes;
-    private final @Nullable List<GetSizeSort> sorts;
+    private String id;
+    private List<GetSizeSize> sizes;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
+    private @Nullable List<GetSizeSort> sorts;
 
-    @CustomType.Constructor
-    private GetSizeResult(
-        @CustomType.Parameter("filters") @Nullable List<GetSizeFilter> filters,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("sizes") List<GetSizeSize> sizes,
-        @CustomType.Parameter("sorts") @Nullable List<GetSizeSort> sorts) {
-        this.filters = filters;
-        this.id = id;
-        this.sizes = sizes;
-        this.sorts = sorts;
-    }
-
+    private GetSizeResult() {}
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetSizeFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -48,6 +49,10 @@ public final class GetSizeResult {
     public List<GetSizeSize> sizes() {
         return this.sizes;
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetSizeSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }
@@ -59,17 +64,13 @@ public final class GetSizeResult {
     public static Builder builder(GetSizeResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<GetSizeFilter> filters;
         private String id;
         private List<GetSizeSize> sizes;
         private @Nullable List<GetSizeSort> sorts;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetSizeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filters = defaults.filters;
@@ -78,6 +79,7 @@ public final class GetSizeResult {
     	      this.sorts = defaults.sorts;
         }
 
+        @CustomType.Setter
         public Builder filters(@Nullable List<GetSizeFilter> filters) {
             this.filters = filters;
             return this;
@@ -85,10 +87,12 @@ public final class GetSizeResult {
         public Builder filters(GetSizeFilter... filters) {
             return filters(List.of(filters));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder sizes(List<GetSizeSize> sizes) {
             this.sizes = Objects.requireNonNull(sizes);
             return this;
@@ -96,14 +100,21 @@ public final class GetSizeResult {
         public Builder sizes(GetSizeSize... sizes) {
             return sizes(List.of(sizes));
         }
+        @CustomType.Setter
         public Builder sorts(@Nullable List<GetSizeSort> sorts) {
             this.sorts = sorts;
             return this;
         }
         public Builder sorts(GetSizeSort... sorts) {
             return sorts(List.of(sorts));
-        }        public GetSizeResult build() {
-            return new GetSizeResult(filters, id, sizes, sorts);
+        }
+        public GetSizeResult build() {
+            final var o = new GetSizeResult();
+            o.filters = filters;
+            o.id = id;
+            o.sizes = sizes;
+            o.sorts = sorts;
+            return o;
         }
     }
 }

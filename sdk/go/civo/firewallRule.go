@@ -15,19 +15,19 @@ import (
 //
 // ## Import
 //
-// # using firewall_id:firewall_rule_id
+// using firewall_id:firewall_rule_id
 //
 // ```sh
-//  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
+//
+//	$ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
+//
 // ```
 type FirewallRule struct {
 	pulumi.CustomResourceState
 
-	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-	// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringOutput `pulumi:"action"`
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayOutput `pulumi:"cidrs"`
 	// The direction of the rule can be ingress or egress
 	Direction pulumi.StringOutput `pulumi:"direction"`
@@ -86,11 +86,9 @@ func GetFirewallRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallRule resources.
 type firewallRuleState struct {
-	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-	// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action *string `pulumi:"action"`
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
 	// The direction of the rule can be ingress or egress
 	Direction *string `pulumi:"direction"`
@@ -109,11 +107,9 @@ type firewallRuleState struct {
 }
 
 type FirewallRuleState struct {
-	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-	// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringPtrInput
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
 	// The direction of the rule can be ingress or egress
 	Direction pulumi.StringPtrInput
@@ -136,11 +132,9 @@ func (FirewallRuleState) ElementType() reflect.Type {
 }
 
 type firewallRuleArgs struct {
-	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-	// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action string `pulumi:"action"`
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
 	// The direction of the rule can be ingress or egress
 	Direction string `pulumi:"direction"`
@@ -160,11 +154,9 @@ type firewallRuleArgs struct {
 
 // The set of arguments for constructing a FirewallRule resource.
 type FirewallRuleArgs struct {
-	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-	// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 	Action pulumi.StringInput
-	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-	// to open just for a specific IP address)
+	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput
 	// The direction of the rule can be ingress or egress
 	Direction pulumi.StringInput
@@ -208,7 +200,7 @@ func (i *FirewallRule) ToFirewallRuleOutputWithContext(ctx context.Context) Fire
 // FirewallRuleArrayInput is an input type that accepts FirewallRuleArray and FirewallRuleArrayOutput values.
 // You can construct a concrete instance of `FirewallRuleArrayInput` via:
 //
-//          FirewallRuleArray{ FirewallRuleArgs{...} }
+//	FirewallRuleArray{ FirewallRuleArgs{...} }
 type FirewallRuleArrayInput interface {
 	pulumi.Input
 
@@ -233,7 +225,7 @@ func (i FirewallRuleArray) ToFirewallRuleArrayOutputWithContext(ctx context.Cont
 // FirewallRuleMapInput is an input type that accepts FirewallRuleMap and FirewallRuleMapOutput values.
 // You can construct a concrete instance of `FirewallRuleMapInput` via:
 //
-//          FirewallRuleMap{ "key": FirewallRuleArgs{...} }
+//	FirewallRuleMap{ "key": FirewallRuleArgs{...} }
 type FirewallRuleMapInput interface {
 	pulumi.Input
 
@@ -269,14 +261,12 @@ func (o FirewallRuleOutput) ToFirewallRuleOutputWithContext(ctx context.Context)
 	return o
 }
 
-// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
 func (o FirewallRuleOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallRule) pulumi.StringOutput { return v.Action }).(pulumi.StringOutput)
 }
 
-// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-// to open just for a specific IP address)
+// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 func (o FirewallRuleOutput) Cidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *FirewallRule) pulumi.StringArrayOutput { return v.Cidrs }).(pulumi.StringArrayOutput)
 }

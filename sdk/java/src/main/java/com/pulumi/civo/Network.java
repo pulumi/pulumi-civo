@@ -12,7 +12,6 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -50,7 +49,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using ID
+ * using ID
  * 
  * ```sh
  *  $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -106,14 +105,14 @@ public class Network extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return The region of the network
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
 
     /**

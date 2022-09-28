@@ -16,16 +16,32 @@ public final class GetInstancesSizePlainArgs extends com.pulumi.resources.Invoke
 
     public static final GetInstancesSizePlainArgs Empty = new GetInstancesSizePlainArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable List<GetInstancesSizeFilter> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<List<GetInstancesSizeFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable List<GetInstancesSizeSort> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<List<GetInstancesSizeSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -55,20 +71,44 @@ public final class GetInstancesSizePlainArgs extends com.pulumi.resources.Invoke
             $ = new GetInstancesSizePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable List<GetInstancesSizeFilter> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetInstancesSizeFilter... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable List<GetInstancesSizeSort> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetInstancesSizeSort... sorts) {
             return sorts(List.of(sorts));
         }

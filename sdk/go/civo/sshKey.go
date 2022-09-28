@@ -19,39 +19,44 @@ import (
 // package main
 //
 // import (
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewSshKey(ctx, "my-user", &civo.SshKeyArgs{
-// 			PublicKey: readFileOrPanic("~/.ssh/id_rsa.pub"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.NewSshKey(ctx, "my-user", &civo.SshKeyArgs{
+//				PublicKey: readFileOrPanic("~/.ssh/id_rsa.pub"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// # using ID
+// using ID
 //
 // ```sh
-//  $ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
+//
+//	$ pulumi import civo:index/sshKey:SshKey mykey 87ca2ee4-57d3-4420-b9b6-411b0b4b2a0e
+//
 // ```
 type SshKey struct {
 	pulumi.CustomResourceState
@@ -158,7 +163,7 @@ func (i *SshKey) ToSshKeyOutputWithContext(ctx context.Context) SshKeyOutput {
 // SshKeyArrayInput is an input type that accepts SshKeyArray and SshKeyArrayOutput values.
 // You can construct a concrete instance of `SshKeyArrayInput` via:
 //
-//          SshKeyArray{ SshKeyArgs{...} }
+//	SshKeyArray{ SshKeyArgs{...} }
 type SshKeyArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +188,7 @@ func (i SshKeyArray) ToSshKeyArrayOutputWithContext(ctx context.Context) SshKeyA
 // SshKeyMapInput is an input type that accepts SshKeyMap and SshKeyMapOutput values.
 // You can construct a concrete instance of `SshKeyMapInput` via:
 //
-//          SshKeyMap{ "key": SshKeyArgs{...} }
+//	SshKeyMap{ "key": SshKeyArgs{...} }
 type SshKeyMapInput interface {
 	pulumi.Input
 

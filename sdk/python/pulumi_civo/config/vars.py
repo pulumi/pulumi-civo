@@ -16,6 +16,13 @@ __config__ = pulumi.Config('civo')
 
 class _ExportableConfig(types.ModuleType):
     @property
+    def api_endpoint(self) -> Optional[str]:
+        """
+        The Base URL to use for CIVO API.
+        """
+        return __config__.get('apiEndpoint')
+
+    @property
     def region(self) -> Optional[str]:
         """
         If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

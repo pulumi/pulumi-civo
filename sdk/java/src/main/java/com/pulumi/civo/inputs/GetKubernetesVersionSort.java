@@ -14,16 +14,32 @@ public final class GetKubernetesVersionSort extends com.pulumi.resources.InvokeA
 
     public static final GetKubernetesVersionSort Empty = new GetKubernetesVersionSort();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable String direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -53,11 +69,23 @@ public final class GetKubernetesVersionSort extends com.pulumi.resources.InvokeA
             $ = new GetKubernetesVersionSort(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable String direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param key Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;

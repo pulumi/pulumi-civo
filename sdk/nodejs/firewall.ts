@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -16,12 +18,53 @@ import * as utilities from "./utilities";
  * // Create a network
  * const customNet = new civo.Network("customNet", {label: "my-custom-network"});
  * // Create a firewall
- * const www = new civo.Firewall("www", {networkId: customNet.id});
+ * const wwwFirewall = new civo.Firewall("wwwFirewall", {networkId: customNet.id});
+ * // Create a firewall with the default rules
+ * const wwwIndex_firewallFirewall = new civo.Firewall("wwwIndex/firewallFirewall", {
+ *     networkId: customNet.id,
+ *     createDefaultRules: true,
+ * });
+ * // Create a firewall withouth the default rules but with a custom rule
+ * const wwwCivoIndex_firewallFirewall = new civo.Firewall("wwwCivoIndex/firewallFirewall", {
+ *     networkId: customNet.id,
+ *     createDefaultRules: false,
+ *     ingressRules: [
+ *         {
+ *             label: "k8s",
+ *             protocol: "tcp",
+ *             portRange: "6443",
+ *             cidrs: [
+ *                 "192.168.1.1/32",
+ *                 "192.168.10.4/32",
+ *                 "192.168.10.10/32",
+ *             ],
+ *             action: "allow",
+ *         },
+ *         {
+ *             label: "ssh",
+ *             protocol: "tcp",
+ *             portRange: "22",
+ *             cidrs: [
+ *                 "192.168.1.1/32",
+ *                 "192.168.10.4/32",
+ *                 "192.168.10.10/32",
+ *             ],
+ *             action: "allow",
+ *         },
+ *     ],
+ *     egressRules: [{
+ *         label: "all",
+ *         protocol: "tcp",
+ *         portRange: "1-65535",
+ *         cidrs: ["0.0.0.0/0"],
+ *         action: "allow",
+ *     }],
+ * });
  * ```
  *
  * ## Import
  *
- * # using ID
+ * using ID
  *
  * ```sh
  *  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -56,9 +99,17 @@ export class Firewall extends pulumi.CustomResource {
     }
 
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     public readonly createDefaultRules!: pulumi.Output<boolean | undefined>;
+    /**
+     * The egress rules, this is a list of rules that will be applied to the firewall
+     */
+    public readonly egressRules!: pulumi.Output<outputs.FirewallEgressRule[]>;
+    /**
+     * The ingress rules, this is a list of rules that will be applied to the firewall
+     */
+    public readonly ingressRules!: pulumi.Output<outputs.FirewallIngressRule[]>;
     /**
      * The firewall name
      */
@@ -86,12 +137,16 @@ export class Firewall extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FirewallState | undefined;
             resourceInputs["createDefaultRules"] = state ? state.createDefaultRules : undefined;
+            resourceInputs["egressRules"] = state ? state.egressRules : undefined;
+            resourceInputs["ingressRules"] = state ? state.ingressRules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as FirewallArgs | undefined;
             resourceInputs["createDefaultRules"] = args ? args.createDefaultRules : undefined;
+            resourceInputs["egressRules"] = args ? args.egressRules : undefined;
+            resourceInputs["ingressRules"] = args ? args.ingressRules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
@@ -106,9 +161,17 @@ export class Firewall extends pulumi.CustomResource {
  */
 export interface FirewallState {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
+    /**
+     * The egress rules, this is a list of rules that will be applied to the firewall
+     */
+    egressRules?: pulumi.Input<pulumi.Input<inputs.FirewallEgressRule>[]>;
+    /**
+     * The ingress rules, this is a list of rules that will be applied to the firewall
+     */
+    ingressRules?: pulumi.Input<pulumi.Input<inputs.FirewallIngressRule>[]>;
     /**
      * The firewall name
      */
@@ -128,9 +191,17 @@ export interface FirewallState {
  */
 export interface FirewallArgs {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
+    /**
+     * The egress rules, this is a list of rules that will be applied to the firewall
+     */
+    egressRules?: pulumi.Input<pulumi.Input<inputs.FirewallEgressRule>[]>;
+    /**
+     * The ingress rules, this is a list of rules that will be applied to the firewall
+     */
+    ingressRules?: pulumi.Input<pulumi.Input<inputs.FirewallIngressRule>[]>;
     /**
      * The firewall name
      */

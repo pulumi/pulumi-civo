@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -43,8 +44,17 @@ export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getInstances.
  */
 export interface GetInstancesArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: inputs.GetInstancesFilter[];
+    /**
+     * If used, all instances will be from the provided region
+     */
     region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: inputs.GetInstancesSort[];
 }
 
@@ -52,13 +62,22 @@ export interface GetInstancesArgs {
  * A collection of values returned by getInstances.
  */
 export interface GetInstancesResult {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetInstancesFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly instances: outputs.GetInstancesInstance[];
+    /**
+     * If used, all instances will be from the provided region
+     */
     readonly region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetInstancesSort[];
 }
 
@@ -70,7 +89,16 @@ export function getInstancesOutput(args?: GetInstancesOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getInstances.
  */
 export interface GetInstancesOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetInstancesFilterArgs>[]>;
+    /**
+     * If used, all instances will be from the provided region
+     */
     region?: pulumi.Input<string>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetInstancesSortArgs>[]>;
 }

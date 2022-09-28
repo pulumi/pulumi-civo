@@ -11,32 +11,15 @@ import java.util.Objects;
 
 @CustomType
 public final class GetSizeSize {
-    private final Integer cpu;
-    private final String description;
-    private final Integer disk;
-    private final String name;
-    private final Integer ram;
-    private final Boolean selectable;
-    private final String type;
+    private Integer cpu;
+    private String description;
+    private Integer disk;
+    private String name;
+    private Integer ram;
+    private Boolean selectable;
+    private String type;
 
-    @CustomType.Constructor
-    private GetSizeSize(
-        @CustomType.Parameter("cpu") Integer cpu,
-        @CustomType.Parameter("description") String description,
-        @CustomType.Parameter("disk") Integer disk,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("ram") Integer ram,
-        @CustomType.Parameter("selectable") Boolean selectable,
-        @CustomType.Parameter("type") String type) {
-        this.cpu = cpu;
-        this.description = description;
-        this.disk = disk;
-        this.name = name;
-        this.ram = ram;
-        this.selectable = selectable;
-        this.type = type;
-    }
-
+    private GetSizeSize() {}
     public Integer cpu() {
         return this.cpu;
     }
@@ -66,7 +49,7 @@ public final class GetSizeSize {
     public static Builder builder(GetSizeSize defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Integer cpu;
         private String description;
@@ -75,11 +58,7 @@ public final class GetSizeSize {
         private Integer ram;
         private Boolean selectable;
         private String type;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetSizeSize defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cpu = defaults.cpu;
@@ -91,35 +70,51 @@ public final class GetSizeSize {
     	      this.type = defaults.type;
         }
 
+        @CustomType.Setter
         public Builder cpu(Integer cpu) {
             this.cpu = Objects.requireNonNull(cpu);
             return this;
         }
+        @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
             return this;
         }
+        @CustomType.Setter
         public Builder disk(Integer disk) {
             this.disk = Objects.requireNonNull(disk);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder ram(Integer ram) {
             this.ram = Objects.requireNonNull(ram);
             return this;
         }
+        @CustomType.Setter
         public Builder selectable(Boolean selectable) {
             this.selectable = Objects.requireNonNull(selectable);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
-        }        public GetSizeSize build() {
-            return new GetSizeSize(cpu, description, disk, name, ram, selectable, type);
+        }
+        public GetSizeSize build() {
+            final var o = new GetSizeSize();
+            o.cpu = cpu;
+            o.description = description;
+            o.disk = disk;
+            o.name = name;
+            o.ram = ram;
+            o.selectable = selectable;
+            o.type = type;
+            return o;
         }
     }
 }

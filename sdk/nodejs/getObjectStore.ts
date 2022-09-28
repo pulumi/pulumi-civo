@@ -8,6 +8,17 @@ import * as utilities from "./utilities";
  * Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
  *
  * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const backup = pulumi.output(civo.getObjectStore({
+ *     name: "backup-server",
+ * }));
+ * ```
  */
 export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreResult> {
     args = args || {};
@@ -18,7 +29,6 @@ export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOp
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getObjectStore:getObjectStore", {
         "id": args.id,
-        "maxSizeGb": args.maxSizeGb,
         "name": args.name,
         "region": args.region,
     }, opts);
@@ -28,9 +38,17 @@ export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getObjectStore.
  */
 export interface GetObjectStoreArgs {
+    /**
+     * The ID of the Object Store
+     */
     id?: string;
-    maxSizeGb?: number;
+    /**
+     * The name of the Object Store
+     */
     name?: string;
+    /**
+     * The region of an existing Object Store
+     */
     region?: string;
 }
 
@@ -38,14 +56,33 @@ export interface GetObjectStoreArgs {
  * A collection of values returned by getObjectStore.
  */
 export interface GetObjectStoreResult {
+    /**
+     * The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     */
     readonly accessKeyId: string;
-    readonly endpoint: string;
-    readonly generatedName: string;
+    /**
+     * The endpoint of the Object Store
+     */
+    readonly bucketUrl: string;
+    /**
+     * The ID of the Object Store
+     */
     readonly id?: string;
-    readonly maxSizeGb?: number;
+    /**
+     * The maximum size of the Object Store
+     */
+    readonly maxSizeGb: number;
+    /**
+     * The name of the Object Store
+     */
     readonly name?: string;
+    /**
+     * The region of an existing Object Store
+     */
     readonly region?: string;
-    readonly secretAccessKey: string;
+    /**
+     * The status of the Object Store
+     */
     readonly status: string;
 }
 
@@ -57,8 +94,16 @@ export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pul
  * A collection of arguments for invoking getObjectStore.
  */
 export interface GetObjectStoreOutputArgs {
+    /**
+     * The ID of the Object Store
+     */
     id?: pulumi.Input<string>;
-    maxSizeGb?: pulumi.Input<number>;
+    /**
+     * The name of the Object Store
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The region of an existing Object Store
+     */
     region?: pulumi.Input<string>;
 }

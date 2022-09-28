@@ -39,7 +39,13 @@ export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDnsDomainName.
  */
 export interface GetDnsDomainNameArgs {
+    /**
+     * The ID of this resource.
+     */
     id?: string;
+    /**
+     * The name of the domain
+     */
     name?: string;
 }
 
@@ -47,7 +53,13 @@ export interface GetDnsDomainNameArgs {
  * A collection of values returned by getDnsDomainName.
  */
 export interface GetDnsDomainNameResult {
+    /**
+     * The ID of this resource.
+     */
     readonly id?: string;
+    /**
+     * The name of the domain
+     */
     readonly name?: string;
 }
 
@@ -59,6 +71,12 @@ export function getDnsDomainNameOutput(args?: GetDnsDomainNameOutputArgs, opts?:
  * A collection of arguments for invoking getDnsDomainName.
  */
 export interface GetDnsDomainNameOutputArgs {
+    /**
+     * The ID of this resource.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * The name of the domain
+     */
     name?: pulumi.Input<string>;
 }

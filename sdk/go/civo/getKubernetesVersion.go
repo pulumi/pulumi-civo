@@ -18,28 +18,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.GetKubernetesVersion(ctx, &GetKubernetesVersionArgs{
-// 			Filters: []GetKubernetesVersionFilter{
-// 				GetKubernetesVersionFilter{
-// 					Key: "type",
-// 					Values: []string{
-// 						"stable",
-// 					},
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.GetKubernetesVersion(ctx, &GetKubernetesVersionArgs{
+//				Filters: []GetKubernetesVersionFilter{
+//					GetKubernetesVersionFilter{
+//						Key: "type",
+//						Values: []string{
+//							"stable",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, opts ...pulumi.InvokeOption) (*GetKubernetesVersionResult, error) {
 	var rv GetKubernetesVersionResult
@@ -52,15 +55,19 @@ func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, o
 
 // A collection of arguments for invoking getKubernetesVersion.
 type GetKubernetesVersionArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetKubernetesVersionFilter `pulumi:"filters"`
-	Sorts   []GetKubernetesVersionSort   `pulumi:"sorts"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetKubernetesVersionSort `pulumi:"sorts"`
 }
 
 // A collection of values returned by getKubernetesVersion.
 type GetKubernetesVersionResult struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetKubernetesVersionFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
-	Id       string                        `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// One or more key/direction pairs on which to sort results
 	Sorts    []GetKubernetesVersionSort    `pulumi:"sorts"`
 	Versions []GetKubernetesVersionVersion `pulumi:"versions"`
 }
@@ -80,8 +87,10 @@ func GetKubernetesVersionOutput(ctx *pulumi.Context, args GetKubernetesVersionOu
 
 // A collection of arguments for invoking getKubernetesVersion.
 type GetKubernetesVersionOutputArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters GetKubernetesVersionFilterArrayInput `pulumi:"filters"`
-	Sorts   GetKubernetesVersionSortArrayInput   `pulumi:"sorts"`
+	// One or more key/direction pairs on which to sort results
+	Sorts GetKubernetesVersionSortArrayInput `pulumi:"sorts"`
 }
 
 func (GetKubernetesVersionOutputArgs) ElementType() reflect.Type {
@@ -103,6 +112,7 @@ func (o GetKubernetesVersionResultOutput) ToGetKubernetesVersionResultOutputWith
 	return o
 }
 
+// One or more key/value pairs on which to filter results
 func (o GetKubernetesVersionResultOutput) Filters() GetKubernetesVersionFilterArrayOutput {
 	return o.ApplyT(func(v GetKubernetesVersionResult) []GetKubernetesVersionFilter { return v.Filters }).(GetKubernetesVersionFilterArrayOutput)
 }
@@ -112,6 +122,7 @@ func (o GetKubernetesVersionResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubernetesVersionResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// One or more key/direction pairs on which to sort results
 func (o GetKubernetesVersionResultOutput) Sorts() GetKubernetesVersionSortArrayOutput {
 	return o.ApplyT(func(v GetKubernetesVersionResult) []GetKubernetesVersionSort { return v.Sorts }).(GetKubernetesVersionSortArrayOutput)
 }

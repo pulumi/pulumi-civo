@@ -15,44 +15,43 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var defaultNetwork = Civo.GetNetwork.Invoke(new()
     ///     {
-    ///         var defaultNetwork = Output.Create(Civo.GetNetwork.InvokeAsync(new Civo.GetNetworkArgs
-    ///         {
-    ///             Label = "Default",
-    ///         }));
-    ///         // Create volume
-    ///         var db = new Civo.Volume("db", new Civo.VolumeArgs
-    ///         {
-    ///             SizeGb = 5,
-    ///             NetworkId = defaultNetwork.Apply(defaultNetwork =&gt; defaultNetwork.Id),
-    ///         }, new CustomResourceOptions
-    ///         {
-    ///             DependsOn = 
-    ///             {
-    ///                 defaultNetwork,
-    ///             },
-    ///         });
-    ///     }
+    ///         Label = "Default",
+    ///     });
     /// 
-    /// }
+    ///     // Create volume
+    ///     var db = new Civo.Volume("db", new()
+    ///     {
+    ///         SizeGb = 5,
+    ///         NetworkId = defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult.Id),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult),
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/volume:Volume")]
-    public partial class Volume : Pulumi.CustomResource
+    public partial class Volume : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The mount point of the volume (from instance's perspective)
@@ -128,7 +127,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class VolumeArgs : Pulumi.ResourceArgs
+    public sealed class VolumeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// A name that you wish to use to refer to this volume
@@ -157,9 +156,10 @@ namespace Pulumi.Civo
         public VolumeArgs()
         {
         }
+        public static new VolumeArgs Empty => new VolumeArgs();
     }
 
-    public sealed class VolumeState : Pulumi.ResourceArgs
+    public sealed class VolumeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The mount point of the volume (from instance's perspective)
@@ -194,5 +194,6 @@ namespace Pulumi.Civo
         public VolumeState()
         {
         }
+        public static new VolumeState Empty => new VolumeState();
     }
 }

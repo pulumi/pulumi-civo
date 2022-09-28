@@ -6,12 +6,15 @@ package com.pulumi.civo;
 import com.pulumi.civo.FirewallArgs;
 import com.pulumi.civo.Utilities;
 import com.pulumi.civo.inputs.FirewallState;
+import com.pulumi.civo.outputs.FirewallEgressRule;
+import com.pulumi.civo.outputs.FirewallIngressRule;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -29,6 +32,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.civo.NetworkArgs;
  * import com.pulumi.civo.Firewall;
  * import com.pulumi.civo.FirewallArgs;
+ * import com.pulumi.civo.inputs.FirewallIngressRuleArgs;
+ * import com.pulumi.civo.inputs.FirewallEgressRuleArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -46,8 +51,46 @@ import javax.annotation.Nullable;
  *             .label(&#34;my-custom-network&#34;)
  *             .build());
  * 
- *         var www = new Firewall(&#34;www&#34;, FirewallArgs.builder()        
+ *         var wwwFirewall = new Firewall(&#34;wwwFirewall&#34;, FirewallArgs.builder()        
  *             .networkId(customNet.id())
+ *             .build());
+ * 
+ *         var wwwIndex_firewallFirewall = new Firewall(&#34;wwwIndex/firewallFirewall&#34;, FirewallArgs.builder()        
+ *             .networkId(customNet.id())
+ *             .createDefaultRules(true)
+ *             .build());
+ * 
+ *         var wwwCivoIndex_firewallFirewall = new Firewall(&#34;wwwCivoIndex/firewallFirewall&#34;, FirewallArgs.builder()        
+ *             .networkId(customNet.id())
+ *             .createDefaultRules(false)
+ *             .ingressRules(            
+ *                 FirewallIngressRuleArgs.builder()
+ *                     .label(&#34;k8s&#34;)
+ *                     .protocol(&#34;tcp&#34;)
+ *                     .portRange(&#34;6443&#34;)
+ *                     .cidrs(                    
+ *                         &#34;192.168.1.1/32&#34;,
+ *                         &#34;192.168.10.4/32&#34;,
+ *                         &#34;192.168.10.10/32&#34;)
+ *                     .action(&#34;allow&#34;)
+ *                     .build(),
+ *                 FirewallIngressRuleArgs.builder()
+ *                     .label(&#34;ssh&#34;)
+ *                     .protocol(&#34;tcp&#34;)
+ *                     .portRange(&#34;22&#34;)
+ *                     .cidrs(                    
+ *                         &#34;192.168.1.1/32&#34;,
+ *                         &#34;192.168.10.4/32&#34;,
+ *                         &#34;192.168.10.10/32&#34;)
+ *                     .action(&#34;allow&#34;)
+ *                     .build())
+ *             .egressRules(FirewallEgressRuleArgs.builder()
+ *                 .label(&#34;all&#34;)
+ *                 .protocol(&#34;tcp&#34;)
+ *                 .portRange(&#34;1-65535&#34;)
+ *                 .cidrs(&#34;0.0.0.0/0&#34;)
+ *                 .action(&#34;allow&#34;)
+ *                 .build())
  *             .build());
  * 
  *     }
@@ -56,7 +99,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using ID
+ * using ID
  * 
  * ```sh
  *  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -66,18 +109,46 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/firewall:Firewall")
 public class Firewall extends com.pulumi.resources.CustomResource {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      * 
      */
     @Export(name="createDefaultRules", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> createDefaultRules;
 
     /**
-     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      * 
      */
     public Output<Optional<Boolean>> createDefaultRules() {
         return Codegen.optional(this.createDefaultRules);
+    }
+    /**
+     * The egress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    @Export(name="egressRules", type=List.class, parameters={FirewallEgressRule.class})
+    private Output<List<FirewallEgressRule>> egressRules;
+
+    /**
+     * @return The egress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    public Output<List<FirewallEgressRule>> egressRules() {
+        return this.egressRules;
+    }
+    /**
+     * The ingress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    @Export(name="ingressRules", type=List.class, parameters={FirewallIngressRule.class})
+    private Output<List<FirewallIngressRule>> ingressRules;
+
+    /**
+     * @return The ingress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    public Output<List<FirewallIngressRule>> ingressRules() {
+        return this.ingressRules;
     }
     /**
      * The firewall name

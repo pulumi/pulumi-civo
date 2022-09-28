@@ -16,16 +16,32 @@ public final class GetKubernetesVersionPlainArgs extends com.pulumi.resources.In
 
     public static final GetKubernetesVersionPlainArgs Empty = new GetKubernetesVersionPlainArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable List<GetKubernetesVersionFilter> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<List<GetKubernetesVersionFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable List<GetKubernetesVersionSort> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<List<GetKubernetesVersionSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -55,20 +71,44 @@ public final class GetKubernetesVersionPlainArgs extends com.pulumi.resources.In
             $ = new GetKubernetesVersionPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable List<GetKubernetesVersionFilter> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetKubernetesVersionFilter... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable List<GetKubernetesVersionSort> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetKubernetesVersionSort... sorts) {
             return sorts(List.of(sorts));
         }

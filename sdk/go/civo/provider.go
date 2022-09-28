@@ -17,6 +17,8 @@ import (
 type Provider struct {
 	pulumi.ProviderResourceState
 
+	// The Base URL to use for CIVO API.
+	ApiEndpoint pulumi.StringPtrOutput `pulumi:"apiEndpoint"`
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -40,6 +42,8 @@ func NewProvider(ctx *pulumi.Context,
 }
 
 type providerArgs struct {
+	// The Base URL to use for CIVO API.
+	ApiEndpoint *string `pulumi:"apiEndpoint"`
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region *string `pulumi:"region"`
@@ -49,6 +53,8 @@ type providerArgs struct {
 
 // The set of arguments for constructing a Provider resource.
 type ProviderArgs struct {
+	// The Base URL to use for CIVO API.
+	ApiEndpoint pulumi.StringPtrInput
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region pulumi.StringPtrInput
@@ -91,6 +97,11 @@ func (o ProviderOutput) ToProviderOutput() ProviderOutput {
 
 func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) ProviderOutput {
 	return o
+}
+
+// The Base URL to use for CIVO API.
+func (o ProviderOutput) ApiEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiEndpoint }).(pulumi.StringPtrOutput)
 }
 
 // If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

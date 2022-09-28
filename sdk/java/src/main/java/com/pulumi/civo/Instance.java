@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using ID
+ * using ID
  * 
  * ```sh
  *  $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
@@ -87,16 +87,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.diskImage;
     }
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-     * to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
     @Export(name="firewallId", type=String.class, parameters={})
     private Output<String> firewallId;
 
     /**
-     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
-     * to all)
+     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
     public Output<String> firewallId() {
@@ -131,16 +129,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.initialPassword;
     }
     /**
-     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-     * fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
      * 
      */
     @Export(name="initialUser", type=String.class, parameters={})
     private Output</* @Nullable */ String> initialUser;
 
     /**
-     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
-     * fallback to civo)
+     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
      * 
      */
     public Output<Optional<String>> initialUser() {
@@ -245,32 +241,28 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.region);
     }
     /**
-     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-     * unspecified)
+     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
     @Export(name="reverseDns", type=String.class, parameters={})
     private Output</* @Nullable */ String> reverseDns;
 
     /**
-     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
-     * unspecified)
+     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
     public Output<Optional<String>> reverseDns() {
         return Codegen.optional(this.reverseDns);
     }
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-     * read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     @Export(name="script", type=String.class, parameters={})
     private Output</* @Nullable */ String> script;
 
     /**
-     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
-     * read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     public Output<Optional<String>> script() {
@@ -319,16 +311,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.sourceType;
     }
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-     * random password will be set and returned in the initial_password field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
     @Export(name="sshkeyId", type=String.class, parameters={})
     private Output</* @Nullable */ String> sshkeyId;
 
     /**
-     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
-     * random password will be set and returned in the initial_password field)
+     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
     public Output<Optional<String>> sshkeyId() {
@@ -413,6 +403,9 @@ public class Instance extends com.pulumi.resources.CustomResource {
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
+            .additionalSecretOutputs(List.of(
+                "initialPassword"
+            ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);
     }

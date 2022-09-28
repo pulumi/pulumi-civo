@@ -13,32 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesFilter {
-    private final @Nullable Boolean all;
-    private final String key;
-    private final @Nullable String matchBy;
-    private final List<String> values;
+    /**
+     * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
+    private @Nullable Boolean all;
+    /**
+     * @return Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
+    private String key;
+    /**
+     * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
+    private @Nullable String matchBy;
+    /**
+     * @return Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
+    private List<String> values;
 
-    @CustomType.Constructor
-    private GetInstancesFilter(
-        @CustomType.Parameter("all") @Nullable Boolean all,
-        @CustomType.Parameter("key") String key,
-        @CustomType.Parameter("matchBy") @Nullable String matchBy,
-        @CustomType.Parameter("values") List<String> values) {
-        this.all = all;
-        this.key = key;
-        this.matchBy = matchBy;
-        this.values = values;
-    }
-
+    private GetInstancesFilter() {}
+    /**
+     * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
     public Optional<Boolean> all() {
         return Optional.ofNullable(this.all);
     }
+    /**
+     * @return Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
     public String key() {
         return this.key;
     }
+    /**
+     * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
     public Optional<String> matchBy() {
         return Optional.ofNullable(this.matchBy);
     }
+    /**
+     * @return Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
     public List<String> values() {
         return this.values;
     }
@@ -50,17 +71,13 @@ public final class GetInstancesFilter {
     public static Builder builder(GetInstancesFilter defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean all;
         private String key;
         private @Nullable String matchBy;
         private List<String> values;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetInstancesFilter defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.all = defaults.all;
@@ -69,26 +86,36 @@ public final class GetInstancesFilter {
     	      this.values = defaults.values;
         }
 
+        @CustomType.Setter
         public Builder all(@Nullable Boolean all) {
             this.all = all;
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
         }
+        @CustomType.Setter
         public Builder matchBy(@Nullable String matchBy) {
             this.matchBy = matchBy;
             return this;
         }
+        @CustomType.Setter
         public Builder values(List<String> values) {
             this.values = Objects.requireNonNull(values);
             return this;
         }
         public Builder values(String... values) {
             return values(List.of(values));
-        }        public GetInstancesFilter build() {
-            return new GetInstancesFilter(all, key, matchBy, values);
+        }
+        public GetInstancesFilter build() {
+            final var o = new GetInstancesFilter();
+            o.all = all;
+            o.key = key;
+            o.matchBy = matchBy;
+            o.values = values;
+            return o;
         }
     }
 }

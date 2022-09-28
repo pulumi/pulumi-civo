@@ -24,19 +24,25 @@ func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getInstances.
 type GetInstancesArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesFilter `pulumi:"filters"`
-	Region  *string              `pulumi:"region"`
-	Sorts   []GetInstancesSort   `pulumi:"sorts"`
+	// If used, all instances will be from the provided region
+	Region *string `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetInstancesSort `pulumi:"sorts"`
 }
 
 // A collection of values returned by getInstances.
 type GetInstancesResult struct {
+	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesFilter `pulumi:"filters"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string                 `pulumi:"id"`
 	Instances []GetInstancesInstance `pulumi:"instances"`
-	Region    *string                `pulumi:"region"`
-	Sorts     []GetInstancesSort     `pulumi:"sorts"`
+	// If used, all instances will be from the provided region
+	Region *string `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts []GetInstancesSort `pulumi:"sorts"`
 }
 
 func GetInstancesOutput(ctx *pulumi.Context, args GetInstancesOutputArgs, opts ...pulumi.InvokeOption) GetInstancesResultOutput {
@@ -54,9 +60,12 @@ func GetInstancesOutput(ctx *pulumi.Context, args GetInstancesOutputArgs, opts .
 
 // A collection of arguments for invoking getInstances.
 type GetInstancesOutputArgs struct {
+	// One or more key/value pairs on which to filter results
 	Filters GetInstancesFilterArrayInput `pulumi:"filters"`
-	Region  pulumi.StringPtrInput        `pulumi:"region"`
-	Sorts   GetInstancesSortArrayInput   `pulumi:"sorts"`
+	// If used, all instances will be from the provided region
+	Region pulumi.StringPtrInput `pulumi:"region"`
+	// One or more key/direction pairs on which to sort results
+	Sorts GetInstancesSortArrayInput `pulumi:"sorts"`
 }
 
 func (GetInstancesOutputArgs) ElementType() reflect.Type {
@@ -78,6 +87,7 @@ func (o GetInstancesResultOutput) ToGetInstancesResultOutputWithContext(ctx cont
 	return o
 }
 
+// One or more key/value pairs on which to filter results
 func (o GetInstancesResultOutput) Filters() GetInstancesFilterArrayOutput {
 	return o.ApplyT(func(v GetInstancesResult) []GetInstancesFilter { return v.Filters }).(GetInstancesFilterArrayOutput)
 }
@@ -91,10 +101,12 @@ func (o GetInstancesResultOutput) Instances() GetInstancesInstanceArrayOutput {
 	return o.ApplyT(func(v GetInstancesResult) []GetInstancesInstance { return v.Instances }).(GetInstancesInstanceArrayOutput)
 }
 
+// If used, all instances will be from the provided region
 func (o GetInstancesResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetInstancesResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// One or more key/direction pairs on which to sort results
 func (o GetInstancesResultOutput) Sorts() GetInstancesSortArrayOutput {
 	return o.ApplyT(func(v GetInstancesResult) []GetInstancesSort { return v.Sorts }).(GetInstancesSortArrayOutput)
 }

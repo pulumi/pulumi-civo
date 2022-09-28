@@ -11,26 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSshKeyResult {
-    private final String fingerprint;
-    private final @Nullable String id;
-    private final @Nullable String name;
+    /**
+     * @return The fingerprint of the public key of the SSH key
+     * 
+     */
+    private String fingerprint;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
+    private @Nullable String id;
+    /**
+     * @return The name of the SSH key
+     * 
+     */
+    private @Nullable String name;
 
-    @CustomType.Constructor
-    private GetSshKeyResult(
-        @CustomType.Parameter("fingerprint") String fingerprint,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("name") @Nullable String name) {
-        this.fingerprint = fingerprint;
-        this.id = id;
-        this.name = name;
-    }
-
+    private GetSshKeyResult() {}
+    /**
+     * @return The fingerprint of the public key of the SSH key
+     * 
+     */
     public String fingerprint() {
         return this.fingerprint;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the SSH key
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -42,16 +57,12 @@ public final class GetSshKeyResult {
     public static Builder builder(GetSshKeyResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String fingerprint;
         private @Nullable String id;
         private @Nullable String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetSshKeyResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.fingerprint = defaults.fingerprint;
@@ -59,19 +70,27 @@ public final class GetSshKeyResult {
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder fingerprint(String fingerprint) {
             this.fingerprint = Objects.requireNonNull(fingerprint);
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
-        }        public GetSshKeyResult build() {
-            return new GetSshKeyResult(fingerprint, id, name);
+        }
+        public GetSshKeyResult build() {
+            final var o = new GetSshKeyResult();
+            o.fingerprint = fingerprint;
+            o.id = id;
+            o.name = name;
+            return o;
         }
     }
 }

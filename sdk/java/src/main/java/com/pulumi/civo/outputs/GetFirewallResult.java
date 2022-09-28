@@ -11,32 +11,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetFirewallResult {
-    private final @Nullable String id;
-    private final @Nullable String name;
-    private final String networkId;
-    private final @Nullable String region;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
+    private @Nullable String id;
+    /**
+     * @return The name of the firewall
+     * 
+     */
+    private @Nullable String name;
+    /**
+     * @return The id of the associated network
+     * 
+     */
+    private String networkId;
+    /**
+     * @return The region where the firewall is
+     * 
+     */
+    private @Nullable String region;
 
-    @CustomType.Constructor
-    private GetFirewallResult(
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("name") @Nullable String name,
-        @CustomType.Parameter("networkId") String networkId,
-        @CustomType.Parameter("region") @Nullable String region) {
-        this.id = id;
-        this.name = name;
-        this.networkId = networkId;
-        this.region = region;
-    }
-
+    private GetFirewallResult() {}
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the firewall
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The id of the associated network
+     * 
+     */
     public String networkId() {
         return this.networkId;
     }
+    /**
+     * @return The region where the firewall is
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -48,17 +69,13 @@ public final class GetFirewallResult {
     public static Builder builder(GetFirewallResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String id;
         private @Nullable String name;
         private String networkId;
         private @Nullable String region;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetFirewallResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
@@ -67,23 +84,33 @@ public final class GetFirewallResult {
     	      this.region = defaults.region;
         }
 
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
         public Builder networkId(String networkId) {
             this.networkId = Objects.requireNonNull(networkId);
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
-        }        public GetFirewallResult build() {
-            return new GetFirewallResult(id, name, networkId, region);
+        }
+        public GetFirewallResult build() {
+            final var o = new GetFirewallResult();
+            o.id = id;
+            o.name = name;
+            o.networkId = networkId;
+            o.region = region;
+            return o;
         }
     }
 }

@@ -11,20 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDiskImageSort {
-    private final @Nullable String direction;
-    private final String key;
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
+    private @Nullable String direction;
+    /**
+     * @return Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
+    private String key;
 
-    @CustomType.Constructor
-    private GetDiskImageSort(
-        @CustomType.Parameter("direction") @Nullable String direction,
-        @CustomType.Parameter("key") String key) {
-        this.direction = direction;
-        this.key = key;
-    }
-
+    private GetDiskImageSort() {}
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
+    /**
+     * @return Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -36,30 +45,32 @@ public final class GetDiskImageSort {
     public static Builder builder(GetDiskImageSort defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String direction;
         private String key;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetDiskImageSort defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.direction = defaults.direction;
     	      this.key = defaults.key;
         }
 
+        @CustomType.Setter
         public Builder direction(@Nullable String direction) {
             this.direction = direction;
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
-        }        public GetDiskImageSort build() {
-            return new GetDiskImageSort(direction, key);
+        }
+        public GetDiskImageSort build() {
+            final var o = new GetDiskImageSort();
+            o.direction = direction;
+            o.key = key;
+            return o;
         }
     }
 }

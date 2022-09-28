@@ -15,16 +15,32 @@ public final class GetRegionSortArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final GetRegionSortArgs Empty = new GetRegionSortArgs();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable Output<String> direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<Output<String>> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
@@ -54,20 +70,44 @@ public final class GetRegionSortArgs extends com.pulumi.resources.ResourceArgs {
             $ = new GetRegionSortArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable Output<String> direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(String direction) {
             return direction(Output.of(direction));
         }
 
+        /**
+         * @param key Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }

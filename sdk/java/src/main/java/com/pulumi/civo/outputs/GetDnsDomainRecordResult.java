@@ -10,51 +10,76 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDnsDomainRecordResult {
-    private final String accountId;
-    private final String createdAt;
-    private final String domainId;
+    /**
+     * @return The ID account of the domain
+     * 
+     */
+    private String accountId;
+    /**
+     * @return The date when it was created in UTC format
+     * 
+     */
+    private String createdAt;
+    /**
+     * @return The ID of the domain
+     * 
+     */
+    private String domainId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final String name;
-    private final Integer priority;
-    private final Integer ttl;
-    private final String type;
-    private final String updatedAt;
-    private final String value;
+    private String id;
+    /**
+     * @return The name of the record
+     * 
+     */
+    private String name;
+    /**
+     * @return The priority of the record
+     * 
+     */
+    private Integer priority;
+    /**
+     * @return How long caching DNS servers should cache this record
+     * 
+     */
+    private Integer ttl;
+    /**
+     * @return The choice of record type from A, CNAME, MX, SRV or TXT
+     * 
+     */
+    private String type;
+    /**
+     * @return The date when it was updated in UTC format
+     * 
+     */
+    private String updatedAt;
+    /**
+     * @return The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+     * 
+     */
+    private String value;
 
-    @CustomType.Constructor
-    private GetDnsDomainRecordResult(
-        @CustomType.Parameter("accountId") String accountId,
-        @CustomType.Parameter("createdAt") String createdAt,
-        @CustomType.Parameter("domainId") String domainId,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("priority") Integer priority,
-        @CustomType.Parameter("ttl") Integer ttl,
-        @CustomType.Parameter("type") String type,
-        @CustomType.Parameter("updatedAt") String updatedAt,
-        @CustomType.Parameter("value") String value) {
-        this.accountId = accountId;
-        this.createdAt = createdAt;
-        this.domainId = domainId;
-        this.id = id;
-        this.name = name;
-        this.priority = priority;
-        this.ttl = ttl;
-        this.type = type;
-        this.updatedAt = updatedAt;
-        this.value = value;
-    }
-
+    private GetDnsDomainRecordResult() {}
+    /**
+     * @return The ID account of the domain
+     * 
+     */
     public String accountId() {
         return this.accountId;
     }
+    /**
+     * @return The date when it was created in UTC format
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The ID of the domain
+     * 
+     */
     public String domainId() {
         return this.domainId;
     }
@@ -65,21 +90,45 @@ public final class GetDnsDomainRecordResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return The name of the record
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The priority of the record
+     * 
+     */
     public Integer priority() {
         return this.priority;
     }
+    /**
+     * @return How long caching DNS servers should cache this record
+     * 
+     */
     public Integer ttl() {
         return this.ttl;
     }
+    /**
+     * @return The choice of record type from A, CNAME, MX, SRV or TXT
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return The date when it was updated in UTC format
+     * 
+     */
     public String updatedAt() {
         return this.updatedAt;
     }
+    /**
+     * @return The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+     * 
+     */
     public String value() {
         return this.value;
     }
@@ -91,7 +140,7 @@ public final class GetDnsDomainRecordResult {
     public static Builder builder(GetDnsDomainRecordResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String accountId;
         private String createdAt;
@@ -103,11 +152,7 @@ public final class GetDnsDomainRecordResult {
         private String type;
         private String updatedAt;
         private String value;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetDnsDomainRecordResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.accountId = defaults.accountId;
@@ -122,47 +167,69 @@ public final class GetDnsDomainRecordResult {
     	      this.value = defaults.value;
         }
 
+        @CustomType.Setter
         public Builder accountId(String accountId) {
             this.accountId = Objects.requireNonNull(accountId);
             return this;
         }
+        @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
             return this;
         }
+        @CustomType.Setter
         public Builder domainId(String domainId) {
             this.domainId = Objects.requireNonNull(domainId);
             return this;
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder priority(Integer priority) {
             this.priority = Objects.requireNonNull(priority);
             return this;
         }
+        @CustomType.Setter
         public Builder ttl(Integer ttl) {
             this.ttl = Objects.requireNonNull(ttl);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
         }
+        @CustomType.Setter
         public Builder updatedAt(String updatedAt) {
             this.updatedAt = Objects.requireNonNull(updatedAt);
             return this;
         }
+        @CustomType.Setter
         public Builder value(String value) {
             this.value = Objects.requireNonNull(value);
             return this;
-        }        public GetDnsDomainRecordResult build() {
-            return new GetDnsDomainRecordResult(accountId, createdAt, domainId, id, name, priority, ttl, type, updatedAt, value);
+        }
+        public GetDnsDomainRecordResult build() {
+            final var o = new GetDnsDomainRecordResult();
+            o.accountId = accountId;
+            o.createdAt = createdAt;
+            o.domainId = domainId;
+            o.id = id;
+            o.name = name;
+            o.priority = priority;
+            o.ttl = ttl;
+            o.type = type;
+            o.updatedAt = updatedAt;
+            o.value = value;
+            return o;
         }
     }
 }

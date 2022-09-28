@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -26,8 +27,17 @@ export function getDiskImage(args?: GetDiskImageArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getDiskImage.
  */
 export interface GetDiskImageArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: inputs.GetDiskImageFilter[];
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
     region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: inputs.GetDiskImageSort[];
 }
 
@@ -36,12 +46,21 @@ export interface GetDiskImageArgs {
  */
 export interface GetDiskImageResult {
     readonly diskimages: outputs.GetDiskImageDiskimage[];
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetDiskImageFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
     readonly region?: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetDiskImageSort[];
 }
 
@@ -53,7 +72,16 @@ export function getDiskImageOutput(args?: GetDiskImageOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getDiskImage.
  */
 export interface GetDiskImageOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetDiskImageFilterArgs>[]>;
+    /**
+     * If is used, all disk image will be from this region. Required if no region is set in provider.
+     */
     region?: pulumi.Input<string>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetDiskImageSortArgs>[]>;
 }

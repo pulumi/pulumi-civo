@@ -15,44 +15,112 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Create a network
+    ///     var customNet = new Civo.Network("customNet", new()
     ///     {
-    ///         // Create a network
-    ///         var customNet = new Civo.Network("customNet", new Civo.NetworkArgs
-    ///         {
-    ///             Label = "my-custom-network",
-    ///         });
-    ///         // Create a firewall
-    ///         var www = new Civo.Firewall("www", new Civo.FirewallArgs
-    ///         {
-    ///             NetworkId = customNet.Id,
-    ///         });
-    ///     }
+    ///         Label = "my-custom-network",
+    ///     });
     /// 
-    /// }
+    ///     // Create a firewall
+    ///     var wwwFirewall = new Civo.Firewall("wwwFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///     });
+    /// 
+    ///     // Create a firewall with the default rules
+    ///     var wwwIndex_firewallFirewall = new Civo.Firewall("wwwIndex/firewallFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///         CreateDefaultRules = true,
+    ///     });
+    /// 
+    ///     // Create a firewall withouth the default rules but with a custom rule
+    ///     var wwwCivoIndex_firewallFirewall = new Civo.Firewall("wwwCivoIndex/firewallFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///         CreateDefaultRules = false,
+    ///         IngressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "k8s",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "6443",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "192.168.1.1/32",
+    ///                     "192.168.10.4/32",
+    ///                     "192.168.10.10/32",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "ssh",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "22",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "192.168.1.1/32",
+    ///                     "192.168.10.4/32",
+    ///                     "192.168.10.10/32",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///         EgressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallEgressRuleArgs
+    ///             {
+    ///                 Label = "all",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "1-65535",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "0.0.0.0/0",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/firewall:Firewall")]
-    public partial class Firewall : Pulumi.CustomResource
+    public partial class Firewall : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Output("createDefaultRules")]
         public Output<bool?> CreateDefaultRules { get; private set; } = null!;
+
+        /// <summary>
+        /// The egress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        [Output("egressRules")]
+        public Output<ImmutableArray<Outputs.FirewallEgressRule>> EgressRules { get; private set; } = null!;
+
+        /// <summary>
+        /// The ingress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        [Output("ingressRules")]
+        public Output<ImmutableArray<Outputs.FirewallIngressRule>> IngressRules { get; private set; } = null!;
 
         /// <summary>
         /// The firewall name
@@ -116,13 +184,37 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class FirewallArgs : Pulumi.ResourceArgs
+    public sealed class FirewallArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }
+
+        [Input("egressRules")]
+        private InputList<Inputs.FirewallEgressRuleArgs>? _egressRules;
+
+        /// <summary>
+        /// The egress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        public InputList<Inputs.FirewallEgressRuleArgs> EgressRules
+        {
+            get => _egressRules ?? (_egressRules = new InputList<Inputs.FirewallEgressRuleArgs>());
+            set => _egressRules = value;
+        }
+
+        [Input("ingressRules")]
+        private InputList<Inputs.FirewallIngressRuleArgs>? _ingressRules;
+
+        /// <summary>
+        /// The ingress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        public InputList<Inputs.FirewallIngressRuleArgs> IngressRules
+        {
+            get => _ingressRules ?? (_ingressRules = new InputList<Inputs.FirewallIngressRuleArgs>());
+            set => _ingressRules = value;
+        }
 
         /// <summary>
         /// The firewall name
@@ -145,15 +237,40 @@ namespace Pulumi.Civo
         public FirewallArgs()
         {
         }
+        public static new FirewallArgs Empty => new FirewallArgs();
     }
 
-    public sealed class FirewallState : Pulumi.ResourceArgs
+    public sealed class FirewallState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }
+
+        [Input("egressRules")]
+        private InputList<Inputs.FirewallEgressRuleGetArgs>? _egressRules;
+
+        /// <summary>
+        /// The egress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        public InputList<Inputs.FirewallEgressRuleGetArgs> EgressRules
+        {
+            get => _egressRules ?? (_egressRules = new InputList<Inputs.FirewallEgressRuleGetArgs>());
+            set => _egressRules = value;
+        }
+
+        [Input("ingressRules")]
+        private InputList<Inputs.FirewallIngressRuleGetArgs>? _ingressRules;
+
+        /// <summary>
+        /// The ingress rules, this is a list of rules that will be applied to the firewall
+        /// </summary>
+        public InputList<Inputs.FirewallIngressRuleGetArgs> IngressRules
+        {
+            get => _ingressRules ?? (_ingressRules = new InputList<Inputs.FirewallIngressRuleGetArgs>());
+            set => _ingressRules = value;
+        }
 
         /// <summary>
         /// The firewall name
@@ -176,5 +293,6 @@ namespace Pulumi.Civo
         public FirewallState()
         {
         }
+        public static new FirewallState Empty => new FirewallState();
     }
 }

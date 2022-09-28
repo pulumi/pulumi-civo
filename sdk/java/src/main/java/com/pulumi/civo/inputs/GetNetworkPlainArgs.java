@@ -14,23 +14,47 @@ public final class GetNetworkPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetNetworkPlainArgs Empty = new GetNetworkPlainArgs();
 
+    /**
+     * The ID of this resource.
+     * 
+     */
     @Import(name="id")
     private @Nullable String id;
 
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The label of an existing network
+     * 
+     */
     @Import(name="label")
     private @Nullable String label;
 
+    /**
+     * @return The label of an existing network
+     * 
+     */
     public Optional<String> label() {
         return Optional.ofNullable(this.label);
     }
 
+    /**
+     * The region of an existing network
+     * 
+     */
     @Import(name="region")
     private @Nullable String region;
 
+    /**
+     * @return The region of an existing network
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -61,16 +85,34 @@ public final class GetNetworkPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetNetworkPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable String id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param label The label of an existing network
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(@Nullable String label) {
             $.label = label;
             return this;
         }
 
+        /**
+         * @param region The region of an existing network
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;

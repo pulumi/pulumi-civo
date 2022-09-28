@@ -44,31 +44,49 @@ class GetReservedIpResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        ID for the ip address
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> str:
+        """
+        The ID of the instance the IP is attached to
+        """
         return pulumi.get(self, "instance_id")
 
     @property
     @pulumi.getter(name="instanceName")
     def instance_name(self) -> str:
+        """
+        The name of the instance the IP is attached to
+        """
         return pulumi.get(self, "instance_name")
 
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The IP Address requested
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        Name for the ip address
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        The region the ip address is in
+        """
         return pulumi.get(self, "region")
 
 
@@ -91,6 +109,9 @@ def get_reserved_ip(id: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetReservedIpResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str id: ID for the ip address
+    :param str name: Name for the ip address
     """
     __args__ = dict()
     __args__['id'] = id
@@ -113,5 +134,8 @@ def get_reserved_ip_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetReservedIpResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str id: ID for the ip address
+    :param str name: Name for the ip address
     """
     ...

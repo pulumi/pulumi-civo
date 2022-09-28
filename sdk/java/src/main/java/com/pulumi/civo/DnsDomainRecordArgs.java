@@ -32,16 +32,14 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-     * amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-     * amex/root domain)
+     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     public Optional<Output<String>> name() {
@@ -64,16 +62,14 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-     * is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
      * 
      */
     @Import(name="ttl", required=true)
     private Output<Integer> ttl;
 
     /**
-     * @return How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-     * is 600)
+     * @return How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
      * 
      */
     public Output<Integer> ttl() {
@@ -161,8 +157,7 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-         * amex/root domain)
+         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
          * 
          * @return builder
          * 
@@ -173,8 +168,7 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-         * amex/root domain)
+         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
          * 
          * @return builder
          * 
@@ -205,8 +199,7 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ttl How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-         * is 600)
+         * @param ttl How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
          * 
          * @return builder
          * 
@@ -217,8 +210,7 @@ public final class DnsDomainRecordArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param ttl How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-         * is 600)
+         * @param ttl How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
          * 
          * @return builder
          * 

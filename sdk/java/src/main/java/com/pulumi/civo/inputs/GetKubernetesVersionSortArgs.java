@@ -15,16 +15,32 @@ public final class GetKubernetesVersionSortArgs extends com.pulumi.resources.Res
 
     public static final GetKubernetesVersionSortArgs Empty = new GetKubernetesVersionSortArgs();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable Output<String> direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<Output<String>> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
@@ -54,20 +70,44 @@ public final class GetKubernetesVersionSortArgs extends com.pulumi.resources.Res
             $ = new GetKubernetesVersionSortArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable Output<String> direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(String direction) {
             return direction(Output.of(direction));
         }
 
+        /**
+         * @param key Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }

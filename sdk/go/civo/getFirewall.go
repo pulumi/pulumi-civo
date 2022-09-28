@@ -22,22 +22,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.LookupFirewall(ctx, &GetFirewallArgs{
-// 			Name:   pulumi.StringRef("test-firewall"),
-// 			Region: pulumi.StringRef("NYC1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.LookupFirewall(ctx, &GetFirewallArgs{
+//				Name:   pulumi.StringRef("test-firewall"),
+//				Region: pulumi.StringRef("NYC1"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulumi.InvokeOption) (*LookupFirewallResult, error) {
 	var rv LookupFirewallResult
@@ -50,17 +53,24 @@ func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulum
 
 // A collection of arguments for invoking getFirewall.
 type LookupFirewallArgs struct {
-	Id     *string `pulumi:"id"`
-	Name   *string `pulumi:"name"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The name of the firewall
+	Name *string `pulumi:"name"`
+	// The region where the firewall is
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getFirewall.
 type LookupFirewallResult struct {
-	Id        *string `pulumi:"id"`
-	Name      *string `pulumi:"name"`
-	NetworkId string  `pulumi:"networkId"`
-	Region    *string `pulumi:"region"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The name of the firewall
+	Name *string `pulumi:"name"`
+	// The id of the associated network
+	NetworkId string `pulumi:"networkId"`
+	// The region where the firewall is
+	Region *string `pulumi:"region"`
 }
 
 func LookupFirewallOutput(ctx *pulumi.Context, args LookupFirewallOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallResultOutput {
@@ -78,8 +88,11 @@ func LookupFirewallOutput(ctx *pulumi.Context, args LookupFirewallOutputArgs, op
 
 // A collection of arguments for invoking getFirewall.
 type LookupFirewallOutputArgs struct {
-	Id     pulumi.StringPtrInput `pulumi:"id"`
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the firewall
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The region where the firewall is
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -102,18 +115,22 @@ func (o LookupFirewallResultOutput) ToLookupFirewallResultOutputWithContext(ctx 
 	return o
 }
 
+// The ID of this resource.
 func (o LookupFirewallResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The name of the firewall
 func (o LookupFirewallResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The id of the associated network
 func (o LookupFirewallResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// The region where the firewall is
 func (o LookupFirewallResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupFirewallResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }

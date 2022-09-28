@@ -15,100 +15,169 @@ namespace Pulumi.Civo
         /// Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var backup = Civo.GetObjectStore.Invoke(new()
+        ///     {
+        ///         Name = "backup-server",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetObjectStoreResult> InvokeAsync(GetObjectStoreArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var backup = Civo.GetObjectStore.Invoke(new()
+        ///     {
+        ///         Name = "backup-server",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetObjectStoreArgs : Pulumi.InvokeArgs
+    public sealed class GetObjectStoreArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
-        [Input("maxSizeGb")]
-        public int? MaxSizeGb { get; set; }
-
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetObjectStoreArgs()
         {
         }
+        public static new GetObjectStoreArgs Empty => new GetObjectStoreArgs();
     }
 
-    public sealed class GetObjectStoreInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetObjectStoreInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
-        [Input("maxSizeGb")]
-        public Input<int>? MaxSizeGb { get; set; }
-
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetObjectStoreInvokeArgs()
         {
         }
+        public static new GetObjectStoreInvokeArgs Empty => new GetObjectStoreInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetObjectStoreResult
     {
+        /// <summary>
+        /// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+        /// </summary>
         public readonly string AccessKeyId;
-        public readonly string Endpoint;
-        public readonly string GeneratedName;
+        /// <summary>
+        /// The endpoint of the Object Store
+        /// </summary>
+        public readonly string BucketUrl;
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         public readonly string? Id;
-        public readonly int? MaxSizeGb;
+        /// <summary>
+        /// The maximum size of the Object Store
+        /// </summary>
+        public readonly int MaxSizeGb;
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         public readonly string? Region;
-        public readonly string SecretAccessKey;
+        /// <summary>
+        /// The status of the Object Store
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]
         private GetObjectStoreResult(
             string accessKeyId,
 
-            string endpoint,
-
-            string generatedName,
+            string bucketUrl,
 
             string? id,
 
-            int? maxSizeGb,
+            int maxSizeGb,
 
             string? name,
 
             string? region,
 
-            string secretAccessKey,
-
             string status)
         {
             AccessKeyId = accessKeyId;
-            Endpoint = endpoint;
-            GeneratedName = generatedName;
+            BucketUrl = bucketUrl;
             Id = id;
             MaxSizeGb = maxSizeGb;
             Name = name;
             Region = region;
-            SecretAccessKey = secretAccessKey;
             Status = status;
         }
     }

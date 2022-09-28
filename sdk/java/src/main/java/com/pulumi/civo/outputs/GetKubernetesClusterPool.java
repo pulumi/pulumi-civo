@@ -11,23 +11,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesClusterPool {
-    private final List<String> instanceNames;
-    private final String label;
-    private final Integer nodeCount;
-    private final String size;
+    private List<String> instanceNames;
+    private String label;
+    private Integer nodeCount;
+    private String size;
 
-    @CustomType.Constructor
-    private GetKubernetesClusterPool(
-        @CustomType.Parameter("instanceNames") List<String> instanceNames,
-        @CustomType.Parameter("label") String label,
-        @CustomType.Parameter("nodeCount") Integer nodeCount,
-        @CustomType.Parameter("size") String size) {
-        this.instanceNames = instanceNames;
-        this.label = label;
-        this.nodeCount = nodeCount;
-        this.size = size;
-    }
-
+    private GetKubernetesClusterPool() {}
     public List<String> instanceNames() {
         return this.instanceNames;
     }
@@ -48,17 +37,13 @@ public final class GetKubernetesClusterPool {
     public static Builder builder(GetKubernetesClusterPool defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<String> instanceNames;
         private String label;
         private Integer nodeCount;
         private String size;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetKubernetesClusterPool defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.instanceNames = defaults.instanceNames;
@@ -67,6 +52,7 @@ public final class GetKubernetesClusterPool {
     	      this.size = defaults.size;
         }
 
+        @CustomType.Setter
         public Builder instanceNames(List<String> instanceNames) {
             this.instanceNames = Objects.requireNonNull(instanceNames);
             return this;
@@ -74,19 +60,28 @@ public final class GetKubernetesClusterPool {
         public Builder instanceNames(String... instanceNames) {
             return instanceNames(List.of(instanceNames));
         }
+        @CustomType.Setter
         public Builder label(String label) {
             this.label = Objects.requireNonNull(label);
             return this;
         }
+        @CustomType.Setter
         public Builder nodeCount(Integer nodeCount) {
             this.nodeCount = Objects.requireNonNull(nodeCount);
             return this;
         }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
-        }        public GetKubernetesClusterPool build() {
-            return new GetKubernetesClusterPool(instanceNames, label, nodeCount, size);
+        }
+        public GetKubernetesClusterPool build() {
+            final var o = new GetKubernetesClusterPool();
+            o.instanceNames = instanceNames;
+            o.label = label;
+            o.nodeCount = nodeCount;
+            o.size = size;
+            return o;
         }
     }
 }

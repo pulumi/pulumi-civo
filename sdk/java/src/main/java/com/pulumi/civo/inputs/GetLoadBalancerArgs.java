@@ -15,23 +15,47 @@ public final class GetLoadBalancerArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetLoadBalancerArgs Empty = new GetLoadBalancerArgs();
 
+    /**
+     * The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * 
+     */
     @Import(name="region")
     private @Nullable Output<String> region;
 
+    /**
+     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * 
+     */
     public Optional<Output<String>> region() {
         return Optional.ofNullable(this.region);
     }
@@ -62,29 +86,65 @@ public final class GetLoadBalancerArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetLoadBalancerArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
+        /**
+         * @param name The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }
 
+        /**
+         * @param region The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable Output<String> region) {
             $.region = region;
             return this;
         }
 
+        /**
+         * @param region The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(String region) {
             return region(Output.of(region));
         }

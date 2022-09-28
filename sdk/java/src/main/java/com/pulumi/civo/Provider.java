@@ -23,6 +23,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="pulumi:providers:civo")
 public class Provider extends com.pulumi.resources.ProviderResource {
     /**
+     * The Base URL to use for CIVO API.
+     * 
+     */
+    @Export(name="apiEndpoint", type=String.class, parameters={})
+    private Output</* @Nullable */ String> apiEndpoint;
+
+    /**
+     * @return The Base URL to use for CIVO API.
+     * 
+     */
+    public Output<Optional<String>> apiEndpoint() {
+        return Codegen.optional(this.apiEndpoint);
+    }
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      * 

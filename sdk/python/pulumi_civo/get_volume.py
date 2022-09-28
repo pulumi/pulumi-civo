@@ -44,31 +44,49 @@ class GetVolumeResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The date of the creation of the volume
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="mountPoint")
     def mount_point(self) -> str:
+        """
+        The mount point of the volume
+        """
         return pulumi.get(self, "mount_point")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the volume
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The region where volume is running
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="sizeGb")
     def size_gb(self) -> int:
+        """
+        The size of the volume (in GB)
+        """
         return pulumi.get(self, "size_gb")
 
 
@@ -103,6 +121,11 @@ def get_volume(id: Optional[str] = None,
 
     mysql = civo.get_volume(name="database-mysql")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the volume
+    :param str region: The region where volume is running
     """
     __args__ = dict()
     __args__['id'] = id
@@ -138,5 +161,10 @@ def get_volume_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     mysql = civo.get_volume(name="database-mysql")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the volume
+    :param str region: The region where volume is running
     """
     ...

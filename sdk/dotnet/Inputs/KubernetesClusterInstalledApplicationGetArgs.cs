@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class KubernetesClusterInstalledApplicationGetArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterInstalledApplicationGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("application")]
         public Input<string>? Application { get; set; }
@@ -27,5 +27,6 @@ namespace Pulumi.Civo.Inputs
         public KubernetesClusterInstalledApplicationGetArgs()
         {
         }
+        public static new KubernetesClusterInstalledApplicationGetArgs Empty => new KubernetesClusterInstalledApplicationGetArgs();
     }
 }

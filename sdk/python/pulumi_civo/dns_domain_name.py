@@ -97,7 +97,7 @@ class DnsDomainName(pulumi.CustomResource):
 
         ## Import
 
-        # using domain name
+        using domain name
 
         ```sh
          $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
@@ -128,7 +128,7 @@ class DnsDomainName(pulumi.CustomResource):
 
         ## Import
 
-        # using domain name
+        using domain name
 
         ```sh
          $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com

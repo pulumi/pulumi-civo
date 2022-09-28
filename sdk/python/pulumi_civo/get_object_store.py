@@ -21,16 +21,13 @@ class GetObjectStoreResult:
     """
     A collection of values returned by getObjectStore.
     """
-    def __init__(__self__, access_key_id=None, endpoint=None, generated_name=None, id=None, max_size_gb=None, name=None, region=None, secret_access_key=None, status=None):
+    def __init__(__self__, access_key_id=None, bucket_url=None, id=None, max_size_gb=None, name=None, region=None, status=None):
         if access_key_id and not isinstance(access_key_id, str):
             raise TypeError("Expected argument 'access_key_id' to be a str")
         pulumi.set(__self__, "access_key_id", access_key_id)
-        if endpoint and not isinstance(endpoint, str):
-            raise TypeError("Expected argument 'endpoint' to be a str")
-        pulumi.set(__self__, "endpoint", endpoint)
-        if generated_name and not isinstance(generated_name, str):
-            raise TypeError("Expected argument 'generated_name' to be a str")
-        pulumi.set(__self__, "generated_name", generated_name)
+        if bucket_url and not isinstance(bucket_url, str):
+            raise TypeError("Expected argument 'bucket_url' to be a str")
+        pulumi.set(__self__, "bucket_url", bucket_url)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -43,9 +40,6 @@ class GetObjectStoreResult:
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
-        if secret_access_key and not isinstance(secret_access_key, str):
-            raise TypeError("Expected argument 'secret_access_key' to be a str")
-        pulumi.set(__self__, "secret_access_key", secret_access_key)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -53,46 +47,57 @@ class GetObjectStoreResult:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> str:
+        """
+        The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+        """
         return pulumi.get(self, "access_key_id")
 
     @property
-    @pulumi.getter
-    def endpoint(self) -> str:
-        return pulumi.get(self, "endpoint")
-
-    @property
-    @pulumi.getter(name="generatedName")
-    def generated_name(self) -> str:
-        return pulumi.get(self, "generated_name")
+    @pulumi.getter(name="bucketUrl")
+    def bucket_url(self) -> str:
+        """
+        The endpoint of the Object Store
+        """
+        return pulumi.get(self, "bucket_url")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of the Object Store
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="maxSizeGb")
-    def max_size_gb(self) -> Optional[int]:
+    def max_size_gb(self) -> int:
+        """
+        The maximum size of the Object Store
+        """
         return pulumi.get(self, "max_size_gb")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the Object Store
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The region of an existing Object Store
+        """
         return pulumi.get(self, "region")
-
-    @property
-    @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> str:
-        return pulumi.get(self, "secret_access_key")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the Object Store
+        """
         return pulumi.get(self, "status")
 
 
@@ -103,18 +108,15 @@ class AwaitableGetObjectStoreResult(GetObjectStoreResult):
             yield self
         return GetObjectStoreResult(
             access_key_id=self.access_key_id,
-            endpoint=self.endpoint,
-            generated_name=self.generated_name,
+            bucket_url=self.bucket_url,
             id=self.id,
             max_size_gb=self.max_size_gb,
             name=self.name,
             region=self.region,
-            secret_access_key=self.secret_access_key,
             status=self.status)
 
 
 def get_object_store(id: Optional[str] = None,
-                     max_size_gb: Optional[int] = None,
                      name: Optional[str] = None,
                      region: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetObjectStoreResult:
@@ -122,10 +124,23 @@ def get_object_store(id: Optional[str] = None,
     Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 
     Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    backup = civo.get_object_store(name="backup-server")
+    ```
+
+
+    :param str id: The ID of the Object Store
+    :param str name: The name of the Object Store
+    :param str region: The region of an existing Object Store
     """
     __args__ = dict()
     __args__['id'] = id
-    __args__['maxSizeGb'] = max_size_gb
     __args__['name'] = name
     __args__['region'] = region
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -133,19 +148,16 @@ def get_object_store(id: Optional[str] = None,
 
     return AwaitableGetObjectStoreResult(
         access_key_id=__ret__.access_key_id,
-        endpoint=__ret__.endpoint,
-        generated_name=__ret__.generated_name,
+        bucket_url=__ret__.bucket_url,
         id=__ret__.id,
         max_size_gb=__ret__.max_size_gb,
         name=__ret__.name,
         region=__ret__.region,
-        secret_access_key=__ret__.secret_access_key,
         status=__ret__.status)
 
 
 @_utilities.lift_output_func(get_object_store)
 def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
-                            max_size_gb: Optional[pulumi.Input[Optional[int]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             region: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectStoreResult]:
@@ -153,5 +165,19 @@ def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 
     Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    backup = civo.get_object_store(name="backup-server")
+    ```
+
+
+    :param str id: The ID of the Object Store
+    :param str name: The name of the Object Store
+    :param str region: The region of an existing Object Store
     """
     ...

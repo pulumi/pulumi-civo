@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -39,7 +40,13 @@ export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pul
  * A collection of arguments for invoking getKubernetesVersion.
  */
 export interface GetKubernetesVersionArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: inputs.GetKubernetesVersionFilter[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: inputs.GetKubernetesVersionSort[];
 }
 
@@ -47,11 +54,17 @@ export interface GetKubernetesVersionArgs {
  * A collection of values returned by getKubernetesVersion.
  */
 export interface GetKubernetesVersionResult {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetKubernetesVersionFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetKubernetesVersionSort[];
     readonly versions: outputs.GetKubernetesVersionVersion[];
 }
@@ -64,6 +77,12 @@ export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs
  * A collection of arguments for invoking getKubernetesVersion.
  */
 export interface GetKubernetesVersionOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetKubernetesVersionFilterArgs>[]>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetKubernetesVersionSortArgs>[]>;
 }

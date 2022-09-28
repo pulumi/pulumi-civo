@@ -10,16 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetRegionSortArgs : Pulumi.InvokeArgs
+    public sealed class GetRegionSortArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
+        /// <summary>
+        /// Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         public GetRegionSortArgs()
         {
         }
+        public static new GetRegionSortArgs Empty => new GetRegionSortArgs();
     }
 }

@@ -15,10 +15,12 @@ import (
 //
 // ## Import
 //
-// # using cluster_id:node_pool_id
+// using cluster_id:node_pool_id
 //
 // ```sh
-//  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
+//
+//	$ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
+//
 // ```
 type KubernetesNodePool struct {
 	pulumi.CustomResourceState
@@ -198,7 +200,7 @@ func (i *KubernetesNodePool) ToKubernetesNodePoolOutputWithContext(ctx context.C
 // KubernetesNodePoolArrayInput is an input type that accepts KubernetesNodePoolArray and KubernetesNodePoolArrayOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolArrayInput` via:
 //
-//          KubernetesNodePoolArray{ KubernetesNodePoolArgs{...} }
+//	KubernetesNodePoolArray{ KubernetesNodePoolArgs{...} }
 type KubernetesNodePoolArrayInput interface {
 	pulumi.Input
 
@@ -223,7 +225,7 @@ func (i KubernetesNodePoolArray) ToKubernetesNodePoolArrayOutputWithContext(ctx 
 // KubernetesNodePoolMapInput is an input type that accepts KubernetesNodePoolMap and KubernetesNodePoolMapOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolMapInput` via:
 //
-//          KubernetesNodePoolMap{ "key": KubernetesNodePoolArgs{...} }
+//	KubernetesNodePoolMap{ "key": KubernetesNodePoolArgs{...} }
 type KubernetesNodePoolMapInput interface {
 	pulumi.Input
 

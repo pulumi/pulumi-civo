@@ -16,6 +16,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProviderArgs Empty = new ProviderArgs();
 
     /**
+     * The Base URL to use for CIVO API.
+     * 
+     */
+    @Import(name="apiEndpoint")
+    private @Nullable Output<String> apiEndpoint;
+
+    /**
+     * @return The Base URL to use for CIVO API.
+     * 
+     */
+    public Optional<Output<String>> apiEndpoint() {
+        return Optional.ofNullable(this.apiEndpoint);
+    }
+
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      * 
@@ -50,6 +65,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     private ProviderArgs() {}
 
     private ProviderArgs(ProviderArgs $) {
+        this.apiEndpoint = $.apiEndpoint;
         this.region = $.region;
         this.token = $.token;
     }
@@ -70,6 +86,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ProviderArgs defaults) {
             $ = new ProviderArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param apiEndpoint The Base URL to use for CIVO API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(@Nullable Output<String> apiEndpoint) {
+            $.apiEndpoint = apiEndpoint;
+            return this;
+        }
+
+        /**
+         * @param apiEndpoint The Base URL to use for CIVO API.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder apiEndpoint(String apiEndpoint) {
+            return apiEndpoint(Output.of(apiEndpoint));
         }
 
         /**

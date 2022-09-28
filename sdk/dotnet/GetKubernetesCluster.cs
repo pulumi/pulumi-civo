@@ -21,29 +21,28 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var my_cluster = Civo.GetKubernetesCluster.Invoke(new()
         ///     {
-        ///         var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs
-        ///         {
-        ///             Name = "my-super-cluster",
-        ///         }));
-        ///         this.KubernetesClusterOutput = my_cluster.Apply(my_cluster =&gt; my_cluster.MasterIp);
-        ///     }
+        ///         Name = "my-super-cluster",
+        ///     });
         /// 
-        ///     [Output("kubernetesClusterOutput")]
-        ///     public Output&lt;string&gt; KubernetesClusterOutput { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult).Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetKubernetesClusterResult> InvokeAsync(GetKubernetesClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Provides a Civo Kubernetes cluster data source.
@@ -55,85 +54,152 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var my_cluster = Civo.GetKubernetesCluster.Invoke(new()
         ///     {
-        ///         var my_cluster = Output.Create(Civo.GetKubernetesCluster.InvokeAsync(new Civo.GetKubernetesClusterArgs
-        ///         {
-        ///             Name = "my-super-cluster",
-        ///         }));
-        ///         this.KubernetesClusterOutput = my_cluster.Apply(my_cluster =&gt; my_cluster.MasterIp);
-        ///     }
+        ///         Name = "my-super-cluster",
+        ///     });
         /// 
-        ///     [Output("kubernetesClusterOutput")]
-        ///     public Output&lt;string&gt; KubernetesClusterOutput { get; set; }
-        /// }
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult).Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
+        ///     };
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetKubernetesClusterArgs : Pulumi.InvokeArgs
+    public sealed class GetKubernetesClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes Cluster
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region where cluster is running
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetKubernetesClusterArgs()
         {
         }
+        public static new GetKubernetesClusterArgs Empty => new GetKubernetesClusterArgs();
     }
 
-    public sealed class GetKubernetesClusterInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetKubernetesClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The name of the Kubernetes Cluster
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The region where cluster is running
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetKubernetesClusterInvokeArgs()
         {
         }
+        public static new GetKubernetesClusterInvokeArgs Empty => new GetKubernetesClusterInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetKubernetesClusterResult
     {
+        /// <summary>
+        /// The base URL of the API server on the Kubernetes master node
+        /// </summary>
         public readonly string ApiEndpoint;
+        /// <summary>
+        /// A list of application installed
+        /// </summary>
         public readonly string Applications;
+        /// <summary>
+        /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+        /// </summary>
         public readonly string Cni;
+        /// <summary>
+        /// The date where the Kubernetes cluster was create
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// The unique dns entry for the cluster in this case point to the master
+        /// </summary>
         public readonly string DnsEntry;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
         public readonly ImmutableArray<Outputs.GetKubernetesClusterInstalledApplicationResult> InstalledApplications;
+        /// <summary>
+        /// A representation of the Kubernetes cluster's kubeconfig in yaml format
+        /// </summary>
         public readonly string Kubeconfig;
+        /// <summary>
+        /// The version of Kubernetes
+        /// </summary>
         public readonly string KubernetesVersion;
+        /// <summary>
+        /// The IP of the Kubernetes master node
+        /// </summary>
         public readonly string MasterIp;
+        /// <summary>
+        /// The name of the Kubernetes Cluster
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The size of the Kubernetes cluster
+        /// </summary>
         public readonly int NumTargetNodes;
         public readonly ImmutableArray<Outputs.GetKubernetesClusterPoolResult> Pools;
+        /// <summary>
+        /// If the Kubernetes cluster is ready
+        /// </summary>
         public readonly bool Ready;
+        /// <summary>
+        /// The region where cluster is running
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// The status of Kubernetes cluster
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A list of tags
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// The size of each node
+        /// </summary>
         public readonly string TargetNodesSize;
 
         [OutputConstructor]

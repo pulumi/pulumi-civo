@@ -20,21 +20,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.LookupVolume(ctx, &GetVolumeArgs{
-// 			Name: pulumi.StringRef("database-mysql"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.LookupVolume(ctx, &GetVolumeArgs{
+//				Name: pulumi.StringRef("database-mysql"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	var rv LookupVolumeResult
@@ -47,19 +50,28 @@ func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getVolume.
 type LookupVolumeArgs struct {
-	Id     *string `pulumi:"id"`
-	Name   *string `pulumi:"name"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The name of the volume
+	Name *string `pulumi:"name"`
+	// The region where volume is running
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getVolume.
 type LookupVolumeResult struct {
-	CreatedAt  string  `pulumi:"createdAt"`
-	Id         *string `pulumi:"id"`
-	MountPoint string  `pulumi:"mountPoint"`
-	Name       *string `pulumi:"name"`
-	Region     *string `pulumi:"region"`
-	SizeGb     int     `pulumi:"sizeGb"`
+	// The date of the creation of the volume
+	CreatedAt string `pulumi:"createdAt"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The mount point of the volume
+	MountPoint string `pulumi:"mountPoint"`
+	// The name of the volume
+	Name *string `pulumi:"name"`
+	// The region where volume is running
+	Region *string `pulumi:"region"`
+	// The size of the volume (in GB)
+	SizeGb int `pulumi:"sizeGb"`
 }
 
 func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts ...pulumi.InvokeOption) LookupVolumeResultOutput {
@@ -77,8 +89,11 @@ func LookupVolumeOutput(ctx *pulumi.Context, args LookupVolumeOutputArgs, opts .
 
 // A collection of arguments for invoking getVolume.
 type LookupVolumeOutputArgs struct {
-	Id     pulumi.StringPtrInput `pulumi:"id"`
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the volume
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The region where volume is running
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -101,26 +116,32 @@ func (o LookupVolumeResultOutput) ToLookupVolumeResultOutputWithContext(ctx cont
 	return o
 }
 
+// The date of the creation of the volume
 func (o LookupVolumeResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of this resource.
 func (o LookupVolumeResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The mount point of the volume
 func (o LookupVolumeResultOutput) MountPoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVolumeResult) string { return v.MountPoint }).(pulumi.StringOutput)
 }
 
+// The name of the volume
 func (o LookupVolumeResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The region where volume is running
 func (o LookupVolumeResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupVolumeResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// The size of the volume (in GB)
 func (o LookupVolumeResultOutput) SizeGb() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupVolumeResult) int { return v.SizeGb }).(pulumi.IntOutput)
 }

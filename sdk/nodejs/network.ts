@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * # using ID
+ * using ID
  *
  * ```sh
  *  $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -69,7 +69,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * The region of the network
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
 
     /**
      * Create a Network resource with the given unique name, arguments, and options.
