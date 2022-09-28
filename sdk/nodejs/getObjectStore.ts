@@ -38,8 +38,17 @@ export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOp
  * A collection of arguments for invoking getObjectStore.
  */
 export interface GetObjectStoreArgs {
+    /**
+     * The ID of the Object Store
+     */
     id?: string;
+    /**
+     * The name of the Object Store
+     */
     name?: string;
+    /**
+     * The region of an existing Object Store
+     */
     region?: string;
 }
 
@@ -47,12 +56,33 @@ export interface GetObjectStoreArgs {
  * A collection of values returned by getObjectStore.
  */
 export interface GetObjectStoreResult {
+    /**
+     * The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     */
     readonly accessKeyId: string;
+    /**
+     * The endpoint of the Object Store
+     */
     readonly bucketUrl: string;
+    /**
+     * The ID of the Object Store
+     */
     readonly id?: string;
+    /**
+     * The maximum size of the Object Store
+     */
     readonly maxSizeGb: number;
+    /**
+     * The name of the Object Store
+     */
     readonly name?: string;
+    /**
+     * The region of an existing Object Store
+     */
     readonly region?: string;
+    /**
+     * The status of the Object Store
+     */
     readonly status: string;
 }
 
@@ -64,7 +94,16 @@ export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pul
  * A collection of arguments for invoking getObjectStore.
  */
 export interface GetObjectStoreOutputArgs {
+    /**
+     * The ID of the Object Store
+     */
     id?: pulumi.Input<string>;
+    /**
+     * The name of the Object Store
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The region of an existing Object Store
+     */
     region?: pulumi.Input<string>;
 }

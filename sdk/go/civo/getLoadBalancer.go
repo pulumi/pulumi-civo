@@ -52,27 +52,43 @@ func GetLoadBalancer(ctx *pulumi.Context, args *GetLoadBalancerArgs, opts ...pul
 
 // A collection of arguments for invoking getLoadBalancer.
 type GetLoadBalancerArgs struct {
-	Id     *string `pulumi:"id"`
-	Name   *string `pulumi:"name"`
+	// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
+	Id *string `pulumi:"id"`
+	// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
+	Name *string `pulumi:"name"`
+	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
 	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getLoadBalancer.
 type GetLoadBalancerResult struct {
-	Algorithm                    string                   `pulumi:"algorithm"`
-	Backends                     []GetLoadBalancerBackend `pulumi:"backends"`
-	ClusterId                    string                   `pulumi:"clusterId"`
-	EnableProxyProtocol          string                   `pulumi:"enableProxyProtocol"`
-	ExternalTrafficPolicy        string                   `pulumi:"externalTrafficPolicy"`
-	FirewallId                   string                   `pulumi:"firewallId"`
-	Id                           *string                  `pulumi:"id"`
-	Name                         *string                  `pulumi:"name"`
-	PrivateIp                    string                   `pulumi:"privateIp"`
-	PublicIp                     string                   `pulumi:"publicIp"`
-	Region                       *string                  `pulumi:"region"`
-	SessionAffinity              string                   `pulumi:"sessionAffinity"`
-	SessionAffinityConfigTimeout int                      `pulumi:"sessionAffinityConfigTimeout"`
-	State                        string                   `pulumi:"state"`
+	// The algorithm used by the load balancer
+	Algorithm string                   `pulumi:"algorithm"`
+	Backends  []GetLoadBalancerBackend `pulumi:"backends"`
+	// The cluster id of the load balancer
+	ClusterId string `pulumi:"clusterId"`
+	// The enabled proxy protocol of the load balancer
+	EnableProxyProtocol string `pulumi:"enableProxyProtocol"`
+	// The external traffic policy of the load balancer
+	ExternalTrafficPolicy string `pulumi:"externalTrafficPolicy"`
+	// The firewall id of the load balancer
+	FirewallId string `pulumi:"firewallId"`
+	// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
+	Id *string `pulumi:"id"`
+	// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
+	Name *string `pulumi:"name"`
+	// The private ip of the load balancer
+	PrivateIp string `pulumi:"privateIp"`
+	// The public ip of the load balancer
+	PublicIp string `pulumi:"publicIp"`
+	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+	Region *string `pulumi:"region"`
+	// The session affinity of the load balancer
+	SessionAffinity string `pulumi:"sessionAffinity"`
+	// The session affinity config timeout of the load balancer
+	SessionAffinityConfigTimeout int `pulumi:"sessionAffinityConfigTimeout"`
+	// The state of the load balancer
+	State string `pulumi:"state"`
 }
 
 func GetLoadBalancerOutput(ctx *pulumi.Context, args GetLoadBalancerOutputArgs, opts ...pulumi.InvokeOption) GetLoadBalancerResultOutput {
@@ -90,8 +106,11 @@ func GetLoadBalancerOutput(ctx *pulumi.Context, args GetLoadBalancerOutputArgs, 
 
 // A collection of arguments for invoking getLoadBalancer.
 type GetLoadBalancerOutputArgs struct {
-	Id     pulumi.StringPtrInput `pulumi:"id"`
-	Name   pulumi.StringPtrInput `pulumi:"name"`
+	// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -114,6 +133,7 @@ func (o GetLoadBalancerResultOutput) ToGetLoadBalancerResultOutputWithContext(ct
 	return o
 }
 
+// The algorithm used by the load balancer
 func (o GetLoadBalancerResultOutput) Algorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.Algorithm }).(pulumi.StringOutput)
 }
@@ -122,50 +142,62 @@ func (o GetLoadBalancerResultOutput) Backends() GetLoadBalancerBackendArrayOutpu
 	return o.ApplyT(func(v GetLoadBalancerResult) []GetLoadBalancerBackend { return v.Backends }).(GetLoadBalancerBackendArrayOutput)
 }
 
+// The cluster id of the load balancer
 func (o GetLoadBalancerResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// The enabled proxy protocol of the load balancer
 func (o GetLoadBalancerResultOutput) EnableProxyProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.EnableProxyProtocol }).(pulumi.StringOutput)
 }
 
+// The external traffic policy of the load balancer
 func (o GetLoadBalancerResultOutput) ExternalTrafficPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.ExternalTrafficPolicy }).(pulumi.StringOutput)
 }
 
+// The firewall id of the load balancer
 func (o GetLoadBalancerResultOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.FirewallId }).(pulumi.StringOutput)
 }
 
+// The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
 func (o GetLoadBalancerResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
 func (o GetLoadBalancerResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The private ip of the load balancer
 func (o GetLoadBalancerResultOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
+// The public ip of the load balancer
 func (o GetLoadBalancerResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
+// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
 func (o GetLoadBalancerResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// The session affinity of the load balancer
 func (o GetLoadBalancerResultOutput) SessionAffinity() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.SessionAffinity }).(pulumi.StringOutput)
 }
 
+// The session affinity config timeout of the load balancer
 func (o GetLoadBalancerResultOutput) SessionAffinityConfigTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) int { return v.SessionAffinityConfigTimeout }).(pulumi.IntOutput)
 }
 
+// The state of the load balancer
 func (o GetLoadBalancerResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.State }).(pulumi.StringOutput)
 }

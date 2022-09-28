@@ -14,25 +14,23 @@ namespace Pulumi.Civo
     /// 
     /// ## Import
     /// 
-    /// # using firewall_id:firewall_rule_id
+    /// using firewall_id:firewall_rule_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/firewallRule:FirewallRule")]
-    public partial class FirewallRule : Pulumi.CustomResource
+    public partial class FirewallRule : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-        /// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Output("action")]
         public Output<string> Action { get; private set; } = null!;
 
         /// <summary>
-        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        /// to open just for a specific IP address)
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         /// </summary>
         [Output("cidrs")]
         public Output<ImmutableArray<string>> Cidrs { get; private set; } = null!;
@@ -123,11 +121,10 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class FirewallRuleArgs : Pulumi.ResourceArgs
+    public sealed class FirewallRuleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-        /// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Input("action", required: true)]
         public Input<string> Action { get; set; } = null!;
@@ -136,8 +133,7 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        /// to open just for a specific IP address)
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -190,13 +186,13 @@ namespace Pulumi.Civo
         public FirewallRuleArgs()
         {
         }
+        public static new FirewallRuleArgs Empty => new FirewallRuleArgs();
     }
 
-    public sealed class FirewallRuleState : Pulumi.ResourceArgs
+    public sealed class FirewallRuleState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow
-        /// traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        /// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         /// </summary>
         [Input("action")]
         public Input<string>? Action { get; set; }
@@ -205,8 +201,7 @@ namespace Pulumi.Civo
         private InputList<string>? _cidrs;
 
         /// <summary>
-        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-        /// to open just for a specific IP address)
+        /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         /// </summary>
         public InputList<string> Cidrs
         {
@@ -259,5 +254,6 @@ namespace Pulumi.Civo
         public FirewallRuleState()
         {
         }
+        public static new FirewallRuleState Empty => new FirewallRuleState();
     }
 }

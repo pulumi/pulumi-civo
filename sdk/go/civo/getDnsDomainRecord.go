@@ -59,23 +59,34 @@ func LookupDnsDomainRecord(ctx *pulumi.Context, args *LookupDnsDomainRecordArgs,
 
 // A collection of arguments for invoking getDnsDomainRecord.
 type LookupDnsDomainRecordArgs struct {
+	// The ID of the domain
 	DomainId string `pulumi:"domainId"`
-	Name     string `pulumi:"name"`
+	// The name of the record
+	Name string `pulumi:"name"`
 }
 
 // A collection of values returned by getDnsDomainRecord.
 type LookupDnsDomainRecordResult struct {
+	// The ID account of the domain
 	AccountId string `pulumi:"accountId"`
+	// The date when it was created in UTC format
 	CreatedAt string `pulumi:"createdAt"`
-	DomainId  string `pulumi:"domainId"`
+	// The ID of the domain
+	DomainId string `pulumi:"domainId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
-	Name      string `pulumi:"name"`
-	Priority  int    `pulumi:"priority"`
-	Ttl       int    `pulumi:"ttl"`
-	Type      string `pulumi:"type"`
+	Id string `pulumi:"id"`
+	// The name of the record
+	Name string `pulumi:"name"`
+	// The priority of the record
+	Priority int `pulumi:"priority"`
+	// How long caching DNS servers should cache this record
+	Ttl int `pulumi:"ttl"`
+	// The choice of record type from A, CNAME, MX, SRV or TXT
+	Type string `pulumi:"type"`
+	// The date when it was updated in UTC format
 	UpdatedAt string `pulumi:"updatedAt"`
-	Value     string `pulumi:"value"`
+	// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+	Value string `pulumi:"value"`
 }
 
 func LookupDnsDomainRecordOutput(ctx *pulumi.Context, args LookupDnsDomainRecordOutputArgs, opts ...pulumi.InvokeOption) LookupDnsDomainRecordResultOutput {
@@ -93,8 +104,10 @@ func LookupDnsDomainRecordOutput(ctx *pulumi.Context, args LookupDnsDomainRecord
 
 // A collection of arguments for invoking getDnsDomainRecord.
 type LookupDnsDomainRecordOutputArgs struct {
+	// The ID of the domain
 	DomainId pulumi.StringInput `pulumi:"domainId"`
-	Name     pulumi.StringInput `pulumi:"name"`
+	// The name of the record
+	Name pulumi.StringInput `pulumi:"name"`
 }
 
 func (LookupDnsDomainRecordOutputArgs) ElementType() reflect.Type {
@@ -116,14 +129,17 @@ func (o LookupDnsDomainRecordResultOutput) ToLookupDnsDomainRecordResultOutputWi
 	return o
 }
 
+// The ID account of the domain
 func (o LookupDnsDomainRecordResultOutput) AccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.AccountId }).(pulumi.StringOutput)
 }
 
+// The date when it was created in UTC format
 func (o LookupDnsDomainRecordResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The ID of the domain
 func (o LookupDnsDomainRecordResultOutput) DomainId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.DomainId }).(pulumi.StringOutput)
 }
@@ -133,26 +149,32 @@ func (o LookupDnsDomainRecordResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The name of the record
 func (o LookupDnsDomainRecordResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The priority of the record
 func (o LookupDnsDomainRecordResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) int { return v.Priority }).(pulumi.IntOutput)
 }
 
+// How long caching DNS servers should cache this record
 func (o LookupDnsDomainRecordResultOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) int { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// The choice of record type from A, CNAME, MX, SRV or TXT
 func (o LookupDnsDomainRecordResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The date when it was updated in UTC format
 func (o LookupDnsDomainRecordResultOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
 func (o LookupDnsDomainRecordResultOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDnsDomainRecordResult) string { return v.Value }).(pulumi.StringOutput)
 }

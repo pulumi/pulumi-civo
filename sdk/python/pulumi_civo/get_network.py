@@ -41,26 +41,41 @@ class GetNetworkResult:
     @property
     @pulumi.getter
     def default(self) -> bool:
+        """
+        If is the default network
+        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> Optional[str]:
+        """
+        The label of an existing network
+        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the network
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The region of an existing network
+        """
         return pulumi.get(self, "region")
 
 
@@ -97,6 +112,11 @@ def get_network(id: Optional[str] = None,
     test = civo.get_network(label="test-network",
         region="NYC1")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str label: The label of an existing network
+    :param str region: The region of an existing network
     """
     __args__ = dict()
     __args__['id'] = id
@@ -134,5 +154,10 @@ def get_network_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     test = civo.get_network(label="test-network",
         region="NYC1")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str label: The label of an existing network
+    :param str region: The region of an existing network
     """
     ...

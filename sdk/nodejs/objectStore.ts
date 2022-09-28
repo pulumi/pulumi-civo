@@ -21,7 +21,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * # using ID
+ * using ID
  *
  * ```sh
  *  $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3

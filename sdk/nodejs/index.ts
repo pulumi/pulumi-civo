@@ -5,38 +5,166 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./dnsDomainName";
-export * from "./dnsDomainRecord";
-export * from "./firewall";
-export * from "./firewallRule";
-export * from "./getDiskImage";
-export * from "./getDnsDomainName";
-export * from "./getDnsDomainRecord";
-export * from "./getFirewall";
-export * from "./getInstance";
-export * from "./getInstances";
-export * from "./getInstancesSize";
-export * from "./getKubernetesCluster";
-export * from "./getKubernetesVersion";
-export * from "./getLoadBalancer";
-export * from "./getNetwork";
-export * from "./getObjectStore";
-export * from "./getRegion";
-export * from "./getReservedIp";
-export * from "./getSize";
-export * from "./getSshKey";
-export * from "./getVolume";
-export * from "./instance";
-export * from "./instanceReservedIpAssignment";
-export * from "./kubernetesCluster";
-export * from "./kubernetesNodePool";
-export * from "./network";
-export * from "./objectStore";
-export * from "./provider";
-export * from "./reservedIp";
-export * from "./sshKey";
-export * from "./volume";
-export * from "./volumeAttachment";
+export { DnsDomainNameArgs, DnsDomainNameState } from "./dnsDomainName";
+export type DnsDomainName = import("./dnsDomainName").DnsDomainName;
+export const DnsDomainName: typeof import("./dnsDomainName").DnsDomainName = null as any;
+
+export { DnsDomainRecordArgs, DnsDomainRecordState } from "./dnsDomainRecord";
+export type DnsDomainRecord = import("./dnsDomainRecord").DnsDomainRecord;
+export const DnsDomainRecord: typeof import("./dnsDomainRecord").DnsDomainRecord = null as any;
+
+export { FirewallArgs, FirewallState } from "./firewall";
+export type Firewall = import("./firewall").Firewall;
+export const Firewall: typeof import("./firewall").Firewall = null as any;
+
+export { FirewallRuleArgs, FirewallRuleState } from "./firewallRule";
+export type FirewallRule = import("./firewallRule").FirewallRule;
+export const FirewallRule: typeof import("./firewallRule").FirewallRule = null as any;
+
+export { GetDiskImageArgs, GetDiskImageResult, GetDiskImageOutputArgs } from "./getDiskImage";
+export const getDiskImage: typeof import("./getDiskImage").getDiskImage = null as any;
+export const getDiskImageOutput: typeof import("./getDiskImage").getDiskImageOutput = null as any;
+
+export { GetDnsDomainNameArgs, GetDnsDomainNameResult, GetDnsDomainNameOutputArgs } from "./getDnsDomainName";
+export const getDnsDomainName: typeof import("./getDnsDomainName").getDnsDomainName = null as any;
+export const getDnsDomainNameOutput: typeof import("./getDnsDomainName").getDnsDomainNameOutput = null as any;
+
+export { GetDnsDomainRecordArgs, GetDnsDomainRecordResult, GetDnsDomainRecordOutputArgs } from "./getDnsDomainRecord";
+export const getDnsDomainRecord: typeof import("./getDnsDomainRecord").getDnsDomainRecord = null as any;
+export const getDnsDomainRecordOutput: typeof import("./getDnsDomainRecord").getDnsDomainRecordOutput = null as any;
+
+export { GetFirewallArgs, GetFirewallResult, GetFirewallOutputArgs } from "./getFirewall";
+export const getFirewall: typeof import("./getFirewall").getFirewall = null as any;
+export const getFirewallOutput: typeof import("./getFirewall").getFirewallOutput = null as any;
+
+export { GetInstanceArgs, GetInstanceResult, GetInstanceOutputArgs } from "./getInstance";
+export const getInstance: typeof import("./getInstance").getInstance = null as any;
+export const getInstanceOutput: typeof import("./getInstance").getInstanceOutput = null as any;
+
+export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./getInstances";
+export const getInstances: typeof import("./getInstances").getInstances = null as any;
+export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
+
+export { GetInstancesSizeArgs, GetInstancesSizeResult, GetInstancesSizeOutputArgs } from "./getInstancesSize";
+export const getInstancesSize: typeof import("./getInstancesSize").getInstancesSize = null as any;
+export const getInstancesSizeOutput: typeof import("./getInstancesSize").getInstancesSizeOutput = null as any;
+
+export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
+export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
+export const getKubernetesClusterOutput: typeof import("./getKubernetesCluster").getKubernetesClusterOutput = null as any;
+
+export { GetKubernetesVersionArgs, GetKubernetesVersionResult, GetKubernetesVersionOutputArgs } from "./getKubernetesVersion";
+export const getKubernetesVersion: typeof import("./getKubernetesVersion").getKubernetesVersion = null as any;
+export const getKubernetesVersionOutput: typeof import("./getKubernetesVersion").getKubernetesVersionOutput = null as any;
+
+export { GetLoadBalancerArgs, GetLoadBalancerResult, GetLoadBalancerOutputArgs } from "./getLoadBalancer";
+export const getLoadBalancer: typeof import("./getLoadBalancer").getLoadBalancer = null as any;
+export const getLoadBalancerOutput: typeof import("./getLoadBalancer").getLoadBalancerOutput = null as any;
+
+export { GetNetworkArgs, GetNetworkResult, GetNetworkOutputArgs } from "./getNetwork";
+export const getNetwork: typeof import("./getNetwork").getNetwork = null as any;
+export const getNetworkOutput: typeof import("./getNetwork").getNetworkOutput = null as any;
+
+export { GetObjectStoreArgs, GetObjectStoreResult, GetObjectStoreOutputArgs } from "./getObjectStore";
+export const getObjectStore: typeof import("./getObjectStore").getObjectStore = null as any;
+export const getObjectStoreOutput: typeof import("./getObjectStore").getObjectStoreOutput = null as any;
+
+export { GetRegionArgs, GetRegionResult, GetRegionOutputArgs } from "./getRegion";
+export const getRegion: typeof import("./getRegion").getRegion = null as any;
+export const getRegionOutput: typeof import("./getRegion").getRegionOutput = null as any;
+
+export { GetReservedIpArgs, GetReservedIpResult, GetReservedIpOutputArgs } from "./getReservedIp";
+export const getReservedIp: typeof import("./getReservedIp").getReservedIp = null as any;
+export const getReservedIpOutput: typeof import("./getReservedIp").getReservedIpOutput = null as any;
+
+export { GetSizeArgs, GetSizeResult, GetSizeOutputArgs } from "./getSize";
+export const getSize: typeof import("./getSize").getSize = null as any;
+export const getSizeOutput: typeof import("./getSize").getSizeOutput = null as any;
+
+export { GetSshKeyArgs, GetSshKeyResult, GetSshKeyOutputArgs } from "./getSshKey";
+export const getSshKey: typeof import("./getSshKey").getSshKey = null as any;
+export const getSshKeyOutput: typeof import("./getSshKey").getSshKeyOutput = null as any;
+
+export { GetVolumeArgs, GetVolumeResult, GetVolumeOutputArgs } from "./getVolume";
+export const getVolume: typeof import("./getVolume").getVolume = null as any;
+export const getVolumeOutput: typeof import("./getVolume").getVolumeOutput = null as any;
+
+export { InstanceArgs, InstanceState } from "./instance";
+export type Instance = import("./instance").Instance;
+export const Instance: typeof import("./instance").Instance = null as any;
+
+export { InstanceReservedIpAssignmentArgs, InstanceReservedIpAssignmentState } from "./instanceReservedIpAssignment";
+export type InstanceReservedIpAssignment = import("./instanceReservedIpAssignment").InstanceReservedIpAssignment;
+export const InstanceReservedIpAssignment: typeof import("./instanceReservedIpAssignment").InstanceReservedIpAssignment = null as any;
+
+export { KubernetesClusterArgs, KubernetesClusterState } from "./kubernetesCluster";
+export type KubernetesCluster = import("./kubernetesCluster").KubernetesCluster;
+export const KubernetesCluster: typeof import("./kubernetesCluster").KubernetesCluster = null as any;
+
+export { KubernetesNodePoolArgs, KubernetesNodePoolState } from "./kubernetesNodePool";
+export type KubernetesNodePool = import("./kubernetesNodePool").KubernetesNodePool;
+export const KubernetesNodePool: typeof import("./kubernetesNodePool").KubernetesNodePool = null as any;
+
+export { NetworkArgs, NetworkState } from "./network";
+export type Network = import("./network").Network;
+export const Network: typeof import("./network").Network = null as any;
+
+export { ObjectStoreArgs, ObjectStoreState } from "./objectStore";
+export type ObjectStore = import("./objectStore").ObjectStore;
+export const ObjectStore: typeof import("./objectStore").ObjectStore = null as any;
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+
+export { ReservedIpArgs, ReservedIpState } from "./reservedIp";
+export type ReservedIp = import("./reservedIp").ReservedIp;
+export const ReservedIp: typeof import("./reservedIp").ReservedIp = null as any;
+
+export { SshKeyArgs, SshKeyState } from "./sshKey";
+export type SshKey = import("./sshKey").SshKey;
+export const SshKey: typeof import("./sshKey").SshKey = null as any;
+
+export { VolumeArgs, VolumeState } from "./volume";
+export type Volume = import("./volume").Volume;
+export const Volume: typeof import("./volume").Volume = null as any;
+
+export { VolumeAttachmentArgs, VolumeAttachmentState } from "./volumeAttachment";
+export type VolumeAttachment = import("./volumeAttachment").VolumeAttachment;
+export const VolumeAttachment: typeof import("./volumeAttachment").VolumeAttachment = null as any;
+
+utilities.lazyLoad(exports, ["DnsDomainName"], () => require("./dnsDomainName"));
+utilities.lazyLoad(exports, ["DnsDomainRecord"], () => require("./dnsDomainRecord"));
+utilities.lazyLoad(exports, ["Firewall"], () => require("./firewall"));
+utilities.lazyLoad(exports, ["FirewallRule"], () => require("./firewallRule"));
+utilities.lazyLoad(exports, ["getDiskImage","getDiskImageOutput"], () => require("./getDiskImage"));
+utilities.lazyLoad(exports, ["getDnsDomainName","getDnsDomainNameOutput"], () => require("./getDnsDomainName"));
+utilities.lazyLoad(exports, ["getDnsDomainRecord","getDnsDomainRecordOutput"], () => require("./getDnsDomainRecord"));
+utilities.lazyLoad(exports, ["getFirewall","getFirewallOutput"], () => require("./getFirewall"));
+utilities.lazyLoad(exports, ["getInstance","getInstanceOutput"], () => require("./getInstance"));
+utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
+utilities.lazyLoad(exports, ["getInstancesSize","getInstancesSizeOutput"], () => require("./getInstancesSize"));
+utilities.lazyLoad(exports, ["getKubernetesCluster","getKubernetesClusterOutput"], () => require("./getKubernetesCluster"));
+utilities.lazyLoad(exports, ["getKubernetesVersion","getKubernetesVersionOutput"], () => require("./getKubernetesVersion"));
+utilities.lazyLoad(exports, ["getLoadBalancer","getLoadBalancerOutput"], () => require("./getLoadBalancer"));
+utilities.lazyLoad(exports, ["getNetwork","getNetworkOutput"], () => require("./getNetwork"));
+utilities.lazyLoad(exports, ["getObjectStore","getObjectStoreOutput"], () => require("./getObjectStore"));
+utilities.lazyLoad(exports, ["getRegion","getRegionOutput"], () => require("./getRegion"));
+utilities.lazyLoad(exports, ["getReservedIp","getReservedIpOutput"], () => require("./getReservedIp"));
+utilities.lazyLoad(exports, ["getSize","getSizeOutput"], () => require("./getSize"));
+utilities.lazyLoad(exports, ["getSshKey","getSshKeyOutput"], () => require("./getSshKey"));
+utilities.lazyLoad(exports, ["getVolume","getVolumeOutput"], () => require("./getVolume"));
+utilities.lazyLoad(exports, ["Instance"], () => require("./instance"));
+utilities.lazyLoad(exports, ["InstanceReservedIpAssignment"], () => require("./instanceReservedIpAssignment"));
+utilities.lazyLoad(exports, ["KubernetesCluster"], () => require("./kubernetesCluster"));
+utilities.lazyLoad(exports, ["KubernetesNodePool"], () => require("./kubernetesNodePool"));
+utilities.lazyLoad(exports, ["Network"], () => require("./network"));
+utilities.lazyLoad(exports, ["ObjectStore"], () => require("./objectStore"));
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+utilities.lazyLoad(exports, ["ReservedIp"], () => require("./reservedIp"));
+utilities.lazyLoad(exports, ["SshKey"], () => require("./sshKey"));
+utilities.lazyLoad(exports, ["Volume"], () => require("./volume"));
+utilities.lazyLoad(exports, ["VolumeAttachment"], () => require("./volumeAttachment"));
 
 // Export sub-modules:
 import * as config from "./config";
@@ -46,22 +174,6 @@ export {
     config,
     types,
 };
-
-// Import resources to register:
-import { DnsDomainName } from "./dnsDomainName";
-import { DnsDomainRecord } from "./dnsDomainRecord";
-import { Firewall } from "./firewall";
-import { FirewallRule } from "./firewallRule";
-import { Instance } from "./instance";
-import { InstanceReservedIpAssignment } from "./instanceReservedIpAssignment";
-import { KubernetesCluster } from "./kubernetesCluster";
-import { KubernetesNodePool } from "./kubernetesNodePool";
-import { Network } from "./network";
-import { ObjectStore } from "./objectStore";
-import { ReservedIp } from "./reservedIp";
-import { SshKey } from "./sshKey";
-import { Volume } from "./volume";
-import { VolumeAttachment } from "./volumeAttachment";
 
 const _module = {
     version: utilities.getVersion(),
@@ -114,9 +226,6 @@ pulumi.runtime.registerResourceModule("civo", "index/reservedIp", _module)
 pulumi.runtime.registerResourceModule("civo", "index/sshKey", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volume", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volumeAttachment", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("civo", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

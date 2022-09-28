@@ -14,14 +14,14 @@ namespace Pulumi.Civo
     /// 
     /// ## Import
     /// 
-    /// # using cluster_id:node_pool_id
+    /// using cluster_id:node_pool_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/kubernetesNodePool:KubernetesNodePool")]
-    public partial class KubernetesNodePool : Pulumi.CustomResource
+    public partial class KubernetesNodePool : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of your cluster
@@ -115,7 +115,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class KubernetesNodePoolArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesNodePoolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of your cluster
@@ -162,9 +162,10 @@ namespace Pulumi.Civo
         public KubernetesNodePoolArgs()
         {
         }
+        public static new KubernetesNodePoolArgs Empty => new KubernetesNodePoolArgs();
     }
 
-    public sealed class KubernetesNodePoolState : Pulumi.ResourceArgs
+    public sealed class KubernetesNodePoolState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of your cluster
@@ -223,5 +224,6 @@ namespace Pulumi.Civo
         public KubernetesNodePoolState()
         {
         }
+        public static new KubernetesNodePoolState Empty => new KubernetesNodePoolState();
     }
 }

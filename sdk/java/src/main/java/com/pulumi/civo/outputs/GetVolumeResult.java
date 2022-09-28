@@ -12,29 +12,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetVolumeResult {
+    /**
+     * @return The date of the creation of the volume
+     * 
+     */
     private String createdAt;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The mount point of the volume
+     * 
+     */
     private String mountPoint;
+    /**
+     * @return The name of the volume
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The region where volume is running
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return The size of the volume (in GB)
+     * 
+     */
     private Integer sizeGb;
 
     private GetVolumeResult() {}
+    /**
+     * @return The date of the creation of the volume
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The mount point of the volume
+     * 
+     */
     public String mountPoint() {
         return this.mountPoint;
     }
+    /**
+     * @return The name of the volume
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The region where volume is running
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return The size of the volume (in GB)
+     * 
+     */
     public Integer sizeGb() {
         return this.sizeGb;
     }

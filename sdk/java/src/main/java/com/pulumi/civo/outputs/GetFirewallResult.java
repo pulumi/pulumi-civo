@@ -11,21 +11,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetFirewallResult {
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The name of the firewall
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The id of the associated network
+     * 
+     */
     private String networkId;
+    /**
+     * @return The region where the firewall is
+     * 
+     */
     private @Nullable String region;
 
     private GetFirewallResult() {}
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the firewall
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The id of the associated network
+     * 
+     */
     public String networkId() {
         return this.networkId;
     }
+    /**
+     * @return The region where the firewall is
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

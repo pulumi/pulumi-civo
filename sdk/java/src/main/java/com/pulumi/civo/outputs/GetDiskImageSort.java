@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDiskImageSort {
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     private @Nullable String direction;
+    /**
+     * @return Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
     private String key;
 
     private GetDiskImageSort() {}
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
+    /**
+     * @return Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
     public String key() {
         return this.key;
     }

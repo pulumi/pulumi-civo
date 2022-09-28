@@ -14,14 +14,14 @@ namespace Pulumi.Civo
     /// 
     /// ## Import
     /// 
-    /// # using domain_id:domain_record_id
+    /// using domain_id:domain_record_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/dnsDomainRecord:DnsDomainRecord")]
-    public partial class DnsDomainRecord : Pulumi.CustomResource
+    public partial class DnsDomainRecord : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of this resource
@@ -42,8 +42,7 @@ namespace Pulumi.Civo
         public Output<string> DomainId { get; private set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -55,8 +54,7 @@ namespace Pulumi.Civo
         public Output<int?> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Output("ttl")]
         public Output<int> Ttl { get; private set; } = null!;
@@ -123,7 +121,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class DnsDomainRecordArgs : Pulumi.ResourceArgs
+    public sealed class DnsDomainRecordArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// ID from domain name
@@ -132,8 +130,7 @@ namespace Pulumi.Civo
         public Input<string> DomainId { get; set; } = null!;
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -145,8 +142,7 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Input("ttl", required: true)]
         public Input<int> Ttl { get; set; } = null!;
@@ -166,9 +162,10 @@ namespace Pulumi.Civo
         public DnsDomainRecordArgs()
         {
         }
+        public static new DnsDomainRecordArgs Empty => new DnsDomainRecordArgs();
     }
 
-    public sealed class DnsDomainRecordState : Pulumi.ResourceArgs
+    public sealed class DnsDomainRecordState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of this resource
@@ -189,8 +186,7 @@ namespace Pulumi.Civo
         public Input<string>? DomainId { get; set; }
 
         /// <summary>
-        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-        /// amex/root domain)
+        /// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -202,8 +198,7 @@ namespace Pulumi.Civo
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-        /// is 600)
+        /// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -229,5 +224,6 @@ namespace Pulumi.Civo
         public DnsDomainRecordState()
         {
         }
+        public static new DnsDomainRecordState Empty => new DnsDomainRecordState();
     }
 }

@@ -16,18 +16,60 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesClusterResult {
+    /**
+     * @return The base URL of the API server on the Kubernetes master node
+     * 
+     */
     private String apiEndpoint;
+    /**
+     * @return A list of application installed
+     * 
+     */
     private String applications;
+    /**
+     * @return The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     * 
+     */
     private String cni;
+    /**
+     * @return The date where the Kubernetes cluster was create
+     * 
+     */
     private String createdAt;
+    /**
+     * @return The unique dns entry for the cluster in this case point to the master
+     * 
+     */
     private String dnsEntry;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
     private List<GetKubernetesClusterInstalledApplication> installedApplications;
+    /**
+     * @return A representation of the Kubernetes cluster&#39;s kubeconfig in yaml format
+     * 
+     */
     private String kubeconfig;
+    /**
+     * @return The version of Kubernetes
+     * 
+     */
     private String kubernetesVersion;
+    /**
+     * @return The IP of the Kubernetes master node
+     * 
+     */
     private String masterIp;
+    /**
+     * @return The name of the Kubernetes Cluster
+     * 
+     */
     private @Nullable String name;
     /**
+     * @return The size of the Kubernetes cluster
+     * 
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 
@@ -35,11 +77,29 @@ public final class GetKubernetesClusterResult {
     @Deprecated /* This field is deprecated and will be removed in a future version of the provider */
     private Integer numTargetNodes;
     private List<GetKubernetesClusterPool> pools;
+    /**
+     * @return If the Kubernetes cluster is ready
+     * 
+     */
     private Boolean ready;
+    /**
+     * @return The region where cluster is running
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return The status of Kubernetes cluster
+     * 
+     */
     private String status;
+    /**
+     * @return A list of tags
+     * 
+     */
     private List<String> tags;
     /**
+     * @return The size of each node
+     * 
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 
@@ -48,40 +108,82 @@ public final class GetKubernetesClusterResult {
     private String targetNodesSize;
 
     private GetKubernetesClusterResult() {}
+    /**
+     * @return The base URL of the API server on the Kubernetes master node
+     * 
+     */
     public String apiEndpoint() {
         return this.apiEndpoint;
     }
+    /**
+     * @return A list of application installed
+     * 
+     */
     public String applications() {
         return this.applications;
     }
+    /**
+     * @return The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
+     * 
+     */
     public String cni() {
         return this.cni;
     }
+    /**
+     * @return The date where the Kubernetes cluster was create
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The unique dns entry for the cluster in this case point to the master
+     * 
+     */
     public String dnsEntry() {
         return this.dnsEntry;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
     public List<GetKubernetesClusterInstalledApplication> installedApplications() {
         return this.installedApplications;
     }
+    /**
+     * @return A representation of the Kubernetes cluster&#39;s kubeconfig in yaml format
+     * 
+     */
     public String kubeconfig() {
         return this.kubeconfig;
     }
+    /**
+     * @return The version of Kubernetes
+     * 
+     */
     public String kubernetesVersion() {
         return this.kubernetesVersion;
     }
+    /**
+     * @return The IP of the Kubernetes master node
+     * 
+     */
     public String masterIp() {
         return this.masterIp;
     }
+    /**
+     * @return The name of the Kubernetes Cluster
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
     /**
+     * @return The size of the Kubernetes cluster
+     * 
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 
@@ -93,19 +195,37 @@ public final class GetKubernetesClusterResult {
     public List<GetKubernetesClusterPool> pools() {
         return this.pools;
     }
+    /**
+     * @return If the Kubernetes cluster is ready
+     * 
+     */
     public Boolean ready() {
         return this.ready;
     }
+    /**
+     * @return The region where cluster is running
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return The status of Kubernetes cluster
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return A list of tags
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
     /**
+     * @return The size of each node
+     * 
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 

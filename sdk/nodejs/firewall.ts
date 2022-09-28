@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -63,7 +64,7 @@ import * as utilities from "./utilities";
  *
  * ## Import
  *
- * # using ID
+ * using ID
  *
  * ```sh
  *  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -98,8 +99,7 @@ export class Firewall extends pulumi.CustomResource {
     }
 
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-     * set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     public readonly createDefaultRules!: pulumi.Output<boolean | undefined>;
     /**
@@ -161,8 +161,7 @@ export class Firewall extends pulumi.CustomResource {
  */
 export interface FirewallState {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-     * set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
     /**
@@ -192,8 +191,7 @@ export interface FirewallState {
  */
 export interface FirewallArgs {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-     * set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
     /**

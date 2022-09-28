@@ -99,7 +99,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using ID
+ * using ID
  * 
  * ```sh
  *  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -109,16 +109,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/firewall:Firewall")
 public class Firewall extends com.pulumi.resources.CustomResource {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-     * set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      * 
      */
     @Export(name="createDefaultRules", type=Boolean.class, parameters={})
     private Output</* @Nullable */ Boolean> createDefaultRules;
 
     /**
-     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-     * set to false you need to define at least one ingress or egress rule
+     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      * 
      */
     public Output<Optional<Boolean>> createDefaultRules() {

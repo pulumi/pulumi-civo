@@ -16,16 +16,32 @@ public final class GetSizePlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetSizePlainArgs Empty = new GetSizePlainArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable List<GetSizeFilter> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<List<GetSizeFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable List<GetSizeSort> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<List<GetSizeSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -55,20 +71,44 @@ public final class GetSizePlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetSizePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable List<GetSizeFilter> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetSizeFilter... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable List<GetSizeSort> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetSizeSort... sorts) {
             return sorts(List.of(sorts));
         }

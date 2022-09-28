@@ -10,28 +10,76 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDnsDomainRecordResult {
+    /**
+     * @return The ID account of the domain
+     * 
+     */
     private String accountId;
+    /**
+     * @return The date when it was created in UTC format
+     * 
+     */
     private String createdAt;
+    /**
+     * @return The ID of the domain
+     * 
+     */
     private String domainId;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return The name of the record
+     * 
+     */
     private String name;
+    /**
+     * @return The priority of the record
+     * 
+     */
     private Integer priority;
+    /**
+     * @return How long caching DNS servers should cache this record
+     * 
+     */
     private Integer ttl;
+    /**
+     * @return The choice of record type from A, CNAME, MX, SRV or TXT
+     * 
+     */
     private String type;
+    /**
+     * @return The date when it was updated in UTC format
+     * 
+     */
     private String updatedAt;
+    /**
+     * @return The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+     * 
+     */
     private String value;
 
     private GetDnsDomainRecordResult() {}
+    /**
+     * @return The ID account of the domain
+     * 
+     */
     public String accountId() {
         return this.accountId;
     }
+    /**
+     * @return The date when it was created in UTC format
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The ID of the domain
+     * 
+     */
     public String domainId() {
         return this.domainId;
     }
@@ -42,21 +90,45 @@ public final class GetDnsDomainRecordResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return The name of the record
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The priority of the record
+     * 
+     */
     public Integer priority() {
         return this.priority;
     }
+    /**
+     * @return How long caching DNS servers should cache this record
+     * 
+     */
     public Integer ttl() {
         return this.ttl;
     }
+    /**
+     * @return The choice of record type from A, CNAME, MX, SRV or TXT
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return The date when it was updated in UTC format
+     * 
+     */
     public String updatedAt() {
         return this.updatedAt;
     }
+    /**
+     * @return The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
+     * 
+     */
     public String value() {
         return this.value;
     }

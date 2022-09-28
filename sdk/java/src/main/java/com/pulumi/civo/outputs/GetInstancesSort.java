@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesSort {
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     private @Nullable String direction;
+    /**
+     * @return Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+     * 
+     */
     private String key;
 
     private GetInstancesSort() {}
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
+    /**
+     * @return Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+     * 
+     */
     public String key() {
         return this.key;
     }

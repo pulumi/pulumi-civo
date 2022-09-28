@@ -17,30 +17,62 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
 
     public static final KubernetesClusterPoolsArgs Empty = new KubernetesClusterPoolsArgs();
 
+    /**
+     * Instance names in the nodepool
+     * 
+     */
     @Import(name="instanceNames")
     private @Nullable Output<List<String>> instanceNames;
 
+    /**
+     * @return Instance names in the nodepool
+     * 
+     */
     public Optional<Output<List<String>>> instanceNames() {
         return Optional.ofNullable(this.instanceNames);
     }
 
+    /**
+     * Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     @Import(name="label")
     private @Nullable Output<String> label;
 
+    /**
+     * @return Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     public Optional<Output<String>> label() {
         return Optional.ofNullable(this.label);
     }
 
+    /**
+     * Number of nodes in the nodepool
+     * 
+     */
     @Import(name="nodeCount", required=true)
     private Output<Integer> nodeCount;
 
+    /**
+     * @return Number of nodes in the nodepool
+     * 
+     */
     public Output<Integer> nodeCount() {
         return this.nodeCount;
     }
 
+    /**
+     * Size of the nodes in the nodepool
+     * 
+     */
     @Import(name="size", required=true)
     private Output<String> size;
 
+    /**
+     * @return Size of the nodes in the nodepool
+     * 
+     */
     public Output<String> size() {
         return this.size;
     }
@@ -72,42 +104,96 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
             $ = new KubernetesClusterPoolsArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param instanceNames Instance names in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder instanceNames(@Nullable Output<List<String>> instanceNames) {
             $.instanceNames = instanceNames;
             return this;
         }
 
+        /**
+         * @param instanceNames Instance names in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder instanceNames(List<String> instanceNames) {
             return instanceNames(Output.of(instanceNames));
         }
 
+        /**
+         * @param instanceNames Instance names in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder instanceNames(String... instanceNames) {
             return instanceNames(List.of(instanceNames));
         }
 
+        /**
+         * @param label Node pool label, if you don&#39;t provide one, we will generate one for you
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(@Nullable Output<String> label) {
             $.label = label;
             return this;
         }
 
+        /**
+         * @param label Node pool label, if you don&#39;t provide one, we will generate one for you
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(String label) {
             return label(Output.of(label));
         }
 
+        /**
+         * @param nodeCount Number of nodes in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodeCount(Output<Integer> nodeCount) {
             $.nodeCount = nodeCount;
             return this;
         }
 
+        /**
+         * @param nodeCount Number of nodes in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder nodeCount(Integer nodeCount) {
             return nodeCount(Output.of(nodeCount));
         }
 
+        /**
+         * @param size Size of the nodes in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(Output<String> size) {
             $.size = size;
             return this;
         }
 
+        /**
+         * @param size Size of the nodes in the nodepool
+         * 
+         * @return builder
+         * 
+         */
         public Builder size(String size) {
             return size(Output.of(size));
         }

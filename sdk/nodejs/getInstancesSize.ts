@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -25,7 +26,13 @@ export function getInstancesSize(args?: GetInstancesSizeArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getInstancesSize.
  */
 export interface GetInstancesSizeArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: inputs.GetInstancesSizeFilter[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: inputs.GetInstancesSizeSort[];
 }
 
@@ -33,12 +40,18 @@ export interface GetInstancesSizeArgs {
  * A collection of values returned by getInstancesSize.
  */
 export interface GetInstancesSizeResult {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     readonly filters?: outputs.GetInstancesSizeFilter[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly sizes: outputs.GetInstancesSizeSize[];
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     readonly sorts?: outputs.GetInstancesSizeSort[];
 }
 
@@ -50,6 +63,12 @@ export function getInstancesSizeOutput(args?: GetInstancesSizeOutputArgs, opts?:
  * A collection of arguments for invoking getInstancesSize.
  */
 export interface GetInstancesSizeOutputArgs {
+    /**
+     * One or more key/value pairs on which to filter results
+     */
     filters?: pulumi.Input<pulumi.Input<inputs.GetInstancesSizeFilterArgs>[]>;
+    /**
+     * One or more key/direction pairs on which to sort results
+     */
     sorts?: pulumi.Input<pulumi.Input<inputs.GetInstancesSizeSortArgs>[]>;
 }

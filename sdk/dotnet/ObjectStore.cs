@@ -15,33 +15,31 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var backup = new Civo.ObjectStore("backup", new()
     ///     {
-    ///         var backup = new Civo.ObjectStore("backup", new Civo.ObjectStoreArgs
-    ///         {
-    ///             MaxSizeGb = 500,
-    ///             Region = "LON1",
-    ///         });
-    ///     }
+    ///         MaxSizeGb = 500,
+    ///         Region = "LON1",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/objectStore:ObjectStore")]
-    public partial class ObjectStore : Pulumi.CustomResource
+    public partial class ObjectStore : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
@@ -123,7 +121,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class ObjectStoreArgs : Pulumi.ResourceArgs
+    public sealed class ObjectStoreArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
@@ -152,9 +150,10 @@ namespace Pulumi.Civo
         public ObjectStoreArgs()
         {
         }
+        public static new ObjectStoreArgs Empty => new ObjectStoreArgs();
     }
 
-    public sealed class ObjectStoreState : Pulumi.ResourceArgs
+    public sealed class ObjectStoreState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
@@ -195,5 +194,6 @@ namespace Pulumi.Civo
         public ObjectStoreState()
         {
         }
+        public static new ObjectStoreState Empty => new ObjectStoreState();
     }
 }

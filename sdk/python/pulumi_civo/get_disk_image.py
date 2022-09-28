@@ -48,6 +48,9 @@ class GetDiskImageResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetDiskImageFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -61,11 +64,17 @@ class GetDiskImageResult:
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        If is used, all disk image will be from this region. Required if no region is set in provider.
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetDiskImageSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -88,6 +97,11 @@ def get_disk_image(filters: Optional[Sequence[pulumi.InputType['GetDiskImageFilt
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDiskImageResult:
     """
     Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetDiskImageFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If is used, all disk image will be from this region. Required if no region is set in provider.
+    :param Sequence[pulumi.InputType['GetDiskImageSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -111,5 +125,10 @@ def get_disk_image_output(filters: Optional[pulumi.Input[Optional[Sequence[pulum
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDiskImageResult]:
     """
     Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetDiskImageFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If is used, all disk image will be from this region. Required if no region is set in provider.
+    :param Sequence[pulumi.InputType['GetDiskImageSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

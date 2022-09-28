@@ -14,23 +14,47 @@ public final class GetKubernetesClusterPlainArgs extends com.pulumi.resources.In
 
     public static final GetKubernetesClusterPlainArgs Empty = new GetKubernetesClusterPlainArgs();
 
+    /**
+     * The ID of this resource.
+     * 
+     */
     @Import(name="id")
     private @Nullable String id;
 
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The name of the Kubernetes Cluster
+     * 
+     */
     @Import(name="name")
     private @Nullable String name;
 
+    /**
+     * @return The name of the Kubernetes Cluster
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The region where cluster is running
+     * 
+     */
     @Import(name="region")
     private @Nullable String region;
 
+    /**
+     * @return The region where cluster is running
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -61,16 +85,34 @@ public final class GetKubernetesClusterPlainArgs extends com.pulumi.resources.In
             $ = new GetKubernetesClusterPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable String id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param name The name of the Kubernetes Cluster
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param region The region where cluster is running
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;

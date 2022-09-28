@@ -19,7 +19,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using firewall_id:firewall_rule_id
+ * using firewall_id:firewall_rule_id
  * 
  * ```sh
  *  $ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7
@@ -29,32 +29,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/firewallRule:FirewallRule")
 public class FirewallRule extends com.pulumi.resources.CustomResource {
     /**
-     * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-     * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
      * 
      */
     @Export(name="action", type=String.class, parameters={})
     private Output<String> action;
 
     /**
-     * @return The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-     * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * @return The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
      * 
      */
     public Output<String> action() {
         return this.action;
     }
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      * 
      */
     @Export(name="cidrs", type=List.class, parameters={String.class})
     private Output<List<String>> cidrs;
 
     /**
-     * @return The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * @return The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      * 
      */
     public Output<List<String>> cidrs() {

@@ -12,25 +12,65 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNetworkResult {
+    /**
+     * @return If is the default network
+     * 
+     */
     private Boolean default_;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The label of an existing network
+     * 
+     */
     private @Nullable String label;
+    /**
+     * @return The name of the network
+     * 
+     */
     private String name;
+    /**
+     * @return The region of an existing network
+     * 
+     */
     private @Nullable String region;
 
     private GetNetworkResult() {}
+    /**
+     * @return If is the default network
+     * 
+     */
     public Boolean default_() {
         return this.default_;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The label of an existing network
+     * 
+     */
     public Optional<String> label() {
         return Optional.ofNullable(this.label);
     }
+    /**
+     * @return The name of the network
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return The region of an existing network
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }

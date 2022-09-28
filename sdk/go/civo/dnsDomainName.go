@@ -38,7 +38,7 @@ import (
 //
 // ## Import
 //
-// # using domain name
+// using domain name
 //
 // ```sh
 //

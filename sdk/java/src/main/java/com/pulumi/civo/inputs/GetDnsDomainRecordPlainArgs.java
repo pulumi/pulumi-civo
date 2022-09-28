@@ -12,16 +12,32 @@ public final class GetDnsDomainRecordPlainArgs extends com.pulumi.resources.Invo
 
     public static final GetDnsDomainRecordPlainArgs Empty = new GetDnsDomainRecordPlainArgs();
 
+    /**
+     * The ID of the domain
+     * 
+     */
     @Import(name="domainId", required=true)
     private String domainId;
 
+    /**
+     * @return The ID of the domain
+     * 
+     */
     public String domainId() {
         return this.domainId;
     }
 
+    /**
+     * The name of the record
+     * 
+     */
     @Import(name="name", required=true)
     private String name;
 
+    /**
+     * @return The name of the record
+     * 
+     */
     public String name() {
         return this.name;
     }
@@ -51,11 +67,23 @@ public final class GetDnsDomainRecordPlainArgs extends com.pulumi.resources.Invo
             $ = new GetDnsDomainRecordPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param domainId The ID of the domain
+         * 
+         * @return builder
+         * 
+         */
         public Builder domainId(String domainId) {
             $.domainId = domainId;
             return this;
         }
 
+        /**
+         * @param name The name of the record
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             $.name = name;
             return this;

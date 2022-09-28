@@ -17,16 +17,32 @@ public final class GetRegionArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetRegionArgs Empty = new GetRegionArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<GetRegionFilterArgs>> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<Output<List<GetRegionFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable Output<List<GetRegionSortArgs>> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<Output<List<GetRegionSortArgs>>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -56,28 +72,64 @@ public final class GetRegionArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetRegionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<GetRegionFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<GetRegionFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetRegionFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable Output<List<GetRegionSortArgs>> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(List<GetRegionSortArgs> sorts) {
             return sorts(Output.of(sorts));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetRegionSortArgs... sorts) {
             return sorts(List.of(sorts));
         }

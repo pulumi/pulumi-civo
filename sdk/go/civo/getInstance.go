@@ -51,35 +51,60 @@ func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulum
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceArgs struct {
+	// The hostname of the Instance
 	Hostname *string `pulumi:"hostname"`
-	Id       *string `pulumi:"id"`
-	Region   *string `pulumi:"region"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// The region of an existing Instance
+	Region *string `pulumi:"region"`
 }
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
-	CpuCores        int      `pulumi:"cpuCores"`
-	CreatedAt       string   `pulumi:"createdAt"`
-	DiskGb          int      `pulumi:"diskGb"`
-	FirewallId      string   `pulumi:"firewallId"`
-	Hostname        *string  `pulumi:"hostname"`
-	Id              *string  `pulumi:"id"`
-	InitialPassword string   `pulumi:"initialPassword"`
-	InitialUser     string   `pulumi:"initialUser"`
-	NetworkId       string   `pulumi:"networkId"`
-	Notes           string   `pulumi:"notes"`
-	PrivateIp       string   `pulumi:"privateIp"`
-	PseudoIp        string   `pulumi:"pseudoIp"`
-	PublicIp        string   `pulumi:"publicIp"`
-	RamMb           int      `pulumi:"ramMb"`
-	Region          *string  `pulumi:"region"`
-	ReverseDns      string   `pulumi:"reverseDns"`
-	Script          string   `pulumi:"script"`
-	Size            string   `pulumi:"size"`
-	SshkeyId        string   `pulumi:"sshkeyId"`
-	Status          string   `pulumi:"status"`
-	Tags            []string `pulumi:"tags"`
-	Template        string   `pulumi:"template"`
+	// Total cpu of the inatance
+	CpuCores int `pulumi:"cpuCores"`
+	// The date of creation of the instance
+	CreatedAt string `pulumi:"createdAt"`
+	// The size of the disk
+	DiskGb int `pulumi:"diskGb"`
+	// The ID of the firewall used
+	FirewallId string `pulumi:"firewallId"`
+	// The hostname of the Instance
+	Hostname *string `pulumi:"hostname"`
+	// The ID of this resource.
+	Id *string `pulumi:"id"`
+	// Instance initial password
+	InitialPassword string `pulumi:"initialPassword"`
+	// The name of the initial user created on the server
+	InitialUser string `pulumi:"initialUser"`
+	// his will be the ID of the network
+	NetworkId string `pulumi:"networkId"`
+	// The notes of the instance
+	Notes string `pulumi:"notes"`
+	// The private IP
+	PrivateIp string `pulumi:"privateIp"`
+	// Is the ip that is used to route the public ip from the internet to the instance using NAT
+	PseudoIp string `pulumi:"pseudoIp"`
+	// The public IP
+	PublicIp string `pulumi:"publicIp"`
+	// Total ram of the instance
+	RamMb int `pulumi:"ramMb"`
+	// The region of an existing Instance
+	Region *string `pulumi:"region"`
+	// A fully qualified domain name
+	ReverseDns string `pulumi:"reverseDns"`
+	// The contents of a script uploaded
+	Script string `pulumi:"script"`
+	// The name of the size
+	Size string `pulumi:"size"`
+	// The ID SSH key
+	SshkeyId string `pulumi:"sshkeyId"`
+	// The status of the instance
+	Status string `pulumi:"status"`
+	// An optional list of tags
+	Tags []string `pulumi:"tags"`
+	// The ID for the disk image/template to used to build the instance
+	Template string `pulumi:"template"`
 }
 
 func LookupInstanceOutput(ctx *pulumi.Context, args LookupInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupInstanceResultOutput {
@@ -97,9 +122,12 @@ func LookupInstanceOutput(ctx *pulumi.Context, args LookupInstanceOutputArgs, op
 
 // A collection of arguments for invoking getInstance.
 type LookupInstanceOutputArgs struct {
+	// The hostname of the Instance
 	Hostname pulumi.StringPtrInput `pulumi:"hostname"`
-	Id       pulumi.StringPtrInput `pulumi:"id"`
-	Region   pulumi.StringPtrInput `pulumi:"region"`
+	// The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// The region of an existing Instance
+	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
 func (LookupInstanceOutputArgs) ElementType() reflect.Type {
@@ -121,90 +149,112 @@ func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx 
 	return o
 }
 
+// Total cpu of the inatance
 func (o LookupInstanceResultOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInstanceResult) int { return v.CpuCores }).(pulumi.IntOutput)
 }
 
+// The date of creation of the instance
 func (o LookupInstanceResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The size of the disk
 func (o LookupInstanceResultOutput) DiskGb() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInstanceResult) int { return v.DiskGb }).(pulumi.IntOutput)
 }
 
+// The ID of the firewall used
 func (o LookupInstanceResultOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.FirewallId }).(pulumi.StringOutput)
 }
 
+// The hostname of the Instance
 func (o LookupInstanceResultOutput) Hostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Hostname }).(pulumi.StringPtrOutput)
 }
 
+// The ID of this resource.
 func (o LookupInstanceResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// Instance initial password
 func (o LookupInstanceResultOutput) InitialPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.InitialPassword }).(pulumi.StringOutput)
 }
 
+// The name of the initial user created on the server
 func (o LookupInstanceResultOutput) InitialUser() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.InitialUser }).(pulumi.StringOutput)
 }
 
+// his will be the ID of the network
 func (o LookupInstanceResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// The notes of the instance
 func (o LookupInstanceResultOutput) Notes() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Notes }).(pulumi.StringOutput)
 }
 
+// The private IP
 func (o LookupInstanceResultOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.PrivateIp }).(pulumi.StringOutput)
 }
 
+// Is the ip that is used to route the public ip from the internet to the instance using NAT
 func (o LookupInstanceResultOutput) PseudoIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.PseudoIp }).(pulumi.StringOutput)
 }
 
+// The public IP
 func (o LookupInstanceResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
+// Total ram of the instance
 func (o LookupInstanceResultOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInstanceResult) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
+// The region of an existing Instance
 func (o LookupInstanceResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupInstanceResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// A fully qualified domain name
 func (o LookupInstanceResultOutput) ReverseDns() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.ReverseDns }).(pulumi.StringOutput)
 }
 
+// The contents of a script uploaded
 func (o LookupInstanceResultOutput) Script() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Script }).(pulumi.StringOutput)
 }
 
+// The name of the size
 func (o LookupInstanceResultOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// The ID SSH key
 func (o LookupInstanceResultOutput) SshkeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.SshkeyId }).(pulumi.StringOutput)
 }
 
+// The status of the instance
 func (o LookupInstanceResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// An optional list of tags
 func (o LookupInstanceResultOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupInstanceResult) []string { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// The ID for the disk image/template to used to build the instance
 func (o LookupInstanceResultOutput) Template() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupInstanceResult) string { return v.Template }).(pulumi.StringOutput)
 }

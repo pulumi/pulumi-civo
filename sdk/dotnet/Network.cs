@@ -15,32 +15,30 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     var customNet = new Civo.Network("customNet", new()
     ///     {
-    ///         var customNet = new Civo.Network("customNet", new Civo.NetworkArgs
-    ///         {
-    ///             Label = "test_network",
-    ///         });
-    ///     }
+    ///         Label = "test_network",
+    ///     });
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/network:Network")]
-    public partial class Network : Pulumi.CustomResource
+    public partial class Network : global::Pulumi.CustomResource
     {
         /// <summary>
         /// If the network is default, this will be `true`
@@ -110,7 +108,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class NetworkArgs : Pulumi.ResourceArgs
+    public sealed class NetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name for the network
@@ -127,9 +125,10 @@ namespace Pulumi.Civo
         public NetworkArgs()
         {
         }
+        public static new NetworkArgs Empty => new NetworkArgs();
     }
 
-    public sealed class NetworkState : Pulumi.ResourceArgs
+    public sealed class NetworkState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// If the network is default, this will be `true`
@@ -158,5 +157,6 @@ namespace Pulumi.Civo
         public NetworkState()
         {
         }
+        public static new NetworkState Empty => new NetworkState();
     }
 }

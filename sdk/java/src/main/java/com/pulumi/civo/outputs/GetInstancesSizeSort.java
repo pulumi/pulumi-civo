@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesSizeSort {
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     private @Nullable String direction;
+    /**
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     private String key;
 
     private GetInstancesSizeSort() {}
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
+    /**
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     public String key() {
         return this.key;
     }

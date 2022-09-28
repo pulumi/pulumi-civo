@@ -40,6 +40,9 @@ class GetInstancesSizeResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetInstancesSizeFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -58,6 +61,9 @@ class GetInstancesSizeResult:
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetInstancesSizeSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -78,6 +84,10 @@ def get_instances_size(filters: Optional[Sequence[pulumi.InputType['GetInstances
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesSizeResult:
     """
     Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetInstancesSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetInstancesSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -98,5 +108,9 @@ def get_instances_size_output(filters: Optional[pulumi.Input[Optional[Sequence[p
                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancesSizeResult]:
     """
     Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetInstancesSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetInstancesSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

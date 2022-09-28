@@ -38,21 +38,33 @@ class GetFirewallResult:
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the firewall
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        The id of the associated network
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The region where the firewall is
+        """
         return pulumi.get(self, "region")
 
 
@@ -88,6 +100,11 @@ def get_firewall(id: Optional[str] = None,
     test = civo.get_firewall(name="test-firewall",
         region="NYC1")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the firewall
+    :param str region: The region where the firewall is
     """
     __args__ = dict()
     __args__['id'] = id
@@ -124,5 +141,10 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     test = civo.get_firewall(name="test-firewall",
         region="NYC1")
     ```
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the firewall
+    :param str region: The region where the firewall is
     """
     ...

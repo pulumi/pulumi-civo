@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesFilter {
+    /**
+     * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
     private @Nullable Boolean all;
+    /**
+     * @return Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
     private String key;
+    /**
+     * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
     private @Nullable String matchBy;
+    /**
+     * @return Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
     private List<String> values;
 
     private GetInstancesFilter() {}
+    /**
+     * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
     public Optional<Boolean> all() {
         return Optional.ofNullable(this.all);
     }
+    /**
+     * @return Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
     public String key() {
         return this.key;
     }
+    /**
+     * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
     public Optional<String> matchBy() {
         return Optional.ofNullable(this.matchBy);
     }
+    /**
+     * @return Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
     public List<String> values() {
         return this.values;
     }

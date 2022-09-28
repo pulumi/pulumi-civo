@@ -14,23 +14,47 @@ public final class GetObjectStorePlainArgs extends com.pulumi.resources.InvokeAr
 
     public static final GetObjectStorePlainArgs Empty = new GetObjectStorePlainArgs();
 
+    /**
+     * The ID of the Object Store
+     * 
+     */
     @Import(name="id")
     private @Nullable String id;
 
+    /**
+     * @return The ID of the Object Store
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The name of the Object Store
+     * 
+     */
     @Import(name="name")
     private @Nullable String name;
 
+    /**
+     * @return The name of the Object Store
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
 
+    /**
+     * The region of an existing Object Store
+     * 
+     */
     @Import(name="region")
     private @Nullable String region;
 
+    /**
+     * @return The region of an existing Object Store
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -61,16 +85,34 @@ public final class GetObjectStorePlainArgs extends com.pulumi.resources.InvokeAr
             $ = new GetObjectStorePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The ID of the Object Store
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable String id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param name The name of the Object Store
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param region The region of an existing Object Store
+         * 
+         * @return builder
+         * 
+         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;

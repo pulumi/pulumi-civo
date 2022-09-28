@@ -15,7 +15,7 @@ import (
 //
 // ## Import
 //
-// # using domain_id:domain_record_id
+// using domain_id:domain_record_id
 //
 // ```sh
 //
@@ -31,13 +31,11 @@ type DnsDomainRecord struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId pulumi.StringOutput `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrOutput `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntOutput `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -94,13 +92,11 @@ type dnsDomainRecordState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// ID from domain name
 	DomainId *string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl *int `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type *string `pulumi:"type"`
@@ -117,13 +113,11 @@ type DnsDomainRecordState struct {
 	CreatedAt pulumi.StringPtrInput
 	// ID from domain name
 	DomainId pulumi.StringPtrInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntPtrInput
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringPtrInput
@@ -140,13 +134,11 @@ func (DnsDomainRecordState) ElementType() reflect.Type {
 type dnsDomainRecordArgs struct {
 	// ID from domain name
 	DomainId string `pulumi:"domainId"`
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name *string `pulumi:"name"`
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority *int `pulumi:"priority"`
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl int `pulumi:"ttl"`
 	// The choice of RR type from a, cname, mx or txt
 	Type string `pulumi:"type"`
@@ -158,13 +150,11 @@ type dnsDomainRecordArgs struct {
 type DnsDomainRecordArgs struct {
 	// ID from domain name
 	DomainId pulumi.StringInput
-	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-	// amex/root domain)
+	// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 	Name pulumi.StringPtrInput
 	// Useful for MX records only, the priority mail should be attempted it (defaults to 10)
 	Priority pulumi.IntPtrInput
-	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-	// is 600)
+	// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 	Ttl pulumi.IntInput
 	// The choice of RR type from a, cname, mx or txt
 	Type pulumi.StringInput
@@ -274,8 +264,7 @@ func (o DnsDomainRecordOutput) DomainId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.DomainId }).(pulumi.StringOutput)
 }
 
-// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-// amex/root domain)
+// The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
 func (o DnsDomainRecordOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsDomainRecord) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -285,8 +274,7 @@ func (o DnsDomainRecordOutput) Priority() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *DnsDomainRecord) pulumi.IntPtrOutput { return v.Priority }).(pulumi.IntPtrOutput)
 }
 
-// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-// is 600)
+// How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
 func (o DnsDomainRecordOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v *DnsDomainRecord) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }

@@ -14,6 +14,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRegionResult {
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     private @Nullable List<GetRegionFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -21,9 +25,17 @@ public final class GetRegionResult {
      */
     private String id;
     private List<GetRegionRegion> regions;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     private @Nullable List<GetRegionSort> sorts;
 
     private GetRegionResult() {}
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetRegionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -37,6 +49,10 @@ public final class GetRegionResult {
     public List<GetRegionRegion> regions() {
         return this.regions;
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetRegionSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }

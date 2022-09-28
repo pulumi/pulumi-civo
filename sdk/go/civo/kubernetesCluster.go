@@ -15,7 +15,7 @@ import (
 //
 // ## Import
 //
-// # using ID
+// using ID
 //
 // ```sh
 //
@@ -27,11 +27,7 @@ type KubernetesCluster struct {
 
 	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni pulumi.StringOutput `pulumi:"cni"`
@@ -84,6 +80,10 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 	if args.Pools == nil {
 		return nil, errors.New("invalid value for required argument 'Pools'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"kubeconfig",
+	})
+	opts = append(opts, secrets)
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("civo:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -108,11 +108,7 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 type kubernetesClusterState struct {
 	// The API server endpoint of the cluster
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni *string `pulumi:"cni"`
@@ -155,11 +151,7 @@ type kubernetesClusterState struct {
 type KubernetesClusterState struct {
 	// The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringPtrInput
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni pulumi.StringPtrInput
@@ -204,11 +196,7 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni *string `pulumi:"cni"`
@@ -237,11 +225,7 @@ type kubernetesClusterArgs struct {
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-	// 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni pulumi.StringPtrInput
@@ -360,11 +344,7 @@ func (o KubernetesClusterOutput) ApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
-// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
-// 'MariaDB:5GB'.
+// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
 func (o KubernetesClusterOutput) Applications() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.Applications }).(pulumi.StringPtrOutput)
 }

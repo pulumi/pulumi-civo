@@ -13,7 +13,7 @@ namespace Pulumi.Civo
     /// Manages volume attachment/detachment to an instance.
     /// </summary>
     [CivoResourceType("civo:index/volumeAttachment:VolumeAttachment")]
-    public partial class VolumeAttachment : Pulumi.CustomResource
+    public partial class VolumeAttachment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The ID of target instance for attachment
@@ -77,7 +77,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class VolumeAttachmentArgs : Pulumi.ResourceArgs
+    public sealed class VolumeAttachmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of target instance for attachment
@@ -100,9 +100,10 @@ namespace Pulumi.Civo
         public VolumeAttachmentArgs()
         {
         }
+        public static new VolumeAttachmentArgs Empty => new VolumeAttachmentArgs();
     }
 
-    public sealed class VolumeAttachmentState : Pulumi.ResourceArgs
+    public sealed class VolumeAttachmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The ID of target instance for attachment
@@ -125,5 +126,6 @@ namespace Pulumi.Civo
         public VolumeAttachmentState()
         {
         }
+        public static new VolumeAttachmentState Empty => new VolumeAttachmentState();
     }
 }

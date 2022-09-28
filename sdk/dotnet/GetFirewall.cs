@@ -23,27 +23,25 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Civo.GetFirewall.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Civo.GetFirewall.InvokeAsync(new Civo.GetFirewallArgs
-        ///         {
-        ///             Name = "test-firewall",
-        ///             Region = "NYC1",
-        ///         }));
-        ///     }
+        ///         Name = "test-firewall",
+        ///         Region = "NYC1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetFirewallResult> InvokeAsync(GetFirewallArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information about a firewall for use in other resources.
@@ -57,69 +55,99 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Civo.GetFirewall.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Civo.GetFirewall.InvokeAsync(new Civo.GetFirewallArgs
-        ///         {
-        ///             Name = "test-firewall",
-        ///             Region = "NYC1",
-        ///         }));
-        ///     }
+        ///         Name = "test-firewall",
+        ///         Region = "NYC1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetFirewallResult> Invoke(GetFirewallInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetFirewallArgs : Pulumi.InvokeArgs
+    public sealed class GetFirewallArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the firewall
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region where the firewall is
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetFirewallArgs()
         {
         }
+        public static new GetFirewallArgs Empty => new GetFirewallArgs();
     }
 
-    public sealed class GetFirewallInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetFirewallInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The name of the firewall
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The region where the firewall is
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetFirewallInvokeArgs()
         {
         }
+        public static new GetFirewallInvokeArgs Empty => new GetFirewallInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetFirewallResult
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The name of the firewall
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The id of the associated network
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// The region where the firewall is
+        /// </summary>
         public readonly string? Region;
 
         [OutputConstructor]

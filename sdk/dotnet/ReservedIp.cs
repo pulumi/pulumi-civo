@@ -15,19 +15,15 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         var www = new Civo.ReservedIp("www", new Civo.ReservedIpArgs
-    ///         {
-    ///         });
-    ///     }
+    ///     var www = new Civo.ReservedIp("www");
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
@@ -35,7 +31,7 @@ namespace Pulumi.Civo
     /// terrafom import civo_reserved_ip.www 9f0e86fc-b2c6-46b4-82ed-2f28419f8ae3
     /// </summary>
     [CivoResourceType("civo:index/reservedIp:ReservedIp")]
-    public partial class ReservedIp : Pulumi.CustomResource
+    public partial class ReservedIp : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The IP Address of the resource
@@ -99,7 +95,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class ReservedIpArgs : Pulumi.ResourceArgs
+    public sealed class ReservedIpArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Name for the ip address
@@ -116,9 +112,10 @@ namespace Pulumi.Civo
         public ReservedIpArgs()
         {
         }
+        public static new ReservedIpArgs Empty => new ReservedIpArgs();
     }
 
-    public sealed class ReservedIpState : Pulumi.ResourceArgs
+    public sealed class ReservedIpState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The IP Address of the resource
@@ -141,5 +138,6 @@ namespace Pulumi.Civo
         public ReservedIpState()
         {
         }
+        public static new ReservedIpState Empty => new ReservedIpState();
     }
 }

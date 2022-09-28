@@ -10,16 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetKubernetesVersionSortArgs : Pulumi.InvokeArgs
+    public sealed class GetKubernetesVersionSortArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
+        /// <summary>
+        /// Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         public GetKubernetesVersionSortArgs()
         {
         }
+        public static new GetKubernetesVersionSortArgs Empty => new GetKubernetesVersionSortArgs();
     }
 }

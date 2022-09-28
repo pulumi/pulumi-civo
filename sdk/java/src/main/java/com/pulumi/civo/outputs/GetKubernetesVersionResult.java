@@ -14,16 +14,28 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesVersionResult {
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     private @Nullable List<GetKubernetesVersionFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     private @Nullable List<GetKubernetesVersionSort> sorts;
     private List<GetKubernetesVersionVersion> versions;
 
     private GetKubernetesVersionResult() {}
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetKubernetesVersionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -34,6 +46,10 @@ public final class GetKubernetesVersionResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetKubernetesVersionSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }

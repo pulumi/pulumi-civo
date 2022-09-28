@@ -14,16 +14,32 @@ public final class GetRegionSort extends com.pulumi.resources.InvokeArgs {
 
     public static final GetRegionSort Empty = new GetRegionSort();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable String direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -53,11 +69,23 @@ public final class GetRegionSort extends com.pulumi.resources.InvokeArgs {
             $ = new GetRegionSort(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable String direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param key Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;

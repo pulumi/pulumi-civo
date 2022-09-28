@@ -15,16 +15,32 @@ public final class GetReservedIpArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetReservedIpArgs Empty = new GetReservedIpArgs();
 
+    /**
+     * ID for the ip address
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return ID for the ip address
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * Name for the ip address
+     * 
+     */
     @Import(name="name")
     private @Nullable Output<String> name;
 
+    /**
+     * @return Name for the ip address
+     * 
+     */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
     }
@@ -54,20 +70,44 @@ public final class GetReservedIpArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetReservedIpArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id ID for the ip address
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id ID for the ip address
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
+        /**
+         * @param name Name for the ip address
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable Output<String> name) {
             $.name = name;
             return this;
         }
 
+        /**
+         * @param name Name for the ip address
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(String name) {
             return name(Output.of(name));
         }

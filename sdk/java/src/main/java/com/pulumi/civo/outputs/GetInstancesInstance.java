@@ -16,6 +16,10 @@ public final class GetInstancesInstance {
     private Integer diskGb;
     private String firewallId;
     private String hostname;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private String id;
     private String initialPassword;
     private String initialUser;
@@ -25,6 +29,10 @@ public final class GetInstancesInstance {
     private String pseudoIp;
     private String publicIp;
     private Integer ramMb;
+    /**
+     * @return If used, all instances will be from the provided region
+     * 
+     */
     private String region;
     private String reverseDns;
     private String script;
@@ -50,6 +58,10 @@ public final class GetInstancesInstance {
     public String hostname() {
         return this.hostname;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public String id() {
         return this.id;
     }
@@ -77,6 +89,10 @@ public final class GetInstancesInstance {
     public Integer ramMb() {
         return this.ramMb;
     }
+    /**
+     * @return If used, all instances will be from the provided region
+     * 
+     */
     public String region() {
         return this.region;
     }

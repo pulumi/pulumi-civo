@@ -14,16 +14,32 @@ public final class GetDnsDomainNamePlainArgs extends com.pulumi.resources.Invoke
 
     public static final GetDnsDomainNamePlainArgs Empty = new GetDnsDomainNamePlainArgs();
 
+    /**
+     * The ID of this resource.
+     * 
+     */
     @Import(name="id")
     private @Nullable String id;
 
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * The name of the domain
+     * 
+     */
     @Import(name="name")
     private @Nullable String name;
 
+    /**
+     * @return The name of the domain
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
@@ -53,11 +69,23 @@ public final class GetDnsDomainNamePlainArgs extends com.pulumi.resources.Invoke
             $ = new GetDnsDomainNamePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param id The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable String id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param name The name of the domain
+         * 
+         * @return builder
+         * 
+         */
         public Builder name(@Nullable String name) {
             $.name = name;
             return this;

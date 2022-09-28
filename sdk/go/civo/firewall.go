@@ -95,7 +95,7 @@ import (
 //
 // ## Import
 //
-// # using ID
+// using ID
 //
 // ```sh
 //
@@ -105,8 +105,7 @@ import (
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-	// set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrOutput `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayOutput `pulumi:"egressRules"`
@@ -149,8 +148,7 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-	// set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
@@ -165,8 +163,7 @@ type firewallState struct {
 }
 
 type FirewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-	// set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayInput
@@ -185,8 +182,7 @@ func (FirewallState) ElementType() reflect.Type {
 }
 
 type firewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-	// set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
@@ -202,8 +198,7 @@ type firewallArgs struct {
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-	// set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayInput
@@ -304,8 +299,7 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
-// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-// set to false you need to define at least one ingress or egress rule
+// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
 func (o FirewallOutput) CreateDefaultRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.BoolPtrOutput { return v.CreateDefaultRules }).(pulumi.BoolPtrOutput)
 }

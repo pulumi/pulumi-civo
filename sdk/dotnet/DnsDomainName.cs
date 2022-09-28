@@ -15,32 +15,28 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         // Create a new domain name
-    ///         var main = new Civo.DnsDomainName("main", new Civo.DnsDomainNameArgs
-    ///         {
-    ///         });
-    ///     }
+    ///     // Create a new domain name
+    ///     var main = new Civo.DnsDomainName("main");
     /// 
-    /// }
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using domain name
+    /// using domain name
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/dnsDomainName:DnsDomainName")]
-    public partial class DnsDomainName : Pulumi.CustomResource
+    public partial class DnsDomainName : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The account ID of the domain
@@ -98,7 +94,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class DnsDomainNameArgs : Pulumi.ResourceArgs
+    public sealed class DnsDomainNameArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The name of the domain
@@ -109,9 +105,10 @@ namespace Pulumi.Civo
         public DnsDomainNameArgs()
         {
         }
+        public static new DnsDomainNameArgs Empty => new DnsDomainNameArgs();
     }
 
-    public sealed class DnsDomainNameState : Pulumi.ResourceArgs
+    public sealed class DnsDomainNameState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The account ID of the domain
@@ -128,5 +125,6 @@ namespace Pulumi.Civo
         public DnsDomainNameState()
         {
         }
+        public static new DnsDomainNameState Empty => new DnsDomainNameState();
     }
 }

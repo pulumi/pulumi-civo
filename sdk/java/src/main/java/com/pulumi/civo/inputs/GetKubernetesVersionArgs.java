@@ -17,16 +17,32 @@ public final class GetKubernetesVersionArgs extends com.pulumi.resources.InvokeA
 
     public static final GetKubernetesVersionArgs Empty = new GetKubernetesVersionArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable Output<List<GetKubernetesVersionFilterArgs>> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<Output<List<GetKubernetesVersionFilterArgs>>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable Output<List<GetKubernetesVersionSortArgs>> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<Output<List<GetKubernetesVersionSortArgs>>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -56,28 +72,64 @@ public final class GetKubernetesVersionArgs extends com.pulumi.resources.InvokeA
             $ = new GetKubernetesVersionArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable Output<List<GetKubernetesVersionFilterArgs>> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(List<GetKubernetesVersionFilterArgs> filters) {
             return filters(Output.of(filters));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetKubernetesVersionFilterArgs... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable Output<List<GetKubernetesVersionSortArgs>> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(List<GetKubernetesVersionSortArgs> sorts) {
             return sorts(Output.of(sorts));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetKubernetesVersionSortArgs... sorts) {
             return sorts(List.of(sorts));
         }

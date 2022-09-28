@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
  * 
  * ## Import
  * 
- * # using domain_id:domain_record_id
+ * using domain_id:domain_record_id
  * 
  * ```sh
  *  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
@@ -72,16 +72,14 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
         return this.domainId;
     }
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-     * amex/root domain)
+     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an
-     * amex/root domain)
+     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     public Output<String> name() {
@@ -102,16 +100,14 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.priority);
     }
     /**
-     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-     * is 600)
+     * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
      * 
      */
     @Export(name="ttl", type=Integer.class, parameters={})
     private Output<Integer> ttl;
 
     /**
-     * @return How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified
-     * is 600)
+     * @return How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
      * 
      */
     public Output<Integer> ttl() {

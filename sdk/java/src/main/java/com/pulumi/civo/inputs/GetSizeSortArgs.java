@@ -15,16 +15,32 @@ public final class GetSizeSortArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final GetSizeSortArgs Empty = new GetSizeSortArgs();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable Output<String> direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<Output<String>> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     @Import(name="key", required=true)
     private Output<String> key;
 
+    /**
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     public Output<String> key() {
         return this.key;
     }
@@ -54,20 +70,44 @@ public final class GetSizeSortArgs extends com.pulumi.resources.ResourceArgs {
             $ = new GetSizeSortArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable Output<String> direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(String direction) {
             return direction(Output.of(direction));
         }
 
+        /**
+         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(Output<String> key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             return key(Output.of(key));
         }

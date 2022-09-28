@@ -15,7 +15,7 @@ import (
 //
 // ## Import
 //
-// # using cluster_id:node_pool_id
+// using cluster_id:node_pool_id
 //
 // ```sh
 //

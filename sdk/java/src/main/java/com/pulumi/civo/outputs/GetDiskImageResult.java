@@ -16,19 +16,35 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetDiskImageResult {
     private List<GetDiskImageDiskimage> diskimages;
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     private @Nullable List<GetDiskImageFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return If is used, all disk image will be from this region. Required if no region is set in provider.
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     private @Nullable List<GetDiskImageSort> sorts;
 
     private GetDiskImageResult() {}
     public List<GetDiskImageDiskimage> diskimages() {
         return this.diskimages;
     }
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetDiskImageFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -39,9 +55,17 @@ public final class GetDiskImageResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return If is used, all disk image will be from this region. Required if no region is set in provider.
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetDiskImageSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }

@@ -24,8 +24,7 @@ class FirewallArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -49,8 +48,7 @@ class FirewallArgs:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
@@ -130,8 +128,7 @@ class _FirewallState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -155,8 +152,7 @@ class _FirewallState:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
@@ -293,7 +289,7 @@ class Firewall(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -301,8 +297,7 @@ class Firewall(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -371,7 +366,7 @@ class Firewall(pulumi.CustomResource):
 
         ## Import
 
-        # using ID
+        using ID
 
         ```sh
          $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
@@ -436,8 +431,7 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -460,8 +454,7 @@ class Firewall(pulumi.CustomResource):
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> pulumi.Output[Optional[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 

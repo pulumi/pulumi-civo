@@ -35,16 +35,25 @@ class GetSshKeyResult:
     @property
     @pulumi.getter
     def fingerprint(self) -> str:
+        """
+        The fingerprint of the public key of the SSH key
+        """
         return pulumi.get(self, "fingerprint")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the SSH key
+        """
         return pulumi.get(self, "name")
 
 
@@ -66,6 +75,10 @@ def get_ssh_key(id: Optional[str] = None,
     Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
 
     An error will be raised if the provided SSH key name does not exist in your Civo account.
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the SSH key
     """
     __args__ = dict()
     __args__['id'] = id
@@ -87,5 +100,9 @@ def get_ssh_key_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
 
     An error will be raised if the provided SSH key name does not exist in your Civo account.
+
+
+    :param str id: The ID of this resource.
+    :param str name: The name of the SSH key
     """
     ...

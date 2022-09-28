@@ -12,33 +12,89 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetObjectStoreResult {
+    /**
+     * @return The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
     private String accessKeyId;
+    /**
+     * @return The endpoint of the Object Store
+     * 
+     */
     private String bucketUrl;
+    /**
+     * @return The ID of the Object Store
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The maximum size of the Object Store
+     * 
+     */
     private Integer maxSizeGb;
+    /**
+     * @return The name of the Object Store
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The region of an existing Object Store
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return The status of the Object Store
+     * 
+     */
     private String status;
 
     private GetObjectStoreResult() {}
+    /**
+     * @return The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
     public String accessKeyId() {
         return this.accessKeyId;
     }
+    /**
+     * @return The endpoint of the Object Store
+     * 
+     */
     public String bucketUrl() {
         return this.bucketUrl;
     }
+    /**
+     * @return The ID of the Object Store
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The maximum size of the Object Store
+     * 
+     */
     public Integer maxSizeGb() {
         return this.maxSizeGb;
     }
+    /**
+     * @return The name of the Object Store
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The region of an existing Object Store
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return The status of the Object Store
+     * 
+     */
     public String status() {
         return this.status;
     }

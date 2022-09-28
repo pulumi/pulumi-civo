@@ -16,44 +16,92 @@ public final class FirewallIngressRuleArgs extends com.pulumi.resources.Resource
 
     public static final FirewallIngressRuleArgs Empty = new FirewallIngressRuleArgs();
 
+    /**
+     * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * 
+     */
     @Import(name="action", required=true)
     private Output<String> action;
 
+    /**
+     * @return The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * 
+     */
     public Output<String> action() {
         return this.action;
     }
 
+    /**
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+     * 
+     */
     @Import(name="cidrs", required=true)
     private Output<List<String>> cidrs;
 
+    /**
+     * @return The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+     * 
+     */
     public Output<List<String>> cidrs() {
         return this.cidrs;
     }
 
+    /**
+     * The ID of this resource.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
 
+    /**
+     * A string that will be the displayed name/reference for this rule
+     * 
+     */
     @Import(name="label")
     private @Nullable Output<String> label;
 
+    /**
+     * @return A string that will be the displayed name/reference for this rule
+     * 
+     */
     public Optional<Output<String>> label() {
         return Optional.ofNullable(this.label);
     }
 
+    /**
+     * The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+     * 
+     */
     @Import(name="portRange")
     private @Nullable Output<String> portRange;
 
+    /**
+     * @return The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+     * 
+     */
     public Optional<Output<String>> portRange() {
         return Optional.ofNullable(this.portRange);
     }
 
+    /**
+     * The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+     * 
+     */
     @Import(name="protocol")
     private @Nullable Output<String> protocol;
 
+    /**
+     * @return The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+     * 
+     */
     public Optional<Output<String>> protocol() {
         return Optional.ofNullable(this.protocol);
     }
@@ -87,60 +135,138 @@ public final class FirewallIngressRuleArgs extends com.pulumi.resources.Resource
             $ = new FirewallIngressRuleArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+         * 
+         * @return builder
+         * 
+         */
         public Builder action(Output<String> action) {
             $.action = action;
             return this;
         }
 
+        /**
+         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+         * 
+         * @return builder
+         * 
+         */
         public Builder action(String action) {
             return action(Output.of(action));
         }
 
+        /**
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+         * 
+         * @return builder
+         * 
+         */
         public Builder cidrs(Output<List<String>> cidrs) {
             $.cidrs = cidrs;
             return this;
         }
 
+        /**
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+         * 
+         * @return builder
+         * 
+         */
         public Builder cidrs(List<String> cidrs) {
             return cidrs(Output.of(cidrs));
         }
 
+        /**
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+         * 
+         * @return builder
+         * 
+         */
         public Builder cidrs(String... cidrs) {
             return cidrs(List.of(cidrs));
         }
 
+        /**
+         * @param id The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }
 
+        /**
+         * @param label A string that will be the displayed name/reference for this rule
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(@Nullable Output<String> label) {
             $.label = label;
             return this;
         }
 
+        /**
+         * @param label A string that will be the displayed name/reference for this rule
+         * 
+         * @return builder
+         * 
+         */
         public Builder label(String label) {
             return label(Output.of(label));
         }
 
+        /**
+         * @param portRange The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+         * 
+         * @return builder
+         * 
+         */
         public Builder portRange(@Nullable Output<String> portRange) {
             $.portRange = portRange;
             return this;
         }
 
+        /**
+         * @param portRange The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+         * 
+         * @return builder
+         * 
+         */
         public Builder portRange(String portRange) {
             return portRange(Output.of(portRange));
         }
 
+        /**
+         * @param protocol The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+         * 
+         * @return builder
+         * 
+         */
         public Builder protocol(@Nullable Output<String> protocol) {
             $.protocol = protocol;
             return this;
         }
 
+        /**
+         * @param protocol The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+         * 
+         * @return builder
+         * 
+         */
         public Builder protocol(String protocol) {
             return protocol(Output.of(protocol));
         }

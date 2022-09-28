@@ -11,17 +11,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSshKeyResult {
+    /**
+     * @return The fingerprint of the public key of the SSH key
+     * 
+     */
     private String fingerprint;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The name of the SSH key
+     * 
+     */
     private @Nullable String name;
 
     private GetSshKeyResult() {}
+    /**
+     * @return The fingerprint of the public key of the SSH key
+     * 
+     */
     public String fingerprint() {
         return this.fingerprint;
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the SSH key
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

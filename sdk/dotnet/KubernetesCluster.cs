@@ -14,14 +14,14 @@ namespace Pulumi.Civo
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/kubernetesCluster:KubernetesCluster")]
-    public partial class KubernetesCluster : Pulumi.CustomResource
+    public partial class KubernetesCluster : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The API server endpoint of the cluster
@@ -30,11 +30,7 @@ namespace Pulumi.Civo
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
-        /// 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
         /// </summary>
         [Output("applications")]
         public Output<string?> Applications { get; private set; } = null!;
@@ -158,6 +154,10 @@ namespace Pulumi.Civo
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
+                AdditionalSecretOutputs =
+                {
+                    "kubeconfig",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -179,14 +179,10 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class KubernetesClusterArgs : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
-        /// 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
@@ -251,9 +247,10 @@ namespace Pulumi.Civo
         public KubernetesClusterArgs()
         {
         }
+        public static new KubernetesClusterArgs Empty => new KubernetesClusterArgs();
     }
 
-    public sealed class KubernetesClusterState : Pulumi.ResourceArgs
+    public sealed class KubernetesClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The API server endpoint of the cluster
@@ -262,11 +259,7 @@ namespace Pulumi.Civo
         public Input<string>? ApiEndpoint { get; set; }
 
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
-        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
-        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
-        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
-        /// 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
@@ -303,11 +296,21 @@ namespace Pulumi.Civo
             set => _installedApplications = value;
         }
 
+        [Input("kubeconfig")]
+        private Input<string>? _kubeconfig;
+
         /// <summary>
         /// The kubeconfig of the cluster
         /// </summary>
-        [Input("kubeconfig")]
-        public Input<string>? Kubeconfig { get; set; }
+        public Input<string>? Kubeconfig
+        {
+            get => _kubeconfig;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _kubeconfig = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The version of k3s to install (optional, the default is currently the latest available)
@@ -375,5 +378,6 @@ namespace Pulumi.Civo
         public KubernetesClusterState()
         {
         }
+        public static new KubernetesClusterState Empty => new KubernetesClusterState();
     }
 }

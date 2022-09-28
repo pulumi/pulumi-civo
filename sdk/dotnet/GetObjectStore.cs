@@ -21,26 +21,24 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var backup = Civo.GetObjectStore.Invoke(new()
         ///     {
-        ///         var backup = Output.Create(Civo.GetObjectStore.InvokeAsync(new Civo.GetObjectStoreArgs
-        ///         {
-        ///             Name = "backup-server",
-        ///         }));
-        ///     }
+        ///         Name = "backup-server",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetObjectStoreResult> InvokeAsync(GetObjectStoreArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
@@ -52,71 +50,110 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var backup = Civo.GetObjectStore.Invoke(new()
         ///     {
-        ///         var backup = Output.Create(Civo.GetObjectStore.InvokeAsync(new Civo.GetObjectStoreArgs
-        ///         {
-        ///             Name = "backup-server",
-        ///         }));
-        ///     }
+        ///         Name = "backup-server",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetObjectStoreArgs : Pulumi.InvokeArgs
+    public sealed class GetObjectStoreArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetObjectStoreArgs()
         {
         }
+        public static new GetObjectStoreArgs Empty => new GetObjectStoreArgs();
     }
 
-    public sealed class GetObjectStoreInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetObjectStoreInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetObjectStoreInvokeArgs()
         {
         }
+        public static new GetObjectStoreInvokeArgs Empty => new GetObjectStoreInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetObjectStoreResult
     {
+        /// <summary>
+        /// The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+        /// </summary>
         public readonly string AccessKeyId;
+        /// <summary>
+        /// The endpoint of the Object Store
+        /// </summary>
         public readonly string BucketUrl;
+        /// <summary>
+        /// The ID of the Object Store
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The maximum size of the Object Store
+        /// </summary>
         public readonly int MaxSizeGb;
+        /// <summary>
+        /// The name of the Object Store
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The region of an existing Object Store
+        /// </summary>
         public readonly string? Region;
+        /// <summary>
+        /// The status of the Object Store
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

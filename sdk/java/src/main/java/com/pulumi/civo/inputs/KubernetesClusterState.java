@@ -36,22 +36,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
-     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
-     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
-     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
-     * &#39;MariaDB:5GB&#39;.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
      * 
      */
     @Import(name="applications")
     private @Nullable Output<String> applications;
 
     /**
-     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
-     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
-     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
-     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
-     * &#39;MariaDB:5GB&#39;.
+     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
      * 
      */
     public Optional<Output<String>> applications() {
@@ -377,11 +369,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
-         * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
-         * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
-         * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
-         * &#39;MariaDB:5GB&#39;.
+         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
          * 
          * @return builder
          * 
@@ -392,11 +380,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
-         * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
-         * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
-         * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
-         * &#39;MariaDB:5GB&#39;.
+         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
          * 
          * @return builder
          * 

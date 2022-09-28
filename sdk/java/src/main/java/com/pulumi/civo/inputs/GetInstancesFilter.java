@@ -16,30 +16,62 @@ public final class GetInstancesFilter extends com.pulumi.resources.InvokeArgs {
 
     public static final GetInstancesFilter Empty = new GetInstancesFilter();
 
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
     @Import(name="all")
     private @Nullable Boolean all;
 
+    /**
+     * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     * 
+     */
     public Optional<Boolean> all() {
         return Optional.ofNullable(this.all);
     }
 
+    /**
+     * Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+     * 
+     */
     public String key() {
         return this.key;
     }
 
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
     @Import(name="matchBy")
     private @Nullable String matchBy;
 
+    /**
+     * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     * 
+     */
     public Optional<String> matchBy() {
         return Optional.ofNullable(this.matchBy);
     }
 
+    /**
+     * Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
     @Import(name="values", required=true)
     private List<String> values;
 
+    /**
+     * @return Only retrieves `instances` which keys has value that matches one of the values provided here
+     * 
+     */
     public List<String> values() {
         return this.values;
     }
@@ -71,26 +103,56 @@ public final class GetInstancesFilter extends com.pulumi.resources.InvokeArgs {
             $ = new GetInstancesFilter(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param all Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+         * 
+         * @return builder
+         * 
+         */
         public Builder all(@Nullable Boolean all) {
             $.all = all;
             return this;
         }
 
+        /**
+         * @param key Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;
         }
 
+        /**
+         * @param matchBy One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+         * 
+         * @return builder
+         * 
+         */
         public Builder matchBy(@Nullable String matchBy) {
             $.matchBy = matchBy;
             return this;
         }
 
+        /**
+         * @param values Only retrieves `instances` which keys has value that matches one of the values provided here
+         * 
+         * @return builder
+         * 
+         */
         public Builder values(List<String> values) {
             $.values = values;
             return this;
         }
 
+        /**
+         * @param values Only retrieves `instances` which keys has value that matches one of the values provided here
+         * 
+         * @return builder
+         * 
+         */
         public Builder values(String... values) {
             return values(List.of(values));
         }

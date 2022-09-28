@@ -11,29 +11,77 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetReservedIpResult {
+    /**
+     * @return ID for the ip address
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The ID of the instance the IP is attached to
+     * 
+     */
     private String instanceId;
+    /**
+     * @return The name of the instance the IP is attached to
+     * 
+     */
     private String instanceName;
+    /**
+     * @return The IP Address requested
+     * 
+     */
     private String ip;
+    /**
+     * @return Name for the ip address
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The region the ip address is in
+     * 
+     */
     private String region;
 
     private GetReservedIpResult() {}
+    /**
+     * @return ID for the ip address
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The ID of the instance the IP is attached to
+     * 
+     */
     public String instanceId() {
         return this.instanceId;
     }
+    /**
+     * @return The name of the instance the IP is attached to
+     * 
+     */
     public String instanceName() {
         return this.instanceName;
     }
+    /**
+     * @return The IP Address requested
+     * 
+     */
     public String ip() {
         return this.ip;
     }
+    /**
+     * @return Name for the ip address
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The region the ip address is in
+     * 
+     */
     public String region() {
         return this.region;
     }

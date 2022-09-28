@@ -21,18 +21,26 @@ func LookupReservedIp(ctx *pulumi.Context, args *LookupReservedIpArgs, opts ...p
 
 // A collection of arguments for invoking getReservedIp.
 type LookupReservedIpArgs struct {
-	Id   *string `pulumi:"id"`
+	// ID for the ip address
+	Id *string `pulumi:"id"`
+	// Name for the ip address
 	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getReservedIp.
 type LookupReservedIpResult struct {
-	Id           *string `pulumi:"id"`
-	InstanceId   string  `pulumi:"instanceId"`
-	InstanceName string  `pulumi:"instanceName"`
-	Ip           string  `pulumi:"ip"`
-	Name         *string `pulumi:"name"`
-	Region       string  `pulumi:"region"`
+	// ID for the ip address
+	Id *string `pulumi:"id"`
+	// The ID of the instance the IP is attached to
+	InstanceId string `pulumi:"instanceId"`
+	// The name of the instance the IP is attached to
+	InstanceName string `pulumi:"instanceName"`
+	// The IP Address requested
+	Ip string `pulumi:"ip"`
+	// Name for the ip address
+	Name *string `pulumi:"name"`
+	// The region the ip address is in
+	Region string `pulumi:"region"`
 }
 
 func LookupReservedIpOutput(ctx *pulumi.Context, args LookupReservedIpOutputArgs, opts ...pulumi.InvokeOption) LookupReservedIpResultOutput {
@@ -50,7 +58,9 @@ func LookupReservedIpOutput(ctx *pulumi.Context, args LookupReservedIpOutputArgs
 
 // A collection of arguments for invoking getReservedIp.
 type LookupReservedIpOutputArgs struct {
-	Id   pulumi.StringPtrInput `pulumi:"id"`
+	// ID for the ip address
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Name for the ip address
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
@@ -73,26 +83,32 @@ func (o LookupReservedIpResultOutput) ToLookupReservedIpResultOutputWithContext(
 	return o
 }
 
+// ID for the ip address
 func (o LookupReservedIpResultOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the instance the IP is attached to
 func (o LookupReservedIpResultOutput) InstanceId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) string { return v.InstanceId }).(pulumi.StringOutput)
 }
 
+// The name of the instance the IP is attached to
 func (o LookupReservedIpResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
+// The IP Address requested
 func (o LookupReservedIpResultOutput) Ip() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) string { return v.Ip }).(pulumi.StringOutput)
 }
 
+// Name for the ip address
 func (o LookupReservedIpResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// The region the ip address is in
 func (o LookupReservedIpResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupReservedIpResult) string { return v.Region }).(pulumi.StringOutput)
 }

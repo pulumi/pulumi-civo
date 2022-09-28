@@ -14,16 +14,32 @@ public final class GetSizeSort extends com.pulumi.resources.InvokeArgs {
 
     public static final GetSizeSort Empty = new GetSizeSort();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable String direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -53,11 +69,23 @@ public final class GetSizeSort extends com.pulumi.resources.InvokeArgs {
             $ = new GetSizeSort(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable String direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;

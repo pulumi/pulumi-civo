@@ -23,27 +23,25 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Civo.GetNetwork.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Civo.GetNetwork.InvokeAsync(new Civo.GetNetworkArgs
-        ///         {
-        ///             Label = "test-network",
-        ///             Region = "NYC1",
-        ///         }));
-        ///     }
+        ///         Label = "test-network",
+        ///         Region = "NYC1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetNetworkResult> InvokeAsync(GetNetworkArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkArgs(), options.WithDefaults());
 
         /// <summary>
         /// Retrieve information about a network for use in other resources.
@@ -57,70 +55,103 @@ namespace Pulumi.Civo
         /// {{% example %}}
         /// 
         /// ```csharp
+        /// using System.Collections.Generic;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
-        /// class MyStack : Stack
+        /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     public MyStack()
+        ///     var test = Civo.GetNetwork.Invoke(new()
         ///     {
-        ///         var test = Output.Create(Civo.GetNetwork.InvokeAsync(new Civo.GetNetworkArgs
-        ///         {
-        ///             Label = "test-network",
-        ///             Region = "NYC1",
-        ///         }));
-        ///     }
+        ///         Label = "test-network",
+        ///         Region = "NYC1",
+        ///     });
         /// 
-        /// }
+        /// });
         /// ```
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetNetworkResult> Invoke(GetNetworkInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetNetworkArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The label of an existing network
+        /// </summary>
         [Input("label")]
         public string? Label { get; set; }
 
+        /// <summary>
+        /// The region of an existing network
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
         public GetNetworkArgs()
         {
         }
+        public static new GetNetworkArgs Empty => new GetNetworkArgs();
     }
 
-    public sealed class GetNetworkInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetNetworkInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The label of an existing network
+        /// </summary>
         [Input("label")]
         public Input<string>? Label { get; set; }
 
+        /// <summary>
+        /// The region of an existing network
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         public GetNetworkInvokeArgs()
         {
         }
+        public static new GetNetworkInvokeArgs Empty => new GetNetworkInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetNetworkResult
     {
+        /// <summary>
+        /// If is the default network
+        /// </summary>
         public readonly bool Default;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The label of an existing network
+        /// </summary>
         public readonly string? Label;
+        /// <summary>
+        /// The name of the network
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The region of an existing network
+        /// </summary>
         public readonly string? Region;
 
         [OutputConstructor]

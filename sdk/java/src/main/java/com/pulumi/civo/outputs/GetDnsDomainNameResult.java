@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDnsDomainNameResult {
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The name of the domain
+     * 
+     */
     private @Nullable String name;
 
     private GetDnsDomainNameResult() {}
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the domain
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }

@@ -11,13 +11,29 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesVersionSort {
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     private @Nullable String direction;
+    /**
+     * @return Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     private String key;
 
     private GetKubernetesVersionSort() {}
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
+    /**
+     * @return Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+     * 
+     */
     public String key() {
         return this.key;
     }

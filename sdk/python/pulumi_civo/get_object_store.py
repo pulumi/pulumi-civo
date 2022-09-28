@@ -47,36 +47,57 @@ class GetObjectStoreResult:
     @property
     @pulumi.getter(name="accessKeyId")
     def access_key_id(self) -> str:
+        """
+        The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+        """
         return pulumi.get(self, "access_key_id")
 
     @property
     @pulumi.getter(name="bucketUrl")
     def bucket_url(self) -> str:
+        """
+        The endpoint of the Object Store
+        """
         return pulumi.get(self, "bucket_url")
 
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        The ID of the Object Store
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="maxSizeGb")
     def max_size_gb(self) -> int:
+        """
+        The maximum size of the Object Store
+        """
         return pulumi.get(self, "max_size_gb")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the Object Store
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        The region of an existing Object Store
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the Object Store
+        """
         return pulumi.get(self, "status")
 
 
@@ -112,6 +133,11 @@ def get_object_store(id: Optional[str] = None,
 
     backup = civo.get_object_store(name="backup-server")
     ```
+
+
+    :param str id: The ID of the Object Store
+    :param str name: The name of the Object Store
+    :param str region: The region of an existing Object Store
     """
     __args__ = dict()
     __args__['id'] = id
@@ -148,5 +174,10 @@ def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     backup = civo.get_object_store(name="backup-server")
     ```
+
+
+    :param str id: The ID of the Object Store
+    :param str name: The name of the Object Store
+    :param str region: The region of an existing Object Store
     """
     ...

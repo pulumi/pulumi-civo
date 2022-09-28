@@ -13,93 +13,269 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstanceResult {
+    /**
+     * @return Total cpu of the inatance
+     * 
+     */
     private Integer cpuCores;
+    /**
+     * @return The date of creation of the instance
+     * 
+     */
     private String createdAt;
+    /**
+     * @return The size of the disk
+     * 
+     */
     private Integer diskGb;
+    /**
+     * @return The ID of the firewall used
+     * 
+     */
     private String firewallId;
+    /**
+     * @return The hostname of the Instance
+     * 
+     */
     private @Nullable String hostname;
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return Instance initial password
+     * 
+     */
     private String initialPassword;
+    /**
+     * @return The name of the initial user created on the server
+     * 
+     */
     private String initialUser;
+    /**
+     * @return his will be the ID of the network
+     * 
+     */
     private String networkId;
+    /**
+     * @return The notes of the instance
+     * 
+     */
     private String notes;
+    /**
+     * @return The private IP
+     * 
+     */
     private String privateIp;
+    /**
+     * @return Is the ip that is used to route the public ip from the internet to the instance using NAT
+     * 
+     */
     private String pseudoIp;
+    /**
+     * @return The public IP
+     * 
+     */
     private String publicIp;
+    /**
+     * @return Total ram of the instance
+     * 
+     */
     private Integer ramMb;
+    /**
+     * @return The region of an existing Instance
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return A fully qualified domain name
+     * 
+     */
     private String reverseDns;
+    /**
+     * @return The contents of a script uploaded
+     * 
+     */
     private String script;
+    /**
+     * @return The name of the size
+     * 
+     */
     private String size;
+    /**
+     * @return The ID SSH key
+     * 
+     */
     private String sshkeyId;
+    /**
+     * @return The status of the instance
+     * 
+     */
     private String status;
+    /**
+     * @return An optional list of tags
+     * 
+     */
     private List<String> tags;
+    /**
+     * @return The ID for the disk image/template to used to build the instance
+     * 
+     */
     private String template;
 
     private GetInstanceResult() {}
+    /**
+     * @return Total cpu of the inatance
+     * 
+     */
     public Integer cpuCores() {
         return this.cpuCores;
     }
+    /**
+     * @return The date of creation of the instance
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return The size of the disk
+     * 
+     */
     public Integer diskGb() {
         return this.diskGb;
     }
+    /**
+     * @return The ID of the firewall used
+     * 
+     */
     public String firewallId() {
         return this.firewallId;
     }
+    /**
+     * @return The hostname of the Instance
+     * 
+     */
     public Optional<String> hostname() {
         return Optional.ofNullable(this.hostname);
     }
+    /**
+     * @return The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return Instance initial password
+     * 
+     */
     public String initialPassword() {
         return this.initialPassword;
     }
+    /**
+     * @return The name of the initial user created on the server
+     * 
+     */
     public String initialUser() {
         return this.initialUser;
     }
+    /**
+     * @return his will be the ID of the network
+     * 
+     */
     public String networkId() {
         return this.networkId;
     }
+    /**
+     * @return The notes of the instance
+     * 
+     */
     public String notes() {
         return this.notes;
     }
+    /**
+     * @return The private IP
+     * 
+     */
     public String privateIp() {
         return this.privateIp;
     }
+    /**
+     * @return Is the ip that is used to route the public ip from the internet to the instance using NAT
+     * 
+     */
     public String pseudoIp() {
         return this.pseudoIp;
     }
+    /**
+     * @return The public IP
+     * 
+     */
     public String publicIp() {
         return this.publicIp;
     }
+    /**
+     * @return Total ram of the instance
+     * 
+     */
     public Integer ramMb() {
         return this.ramMb;
     }
+    /**
+     * @return The region of an existing Instance
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return A fully qualified domain name
+     * 
+     */
     public String reverseDns() {
         return this.reverseDns;
     }
+    /**
+     * @return The contents of a script uploaded
+     * 
+     */
     public String script() {
         return this.script;
     }
+    /**
+     * @return The name of the size
+     * 
+     */
     public String size() {
         return this.size;
     }
+    /**
+     * @return The ID SSH key
+     * 
+     */
     public String sshkeyId() {
         return this.sshkeyId;
     }
+    /**
+     * @return The status of the instance
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return An optional list of tags
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
+    /**
+     * @return The ID for the disk image/template to used to build the instance
+     * 
+     */
     public String template() {
         return this.template;
     }

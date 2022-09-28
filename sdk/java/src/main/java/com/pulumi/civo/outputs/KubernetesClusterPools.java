@@ -13,21 +13,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class KubernetesClusterPools {
+    /**
+     * @return Instance names in the nodepool
+     * 
+     */
     private @Nullable List<String> instanceNames;
+    /**
+     * @return Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     private @Nullable String label;
+    /**
+     * @return Number of nodes in the nodepool
+     * 
+     */
     private Integer nodeCount;
+    /**
+     * @return Size of the nodes in the nodepool
+     * 
+     */
     private String size;
 
     private KubernetesClusterPools() {}
+    /**
+     * @return Instance names in the nodepool
+     * 
+     */
     public List<String> instanceNames() {
         return this.instanceNames == null ? List.of() : this.instanceNames;
     }
+    /**
+     * @return Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     public Optional<String> label() {
         return Optional.ofNullable(this.label);
     }
+    /**
+     * @return Number of nodes in the nodepool
+     * 
+     */
     public Integer nodeCount() {
         return this.nodeCount;
     }
+    /**
+     * @return Size of the nodes in the nodepool
+     * 
+     */
     public String size() {
         return this.size;
     }

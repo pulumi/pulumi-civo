@@ -40,6 +40,9 @@ class GetRegionResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetRegionFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -58,6 +61,9 @@ class GetRegionResult:
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetRegionSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -78,6 +84,10 @@ def get_region(filters: Optional[Sequence[pulumi.InputType['GetRegionFilterArgs'
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionResult:
     """
     Retrieves information about the region that Civo supports, with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetRegionFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetRegionSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -98,5 +108,9 @@ def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.In
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionResult]:
     """
     Retrieves information about the region that Civo supports, with the ability to filter the results.
+
+
+    :param Sequence[pulumi.InputType['GetRegionFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[pulumi.InputType['GetRegionSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

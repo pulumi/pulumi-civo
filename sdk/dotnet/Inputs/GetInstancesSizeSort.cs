@@ -10,16 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetInstancesSizeSortArgs : Pulumi.InvokeArgs
+    public sealed class GetInstancesSizeSortArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
         public string? Direction { get; set; }
 
+        /// <summary>
+        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
         public GetInstancesSizeSortArgs()
         {
         }
+        public static new GetInstancesSizeSortArgs Empty => new GetInstancesSizeSortArgs();
     }
 }

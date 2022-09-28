@@ -15,30 +15,27 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
-    ///     {
-    ///         // Send to create a reserved IP
-    ///         var www = new Civo.ReservedIp("www", new Civo.ReservedIpArgs
-    ///         {
-    ///         });
-    ///         // We assign the reserved IP to the instance
-    ///         var webserver_www = new Civo.InstanceReservedIpAssignment("webserver-www", new Civo.InstanceReservedIpAssignmentArgs
-    ///         {
-    ///             InstanceId = civo_instance.Www.Id,
-    ///             ReservedIpId = civo_reserved_ip.Web_server.Id,
-    ///         });
-    ///     }
+    ///     // Send to create a reserved IP
+    ///     var www = new Civo.ReservedIp("www");
     /// 
-    /// }
+    ///     // We assign the reserved IP to the instance
+    ///     var webserver_www = new Civo.InstanceReservedIpAssignment("webserver-www", new()
+    ///     {
+    ///         InstanceId = civo_instance.Www.Id,
+    ///         ReservedIpId = civo_reserved_ip.Web_server.Id,
+    ///     });
+    /// 
+    /// });
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment")]
-    public partial class InstanceReservedIpAssignment : Pulumi.CustomResource
+    public partial class InstanceReservedIpAssignment : global::Pulumi.CustomResource
     {
         /// <summary>
         /// The instance id
@@ -102,7 +99,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class InstanceReservedIpAssignmentArgs : Pulumi.ResourceArgs
+    public sealed class InstanceReservedIpAssignmentArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The instance id
@@ -125,9 +122,10 @@ namespace Pulumi.Civo
         public InstanceReservedIpAssignmentArgs()
         {
         }
+        public static new InstanceReservedIpAssignmentArgs Empty => new InstanceReservedIpAssignmentArgs();
     }
 
-    public sealed class InstanceReservedIpAssignmentState : Pulumi.ResourceArgs
+    public sealed class InstanceReservedIpAssignmentState : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The instance id
@@ -150,5 +148,6 @@ namespace Pulumi.Civo
         public InstanceReservedIpAssignmentState()
         {
         }
+        public static new InstanceReservedIpAssignmentState Empty => new InstanceReservedIpAssignmentState();
     }
 }

@@ -17,7 +17,7 @@ namespace Pulumi.Civo
         /// An error will be raised if the provided SSH key name does not exist in your Civo account.
         /// </summary>
         public static Task<GetSshKeyResult> InvokeAsync(GetSshKeyArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
@@ -25,42 +25,65 @@ namespace Pulumi.Civo
         /// An error will be raised if the provided SSH key name does not exist in your Civo account.
         /// </summary>
         public static Output<GetSshKeyResult> Invoke(GetSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 
-    public sealed class GetSshKeyArgs : Pulumi.InvokeArgs
+    public sealed class GetSshKeyArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public string? Id { get; set; }
 
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         public GetSshKeyArgs()
         {
         }
+        public static new GetSshKeyArgs Empty => new GetSshKeyArgs();
     }
 
-    public sealed class GetSshKeyInvokeArgs : Pulumi.InvokeArgs
+    public sealed class GetSshKeyInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         public GetSshKeyInvokeArgs()
         {
         }
+        public static new GetSshKeyInvokeArgs Empty => new GetSshKeyInvokeArgs();
     }
 
 
     [OutputType]
     public sealed class GetSshKeyResult
     {
+        /// <summary>
+        /// The fingerprint of the public key of the SSH key
+        /// </summary>
         public readonly string Fingerprint;
+        /// <summary>
+        /// The ID of this resource.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// The name of the SSH key
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

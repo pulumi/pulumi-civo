@@ -14,6 +14,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesSizeResult {
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     private @Nullable List<GetInstancesSizeFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -21,9 +25,17 @@ public final class GetInstancesSizeResult {
      */
     private String id;
     private List<GetInstancesSizeSize> sizes;
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     private @Nullable List<GetInstancesSizeSort> sorts;
 
     private GetInstancesSizeResult() {}
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public List<GetInstancesSizeFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -37,6 +49,10 @@ public final class GetInstancesSizeResult {
     public List<GetInstancesSizeSize> sizes() {
         return this.sizes;
     }
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public List<GetInstancesSizeSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
     }

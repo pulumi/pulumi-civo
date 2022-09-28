@@ -14,16 +14,32 @@ public final class GetDiskImageSort extends com.pulumi.resources.InvokeArgs {
 
     public static final GetDiskImageSort Empty = new GetDiskImageSort();
 
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     @Import(name="direction")
     private @Nullable String direction;
 
+    /**
+     * @return The sort direction. This may be either `asc` or `desc`.
+     * 
+     */
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
 
+    /**
+     * Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
     @Import(name="key", required=true)
     private String key;
 
+    /**
+     * @return Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+     * 
+     */
     public String key() {
         return this.key;
     }
@@ -53,11 +69,23 @@ public final class GetDiskImageSort extends com.pulumi.resources.InvokeArgs {
             $ = new GetDiskImageSort(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param direction The sort direction. This may be either `asc` or `desc`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder direction(@Nullable String direction) {
             $.direction = direction;
             return this;
         }
 
+        /**
+         * @param key Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+         * 
+         * @return builder
+         * 
+         */
         public Builder key(String key) {
             $.key = key;
             return this;

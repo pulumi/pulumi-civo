@@ -15,97 +15,97 @@ namespace Pulumi.Civo
     /// ## Example Usage
     /// 
     /// ```csharp
+    /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
     /// 
-    /// class MyStack : Stack
+    /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     public MyStack()
+    ///     // Create a network
+    ///     var customNet = new Civo.Network("customNet", new()
     ///     {
-    ///         // Create a network
-    ///         var customNet = new Civo.Network("customNet", new Civo.NetworkArgs
-    ///         {
-    ///             Label = "my-custom-network",
-    ///         });
-    ///         // Create a firewall
-    ///         var wwwFirewall = new Civo.Firewall("wwwFirewall", new Civo.FirewallArgs
-    ///         {
-    ///             NetworkId = customNet.Id,
-    ///         });
-    ///         // Create a firewall with the default rules
-    ///         var wwwIndex_firewallFirewall = new Civo.Firewall("wwwIndex/firewallFirewall", new Civo.FirewallArgs
-    ///         {
-    ///             NetworkId = customNet.Id,
-    ///             CreateDefaultRules = true,
-    ///         });
-    ///         // Create a firewall withouth the default rules but with a custom rule
-    ///         var wwwCivoIndex_firewallFirewall = new Civo.Firewall("wwwCivoIndex/firewallFirewall", new Civo.FirewallArgs
-    ///         {
-    ///             NetworkId = customNet.Id,
-    ///             CreateDefaultRules = false,
-    ///             IngressRules = 
-    ///             {
-    ///                 new Civo.Inputs.FirewallIngressRuleArgs
-    ///                 {
-    ///                     Label = "k8s",
-    ///                     Protocol = "tcp",
-    ///                     PortRange = "6443",
-    ///                     Cidrs = 
-    ///                     {
-    ///                         "192.168.1.1/32",
-    ///                         "192.168.10.4/32",
-    ///                         "192.168.10.10/32",
-    ///                     },
-    ///                     Action = "allow",
-    ///                 },
-    ///                 new Civo.Inputs.FirewallIngressRuleArgs
-    ///                 {
-    ///                     Label = "ssh",
-    ///                     Protocol = "tcp",
-    ///                     PortRange = "22",
-    ///                     Cidrs = 
-    ///                     {
-    ///                         "192.168.1.1/32",
-    ///                         "192.168.10.4/32",
-    ///                         "192.168.10.10/32",
-    ///                     },
-    ///                     Action = "allow",
-    ///                 },
-    ///             },
-    ///             EgressRules = 
-    ///             {
-    ///                 new Civo.Inputs.FirewallEgressRuleArgs
-    ///                 {
-    ///                     Label = "all",
-    ///                     Protocol = "tcp",
-    ///                     PortRange = "1-65535",
-    ///                     Cidrs = 
-    ///                     {
-    ///                         "0.0.0.0/0",
-    ///                     },
-    ///                     Action = "allow",
-    ///                 },
-    ///             },
-    ///         });
-    ///     }
+    ///         Label = "my-custom-network",
+    ///     });
     /// 
-    /// }
+    ///     // Create a firewall
+    ///     var wwwFirewall = new Civo.Firewall("wwwFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///     });
+    /// 
+    ///     // Create a firewall with the default rules
+    ///     var wwwIndex_firewallFirewall = new Civo.Firewall("wwwIndex/firewallFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///         CreateDefaultRules = true,
+    ///     });
+    /// 
+    ///     // Create a firewall withouth the default rules but with a custom rule
+    ///     var wwwCivoIndex_firewallFirewall = new Civo.Firewall("wwwCivoIndex/firewallFirewall", new()
+    ///     {
+    ///         NetworkId = customNet.Id,
+    ///         CreateDefaultRules = false,
+    ///         IngressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "k8s",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "6443",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "192.168.1.1/32",
+    ///                     "192.168.10.4/32",
+    ///                     "192.168.10.10/32",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "ssh",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "22",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "192.168.1.1/32",
+    ///                     "192.168.10.4/32",
+    ///                     "192.168.10.10/32",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///         EgressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallEgressRuleArgs
+    ///             {
+    ///                 Label = "all",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "1-65535",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "0.0.0.0/0",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
     /// ```
     /// 
     /// ## Import
     /// 
-    /// # using ID
+    /// using ID
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/firewall:Firewall")]
-    public partial class Firewall : Pulumi.CustomResource
+    public partial class Firewall : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        /// set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Output("createDefaultRules")]
         public Output<bool?> CreateDefaultRules { get; private set; } = null!;
@@ -184,11 +184,10 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class FirewallArgs : Pulumi.ResourceArgs
+    public sealed class FirewallArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        /// set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }
@@ -238,13 +237,13 @@ namespace Pulumi.Civo
         public FirewallArgs()
         {
         }
+        public static new FirewallArgs Empty => new FirewallArgs();
     }
 
-    public sealed class FirewallState : Pulumi.ResourceArgs
+    public sealed class FirewallState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
-        /// set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }
@@ -294,5 +293,6 @@ namespace Pulumi.Civo
         public FirewallState()
         {
         }
+        public static new FirewallState Empty => new FirewallState();
     }
 }

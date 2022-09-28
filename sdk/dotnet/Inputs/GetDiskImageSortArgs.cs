@@ -10,16 +10,23 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetDiskImageSortInputArgs : Pulumi.ResourceArgs
+    public sealed class GetDiskImageSortInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The sort direction. This may be either `asc` or `desc`.
+        /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
+        /// <summary>
+        /// Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
         public GetDiskImageSortInputArgs()
         {
         }
+        public static new GetDiskImageSortInputArgs Empty => new GetDiskImageSortInputArgs();
     }
 }

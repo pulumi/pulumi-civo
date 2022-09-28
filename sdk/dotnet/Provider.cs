@@ -16,7 +16,7 @@ namespace Pulumi.Civo
     /// [documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.
     /// </summary>
     [CivoResourceType("pulumi:providers:civo")]
-    public partial class Provider : Pulumi.ProviderResource
+    public partial class Provider : global::Pulumi.ProviderResource
     {
         /// <summary>
         /// The Base URL to use for CIVO API.
@@ -63,7 +63,7 @@ namespace Pulumi.Civo
         }
     }
 
-    public sealed class ProviderArgs : Pulumi.ResourceArgs
+    public sealed class ProviderArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The Base URL to use for CIVO API.
@@ -87,5 +87,6 @@ namespace Pulumi.Civo
         public ProviderArgs()
         {
         }
+        public static new ProviderArgs Empty => new ProviderArgs();
     }
 }

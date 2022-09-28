@@ -14,61 +14,165 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetLoadBalancerResult {
+    /**
+     * @return The algorithm used by the load balancer
+     * 
+     */
     private String algorithm;
     private List<GetLoadBalancerBackend> backends;
+    /**
+     * @return The cluster id of the load balancer
+     * 
+     */
     private String clusterId;
+    /**
+     * @return The enabled proxy protocol of the load balancer
+     * 
+     */
     private String enableProxyProtocol;
+    /**
+     * @return The external traffic policy of the load balancer
+     * 
+     */
     private String externalTrafficPolicy;
+    /**
+     * @return The firewall id of the load balancer
+     * 
+     */
     private String firewallId;
+    /**
+     * @return The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+     * 
+     */
     private @Nullable String id;
+    /**
+     * @return The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+     * 
+     */
     private @Nullable String name;
+    /**
+     * @return The private ip of the load balancer
+     * 
+     */
     private String privateIp;
+    /**
+     * @return The public ip of the load balancer
+     * 
+     */
     private String publicIp;
+    /**
+     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * 
+     */
     private @Nullable String region;
+    /**
+     * @return The session affinity of the load balancer
+     * 
+     */
     private String sessionAffinity;
+    /**
+     * @return The session affinity config timeout of the load balancer
+     * 
+     */
     private Integer sessionAffinityConfigTimeout;
+    /**
+     * @return The state of the load balancer
+     * 
+     */
     private String state;
 
     private GetLoadBalancerResult() {}
+    /**
+     * @return The algorithm used by the load balancer
+     * 
+     */
     public String algorithm() {
         return this.algorithm;
     }
     public List<GetLoadBalancerBackend> backends() {
         return this.backends;
     }
+    /**
+     * @return The cluster id of the load balancer
+     * 
+     */
     public String clusterId() {
         return this.clusterId;
     }
+    /**
+     * @return The enabled proxy protocol of the load balancer
+     * 
+     */
     public String enableProxyProtocol() {
         return this.enableProxyProtocol;
     }
+    /**
+     * @return The external traffic policy of the load balancer
+     * 
+     */
     public String externalTrafficPolicy() {
         return this.externalTrafficPolicy;
     }
+    /**
+     * @return The firewall id of the load balancer
+     * 
+     */
     public String firewallId() {
         return this.firewallId;
     }
+    /**
+     * @return The id of the load balancer to retrieve (You can find this id from service annotations &#39;kubernetes.civo.com/loadbalancer-id&#39;)
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
+    /**
+     * @return The name of the load balancer (You can find this name from service annotations &#39;kubernetes.civo.com/loadbalancer-name&#39;)
+     * 
+     */
     public Optional<String> name() {
         return Optional.ofNullable(this.name);
     }
+    /**
+     * @return The private ip of the load balancer
+     * 
+     */
     public String privateIp() {
         return this.privateIp;
     }
+    /**
+     * @return The public ip of the load balancer
+     * 
+     */
     public String publicIp() {
         return this.publicIp;
     }
+    /**
+     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * 
+     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
+    /**
+     * @return The session affinity of the load balancer
+     * 
+     */
     public String sessionAffinity() {
         return this.sessionAffinity;
     }
+    /**
+     * @return The session affinity config timeout of the load balancer
+     * 
+     */
     public Integer sessionAffinityConfigTimeout() {
         return this.sessionAffinityConfigTimeout;
     }
+    /**
+     * @return The state of the load balancer
+     * 
+     */
     public String state() {
         return this.state;
     }

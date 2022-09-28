@@ -43,6 +43,9 @@ class GetInstancesResult:
     @property
     @pulumi.getter
     def filters(self) -> Optional[Sequence['outputs.GetInstancesFilterResult']]:
+        """
+        One or more key/value pairs on which to filter results
+        """
         return pulumi.get(self, "filters")
 
     @property
@@ -61,11 +64,17 @@ class GetInstancesResult:
     @property
     @pulumi.getter
     def region(self) -> Optional[str]:
+        """
+        If used, all instances will be from the provided region
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter
     def sorts(self) -> Optional[Sequence['outputs.GetInstancesSortResult']]:
+        """
+        One or more key/direction pairs on which to sort results
+        """
         return pulumi.get(self, "sorts")
 
 
@@ -103,6 +112,11 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
             values=[g3["small"]],
         )])
     ```
+
+
+    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If used, all instances will be from the provided region
+    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -141,5 +155,10 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
             values=[g3["small"]],
         )])
     ```
+
+
+    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If used, all instances will be from the provided region
+    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

@@ -17,16 +17,14 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
     public static final FirewallRuleArgs Empty = new FirewallRuleArgs();
 
     /**
-     * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-     * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
      * 
      */
     @Import(name="action", required=true)
     private Output<String> action;
 
     /**
-     * @return The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-     * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+     * @return The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
      * 
      */
     public Output<String> action() {
@@ -34,16 +32,14 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      * 
      */
     @Import(name="cidrs", required=true)
     private Output<List<String>> cidrs;
 
     /**
-     * @return The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-     * to open just for a specific IP address)
+     * @return The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      * 
      */
     public Output<List<String>> cidrs() {
@@ -188,8 +184,7 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-         * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
          * 
          * @return builder
          * 
@@ -200,8 +195,7 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow
-         * traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
+         * @param action The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
          * 
          * @return builder
          * 
@@ -211,8 +205,7 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-         * to open just for a specific IP address)
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
          * 
          * @return builder
          * 
@@ -223,8 +216,7 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-         * to open just for a specific IP address)
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
          * 
          * @return builder
          * 
@@ -234,8 +226,7 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32
-         * to open just for a specific IP address)
+         * @param cidrs The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
          * 
          * @return builder
          * 

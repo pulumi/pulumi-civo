@@ -16,16 +16,32 @@ public final class GetRegionPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetRegionPlainArgs Empty = new GetRegionPlainArgs();
 
+    /**
+     * One or more key/value pairs on which to filter results
+     * 
+     */
     @Import(name="filters")
     private @Nullable List<GetRegionFilter> filters;
 
+    /**
+     * @return One or more key/value pairs on which to filter results
+     * 
+     */
     public Optional<List<GetRegionFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
+    /**
+     * One or more key/direction pairs on which to sort results
+     * 
+     */
     @Import(name="sorts")
     private @Nullable List<GetRegionSort> sorts;
 
+    /**
+     * @return One or more key/direction pairs on which to sort results
+     * 
+     */
     public Optional<List<GetRegionSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
@@ -55,20 +71,44 @@ public final class GetRegionPlainArgs extends com.pulumi.resources.InvokeArgs {
             $ = new GetRegionPlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(@Nullable List<GetRegionFilter> filters) {
             $.filters = filters;
             return this;
         }
 
+        /**
+         * @param filters One or more key/value pairs on which to filter results
+         * 
+         * @return builder
+         * 
+         */
         public Builder filters(GetRegionFilter... filters) {
             return filters(List.of(filters));
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(@Nullable List<GetRegionSort> sorts) {
             $.sorts = sorts;
             return this;
         }
 
+        /**
+         * @param sorts One or more key/direction pairs on which to sort results
+         * 
+         * @return builder
+         * 
+         */
         public Builder sorts(GetRegionSort... sorts) {
             return sorts(List.of(sorts));
         }
