@@ -69,7 +69,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * The region of the network
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
 
     /**
      * Create a Network resource with the given unique name, arguments, and options.

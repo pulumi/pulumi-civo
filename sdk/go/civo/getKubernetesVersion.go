@@ -18,28 +18,31 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.GetKubernetesVersion(ctx, &GetKubernetesVersionArgs{
-// 			Filters: []GetKubernetesVersionFilter{
-// 				GetKubernetesVersionFilter{
-// 					Key: "type",
-// 					Values: []string{
-// 						"stable",
-// 					},
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.GetKubernetesVersion(ctx, &GetKubernetesVersionArgs{
+//				Filters: []GetKubernetesVersionFilter{
+//					GetKubernetesVersionFilter{
+//						Key: "type",
+//						Values: []string{
+//							"stable",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, opts ...pulumi.InvokeOption) (*GetKubernetesVersionResult, error) {
 	var rv GetKubernetesVersionResult

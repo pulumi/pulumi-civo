@@ -11,29 +11,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetReservedIpResult {
-    private final @Nullable String id;
-    private final String instanceId;
-    private final String instanceName;
-    private final String ip;
-    private final @Nullable String name;
-    private final String region;
+    private @Nullable String id;
+    private String instanceId;
+    private String instanceName;
+    private String ip;
+    private @Nullable String name;
+    private String region;
 
-    @CustomType.Constructor
-    private GetReservedIpResult(
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("instanceId") String instanceId,
-        @CustomType.Parameter("instanceName") String instanceName,
-        @CustomType.Parameter("ip") String ip,
-        @CustomType.Parameter("name") @Nullable String name,
-        @CustomType.Parameter("region") String region) {
-        this.id = id;
-        this.instanceId = instanceId;
-        this.instanceName = instanceName;
-        this.ip = ip;
-        this.name = name;
-        this.region = region;
-    }
-
+    private GetReservedIpResult() {}
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
@@ -60,7 +45,7 @@ public final class GetReservedIpResult {
     public static Builder builder(GetReservedIpResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String id;
         private String instanceId;
@@ -68,11 +53,7 @@ public final class GetReservedIpResult {
         private String ip;
         private @Nullable String name;
         private String region;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetReservedIpResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.id = defaults.id;
@@ -83,31 +64,45 @@ public final class GetReservedIpResult {
     	      this.region = defaults.region;
         }
 
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder instanceId(String instanceId) {
             this.instanceId = Objects.requireNonNull(instanceId);
             return this;
         }
+        @CustomType.Setter
         public Builder instanceName(String instanceName) {
             this.instanceName = Objects.requireNonNull(instanceName);
             return this;
         }
+        @CustomType.Setter
         public Builder ip(String ip) {
             this.ip = Objects.requireNonNull(ip);
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
         public Builder region(String region) {
             this.region = Objects.requireNonNull(region);
             return this;
-        }        public GetReservedIpResult build() {
-            return new GetReservedIpResult(id, instanceId, instanceName, ip, name, region);
+        }
+        public GetReservedIpResult build() {
+            final var o = new GetReservedIpResult();
+            o.id = id;
+            o.instanceId = instanceId;
+            o.instanceName = instanceName;
+            o.ip = ip;
+            o.name = name;
+            o.region = region;
+            return o;
         }
     }
 }

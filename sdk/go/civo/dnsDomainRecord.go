@@ -18,7 +18,9 @@ import (
 // # using domain_id:domain_record_id
 //
 // ```sh
-//  $ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
+//
+//	$ pulumi import civo:index/dnsDomainRecord:DnsDomainRecord www a3cd6832-9577-4017-afd7-17d239fc0bf0:c9a39d14-ee1b-4870-8fb0-a2d4f465e822
+//
 // ```
 type DnsDomainRecord struct {
 	pulumi.CustomResourceState
@@ -196,7 +198,7 @@ func (i *DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context
 // DnsDomainRecordArrayInput is an input type that accepts DnsDomainRecordArray and DnsDomainRecordArrayOutput values.
 // You can construct a concrete instance of `DnsDomainRecordArrayInput` via:
 //
-//          DnsDomainRecordArray{ DnsDomainRecordArgs{...} }
+//	DnsDomainRecordArray{ DnsDomainRecordArgs{...} }
 type DnsDomainRecordArrayInput interface {
 	pulumi.Input
 
@@ -221,7 +223,7 @@ func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutputWithContext(ctx contex
 // DnsDomainRecordMapInput is an input type that accepts DnsDomainRecordMap and DnsDomainRecordMapOutput values.
 // You can construct a concrete instance of `DnsDomainRecordMapInput` via:
 //
-//          DnsDomainRecordMap{ "key": DnsDomainRecordArgs{...} }
+//	DnsDomainRecordMap{ "key": DnsDomainRecordArgs{...} }
 type DnsDomainRecordMapInput interface {
 	pulumi.Input
 

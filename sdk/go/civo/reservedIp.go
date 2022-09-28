@@ -18,19 +18,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewReservedIp(ctx, "www", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.NewReservedIp(ctx, "www", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -138,7 +141,7 @@ func (i *ReservedIp) ToReservedIpOutputWithContext(ctx context.Context) Reserved
 // ReservedIpArrayInput is an input type that accepts ReservedIpArray and ReservedIpArrayOutput values.
 // You can construct a concrete instance of `ReservedIpArrayInput` via:
 //
-//          ReservedIpArray{ ReservedIpArgs{...} }
+//	ReservedIpArray{ ReservedIpArgs{...} }
 type ReservedIpArrayInput interface {
 	pulumi.Input
 
@@ -163,7 +166,7 @@ func (i ReservedIpArray) ToReservedIpArrayOutputWithContext(ctx context.Context)
 // ReservedIpMapInput is an input type that accepts ReservedIpMap and ReservedIpMapOutput values.
 // You can construct a concrete instance of `ReservedIpMapInput` via:
 //
-//          ReservedIpMap{ "key": ReservedIpArgs{...} }
+//	ReservedIpMap{ "key": ReservedIpArgs{...} }
 type ReservedIpMapInput interface {
 	pulumi.Input
 

@@ -20,23 +20,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		my_lb, err := civo.GetLoadBalancer(ctx, &GetLoadBalancerArgs{
-// 			Name:   pulumi.StringRef("lb-name"),
-// 			Region: pulumi.StringRef("LON1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("civoLoadbalancerOutput", my_lb.PublicIp)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			my_lb, err := civo.GetLoadBalancer(ctx, &GetLoadBalancerArgs{
+//				Name:   pulumi.StringRef("lb-name"),
+//				Region: pulumi.StringRef("LON1"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("civoLoadbalancerOutput", my_lb.PublicIp)
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetLoadBalancer(ctx *pulumi.Context, args *GetLoadBalancerArgs, opts ...pulumi.InvokeOption) (*GetLoadBalancerResult, error) {
 	var rv GetLoadBalancerResult

@@ -10,6 +10,254 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type FirewallEgressRule struct {
+	Action    string   `pulumi:"action"`
+	Cidrs     []string `pulumi:"cidrs"`
+	Id        *string  `pulumi:"id"`
+	Label     *string  `pulumi:"label"`
+	PortRange *string  `pulumi:"portRange"`
+	Protocol  *string  `pulumi:"protocol"`
+}
+
+// FirewallEgressRuleInput is an input type that accepts FirewallEgressRuleArgs and FirewallEgressRuleOutput values.
+// You can construct a concrete instance of `FirewallEgressRuleInput` via:
+//
+//	FirewallEgressRuleArgs{...}
+type FirewallEgressRuleInput interface {
+	pulumi.Input
+
+	ToFirewallEgressRuleOutput() FirewallEgressRuleOutput
+	ToFirewallEgressRuleOutputWithContext(context.Context) FirewallEgressRuleOutput
+}
+
+type FirewallEgressRuleArgs struct {
+	Action    pulumi.StringInput      `pulumi:"action"`
+	Cidrs     pulumi.StringArrayInput `pulumi:"cidrs"`
+	Id        pulumi.StringPtrInput   `pulumi:"id"`
+	Label     pulumi.StringPtrInput   `pulumi:"label"`
+	PortRange pulumi.StringPtrInput   `pulumi:"portRange"`
+	Protocol  pulumi.StringPtrInput   `pulumi:"protocol"`
+}
+
+func (FirewallEgressRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallEgressRule)(nil)).Elem()
+}
+
+func (i FirewallEgressRuleArgs) ToFirewallEgressRuleOutput() FirewallEgressRuleOutput {
+	return i.ToFirewallEgressRuleOutputWithContext(context.Background())
+}
+
+func (i FirewallEgressRuleArgs) ToFirewallEgressRuleOutputWithContext(ctx context.Context) FirewallEgressRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallEgressRuleOutput)
+}
+
+// FirewallEgressRuleArrayInput is an input type that accepts FirewallEgressRuleArray and FirewallEgressRuleArrayOutput values.
+// You can construct a concrete instance of `FirewallEgressRuleArrayInput` via:
+//
+//	FirewallEgressRuleArray{ FirewallEgressRuleArgs{...} }
+type FirewallEgressRuleArrayInput interface {
+	pulumi.Input
+
+	ToFirewallEgressRuleArrayOutput() FirewallEgressRuleArrayOutput
+	ToFirewallEgressRuleArrayOutputWithContext(context.Context) FirewallEgressRuleArrayOutput
+}
+
+type FirewallEgressRuleArray []FirewallEgressRuleInput
+
+func (FirewallEgressRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallEgressRule)(nil)).Elem()
+}
+
+func (i FirewallEgressRuleArray) ToFirewallEgressRuleArrayOutput() FirewallEgressRuleArrayOutput {
+	return i.ToFirewallEgressRuleArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallEgressRuleArray) ToFirewallEgressRuleArrayOutputWithContext(ctx context.Context) FirewallEgressRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallEgressRuleArrayOutput)
+}
+
+type FirewallEgressRuleOutput struct{ *pulumi.OutputState }
+
+func (FirewallEgressRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallEgressRule)(nil)).Elem()
+}
+
+func (o FirewallEgressRuleOutput) ToFirewallEgressRuleOutput() FirewallEgressRuleOutput {
+	return o
+}
+
+func (o FirewallEgressRuleOutput) ToFirewallEgressRuleOutputWithContext(ctx context.Context) FirewallEgressRuleOutput {
+	return o
+}
+
+func (o FirewallEgressRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v FirewallEgressRule) string { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallEgressRuleOutput) Cidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v FirewallEgressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallEgressRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallEgressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallEgressRuleOutput) Label() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallEgressRule) *string { return v.Label }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallEgressRuleOutput) PortRange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallEgressRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallEgressRuleOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallEgressRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type FirewallEgressRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallEgressRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallEgressRule)(nil)).Elem()
+}
+
+func (o FirewallEgressRuleArrayOutput) ToFirewallEgressRuleArrayOutput() FirewallEgressRuleArrayOutput {
+	return o
+}
+
+func (o FirewallEgressRuleArrayOutput) ToFirewallEgressRuleArrayOutputWithContext(ctx context.Context) FirewallEgressRuleArrayOutput {
+	return o
+}
+
+func (o FirewallEgressRuleArrayOutput) Index(i pulumi.IntInput) FirewallEgressRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallEgressRule {
+		return vs[0].([]FirewallEgressRule)[vs[1].(int)]
+	}).(FirewallEgressRuleOutput)
+}
+
+type FirewallIngressRule struct {
+	Action    string   `pulumi:"action"`
+	Cidrs     []string `pulumi:"cidrs"`
+	Id        *string  `pulumi:"id"`
+	Label     *string  `pulumi:"label"`
+	PortRange *string  `pulumi:"portRange"`
+	Protocol  *string  `pulumi:"protocol"`
+}
+
+// FirewallIngressRuleInput is an input type that accepts FirewallIngressRuleArgs and FirewallIngressRuleOutput values.
+// You can construct a concrete instance of `FirewallIngressRuleInput` via:
+//
+//	FirewallIngressRuleArgs{...}
+type FirewallIngressRuleInput interface {
+	pulumi.Input
+
+	ToFirewallIngressRuleOutput() FirewallIngressRuleOutput
+	ToFirewallIngressRuleOutputWithContext(context.Context) FirewallIngressRuleOutput
+}
+
+type FirewallIngressRuleArgs struct {
+	Action    pulumi.StringInput      `pulumi:"action"`
+	Cidrs     pulumi.StringArrayInput `pulumi:"cidrs"`
+	Id        pulumi.StringPtrInput   `pulumi:"id"`
+	Label     pulumi.StringPtrInput   `pulumi:"label"`
+	PortRange pulumi.StringPtrInput   `pulumi:"portRange"`
+	Protocol  pulumi.StringPtrInput   `pulumi:"protocol"`
+}
+
+func (FirewallIngressRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallIngressRule)(nil)).Elem()
+}
+
+func (i FirewallIngressRuleArgs) ToFirewallIngressRuleOutput() FirewallIngressRuleOutput {
+	return i.ToFirewallIngressRuleOutputWithContext(context.Background())
+}
+
+func (i FirewallIngressRuleArgs) ToFirewallIngressRuleOutputWithContext(ctx context.Context) FirewallIngressRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallIngressRuleOutput)
+}
+
+// FirewallIngressRuleArrayInput is an input type that accepts FirewallIngressRuleArray and FirewallIngressRuleArrayOutput values.
+// You can construct a concrete instance of `FirewallIngressRuleArrayInput` via:
+//
+//	FirewallIngressRuleArray{ FirewallIngressRuleArgs{...} }
+type FirewallIngressRuleArrayInput interface {
+	pulumi.Input
+
+	ToFirewallIngressRuleArrayOutput() FirewallIngressRuleArrayOutput
+	ToFirewallIngressRuleArrayOutputWithContext(context.Context) FirewallIngressRuleArrayOutput
+}
+
+type FirewallIngressRuleArray []FirewallIngressRuleInput
+
+func (FirewallIngressRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallIngressRule)(nil)).Elem()
+}
+
+func (i FirewallIngressRuleArray) ToFirewallIngressRuleArrayOutput() FirewallIngressRuleArrayOutput {
+	return i.ToFirewallIngressRuleArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallIngressRuleArray) ToFirewallIngressRuleArrayOutputWithContext(ctx context.Context) FirewallIngressRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallIngressRuleArrayOutput)
+}
+
+type FirewallIngressRuleOutput struct{ *pulumi.OutputState }
+
+func (FirewallIngressRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallIngressRule)(nil)).Elem()
+}
+
+func (o FirewallIngressRuleOutput) ToFirewallIngressRuleOutput() FirewallIngressRuleOutput {
+	return o
+}
+
+func (o FirewallIngressRuleOutput) ToFirewallIngressRuleOutputWithContext(ctx context.Context) FirewallIngressRuleOutput {
+	return o
+}
+
+func (o FirewallIngressRuleOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v FirewallIngressRule) string { return v.Action }).(pulumi.StringOutput)
+}
+
+func (o FirewallIngressRuleOutput) Cidrs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v FirewallIngressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
+}
+
+func (o FirewallIngressRuleOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallIngressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIngressRuleOutput) Label() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallIngressRule) *string { return v.Label }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIngressRuleOutput) PortRange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallIngressRule) *string { return v.PortRange }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIngressRuleOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallIngressRule) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type FirewallIngressRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallIngressRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallIngressRule)(nil)).Elem()
+}
+
+func (o FirewallIngressRuleArrayOutput) ToFirewallIngressRuleArrayOutput() FirewallIngressRuleArrayOutput {
+	return o
+}
+
+func (o FirewallIngressRuleArrayOutput) ToFirewallIngressRuleArrayOutputWithContext(ctx context.Context) FirewallIngressRuleArrayOutput {
+	return o
+}
+
+func (o FirewallIngressRuleArrayOutput) Index(i pulumi.IntInput) FirewallIngressRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIngressRule {
+		return vs[0].([]FirewallIngressRule)[vs[1].(int)]
+	}).(FirewallIngressRuleOutput)
+}
+
 type KubernetesClusterInstalledApplication struct {
 	Application *string `pulumi:"application"`
 	Category    *string `pulumi:"category"`
@@ -20,7 +268,7 @@ type KubernetesClusterInstalledApplication struct {
 // KubernetesClusterInstalledApplicationInput is an input type that accepts KubernetesClusterInstalledApplicationArgs and KubernetesClusterInstalledApplicationOutput values.
 // You can construct a concrete instance of `KubernetesClusterInstalledApplicationInput` via:
 //
-//          KubernetesClusterInstalledApplicationArgs{...}
+//	KubernetesClusterInstalledApplicationArgs{...}
 type KubernetesClusterInstalledApplicationInput interface {
 	pulumi.Input
 
@@ -50,7 +298,7 @@ func (i KubernetesClusterInstalledApplicationArgs) ToKubernetesClusterInstalledA
 // KubernetesClusterInstalledApplicationArrayInput is an input type that accepts KubernetesClusterInstalledApplicationArray and KubernetesClusterInstalledApplicationArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterInstalledApplicationArrayInput` via:
 //
-//          KubernetesClusterInstalledApplicationArray{ KubernetesClusterInstalledApplicationArgs{...} }
+//	KubernetesClusterInstalledApplicationArray{ KubernetesClusterInstalledApplicationArgs{...} }
 type KubernetesClusterInstalledApplicationArrayInput interface {
 	pulumi.Input
 
@@ -132,7 +380,7 @@ type KubernetesClusterPools struct {
 // KubernetesClusterPoolsInput is an input type that accepts KubernetesClusterPoolsArgs and KubernetesClusterPoolsOutput values.
 // You can construct a concrete instance of `KubernetesClusterPoolsInput` via:
 //
-//          KubernetesClusterPoolsArgs{...}
+//	KubernetesClusterPoolsArgs{...}
 type KubernetesClusterPoolsInput interface {
 	pulumi.Input
 
@@ -170,11 +418,11 @@ func (i KubernetesClusterPoolsArgs) ToKubernetesClusterPoolsPtrOutputWithContext
 // KubernetesClusterPoolsPtrInput is an input type that accepts KubernetesClusterPoolsArgs, KubernetesClusterPoolsPtr and KubernetesClusterPoolsPtrOutput values.
 // You can construct a concrete instance of `KubernetesClusterPoolsPtrInput` via:
 //
-//          KubernetesClusterPoolsArgs{...}
+//	        KubernetesClusterPoolsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type KubernetesClusterPoolsPtrInput interface {
 	pulumi.Input
 
@@ -310,7 +558,7 @@ type GetDiskImageDiskimage struct {
 // GetDiskImageDiskimageInput is an input type that accepts GetDiskImageDiskimageArgs and GetDiskImageDiskimageOutput values.
 // You can construct a concrete instance of `GetDiskImageDiskimageInput` via:
 //
-//          GetDiskImageDiskimageArgs{...}
+//	GetDiskImageDiskimageArgs{...}
 type GetDiskImageDiskimageInput interface {
 	pulumi.Input
 
@@ -340,7 +588,7 @@ func (i GetDiskImageDiskimageArgs) ToGetDiskImageDiskimageOutputWithContext(ctx 
 // GetDiskImageDiskimageArrayInput is an input type that accepts GetDiskImageDiskimageArray and GetDiskImageDiskimageArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageDiskimageArrayInput` via:
 //
-//          GetDiskImageDiskimageArray{ GetDiskImageDiskimageArgs{...} }
+//	GetDiskImageDiskimageArray{ GetDiskImageDiskimageArgs{...} }
 type GetDiskImageDiskimageArrayInput interface {
 	pulumi.Input
 
@@ -422,7 +670,7 @@ type GetDiskImageFilter struct {
 // GetDiskImageFilterInput is an input type that accepts GetDiskImageFilterArgs and GetDiskImageFilterOutput values.
 // You can construct a concrete instance of `GetDiskImageFilterInput` via:
 //
-//          GetDiskImageFilterArgs{...}
+//	GetDiskImageFilterArgs{...}
 type GetDiskImageFilterInput interface {
 	pulumi.Input
 
@@ -452,7 +700,7 @@ func (i GetDiskImageFilterArgs) ToGetDiskImageFilterOutputWithContext(ctx contex
 // GetDiskImageFilterArrayInput is an input type that accepts GetDiskImageFilterArray and GetDiskImageFilterArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageFilterArrayInput` via:
 //
-//          GetDiskImageFilterArray{ GetDiskImageFilterArgs{...} }
+//	GetDiskImageFilterArray{ GetDiskImageFilterArgs{...} }
 type GetDiskImageFilterArrayInput interface {
 	pulumi.Input
 
@@ -532,7 +780,7 @@ type GetDiskImageSort struct {
 // GetDiskImageSortInput is an input type that accepts GetDiskImageSortArgs and GetDiskImageSortOutput values.
 // You can construct a concrete instance of `GetDiskImageSortInput` via:
 //
-//          GetDiskImageSortArgs{...}
+//	GetDiskImageSortArgs{...}
 type GetDiskImageSortInput interface {
 	pulumi.Input
 
@@ -560,7 +808,7 @@ func (i GetDiskImageSortArgs) ToGetDiskImageSortOutputWithContext(ctx context.Co
 // GetDiskImageSortArrayInput is an input type that accepts GetDiskImageSortArray and GetDiskImageSortArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageSortArrayInput` via:
 //
-//          GetDiskImageSortArray{ GetDiskImageSortArgs{...} }
+//	GetDiskImageSortArray{ GetDiskImageSortArgs{...} }
 type GetDiskImageSortArrayInput interface {
 	pulumi.Input
 
@@ -634,7 +882,7 @@ type GetInstancesFilter struct {
 // GetInstancesFilterInput is an input type that accepts GetInstancesFilterArgs and GetInstancesFilterOutput values.
 // You can construct a concrete instance of `GetInstancesFilterInput` via:
 //
-//          GetInstancesFilterArgs{...}
+//	GetInstancesFilterArgs{...}
 type GetInstancesFilterInput interface {
 	pulumi.Input
 
@@ -664,7 +912,7 @@ func (i GetInstancesFilterArgs) ToGetInstancesFilterOutputWithContext(ctx contex
 // GetInstancesFilterArrayInput is an input type that accepts GetInstancesFilterArray and GetInstancesFilterArrayOutput values.
 // You can construct a concrete instance of `GetInstancesFilterArrayInput` via:
 //
-//          GetInstancesFilterArray{ GetInstancesFilterArgs{...} }
+//	GetInstancesFilterArray{ GetInstancesFilterArgs{...} }
 type GetInstancesFilterArrayInput interface {
 	pulumi.Input
 
@@ -764,7 +1012,7 @@ type GetInstancesInstance struct {
 // GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
 // You can construct a concrete instance of `GetInstancesInstanceInput` via:
 //
-//          GetInstancesInstanceArgs{...}
+//	GetInstancesInstanceArgs{...}
 type GetInstancesInstanceInput interface {
 	pulumi.Input
 
@@ -812,7 +1060,7 @@ func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutputWithContext(ctx co
 // GetInstancesInstanceArrayInput is an input type that accepts GetInstancesInstanceArray and GetInstancesInstanceArrayOutput values.
 // You can construct a concrete instance of `GetInstancesInstanceArrayInput` via:
 //
-//          GetInstancesInstanceArray{ GetInstancesInstanceArgs{...} }
+//	GetInstancesInstanceArray{ GetInstancesInstanceArgs{...} }
 type GetInstancesInstanceArrayInput interface {
 	pulumi.Input
 
@@ -966,7 +1214,7 @@ type GetInstancesSizeFilter struct {
 // GetInstancesSizeFilterInput is an input type that accepts GetInstancesSizeFilterArgs and GetInstancesSizeFilterOutput values.
 // You can construct a concrete instance of `GetInstancesSizeFilterInput` via:
 //
-//          GetInstancesSizeFilterArgs{...}
+//	GetInstancesSizeFilterArgs{...}
 type GetInstancesSizeFilterInput interface {
 	pulumi.Input
 
@@ -996,7 +1244,7 @@ func (i GetInstancesSizeFilterArgs) ToGetInstancesSizeFilterOutputWithContext(ct
 // GetInstancesSizeFilterArrayInput is an input type that accepts GetInstancesSizeFilterArray and GetInstancesSizeFilterArrayOutput values.
 // You can construct a concrete instance of `GetInstancesSizeFilterArrayInput` via:
 //
-//          GetInstancesSizeFilterArray{ GetInstancesSizeFilterArgs{...} }
+//	GetInstancesSizeFilterArray{ GetInstancesSizeFilterArgs{...} }
 type GetInstancesSizeFilterArrayInput interface {
 	pulumi.Input
 
@@ -1081,7 +1329,7 @@ type GetInstancesSizeSize struct {
 // GetInstancesSizeSizeInput is an input type that accepts GetInstancesSizeSizeArgs and GetInstancesSizeSizeOutput values.
 // You can construct a concrete instance of `GetInstancesSizeSizeInput` via:
 //
-//          GetInstancesSizeSizeArgs{...}
+//	GetInstancesSizeSizeArgs{...}
 type GetInstancesSizeSizeInput interface {
 	pulumi.Input
 
@@ -1114,7 +1362,7 @@ func (i GetInstancesSizeSizeArgs) ToGetInstancesSizeSizeOutputWithContext(ctx co
 // GetInstancesSizeSizeArrayInput is an input type that accepts GetInstancesSizeSizeArray and GetInstancesSizeSizeArrayOutput values.
 // You can construct a concrete instance of `GetInstancesSizeSizeArrayInput` via:
 //
-//          GetInstancesSizeSizeArray{ GetInstancesSizeSizeArgs{...} }
+//	GetInstancesSizeSizeArray{ GetInstancesSizeSizeArgs{...} }
 type GetInstancesSizeSizeArrayInput interface {
 	pulumi.Input
 
@@ -1206,7 +1454,7 @@ type GetInstancesSizeSort struct {
 // GetInstancesSizeSortInput is an input type that accepts GetInstancesSizeSortArgs and GetInstancesSizeSortOutput values.
 // You can construct a concrete instance of `GetInstancesSizeSortInput` via:
 //
-//          GetInstancesSizeSortArgs{...}
+//	GetInstancesSizeSortArgs{...}
 type GetInstancesSizeSortInput interface {
 	pulumi.Input
 
@@ -1234,7 +1482,7 @@ func (i GetInstancesSizeSortArgs) ToGetInstancesSizeSortOutputWithContext(ctx co
 // GetInstancesSizeSortArrayInput is an input type that accepts GetInstancesSizeSortArray and GetInstancesSizeSortArrayOutput values.
 // You can construct a concrete instance of `GetInstancesSizeSortArrayInput` via:
 //
-//          GetInstancesSizeSortArray{ GetInstancesSizeSortArgs{...} }
+//	GetInstancesSizeSortArray{ GetInstancesSizeSortArgs{...} }
 type GetInstancesSizeSortArrayInput interface {
 	pulumi.Input
 
@@ -1306,7 +1554,7 @@ type GetInstancesSort struct {
 // GetInstancesSortInput is an input type that accepts GetInstancesSortArgs and GetInstancesSortOutput values.
 // You can construct a concrete instance of `GetInstancesSortInput` via:
 //
-//          GetInstancesSortArgs{...}
+//	GetInstancesSortArgs{...}
 type GetInstancesSortInput interface {
 	pulumi.Input
 
@@ -1334,7 +1582,7 @@ func (i GetInstancesSortArgs) ToGetInstancesSortOutputWithContext(ctx context.Co
 // GetInstancesSortArrayInput is an input type that accepts GetInstancesSortArray and GetInstancesSortArrayOutput values.
 // You can construct a concrete instance of `GetInstancesSortArrayInput` via:
 //
-//          GetInstancesSortArray{ GetInstancesSortArgs{...} }
+//	GetInstancesSortArray{ GetInstancesSortArgs{...} }
 type GetInstancesSortArrayInput interface {
 	pulumi.Input
 
@@ -1408,7 +1656,7 @@ type GetKubernetesClusterInstalledApplication struct {
 // GetKubernetesClusterInstalledApplicationInput is an input type that accepts GetKubernetesClusterInstalledApplicationArgs and GetKubernetesClusterInstalledApplicationOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterInstalledApplicationInput` via:
 //
-//          GetKubernetesClusterInstalledApplicationArgs{...}
+//	GetKubernetesClusterInstalledApplicationArgs{...}
 type GetKubernetesClusterInstalledApplicationInput interface {
 	pulumi.Input
 
@@ -1438,7 +1686,7 @@ func (i GetKubernetesClusterInstalledApplicationArgs) ToGetKubernetesClusterInst
 // GetKubernetesClusterInstalledApplicationArrayInput is an input type that accepts GetKubernetesClusterInstalledApplicationArray and GetKubernetesClusterInstalledApplicationArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterInstalledApplicationArrayInput` via:
 //
-//          GetKubernetesClusterInstalledApplicationArray{ GetKubernetesClusterInstalledApplicationArgs{...} }
+//	GetKubernetesClusterInstalledApplicationArray{ GetKubernetesClusterInstalledApplicationArgs{...} }
 type GetKubernetesClusterInstalledApplicationArrayInput interface {
 	pulumi.Input
 
@@ -1520,7 +1768,7 @@ type GetKubernetesClusterPool struct {
 // GetKubernetesClusterPoolInput is an input type that accepts GetKubernetesClusterPoolArgs and GetKubernetesClusterPoolOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterPoolInput` via:
 //
-//          GetKubernetesClusterPoolArgs{...}
+//	GetKubernetesClusterPoolArgs{...}
 type GetKubernetesClusterPoolInput interface {
 	pulumi.Input
 
@@ -1550,7 +1798,7 @@ func (i GetKubernetesClusterPoolArgs) ToGetKubernetesClusterPoolOutputWithContex
 // GetKubernetesClusterPoolArrayInput is an input type that accepts GetKubernetesClusterPoolArray and GetKubernetesClusterPoolArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterPoolArrayInput` via:
 //
-//          GetKubernetesClusterPoolArray{ GetKubernetesClusterPoolArgs{...} }
+//	GetKubernetesClusterPoolArray{ GetKubernetesClusterPoolArgs{...} }
 type GetKubernetesClusterPoolArrayInput interface {
 	pulumi.Input
 
@@ -1632,7 +1880,7 @@ type GetKubernetesVersionFilter struct {
 // GetKubernetesVersionFilterInput is an input type that accepts GetKubernetesVersionFilterArgs and GetKubernetesVersionFilterOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionFilterInput` via:
 //
-//          GetKubernetesVersionFilterArgs{...}
+//	GetKubernetesVersionFilterArgs{...}
 type GetKubernetesVersionFilterInput interface {
 	pulumi.Input
 
@@ -1662,7 +1910,7 @@ func (i GetKubernetesVersionFilterArgs) ToGetKubernetesVersionFilterOutputWithCo
 // GetKubernetesVersionFilterArrayInput is an input type that accepts GetKubernetesVersionFilterArray and GetKubernetesVersionFilterArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionFilterArrayInput` via:
 //
-//          GetKubernetesVersionFilterArray{ GetKubernetesVersionFilterArgs{...} }
+//	GetKubernetesVersionFilterArray{ GetKubernetesVersionFilterArgs{...} }
 type GetKubernetesVersionFilterArrayInput interface {
 	pulumi.Input
 
@@ -1742,7 +1990,7 @@ type GetKubernetesVersionSort struct {
 // GetKubernetesVersionSortInput is an input type that accepts GetKubernetesVersionSortArgs and GetKubernetesVersionSortOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionSortInput` via:
 //
-//          GetKubernetesVersionSortArgs{...}
+//	GetKubernetesVersionSortArgs{...}
 type GetKubernetesVersionSortInput interface {
 	pulumi.Input
 
@@ -1770,7 +2018,7 @@ func (i GetKubernetesVersionSortArgs) ToGetKubernetesVersionSortOutputWithContex
 // GetKubernetesVersionSortArrayInput is an input type that accepts GetKubernetesVersionSortArray and GetKubernetesVersionSortArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionSortArrayInput` via:
 //
-//          GetKubernetesVersionSortArray{ GetKubernetesVersionSortArgs{...} }
+//	GetKubernetesVersionSortArray{ GetKubernetesVersionSortArgs{...} }
 type GetKubernetesVersionSortArrayInput interface {
 	pulumi.Input
 
@@ -1844,7 +2092,7 @@ type GetKubernetesVersionVersion struct {
 // GetKubernetesVersionVersionInput is an input type that accepts GetKubernetesVersionVersionArgs and GetKubernetesVersionVersionOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionVersionInput` via:
 //
-//          GetKubernetesVersionVersionArgs{...}
+//	GetKubernetesVersionVersionArgs{...}
 type GetKubernetesVersionVersionInput interface {
 	pulumi.Input
 
@@ -1874,7 +2122,7 @@ func (i GetKubernetesVersionVersionArgs) ToGetKubernetesVersionVersionOutputWith
 // GetKubernetesVersionVersionArrayInput is an input type that accepts GetKubernetesVersionVersionArray and GetKubernetesVersionVersionArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionVersionArrayInput` via:
 //
-//          GetKubernetesVersionVersionArray{ GetKubernetesVersionVersionArgs{...} }
+//	GetKubernetesVersionVersionArray{ GetKubernetesVersionVersionArgs{...} }
 type GetKubernetesVersionVersionArrayInput interface {
 	pulumi.Input
 
@@ -1957,7 +2205,7 @@ type GetLoadBalancerBackend struct {
 // GetLoadBalancerBackendInput is an input type that accepts GetLoadBalancerBackendArgs and GetLoadBalancerBackendOutput values.
 // You can construct a concrete instance of `GetLoadBalancerBackendInput` via:
 //
-//          GetLoadBalancerBackendArgs{...}
+//	GetLoadBalancerBackendArgs{...}
 type GetLoadBalancerBackendInput interface {
 	pulumi.Input
 
@@ -1988,7 +2236,7 @@ func (i GetLoadBalancerBackendArgs) ToGetLoadBalancerBackendOutputWithContext(ct
 // GetLoadBalancerBackendArrayInput is an input type that accepts GetLoadBalancerBackendArray and GetLoadBalancerBackendArrayOutput values.
 // You can construct a concrete instance of `GetLoadBalancerBackendArrayInput` via:
 //
-//          GetLoadBalancerBackendArray{ GetLoadBalancerBackendArgs{...} }
+//	GetLoadBalancerBackendArray{ GetLoadBalancerBackendArgs{...} }
 type GetLoadBalancerBackendArrayInput interface {
 	pulumi.Input
 
@@ -2074,7 +2322,7 @@ type GetRegionFilter struct {
 // GetRegionFilterInput is an input type that accepts GetRegionFilterArgs and GetRegionFilterOutput values.
 // You can construct a concrete instance of `GetRegionFilterInput` via:
 //
-//          GetRegionFilterArgs{...}
+//	GetRegionFilterArgs{...}
 type GetRegionFilterInput interface {
 	pulumi.Input
 
@@ -2104,7 +2352,7 @@ func (i GetRegionFilterArgs) ToGetRegionFilterOutputWithContext(ctx context.Cont
 // GetRegionFilterArrayInput is an input type that accepts GetRegionFilterArray and GetRegionFilterArrayOutput values.
 // You can construct a concrete instance of `GetRegionFilterArrayInput` via:
 //
-//          GetRegionFilterArray{ GetRegionFilterArgs{...} }
+//	GetRegionFilterArray{ GetRegionFilterArgs{...} }
 type GetRegionFilterArrayInput interface {
 	pulumi.Input
 
@@ -2186,7 +2434,7 @@ type GetRegionRegion struct {
 // GetRegionRegionInput is an input type that accepts GetRegionRegionArgs and GetRegionRegionOutput values.
 // You can construct a concrete instance of `GetRegionRegionInput` via:
 //
-//          GetRegionRegionArgs{...}
+//	GetRegionRegionArgs{...}
 type GetRegionRegionInput interface {
 	pulumi.Input
 
@@ -2216,7 +2464,7 @@ func (i GetRegionRegionArgs) ToGetRegionRegionOutputWithContext(ctx context.Cont
 // GetRegionRegionArrayInput is an input type that accepts GetRegionRegionArray and GetRegionRegionArrayOutput values.
 // You can construct a concrete instance of `GetRegionRegionArrayInput` via:
 //
-//          GetRegionRegionArray{ GetRegionRegionArgs{...} }
+//	GetRegionRegionArray{ GetRegionRegionArgs{...} }
 type GetRegionRegionArrayInput interface {
 	pulumi.Input
 
@@ -2296,7 +2544,7 @@ type GetRegionSort struct {
 // GetRegionSortInput is an input type that accepts GetRegionSortArgs and GetRegionSortOutput values.
 // You can construct a concrete instance of `GetRegionSortInput` via:
 //
-//          GetRegionSortArgs{...}
+//	GetRegionSortArgs{...}
 type GetRegionSortInput interface {
 	pulumi.Input
 
@@ -2324,7 +2572,7 @@ func (i GetRegionSortArgs) ToGetRegionSortOutputWithContext(ctx context.Context)
 // GetRegionSortArrayInput is an input type that accepts GetRegionSortArray and GetRegionSortArrayOutput values.
 // You can construct a concrete instance of `GetRegionSortArrayInput` via:
 //
-//          GetRegionSortArray{ GetRegionSortArgs{...} }
+//	GetRegionSortArray{ GetRegionSortArgs{...} }
 type GetRegionSortArrayInput interface {
 	pulumi.Input
 
@@ -2398,7 +2646,7 @@ type GetSizeFilter struct {
 // GetSizeFilterInput is an input type that accepts GetSizeFilterArgs and GetSizeFilterOutput values.
 // You can construct a concrete instance of `GetSizeFilterInput` via:
 //
-//          GetSizeFilterArgs{...}
+//	GetSizeFilterArgs{...}
 type GetSizeFilterInput interface {
 	pulumi.Input
 
@@ -2428,7 +2676,7 @@ func (i GetSizeFilterArgs) ToGetSizeFilterOutputWithContext(ctx context.Context)
 // GetSizeFilterArrayInput is an input type that accepts GetSizeFilterArray and GetSizeFilterArrayOutput values.
 // You can construct a concrete instance of `GetSizeFilterArrayInput` via:
 //
-//          GetSizeFilterArray{ GetSizeFilterArgs{...} }
+//	GetSizeFilterArray{ GetSizeFilterArgs{...} }
 type GetSizeFilterArrayInput interface {
 	pulumi.Input
 
@@ -2513,7 +2761,7 @@ type GetSizeSize struct {
 // GetSizeSizeInput is an input type that accepts GetSizeSizeArgs and GetSizeSizeOutput values.
 // You can construct a concrete instance of `GetSizeSizeInput` via:
 //
-//          GetSizeSizeArgs{...}
+//	GetSizeSizeArgs{...}
 type GetSizeSizeInput interface {
 	pulumi.Input
 
@@ -2546,7 +2794,7 @@ func (i GetSizeSizeArgs) ToGetSizeSizeOutputWithContext(ctx context.Context) Get
 // GetSizeSizeArrayInput is an input type that accepts GetSizeSizeArray and GetSizeSizeArrayOutput values.
 // You can construct a concrete instance of `GetSizeSizeArrayInput` via:
 //
-//          GetSizeSizeArray{ GetSizeSizeArgs{...} }
+//	GetSizeSizeArray{ GetSizeSizeArgs{...} }
 type GetSizeSizeArrayInput interface {
 	pulumi.Input
 
@@ -2638,7 +2886,7 @@ type GetSizeSort struct {
 // GetSizeSortInput is an input type that accepts GetSizeSortArgs and GetSizeSortOutput values.
 // You can construct a concrete instance of `GetSizeSortInput` via:
 //
-//          GetSizeSortArgs{...}
+//	GetSizeSortArgs{...}
 type GetSizeSortInput interface {
 	pulumi.Input
 
@@ -2666,7 +2914,7 @@ func (i GetSizeSortArgs) ToGetSizeSortOutputWithContext(ctx context.Context) Get
 // GetSizeSortArrayInput is an input type that accepts GetSizeSortArray and GetSizeSortArrayOutput values.
 // You can construct a concrete instance of `GetSizeSortArrayInput` via:
 //
-//          GetSizeSortArray{ GetSizeSortArgs{...} }
+//	GetSizeSortArray{ GetSizeSortArgs{...} }
 type GetSizeSortArrayInput interface {
 	pulumi.Input
 
@@ -2731,6 +2979,10 @@ func (o GetSizeSortArrayOutput) Index(i pulumi.IntInput) GetSizeSortOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallEgressRuleInput)(nil)).Elem(), FirewallEgressRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallEgressRuleArrayInput)(nil)).Elem(), FirewallEgressRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIngressRuleInput)(nil)).Elem(), FirewallIngressRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIngressRuleArrayInput)(nil)).Elem(), FirewallIngressRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolsInput)(nil)).Elem(), KubernetesClusterPoolsArgs{})
@@ -2777,6 +3029,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSizeArrayInput)(nil)).Elem(), GetSizeSizeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSortInput)(nil)).Elem(), GetSizeSortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSizeSortArrayInput)(nil)).Elem(), GetSizeSortArray{})
+	pulumi.RegisterOutputType(FirewallEgressRuleOutput{})
+	pulumi.RegisterOutputType(FirewallEgressRuleArrayOutput{})
+	pulumi.RegisterOutputType(FirewallIngressRuleOutput{})
+	pulumi.RegisterOutputType(FirewallIngressRuleArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterPoolsOutput{})

@@ -19,6 +19,12 @@ namespace Pulumi.Civo
     public partial class Provider : Pulumi.ProviderResource
     {
         /// <summary>
+        /// The Base URL to use for CIVO API.
+        /// </summary>
+        [Output("apiEndpoint")]
+        public Output<string?> ApiEndpoint { get; private set; } = null!;
+
+        /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
         /// here you can overwrite in a resource.
         /// </summary>
@@ -59,6 +65,12 @@ namespace Pulumi.Civo
 
     public sealed class ProviderArgs : Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The Base URL to use for CIVO API.
+        /// </summary>
+        [Input("apiEndpoint")]
+        public Input<string>? ApiEndpoint { get; set; }
+
         /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
         /// here you can overwrite in a resource.

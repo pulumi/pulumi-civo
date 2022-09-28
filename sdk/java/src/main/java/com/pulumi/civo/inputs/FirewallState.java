@@ -3,10 +3,13 @@
 
 package com.pulumi.civo.inputs;
 
+import com.pulumi.civo.inputs.FirewallEgressRuleArgs;
+import com.pulumi.civo.inputs.FirewallIngressRuleArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,18 +20,50 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
     public static final FirewallState Empty = new FirewallState();
 
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     @Import(name="createDefaultRules")
     private @Nullable Output<Boolean> createDefaultRules;
 
     /**
-     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     public Optional<Output<Boolean>> createDefaultRules() {
         return Optional.ofNullable(this.createDefaultRules);
+    }
+
+    /**
+     * The egress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    @Import(name="egressRules")
+    private @Nullable Output<List<FirewallEgressRuleArgs>> egressRules;
+
+    /**
+     * @return The egress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    public Optional<Output<List<FirewallEgressRuleArgs>>> egressRules() {
+        return Optional.ofNullable(this.egressRules);
+    }
+
+    /**
+     * The ingress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    @Import(name="ingressRules")
+    private @Nullable Output<List<FirewallIngressRuleArgs>> ingressRules;
+
+    /**
+     * @return The ingress rules, this is a list of rules that will be applied to the firewall
+     * 
+     */
+    public Optional<Output<List<FirewallIngressRuleArgs>>> ingressRules() {
+        return Optional.ofNullable(this.ingressRules);
     }
 
     /**
@@ -80,6 +115,8 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
 
     private FirewallState(FirewallState $) {
         this.createDefaultRules = $.createDefaultRules;
+        this.egressRules = $.egressRules;
+        this.ingressRules = $.ingressRules;
         this.name = $.name;
         this.networkId = $.networkId;
         this.region = $.region;
@@ -104,7 +141,8 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+         * set to false you need to define at least one ingress or egress rule
          * 
          * @return builder
          * 
@@ -115,13 +153,76 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+         * set to false you need to define at least one ingress or egress rule
          * 
          * @return builder
          * 
          */
         public Builder createDefaultRules(Boolean createDefaultRules) {
             return createDefaultRules(Output.of(createDefaultRules));
+        }
+
+        /**
+         * @param egressRules The egress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder egressRules(@Nullable Output<List<FirewallEgressRuleArgs>> egressRules) {
+            $.egressRules = egressRules;
+            return this;
+        }
+
+        /**
+         * @param egressRules The egress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder egressRules(List<FirewallEgressRuleArgs> egressRules) {
+            return egressRules(Output.of(egressRules));
+        }
+
+        /**
+         * @param egressRules The egress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder egressRules(FirewallEgressRuleArgs... egressRules) {
+            return egressRules(List.of(egressRules));
+        }
+
+        /**
+         * @param ingressRules The ingress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingressRules(@Nullable Output<List<FirewallIngressRuleArgs>> ingressRules) {
+            $.ingressRules = ingressRules;
+            return this;
+        }
+
+        /**
+         * @param ingressRules The ingress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingressRules(List<FirewallIngressRuleArgs> ingressRules) {
+            return ingressRules(Output.of(ingressRules));
+        }
+
+        /**
+         * @param ingressRules The ingress rules, this is a list of rules that will be applied to the firewall
+         * 
+         * @return builder
+         * 
+         */
+        public Builder ingressRules(FirewallIngressRuleArgs... ingressRules) {
+            return ingressRules(List.of(ingressRules));
         }
 
         /**

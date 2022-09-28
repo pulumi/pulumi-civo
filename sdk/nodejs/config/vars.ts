@@ -8,6 +8,17 @@ declare var exports: any;
 const __config = new pulumi.Config("civo");
 
 /**
+ * The Base URL to use for CIVO API.
+ */
+export declare const apiEndpoint: string | undefined;
+Object.defineProperty(exports, "apiEndpoint", {
+    get() {
+        return __config.get("apiEndpoint");
+    },
+    enumerable: true,
+});
+
+/**
  * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
  * here you can overwrite in a resource.
  */

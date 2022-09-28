@@ -16,77 +16,38 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesClusterResult {
-    private final String apiEndpoint;
-    private final String applications;
-    private final String cni;
-    private final String createdAt;
-    private final String dnsEntry;
-    private final @Nullable String id;
-    private final List<GetKubernetesClusterInstalledApplication> installedApplications;
-    private final String kubeconfig;
-    private final String kubernetesVersion;
-    private final String masterIp;
-    private final @Nullable String name;
+    private String apiEndpoint;
+    private String applications;
+    private String cni;
+    private String createdAt;
+    private String dnsEntry;
+    private @Nullable String id;
+    private List<GetKubernetesClusterInstalledApplication> installedApplications;
+    private String kubeconfig;
+    private String kubernetesVersion;
+    private String masterIp;
+    private @Nullable String name;
     /**
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 
      */
     @Deprecated /* This field is deprecated and will be removed in a future version of the provider */
-    private final Integer numTargetNodes;
-    private final List<GetKubernetesClusterPool> pools;
-    private final Boolean ready;
-    private final @Nullable String region;
-    private final String status;
-    private final List<String> tags;
+    private Integer numTargetNodes;
+    private List<GetKubernetesClusterPool> pools;
+    private Boolean ready;
+    private @Nullable String region;
+    private String status;
+    private List<String> tags;
     /**
      * @deprecated
      * This field is deprecated and will be removed in a future version of the provider
      * 
      */
     @Deprecated /* This field is deprecated and will be removed in a future version of the provider */
-    private final String targetNodesSize;
+    private String targetNodesSize;
 
-    @CustomType.Constructor
-    private GetKubernetesClusterResult(
-        @CustomType.Parameter("apiEndpoint") String apiEndpoint,
-        @CustomType.Parameter("applications") String applications,
-        @CustomType.Parameter("cni") String cni,
-        @CustomType.Parameter("createdAt") String createdAt,
-        @CustomType.Parameter("dnsEntry") String dnsEntry,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("installedApplications") List<GetKubernetesClusterInstalledApplication> installedApplications,
-        @CustomType.Parameter("kubeconfig") String kubeconfig,
-        @CustomType.Parameter("kubernetesVersion") String kubernetesVersion,
-        @CustomType.Parameter("masterIp") String masterIp,
-        @CustomType.Parameter("name") @Nullable String name,
-        @CustomType.Parameter("numTargetNodes") Integer numTargetNodes,
-        @CustomType.Parameter("pools") List<GetKubernetesClusterPool> pools,
-        @CustomType.Parameter("ready") Boolean ready,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("status") String status,
-        @CustomType.Parameter("tags") List<String> tags,
-        @CustomType.Parameter("targetNodesSize") String targetNodesSize) {
-        this.apiEndpoint = apiEndpoint;
-        this.applications = applications;
-        this.cni = cni;
-        this.createdAt = createdAt;
-        this.dnsEntry = dnsEntry;
-        this.id = id;
-        this.installedApplications = installedApplications;
-        this.kubeconfig = kubeconfig;
-        this.kubernetesVersion = kubernetesVersion;
-        this.masterIp = masterIp;
-        this.name = name;
-        this.numTargetNodes = numTargetNodes;
-        this.pools = pools;
-        this.ready = ready;
-        this.region = region;
-        this.status = status;
-        this.tags = tags;
-        this.targetNodesSize = targetNodesSize;
-    }
-
+    private GetKubernetesClusterResult() {}
     public String apiEndpoint() {
         return this.apiEndpoint;
     }
@@ -161,7 +122,7 @@ public final class GetKubernetesClusterResult {
     public static Builder builder(GetKubernetesClusterResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String apiEndpoint;
         private String applications;
@@ -181,11 +142,7 @@ public final class GetKubernetesClusterResult {
         private String status;
         private List<String> tags;
         private String targetNodesSize;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetKubernetesClusterResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiEndpoint = defaults.apiEndpoint;
@@ -208,30 +165,37 @@ public final class GetKubernetesClusterResult {
     	      this.targetNodesSize = defaults.targetNodesSize;
         }
 
+        @CustomType.Setter
         public Builder apiEndpoint(String apiEndpoint) {
             this.apiEndpoint = Objects.requireNonNull(apiEndpoint);
             return this;
         }
+        @CustomType.Setter
         public Builder applications(String applications) {
             this.applications = Objects.requireNonNull(applications);
             return this;
         }
+        @CustomType.Setter
         public Builder cni(String cni) {
             this.cni = Objects.requireNonNull(cni);
             return this;
         }
+        @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
             return this;
         }
+        @CustomType.Setter
         public Builder dnsEntry(String dnsEntry) {
             this.dnsEntry = Objects.requireNonNull(dnsEntry);
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder installedApplications(List<GetKubernetesClusterInstalledApplication> installedApplications) {
             this.installedApplications = Objects.requireNonNull(installedApplications);
             return this;
@@ -239,26 +203,32 @@ public final class GetKubernetesClusterResult {
         public Builder installedApplications(GetKubernetesClusterInstalledApplication... installedApplications) {
             return installedApplications(List.of(installedApplications));
         }
+        @CustomType.Setter
         public Builder kubeconfig(String kubeconfig) {
             this.kubeconfig = Objects.requireNonNull(kubeconfig);
             return this;
         }
+        @CustomType.Setter
         public Builder kubernetesVersion(String kubernetesVersion) {
             this.kubernetesVersion = Objects.requireNonNull(kubernetesVersion);
             return this;
         }
+        @CustomType.Setter
         public Builder masterIp(String masterIp) {
             this.masterIp = Objects.requireNonNull(masterIp);
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
         public Builder numTargetNodes(Integer numTargetNodes) {
             this.numTargetNodes = Objects.requireNonNull(numTargetNodes);
             return this;
         }
+        @CustomType.Setter
         public Builder pools(List<GetKubernetesClusterPool> pools) {
             this.pools = Objects.requireNonNull(pools);
             return this;
@@ -266,18 +236,22 @@ public final class GetKubernetesClusterResult {
         public Builder pools(GetKubernetesClusterPool... pools) {
             return pools(List.of(pools));
         }
+        @CustomType.Setter
         public Builder ready(Boolean ready) {
             this.ready = Objects.requireNonNull(ready);
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder status(String status) {
             this.status = Objects.requireNonNull(status);
             return this;
         }
+        @CustomType.Setter
         public Builder tags(List<String> tags) {
             this.tags = Objects.requireNonNull(tags);
             return this;
@@ -285,11 +259,32 @@ public final class GetKubernetesClusterResult {
         public Builder tags(String... tags) {
             return tags(List.of(tags));
         }
+        @CustomType.Setter
         public Builder targetNodesSize(String targetNodesSize) {
             this.targetNodesSize = Objects.requireNonNull(targetNodesSize);
             return this;
-        }        public GetKubernetesClusterResult build() {
-            return new GetKubernetesClusterResult(apiEndpoint, applications, cni, createdAt, dnsEntry, id, installedApplications, kubeconfig, kubernetesVersion, masterIp, name, numTargetNodes, pools, ready, region, status, tags, targetNodesSize);
+        }
+        public GetKubernetesClusterResult build() {
+            final var o = new GetKubernetesClusterResult();
+            o.apiEndpoint = apiEndpoint;
+            o.applications = applications;
+            o.cni = cni;
+            o.createdAt = createdAt;
+            o.dnsEntry = dnsEntry;
+            o.id = id;
+            o.installedApplications = installedApplications;
+            o.kubeconfig = kubeconfig;
+            o.kubernetesVersion = kubernetesVersion;
+            o.masterIp = masterIp;
+            o.name = name;
+            o.numTargetNodes = numTargetNodes;
+            o.pools = pools;
+            o.ready = ready;
+            o.region = region;
+            o.status = status;
+            o.tags = tags;
+            o.targetNodesSize = targetNodesSize;
+            return o;
         }
     }
 }

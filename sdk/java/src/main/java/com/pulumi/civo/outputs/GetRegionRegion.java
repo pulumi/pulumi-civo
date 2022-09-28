@@ -10,23 +10,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRegionRegion {
-    private final String code;
-    private final String country;
-    private final Boolean default_;
-    private final String name;
+    private String code;
+    private String country;
+    private Boolean default_;
+    private String name;
 
-    @CustomType.Constructor
-    private GetRegionRegion(
-        @CustomType.Parameter("code") String code,
-        @CustomType.Parameter("country") String country,
-        @CustomType.Parameter("default") Boolean default_,
-        @CustomType.Parameter("name") String name) {
-        this.code = code;
-        this.country = country;
-        this.default_ = default_;
-        this.name = name;
-    }
-
+    private GetRegionRegion() {}
     public String code() {
         return this.code;
     }
@@ -47,17 +36,13 @@ public final class GetRegionRegion {
     public static Builder builder(GetRegionRegion defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String code;
         private String country;
         private Boolean default_;
         private String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRegionRegion defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.code = defaults.code;
@@ -66,23 +51,33 @@ public final class GetRegionRegion {
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder code(String code) {
             this.code = Objects.requireNonNull(code);
             return this;
         }
+        @CustomType.Setter
         public Builder country(String country) {
             this.country = Objects.requireNonNull(country);
             return this;
         }
+        @CustomType.Setter("default")
         public Builder default_(Boolean default_) {
             this.default_ = Objects.requireNonNull(default_);
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
-        }        public GetRegionRegion build() {
-            return new GetRegionRegion(code, country, default_, name);
+        }
+        public GetRegionRegion build() {
+            final var o = new GetRegionRegion();
+            o.code = code;
+            o.country = country;
+            o.default_ = default_;
+            o.name = name;
+            return o;
         }
     }
 }

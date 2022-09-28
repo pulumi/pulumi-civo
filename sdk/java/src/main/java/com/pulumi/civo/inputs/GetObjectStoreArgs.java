@@ -5,7 +5,6 @@ package com.pulumi.civo.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,13 +20,6 @@ public final class GetObjectStoreArgs extends com.pulumi.resources.InvokeArgs {
 
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
-    }
-
-    @Import(name="maxSizeGb")
-    private @Nullable Output<Integer> maxSizeGb;
-
-    public Optional<Output<Integer>> maxSizeGb() {
-        return Optional.ofNullable(this.maxSizeGb);
     }
 
     @Import(name="name")
@@ -48,7 +40,6 @@ public final class GetObjectStoreArgs extends com.pulumi.resources.InvokeArgs {
 
     private GetObjectStoreArgs(GetObjectStoreArgs $) {
         this.id = $.id;
-        this.maxSizeGb = $.maxSizeGb;
         this.name = $.name;
         this.region = $.region;
     }
@@ -78,15 +69,6 @@ public final class GetObjectStoreArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder id(String id) {
             return id(Output.of(id));
-        }
-
-        public Builder maxSizeGb(@Nullable Output<Integer> maxSizeGb) {
-            $.maxSizeGb = maxSizeGb;
-            return this;
-        }
-
-        public Builder maxSizeGb(Integer maxSizeGb) {
-            return maxSizeGb(Output.of(maxSizeGb));
         }
 
         public Builder name(@Nullable Output<String> name) {

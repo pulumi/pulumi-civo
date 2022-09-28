@@ -12,26 +12,13 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetNetworkResult {
-    private final Boolean default_;
-    private final @Nullable String id;
-    private final @Nullable String label;
-    private final String name;
-    private final @Nullable String region;
+    private Boolean default_;
+    private @Nullable String id;
+    private @Nullable String label;
+    private String name;
+    private @Nullable String region;
 
-    @CustomType.Constructor
-    private GetNetworkResult(
-        @CustomType.Parameter("default") Boolean default_,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("label") @Nullable String label,
-        @CustomType.Parameter("name") String name,
-        @CustomType.Parameter("region") @Nullable String region) {
-        this.default_ = default_;
-        this.id = id;
-        this.label = label;
-        this.name = name;
-        this.region = region;
-    }
-
+    private GetNetworkResult() {}
     public Boolean default_() {
         return this.default_;
     }
@@ -55,18 +42,14 @@ public final class GetNetworkResult {
     public static Builder builder(GetNetworkResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Boolean default_;
         private @Nullable String id;
         private @Nullable String label;
         private String name;
         private @Nullable String region;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetNetworkResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.default_ = defaults.default_;
@@ -76,27 +59,39 @@ public final class GetNetworkResult {
     	      this.region = defaults.region;
         }
 
+        @CustomType.Setter("default")
         public Builder default_(Boolean default_) {
             this.default_ = Objects.requireNonNull(default_);
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
+        @CustomType.Setter
         public Builder name(String name) {
             this.name = Objects.requireNonNull(name);
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
-        }        public GetNetworkResult build() {
-            return new GetNetworkResult(default_, id, label, name, region);
+        }
+        public GetNetworkResult build() {
+            final var o = new GetNetworkResult();
+            o.default_ = default_;
+            o.id = id;
+            o.label = label;
+            o.name = name;
+            o.region = region;
+            return o;
         }
     }
 }

@@ -32,6 +32,16 @@ namespace Pulumi.Civo
 
         private static readonly Pulumi.Config __config = new Pulumi.Config("civo");
 
+        private static readonly __Value<string?> _apiEndpoint = new __Value<string?>(() => __config.Get("apiEndpoint"));
+        /// <summary>
+        /// The Base URL to use for CIVO API.
+        /// </summary>
+        public static string? ApiEndpoint
+        {
+            get => _apiEndpoint.Get();
+            set => _apiEndpoint.Set(value);
+        }
+
         private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region"));
         /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

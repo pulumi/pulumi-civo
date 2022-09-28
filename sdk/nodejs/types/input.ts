@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface FirewallEgressRule {
+    action: pulumi.Input<string>;
+    cidrs: pulumi.Input<pulumi.Input<string>[]>;
+    id?: pulumi.Input<string>;
+    label?: pulumi.Input<string>;
+    portRange?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
+}
+
+export interface FirewallIngressRule {
+    action: pulumi.Input<string>;
+    cidrs: pulumi.Input<pulumi.Input<string>[]>;
+    id?: pulumi.Input<string>;
+    label?: pulumi.Input<string>;
+    portRange?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string>;
+}
+
 export interface GetDiskImageFilter {
     all?: boolean;
     key: string;
@@ -18,21 +36,14 @@ export interface GetDiskImageFilterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface GetDiskImageSortArgs {
-    direction?: pulumi.Input<string>;
-    key: pulumi.Input<string>;
-}
-
 export interface GetDiskImageSort {
     direction?: string;
     key: string;
 }
 
-export interface GetInstancesFilterArgs {
-    all?: pulumi.Input<boolean>;
+export interface GetDiskImageSortArgs {
+    direction?: pulumi.Input<string>;
     key: pulumi.Input<string>;
-    matchBy?: pulumi.Input<string>;
-    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetInstancesFilter {
@@ -42,7 +53,7 @@ export interface GetInstancesFilter {
     values: string[];
 }
 
-export interface GetInstancesSizeFilterArgs {
+export interface GetInstancesFilterArgs {
     all?: pulumi.Input<boolean>;
     key: pulumi.Input<string>;
     matchBy?: pulumi.Input<string>;
@@ -56,14 +67,21 @@ export interface GetInstancesSizeFilter {
     values: string[];
 }
 
-export interface GetInstancesSizeSortArgs {
-    direction?: pulumi.Input<string>;
+export interface GetInstancesSizeFilterArgs {
+    all?: pulumi.Input<boolean>;
     key: pulumi.Input<string>;
+    matchBy?: pulumi.Input<string>;
+    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetInstancesSizeSort {
     direction?: string;
     key: string;
+}
+
+export interface GetInstancesSizeSortArgs {
+    direction?: pulumi.Input<string>;
+    key: pulumi.Input<string>;
 }
 
 export interface GetInstancesSort {
@@ -114,21 +132,14 @@ export interface GetRegionFilterArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface GetRegionSortArgs {
-    direction?: pulumi.Input<string>;
-    key: pulumi.Input<string>;
-}
-
 export interface GetRegionSort {
     direction?: string;
     key: string;
 }
 
-export interface GetSizeFilterArgs {
-    all?: pulumi.Input<boolean>;
+export interface GetRegionSortArgs {
+    direction?: pulumi.Input<string>;
     key: pulumi.Input<string>;
-    matchBy?: pulumi.Input<string>;
-    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetSizeFilter {
@@ -138,14 +149,21 @@ export interface GetSizeFilter {
     values: string[];
 }
 
-export interface GetSizeSortArgs {
-    direction?: pulumi.Input<string>;
+export interface GetSizeFilterArgs {
+    all?: pulumi.Input<boolean>;
     key: pulumi.Input<string>;
+    matchBy?: pulumi.Input<string>;
+    values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetSizeSort {
     direction?: string;
     key: string;
+}
+
+export interface GetSizeSortArgs {
+    direction?: pulumi.Input<string>;
+    key: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterInstalledApplication {

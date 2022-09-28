@@ -8,6 +8,17 @@ import * as utilities from "./utilities";
  * Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
  *
  * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const backup = pulumi.output(civo.getObjectStore({
+ *     name: "backup-server",
+ * }));
+ * ```
  */
 export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreResult> {
     args = args || {};
@@ -18,7 +29,6 @@ export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOp
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("civo:index/getObjectStore:getObjectStore", {
         "id": args.id,
-        "maxSizeGb": args.maxSizeGb,
         "name": args.name,
         "region": args.region,
     }, opts);
@@ -29,7 +39,6 @@ export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOp
  */
 export interface GetObjectStoreArgs {
     id?: string;
-    maxSizeGb?: number;
     name?: string;
     region?: string;
 }
@@ -39,13 +48,11 @@ export interface GetObjectStoreArgs {
  */
 export interface GetObjectStoreResult {
     readonly accessKeyId: string;
-    readonly endpoint: string;
-    readonly generatedName: string;
+    readonly bucketUrl: string;
     readonly id?: string;
-    readonly maxSizeGb?: number;
+    readonly maxSizeGb: number;
     readonly name?: string;
     readonly region?: string;
-    readonly secretAccessKey: string;
     readonly status: string;
 }
 
@@ -58,7 +65,6 @@ export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pul
  */
 export interface GetObjectStoreOutputArgs {
     id?: pulumi.Input<string>;
-    maxSizeGb?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
 }

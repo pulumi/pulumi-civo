@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['FirewallArgs', 'Firewall']
 
@@ -15,18 +17,27 @@ __all__ = ['FirewallArgs', 'Firewall']
 class FirewallArgs:
     def __init__(__self__, *,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
         if create_default_rules is not None:
             pulumi.set(__self__, "create_default_rules", create_default_rules)
+        if egress_rules is not None:
+            pulumi.set(__self__, "egress_rules", egress_rules)
+        if ingress_rules is not None:
+            pulumi.set(__self__, "ingress_rules", ingress_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
@@ -38,13 +49,38 @@ class FirewallArgs:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
     @create_default_rules.setter
     def create_default_rules(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "create_default_rules", value)
+
+    @property
+    @pulumi.getter(name="egressRules")
+    def egress_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]]:
+        """
+        The egress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "egress_rules")
+
+    @egress_rules.setter
+    def egress_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]]):
+        pulumi.set(self, "egress_rules", value)
+
+    @property
+    @pulumi.getter(name="ingressRules")
+    def ingress_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]]:
+        """
+        The ingress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "ingress_rules")
+
+    @ingress_rules.setter
+    def ingress_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]]):
+        pulumi.set(self, "ingress_rules", value)
 
     @property
     @pulumi.getter
@@ -87,18 +123,27 @@ class FirewallArgs:
 class _FirewallState:
     def __init__(__self__, *,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
         if create_default_rules is not None:
             pulumi.set(__self__, "create_default_rules", create_default_rules)
+        if egress_rules is not None:
+            pulumi.set(__self__, "egress_rules", egress_rules)
+        if ingress_rules is not None:
+            pulumi.set(__self__, "ingress_rules", ingress_rules)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
@@ -110,13 +155,38 @@ class _FirewallState:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
     @create_default_rules.setter
     def create_default_rules(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "create_default_rules", value)
+
+    @property
+    @pulumi.getter(name="egressRules")
+    def egress_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]]:
+        """
+        The egress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "egress_rules")
+
+    @egress_rules.setter
+    def egress_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]]):
+        pulumi.set(self, "egress_rules", value)
+
+    @property
+    @pulumi.getter(name="ingressRules")
+    def ingress_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]]:
+        """
+        The ingress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "ingress_rules")
+
+    @ingress_rules.setter
+    def ingress_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]]):
+        pulumi.set(self, "ingress_rules", value)
 
     @property
     @pulumi.getter
@@ -161,6 +231,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -177,7 +249,46 @@ class Firewall(pulumi.CustomResource):
         # Create a network
         custom_net = civo.Network("customNet", label="my-custom-network")
         # Create a firewall
-        www = civo.Firewall("www", network_id=custom_net.id)
+        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
+        # Create a firewall with the default rules
+        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
+            network_id=custom_net.id,
+            create_default_rules=True)
+        # Create a firewall withouth the default rules but with a custom rule
+        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
+            network_id=custom_net.id,
+            create_default_rules=False,
+            ingress_rules=[
+                civo.FirewallIngressRuleArgs(
+                    label="k8s",
+                    protocol="tcp",
+                    port_range="6443",
+                    cidrs=[
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    action="allow",
+                ),
+                civo.FirewallIngressRuleArgs(
+                    label="ssh",
+                    protocol="tcp",
+                    port_range="22",
+                    cidrs=[
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    action="allow",
+                ),
+            ],
+            egress_rules=[civo.FirewallEgressRuleArgs(
+                label="all",
+                protocol="tcp",
+                port_range="1-65535",
+                cidrs=["0.0.0.0/0"],
+                action="allow",
+            )])
         ```
 
         ## Import
@@ -190,7 +301,10 @@ class Firewall(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
@@ -213,7 +327,46 @@ class Firewall(pulumi.CustomResource):
         # Create a network
         custom_net = civo.Network("customNet", label="my-custom-network")
         # Create a firewall
-        www = civo.Firewall("www", network_id=custom_net.id)
+        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
+        # Create a firewall with the default rules
+        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
+            network_id=custom_net.id,
+            create_default_rules=True)
+        # Create a firewall withouth the default rules but with a custom rule
+        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
+            network_id=custom_net.id,
+            create_default_rules=False,
+            ingress_rules=[
+                civo.FirewallIngressRuleArgs(
+                    label="k8s",
+                    protocol="tcp",
+                    port_range="6443",
+                    cidrs=[
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    action="allow",
+                ),
+                civo.FirewallIngressRuleArgs(
+                    label="ssh",
+                    protocol="tcp",
+                    port_range="22",
+                    cidrs=[
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    action="allow",
+                ),
+            ],
+            egress_rules=[civo.FirewallEgressRuleArgs(
+                label="all",
+                protocol="tcp",
+                port_range="1-65535",
+                cidrs=["0.0.0.0/0"],
+                action="allow",
+            )])
         ```
 
         ## Import
@@ -240,6 +393,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -253,6 +408,8 @@ class Firewall(pulumi.CustomResource):
             __props__ = FirewallArgs.__new__(FirewallArgs)
 
             __props__.__dict__["create_default_rules"] = create_default_rules
+            __props__.__dict__["egress_rules"] = egress_rules
+            __props__.__dict__["ingress_rules"] = ingress_rules
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["region"] = region
@@ -267,6 +424,8 @@ class Firewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_default_rules: Optional[pulumi.Input[bool]] = None,
+            egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
+            ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Firewall':
@@ -277,7 +436,10 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
@@ -287,6 +449,8 @@ class Firewall(pulumi.CustomResource):
         __props__ = _FirewallState.__new__(_FirewallState)
 
         __props__.__dict__["create_default_rules"] = create_default_rules
+        __props__.__dict__["egress_rules"] = egress_rules
+        __props__.__dict__["ingress_rules"] = ingress_rules
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region"] = region
@@ -296,9 +460,26 @@ class Firewall(pulumi.CustomResource):
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> pulumi.Output[Optional[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
+
+    @property
+    @pulumi.getter(name="egressRules")
+    def egress_rules(self) -> pulumi.Output[Sequence['outputs.FirewallEgressRule']]:
+        """
+        The egress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "egress_rules")
+
+    @property
+    @pulumi.getter(name="ingressRules")
+    def ingress_rules(self) -> pulumi.Output[Sequence['outputs.FirewallIngressRule']]:
+        """
+        The ingress rules, this is a list of rules that will be applied to the firewall
+        """
+        return pulumi.get(self, "ingress_rules")
 
     @property
     @pulumi.getter

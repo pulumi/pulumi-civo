@@ -12,7 +12,6 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -106,14 +105,14 @@ public class Network extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return The region of the network
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
 
     /**

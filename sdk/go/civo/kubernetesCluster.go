@@ -18,7 +18,9 @@ import (
 // # using ID
 //
 // ```sh
-//  $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+//
+//	$ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+//
 // ```
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
@@ -292,7 +294,7 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 // KubernetesClusterArrayInput is an input type that accepts KubernetesClusterArray and KubernetesClusterArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterArrayInput` via:
 //
-//          KubernetesClusterArray{ KubernetesClusterArgs{...} }
+//	KubernetesClusterArray{ KubernetesClusterArgs{...} }
 type KubernetesClusterArrayInput interface {
 	pulumi.Input
 
@@ -317,7 +319,7 @@ func (i KubernetesClusterArray) ToKubernetesClusterArrayOutputWithContext(ctx co
 // KubernetesClusterMapInput is an input type that accepts KubernetesClusterMap and KubernetesClusterMapOutput values.
 // You can construct a concrete instance of `KubernetesClusterMapInput` via:
 //
-//          KubernetesClusterMap{ "key": KubernetesClusterArgs{...} }
+//	KubernetesClusterMap{ "key": KubernetesClusterArgs{...} }
 type KubernetesClusterMapInput interface {
 	pulumi.Input
 

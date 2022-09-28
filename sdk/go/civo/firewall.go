@@ -18,27 +18,79 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		customNet, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
-// 			Label: pulumi.String("my-custom-network"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = civo.NewFirewall(ctx, "www", &civo.FirewallArgs{
-// 			NetworkId: customNet.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			customNet, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
+//				Label: pulumi.String("my-custom-network"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewFirewall(ctx, "wwwFirewall", &civo.FirewallArgs{
+//				NetworkId: customNet.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewFirewall(ctx, "wwwIndex/firewallFirewall", &civo.FirewallArgs{
+//				NetworkId:          customNet.ID(),
+//				CreateDefaultRules: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewFirewall(ctx, "wwwCivoIndex/firewallFirewall", &civo.FirewallArgs{
+//				NetworkId:          customNet.ID(),
+//				CreateDefaultRules: pulumi.Bool(false),
+//				IngressRules: FirewallIngressRuleArray{
+//					&FirewallIngressRuleArgs{
+//						Label:     pulumi.String("k8s"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("6443"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("192.168.1.1/32"),
+//							pulumi.String("192.168.10.4/32"),
+//							pulumi.String("192.168.10.10/32"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//					&FirewallIngressRuleArgs{
+//						Label:     pulumi.String("ssh"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("22"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("192.168.1.1/32"),
+//							pulumi.String("192.168.10.4/32"),
+//							pulumi.String("192.168.10.10/32"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//				},
+//				EgressRules: FirewallEgressRuleArray{
+//					&FirewallEgressRuleArgs{
+//						Label:     pulumi.String("all"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("1-65535"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -46,13 +98,20 @@ import (
 // # using ID
 //
 // ```sh
-//  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+//
+//	$ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+//
 // ```
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrOutput `pulumi:"createDefaultRules"`
+	// The egress rules, this is a list of rules that will be applied to the firewall
+	EgressRules FirewallEgressRuleArrayOutput `pulumi:"egressRules"`
+	// The ingress rules, this is a list of rules that will be applied to the firewall
+	IngressRules FirewallIngressRuleArrayOutput `pulumi:"ingressRules"`
 	// The firewall name
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The firewall network, if is not defined we use the default network
@@ -90,8 +149,13 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
+	// The egress rules, this is a list of rules that will be applied to the firewall
+	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
+	// The ingress rules, this is a list of rules that will be applied to the firewall
+	IngressRules []FirewallIngressRule `pulumi:"ingressRules"`
 	// The firewall name
 	Name *string `pulumi:"name"`
 	// The firewall network, if is not defined we use the default network
@@ -101,8 +165,13 @@ type firewallState struct {
 }
 
 type FirewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
+	// The egress rules, this is a list of rules that will be applied to the firewall
+	EgressRules FirewallEgressRuleArrayInput
+	// The ingress rules, this is a list of rules that will be applied to the firewall
+	IngressRules FirewallIngressRuleArrayInput
 	// The firewall name
 	Name pulumi.StringPtrInput
 	// The firewall network, if is not defined we use the default network
@@ -116,8 +185,13 @@ func (FirewallState) ElementType() reflect.Type {
 }
 
 type firewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
+	// The egress rules, this is a list of rules that will be applied to the firewall
+	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
+	// The ingress rules, this is a list of rules that will be applied to the firewall
+	IngressRules []FirewallIngressRule `pulumi:"ingressRules"`
 	// The firewall name
 	Name *string `pulumi:"name"`
 	// The firewall network, if is not defined we use the default network
@@ -128,8 +202,13 @@ type firewallArgs struct {
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
+	// The egress rules, this is a list of rules that will be applied to the firewall
+	EgressRules FirewallEgressRuleArrayInput
+	// The ingress rules, this is a list of rules that will be applied to the firewall
+	IngressRules FirewallIngressRuleArrayInput
 	// The firewall name
 	Name pulumi.StringPtrInput
 	// The firewall network, if is not defined we use the default network
@@ -164,7 +243,7 @@ func (i *Firewall) ToFirewallOutputWithContext(ctx context.Context) FirewallOutp
 // FirewallArrayInput is an input type that accepts FirewallArray and FirewallArrayOutput values.
 // You can construct a concrete instance of `FirewallArrayInput` via:
 //
-//          FirewallArray{ FirewallArgs{...} }
+//	FirewallArray{ FirewallArgs{...} }
 type FirewallArrayInput interface {
 	pulumi.Input
 
@@ -189,7 +268,7 @@ func (i FirewallArray) ToFirewallArrayOutputWithContext(ctx context.Context) Fir
 // FirewallMapInput is an input type that accepts FirewallMap and FirewallMapOutput values.
 // You can construct a concrete instance of `FirewallMapInput` via:
 //
-//          FirewallMap{ "key": FirewallArgs{...} }
+//	FirewallMap{ "key": FirewallArgs{...} }
 type FirewallMapInput interface {
 	pulumi.Input
 
@@ -225,9 +304,20 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
-// The create rules flag is used to create the default firewall rules, if is not defined will be set to true
+// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+// set to false you need to define at least one ingress or egress rule
 func (o FirewallOutput) CreateDefaultRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.BoolPtrOutput { return v.CreateDefaultRules }).(pulumi.BoolPtrOutput)
+}
+
+// The egress rules, this is a list of rules that will be applied to the firewall
+func (o FirewallOutput) EgressRules() FirewallEgressRuleArrayOutput {
+	return o.ApplyT(func(v *Firewall) FirewallEgressRuleArrayOutput { return v.EgressRules }).(FirewallEgressRuleArrayOutput)
+}
+
+// The ingress rules, this is a list of rules that will be applied to the firewall
+func (o FirewallOutput) IngressRules() FirewallIngressRuleArrayOutput {
+	return o.ApplyT(func(v *Firewall) FirewallIngressRuleArrayOutput { return v.IngressRules }).(FirewallIngressRuleArrayOutput)
 }
 
 // The firewall name

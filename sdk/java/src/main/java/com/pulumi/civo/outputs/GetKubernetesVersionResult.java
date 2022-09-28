@@ -14,27 +14,16 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesVersionResult {
-    private final @Nullable List<GetKubernetesVersionFilter> filters;
+    private @Nullable List<GetKubernetesVersionFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final @Nullable List<GetKubernetesVersionSort> sorts;
-    private final List<GetKubernetesVersionVersion> versions;
+    private String id;
+    private @Nullable List<GetKubernetesVersionSort> sorts;
+    private List<GetKubernetesVersionVersion> versions;
 
-    @CustomType.Constructor
-    private GetKubernetesVersionResult(
-        @CustomType.Parameter("filters") @Nullable List<GetKubernetesVersionFilter> filters,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("sorts") @Nullable List<GetKubernetesVersionSort> sorts,
-        @CustomType.Parameter("versions") List<GetKubernetesVersionVersion> versions) {
-        this.filters = filters;
-        this.id = id;
-        this.sorts = sorts;
-        this.versions = versions;
-    }
-
+    private GetKubernetesVersionResult() {}
     public List<GetKubernetesVersionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -59,17 +48,13 @@ public final class GetKubernetesVersionResult {
     public static Builder builder(GetKubernetesVersionResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<GetKubernetesVersionFilter> filters;
         private String id;
         private @Nullable List<GetKubernetesVersionSort> sorts;
         private List<GetKubernetesVersionVersion> versions;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetKubernetesVersionResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filters = defaults.filters;
@@ -78,6 +63,7 @@ public final class GetKubernetesVersionResult {
     	      this.versions = defaults.versions;
         }
 
+        @CustomType.Setter
         public Builder filters(@Nullable List<GetKubernetesVersionFilter> filters) {
             this.filters = filters;
             return this;
@@ -85,10 +71,12 @@ public final class GetKubernetesVersionResult {
         public Builder filters(GetKubernetesVersionFilter... filters) {
             return filters(List.of(filters));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder sorts(@Nullable List<GetKubernetesVersionSort> sorts) {
             this.sorts = sorts;
             return this;
@@ -96,14 +84,21 @@ public final class GetKubernetesVersionResult {
         public Builder sorts(GetKubernetesVersionSort... sorts) {
             return sorts(List.of(sorts));
         }
+        @CustomType.Setter
         public Builder versions(List<GetKubernetesVersionVersion> versions) {
             this.versions = Objects.requireNonNull(versions);
             return this;
         }
         public Builder versions(GetKubernetesVersionVersion... versions) {
             return versions(List.of(versions));
-        }        public GetKubernetesVersionResult build() {
-            return new GetKubernetesVersionResult(filters, id, sorts, versions);
+        }
+        public GetKubernetesVersionResult build() {
+            final var o = new GetKubernetesVersionResult();
+            o.filters = filters;
+            o.id = id;
+            o.sorts = sorts;
+            o.versions = versions;
+            return o;
         }
     }
 }

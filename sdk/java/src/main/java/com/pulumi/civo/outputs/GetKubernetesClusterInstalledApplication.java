@@ -10,23 +10,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesClusterInstalledApplication {
-    private final String application;
-    private final String category;
-    private final Boolean installed;
-    private final String version;
+    private String application;
+    private String category;
+    private Boolean installed;
+    private String version;
 
-    @CustomType.Constructor
-    private GetKubernetesClusterInstalledApplication(
-        @CustomType.Parameter("application") String application,
-        @CustomType.Parameter("category") String category,
-        @CustomType.Parameter("installed") Boolean installed,
-        @CustomType.Parameter("version") String version) {
-        this.application = application;
-        this.category = category;
-        this.installed = installed;
-        this.version = version;
-    }
-
+    private GetKubernetesClusterInstalledApplication() {}
     public String application() {
         return this.application;
     }
@@ -47,17 +36,13 @@ public final class GetKubernetesClusterInstalledApplication {
     public static Builder builder(GetKubernetesClusterInstalledApplication defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String application;
         private String category;
         private Boolean installed;
         private String version;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetKubernetesClusterInstalledApplication defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.application = defaults.application;
@@ -66,23 +51,33 @@ public final class GetKubernetesClusterInstalledApplication {
     	      this.version = defaults.version;
         }
 
+        @CustomType.Setter
         public Builder application(String application) {
             this.application = Objects.requireNonNull(application);
             return this;
         }
+        @CustomType.Setter
         public Builder category(String category) {
             this.category = Objects.requireNonNull(category);
             return this;
         }
+        @CustomType.Setter
         public Builder installed(Boolean installed) {
             this.installed = Objects.requireNonNull(installed);
             return this;
         }
+        @CustomType.Setter
         public Builder version(String version) {
             this.version = Objects.requireNonNull(version);
             return this;
-        }        public GetKubernetesClusterInstalledApplication build() {
-            return new GetKubernetesClusterInstalledApplication(application, category, installed, version);
+        }
+        public GetKubernetesClusterInstalledApplication build() {
+            final var o = new GetKubernetesClusterInstalledApplication();
+            o.application = application;
+            o.category = category;
+            o.installed = installed;
+            o.version = version;
+            return o;
         }
     }
 }

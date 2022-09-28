@@ -15,30 +15,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetDiskImageResult {
-    private final List<GetDiskImageDiskimage> diskimages;
-    private final @Nullable List<GetDiskImageFilter> filters;
+    private List<GetDiskImageDiskimage> diskimages;
+    private @Nullable List<GetDiskImageFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final @Nullable String region;
-    private final @Nullable List<GetDiskImageSort> sorts;
+    private String id;
+    private @Nullable String region;
+    private @Nullable List<GetDiskImageSort> sorts;
 
-    @CustomType.Constructor
-    private GetDiskImageResult(
-        @CustomType.Parameter("diskimages") List<GetDiskImageDiskimage> diskimages,
-        @CustomType.Parameter("filters") @Nullable List<GetDiskImageFilter> filters,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("sorts") @Nullable List<GetDiskImageSort> sorts) {
-        this.diskimages = diskimages;
-        this.filters = filters;
-        this.id = id;
-        this.region = region;
-        this.sorts = sorts;
-    }
-
+    private GetDiskImageResult() {}
     public List<GetDiskImageDiskimage> diskimages() {
         return this.diskimages;
     }
@@ -66,18 +53,14 @@ public final class GetDiskImageResult {
     public static Builder builder(GetDiskImageResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private List<GetDiskImageDiskimage> diskimages;
         private @Nullable List<GetDiskImageFilter> filters;
         private String id;
         private @Nullable String region;
         private @Nullable List<GetDiskImageSort> sorts;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetDiskImageResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.diskimages = defaults.diskimages;
@@ -87,6 +70,7 @@ public final class GetDiskImageResult {
     	      this.sorts = defaults.sorts;
         }
 
+        @CustomType.Setter
         public Builder diskimages(List<GetDiskImageDiskimage> diskimages) {
             this.diskimages = Objects.requireNonNull(diskimages);
             return this;
@@ -94,6 +78,7 @@ public final class GetDiskImageResult {
         public Builder diskimages(GetDiskImageDiskimage... diskimages) {
             return diskimages(List.of(diskimages));
         }
+        @CustomType.Setter
         public Builder filters(@Nullable List<GetDiskImageFilter> filters) {
             this.filters = filters;
             return this;
@@ -101,22 +86,32 @@ public final class GetDiskImageResult {
         public Builder filters(GetDiskImageFilter... filters) {
             return filters(List.of(filters));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder sorts(@Nullable List<GetDiskImageSort> sorts) {
             this.sorts = sorts;
             return this;
         }
         public Builder sorts(GetDiskImageSort... sorts) {
             return sorts(List.of(sorts));
-        }        public GetDiskImageResult build() {
-            return new GetDiskImageResult(diskimages, filters, id, region, sorts);
+        }
+        public GetDiskImageResult build() {
+            final var o = new GetDiskImageResult();
+            o.diskimages = diskimages;
+            o.filters = filters;
+            o.id = id;
+            o.region = region;
+            o.sorts = sorts;
+            return o;
         }
     }
 }

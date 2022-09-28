@@ -11,20 +11,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetSshKeyResult {
-    private final String fingerprint;
-    private final @Nullable String id;
-    private final @Nullable String name;
+    private String fingerprint;
+    private @Nullable String id;
+    private @Nullable String name;
 
-    @CustomType.Constructor
-    private GetSshKeyResult(
-        @CustomType.Parameter("fingerprint") String fingerprint,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("name") @Nullable String name) {
-        this.fingerprint = fingerprint;
-        this.id = id;
-        this.name = name;
-    }
-
+    private GetSshKeyResult() {}
     public String fingerprint() {
         return this.fingerprint;
     }
@@ -42,16 +33,12 @@ public final class GetSshKeyResult {
     public static Builder builder(GetSshKeyResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String fingerprint;
         private @Nullable String id;
         private @Nullable String name;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetSshKeyResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.fingerprint = defaults.fingerprint;
@@ -59,19 +46,27 @@ public final class GetSshKeyResult {
     	      this.name = defaults.name;
         }
 
+        @CustomType.Setter
         public Builder fingerprint(String fingerprint) {
             this.fingerprint = Objects.requireNonNull(fingerprint);
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
-        }        public GetSshKeyResult build() {
-            return new GetSshKeyResult(fingerprint, id, name);
+        }
+        public GetSshKeyResult build() {
+            final var o = new GetSshKeyResult();
+            o.fingerprint = fingerprint;
+            o.id = id;
+            o.name = name;
+            return o;
         }
     }
 }

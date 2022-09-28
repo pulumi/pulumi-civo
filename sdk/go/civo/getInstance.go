@@ -20,22 +20,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myhostaname, err := civo.LookupInstance(ctx, &GetInstanceArgs{
-// 			Hostname: pulumi.StringRef("myhostname.com"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("instanceOutput", myhostaname.PublicIp)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myhostaname, err := civo.LookupInstance(ctx, &GetInstanceArgs{
+//				Hostname: pulumi.StringRef("myhostname.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("instanceOutput", myhostaname.PublicIp)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	var rv LookupInstanceResult

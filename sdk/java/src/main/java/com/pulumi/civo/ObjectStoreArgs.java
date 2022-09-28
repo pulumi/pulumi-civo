@@ -17,6 +17,21 @@ public final class ObjectStoreArgs extends com.pulumi.resources.ResourceArgs {
     public static final ObjectStoreArgs Empty = new ObjectStoreArgs();
 
     /**
+     * The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
+    @Import(name="accessKeyId")
+    private @Nullable Output<String> accessKeyId;
+
+    /**
+     * @return The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+     * 
+     */
+    public Optional<Output<String>> accessKeyId() {
+        return Optional.ofNullable(this.accessKeyId);
+    }
+
+    /**
      * The maximum size of the Object Store. Default is 500GB.
      * 
      */
@@ -64,6 +79,7 @@ public final class ObjectStoreArgs extends com.pulumi.resources.ResourceArgs {
     private ObjectStoreArgs() {}
 
     private ObjectStoreArgs(ObjectStoreArgs $) {
+        this.accessKeyId = $.accessKeyId;
         this.maxSizeGb = $.maxSizeGb;
         this.name = $.name;
         this.region = $.region;
@@ -85,6 +101,27 @@ public final class ObjectStoreArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(ObjectStoreArgs defaults) {
             $ = new ObjectStoreArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param accessKeyId The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessKeyId(@Nullable Output<String> accessKeyId) {
+            $.accessKeyId = accessKeyId;
+            return this;
+        }
+
+        /**
+         * @param accessKeyId The access key ID from the Object Store credential. If this is not set, a new credential will be created.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder accessKeyId(String accessKeyId) {
+            return accessKeyId(Output.of(accessKeyId));
         }
 
         /**

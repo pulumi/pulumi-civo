@@ -9,6 +9,11 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
+apiEndpoint: Optional[str]
+"""
+The Base URL to use for CIVO API.
+"""
+
 region: Optional[str]
 """
 If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

@@ -13,23 +13,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesFilter {
-    private final @Nullable Boolean all;
-    private final String key;
-    private final @Nullable String matchBy;
-    private final List<String> values;
+    private @Nullable Boolean all;
+    private String key;
+    private @Nullable String matchBy;
+    private List<String> values;
 
-    @CustomType.Constructor
-    private GetInstancesFilter(
-        @CustomType.Parameter("all") @Nullable Boolean all,
-        @CustomType.Parameter("key") String key,
-        @CustomType.Parameter("matchBy") @Nullable String matchBy,
-        @CustomType.Parameter("values") List<String> values) {
-        this.all = all;
-        this.key = key;
-        this.matchBy = matchBy;
-        this.values = values;
-    }
-
+    private GetInstancesFilter() {}
     public Optional<Boolean> all() {
         return Optional.ofNullable(this.all);
     }
@@ -50,17 +39,13 @@ public final class GetInstancesFilter {
     public static Builder builder(GetInstancesFilter defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable Boolean all;
         private String key;
         private @Nullable String matchBy;
         private List<String> values;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetInstancesFilter defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.all = defaults.all;
@@ -69,26 +54,36 @@ public final class GetInstancesFilter {
     	      this.values = defaults.values;
         }
 
+        @CustomType.Setter
         public Builder all(@Nullable Boolean all) {
             this.all = all;
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
         }
+        @CustomType.Setter
         public Builder matchBy(@Nullable String matchBy) {
             this.matchBy = matchBy;
             return this;
         }
+        @CustomType.Setter
         public Builder values(List<String> values) {
             this.values = Objects.requireNonNull(values);
             return this;
         }
         public Builder values(String... values) {
             return values(List.of(values));
-        }        public GetInstancesFilter build() {
-            return new GetInstancesFilter(all, key, matchBy, values);
+        }
+        public GetInstancesFilter build() {
+            final var o = new GetInstancesFilter();
+            o.all = all;
+            o.key = key;
+            o.matchBy = matchBy;
+            o.values = values;
+            return o;
         }
     }
 }

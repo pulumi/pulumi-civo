@@ -2313,6 +2313,36 @@ public final class CivoFunctions {
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetObjectStoreResult> getObjectStore() {
         return getObjectStore(GetObjectStoreArgs.Empty, InvokeOptions.Empty);
@@ -2321,6 +2351,36 @@ public final class CivoFunctions {
      * Get information of an Object Store for use in other resources. This data source provides all of the Object Store&#39;s properties as configured on your Civo account.
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain() {
@@ -2331,6 +2391,36 @@ public final class CivoFunctions {
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args) {
         return getObjectStore(args, InvokeOptions.Empty);
@@ -2339,6 +2429,36 @@ public final class CivoFunctions {
      * Get information of an Object Store for use in other resources. This data source provides all of the Object Store&#39;s properties as configured on your Civo account.
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain(GetObjectStorePlainArgs args) {
@@ -2349,6 +2469,36 @@ public final class CivoFunctions {
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
      */
     public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("civo:index/getObjectStore:getObjectStore", TypeShape.of(GetObjectStoreResult.class), args, Utilities.withVersion(options));
@@ -2357,6 +2507,36 @@ public final class CivoFunctions {
      * Get information of an Object Store for use in other resources. This data source provides all of the Object Store&#39;s properties as configured on your Civo account.
      * 
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain(GetObjectStorePlainArgs args, InvokeOptions options) {

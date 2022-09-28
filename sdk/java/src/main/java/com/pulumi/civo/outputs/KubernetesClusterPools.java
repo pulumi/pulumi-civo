@@ -13,23 +13,12 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class KubernetesClusterPools {
-    private final @Nullable List<String> instanceNames;
-    private final @Nullable String label;
-    private final Integer nodeCount;
-    private final String size;
+    private @Nullable List<String> instanceNames;
+    private @Nullable String label;
+    private Integer nodeCount;
+    private String size;
 
-    @CustomType.Constructor
-    private KubernetesClusterPools(
-        @CustomType.Parameter("instanceNames") @Nullable List<String> instanceNames,
-        @CustomType.Parameter("label") @Nullable String label,
-        @CustomType.Parameter("nodeCount") Integer nodeCount,
-        @CustomType.Parameter("size") String size) {
-        this.instanceNames = instanceNames;
-        this.label = label;
-        this.nodeCount = nodeCount;
-        this.size = size;
-    }
-
+    private KubernetesClusterPools() {}
     public List<String> instanceNames() {
         return this.instanceNames == null ? List.of() : this.instanceNames;
     }
@@ -50,17 +39,13 @@ public final class KubernetesClusterPools {
     public static Builder builder(KubernetesClusterPools defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<String> instanceNames;
         private @Nullable String label;
         private Integer nodeCount;
         private String size;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(KubernetesClusterPools defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.instanceNames = defaults.instanceNames;
@@ -69,6 +54,7 @@ public final class KubernetesClusterPools {
     	      this.size = defaults.size;
         }
 
+        @CustomType.Setter
         public Builder instanceNames(@Nullable List<String> instanceNames) {
             this.instanceNames = instanceNames;
             return this;
@@ -76,19 +62,28 @@ public final class KubernetesClusterPools {
         public Builder instanceNames(String... instanceNames) {
             return instanceNames(List.of(instanceNames));
         }
+        @CustomType.Setter
         public Builder label(@Nullable String label) {
             this.label = label;
             return this;
         }
+        @CustomType.Setter
         public Builder nodeCount(Integer nodeCount) {
             this.nodeCount = Objects.requireNonNull(nodeCount);
             return this;
         }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
-        }        public KubernetesClusterPools build() {
-            return new KubernetesClusterPools(instanceNames, label, nodeCount, size);
+        }
+        public KubernetesClusterPools build() {
+            final var o = new KubernetesClusterPools();
+            o.instanceNames = instanceNames;
+            o.label = label;
+            o.nodeCount = nodeCount;
+            o.size = size;
+            return o;
         }
     }
 }

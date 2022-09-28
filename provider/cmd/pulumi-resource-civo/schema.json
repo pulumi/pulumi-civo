@@ -52,6 +52,10 @@
     },
     "config": {
         "variables": {
+            "apiEndpoint": {
+                "type": "string",
+                "description": "The Base URL to use for CIVO API.\n"
+            },
             "region": {
                 "type": "string",
                 "description": "If region is not set, then no region will be used and them you need expensify in every resource even if you expensify\nhere you can overwrite in a resource.\n"
@@ -63,6 +67,144 @@
         }
     },
     "types": {
+        "civo:index/FirewallEgressRule:FirewallEgressRule": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "portRange": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "cidrs"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "action",
+                        "cidrs",
+                        "id"
+                    ]
+                }
+            }
+        },
+        "civo:index/FirewallIngressRule:FirewallIngressRule": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cidrs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "label": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "portRange": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "protocol": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "cidrs"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "action",
+                        "cidrs",
+                        "id"
+                    ]
+                }
+            }
+        },
         "civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication": {
             "properties": {
                 "application": {
@@ -1239,6 +1381,10 @@
     "provider": {
         "description": "The provider type for the civo package. By default, resources use package-wide configuration\nsettings, however an explicit `Provider` instance may be created and passed during resource\nconstruction to achieve fine-grained programmatic control over provider settings. See the\n[documentation](https://www.pulumi.com/docs/reference/programming-model/#providers) for more information.\n",
         "properties": {
+            "apiEndpoint": {
+                "type": "string",
+                "description": "The Base URL to use for CIVO API.\n"
+            },
             "region": {
                 "type": "string",
                 "description": "If region is not set, then no region will be used and them you need expensify in every resource even if you expensify\nhere you can overwrite in a resource.\n"
@@ -1249,6 +1395,10 @@
             }
         },
         "inputProperties": {
+            "apiEndpoint": {
+                "type": "string",
+                "description": "The Base URL to use for CIVO API.\n"
+            },
             "region": {
                 "type": "string",
                 "description": "If region is not set, then no region will be used and them you need expensify in every resource even if you expensify\nhere you can overwrite in a resource.\n"
@@ -1423,11 +1573,25 @@
             }
         },
         "civo:index/firewall:Firewall": {
-            "description": "Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\n// Create a network\nconst customNet = new civo.Network(\"customNet\", {label: \"my-custom-network\"});\n// Create a firewall\nconst www = new civo.Firewall(\"www\", {networkId: customNet.id});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\n# Create a network\ncustom_net = civo.Network(\"customNet\", label=\"my-custom-network\")\n# Create a firewall\nwww = civo.Firewall(\"www\", network_id=custom_net.id)\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Create a network\n        var customNet = new Civo.Network(\"customNet\", new Civo.NetworkArgs\n        {\n            Label = \"my-custom-network\",\n        });\n        // Create a firewall\n        var www = new Civo.Firewall(\"www\", new Civo.FirewallArgs\n        {\n            NetworkId = customNet.Id,\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcustomNet, err := civo.NewNetwork(ctx, \"customNet\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"my-custom-network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewFirewall(ctx, \"www\", \u0026civo.FirewallArgs{\n\t\t\tNetworkId: customNet.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.Network;\nimport com.pulumi.civo.NetworkArgs;\nimport com.pulumi.civo.Firewall;\nimport com.pulumi.civo.FirewallArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var customNet = new Network(\"customNet\", NetworkArgs.builder()        \n            .label(\"my-custom-network\")\n            .build());\n\n        var www = new Firewall(\"www\", FirewallArgs.builder()        \n            .networkId(customNet.id())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a network\n  customNet:\n    type: civo:Network\n    properties:\n      label: my-custom-network\n  # Create a firewall\n  www:\n    type: civo:Firewall\n    properties:\n      networkId: ${customNet.id}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# using ID\n\n```sh\n $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
+            "description": "Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\n// Create a network\nconst customNet = new civo.Network(\"customNet\", {label: \"my-custom-network\"});\n// Create a firewall\nconst wwwFirewall = new civo.Firewall(\"wwwFirewall\", {networkId: customNet.id});\n// Create a firewall with the default rules\nconst wwwIndex_firewallFirewall = new civo.Firewall(\"wwwIndex/firewallFirewall\", {\n    networkId: customNet.id,\n    createDefaultRules: true,\n});\n// Create a firewall withouth the default rules but with a custom rule\nconst wwwCivoIndex_firewallFirewall = new civo.Firewall(\"wwwCivoIndex/firewallFirewall\", {\n    networkId: customNet.id,\n    createDefaultRules: false,\n    ingressRules: [\n        {\n            label: \"k8s\",\n            protocol: \"tcp\",\n            portRange: \"6443\",\n            cidrs: [\n                \"192.168.1.1/32\",\n                \"192.168.10.4/32\",\n                \"192.168.10.10/32\",\n            ],\n            action: \"allow\",\n        },\n        {\n            label: \"ssh\",\n            protocol: \"tcp\",\n            portRange: \"22\",\n            cidrs: [\n                \"192.168.1.1/32\",\n                \"192.168.10.4/32\",\n                \"192.168.10.10/32\",\n            ],\n            action: \"allow\",\n        },\n    ],\n    egressRules: [{\n        label: \"all\",\n        protocol: \"tcp\",\n        portRange: \"1-65535\",\n        cidrs: [\"0.0.0.0/0\"],\n        action: \"allow\",\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\n# Create a network\ncustom_net = civo.Network(\"customNet\", label=\"my-custom-network\")\n# Create a firewall\nwww_firewall = civo.Firewall(\"wwwFirewall\", network_id=custom_net.id)\n# Create a firewall with the default rules\nwww_index_firewall_firewall = civo.Firewall(\"wwwIndex/firewallFirewall\",\n    network_id=custom_net.id,\n    create_default_rules=True)\n# Create a firewall withouth the default rules but with a custom rule\nwww_civo_index_firewall_firewall = civo.Firewall(\"wwwCivoIndex/firewallFirewall\",\n    network_id=custom_net.id,\n    create_default_rules=False,\n    ingress_rules=[\n        civo.FirewallIngressRuleArgs(\n            label=\"k8s\",\n            protocol=\"tcp\",\n            port_range=\"6443\",\n            cidrs=[\n                \"192.168.1.1/32\",\n                \"192.168.10.4/32\",\n                \"192.168.10.10/32\",\n            ],\n            action=\"allow\",\n        ),\n        civo.FirewallIngressRuleArgs(\n            label=\"ssh\",\n            protocol=\"tcp\",\n            port_range=\"22\",\n            cidrs=[\n                \"192.168.1.1/32\",\n                \"192.168.10.4/32\",\n                \"192.168.10.10/32\",\n            ],\n            action=\"allow\",\n        ),\n    ],\n    egress_rules=[civo.FirewallEgressRuleArgs(\n        label=\"all\",\n        protocol=\"tcp\",\n        port_range=\"1-65535\",\n        cidrs=[\"0.0.0.0/0\"],\n        action=\"allow\",\n    )])\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        // Create a network\n        var customNet = new Civo.Network(\"customNet\", new Civo.NetworkArgs\n        {\n            Label = \"my-custom-network\",\n        });\n        // Create a firewall\n        var wwwFirewall = new Civo.Firewall(\"wwwFirewall\", new Civo.FirewallArgs\n        {\n            NetworkId = customNet.Id,\n        });\n        // Create a firewall with the default rules\n        var wwwIndex_firewallFirewall = new Civo.Firewall(\"wwwIndex/firewallFirewall\", new Civo.FirewallArgs\n        {\n            NetworkId = customNet.Id,\n            CreateDefaultRules = true,\n        });\n        // Create a firewall withouth the default rules but with a custom rule\n        var wwwCivoIndex_firewallFirewall = new Civo.Firewall(\"wwwCivoIndex/firewallFirewall\", new Civo.FirewallArgs\n        {\n            NetworkId = customNet.Id,\n            CreateDefaultRules = false,\n            IngressRules = \n            {\n                new Civo.Inputs.FirewallIngressRuleArgs\n                {\n                    Label = \"k8s\",\n                    Protocol = \"tcp\",\n                    PortRange = \"6443\",\n                    Cidrs = \n                    {\n                        \"192.168.1.1/32\",\n                        \"192.168.10.4/32\",\n                        \"192.168.10.10/32\",\n                    },\n                    Action = \"allow\",\n                },\n                new Civo.Inputs.FirewallIngressRuleArgs\n                {\n                    Label = \"ssh\",\n                    Protocol = \"tcp\",\n                    PortRange = \"22\",\n                    Cidrs = \n                    {\n                        \"192.168.1.1/32\",\n                        \"192.168.10.4/32\",\n                        \"192.168.10.10/32\",\n                    },\n                    Action = \"allow\",\n                },\n            },\n            EgressRules = \n            {\n                new Civo.Inputs.FirewallEgressRuleArgs\n                {\n                    Label = \"all\",\n                    Protocol = \"tcp\",\n                    PortRange = \"1-65535\",\n                    Cidrs = \n                    {\n                        \"0.0.0.0/0\",\n                    },\n                    Action = \"allow\",\n                },\n            },\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tcustomNet, err := civo.NewNetwork(ctx, \"customNet\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"my-custom-network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewFirewall(ctx, \"wwwFirewall\", \u0026civo.FirewallArgs{\n\t\t\tNetworkId: customNet.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewFirewall(ctx, \"wwwIndex/firewallFirewall\", \u0026civo.FirewallArgs{\n\t\t\tNetworkId:          customNet.ID(),\n\t\t\tCreateDefaultRules: pulumi.Bool(true),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewFirewall(ctx, \"wwwCivoIndex/firewallFirewall\", \u0026civo.FirewallArgs{\n\t\t\tNetworkId:          customNet.ID(),\n\t\t\tCreateDefaultRules: pulumi.Bool(false),\n\t\t\tIngressRules: FirewallIngressRuleArray{\n\t\t\t\t\u0026FirewallIngressRuleArgs{\n\t\t\t\t\tLabel:     pulumi.String(\"k8s\"),\n\t\t\t\t\tProtocol:  pulumi.String(\"tcp\"),\n\t\t\t\t\tPortRange: pulumi.String(\"6443\"),\n\t\t\t\t\tCidrs: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"192.168.1.1/32\"),\n\t\t\t\t\t\tpulumi.String(\"192.168.10.4/32\"),\n\t\t\t\t\t\tpulumi.String(\"192.168.10.10/32\"),\n\t\t\t\t\t},\n\t\t\t\t\tAction: pulumi.String(\"allow\"),\n\t\t\t\t},\n\t\t\t\t\u0026FirewallIngressRuleArgs{\n\t\t\t\t\tLabel:     pulumi.String(\"ssh\"),\n\t\t\t\t\tProtocol:  pulumi.String(\"tcp\"),\n\t\t\t\t\tPortRange: pulumi.String(\"22\"),\n\t\t\t\t\tCidrs: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"192.168.1.1/32\"),\n\t\t\t\t\t\tpulumi.String(\"192.168.10.4/32\"),\n\t\t\t\t\t\tpulumi.String(\"192.168.10.10/32\"),\n\t\t\t\t\t},\n\t\t\t\t\tAction: pulumi.String(\"allow\"),\n\t\t\t\t},\n\t\t\t},\n\t\t\tEgressRules: FirewallEgressRuleArray{\n\t\t\t\t\u0026FirewallEgressRuleArgs{\n\t\t\t\t\tLabel:     pulumi.String(\"all\"),\n\t\t\t\t\tProtocol:  pulumi.String(\"tcp\"),\n\t\t\t\t\tPortRange: pulumi.String(\"1-65535\"),\n\t\t\t\t\tCidrs: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"0.0.0.0/0\"),\n\t\t\t\t\t},\n\t\t\t\t\tAction: pulumi.String(\"allow\"),\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.Network;\nimport com.pulumi.civo.NetworkArgs;\nimport com.pulumi.civo.Firewall;\nimport com.pulumi.civo.FirewallArgs;\nimport com.pulumi.civo.inputs.FirewallIngressRuleArgs;\nimport com.pulumi.civo.inputs.FirewallEgressRuleArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var customNet = new Network(\"customNet\", NetworkArgs.builder()        \n            .label(\"my-custom-network\")\n            .build());\n\n        var wwwFirewall = new Firewall(\"wwwFirewall\", FirewallArgs.builder()        \n            .networkId(customNet.id())\n            .build());\n\n        var wwwIndex_firewallFirewall = new Firewall(\"wwwIndex/firewallFirewall\", FirewallArgs.builder()        \n            .networkId(customNet.id())\n            .createDefaultRules(true)\n            .build());\n\n        var wwwCivoIndex_firewallFirewall = new Firewall(\"wwwCivoIndex/firewallFirewall\", FirewallArgs.builder()        \n            .networkId(customNet.id())\n            .createDefaultRules(false)\n            .ingressRules(            \n                FirewallIngressRuleArgs.builder()\n                    .label(\"k8s\")\n                    .protocol(\"tcp\")\n                    .portRange(\"6443\")\n                    .cidrs(                    \n                        \"192.168.1.1/32\",\n                        \"192.168.10.4/32\",\n                        \"192.168.10.10/32\")\n                    .action(\"allow\")\n                    .build(),\n                FirewallIngressRuleArgs.builder()\n                    .label(\"ssh\")\n                    .protocol(\"tcp\")\n                    .portRange(\"22\")\n                    .cidrs(                    \n                        \"192.168.1.1/32\",\n                        \"192.168.10.4/32\",\n                        \"192.168.10.10/32\")\n                    .action(\"allow\")\n                    .build())\n            .egressRules(FirewallEgressRuleArgs.builder()\n                .label(\"all\")\n                .protocol(\"tcp\")\n                .portRange(\"1-65535\")\n                .cidrs(\"0.0.0.0/0\")\n                .action(\"allow\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Create a network\n  customNet:\n    type: civo:Network\n    properties:\n      label: my-custom-network\n  # Create a firewall\n  wwwFirewall:\n    type: civo:Firewall\n    properties:\n      networkId: ${customNet.id}\n  # Create a firewall with the default rules\n  wwwIndex/firewallFirewall:\n    type: civo:Firewall\n    properties:\n      networkId: ${customNet.id}\n      createDefaultRules: true\n  # Create a firewall withouth the default rules but with a custom rule\n  wwwCivoIndex/firewallFirewall:\n    type: civo:Firewall\n    properties:\n      networkId: ${customNet.id}\n      createDefaultRules: false\n      ingressRules:\n        - label: k8s\n          protocol: tcp\n          portRange: 6443\n          cidrs:\n            - 192.168.1.1/32\n            - 192.168.10.4/32\n            - 192.168.10.10/32\n          action: allow\n        - label: ssh\n          protocol: tcp\n          portRange: 22\n          cidrs:\n            - 192.168.1.1/32\n            - 192.168.10.4/32\n            - 192.168.10.10/32\n          action: allow\n      egressRules:\n        - label: all\n          protocol: tcp\n          portRange: 1-65535\n          cidrs:\n            - 0.0.0.0/0\n          action: allow\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# using ID\n\n```sh\n $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
             "properties": {
                 "createDefaultRules": {
                     "type": "boolean",
-                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n"
+                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you\nset to false you need to define at least one ingress or egress rule\n"
+                },
+                "egressRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/FirewallEgressRule:FirewallEgressRule"
+                    },
+                    "description": "The egress rules, this is a list of rules that will be applied to the firewall\n"
+                },
+                "ingressRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/FirewallIngressRule:FirewallIngressRule"
+                    },
+                    "description": "The ingress rules, this is a list of rules that will be applied to the firewall\n"
                 },
                 "name": {
                     "type": "string",
@@ -1443,14 +1607,30 @@
                 }
             },
             "required": [
+                "egressRules",
+                "ingressRules",
                 "name",
                 "networkId"
             ],
             "inputProperties": {
                 "createDefaultRules": {
                     "type": "boolean",
-                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n",
+                    "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you\nset to false you need to define at least one ingress or egress rule\n",
                     "willReplaceOnChanges": true
+                },
+                "egressRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/FirewallEgressRule:FirewallEgressRule"
+                    },
+                    "description": "The egress rules, this is a list of rules that will be applied to the firewall\n"
+                },
+                "ingressRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/FirewallIngressRule:FirewallIngressRule"
+                    },
+                    "description": "The ingress rules, this is a list of rules that will be applied to the firewall\n"
                 },
                 "name": {
                     "type": "string",
@@ -1471,8 +1651,22 @@
                 "properties": {
                     "createDefaultRules": {
                         "type": "boolean",
-                        "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true\n",
+                        "description": "The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you\nset to false you need to define at least one ingress or egress rule\n",
                         "willReplaceOnChanges": true
+                    },
+                    "egressRules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/FirewallEgressRule:FirewallEgressRule"
+                        },
+                        "description": "The egress rules, this is a list of rules that will be applied to the firewall\n"
+                    },
+                    "ingressRules": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/FirewallIngressRule:FirewallIngressRule"
+                        },
+                        "description": "The ingress rules, this is a list of rules that will be applied to the firewall\n"
                     },
                     "name": {
                         "type": "string",
@@ -2401,7 +2595,8 @@
             "required": [
                 "default",
                 "label",
-                "name"
+                "name",
+                "region"
             ],
             "inputProperties": {
                 "label": {
@@ -2440,19 +2635,15 @@
             }
         },
         "civo:index/objectStore:ObjectStore": {
-            "description": "Provides an Object Store resource. This can be used to create, modify, and delete obejct stores.\n",
+            "description": "Provides an Object Store resource. This can be used to create, modify, and delete object stores.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst backup = new civo.ObjectStore(\"backup\", {\n    maxSizeGb: 500,\n    region: \"LON1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nbackup = civo.ObjectStore(\"backup\",\n    max_size_gb=500,\n    region=\"LON1\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var backup = new Civo.ObjectStore(\"backup\", new Civo.ObjectStoreArgs\n        {\n            MaxSizeGb = 500,\n            Region = \"LON1\",\n        });\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewObjectStore(ctx, \"backup\", \u0026civo.ObjectStoreArgs{\n\t\t\tMaxSizeGb: pulumi.Int(500),\n\t\t\tRegion:    pulumi.String(\"LON1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.ObjectStore;\nimport com.pulumi.civo.ObjectStoreArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var backup = new ObjectStore(\"backup\", ObjectStoreArgs.builder()        \n            .maxSizeGb(500)\n            .region(\"LON1\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  backup:\n    type: civo:ObjectStore\n    properties:\n      maxSizeGb: 500\n      region: LON1\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\n# using ID\n\n```sh\n $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
             "properties": {
                 "accessKeyId": {
                     "type": "string",
-                    "description": "The access key id of the Object Store. It is generated by the provider.\n"
+                    "description": "The access key ID from the Object Store credential. If this is not set, a new credential will be created.\n"
                 },
-                "endpoint": {
+                "bucketUrl": {
                     "type": "string",
                     "description": "The endpoint of the Object Store. It is generated by the provider.\n"
-                },
-                "generatedName": {
-                    "type": "string",
-                    "description": "The generated name of the Object Store. It is generated by the provider.\n"
                 },
                 "maxSizeGb": {
                     "type": "integer",
@@ -2466,10 +2657,6 @@
                     "type": "string",
                     "description": "The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)\n"
                 },
-                "secretAccessKey": {
-                    "type": "string",
-                    "description": "The secret access key of the Object Store. It is generated by the provider.\n"
-                },
                 "status": {
                     "type": "string",
                     "description": "The status of the Object Store.\n"
@@ -2477,13 +2664,15 @@
             },
             "required": [
                 "accessKeyId",
-                "endpoint",
-                "generatedName",
+                "bucketUrl",
                 "name",
-                "secretAccessKey",
                 "status"
             ],
             "inputProperties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "The access key ID from the Object Store credential. If this is not set, a new credential will be created.\n"
+                },
                 "maxSizeGb": {
                     "type": "integer",
                     "description": "The maximum size of the Object Store. Default is 500GB.\n"
@@ -2502,15 +2691,11 @@
                 "properties": {
                     "accessKeyId": {
                         "type": "string",
-                        "description": "The access key id of the Object Store. It is generated by the provider.\n"
+                        "description": "The access key ID from the Object Store credential. If this is not set, a new credential will be created.\n"
                     },
-                    "endpoint": {
+                    "bucketUrl": {
                         "type": "string",
                         "description": "The endpoint of the Object Store. It is generated by the provider.\n"
-                    },
-                    "generatedName": {
-                        "type": "string",
-                        "description": "The generated name of the Object Store. It is generated by the provider.\n"
                     },
                     "maxSizeGb": {
                         "type": "integer",
@@ -2523,10 +2708,6 @@
                     "region": {
                         "type": "string",
                         "description": "The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)\n"
-                    },
-                    "secretAccessKey": {
-                        "type": "string",
-                        "description": "The secret access key of the Object Store. It is generated by the provider.\n"
                     },
                     "status": {
                         "type": "string",
@@ -3489,15 +3670,12 @@
             }
         },
         "civo:index/getObjectStore:getObjectStore": {
-            "description": "Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.\n\nNote: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.\n",
+            "description": "Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.\n\nNote: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst backup = pulumi.output(civo.getObjectStore({\n    name: \"backup-server\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nbackup = civo.get_object_store(name=\"backup-server\")\n```\n```csharp\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nclass MyStack : Stack\n{\n    public MyStack()\n    {\n        var backup = Output.Create(Civo.GetObjectStore.InvokeAsync(new Civo.GetObjectStoreArgs\n        {\n            Name = \"backup-server\",\n        }));\n    }\n\n}\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.LookupObjectStore(ctx, \u0026GetObjectStoreArgs{\n\t\t\tName: pulumi.StringRef(\"backup-server\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetObjectStoreArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()\n            .name(\"backup-server\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  backup:\n    Fn::Invoke:\n      Function: civo:getObjectStore\n      Arguments:\n        name: backup-server\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getObjectStore.\n",
                 "properties": {
                     "id": {
                         "type": "string"
-                    },
-                    "maxSizeGb": {
-                        "type": "integer"
                     },
                     "name": {
                         "type": "string"
@@ -3514,10 +3692,7 @@
                     "accessKeyId": {
                         "type": "string"
                     },
-                    "endpoint": {
-                        "type": "string"
-                    },
-                    "generatedName": {
+                    "bucketUrl": {
                         "type": "string"
                     },
                     "id": {
@@ -3532,9 +3707,6 @@
                     "region": {
                         "type": "string"
                     },
-                    "secretAccessKey": {
-                        "type": "string"
-                    },
                     "status": {
                         "type": "string"
                     }
@@ -3542,9 +3714,8 @@
                 "type": "object",
                 "required": [
                     "accessKeyId",
-                    "endpoint",
-                    "generatedName",
-                    "secretAccessKey",
+                    "bucketUrl",
+                    "maxSizeGb",
                     "status"
                 ]
             }

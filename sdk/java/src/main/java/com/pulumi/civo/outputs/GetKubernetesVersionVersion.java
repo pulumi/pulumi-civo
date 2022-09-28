@@ -10,23 +10,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesVersionVersion {
-    private final Boolean default_;
-    private final String label;
-    private final String type;
-    private final String version;
+    private Boolean default_;
+    private String label;
+    private String type;
+    private String version;
 
-    @CustomType.Constructor
-    private GetKubernetesVersionVersion(
-        @CustomType.Parameter("default") Boolean default_,
-        @CustomType.Parameter("label") String label,
-        @CustomType.Parameter("type") String type,
-        @CustomType.Parameter("version") String version) {
-        this.default_ = default_;
-        this.label = label;
-        this.type = type;
-        this.version = version;
-    }
-
+    private GetKubernetesVersionVersion() {}
     public Boolean default_() {
         return this.default_;
     }
@@ -47,17 +36,13 @@ public final class GetKubernetesVersionVersion {
     public static Builder builder(GetKubernetesVersionVersion defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Boolean default_;
         private String label;
         private String type;
         private String version;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetKubernetesVersionVersion defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.default_ = defaults.default_;
@@ -66,23 +51,33 @@ public final class GetKubernetesVersionVersion {
     	      this.version = defaults.version;
         }
 
+        @CustomType.Setter("default")
         public Builder default_(Boolean default_) {
             this.default_ = Objects.requireNonNull(default_);
             return this;
         }
+        @CustomType.Setter
         public Builder label(String label) {
             this.label = Objects.requireNonNull(label);
             return this;
         }
+        @CustomType.Setter
         public Builder type(String type) {
             this.type = Objects.requireNonNull(type);
             return this;
         }
+        @CustomType.Setter
         public Builder version(String version) {
             this.version = Objects.requireNonNull(version);
             return this;
-        }        public GetKubernetesVersionVersion build() {
-            return new GetKubernetesVersionVersion(default_, label, type, version);
+        }
+        public GetKubernetesVersionVersion build() {
+            final var o = new GetKubernetesVersionVersion();
+            o.default_ = default_;
+            o.label = label;
+            o.type = type;
+            o.version = version;
+            return o;
         }
     }
 }

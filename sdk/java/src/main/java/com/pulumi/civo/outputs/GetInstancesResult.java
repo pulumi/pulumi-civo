@@ -15,30 +15,17 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetInstancesResult {
-    private final @Nullable List<GetInstancesFilter> filters;
+    private @Nullable List<GetInstancesFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
-    private final String id;
-    private final List<GetInstancesInstance> instances;
-    private final @Nullable String region;
-    private final @Nullable List<GetInstancesSort> sorts;
+    private String id;
+    private List<GetInstancesInstance> instances;
+    private @Nullable String region;
+    private @Nullable List<GetInstancesSort> sorts;
 
-    @CustomType.Constructor
-    private GetInstancesResult(
-        @CustomType.Parameter("filters") @Nullable List<GetInstancesFilter> filters,
-        @CustomType.Parameter("id") String id,
-        @CustomType.Parameter("instances") List<GetInstancesInstance> instances,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("sorts") @Nullable List<GetInstancesSort> sorts) {
-        this.filters = filters;
-        this.id = id;
-        this.instances = instances;
-        this.region = region;
-        this.sorts = sorts;
-    }
-
+    private GetInstancesResult() {}
     public List<GetInstancesFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
@@ -66,18 +53,14 @@ public final class GetInstancesResult {
     public static Builder builder(GetInstancesResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable List<GetInstancesFilter> filters;
         private String id;
         private List<GetInstancesInstance> instances;
         private @Nullable String region;
         private @Nullable List<GetInstancesSort> sorts;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetInstancesResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filters = defaults.filters;
@@ -87,6 +70,7 @@ public final class GetInstancesResult {
     	      this.sorts = defaults.sorts;
         }
 
+        @CustomType.Setter
         public Builder filters(@Nullable List<GetInstancesFilter> filters) {
             this.filters = filters;
             return this;
@@ -94,10 +78,12 @@ public final class GetInstancesResult {
         public Builder filters(GetInstancesFilter... filters) {
             return filters(List.of(filters));
         }
+        @CustomType.Setter
         public Builder id(String id) {
             this.id = Objects.requireNonNull(id);
             return this;
         }
+        @CustomType.Setter
         public Builder instances(List<GetInstancesInstance> instances) {
             this.instances = Objects.requireNonNull(instances);
             return this;
@@ -105,18 +91,27 @@ public final class GetInstancesResult {
         public Builder instances(GetInstancesInstance... instances) {
             return instances(List.of(instances));
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder sorts(@Nullable List<GetInstancesSort> sorts) {
             this.sorts = sorts;
             return this;
         }
         public Builder sorts(GetInstancesSort... sorts) {
             return sorts(List.of(sorts));
-        }        public GetInstancesResult build() {
-            return new GetInstancesResult(filters, id, instances, region, sorts);
+        }
+        public GetInstancesResult build() {
+            final var o = new GetInstancesResult();
+            o.filters = filters;
+            o.id = id;
+            o.instances = instances;
+            o.region = region;
+            o.sorts = sorts;
+            return o;
         }
     }
 }

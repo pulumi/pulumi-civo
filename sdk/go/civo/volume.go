@@ -19,30 +19,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		defaultNetwork, err := civo.LookupNetwork(ctx, &GetNetworkArgs{
-// 			Label: pulumi.StringRef("Default"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = civo.NewVolume(ctx, "db", &civo.VolumeArgs{
-// 			SizeGb:    pulumi.Int(5),
-// 			NetworkId: pulumi.String(defaultNetwork.Id),
-// 		}, pulumi.DependsOn([]pulumi.Resource{
-// 			defaultNetwork,
-// 		}))
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			defaultNetwork, err := civo.LookupNetwork(ctx, &GetNetworkArgs{
+//				Label: pulumi.StringRef("Default"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewVolume(ctx, "db", &civo.VolumeArgs{
+//				SizeGb:    pulumi.Int(5),
+//				NetworkId: pulumi.String(defaultNetwork.Id),
+//			}, pulumi.DependsOn([]pulumi.Resource{
+//				defaultNetwork,
+//			}))
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -50,7 +53,9 @@ import (
 // # using ID
 //
 // ```sh
-//  $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
+//
+//	$ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
+//
 // ```
 type Volume struct {
 	pulumi.CustomResourceState
@@ -180,7 +185,7 @@ func (i *Volume) ToVolumeOutputWithContext(ctx context.Context) VolumeOutput {
 // VolumeArrayInput is an input type that accepts VolumeArray and VolumeArrayOutput values.
 // You can construct a concrete instance of `VolumeArrayInput` via:
 //
-//          VolumeArray{ VolumeArgs{...} }
+//	VolumeArray{ VolumeArgs{...} }
 type VolumeArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +210,7 @@ func (i VolumeArray) ToVolumeArrayOutputWithContext(ctx context.Context) VolumeA
 // VolumeMapInput is an input type that accepts VolumeMap and VolumeMapOutput values.
 // You can construct a concrete instance of `VolumeMapInput` via:
 //
-//          VolumeMap{ "key": VolumeArgs{...} }
+//	VolumeMap{ "key": VolumeArgs{...} }
 type VolumeMapInput interface {
 	pulumi.Input
 

@@ -10,26 +10,13 @@ import java.util.Objects;
 
 @CustomType
 public final class GetLoadBalancerBackend {
-    private final Integer healthCheckPort;
-    private final String ip;
-    private final String protocol;
-    private final Integer sourcePort;
-    private final Integer targetPort;
+    private Integer healthCheckPort;
+    private String ip;
+    private String protocol;
+    private Integer sourcePort;
+    private Integer targetPort;
 
-    @CustomType.Constructor
-    private GetLoadBalancerBackend(
-        @CustomType.Parameter("healthCheckPort") Integer healthCheckPort,
-        @CustomType.Parameter("ip") String ip,
-        @CustomType.Parameter("protocol") String protocol,
-        @CustomType.Parameter("sourcePort") Integer sourcePort,
-        @CustomType.Parameter("targetPort") Integer targetPort) {
-        this.healthCheckPort = healthCheckPort;
-        this.ip = ip;
-        this.protocol = protocol;
-        this.sourcePort = sourcePort;
-        this.targetPort = targetPort;
-    }
-
+    private GetLoadBalancerBackend() {}
     public Integer healthCheckPort() {
         return this.healthCheckPort;
     }
@@ -53,18 +40,14 @@ public final class GetLoadBalancerBackend {
     public static Builder builder(GetLoadBalancerBackend defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private Integer healthCheckPort;
         private String ip;
         private String protocol;
         private Integer sourcePort;
         private Integer targetPort;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetLoadBalancerBackend defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.healthCheckPort = defaults.healthCheckPort;
@@ -74,27 +57,39 @@ public final class GetLoadBalancerBackend {
     	      this.targetPort = defaults.targetPort;
         }
 
+        @CustomType.Setter
         public Builder healthCheckPort(Integer healthCheckPort) {
             this.healthCheckPort = Objects.requireNonNull(healthCheckPort);
             return this;
         }
+        @CustomType.Setter
         public Builder ip(String ip) {
             this.ip = Objects.requireNonNull(ip);
             return this;
         }
+        @CustomType.Setter
         public Builder protocol(String protocol) {
             this.protocol = Objects.requireNonNull(protocol);
             return this;
         }
+        @CustomType.Setter
         public Builder sourcePort(Integer sourcePort) {
             this.sourcePort = Objects.requireNonNull(sourcePort);
             return this;
         }
+        @CustomType.Setter
         public Builder targetPort(Integer targetPort) {
             this.targetPort = Objects.requireNonNull(targetPort);
             return this;
-        }        public GetLoadBalancerBackend build() {
-            return new GetLoadBalancerBackend(healthCheckPort, ip, protocol, sourcePort, targetPort);
+        }
+        public GetLoadBalancerBackend build() {
+            final var o = new GetLoadBalancerBackend();
+            o.healthCheckPort = healthCheckPort;
+            o.ip = ip;
+            o.protocol = protocol;
+            o.sourcePort = sourcePort;
+            o.targetPort = targetPort;
+            return o;
         }
     }
 }

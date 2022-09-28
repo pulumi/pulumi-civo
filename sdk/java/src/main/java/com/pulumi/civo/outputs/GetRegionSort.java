@@ -11,17 +11,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetRegionSort {
-    private final @Nullable String direction;
-    private final String key;
+    private @Nullable String direction;
+    private String key;
 
-    @CustomType.Constructor
-    private GetRegionSort(
-        @CustomType.Parameter("direction") @Nullable String direction,
-        @CustomType.Parameter("key") String key) {
-        this.direction = direction;
-        this.key = key;
-    }
-
+    private GetRegionSort() {}
     public Optional<String> direction() {
         return Optional.ofNullable(this.direction);
     }
@@ -36,30 +29,32 @@ public final class GetRegionSort {
     public static Builder builder(GetRegionSort defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private @Nullable String direction;
         private String key;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetRegionSort defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.direction = defaults.direction;
     	      this.key = defaults.key;
         }
 
+        @CustomType.Setter
         public Builder direction(@Nullable String direction) {
             this.direction = direction;
             return this;
         }
+        @CustomType.Setter
         public Builder key(String key) {
             this.key = Objects.requireNonNull(key);
             return this;
-        }        public GetRegionSort build() {
-            return new GetRegionSort(direction, key);
+        }
+        public GetRegionSort build() {
+            final var o = new GetRegionSort();
+            o.direction = direction;
+            o.key = key;
+            return o;
         }
     }
 }

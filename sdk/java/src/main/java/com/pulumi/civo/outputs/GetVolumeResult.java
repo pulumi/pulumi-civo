@@ -12,29 +12,14 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetVolumeResult {
-    private final String createdAt;
-    private final @Nullable String id;
-    private final String mountPoint;
-    private final @Nullable String name;
-    private final @Nullable String region;
-    private final Integer sizeGb;
+    private String createdAt;
+    private @Nullable String id;
+    private String mountPoint;
+    private @Nullable String name;
+    private @Nullable String region;
+    private Integer sizeGb;
 
-    @CustomType.Constructor
-    private GetVolumeResult(
-        @CustomType.Parameter("createdAt") String createdAt,
-        @CustomType.Parameter("id") @Nullable String id,
-        @CustomType.Parameter("mountPoint") String mountPoint,
-        @CustomType.Parameter("name") @Nullable String name,
-        @CustomType.Parameter("region") @Nullable String region,
-        @CustomType.Parameter("sizeGb") Integer sizeGb) {
-        this.createdAt = createdAt;
-        this.id = id;
-        this.mountPoint = mountPoint;
-        this.name = name;
-        this.region = region;
-        this.sizeGb = sizeGb;
-    }
-
+    private GetVolumeResult() {}
     public String createdAt() {
         return this.createdAt;
     }
@@ -61,7 +46,7 @@ public final class GetVolumeResult {
     public static Builder builder(GetVolumeResult defaults) {
         return new Builder(defaults);
     }
-
+    @CustomType.Builder
     public static final class Builder {
         private String createdAt;
         private @Nullable String id;
@@ -69,11 +54,7 @@ public final class GetVolumeResult {
         private @Nullable String name;
         private @Nullable String region;
         private Integer sizeGb;
-
-        public Builder() {
-    	      // Empty
-        }
-
+        public Builder() {}
         public Builder(GetVolumeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.createdAt = defaults.createdAt;
@@ -84,31 +65,45 @@ public final class GetVolumeResult {
     	      this.sizeGb = defaults.sizeGb;
         }
 
+        @CustomType.Setter
         public Builder createdAt(String createdAt) {
             this.createdAt = Objects.requireNonNull(createdAt);
             return this;
         }
+        @CustomType.Setter
         public Builder id(@Nullable String id) {
             this.id = id;
             return this;
         }
+        @CustomType.Setter
         public Builder mountPoint(String mountPoint) {
             this.mountPoint = Objects.requireNonNull(mountPoint);
             return this;
         }
+        @CustomType.Setter
         public Builder name(@Nullable String name) {
             this.name = name;
             return this;
         }
+        @CustomType.Setter
         public Builder region(@Nullable String region) {
             this.region = region;
             return this;
         }
+        @CustomType.Setter
         public Builder sizeGb(Integer sizeGb) {
             this.sizeGb = Objects.requireNonNull(sizeGb);
             return this;
-        }        public GetVolumeResult build() {
-            return new GetVolumeResult(createdAt, id, mountPoint, name, region, sizeGb);
+        }
+        public GetVolumeResult build() {
+            final var o = new GetVolumeResult();
+            o.createdAt = createdAt;
+            o.id = id;
+            o.mountPoint = mountPoint;
+            o.name = name;
+            o.region = region;
+            o.sizeGb = sizeGb;
+            return o;
         }
     }
 }

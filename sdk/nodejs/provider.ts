@@ -26,6 +26,10 @@ export class Provider extends pulumi.ProviderResource {
     }
 
     /**
+     * The Base URL to use for CIVO API.
+     */
+    public readonly apiEndpoint!: pulumi.Output<string | undefined>;
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      */
@@ -46,6 +50,7 @@ export class Provider extends pulumi.ProviderResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
+            resourceInputs["apiEndpoint"] = args ? args.apiEndpoint : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["token"] = args ? args.token : undefined;
         }
@@ -58,6 +63,10 @@ export class Provider extends pulumi.ProviderResource {
  * The set of arguments for constructing a Provider resource.
  */
 export interface ProviderArgs {
+    /**
+     * The Base URL to use for CIVO API.
+     */
+    apiEndpoint?: pulumi.Input<string>;
     /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.

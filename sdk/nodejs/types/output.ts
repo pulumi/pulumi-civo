@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
+export interface FirewallEgressRule {
+    action: string;
+    cidrs: string[];
+    id: string;
+    label?: string;
+    portRange?: string;
+    protocol?: string;
+}
+
+export interface FirewallIngressRule {
+    action: string;
+    cidrs: string[];
+    id: string;
+    label?: string;
+    portRange?: string;
+    protocol?: string;
+}
+
 export interface GetDiskImageDiskimage {
     id: string;
     label: string;

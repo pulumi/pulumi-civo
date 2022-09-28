@@ -18,19 +18,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := civo.NewDnsDomainName(ctx, "main", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.NewDnsDomainName(ctx, "main", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -38,7 +41,9 @@ import (
 // # using domain name
 //
 // ```sh
-//  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+//
+//	$ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+//
 // ```
 type DnsDomainName struct {
 	pulumi.CustomResourceState
@@ -132,7 +137,7 @@ func (i *DnsDomainName) ToDnsDomainNameOutputWithContext(ctx context.Context) Dn
 // DnsDomainNameArrayInput is an input type that accepts DnsDomainNameArray and DnsDomainNameArrayOutput values.
 // You can construct a concrete instance of `DnsDomainNameArrayInput` via:
 //
-//          DnsDomainNameArray{ DnsDomainNameArgs{...} }
+//	DnsDomainNameArray{ DnsDomainNameArgs{...} }
 type DnsDomainNameArrayInput interface {
 	pulumi.Input
 
@@ -157,7 +162,7 @@ func (i DnsDomainNameArray) ToDnsDomainNameArrayOutputWithContext(ctx context.Co
 // DnsDomainNameMapInput is an input type that accepts DnsDomainNameMap and DnsDomainNameMapOutput values.
 // You can construct a concrete instance of `DnsDomainNameMapInput` via:
 //
-//          DnsDomainNameMap{ "key": DnsDomainNameArgs{...} }
+//	DnsDomainNameMap{ "key": DnsDomainNameArgs{...} }
 type DnsDomainNameMapInput interface {
 	pulumi.Input
 

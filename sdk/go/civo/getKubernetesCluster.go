@@ -20,22 +20,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		my_cluster, err := civo.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
-// 			Name: pulumi.StringRef("my-super-cluster"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("kubernetesClusterOutput", my_cluster.MasterIp)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			my_cluster, err := civo.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
+//				Name: pulumi.StringRef("my-super-cluster"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("kubernetesClusterOutput", my_cluster.MasterIp)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
 	var rv LookupKubernetesClusterResult
