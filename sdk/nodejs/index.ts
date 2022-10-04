@@ -69,6 +69,10 @@ export { GetObjectStoreArgs, GetObjectStoreResult, GetObjectStoreOutputArgs } fr
 export const getObjectStore: typeof import("./getObjectStore").getObjectStore = null as any;
 export const getObjectStoreOutput: typeof import("./getObjectStore").getObjectStoreOutput = null as any;
 
+export { GetObjectStoreCredentialArgs, GetObjectStoreCredentialResult, GetObjectStoreCredentialOutputArgs } from "./getObjectStoreCredential";
+export const getObjectStoreCredential: typeof import("./getObjectStoreCredential").getObjectStoreCredential = null as any;
+export const getObjectStoreCredentialOutput: typeof import("./getObjectStoreCredential").getObjectStoreCredentialOutput = null as any;
+
 export { GetRegionArgs, GetRegionResult, GetRegionOutputArgs } from "./getRegion";
 export const getRegion: typeof import("./getRegion").getRegion = null as any;
 export const getRegionOutput: typeof import("./getRegion").getRegionOutput = null as any;
@@ -113,6 +117,10 @@ export { ObjectStoreArgs, ObjectStoreState } from "./objectStore";
 export type ObjectStore = import("./objectStore").ObjectStore;
 export const ObjectStore: typeof import("./objectStore").ObjectStore = null as any;
 
+export { ObjectStoreCredentialArgs, ObjectStoreCredentialState } from "./objectStoreCredential";
+export type ObjectStoreCredential = import("./objectStoreCredential").ObjectStoreCredential;
+export const ObjectStoreCredential: typeof import("./objectStoreCredential").ObjectStoreCredential = null as any;
+
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
 export const Provider: typeof import("./provider").Provider = null as any;
@@ -149,6 +157,7 @@ utilities.lazyLoad(exports, ["getKubernetesVersion","getKubernetesVersionOutput"
 utilities.lazyLoad(exports, ["getLoadBalancer","getLoadBalancerOutput"], () => require("./getLoadBalancer"));
 utilities.lazyLoad(exports, ["getNetwork","getNetworkOutput"], () => require("./getNetwork"));
 utilities.lazyLoad(exports, ["getObjectStore","getObjectStoreOutput"], () => require("./getObjectStore"));
+utilities.lazyLoad(exports, ["getObjectStoreCredential","getObjectStoreCredentialOutput"], () => require("./getObjectStoreCredential"));
 utilities.lazyLoad(exports, ["getRegion","getRegionOutput"], () => require("./getRegion"));
 utilities.lazyLoad(exports, ["getReservedIp","getReservedIpOutput"], () => require("./getReservedIp"));
 utilities.lazyLoad(exports, ["getSize","getSizeOutput"], () => require("./getSize"));
@@ -160,6 +169,7 @@ utilities.lazyLoad(exports, ["KubernetesCluster"], () => require("./kubernetesCl
 utilities.lazyLoad(exports, ["KubernetesNodePool"], () => require("./kubernetesNodePool"));
 utilities.lazyLoad(exports, ["Network"], () => require("./network"));
 utilities.lazyLoad(exports, ["ObjectStore"], () => require("./objectStore"));
+utilities.lazyLoad(exports, ["ObjectStoreCredential"], () => require("./objectStoreCredential"));
 utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
 utilities.lazyLoad(exports, ["ReservedIp"], () => require("./reservedIp"));
 utilities.lazyLoad(exports, ["SshKey"], () => require("./sshKey"));
@@ -199,6 +209,8 @@ const _module = {
                 return new Network(name, <any>undefined, { urn })
             case "civo:index/objectStore:ObjectStore":
                 return new ObjectStore(name, <any>undefined, { urn })
+            case "civo:index/objectStoreCredential:ObjectStoreCredential":
+                return new ObjectStoreCredential(name, <any>undefined, { urn })
             case "civo:index/reservedIp:ReservedIp":
                 return new ReservedIp(name, <any>undefined, { urn })
             case "civo:index/sshKey:SshKey":
@@ -222,6 +234,7 @@ pulumi.runtime.registerResourceModule("civo", "index/kubernetesCluster", _module
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesNodePool", _module)
 pulumi.runtime.registerResourceModule("civo", "index/network", _module)
 pulumi.runtime.registerResourceModule("civo", "index/objectStore", _module)
+pulumi.runtime.registerResourceModule("civo", "index/objectStoreCredential", _module)
 pulumi.runtime.registerResourceModule("civo", "index/reservedIp", _module)
 pulumi.runtime.registerResourceModule("civo", "index/sshKey", _module)
 pulumi.runtime.registerResourceModule("civo", "index/volume", _module)
