@@ -40,6 +40,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &Network{}
 	case "civo:index/objectStore:ObjectStore":
 		r = &ObjectStore{}
+	case "civo:index/objectStoreCredential:ObjectStoreCredential":
+		r = &ObjectStoreCredential{}
 	case "civo:index/reservedIp:ReservedIp":
 		r = &ReservedIp{}
 	case "civo:index/sshKey:SshKey":
@@ -124,6 +126,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/objectStore",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"civo",
+		"index/objectStoreCredential",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

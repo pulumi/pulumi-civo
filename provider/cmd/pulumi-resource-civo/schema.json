@@ -2776,6 +2776,81 @@
                 "type": "object"
             }
         },
+        "civo:index/objectStoreCredential:ObjectStoreCredential": {
+            "description": "Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst backupObjectStoreCredential = civo.getObjectStoreCredential({\n    name: \"backup-server\",\n});\n// Create a credential for the object store with a specific access key and secret key\nconst backupIndex_objectStoreCredentialObjectStoreCredential = new civo.ObjectStoreCredential(\"backupIndex/objectStoreCredentialObjectStoreCredential\", {\n    accessKeyId: \"my-access-key\",\n    secretAccessKey: \"my-secret-key\",\n});\n// Use the credential to create a bucket\nconst backupObjectStore = new civo.ObjectStore(\"backupObjectStore\", {\n    maxSizeGb: 500,\n    region: \"LON1\",\n    accessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.accessKeyId,\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nbackup_object_store_credential = civo.get_object_store_credential(name=\"backup-server\")\n# Create a credential for the object store with a specific access key and secret key\nbackup_index_object_store_credential_object_store_credential = civo.ObjectStoreCredential(\"backupIndex/objectStoreCredentialObjectStoreCredential\",\n    access_key_id=\"my-access-key\",\n    secret_access_key=\"my-secret-key\")\n# Use the credential to create a bucket\nbackup_object_store = civo.ObjectStore(\"backupObjectStore\",\n    max_size_gb=500,\n    region=\"LON1\",\n    access_key_id=backup_index / object_store_credential_object_store_credential[\"accessKeyId\"])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()\n    {\n        Name = \"backup-server\",\n    });\n\n    // Create a credential for the object store with a specific access key and secret key\n    var backupIndex_objectStoreCredentialObjectStoreCredential = new Civo.ObjectStoreCredential(\"backupIndex/objectStoreCredentialObjectStoreCredential\", new()\n    {\n        AccessKeyId = \"my-access-key\",\n        SecretAccessKey = \"my-secret-key\",\n    });\n\n    // Use the credential to create a bucket\n    var backupObjectStore = new Civo.ObjectStore(\"backupObjectStore\", new()\n    {\n        MaxSizeGb = 500,\n        Region = \"LON1\",\n        AccessKeyId = backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.LookupObjectStoreCredential(ctx, \u0026GetObjectStoreCredentialArgs{\n\t\t\tName: pulumi.StringRef(\"backup-server\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewObjectStoreCredential(ctx, \"backupIndex/objectStoreCredentialObjectStoreCredential\", \u0026civo.ObjectStoreCredentialArgs{\n\t\t\tAccessKeyId:     pulumi.String(\"my-access-key\"),\n\t\t\tSecretAccessKey: pulumi.String(\"my-secret-key\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewObjectStore(ctx, \"backupObjectStore\", \u0026civo.ObjectStoreArgs{\n\t\t\tMaxSizeGb:   pulumi.Int(500),\n\t\t\tRegion:      pulumi.String(\"LON1\"),\n\t\t\tAccessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;\nimport com.pulumi.civo.ObjectStoreCredential;\nimport com.pulumi.civo.ObjectStoreCredentialArgs;\nimport com.pulumi.civo.ObjectStore;\nimport com.pulumi.civo.ObjectStoreArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()\n            .name(\"backup-server\")\n            .build());\n\n        var backupIndex_objectStoreCredentialObjectStoreCredential = new ObjectStoreCredential(\"backupIndex/objectStoreCredentialObjectStoreCredential\", ObjectStoreCredentialArgs.builder()        \n            .accessKeyId(\"my-access-key\")\n            .secretAccessKey(\"my-secret-key\")\n            .build());\n\n        var backupObjectStore = new ObjectStore(\"backupObjectStore\", ObjectStoreArgs.builder()        \n            .maxSizeGb(500)\n            .region(\"LON1\")\n            .accessKeyId(backupIndex / objectStoreCredentialObjectStoreCredential.accessKeyId())\n            .build());\n\n    }\n}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nusing ID\n\n```sh\n $ pulumi import civo:index/objectStoreCredential:ObjectStoreCredential custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n ",
+            "properties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "The access key id of the Object Store Credential. It is generated by the provider.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Object Store Credential. Must be unique.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the Object Store Credential will be created.\n"
+                },
+                "secretAccessKey": {
+                    "type": "string",
+                    "description": "The secret access key of the Object Store Credential. It is generated by the provider.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "The status of the Object Store Credential.\n"
+                }
+            },
+            "required": [
+                "accessKeyId",
+                "name",
+                "secretAccessKey",
+                "status"
+            ],
+            "inputProperties": {
+                "accessKeyId": {
+                    "type": "string",
+                    "description": "The access key id of the Object Store Credential. It is generated by the provider.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "The name of the Object Store Credential. Must be unique.\n"
+                },
+                "region": {
+                    "type": "string",
+                    "description": "The region where the Object Store Credential will be created.\n"
+                },
+                "secretAccessKey": {
+                    "type": "string",
+                    "description": "The secret access key of the Object Store Credential. It is generated by the provider.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering ObjectStoreCredential resources.\n",
+                "properties": {
+                    "accessKeyId": {
+                        "type": "string",
+                        "description": "The access key id of the Object Store Credential. It is generated by the provider.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Object Store Credential. Must be unique.\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region where the Object Store Credential will be created.\n"
+                    },
+                    "secretAccessKey": {
+                        "type": "string",
+                        "description": "The secret access key of the Object Store Credential. It is generated by the provider.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the Object Store Credential.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "civo:index/reservedIp:ReservedIp": {
             "description": "Provides a Civo reserved IP to represent a publicly-accessible static IP addresses that can be mapped to one of your Instancesor Load Balancer.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst www = new civo.ReservedIp(\"www\", {});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nwww = civo.ReservedIp(\"www\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var www = new Civo.ReservedIp(\"www\");\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewReservedIp(ctx, \"www\", nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.ReservedIp;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var www = new ReservedIp(\"www\");\n\n    }\n}\n```\n```yaml\nresources:\n  www:\n    type: civo:ReservedIp\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nterrafom import civo_reserved_ip.www 9f0e86fc-b2c6-46b4-82ed-2f28419f8ae3 ",
             "properties": {
@@ -3895,6 +3970,62 @@
                     "accessKeyId",
                     "bucketUrl",
                     "maxSizeGb",
+                    "status"
+                ]
+            }
+        },
+        "civo:index/getObjectStoreCredential:getObjectStoreCredential": {
+            "description": "Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.\n\nNote: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst backupObjectStoreCredential = civo.getObjectStoreCredential({\n    name: \"backup-server\",\n});\n// Use the credential to create a bucket\nconst backupObjectStore = new civo.ObjectStore(\"backupObjectStore\", {\n    maxSizeGb: 500,\n    region: \"LON1\",\n    accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential =\u003e backupObjectStoreCredential.accessKeyId),\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nbackup_object_store_credential = civo.get_object_store_credential(name=\"backup-server\")\n# Use the credential to create a bucket\nbackup_object_store = civo.ObjectStore(\"backupObjectStore\",\n    max_size_gb=500,\n    region=\"LON1\",\n    access_key_id=backup_object_store_credential.access_key_id)\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()\n    {\n        Name = \"backup-server\",\n    });\n\n    // Use the credential to create a bucket\n    var backupObjectStore = new Civo.ObjectStore(\"backupObjectStore\", new()\n    {\n        MaxSizeGb = 500,\n        Region = \"LON1\",\n        AccessKeyId = backupObjectStoreCredential.Apply(getObjectStoreCredentialResult =\u003e getObjectStoreCredentialResult.AccessKeyId),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tbackupObjectStoreCredential, err := civo.LookupObjectStoreCredential(ctx, \u0026GetObjectStoreCredentialArgs{\n\t\t\tName: pulumi.StringRef(\"backup-server\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = civo.NewObjectStore(ctx, \"backupObjectStore\", \u0026civo.ObjectStoreArgs{\n\t\t\tMaxSizeGb:   pulumi.Int(500),\n\t\t\tRegion:      pulumi.String(\"LON1\"),\n\t\t\tAccessKeyId: pulumi.String(backupObjectStoreCredential.AccessKeyId),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;\nimport com.pulumi.civo.ObjectStore;\nimport com.pulumi.civo.ObjectStoreArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()\n            .name(\"backup-server\")\n            .build());\n\n        var backupObjectStore = new ObjectStore(\"backupObjectStore\", ObjectStoreArgs.builder()        \n            .maxSizeGb(500)\n            .region(\"LON1\")\n            .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -\u003e getObjectStoreCredentialResult.accessKeyId()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  # Use the credential to create a bucket\n  backupObjectStore:\n    type: civo:ObjectStore\n    properties:\n      maxSizeGb: 500\n      region: LON1\n      accessKeyId: ${backupObjectStoreCredential.accessKeyId}\nvariables:\n  backupObjectStoreCredential:\n    Fn::Invoke:\n      Function: civo:getObjectStoreCredential\n      Arguments:\n        name: backup-server\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getObjectStoreCredential.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Object Store Credential\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Object Store Credential\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of an existing Object Store\n"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getObjectStoreCredential.\n",
+                "properties": {
+                    "accessKeyId": {
+                        "type": "string",
+                        "description": "The access key id of the Object Store Credential\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The ID of the Object Store Credential\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "The name of the Object Store Credential\n"
+                    },
+                    "region": {
+                        "type": "string",
+                        "description": "The region of an existing Object Store\n"
+                    },
+                    "secretAccessKey": {
+                        "type": "string",
+                        "description": "The secret access key of the Object Store Credential\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "The status of the Object Store Credential\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "accessKeyId",
+                    "secretAccessKey",
                     "status"
                 ]
             }

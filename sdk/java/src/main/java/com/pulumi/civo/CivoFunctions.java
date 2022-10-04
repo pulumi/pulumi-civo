@@ -27,6 +27,8 @@ import com.pulumi.civo.inputs.GetLoadBalancerPlainArgs;
 import com.pulumi.civo.inputs.GetNetworkArgs;
 import com.pulumi.civo.inputs.GetNetworkPlainArgs;
 import com.pulumi.civo.inputs.GetObjectStoreArgs;
+import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+import com.pulumi.civo.inputs.GetObjectStoreCredentialPlainArgs;
 import com.pulumi.civo.inputs.GetObjectStorePlainArgs;
 import com.pulumi.civo.inputs.GetRegionArgs;
 import com.pulumi.civo.inputs.GetRegionPlainArgs;
@@ -49,6 +51,7 @@ import com.pulumi.civo.outputs.GetKubernetesClusterResult;
 import com.pulumi.civo.outputs.GetKubernetesVersionResult;
 import com.pulumi.civo.outputs.GetLoadBalancerResult;
 import com.pulumi.civo.outputs.GetNetworkResult;
+import com.pulumi.civo.outputs.GetObjectStoreCredentialResult;
 import com.pulumi.civo.outputs.GetObjectStoreResult;
 import com.pulumi.civo.outputs.GetRegionResult;
 import com.pulumi.civo.outputs.GetReservedIpResult;
@@ -2541,6 +2544,288 @@ public final class CivoFunctions {
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain(GetObjectStorePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getObjectStore:getObjectStore", TypeShape.of(GetObjectStoreResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential() {
+        return getObjectStoreCredential(GetObjectStoreCredentialArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain() {
+        return getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential(GetObjectStoreCredentialArgs args) {
+        return getObjectStoreCredential(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs args) {
+        return getObjectStoreCredentialPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential(GetObjectStoreCredentialArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getObjectStoreCredential:getObjectStoreCredential", TypeShape.of(GetObjectStoreCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name(&#34;backup-server&#34;)
+     *             .build());
+     * 
+     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .maxSizeGb(500)
+     *             .region(&#34;LON1&#34;)
+     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("civo:index/getObjectStoreCredential:getObjectStoreCredential", TypeShape.of(GetObjectStoreCredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Retrieves information about the region that Civo supports, with the ability to filter the results.
