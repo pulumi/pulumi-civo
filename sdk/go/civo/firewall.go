@@ -116,7 +116,7 @@ type Firewall struct {
 	// The firewall network, if is not defined we use the default network
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// The firewall region, if is not defined we use the global defined in the provider
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 }
 
 // NewFirewall registers a new resource with the given unique name, arguments, and options.
@@ -325,8 +325,8 @@ func (o FirewallOutput) NetworkId() pulumi.StringOutput {
 }
 
 // The firewall region, if is not defined we use the global defined in the provider
-func (o FirewallOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Firewall) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o FirewallOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *Firewall) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 type FirewallArrayOutput struct{ *pulumi.OutputState }

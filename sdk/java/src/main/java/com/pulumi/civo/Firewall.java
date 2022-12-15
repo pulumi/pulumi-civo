@@ -183,14 +183,14 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return The firewall region, if is not defined we use the global defined in the provider
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
 
     /**

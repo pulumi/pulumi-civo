@@ -206,9 +206,10 @@ class ObjectStore(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        backup = civo.ObjectStore("backup",
+        backup_object_store = civo.ObjectStore("backupObjectStore",
             max_size_gb=500,
             region="LON1")
+        backup_object_store_credential = civo.get_object_store_credential_output(id=backup_object_store.access_key_id)
         ```
 
         ## Import
@@ -241,9 +242,10 @@ class ObjectStore(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        backup = civo.ObjectStore("backup",
+        backup_object_store = civo.ObjectStore("backupObjectStore",
             max_size_gb=500,
             region="LON1")
+        backup_object_store_credential = civo.get_object_store_credential_output(id=backup_object_store.access_key_id)
         ```
 
         ## Import
@@ -364,7 +366,7 @@ class ObjectStore(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
         The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
         """

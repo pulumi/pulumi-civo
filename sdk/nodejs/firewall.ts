@@ -121,7 +121,7 @@ export class Firewall extends pulumi.CustomResource {
     /**
      * The firewall region, if is not defined we use the global defined in the provider
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
 
     /**
      * Create a Firewall resource with the given unique name, arguments, and options.
