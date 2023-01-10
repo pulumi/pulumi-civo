@@ -138,7 +138,7 @@ namespace Pulumi.Civo
         /// The firewall region, if is not defined we use the global defined in the provider
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
 
         /// <summary>

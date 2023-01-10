@@ -13,9 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backup = new civo.ObjectStore("backup", {
+ * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
  *     maxSizeGb: 500,
  *     region: "LON1",
+ * });
+ * const backupObjectStoreCredential = civo.getObjectStoreCredentialOutput({
+ *     id: backupObjectStore.accessKeyId,
  * });
  * ```
  *
@@ -74,7 +77,7 @@ export class ObjectStore extends pulumi.CustomResource {
     /**
      * The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
      */
-    public readonly region!: pulumi.Output<string | undefined>;
+    public readonly region!: pulumi.Output<string>;
     /**
      * The status of the Object Store.
      */

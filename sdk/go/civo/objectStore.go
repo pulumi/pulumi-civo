@@ -26,13 +26,16 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.NewObjectStore(ctx, "backup", &civo.ObjectStoreArgs{
+//			backupObjectStore, err := civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
 //				MaxSizeGb: pulumi.Int(500),
 //				Region:    pulumi.String("LON1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			_ = civo.LookupObjectStoreCredentialOutput(ctx, GetObjectStoreCredentialOutputArgs{
+//				Id: backupObjectStore.AccessKeyId,
+//			}, nil)
 //			return nil
 //		})
 //	}
@@ -60,7 +63,7 @@ type ObjectStore struct {
 	// The name of the Object Store. Must be unique.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
-	Region pulumi.StringPtrOutput `pulumi:"region"`
+	Region pulumi.StringOutput `pulumi:"region"`
 	// The status of the Object Store.
 	Status pulumi.StringOutput `pulumi:"status"`
 }
@@ -258,8 +261,8 @@ func (o ObjectStoreOutput) Name() pulumi.StringOutput {
 }
 
 // The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
-func (o ObjectStoreOutput) Region() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ObjectStore) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
+func (o ObjectStoreOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v *ObjectStore) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
 // The status of the Object Store.

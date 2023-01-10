@@ -492,7 +492,7 @@ class Firewall(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def region(self) -> pulumi.Output[Optional[str]]:
+    def region(self) -> pulumi.Output[str]:
         """
         The firewall region, if is not defined we use the global defined in the provider
         """

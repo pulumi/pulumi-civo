@@ -27,6 +27,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.core.Output;
  * import com.pulumi.civo.ObjectStore;
  * import com.pulumi.civo.ObjectStoreArgs;
+ * import com.pulumi.civo.CivoFunctions;
+ * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,9 +42,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var backup = new ObjectStore(&#34;backup&#34;, ObjectStoreArgs.builder()        
+ *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
  *             .maxSizeGb(500)
  *             .region(&#34;LON1&#34;)
+ *             .build());
+ * 
+ *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+ *             .id(backupObjectStore.accessKeyId())
  *             .build());
  * 
  *     }
@@ -121,14 +127,14 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="region", type=String.class, parameters={})
-    private Output</* @Nullable */ String> region;
+    private Output<String> region;
 
     /**
      * @return The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
      * 
      */
-    public Output<Optional<String>> region() {
-        return Codegen.optional(this.region);
+    public Output<String> region() {
+        return this.region;
     }
     /**
      * The status of the Object Store.

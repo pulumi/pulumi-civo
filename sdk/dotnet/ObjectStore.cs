@@ -21,10 +21,15 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backup = new Civo.ObjectStore("backup", new()
+    ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
     ///     {
     ///         MaxSizeGb = 500,
     ///         Region = "LON1",
+    ///     });
+    /// 
+    ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+    ///     {
+    ///         Id = backupObjectStore.AccessKeyId,
     ///     });
     /// 
     /// });
@@ -69,7 +74,7 @@ namespace Pulumi.Civo
         /// The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
         /// </summary>
         [Output("region")]
-        public Output<string?> Region { get; private set; } = null!;
+        public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
         /// The status of the Object Store.
