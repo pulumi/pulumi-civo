@@ -98,7 +98,7 @@ def get_firewall(id: Optional[str] = None,
     import pulumi_civo as civo
 
     test = civo.get_firewall(name="test-firewall",
-        region="NYC1")
+        region="LON1")
     ```
 
 
@@ -139,7 +139,7 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_civo as civo
 
     test = civo.get_firewall(name="test-firewall",
-        region="NYC1")
+        region="LON1")
     ```
 
 

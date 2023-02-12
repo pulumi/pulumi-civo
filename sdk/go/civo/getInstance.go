@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myhostaname, err := civo.LookupInstance(ctx, &GetInstanceArgs{
+//			myhostaname, err := civo.LookupInstance(ctx, &civo.LookupInstanceArgs{
 //				Hostname: pulumi.StringRef("myhostname.com"),
 //			}, nil)
 //			if err != nil {

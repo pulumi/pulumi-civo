@@ -4,6 +4,8 @@
 package com.pulumi.civo;
 
 import com.pulumi.civo.Utilities;
+import com.pulumi.civo.inputs.GetDatabaseArgs;
+import com.pulumi.civo.inputs.GetDatabasePlainArgs;
 import com.pulumi.civo.inputs.GetDiskImageArgs;
 import com.pulumi.civo.inputs.GetDiskImagePlainArgs;
 import com.pulumi.civo.inputs.GetDnsDomainNameArgs;
@@ -40,6 +42,7 @@ import com.pulumi.civo.inputs.GetSshKeyArgs;
 import com.pulumi.civo.inputs.GetSshKeyPlainArgs;
 import com.pulumi.civo.inputs.GetVolumeArgs;
 import com.pulumi.civo.inputs.GetVolumePlainArgs;
+import com.pulumi.civo.outputs.GetDatabaseResult;
 import com.pulumi.civo.outputs.GetDiskImageResult;
 import com.pulumi.civo.outputs.GetDnsDomainNameResult;
 import com.pulumi.civo.outputs.GetDnsDomainRecordResult;
@@ -65,6 +68,246 @@ import com.pulumi.deployment.InvokeOptions;
 import java.util.concurrent.CompletableFuture;
 
 public final class CivoFunctions {
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDatabaseResult> getDatabase() {
+        return getDatabase(GetDatabaseArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDatabaseResult> getDatabasePlain() {
+        return getDatabasePlain(GetDatabasePlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDatabaseResult> getDatabase(GetDatabaseArgs args) {
+        return getDatabase(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args) {
+        return getDatabasePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetDatabaseResult> getDatabase(GetDatabaseArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDatabase:getDatabase", TypeShape.of(GetDatabaseResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name(&#34;test-database&#34;)
+     *             .region(&#34;LON1&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("civo:index/getDatabase:getDatabase", TypeShape.of(GetDatabaseResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
      * 
@@ -572,7 +815,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -614,7 +857,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -656,7 +899,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -698,7 +941,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -740,7 +983,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -782,7 +1025,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
      *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -1061,7 +1304,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -1104,7 +1347,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -1147,7 +1390,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -1190,7 +1433,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -1233,7 +1476,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -1276,7 +1519,7 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
      *                 .values(g3.small())
@@ -2090,7 +2333,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -2132,7 +2375,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -2174,7 +2417,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -2216,7 +2459,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -2258,7 +2501,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }
@@ -2300,7 +2543,7 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
-     *             .region(&#34;NYC1&#34;)
+     *             .region(&#34;LON1&#34;)
      *             .build());
      * 
      *     }

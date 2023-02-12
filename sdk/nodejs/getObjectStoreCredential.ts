@@ -28,11 +28,8 @@ import * as utilities from "./utilities";
  */
 export function getObjectStoreCredential(args?: GetObjectStoreCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreCredentialResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getObjectStoreCredential:getObjectStoreCredential", {
         "id": args.id,
         "name": args.name,
@@ -87,9 +84,30 @@ export interface GetObjectStoreCredentialResult {
      */
     readonly status: string;
 }
-
+/**
+ * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
+ *
+ * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const backupObjectStoreCredential = civo.getObjectStoreCredential({
+ *     name: "backup-server",
+ * });
+ * // Use the credential to create a bucket
+ * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ *     maxSizeGb: 500,
+ *     region: "LON1",
+ *     accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential => backupObjectStoreCredential.accessKeyId),
+ * });
+ * ```
+ */
 export function getObjectStoreCredentialOutput(args?: GetObjectStoreCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreCredentialResult> {
-    return pulumi.output(args).apply(a => getObjectStoreCredential(a, opts))
+    return pulumi.output(args).apply((a: any) => getObjectStoreCredential(a, opts))
 }
 
 /**

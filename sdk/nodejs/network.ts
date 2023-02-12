@@ -13,9 +13,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const customNet = new civo.Network("custom_net", {
- *     label: "test_network",
- * });
+ * const customNet = new civo.Network("customNet", {label: "test_network"});
  * ```
  *
  * ## Import

@@ -29,7 +29,7 @@ namespace Pulumi.Civo
         /// {
         ///     var small_size = Civo.GetInstances.Invoke(new()
         ///     {
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///         Filters = new[]
         ///         {
         ///             new Civo.Inputs.GetInstancesFilterInputArgs
@@ -69,7 +69,7 @@ namespace Pulumi.Civo
         /// {
         ///     var small_size = Civo.GetInstances.Invoke(new()
         ///     {
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///         Filters = new[]
         ///         {
         ///             new Civo.Inputs.GetInstancesFilterInputArgs

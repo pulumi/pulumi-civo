@@ -30,9 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupNetwork(ctx, &GetNetworkArgs{
+//			_, err := civo.LookupNetwork(ctx, &civo.LookupNetworkArgs{
 //				Label:  pulumi.StringRef("test-network"),
-//				Region: pulumi.StringRef("NYC1"),
+//				Region: pulumi.StringRef("LON1"),
 //			}, nil)
 //			if err != nil {
 //				return err

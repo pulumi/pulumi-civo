@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupVolume(ctx, &GetVolumeArgs{
+//			_, err := civo.LookupVolume(ctx, &civo.LookupVolumeArgs{
 //				Name: pulumi.StringRef("database-mysql"),
 //			}, nil)
 //			if err != nil {

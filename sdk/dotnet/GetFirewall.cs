@@ -32,7 +32,7 @@ namespace Pulumi.Civo
         ///     var test = Civo.GetFirewall.Invoke(new()
         ///     {
         ///         Name = "test-firewall",
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///     });
         /// 
         /// });
@@ -64,7 +64,7 @@ namespace Pulumi.Civo
         ///     var test = Civo.GetFirewall.Invoke(new()
         ///     {
         ///         Name = "test-firewall",
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///     });
         /// 
         /// });

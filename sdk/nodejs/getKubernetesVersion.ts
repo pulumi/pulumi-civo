@@ -15,21 +15,18 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const stable = pulumi.output(civo.getKubernetesVersion({
+ * const stable = civo.getKubernetesVersion({
  *     filters: [{
  *         key: "type",
  *         values: ["stable"],
  *     }],
- * }));
+ * });
  * ```
  */
 export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesVersionResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getKubernetesVersion:getKubernetesVersion", {
         "filters": args.filters,
         "sorts": args.sorts,
@@ -68,9 +65,25 @@ export interface GetKubernetesVersionResult {
     readonly sorts?: outputs.GetKubernetesVersionSort[];
     readonly versions: outputs.GetKubernetesVersionVersion[];
 }
-
+/**
+ * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const stable = civo.getKubernetesVersion({
+ *     filters: [{
+ *         key: "type",
+ *         values: ["stable"],
+ *     }],
+ * });
+ * ```
+ */
 export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesVersionResult> {
-    return pulumi.output(args).apply(a => getKubernetesVersion(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubernetesVersion(a, opts))
 }
 
 /**

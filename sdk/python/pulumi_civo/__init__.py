@@ -5,10 +5,12 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
+from .database import *
 from .dns_domain_name import *
 from .dns_domain_record import *
 from .firewall import *
 from .firewall_rule import *
+from .get_database import *
 from .get_disk_image import *
 from .get_dns_domain_name import *
 from .get_dns_domain_record import *
@@ -52,6 +54,14 @@ else:
 _utilities.register(
     resource_modules="""
 [
+ {
+  "pkg": "civo",
+  "mod": "index/database",
+  "fqn": "pulumi_civo",
+  "classes": {
+   "civo:index/database:Database": "Database"
+  }
+ },
  {
   "pkg": "civo",
   "mod": "index/dnsDomainName",

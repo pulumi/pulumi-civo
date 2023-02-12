@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			backupObjectStoreCredential, err := civo.LookupObjectStoreCredential(ctx, &GetObjectStoreCredentialArgs{
+//			backupObjectStoreCredential, err := civo.LookupObjectStoreCredential(ctx, &civo.LookupObjectStoreCredentialArgs{
 //				Name: pulumi.StringRef("backup-server"),
 //			}, nil)
 //			if err != nil {
@@ -37,7 +37,7 @@ import (
 //			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
 //				MaxSizeGb:   pulumi.Int(500),
 //				Region:      pulumi.String("LON1"),
-//				AccessKeyId: pulumi.String(backupObjectStoreCredential.AccessKeyId),
+//				AccessKeyId: *pulumi.String(backupObjectStoreCredential.AccessKeyId),
 //			})
 //			if err != nil {
 //				return err

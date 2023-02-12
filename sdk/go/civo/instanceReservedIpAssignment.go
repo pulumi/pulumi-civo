@@ -33,7 +33,7 @@ import (
 //			}
 //			_, err = civo.NewInstanceReservedIpAssignment(ctx, "webserver-www", &civo.InstanceReservedIpAssignmentArgs{
 //				InstanceId:   pulumi.Any(civo_instance.Www.Id),
-//				ReservedIpId: pulumi.Any(civo_reserved_ip.Web - server.Id),
+//				ReservedIpId: pulumi.Any(civo_reserved_ip.WebServer.Id),
 //			})
 //			if err != nil {
 //				return err

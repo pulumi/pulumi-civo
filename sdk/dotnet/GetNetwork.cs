@@ -32,7 +32,7 @@ namespace Pulumi.Civo
         ///     var test = Civo.GetNetwork.Invoke(new()
         ///     {
         ///         Label = "test-network",
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///     });
         /// 
         /// });
@@ -64,7 +64,7 @@ namespace Pulumi.Civo
         ///     var test = Civo.GetNetwork.Invoke(new()
         ///     {
         ///         Label = "test-network",
-        ///         Region = "NYC1",
+        ///         Region = "LON1",
         ///     });
         /// 
         /// });

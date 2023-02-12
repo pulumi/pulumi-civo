@@ -35,7 +35,7 @@ namespace Pulumi.Civo
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult).Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
+        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
         ///     };
         /// });
         /// ```
@@ -69,7 +69,7 @@ namespace Pulumi.Civo
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult).Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
+        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
         ///     };
         /// });
         /// ```

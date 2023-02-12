@@ -30,9 +30,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupFirewall(ctx, &GetFirewallArgs{
+//			_, err := civo.LookupFirewall(ctx, &civo.LookupFirewallArgs{
 //				Name:   pulumi.StringRef("test-firewall"),
-//				Region: pulumi.StringRef("NYC1"),
+//				Region: pulumi.StringRef("LON1"),
 //			}, nil)
 //			if err != nil {
 //				return err

@@ -26,9 +26,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.GetKubernetesVersion(ctx, &GetKubernetesVersionArgs{
-//				Filters: []GetKubernetesVersionFilter{
-//					GetKubernetesVersionFilter{
+//			_, err := civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
+//				Filters: []civo.GetKubernetesVersionFilter{
+//					{
 //						Key: "type",
 //						Values: []string{
 //							"stable",

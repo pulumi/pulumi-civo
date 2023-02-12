@@ -6,11 +6,8 @@ import * as utilities from "./utilities";
 
 export function getReservedIp(args?: GetReservedIpArgs, opts?: pulumi.InvokeOptions): Promise<GetReservedIpResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getReservedIp:getReservedIp", {
         "id": args.id,
         "name": args.name,
@@ -60,9 +57,8 @@ export interface GetReservedIpResult {
      */
     readonly region: string;
 }
-
 export function getReservedIpOutput(args?: GetReservedIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetReservedIpResult> {
-    return pulumi.output(args).apply(a => getReservedIp(a, opts))
+    return pulumi.output(args).apply((a: any) => getReservedIp(a, opts))
 }
 
 /**

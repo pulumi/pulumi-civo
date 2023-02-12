@@ -15,10 +15,12 @@
     "files": [
         "config/index.ts",
         "config/vars.ts",
+        "database.ts",
         "dnsDomainName.ts",
         "dnsDomainRecord.ts",
         "firewall.ts",
         "firewallRule.ts",
+        "getDatabase.ts",
         "getDiskImage.ts",
         "getDnsDomainName.ts",
         "getDnsDomainRecord.ts",

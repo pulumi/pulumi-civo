@@ -33,7 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = civo.LookupObjectStoreCredentialOutput(ctx, GetObjectStoreCredentialOutputArgs{
+//			_ = civo.LookupObjectStoreCredentialOutput(ctx, civo.GetObjectStoreCredentialOutputArgs{
 //				Id: backupObjectStore.AccessKeyId,
 //			}, nil)
 //			return nil

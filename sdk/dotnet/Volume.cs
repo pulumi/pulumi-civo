@@ -35,7 +35,7 @@ namespace Pulumi.Civo
     ///     {
     ///         DependsOn = new[]
     ///         {
-    ///             defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult),
+    ///             defaultNetwork,
     ///         },
     ///     });
     /// 

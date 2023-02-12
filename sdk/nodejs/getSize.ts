@@ -11,11 +11,8 @@ import * as utilities from "./utilities";
  */
 export function getSize(args?: GetSizeArgs, opts?: pulumi.InvokeOptions): Promise<GetSizeResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getSize:getSize", {
         "filters": args.filters,
         "sorts": args.sorts,
@@ -54,9 +51,11 @@ export interface GetSizeResult {
      */
     readonly sorts?: outputs.GetSizeSort[];
 }
-
+/**
+ * Retrieves information about the sizes that Civo supports, with the ability to filter the results.
+ */
 export function getSizeOutput(args?: GetSizeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSizeResult> {
-    return pulumi.output(args).apply(a => getSize(a, opts))
+    return pulumi.output(args).apply((a: any) => getSize(a, opts))
 }
 
 /**
