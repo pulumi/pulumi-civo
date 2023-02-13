@@ -11,11 +11,8 @@ import * as utilities from "./utilities";
  */
 export function getInstancesSize(args?: GetInstancesSizeArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancesSizeResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getInstancesSize:getInstancesSize", {
         "filters": args.filters,
         "sorts": args.sorts,
@@ -54,9 +51,11 @@ export interface GetInstancesSizeResult {
      */
     readonly sorts?: outputs.GetInstancesSizeSort[];
 }
-
+/**
+ * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
+ */
 export function getInstancesSizeOutput(args?: GetInstancesSizeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancesSizeResult> {
-    return pulumi.output(args).apply(a => getInstancesSize(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstancesSize(a, opts))
 }
 
 /**

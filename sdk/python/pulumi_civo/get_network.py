@@ -110,7 +110,7 @@ def get_network(id: Optional[str] = None,
     import pulumi_civo as civo
 
     test = civo.get_network(label="test-network",
-        region="NYC1")
+        region="LON1")
     ```
 
 
@@ -152,7 +152,7 @@ def get_network_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi_civo as civo
 
     test = civo.get_network(label="test-network",
-        region="NYC1")
+        region="LON1")
     ```
 
 

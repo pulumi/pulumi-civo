@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backup = pulumi.output(civo.getObjectStore({
+ * const backup = civo.getObjectStore({
  *     name: "backup-server",
- * }));
+ * });
  * ```
  */
 export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getObjectStore:getObjectStore", {
         "id": args.id,
         "name": args.name,
@@ -85,9 +82,24 @@ export interface GetObjectStoreResult {
      */
     readonly status: string;
 }
-
+/**
+ * Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
+ *
+ * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const backup = civo.getObjectStore({
+ *     name: "backup-server",
+ * });
+ * ```
+ */
 export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreResult> {
-    return pulumi.output(args).apply(a => getObjectStore(a, opts))
+    return pulumi.output(args).apply((a: any) => getObjectStore(a, opts))
 }
 
 /**

@@ -27,11 +27,8 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainRecordResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", {
         "domainId": args.domainId,
         "name": args.name,
@@ -97,9 +94,30 @@ export interface GetDnsDomainRecordResult {
      */
     readonly value: string;
 }
-
+/**
+ * Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
+ *
+ * An error will be raised if the provided domain name or record are not in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const domain = civo.getDnsDomainName({
+ *     name: "domain.com",
+ * });
+ * const www = domain.then(domain => civo.getDnsDomainRecord({
+ *     domainId: domain.id,
+ *     name: "www",
+ * }));
+ * export const recordType = www.then(www => www.type);
+ * export const recordTtl = www.then(www => www.ttl);
+ * ```
+ */
 export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainRecordResult> {
-    return pulumi.output(args).apply(a => getDnsDomainRecord(a, opts))
+    return pulumi.output(args).apply((a: any) => getDnsDomainRecord(a, opts))
 }
 
 /**

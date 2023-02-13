@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			domain, err := civo.LookupDnsDomainName(ctx, &GetDnsDomainNameArgs{
+//			domain, err := civo.LookupDnsDomainName(ctx, &civo.LookupDnsDomainNameArgs{
 //				Name: pulumi.StringRef("domain.com"),
 //			}, nil)
 //			if err != nil {

@@ -23,11 +23,8 @@ import * as utilities from "./utilities";
  */
 export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getInstance:getInstance", {
         "hostname": args.hostname,
         "id": args.id,
@@ -146,9 +143,25 @@ export interface GetInstanceResult {
      */
     readonly template: string;
 }
-
+/**
+ * Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
+ *
+ * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const myhostaname = civo.getInstance({
+ *     hostname: "myhostname.com",
+ * });
+ * export const instanceOutput = myhostaname.then(myhostaname => myhostaname.publicIp);
+ * ```
+ */
 export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
-    return pulumi.output(args).apply(a => getInstance(a, opts))
+    return pulumi.output(args).apply((a: any) => getInstance(a, opts))
 }
 
 /**

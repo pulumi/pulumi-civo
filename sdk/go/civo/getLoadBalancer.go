@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			my_lb, err := civo.GetLoadBalancer(ctx, &GetLoadBalancerArgs{
+//			my_lb, err := civo.GetLoadBalancer(ctx, &civo.GetLoadBalancerArgs{
 //				Name:   pulumi.StringRef("lb-name"),
 //				Region: pulumi.StringRef("LON1"),
 //			}, nil)

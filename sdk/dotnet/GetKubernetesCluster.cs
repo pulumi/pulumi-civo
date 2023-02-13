@@ -34,7 +34,7 @@ namespace Pulumi.Civo
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult).Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
+        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
         ///     };
         /// });
         /// ```
@@ -67,7 +67,7 @@ namespace Pulumi.Civo
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult).Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
+        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
         ///     };
         /// });
         /// ```

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupObjectStoreCredential(ctx, &GetObjectStoreCredentialArgs{
+//			_, err := civo.LookupObjectStoreCredential(ctx, &civo.LookupObjectStoreCredentialArgs{
 //				Name: pulumi.StringRef("backup-server"),
 //			}, nil)
 //			if err != nil {

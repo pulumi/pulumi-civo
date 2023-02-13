@@ -20,6 +20,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "civo:index/database:Database":
+		r = &Database{}
 	case "civo:index/dnsDomainName:DnsDomainName":
 		r = &DnsDomainName{}
 	case "civo:index/dnsDomainRecord:DnsDomainRecord":
@@ -78,6 +80,11 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 
 func init() {
 	version, _ := PkgVersion()
+	pulumi.RegisterResourceModule(
+		"civo",
+		"index/database",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/dnsDomainName",

@@ -48,8 +48,8 @@ import (
 //			_, err = civo.NewFirewall(ctx, "wwwCivoIndex/firewallFirewall", &civo.FirewallArgs{
 //				NetworkId:          customNet.ID(),
 //				CreateDefaultRules: pulumi.Bool(false),
-//				IngressRules: FirewallIngressRuleArray{
-//					&FirewallIngressRuleArgs{
+//				IngressRules: civo.FirewallIngressRuleArray{
+//					&civo.FirewallIngressRuleArgs{
 //						Label:     pulumi.String("k8s"),
 //						Protocol:  pulumi.String("tcp"),
 //						PortRange: pulumi.String("6443"),
@@ -60,7 +60,7 @@ import (
 //						},
 //						Action: pulumi.String("allow"),
 //					},
-//					&FirewallIngressRuleArgs{
+//					&civo.FirewallIngressRuleArgs{
 //						Label:     pulumi.String("ssh"),
 //						Protocol:  pulumi.String("tcp"),
 //						PortRange: pulumi.String("22"),
@@ -72,8 +72,8 @@ import (
 //						Action: pulumi.String("allow"),
 //					},
 //				},
-//				EgressRules: FirewallEgressRuleArray{
-//					&FirewallEgressRuleArgs{
+//				EgressRules: civo.FirewallEgressRuleArray{
+//					&civo.FirewallEgressRuleArgs{
 //						Label:     pulumi.String("all"),
 //						Protocol:  pulumi.String("tcp"),
 //						PortRange: pulumi.String("1-65535"),

@@ -15,18 +15,15 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const mysql = pulumi.output(civo.getVolume({
+ * const mysql = civo.getVolume({
  *     name: "database-mysql",
- * }));
+ * });
  * ```
  */
 export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getVolume:getVolume", {
         "id": args.id,
         "name": args.name,
@@ -81,9 +78,24 @@ export interface GetVolumeResult {
      */
     readonly sizeGb: number;
 }
-
+/**
+ * Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
+ *
+ * An error will be raised if the provided volume name does not exist in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const mysql = civo.getVolume({
+ *     name: "database-mysql",
+ * });
+ * ```
+ */
 export function getVolumeOutput(args?: GetVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVolumeResult> {
-    return pulumi.output(args).apply(a => getVolume(a, opts))
+    return pulumi.output(args).apply((a: any) => getVolume(a, opts))
 }
 
 /**

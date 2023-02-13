@@ -11,11 +11,8 @@ import * as utilities from "./utilities";
  */
 export function getSshKey(args?: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetSshKeyResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getSshKey:getSshKey", {
         "id": args.id,
         "name": args.name,
@@ -53,9 +50,13 @@ export interface GetSshKeyResult {
      */
     readonly name?: string;
 }
-
+/**
+ * Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+ *
+ * An error will be raised if the provided SSH key name does not exist in your Civo account.
+ */
 export function getSshKeyOutput(args?: GetSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSshKeyResult> {
-    return pulumi.output(args).apply(a => getSshKey(a, opts))
+    return pulumi.output(args).apply((a: any) => getSshKey(a, opts))
 }
 
 /**

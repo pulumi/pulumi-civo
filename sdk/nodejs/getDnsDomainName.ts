@@ -24,11 +24,8 @@ import * as utilities from "./utilities";
  */
 export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainNameResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDnsDomainName:getDnsDomainName", {
         "id": args.id,
         "name": args.name,
@@ -62,9 +59,26 @@ export interface GetDnsDomainNameResult {
      */
     readonly name?: string;
 }
-
+/**
+ * Get information on a domain. This data source provides the name and the id.
+ *
+ * An error will be raised if the provided domain name is not in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const domain = civo.getDnsDomainName({
+ *     name: "domain.com",
+ * });
+ * export const domainOutput = domain.then(domain => domain.name);
+ * export const domainIdOutput = domain.then(domain => domain.id);
+ * ```
+ */
 export function getDnsDomainNameOutput(args?: GetDnsDomainNameOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainNameResult> {
-    return pulumi.output(args).apply(a => getDnsDomainName(a, opts))
+    return pulumi.output(args).apply((a: any) => getDnsDomainName(a, opts))
 }
 
 /**
