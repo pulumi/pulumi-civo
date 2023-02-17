@@ -91,9 +91,13 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
     import pulumi
     import pulumi_civo as civo
 
-    stable = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
         key="type",
-        values=["stable"],
+        values=["talos"],
+    )])
+    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+        key="type",
+        values=["k3s"],
     )])
     ```
 
@@ -127,9 +131,13 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
     import pulumi
     import pulumi_civo as civo
 
-    stable = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
         key="type",
-        values=["stable"],
+        values=["talos"],
+    )])
+    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
+        key="type",
+        values=["k3s"],
     )])
     ```
 

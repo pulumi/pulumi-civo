@@ -54,6 +54,10 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly applications!: pulumi.Output<string | undefined>;
     /**
+     * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     */
+    public readonly clusterType!: pulumi.Output<string>;
+    /**
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      */
     public readonly cni!: pulumi.Output<string>;
@@ -135,6 +139,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             const state = argsOrState as KubernetesClusterState | undefined;
             resourceInputs["apiEndpoint"] = state ? state.apiEndpoint : undefined;
             resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["clusterType"] = state ? state.clusterType : undefined;
             resourceInputs["cni"] = state ? state.cni : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["dnsEntry"] = state ? state.dnsEntry : undefined;
@@ -161,6 +166,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'pools'");
             }
             resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["clusterType"] = args ? args.clusterType : undefined;
             resourceInputs["cni"] = args ? args.cni : undefined;
             resourceInputs["firewallId"] = args ? args.firewallId : undefined;
             resourceInputs["kubernetesVersion"] = args ? args.kubernetesVersion : undefined;
@@ -199,6 +205,10 @@ export interface KubernetesClusterState {
      * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
+    /**
+     * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     */
+    clusterType?: pulumi.Input<string>;
     /**
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      */
@@ -275,6 +285,10 @@ export interface KubernetesClusterArgs {
      * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
+    /**
+     * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     */
+    clusterType?: pulumi.Input<string>;
     /**
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      */

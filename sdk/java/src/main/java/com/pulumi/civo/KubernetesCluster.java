@@ -62,6 +62,20 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.applications);
     }
     /**
+     * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     * 
+     */
+    @Export(name="clusterType", type=String.class, parameters={})
+    private Output<String> clusterType;
+
+    /**
+     * @return The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     * 
+     */
+    public Output<String> clusterType() {
+        return this.clusterType;
+    }
+    /**
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      * 
      */
