@@ -9,7 +9,7 @@ replace (
 )
 
 require (
-	github.com/civo/terraform-provider-civo v1.0.29
+	github.com/civo/terraform-provider-civo v1.0.30
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.40.0
 	github.com/pulumi/pulumi/sdk/v3 v3.53.1
 )
@@ -75,7 +75,7 @@ require (
 	github.com/blang/semver v3.5.1+incompatible // indirect
 	github.com/cenkalti/backoff/v3 v3.2.2 // indirect
 	github.com/cheggaaa/pb v1.0.29 // indirect
-	github.com/civo/civogo v0.3.23 // indirect
+	github.com/civo/civogo v0.3.24 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/dimchansky/utfbom v1.1.1 // indirect
 	github.com/djherbis/times v1.5.0 // indirect
