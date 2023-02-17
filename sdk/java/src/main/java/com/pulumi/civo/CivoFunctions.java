@@ -1841,10 +1841,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 
@@ -1881,10 +1888,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 
@@ -1921,10 +1935,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 
@@ -1961,10 +1982,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 
@@ -2001,10 +2029,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 
@@ -2041,10 +2076,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var stable = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
      *                 .key(&#34;type&#34;)
-     *                 .values(&#34;stable&#34;)
+     *                 .values(&#34;talos&#34;)
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key(&#34;type&#34;)
+     *                 .values(&#34;k3s&#34;)
      *                 .build())
      *             .build());
      * 

@@ -36,6 +36,12 @@ namespace Pulumi.Civo
         public Output<string?> Applications { get; private set; } = null!;
 
         /// <summary>
+        /// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+        /// </summary>
+        [Output("clusterType")]
+        public Output<string> ClusterType { get; private set; } = null!;
+
+        /// <summary>
         /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         /// </summary>
         [Output("cni")]
@@ -188,6 +194,12 @@ namespace Pulumi.Civo
         public Input<string>? Applications { get; set; }
 
         /// <summary>
+        /// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+        /// </summary>
+        [Input("clusterType")]
+        public Input<string>? ClusterType { get; set; }
+
+        /// <summary>
         /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         /// </summary>
         [Input("cni")]
@@ -263,6 +275,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
+
+        /// <summary>
+        /// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+        /// </summary>
+        [Input("clusterType")]
+        public Input<string>? ClusterType { get; set; }
 
         /// <summary>
         /// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`

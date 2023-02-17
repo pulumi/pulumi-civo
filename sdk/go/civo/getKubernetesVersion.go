@@ -31,7 +31,20 @@ import (
 //					{
 //						Key: "type",
 //						Values: []string{
-//							"stable",
+//							"talos",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
+//				Filters: []civo.GetKubernetesVersionFilter{
+//					{
+//						Key: "type",
+//						Values: []string{
+//							"k3s",
 //						},
 //					},
 //				},

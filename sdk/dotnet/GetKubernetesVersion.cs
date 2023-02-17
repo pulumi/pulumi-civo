@@ -25,7 +25,7 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var stable = Civo.GetKubernetesVersion.Invoke(new()
+        ///     var talos = Civo.GetKubernetesVersion.Invoke(new()
         ///     {
         ///         Filters = new[]
         ///         {
@@ -34,7 +34,22 @@ namespace Pulumi.Civo
         ///                 Key = "type",
         ///                 Values = new[]
         ///                 {
-        ///                     "stable",
+        ///                     "talos",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var k3s = Civo.GetKubernetesVersion.Invoke(new()
+        ///     {
+        ///         Filters = new[]
+        ///         {
+        ///             new Civo.Inputs.GetKubernetesVersionFilterInputArgs
+        ///             {
+        ///                 Key = "type",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "k3s",
         ///                 },
         ///             },
         ///         },
@@ -62,7 +77,7 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var stable = Civo.GetKubernetesVersion.Invoke(new()
+        ///     var talos = Civo.GetKubernetesVersion.Invoke(new()
         ///     {
         ///         Filters = new[]
         ///         {
@@ -71,7 +86,22 @@ namespace Pulumi.Civo
         ///                 Key = "type",
         ///                 Values = new[]
         ///                 {
-        ///                     "stable",
+        ///                     "talos",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var k3s = Civo.GetKubernetesVersion.Invoke(new()
+        ///     {
+        ///         Filters = new[]
+        ///         {
+        ///             new Civo.Inputs.GetKubernetesVersionFilterInputArgs
+        ///             {
+        ///                 Key = "type",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "k3s",
         ///                 },
         ///             },
         ///         },

@@ -33,6 +33,21 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
+     * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     * 
+     */
+    @Import(name="clusterType")
+    private @Nullable Output<String> clusterType;
+
+    /**
+     * @return The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+     * 
+     */
+    public Optional<Output<String>> clusterType() {
+        return Optional.ofNullable(this.clusterType);
+    }
+
+    /**
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      * 
      */
@@ -194,6 +209,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
 
     private KubernetesClusterArgs(KubernetesClusterArgs $) {
         this.applications = $.applications;
+        this.clusterType = $.clusterType;
         this.cni = $.cni;
         this.firewallId = $.firewallId;
         this.kubernetesVersion = $.kubernetesVersion;
@@ -243,6 +259,27 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
          */
         public Builder applications(String applications) {
             return applications(Output.of(applications));
+        }
+
+        /**
+         * @param clusterType The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterType(@Nullable Output<String> clusterType) {
+            $.clusterType = clusterType;
+            return this;
+        }
+
+        /**
+         * @param clusterType The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
+         * 
+         * @return builder
+         * 
+         */
+        public Builder clusterType(String clusterType) {
+            return clusterType(Output.of(clusterType));
         }
 
         /**

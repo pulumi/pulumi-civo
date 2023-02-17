@@ -15,10 +15,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const stable = civo.getKubernetesVersion({
+ * const talos = civo.getKubernetesVersion({
  *     filters: [{
  *         key: "type",
- *         values: ["stable"],
+ *         values: ["talos"],
+ *     }],
+ * });
+ * const k3s = civo.getKubernetesVersion({
+ *     filters: [{
+ *         key: "type",
+ *         values: ["k3s"],
  *     }],
  * });
  * ```
@@ -74,10 +80,16 @@ export interface GetKubernetesVersionResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const stable = civo.getKubernetesVersion({
+ * const talos = civo.getKubernetesVersion({
  *     filters: [{
  *         key: "type",
- *         values: ["stable"],
+ *         values: ["talos"],
+ *     }],
+ * });
+ * const k3s = civo.getKubernetesVersion({
+ *     filters: [{
+ *         key: "type",
+ *         values: ["k3s"],
  *     }],
  * });
  * ```
