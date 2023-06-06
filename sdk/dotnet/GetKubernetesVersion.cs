@@ -20,6 +20,7 @@ namespace Pulumi.Civo
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
@@ -72,6 +73,7 @@ namespace Pulumi.Civo
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Civo = Pulumi.Civo;
         /// 
