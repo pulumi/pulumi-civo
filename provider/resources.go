@@ -151,7 +151,7 @@ func Provider() tfbridge.ProviderInfo {
 
 	err := x.ComputeDefaults(&prov, x.TokensSingleModule(
 		"civo_", mainMod, x.MakeStandardToken(mainPkg)))
-	contract.AssertNoError(err)
+	contract.AssertNoErrorf(err, "failed to compute default tokens")
 
 	prov.SetAutonaming(255, "-")
 
