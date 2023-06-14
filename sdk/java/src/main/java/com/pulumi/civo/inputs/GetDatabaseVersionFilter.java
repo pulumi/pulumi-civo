@@ -3,7 +3,6 @@
 
 package com.pulumi.civo.inputs;
 
-import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.String;
@@ -13,37 +12,37 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.ResourceArgs {
+public final class GetDatabaseVersionFilter extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetInstancesSizeFilterArgs Empty = new GetInstancesSizeFilterArgs();
+    public static final GetDatabaseVersionFilter Empty = new GetDatabaseVersionFilter();
 
     /**
      * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
      * 
      */
     @Import(name="all")
-    private @Nullable Output<Boolean> all;
+    private @Nullable Boolean all;
 
     /**
      * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
      * 
      */
-    public Optional<Output<Boolean>> all() {
+    public Optional<Boolean> all() {
         return Optional.ofNullable(this.all);
     }
 
     /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Filter versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     @Import(name="key", required=true)
-    private Output<String> key;
+    private String key;
 
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
-    public Output<String> key() {
+    public String key() {
         return this.key;
     }
 
@@ -52,34 +51,34 @@ public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.Resou
      * 
      */
     @Import(name="matchBy")
-    private @Nullable Output<String> matchBy;
+    private @Nullable String matchBy;
 
     /**
      * @return One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
      * 
      */
-    public Optional<Output<String>> matchBy() {
+    public Optional<String> matchBy() {
         return Optional.ofNullable(this.matchBy);
     }
 
     /**
-     * Only retrieves `sizes` which keys has value that matches one of the values provided here
+     * Only retrieves `versions` which keys has value that matches one of the values provided here
      * 
      */
     @Import(name="values", required=true)
-    private Output<List<String>> values;
+    private List<String> values;
 
     /**
-     * @return Only retrieves `sizes` which keys has value that matches one of the values provided here
+     * @return Only retrieves `versions` which keys has value that matches one of the values provided here
      * 
      */
-    public Output<List<String>> values() {
+    public List<String> values() {
         return this.values;
     }
 
-    private GetInstancesSizeFilterArgs() {}
+    private GetDatabaseVersionFilter() {}
 
-    private GetInstancesSizeFilterArgs(GetInstancesSizeFilterArgs $) {
+    private GetDatabaseVersionFilter(GetDatabaseVersionFilter $) {
         this.all = $.all;
         this.key = $.key;
         this.matchBy = $.matchBy;
@@ -89,19 +88,19 @@ public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.Resou
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetInstancesSizeFilterArgs defaults) {
+    public static Builder builder(GetDatabaseVersionFilter defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetInstancesSizeFilterArgs $;
+        private GetDatabaseVersionFilter $;
 
         public Builder() {
-            $ = new GetInstancesSizeFilterArgs();
+            $ = new GetDatabaseVersionFilter();
         }
 
-        public Builder(GetInstancesSizeFilterArgs defaults) {
-            $ = new GetInstancesSizeFilterArgs(Objects.requireNonNull(defaults));
+        public Builder(GetDatabaseVersionFilter defaults) {
+            $ = new GetDatabaseVersionFilter(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -110,40 +109,20 @@ public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder all(@Nullable Output<Boolean> all) {
+        public Builder all(@Nullable Boolean all) {
             $.all = all;
             return this;
         }
 
         /**
-         * @param all Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder all(Boolean all) {
-            return all(Output.of(all));
-        }
-
-        /**
-         * @param key Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder key(Output<String> key) {
-            $.key = key;
-            return this;
-        }
-
-        /**
-         * @param key Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * @param key Filter versions by this key. This may be one of `default`, `engine`, `version`.
          * 
          * @return builder
          * 
          */
         public Builder key(String key) {
-            return key(Output.of(key));
+            $.key = key;
+            return this;
         }
 
         /**
@@ -152,44 +131,24 @@ public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.Resou
          * @return builder
          * 
          */
-        public Builder matchBy(@Nullable Output<String> matchBy) {
+        public Builder matchBy(@Nullable String matchBy) {
             $.matchBy = matchBy;
             return this;
         }
 
         /**
-         * @param matchBy One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-         * 
-         * @return builder
-         * 
-         */
-        public Builder matchBy(String matchBy) {
-            return matchBy(Output.of(matchBy));
-        }
-
-        /**
-         * @param values Only retrieves `sizes` which keys has value that matches one of the values provided here
-         * 
-         * @return builder
-         * 
-         */
-        public Builder values(Output<List<String>> values) {
-            $.values = values;
-            return this;
-        }
-
-        /**
-         * @param values Only retrieves `sizes` which keys has value that matches one of the values provided here
+         * @param values Only retrieves `versions` which keys has value that matches one of the values provided here
          * 
          * @return builder
          * 
          */
         public Builder values(List<String> values) {
-            return values(Output.of(values));
+            $.values = values;
+            return this;
         }
 
         /**
-         * @param values Only retrieves `sizes` which keys has value that matches one of the values provided here
+         * @param values Only retrieves `versions` which keys has value that matches one of the values provided here
          * 
          * @return builder
          * 
@@ -198,7 +157,7 @@ public final class GetInstancesSizeFilterArgs extends com.pulumi.resources.Resou
             return values(List.of(values));
         }
 
-        public GetInstancesSizeFilterArgs build() {
+        public GetDatabaseVersionFilter build() {
             $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
             $.values = Objects.requireNonNull($.values, "expected parameter 'values' to be non-null");
             return $;

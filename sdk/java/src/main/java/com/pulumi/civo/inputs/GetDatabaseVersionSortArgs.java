@@ -11,9 +11,9 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetInstancesSizeSortArgs extends com.pulumi.resources.ResourceArgs {
+public final class GetDatabaseVersionSortArgs extends com.pulumi.resources.ResourceArgs {
 
-    public static final GetInstancesSizeSortArgs Empty = new GetInstancesSizeSortArgs();
+    public static final GetDatabaseVersionSortArgs Empty = new GetDatabaseVersionSortArgs();
 
     /**
      * The sort direction. This may be either `asc` or `desc`.
@@ -31,23 +31,23 @@ public final class GetInstancesSizeSortArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Sort versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     @Import(name="key", required=true)
     private Output<String> key;
 
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     public Output<String> key() {
         return this.key;
     }
 
-    private GetInstancesSizeSortArgs() {}
+    private GetDatabaseVersionSortArgs() {}
 
-    private GetInstancesSizeSortArgs(GetInstancesSizeSortArgs $) {
+    private GetDatabaseVersionSortArgs(GetDatabaseVersionSortArgs $) {
         this.direction = $.direction;
         this.key = $.key;
     }
@@ -55,19 +55,19 @@ public final class GetInstancesSizeSortArgs extends com.pulumi.resources.Resourc
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetInstancesSizeSortArgs defaults) {
+    public static Builder builder(GetDatabaseVersionSortArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetInstancesSizeSortArgs $;
+        private GetDatabaseVersionSortArgs $;
 
         public Builder() {
-            $ = new GetInstancesSizeSortArgs();
+            $ = new GetDatabaseVersionSortArgs();
         }
 
-        public Builder(GetInstancesSizeSortArgs defaults) {
-            $ = new GetInstancesSizeSortArgs(Objects.requireNonNull(defaults));
+        public Builder(GetDatabaseVersionSortArgs defaults) {
+            $ = new GetDatabaseVersionSortArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -92,7 +92,7 @@ public final class GetInstancesSizeSortArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * @param key Sort versions by this key. This may be one of `default`, `engine`, `version`.
          * 
          * @return builder
          * 
@@ -103,7 +103,7 @@ public final class GetInstancesSizeSortArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * @param key Sort versions by this key. This may be one of `default`, `engine`, `version`.
          * 
          * @return builder
          * 
@@ -112,7 +112,7 @@ public final class GetInstancesSizeSortArgs extends com.pulumi.resources.Resourc
             return key(Output.of(key));
         }
 
-        public GetInstancesSizeSortArgs build() {
+        public GetDatabaseVersionSortArgs build() {
             $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
             return $;
         }

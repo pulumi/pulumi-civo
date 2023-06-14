@@ -17,6 +17,21 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseArgs Empty = new DatabaseArgs();
 
     /**
+     * The engine of the database
+     * 
+     */
+    @Import(name="engine", required=true)
+    private Output<String> engine;
+
+    /**
+     * @return The engine of the database
+     * 
+     */
+    public Output<String> engine() {
+        return this.engine;
+    }
+
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
@@ -106,15 +121,32 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
         return this.size;
     }
 
+    /**
+     * The version of the database
+     * 
+     */
+    @Import(name="version", required=true)
+    private Output<String> version;
+
+    /**
+     * @return The version of the database
+     * 
+     */
+    public Output<String> version() {
+        return this.version;
+    }
+
     private DatabaseArgs() {}
 
     private DatabaseArgs(DatabaseArgs $) {
+        this.engine = $.engine;
         this.firewallId = $.firewallId;
         this.name = $.name;
         this.networkId = $.networkId;
         this.nodes = $.nodes;
         this.region = $.region;
         this.size = $.size;
+        this.version = $.version;
     }
 
     public static Builder builder() {
@@ -133,6 +165,27 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DatabaseArgs defaults) {
             $ = new DatabaseArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param engine The engine of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder engine(Output<String> engine) {
+            $.engine = engine;
+            return this;
+        }
+
+        /**
+         * @param engine The engine of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder engine(String engine) {
+            return engine(Output.of(engine));
         }
 
         /**
@@ -261,9 +314,32 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
             return size(Output.of(size));
         }
 
+        /**
+         * @param version The version of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(Output<String> version) {
+            $.version = version;
+            return this;
+        }
+
+        /**
+         * @param version The version of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(String version) {
+            return version(Output.of(version));
+        }
+
         public DatabaseArgs build() {
+            $.engine = Objects.requireNonNull($.engine, "expected parameter 'engine' to be non-null");
             $.nodes = Objects.requireNonNull($.nodes, "expected parameter 'nodes' to be non-null");
             $.size = Objects.requireNonNull($.size, "expected parameter 'size' to be non-null");
+            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
             return $;
         }
     }

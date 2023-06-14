@@ -11,14 +11,14 @@ namespace Pulumi.Civo.Outputs
 {
 
     [OutputType]
-    public sealed class GetInstancesSizeFilterResult
+    public sealed class GetDatabaseVersionFilterResult
     {
         /// <summary>
         /// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         /// </summary>
         public readonly bool? All;
         /// <summary>
-        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Filter versions by this key. This may be one of `default`, `engine`, `version`.
         /// </summary>
         public readonly string Key;
         /// <summary>
@@ -26,12 +26,12 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly string? MatchBy;
         /// <summary>
-        /// Only retrieves `sizes` which keys has value that matches one of the values provided here
+        /// Only retrieves `versions` which keys has value that matches one of the values provided here
         /// </summary>
         public readonly ImmutableArray<string> Values;
 
         [OutputConstructor]
-        private GetInstancesSizeFilterResult(
+        private GetDatabaseVersionFilterResult(
             bool? all,
 
             string key,

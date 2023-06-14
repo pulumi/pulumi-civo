@@ -13,6 +13,11 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetDatabaseResult {
     /**
+     * @return The engine of the database
+     * 
+     */
+    private String engine;
+    /**
      * @return The firewall id of the Database
      * 
      */
@@ -62,8 +67,20 @@ public final class GetDatabaseResult {
      * 
      */
     private String username;
+    /**
+     * @return The version of the database
+     * 
+     */
+    private String version;
 
     private GetDatabaseResult() {}
+    /**
+     * @return The engine of the database
+     * 
+     */
+    public String engine() {
+        return this.engine;
+    }
     /**
      * @return The firewall id of the Database
      * 
@@ -134,6 +151,13 @@ public final class GetDatabaseResult {
     public String username() {
         return this.username;
     }
+    /**
+     * @return The version of the database
+     * 
+     */
+    public String version() {
+        return this.version;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -144,6 +168,7 @@ public final class GetDatabaseResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String engine;
         private String firewallId;
         private @Nullable String id;
         private @Nullable String name;
@@ -154,9 +179,11 @@ public final class GetDatabaseResult {
         private String size;
         private String status;
         private String username;
+        private String version;
         public Builder() {}
         public Builder(GetDatabaseResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.engine = defaults.engine;
     	      this.firewallId = defaults.firewallId;
     	      this.id = defaults.id;
     	      this.name = defaults.name;
@@ -167,8 +194,14 @@ public final class GetDatabaseResult {
     	      this.size = defaults.size;
     	      this.status = defaults.status;
     	      this.username = defaults.username;
+    	      this.version = defaults.version;
         }
 
+        @CustomType.Setter
+        public Builder engine(String engine) {
+            this.engine = Objects.requireNonNull(engine);
+            return this;
+        }
         @CustomType.Setter
         public Builder firewallId(String firewallId) {
             this.firewallId = Objects.requireNonNull(firewallId);
@@ -219,8 +252,14 @@ public final class GetDatabaseResult {
             this.username = Objects.requireNonNull(username);
             return this;
         }
+        @CustomType.Setter
+        public Builder version(String version) {
+            this.version = Objects.requireNonNull(version);
+            return this;
+        }
         public GetDatabaseResult build() {
             final var o = new GetDatabaseResult();
+            o.engine = engine;
             o.firewallId = firewallId;
             o.id = id;
             o.name = name;
@@ -231,6 +270,7 @@ public final class GetDatabaseResult {
             o.size = size;
             o.status = status;
             o.username = username;
+            o.version = version;
             return o;
         }
     }

@@ -600,6 +600,342 @@ func (o KubernetesClusterPoolsPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetDatabaseVersionFilter struct {
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All *bool `pulumi:"all"`
+	// Filter versions by this key. This may be one of `default`, `engine`, `version`.
+	Key string `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy *string `pulumi:"matchBy"`
+	// Only retrieves `versions` which keys has value that matches one of the values provided here
+	Values []string `pulumi:"values"`
+}
+
+// GetDatabaseVersionFilterInput is an input type that accepts GetDatabaseVersionFilterArgs and GetDatabaseVersionFilterOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionFilterInput` via:
+//
+//	GetDatabaseVersionFilterArgs{...}
+type GetDatabaseVersionFilterInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionFilterOutput() GetDatabaseVersionFilterOutput
+	ToGetDatabaseVersionFilterOutputWithContext(context.Context) GetDatabaseVersionFilterOutput
+}
+
+type GetDatabaseVersionFilterArgs struct {
+	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+	All pulumi.BoolPtrInput `pulumi:"all"`
+	// Filter versions by this key. This may be one of `default`, `engine`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
+	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
+	// Only retrieves `versions` which keys has value that matches one of the values provided here
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetDatabaseVersionFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionFilter)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionFilterArgs) ToGetDatabaseVersionFilterOutput() GetDatabaseVersionFilterOutput {
+	return i.ToGetDatabaseVersionFilterOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionFilterArgs) ToGetDatabaseVersionFilterOutputWithContext(ctx context.Context) GetDatabaseVersionFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionFilterOutput)
+}
+
+// GetDatabaseVersionFilterArrayInput is an input type that accepts GetDatabaseVersionFilterArray and GetDatabaseVersionFilterArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionFilterArrayInput` via:
+//
+//	GetDatabaseVersionFilterArray{ GetDatabaseVersionFilterArgs{...} }
+type GetDatabaseVersionFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionFilterArrayOutput() GetDatabaseVersionFilterArrayOutput
+	ToGetDatabaseVersionFilterArrayOutputWithContext(context.Context) GetDatabaseVersionFilterArrayOutput
+}
+
+type GetDatabaseVersionFilterArray []GetDatabaseVersionFilterInput
+
+func (GetDatabaseVersionFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionFilter)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionFilterArray) ToGetDatabaseVersionFilterArrayOutput() GetDatabaseVersionFilterArrayOutput {
+	return i.ToGetDatabaseVersionFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionFilterArray) ToGetDatabaseVersionFilterArrayOutputWithContext(ctx context.Context) GetDatabaseVersionFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionFilterArrayOutput)
+}
+
+type GetDatabaseVersionFilterOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionFilter)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionFilterOutput) ToGetDatabaseVersionFilterOutput() GetDatabaseVersionFilterOutput {
+	return o
+}
+
+func (o GetDatabaseVersionFilterOutput) ToGetDatabaseVersionFilterOutputWithContext(ctx context.Context) GetDatabaseVersionFilterOutput {
+	return o
+}
+
+// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+func (o GetDatabaseVersionFilterOutput) All() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetDatabaseVersionFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
+}
+
+// Filter versions by this key. This may be one of `default`, `engine`, `version`.
+func (o GetDatabaseVersionFilterOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseVersionFilter) string { return v.Key }).(pulumi.StringOutput)
+}
+
+// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+func (o GetDatabaseVersionFilterOutput) MatchBy() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDatabaseVersionFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
+}
+
+// Only retrieves `versions` which keys has value that matches one of the values provided here
+func (o GetDatabaseVersionFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetDatabaseVersionFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetDatabaseVersionFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionFilter)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionFilterArrayOutput) ToGetDatabaseVersionFilterArrayOutput() GetDatabaseVersionFilterArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionFilterArrayOutput) ToGetDatabaseVersionFilterArrayOutputWithContext(ctx context.Context) GetDatabaseVersionFilterArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionFilterArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseVersionFilter {
+		return vs[0].([]GetDatabaseVersionFilter)[vs[1].(int)]
+	}).(GetDatabaseVersionFilterOutput)
+}
+
+type GetDatabaseVersionSort struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction *string `pulumi:"direction"`
+	// Sort versions by this key. This may be one of `default`, `engine`, `version`.
+	Key string `pulumi:"key"`
+}
+
+// GetDatabaseVersionSortInput is an input type that accepts GetDatabaseVersionSortArgs and GetDatabaseVersionSortOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionSortInput` via:
+//
+//	GetDatabaseVersionSortArgs{...}
+type GetDatabaseVersionSortInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionSortOutput() GetDatabaseVersionSortOutput
+	ToGetDatabaseVersionSortOutputWithContext(context.Context) GetDatabaseVersionSortOutput
+}
+
+type GetDatabaseVersionSortArgs struct {
+	// The sort direction. This may be either `asc` or `desc`.
+	Direction pulumi.StringPtrInput `pulumi:"direction"`
+	// Sort versions by this key. This may be one of `default`, `engine`, `version`.
+	Key pulumi.StringInput `pulumi:"key"`
+}
+
+func (GetDatabaseVersionSortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionSort)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionSortArgs) ToGetDatabaseVersionSortOutput() GetDatabaseVersionSortOutput {
+	return i.ToGetDatabaseVersionSortOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionSortArgs) ToGetDatabaseVersionSortOutputWithContext(ctx context.Context) GetDatabaseVersionSortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionSortOutput)
+}
+
+// GetDatabaseVersionSortArrayInput is an input type that accepts GetDatabaseVersionSortArray and GetDatabaseVersionSortArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionSortArrayInput` via:
+//
+//	GetDatabaseVersionSortArray{ GetDatabaseVersionSortArgs{...} }
+type GetDatabaseVersionSortArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionSortArrayOutput() GetDatabaseVersionSortArrayOutput
+	ToGetDatabaseVersionSortArrayOutputWithContext(context.Context) GetDatabaseVersionSortArrayOutput
+}
+
+type GetDatabaseVersionSortArray []GetDatabaseVersionSortInput
+
+func (GetDatabaseVersionSortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionSort)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionSortArray) ToGetDatabaseVersionSortArrayOutput() GetDatabaseVersionSortArrayOutput {
+	return i.ToGetDatabaseVersionSortArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionSortArray) ToGetDatabaseVersionSortArrayOutputWithContext(ctx context.Context) GetDatabaseVersionSortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionSortArrayOutput)
+}
+
+type GetDatabaseVersionSortOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionSortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionSort)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionSortOutput) ToGetDatabaseVersionSortOutput() GetDatabaseVersionSortOutput {
+	return o
+}
+
+func (o GetDatabaseVersionSortOutput) ToGetDatabaseVersionSortOutputWithContext(ctx context.Context) GetDatabaseVersionSortOutput {
+	return o
+}
+
+// The sort direction. This may be either `asc` or `desc`.
+func (o GetDatabaseVersionSortOutput) Direction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetDatabaseVersionSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
+}
+
+// Sort versions by this key. This may be one of `default`, `engine`, `version`.
+func (o GetDatabaseVersionSortOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseVersionSort) string { return v.Key }).(pulumi.StringOutput)
+}
+
+type GetDatabaseVersionSortArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionSortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionSort)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionSortArrayOutput) ToGetDatabaseVersionSortArrayOutput() GetDatabaseVersionSortArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionSortArrayOutput) ToGetDatabaseVersionSortArrayOutputWithContext(ctx context.Context) GetDatabaseVersionSortArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionSortArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionSortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseVersionSort {
+		return vs[0].([]GetDatabaseVersionSort)[vs[1].(int)]
+	}).(GetDatabaseVersionSortOutput)
+}
+
+type GetDatabaseVersionVersion struct {
+	Default bool   `pulumi:"default"`
+	Engine  string `pulumi:"engine"`
+	Version string `pulumi:"version"`
+}
+
+// GetDatabaseVersionVersionInput is an input type that accepts GetDatabaseVersionVersionArgs and GetDatabaseVersionVersionOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionVersionInput` via:
+//
+//	GetDatabaseVersionVersionArgs{...}
+type GetDatabaseVersionVersionInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionVersionOutput() GetDatabaseVersionVersionOutput
+	ToGetDatabaseVersionVersionOutputWithContext(context.Context) GetDatabaseVersionVersionOutput
+}
+
+type GetDatabaseVersionVersionArgs struct {
+	Default pulumi.BoolInput   `pulumi:"default"`
+	Engine  pulumi.StringInput `pulumi:"engine"`
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetDatabaseVersionVersionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionVersionArgs) ToGetDatabaseVersionVersionOutput() GetDatabaseVersionVersionOutput {
+	return i.ToGetDatabaseVersionVersionOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionVersionArgs) ToGetDatabaseVersionVersionOutputWithContext(ctx context.Context) GetDatabaseVersionVersionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionVersionOutput)
+}
+
+// GetDatabaseVersionVersionArrayInput is an input type that accepts GetDatabaseVersionVersionArray and GetDatabaseVersionVersionArrayOutput values.
+// You can construct a concrete instance of `GetDatabaseVersionVersionArrayInput` via:
+//
+//	GetDatabaseVersionVersionArray{ GetDatabaseVersionVersionArgs{...} }
+type GetDatabaseVersionVersionArrayInput interface {
+	pulumi.Input
+
+	ToGetDatabaseVersionVersionArrayOutput() GetDatabaseVersionVersionArrayOutput
+	ToGetDatabaseVersionVersionArrayOutputWithContext(context.Context) GetDatabaseVersionVersionArrayOutput
+}
+
+type GetDatabaseVersionVersionArray []GetDatabaseVersionVersionInput
+
+func (GetDatabaseVersionVersionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionVersion)(nil)).Elem()
+}
+
+func (i GetDatabaseVersionVersionArray) ToGetDatabaseVersionVersionArrayOutput() GetDatabaseVersionVersionArrayOutput {
+	return i.ToGetDatabaseVersionVersionArrayOutputWithContext(context.Background())
+}
+
+func (i GetDatabaseVersionVersionArray) ToGetDatabaseVersionVersionArrayOutputWithContext(ctx context.Context) GetDatabaseVersionVersionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionVersionArrayOutput)
+}
+
+type GetDatabaseVersionVersionOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionVersionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDatabaseVersionVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionVersionOutput) ToGetDatabaseVersionVersionOutput() GetDatabaseVersionVersionOutput {
+	return o
+}
+
+func (o GetDatabaseVersionVersionOutput) ToGetDatabaseVersionVersionOutputWithContext(ctx context.Context) GetDatabaseVersionVersionOutput {
+	return o
+}
+
+func (o GetDatabaseVersionVersionOutput) Default() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetDatabaseVersionVersion) bool { return v.Default }).(pulumi.BoolOutput)
+}
+
+func (o GetDatabaseVersionVersionOutput) Engine() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseVersionVersion) string { return v.Engine }).(pulumi.StringOutput)
+}
+
+func (o GetDatabaseVersionVersionOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseVersionVersion) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetDatabaseVersionVersionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetDatabaseVersionVersionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetDatabaseVersionVersion)(nil)).Elem()
+}
+
+func (o GetDatabaseVersionVersionArrayOutput) ToGetDatabaseVersionVersionArrayOutput() GetDatabaseVersionVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionVersionArrayOutput) ToGetDatabaseVersionVersionArrayOutputWithContext(ctx context.Context) GetDatabaseVersionVersionArrayOutput {
+	return o
+}
+
+func (o GetDatabaseVersionVersionArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionVersionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetDatabaseVersionVersion {
+		return vs[0].([]GetDatabaseVersionVersion)[vs[1].(int)]
+	}).(GetDatabaseVersionVersionOutput)
+}
+
 type GetDiskImageDiskimage struct {
 	// The ID of this resource.
 	Id      string `pulumi:"id"`
@@ -1293,366 +1629,6 @@ func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesIn
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
 		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
 	}).(GetInstancesInstanceOutput)
-}
-
-type GetInstancesSizeFilter struct {
-	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-	All *bool `pulumi:"all"`
-	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-	Key string `pulumi:"key"`
-	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-	MatchBy *string `pulumi:"matchBy"`
-	// Only retrieves `sizes` which keys has value that matches one of the values provided here
-	Values []string `pulumi:"values"`
-}
-
-// GetInstancesSizeFilterInput is an input type that accepts GetInstancesSizeFilterArgs and GetInstancesSizeFilterOutput values.
-// You can construct a concrete instance of `GetInstancesSizeFilterInput` via:
-//
-//	GetInstancesSizeFilterArgs{...}
-type GetInstancesSizeFilterInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeFilterOutput() GetInstancesSizeFilterOutput
-	ToGetInstancesSizeFilterOutputWithContext(context.Context) GetInstancesSizeFilterOutput
-}
-
-type GetInstancesSizeFilterArgs struct {
-	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-	All pulumi.BoolPtrInput `pulumi:"all"`
-	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-	Key pulumi.StringInput `pulumi:"key"`
-	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
-	// Only retrieves `sizes` which keys has value that matches one of the values provided here
-	Values pulumi.StringArrayInput `pulumi:"values"`
-}
-
-func (GetInstancesSizeFilterArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeFilter)(nil)).Elem()
-}
-
-func (i GetInstancesSizeFilterArgs) ToGetInstancesSizeFilterOutput() GetInstancesSizeFilterOutput {
-	return i.ToGetInstancesSizeFilterOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeFilterArgs) ToGetInstancesSizeFilterOutputWithContext(ctx context.Context) GetInstancesSizeFilterOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeFilterOutput)
-}
-
-// GetInstancesSizeFilterArrayInput is an input type that accepts GetInstancesSizeFilterArray and GetInstancesSizeFilterArrayOutput values.
-// You can construct a concrete instance of `GetInstancesSizeFilterArrayInput` via:
-//
-//	GetInstancesSizeFilterArray{ GetInstancesSizeFilterArgs{...} }
-type GetInstancesSizeFilterArrayInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeFilterArrayOutput() GetInstancesSizeFilterArrayOutput
-	ToGetInstancesSizeFilterArrayOutputWithContext(context.Context) GetInstancesSizeFilterArrayOutput
-}
-
-type GetInstancesSizeFilterArray []GetInstancesSizeFilterInput
-
-func (GetInstancesSizeFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeFilter)(nil)).Elem()
-}
-
-func (i GetInstancesSizeFilterArray) ToGetInstancesSizeFilterArrayOutput() GetInstancesSizeFilterArrayOutput {
-	return i.ToGetInstancesSizeFilterArrayOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeFilterArray) ToGetInstancesSizeFilterArrayOutputWithContext(ctx context.Context) GetInstancesSizeFilterArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeFilterArrayOutput)
-}
-
-type GetInstancesSizeFilterOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeFilter)(nil)).Elem()
-}
-
-func (o GetInstancesSizeFilterOutput) ToGetInstancesSizeFilterOutput() GetInstancesSizeFilterOutput {
-	return o
-}
-
-func (o GetInstancesSizeFilterOutput) ToGetInstancesSizeFilterOutputWithContext(ctx context.Context) GetInstancesSizeFilterOutput {
-	return o
-}
-
-// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-func (o GetInstancesSizeFilterOutput) All() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v GetInstancesSizeFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
-}
-
-// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-func (o GetInstancesSizeFilterOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeFilter) string { return v.Key }).(pulumi.StringOutput)
-}
-
-// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-func (o GetInstancesSizeFilterOutput) MatchBy() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetInstancesSizeFilter) *string { return v.MatchBy }).(pulumi.StringPtrOutput)
-}
-
-// Only retrieves `sizes` which keys has value that matches one of the values provided here
-func (o GetInstancesSizeFilterOutput) Values() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetInstancesSizeFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
-}
-
-type GetInstancesSizeFilterArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeFilter)(nil)).Elem()
-}
-
-func (o GetInstancesSizeFilterArrayOutput) ToGetInstancesSizeFilterArrayOutput() GetInstancesSizeFilterArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeFilterArrayOutput) ToGetInstancesSizeFilterArrayOutputWithContext(ctx context.Context) GetInstancesSizeFilterArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeFilterArrayOutput) Index(i pulumi.IntInput) GetInstancesSizeFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesSizeFilter {
-		return vs[0].([]GetInstancesSizeFilter)[vs[1].(int)]
-	}).(GetInstancesSizeFilterOutput)
-}
-
-type GetInstancesSizeSize struct {
-	Cpu         int    `pulumi:"cpu"`
-	Description string `pulumi:"description"`
-	Disk        int    `pulumi:"disk"`
-	Name        string `pulumi:"name"`
-	Ram         int    `pulumi:"ram"`
-	Selectable  bool   `pulumi:"selectable"`
-	Type        string `pulumi:"type"`
-}
-
-// GetInstancesSizeSizeInput is an input type that accepts GetInstancesSizeSizeArgs and GetInstancesSizeSizeOutput values.
-// You can construct a concrete instance of `GetInstancesSizeSizeInput` via:
-//
-//	GetInstancesSizeSizeArgs{...}
-type GetInstancesSizeSizeInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeSizeOutput() GetInstancesSizeSizeOutput
-	ToGetInstancesSizeSizeOutputWithContext(context.Context) GetInstancesSizeSizeOutput
-}
-
-type GetInstancesSizeSizeArgs struct {
-	Cpu         pulumi.IntInput    `pulumi:"cpu"`
-	Description pulumi.StringInput `pulumi:"description"`
-	Disk        pulumi.IntInput    `pulumi:"disk"`
-	Name        pulumi.StringInput `pulumi:"name"`
-	Ram         pulumi.IntInput    `pulumi:"ram"`
-	Selectable  pulumi.BoolInput   `pulumi:"selectable"`
-	Type        pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetInstancesSizeSizeArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeSize)(nil)).Elem()
-}
-
-func (i GetInstancesSizeSizeArgs) ToGetInstancesSizeSizeOutput() GetInstancesSizeSizeOutput {
-	return i.ToGetInstancesSizeSizeOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeSizeArgs) ToGetInstancesSizeSizeOutputWithContext(ctx context.Context) GetInstancesSizeSizeOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeSizeOutput)
-}
-
-// GetInstancesSizeSizeArrayInput is an input type that accepts GetInstancesSizeSizeArray and GetInstancesSizeSizeArrayOutput values.
-// You can construct a concrete instance of `GetInstancesSizeSizeArrayInput` via:
-//
-//	GetInstancesSizeSizeArray{ GetInstancesSizeSizeArgs{...} }
-type GetInstancesSizeSizeArrayInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeSizeArrayOutput() GetInstancesSizeSizeArrayOutput
-	ToGetInstancesSizeSizeArrayOutputWithContext(context.Context) GetInstancesSizeSizeArrayOutput
-}
-
-type GetInstancesSizeSizeArray []GetInstancesSizeSizeInput
-
-func (GetInstancesSizeSizeArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeSize)(nil)).Elem()
-}
-
-func (i GetInstancesSizeSizeArray) ToGetInstancesSizeSizeArrayOutput() GetInstancesSizeSizeArrayOutput {
-	return i.ToGetInstancesSizeSizeArrayOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeSizeArray) ToGetInstancesSizeSizeArrayOutputWithContext(ctx context.Context) GetInstancesSizeSizeArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeSizeArrayOutput)
-}
-
-type GetInstancesSizeSizeOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeSizeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeSize)(nil)).Elem()
-}
-
-func (o GetInstancesSizeSizeOutput) ToGetInstancesSizeSizeOutput() GetInstancesSizeSizeOutput {
-	return o
-}
-
-func (o GetInstancesSizeSizeOutput) ToGetInstancesSizeSizeOutputWithContext(ctx context.Context) GetInstancesSizeSizeOutput {
-	return o
-}
-
-func (o GetInstancesSizeSizeOutput) Cpu() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Cpu }).(pulumi.IntOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Description }).(pulumi.StringOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Disk() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Disk }).(pulumi.IntOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Name }).(pulumi.StringOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Ram() pulumi.IntOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) int { return v.Ram }).(pulumi.IntOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Selectable() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) bool { return v.Selectable }).(pulumi.BoolOutput)
-}
-
-func (o GetInstancesSizeSizeOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeSize) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetInstancesSizeSizeArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeSizeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeSize)(nil)).Elem()
-}
-
-func (o GetInstancesSizeSizeArrayOutput) ToGetInstancesSizeSizeArrayOutput() GetInstancesSizeSizeArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeSizeArrayOutput) ToGetInstancesSizeSizeArrayOutputWithContext(ctx context.Context) GetInstancesSizeSizeArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeSizeArrayOutput) Index(i pulumi.IntInput) GetInstancesSizeSizeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesSizeSize {
-		return vs[0].([]GetInstancesSizeSize)[vs[1].(int)]
-	}).(GetInstancesSizeSizeOutput)
-}
-
-type GetInstancesSizeSort struct {
-	// The sort direction. This may be either `asc` or `desc`.
-	Direction *string `pulumi:"direction"`
-	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-	Key string `pulumi:"key"`
-}
-
-// GetInstancesSizeSortInput is an input type that accepts GetInstancesSizeSortArgs and GetInstancesSizeSortOutput values.
-// You can construct a concrete instance of `GetInstancesSizeSortInput` via:
-//
-//	GetInstancesSizeSortArgs{...}
-type GetInstancesSizeSortInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeSortOutput() GetInstancesSizeSortOutput
-	ToGetInstancesSizeSortOutputWithContext(context.Context) GetInstancesSizeSortOutput
-}
-
-type GetInstancesSizeSortArgs struct {
-	// The sort direction. This may be either `asc` or `desc`.
-	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-	Key pulumi.StringInput `pulumi:"key"`
-}
-
-func (GetInstancesSizeSortArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeSort)(nil)).Elem()
-}
-
-func (i GetInstancesSizeSortArgs) ToGetInstancesSizeSortOutput() GetInstancesSizeSortOutput {
-	return i.ToGetInstancesSizeSortOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeSortArgs) ToGetInstancesSizeSortOutputWithContext(ctx context.Context) GetInstancesSizeSortOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeSortOutput)
-}
-
-// GetInstancesSizeSortArrayInput is an input type that accepts GetInstancesSizeSortArray and GetInstancesSizeSortArrayOutput values.
-// You can construct a concrete instance of `GetInstancesSizeSortArrayInput` via:
-//
-//	GetInstancesSizeSortArray{ GetInstancesSizeSortArgs{...} }
-type GetInstancesSizeSortArrayInput interface {
-	pulumi.Input
-
-	ToGetInstancesSizeSortArrayOutput() GetInstancesSizeSortArrayOutput
-	ToGetInstancesSizeSortArrayOutputWithContext(context.Context) GetInstancesSizeSortArrayOutput
-}
-
-type GetInstancesSizeSortArray []GetInstancesSizeSortInput
-
-func (GetInstancesSizeSortArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeSort)(nil)).Elem()
-}
-
-func (i GetInstancesSizeSortArray) ToGetInstancesSizeSortArrayOutput() GetInstancesSizeSortArrayOutput {
-	return i.ToGetInstancesSizeSortArrayOutputWithContext(context.Background())
-}
-
-func (i GetInstancesSizeSortArray) ToGetInstancesSizeSortArrayOutputWithContext(ctx context.Context) GetInstancesSizeSortArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSizeSortArrayOutput)
-}
-
-type GetInstancesSizeSortOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeSortOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetInstancesSizeSort)(nil)).Elem()
-}
-
-func (o GetInstancesSizeSortOutput) ToGetInstancesSizeSortOutput() GetInstancesSizeSortOutput {
-	return o
-}
-
-func (o GetInstancesSizeSortOutput) ToGetInstancesSizeSortOutputWithContext(ctx context.Context) GetInstancesSizeSortOutput {
-	return o
-}
-
-// The sort direction. This may be either `asc` or `desc`.
-func (o GetInstancesSizeSortOutput) Direction() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetInstancesSizeSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
-}
-
-// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-func (o GetInstancesSizeSortOutput) Key() pulumi.StringOutput {
-	return o.ApplyT(func(v GetInstancesSizeSort) string { return v.Key }).(pulumi.StringOutput)
-}
-
-type GetInstancesSizeSortArrayOutput struct{ *pulumi.OutputState }
-
-func (GetInstancesSizeSortArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetInstancesSizeSort)(nil)).Elem()
-}
-
-func (o GetInstancesSizeSortArrayOutput) ToGetInstancesSizeSortArrayOutput() GetInstancesSizeSortArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeSortArrayOutput) ToGetInstancesSizeSortArrayOutputWithContext(ctx context.Context) GetInstancesSizeSortArrayOutput {
-	return o
-}
-
-func (o GetInstancesSizeSortArrayOutput) Index(i pulumi.IntInput) GetInstancesSizeSortOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesSizeSort {
-		return vs[0].([]GetInstancesSizeSort)[vs[1].(int)]
-	}).(GetInstancesSizeSortOutput)
 }
 
 type GetInstancesSort struct {
@@ -3156,6 +3132,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolsInput)(nil)).Elem(), KubernetesClusterPoolsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolsPtrInput)(nil)).Elem(), KubernetesClusterPoolsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionFilterInput)(nil)).Elem(), GetDatabaseVersionFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionFilterArrayInput)(nil)).Elem(), GetDatabaseVersionFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionSortInput)(nil)).Elem(), GetDatabaseVersionSortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionSortArrayInput)(nil)).Elem(), GetDatabaseVersionSortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionVersionInput)(nil)).Elem(), GetDatabaseVersionVersionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionVersionArrayInput)(nil)).Elem(), GetDatabaseVersionVersionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageDiskimageInput)(nil)).Elem(), GetDiskImageDiskimageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageDiskimageArrayInput)(nil)).Elem(), GetDiskImageDiskimageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskImageFilterInput)(nil)).Elem(), GetDiskImageFilterArgs{})
@@ -3166,12 +3148,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesFilterArrayInput)(nil)).Elem(), GetInstancesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceInput)(nil)).Elem(), GetInstancesInstanceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesInstanceArrayInput)(nil)).Elem(), GetInstancesInstanceArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeFilterInput)(nil)).Elem(), GetInstancesSizeFilterArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeFilterArrayInput)(nil)).Elem(), GetInstancesSizeFilterArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSizeInput)(nil)).Elem(), GetInstancesSizeSizeArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSizeArrayInput)(nil)).Elem(), GetInstancesSizeSizeArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSortInput)(nil)).Elem(), GetInstancesSizeSortArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSizeSortArrayInput)(nil)).Elem(), GetInstancesSizeSortArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSortInput)(nil)).Elem(), GetInstancesSortArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetInstancesSortArrayInput)(nil)).Elem(), GetInstancesSortArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterInstalledApplicationInput)(nil)).Elem(), GetKubernetesClusterInstalledApplicationArgs{})
@@ -3206,6 +3182,12 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterPoolsOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterPoolsPtrOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionFilterOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionSortOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionSortArrayOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionVersionOutput{})
+	pulumi.RegisterOutputType(GetDatabaseVersionVersionArrayOutput{})
 	pulumi.RegisterOutputType(GetDiskImageDiskimageOutput{})
 	pulumi.RegisterOutputType(GetDiskImageDiskimageArrayOutput{})
 	pulumi.RegisterOutputType(GetDiskImageFilterOutput{})
@@ -3216,12 +3198,6 @@ func init() {
 	pulumi.RegisterOutputType(GetInstancesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceOutput{})
 	pulumi.RegisterOutputType(GetInstancesInstanceArrayOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeFilterOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeFilterArrayOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeSizeOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeSizeArrayOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeSortOutput{})
-	pulumi.RegisterOutputType(GetInstancesSizeSortArrayOutput{})
 	pulumi.RegisterOutputType(GetInstancesSortOutput{})
 	pulumi.RegisterOutputType(GetInstancesSortArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterInstalledApplicationOutput{})

@@ -28,12 +28,13 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupVolume(ctx, &civo.LookupVolumeArgs{
-//				Name: pulumi.StringRef("database-mysql"),
+//			myvolume, err := civo.LookupVolume(ctx, &civo.LookupVolumeArgs{
+//				Name: pulumi.StringRef("test-volume-name"),
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("volumeOutput", myvolume)
 //			return nil
 //		})
 //	}

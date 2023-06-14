@@ -61,6 +61,8 @@ type LookupDatabaseArgs struct {
 
 // A collection of values returned by getDatabase.
 type LookupDatabaseResult struct {
+	// The engine of the database
+	Engine string `pulumi:"engine"`
 	// The firewall id of the Database
 	FirewallId string `pulumi:"firewallId"`
 	// The ID of the Database
@@ -81,6 +83,8 @@ type LookupDatabaseResult struct {
 	Status string `pulumi:"status"`
 	// The username of the database
 	Username string `pulumi:"username"`
+	// The version of the database
+	Version string `pulumi:"version"`
 }
 
 func LookupDatabaseOutput(ctx *pulumi.Context, args LookupDatabaseOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseResultOutput {
@@ -123,6 +127,11 @@ func (o LookupDatabaseResultOutput) ToLookupDatabaseResultOutput() LookupDatabas
 
 func (o LookupDatabaseResultOutput) ToLookupDatabaseResultOutputWithContext(ctx context.Context) LookupDatabaseResultOutput {
 	return o
+}
+
+// The engine of the database
+func (o LookupDatabaseResultOutput) Engine() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Engine }).(pulumi.StringOutput)
 }
 
 // The firewall id of the Database
@@ -173,6 +182,11 @@ func (o LookupDatabaseResultOutput) Status() pulumi.StringOutput {
 // The username of the database
 func (o LookupDatabaseResultOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// The version of the database
+func (o LookupDatabaseResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Version }).(pulumi.StringOutput)
 }
 
 func init() {

@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetInstancesSizeSortInputArgs : global::Pulumi.ResourceArgs
+    public sealed class GetDatabaseVersionSortInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// The sort direction. This may be either `asc` or `desc`.
@@ -19,14 +19,14 @@ namespace Pulumi.Civo.Inputs
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Sort versions by this key. This may be one of `default`, `engine`, `version`.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
-        public GetInstancesSizeSortInputArgs()
+        public GetDatabaseVersionSortInputArgs()
         {
         }
-        public static new GetInstancesSizeSortInputArgs Empty => new GetInstancesSizeSortInputArgs();
+        public static new GetDatabaseVersionSortInputArgs Empty => new GetDatabaseVersionSortInputArgs();
     }
 }

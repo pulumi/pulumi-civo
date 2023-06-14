@@ -55,7 +55,7 @@ export interface GetInstanceArgs {
  */
 export interface GetInstanceResult {
     /**
-     * Total cpu of the inatance
+     * Total cpu of the instance
      */
     readonly cpuCores: number;
     /**

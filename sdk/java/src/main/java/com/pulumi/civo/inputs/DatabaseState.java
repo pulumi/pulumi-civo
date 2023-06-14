@@ -17,6 +17,21 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseState Empty = new DatabaseState();
 
     /**
+     * The engine of the database
+     * 
+     */
+    @Import(name="engine")
+    private @Nullable Output<String> engine;
+
+    /**
+     * @return The engine of the database
+     * 
+     */
+    public Optional<Output<String>> engine() {
+        return Optional.ofNullable(this.engine);
+    }
+
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
@@ -151,9 +166,25 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.username);
     }
 
+    /**
+     * The version of the database
+     * 
+     */
+    @Import(name="version")
+    private @Nullable Output<String> version;
+
+    /**
+     * @return The version of the database
+     * 
+     */
+    public Optional<Output<String>> version() {
+        return Optional.ofNullable(this.version);
+    }
+
     private DatabaseState() {}
 
     private DatabaseState(DatabaseState $) {
+        this.engine = $.engine;
         this.firewallId = $.firewallId;
         this.name = $.name;
         this.networkId = $.networkId;
@@ -163,6 +194,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         this.size = $.size;
         this.status = $.status;
         this.username = $.username;
+        this.version = $.version;
     }
 
     public static Builder builder() {
@@ -181,6 +213,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DatabaseState defaults) {
             $ = new DatabaseState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param engine The engine of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder engine(@Nullable Output<String> engine) {
+            $.engine = engine;
+            return this;
+        }
+
+        /**
+         * @param engine The engine of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder engine(String engine) {
+            return engine(Output.of(engine));
         }
 
         /**
@@ -370,6 +423,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder username(String username) {
             return username(Output.of(username));
+        }
+
+        /**
+         * @param version The version of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(@Nullable Output<String> version) {
+            $.version = version;
+            return this;
+        }
+
+        /**
+         * @param version The version of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder version(String version) {
+            return version(Output.of(version));
         }
 
         public DatabaseState build() {

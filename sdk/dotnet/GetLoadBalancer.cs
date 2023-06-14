@@ -98,7 +98,7 @@ namespace Pulumi.Civo
         public string? Name { get; set; }
 
         /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
         /// </summary>
         [Input("region")]
         public string? Region { get; set; }
@@ -124,7 +124,7 @@ namespace Pulumi.Civo
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -177,7 +177,7 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string PublicIp;
         /// <summary>
-        /// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        /// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
         /// </summary>
         public readonly string? Region;
         /// <summary>

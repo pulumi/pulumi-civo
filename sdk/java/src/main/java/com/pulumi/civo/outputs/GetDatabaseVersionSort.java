@@ -10,19 +10,19 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class GetInstancesSizeSort {
+public final class GetDatabaseVersionSort {
     /**
      * @return The sort direction. This may be either `asc` or `desc`.
      * 
      */
     private @Nullable String direction;
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     private String key;
 
-    private GetInstancesSizeSort() {}
+    private GetDatabaseVersionSort() {}
     /**
      * @return The sort direction. This may be either `asc` or `desc`.
      * 
@@ -31,7 +31,7 @@ public final class GetInstancesSizeSort {
         return Optional.ofNullable(this.direction);
     }
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     public String key() {
@@ -42,7 +42,7 @@ public final class GetInstancesSizeSort {
         return new Builder();
     }
 
-    public static Builder builder(GetInstancesSizeSort defaults) {
+    public static Builder builder(GetDatabaseVersionSort defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -50,7 +50,7 @@ public final class GetInstancesSizeSort {
         private @Nullable String direction;
         private String key;
         public Builder() {}
-        public Builder(GetInstancesSizeSort defaults) {
+        public Builder(GetDatabaseVersionSort defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.direction = defaults.direction;
     	      this.key = defaults.key;
@@ -66,8 +66,8 @@ public final class GetInstancesSizeSort {
             this.key = Objects.requireNonNull(key);
             return this;
         }
-        public GetInstancesSizeSort build() {
-            final var o = new GetInstancesSizeSort();
+        public GetDatabaseVersionSort build() {
+            final var o = new GetDatabaseVersionSort();
             o.direction = direction;
             o.key = key;
             return o;

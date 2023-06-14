@@ -101,7 +101,7 @@ def get_network(id: Optional[str] = None,
 
     This data source provides all of the network's properties as configured on your Civo account.
 
-    Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+    Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
 
     ## Example Usage
 
@@ -143,7 +143,7 @@ def get_network_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     This data source provides all of the network's properties as configured on your Civo account.
 
-    Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+    Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
 
     ## Example Usage
 

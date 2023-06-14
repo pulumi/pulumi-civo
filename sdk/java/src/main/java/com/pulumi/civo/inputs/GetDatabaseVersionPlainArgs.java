@@ -3,9 +3,8 @@
 
 package com.pulumi.civo.inputs;
 
-import com.pulumi.civo.inputs.GetInstancesSizeFilterArgs;
-import com.pulumi.civo.inputs.GetInstancesSizeSortArgs;
-import com.pulumi.core.Output;
+import com.pulumi.civo.inputs.GetDatabaseVersionFilter;
+import com.pulumi.civo.inputs.GetDatabaseVersionSort;
 import com.pulumi.core.annotations.Import;
 import java.util.List;
 import java.util.Objects;
@@ -13,22 +12,22 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 
-public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs {
+public final class GetDatabaseVersionPlainArgs extends com.pulumi.resources.InvokeArgs {
 
-    public static final GetInstancesSizeArgs Empty = new GetInstancesSizeArgs();
+    public static final GetDatabaseVersionPlainArgs Empty = new GetDatabaseVersionPlainArgs();
 
     /**
      * One or more key/value pairs on which to filter results
      * 
      */
     @Import(name="filters")
-    private @Nullable Output<List<GetInstancesSizeFilterArgs>> filters;
+    private @Nullable List<GetDatabaseVersionFilter> filters;
 
     /**
      * @return One or more key/value pairs on which to filter results
      * 
      */
-    public Optional<Output<List<GetInstancesSizeFilterArgs>>> filters() {
+    public Optional<List<GetDatabaseVersionFilter>> filters() {
         return Optional.ofNullable(this.filters);
     }
 
@@ -37,19 +36,19 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
      * 
      */
     @Import(name="sorts")
-    private @Nullable Output<List<GetInstancesSizeSortArgs>> sorts;
+    private @Nullable List<GetDatabaseVersionSort> sorts;
 
     /**
      * @return One or more key/direction pairs on which to sort results
      * 
      */
-    public Optional<Output<List<GetInstancesSizeSortArgs>>> sorts() {
+    public Optional<List<GetDatabaseVersionSort>> sorts() {
         return Optional.ofNullable(this.sorts);
     }
 
-    private GetInstancesSizeArgs() {}
+    private GetDatabaseVersionPlainArgs() {}
 
-    private GetInstancesSizeArgs(GetInstancesSizeArgs $) {
+    private GetDatabaseVersionPlainArgs(GetDatabaseVersionPlainArgs $) {
         this.filters = $.filters;
         this.sorts = $.sorts;
     }
@@ -57,19 +56,19 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
     public static Builder builder() {
         return new Builder();
     }
-    public static Builder builder(GetInstancesSizeArgs defaults) {
+    public static Builder builder(GetDatabaseVersionPlainArgs defaults) {
         return new Builder(defaults);
     }
 
     public static final class Builder {
-        private GetInstancesSizeArgs $;
+        private GetDatabaseVersionPlainArgs $;
 
         public Builder() {
-            $ = new GetInstancesSizeArgs();
+            $ = new GetDatabaseVersionPlainArgs();
         }
 
-        public Builder(GetInstancesSizeArgs defaults) {
-            $ = new GetInstancesSizeArgs(Objects.requireNonNull(defaults));
+        public Builder(GetDatabaseVersionPlainArgs defaults) {
+            $ = new GetDatabaseVersionPlainArgs(Objects.requireNonNull(defaults));
         }
 
         /**
@@ -78,7 +77,7 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
          * @return builder
          * 
          */
-        public Builder filters(@Nullable Output<List<GetInstancesSizeFilterArgs>> filters) {
+        public Builder filters(@Nullable List<GetDatabaseVersionFilter> filters) {
             $.filters = filters;
             return this;
         }
@@ -89,17 +88,7 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
          * @return builder
          * 
          */
-        public Builder filters(List<GetInstancesSizeFilterArgs> filters) {
-            return filters(Output.of(filters));
-        }
-
-        /**
-         * @param filters One or more key/value pairs on which to filter results
-         * 
-         * @return builder
-         * 
-         */
-        public Builder filters(GetInstancesSizeFilterArgs... filters) {
+        public Builder filters(GetDatabaseVersionFilter... filters) {
             return filters(List.of(filters));
         }
 
@@ -109,7 +98,7 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
          * @return builder
          * 
          */
-        public Builder sorts(@Nullable Output<List<GetInstancesSizeSortArgs>> sorts) {
+        public Builder sorts(@Nullable List<GetDatabaseVersionSort> sorts) {
             $.sorts = sorts;
             return this;
         }
@@ -120,21 +109,11 @@ public final class GetInstancesSizeArgs extends com.pulumi.resources.InvokeArgs 
          * @return builder
          * 
          */
-        public Builder sorts(List<GetInstancesSizeSortArgs> sorts) {
-            return sorts(Output.of(sorts));
-        }
-
-        /**
-         * @param sorts One or more key/direction pairs on which to sort results
-         * 
-         * @return builder
-         * 
-         */
-        public Builder sorts(GetInstancesSizeSortArgs... sorts) {
+        public Builder sorts(GetDatabaseVersionSort... sorts) {
             return sorts(List.of(sorts));
         }
 
-        public GetInstancesSizeArgs build() {
+        public GetDatabaseVersionPlainArgs build() {
             return $;
         }
     }

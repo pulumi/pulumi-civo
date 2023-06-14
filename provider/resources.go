@@ -98,7 +98,6 @@ func Provider() tfbridge.ProviderInfo {
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"civo_kubernetes_cluster":      {Tok: makeDataSource(mainMod, "getKubernetesCluster")},
 			"civo_kubernetes_version":      {Tok: makeDataSource(mainMod, "getKubernetesVersion")},
-			"civo_instances_size":          {Tok: makeDataSource(mainMod, "getInstancesSize")},
 			"civo_instances":               {Tok: makeDataSource(mainMod, "getInstances")},
 			"civo_instance":                {Tok: makeDataSource(mainMod, "getInstance")},
 			"civo_dns_domain_name":         {Tok: makeDataSource(mainMod, "getDnsDomainName")},

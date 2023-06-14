@@ -14,23 +14,29 @@ __all__ = ['DatabaseArgs', 'Database']
 @pulumi.input_type
 class DatabaseArgs:
     def __init__(__self__, *,
+                 engine: pulumi.Input[str],
                  nodes: pulumi.Input[int],
                  size: pulumi.Input[str],
+                 version: pulumi.Input[str],
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Database resource.
+        :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] size: Size of the database
+        :param pulumi.Input[str] version: The version of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
         :param pulumi.Input[str] region: The region where the database will be created.
         """
+        pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "nodes", nodes)
         pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "version", version)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if name is not None:
@@ -39,6 +45,18 @@ class DatabaseArgs:
             pulumi.set(__self__, "network_id", network_id)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def engine(self) -> pulumi.Input[str]:
+        """
+        The engine of the database
+        """
+        return pulumi.get(self, "engine")
+
+    @engine.setter
+    def engine(self, value: pulumi.Input[str]):
+        pulumi.set(self, "engine", value)
 
     @property
     @pulumi.getter
@@ -63,6 +81,18 @@ class DatabaseArgs:
     @size.setter
     def size(self, value: pulumi.Input[str]):
         pulumi.set(self, "size", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[str]:
+        """
+        The version of the database
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[str]):
+        pulumi.set(self, "version", value)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -116,6 +146,7 @@ class DatabaseArgs:
 @pulumi.input_type
 class _DatabaseState:
     def __init__(__self__, *,
+                 engine: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
@@ -124,9 +155,11 @@ class _DatabaseState:
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 username: Optional[pulumi.Input[str]] = None):
+                 username: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+        :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
@@ -136,7 +169,10 @@ class _DatabaseState:
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
         :param pulumi.Input[str] username: The username of the database
+        :param pulumi.Input[str] version: The version of the database
         """
+        if engine is not None:
+            pulumi.set(__self__, "engine", engine)
         if firewall_id is not None:
             pulumi.set(__self__, "firewall_id", firewall_id)
         if name is not None:
@@ -155,6 +191,20 @@ class _DatabaseState:
             pulumi.set(__self__, "status", status)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def engine(self) -> Optional[pulumi.Input[str]]:
+        """
+        The engine of the database
+        """
+        return pulumi.get(self, "engine")
+
+    @engine.setter
+    def engine(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "engine", value)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -264,18 +314,32 @@ class _DatabaseState:
     def username(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "username", value)
 
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The version of the database
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
 
 class Database(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 engine: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         ## Import
@@ -288,12 +352,14 @@ class Database(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] region: The region where the database will be created.
         :param pulumi.Input[str] size: Size of the database
+        :param pulumi.Input[str] version: The version of the database
         """
         ...
     @overload
@@ -325,12 +391,14 @@ class Database(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 engine: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
+                 version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -340,6 +408,9 @@ class Database(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DatabaseArgs.__new__(DatabaseArgs)
 
+            if engine is None and not opts.urn:
+                raise TypeError("Missing required property 'engine'")
+            __props__.__dict__["engine"] = engine
             __props__.__dict__["firewall_id"] = firewall_id
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
@@ -350,6 +421,9 @@ class Database(pulumi.CustomResource):
             if size is None and not opts.urn:
                 raise TypeError("Missing required property 'size'")
             __props__.__dict__["size"] = size
+            if version is None and not opts.urn:
+                raise TypeError("Missing required property 'version'")
+            __props__.__dict__["version"] = version
             __props__.__dict__["password"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["username"] = None
@@ -363,6 +437,7 @@ class Database(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            engine: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
@@ -371,7 +446,8 @@ class Database(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            username: Optional[pulumi.Input[str]] = None) -> 'Database':
+            username: Optional[pulumi.Input[str]] = None,
+            version: Optional[pulumi.Input[str]] = None) -> 'Database':
         """
         Get an existing Database resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -379,6 +455,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
@@ -388,11 +465,13 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
         :param pulumi.Input[str] username: The username of the database
+        :param pulumi.Input[str] version: The version of the database
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _DatabaseState.__new__(_DatabaseState)
 
+        __props__.__dict__["engine"] = engine
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
@@ -402,7 +481,16 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
         __props__.__dict__["username"] = username
+        __props__.__dict__["version"] = version
         return Database(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def engine(self) -> pulumi.Output[str]:
+        """
+        The engine of the database
+        """
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="firewallId")
@@ -475,4 +563,12 @@ class Database(pulumi.CustomResource):
         The username of the database
         """
         return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter
+    def version(self) -> pulumi.Output[str]:
+        """
+        The version of the database
+        """
+        return pulumi.get(self, "version")
 

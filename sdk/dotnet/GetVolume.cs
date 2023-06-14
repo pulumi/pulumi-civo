@@ -28,11 +28,15 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mysql = Civo.GetVolume.Invoke(new()
+        ///     var myvolume = Civo.GetVolume.Invoke(new()
         ///     {
-        ///         Name = "database-mysql",
+        ///         Name = "test-volume-name",
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["volumeOutput"] = myvolume,
+        ///     };
         /// });
         /// ```
         /// {{% /example %}}
@@ -58,11 +62,15 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var mysql = Civo.GetVolume.Invoke(new()
+        ///     var myvolume = Civo.GetVolume.Invoke(new()
         ///     {
-        ///         Name = "database-mysql",
+        ///         Name = "test-volume-name",
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["volumeOutput"] = myvolume,
+        ///     };
         /// });
         /// ```
         /// {{% /example %}}

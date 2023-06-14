@@ -48,7 +48,7 @@ export interface GetLoadBalancerArgs {
      */
     name?: string;
     /**
-     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      */
     region?: string;
 }
@@ -95,7 +95,7 @@ export interface GetLoadBalancerResult {
      */
     readonly publicIp: string;
     /**
-     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      */
     readonly region?: string;
     /**
@@ -146,7 +146,7 @@ export interface GetLoadBalancerOutputArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      */
     region?: pulumi.Input<string>;
 }

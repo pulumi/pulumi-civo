@@ -42,6 +42,10 @@ export class Database extends pulumi.CustomResource {
     }
 
     /**
+     * The engine of the database
+     */
+    public readonly engine!: pulumi.Output<string>;
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      */
     public readonly firewallId!: pulumi.Output<string>;
@@ -77,6 +81,10 @@ export class Database extends pulumi.CustomResource {
      * The username of the database
      */
     public /*out*/ readonly username!: pulumi.Output<string>;
+    /**
+     * The version of the database
+     */
+    public readonly version!: pulumi.Output<string>;
 
     /**
      * Create a Database resource with the given unique name, arguments, and options.
@@ -91,6 +99,7 @@ export class Database extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseState | undefined;
+            resourceInputs["engine"] = state ? state.engine : undefined;
             resourceInputs["firewallId"] = state ? state.firewallId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
@@ -100,20 +109,29 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as DatabaseArgs | undefined;
+            if ((!args || args.engine === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'engine'");
+            }
             if ((!args || args.nodes === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nodes'");
             }
             if ((!args || args.size === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'size'");
             }
+            if ((!args || args.version === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'version'");
+            }
+            resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["firewallId"] = args ? args.firewallId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["nodes"] = args ? args.nodes : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["password"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
@@ -127,6 +145,10 @@ export class Database extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Database resources.
  */
 export interface DatabaseState {
+    /**
+     * The engine of the database
+     */
+    engine?: pulumi.Input<string>;
     /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      */
@@ -163,12 +185,20 @@ export interface DatabaseState {
      * The username of the database
      */
     username?: pulumi.Input<string>;
+    /**
+     * The version of the database
+     */
+    version?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a Database resource.
  */
 export interface DatabaseArgs {
+    /**
+     * The engine of the database
+     */
+    engine: pulumi.Input<string>;
     /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      */
@@ -193,4 +223,8 @@ export interface DatabaseArgs {
      * Size of the database
      */
     size: pulumi.Input<string>;
+    /**
+     * The version of the database
+     */
+    version: pulumi.Input<string>;
 }

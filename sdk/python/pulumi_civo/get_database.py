@@ -21,7 +21,10 @@ class GetDatabaseResult:
     """
     A collection of values returned by getDatabase.
     """
-    def __init__(__self__, firewall_id=None, id=None, name=None, network_id=None, nodes=None, password=None, region=None, size=None, status=None, username=None):
+    def __init__(__self__, engine=None, firewall_id=None, id=None, name=None, network_id=None, nodes=None, password=None, region=None, size=None, status=None, username=None, version=None):
+        if engine and not isinstance(engine, str):
+            raise TypeError("Expected argument 'engine' to be a str")
+        pulumi.set(__self__, "engine", engine)
         if firewall_id and not isinstance(firewall_id, str):
             raise TypeError("Expected argument 'firewall_id' to be a str")
         pulumi.set(__self__, "firewall_id", firewall_id)
@@ -52,6 +55,17 @@ class GetDatabaseResult:
         if username and not isinstance(username, str):
             raise TypeError("Expected argument 'username' to be a str")
         pulumi.set(__self__, "username", username)
+        if version and not isinstance(version, str):
+            raise TypeError("Expected argument 'version' to be a str")
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def engine(self) -> str:
+        """
+        The engine of the database
+        """
+        return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter(name="firewallId")
@@ -133,6 +147,14 @@ class GetDatabaseResult:
         """
         return pulumi.get(self, "username")
 
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        The version of the database
+        """
+        return pulumi.get(self, "version")
+
 
 class AwaitableGetDatabaseResult(GetDatabaseResult):
     # pylint: disable=using-constant-test
@@ -140,6 +162,7 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
         if False:
             yield self
         return GetDatabaseResult(
+            engine=self.engine,
             firewall_id=self.firewall_id,
             id=self.id,
             name=self.name,
@@ -149,7 +172,8 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
             region=self.region,
             size=self.size,
             status=self.status,
-            username=self.username)
+            username=self.username,
+            version=self.version)
 
 
 def get_database(id: Optional[str] = None,
@@ -184,6 +208,7 @@ def get_database(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getDatabase:getDatabase', __args__, opts=opts, typ=GetDatabaseResult).value
 
     return AwaitableGetDatabaseResult(
+        engine=__ret__.engine,
         firewall_id=__ret__.firewall_id,
         id=__ret__.id,
         name=__ret__.name,
@@ -193,7 +218,8 @@ def get_database(id: Optional[str] = None,
         region=__ret__.region,
         size=__ret__.size,
         status=__ret__.status,
-        username=__ret__.username)
+        username=__ret__.username,
+        version=__ret__.version)
 
 
 @_utilities.lift_output_func(get_database)

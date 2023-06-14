@@ -93,7 +93,7 @@ class GetInstanceResult:
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
         """
-        Total cpu of the inatance
+        Total cpu of the instance
         """
         return pulumi.get(self, "cpu_cores")
 
