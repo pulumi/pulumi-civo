@@ -59,6 +59,42 @@ export interface FirewallIngressRule {
     protocol?: string;
 }
 
+export interface GetDatabaseVersionFilter {
+    /**
+     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+     */
+    all?: boolean;
+    /**
+     * Filter versions by this key. This may be one of `default`, `engine`, `version`.
+     */
+    key: string;
+    /**
+     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+     */
+    matchBy?: string;
+    /**
+     * Only retrieves `versions` which keys has value that matches one of the values provided here
+     */
+    values: string[];
+}
+
+export interface GetDatabaseVersionSort {
+    /**
+     * The sort direction. This may be either `asc` or `desc`.
+     */
+    direction?: string;
+    /**
+     * Sort versions by this key. This may be one of `default`, `engine`, `version`.
+     */
+    key: string;
+}
+
+export interface GetDatabaseVersionVersion {
+    default: boolean;
+    engine: string;
+    version: string;
+}
+
 export interface GetDiskImageDiskimage {
     /**
      * The ID of this resource.
@@ -147,46 +183,6 @@ export interface GetInstancesInstance {
     status: string;
     tags: string[];
     template: string;
-}
-
-export interface GetInstancesSizeFilter {
-    /**
-     * Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
-     */
-    all?: boolean;
-    /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-     */
-    key: string;
-    /**
-     * One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
-     */
-    matchBy?: string;
-    /**
-     * Only retrieves `sizes` which keys has value that matches one of the values provided here
-     */
-    values: string[];
-}
-
-export interface GetInstancesSizeSize {
-    cpu: number;
-    description: string;
-    disk: number;
-    name: string;
-    ram: number;
-    selectable: boolean;
-    type: string;
-}
-
-export interface GetInstancesSizeSort {
-    /**
-     * The sort direction. This may be either `asc` or `desc`.
-     */
-    direction?: string;
-    /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
-     */
-    key: string;
 }
 
 export interface GetInstancesSort {

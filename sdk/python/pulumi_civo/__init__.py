@@ -11,13 +11,13 @@ from .dns_domain_record import *
 from .firewall import *
 from .firewall_rule import *
 from .get_database import *
+from .get_database_version import *
 from .get_disk_image import *
 from .get_dns_domain_name import *
 from .get_dns_domain_record import *
 from .get_firewall import *
 from .get_instance import *
 from .get_instances import *
-from .get_instances_size import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_version import *
 from .get_load_balancer import *

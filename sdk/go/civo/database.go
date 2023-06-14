@@ -23,6 +23,8 @@ import (
 type Database struct {
 	pulumi.CustomResourceState
 
+	// The engine of the database
+	Engine pulumi.StringOutput `pulumi:"engine"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// Name of the database
@@ -41,6 +43,8 @@ type Database struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// The username of the database
 	Username pulumi.StringOutput `pulumi:"username"`
+	// The version of the database
+	Version pulumi.StringOutput `pulumi:"version"`
 }
 
 // NewDatabase registers a new resource with the given unique name, arguments, and options.
@@ -50,11 +54,17 @@ func NewDatabase(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.Engine == nil {
+		return nil, errors.New("invalid value for required argument 'Engine'")
+	}
 	if args.Nodes == nil {
 		return nil, errors.New("invalid value for required argument 'Nodes'")
 	}
 	if args.Size == nil {
 		return nil, errors.New("invalid value for required argument 'Size'")
+	}
+	if args.Version == nil {
+		return nil, errors.New("invalid value for required argument 'Version'")
 	}
 	var resource Database
 	err := ctx.RegisterResource("civo:index/database:Database", name, args, &resource, opts...)
@@ -78,6 +88,8 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
+	// The engine of the database
+	Engine *string `pulumi:"engine"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 	FirewallId *string `pulumi:"firewallId"`
 	// Name of the database
@@ -96,9 +108,13 @@ type databaseState struct {
 	Status *string `pulumi:"status"`
 	// The username of the database
 	Username *string `pulumi:"username"`
+	// The version of the database
+	Version *string `pulumi:"version"`
 }
 
 type DatabaseState struct {
+	// The engine of the database
+	Engine pulumi.StringPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 	FirewallId pulumi.StringPtrInput
 	// Name of the database
@@ -117,6 +133,8 @@ type DatabaseState struct {
 	Status pulumi.StringPtrInput
 	// The username of the database
 	Username pulumi.StringPtrInput
+	// The version of the database
+	Version pulumi.StringPtrInput
 }
 
 func (DatabaseState) ElementType() reflect.Type {
@@ -124,6 +142,8 @@ func (DatabaseState) ElementType() reflect.Type {
 }
 
 type databaseArgs struct {
+	// The engine of the database
+	Engine string `pulumi:"engine"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 	FirewallId *string `pulumi:"firewallId"`
 	// Name of the database
@@ -136,10 +156,14 @@ type databaseArgs struct {
 	Region *string `pulumi:"region"`
 	// Size of the database
 	Size string `pulumi:"size"`
+	// The version of the database
+	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
+	// The engine of the database
+	Engine pulumi.StringInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 	FirewallId pulumi.StringPtrInput
 	// Name of the database
@@ -152,6 +176,8 @@ type DatabaseArgs struct {
 	Region pulumi.StringPtrInput
 	// Size of the database
 	Size pulumi.StringInput
+	// The version of the database
+	Version pulumi.StringInput
 }
 
 func (DatabaseArgs) ElementType() reflect.Type {
@@ -241,6 +267,11 @@ func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) Databas
 	return o
 }
 
+// The engine of the database
+func (o DatabaseOutput) Engine() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
+}
+
 // The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
 func (o DatabaseOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.FirewallId }).(pulumi.StringOutput)
@@ -284,6 +315,11 @@ func (o DatabaseOutput) Status() pulumi.StringOutput {
 // The username of the database
 func (o DatabaseOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Username }).(pulumi.StringOutput)
+}
+
+// The version of the database
+func (o DatabaseOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
 type DatabaseArrayOutput struct{ *pulumi.OutputState }

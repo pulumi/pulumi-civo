@@ -35,6 +35,11 @@ export const getDatabase: typeof import("./getDatabase").getDatabase = null as a
 export const getDatabaseOutput: typeof import("./getDatabase").getDatabaseOutput = null as any;
 utilities.lazyLoad(exports, ["getDatabase","getDatabaseOutput"], () => require("./getDatabase"));
 
+export { GetDatabaseVersionArgs, GetDatabaseVersionResult, GetDatabaseVersionOutputArgs } from "./getDatabaseVersion";
+export const getDatabaseVersion: typeof import("./getDatabaseVersion").getDatabaseVersion = null as any;
+export const getDatabaseVersionOutput: typeof import("./getDatabaseVersion").getDatabaseVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getDatabaseVersion","getDatabaseVersionOutput"], () => require("./getDatabaseVersion"));
+
 export { GetDiskImageArgs, GetDiskImageResult, GetDiskImageOutputArgs } from "./getDiskImage";
 export const getDiskImage: typeof import("./getDiskImage").getDiskImage = null as any;
 export const getDiskImageOutput: typeof import("./getDiskImage").getDiskImageOutput = null as any;
@@ -64,11 +69,6 @@ export { GetInstancesArgs, GetInstancesResult, GetInstancesOutputArgs } from "./
 export const getInstances: typeof import("./getInstances").getInstances = null as any;
 export const getInstancesOutput: typeof import("./getInstances").getInstancesOutput = null as any;
 utilities.lazyLoad(exports, ["getInstances","getInstancesOutput"], () => require("./getInstances"));
-
-export { GetInstancesSizeArgs, GetInstancesSizeResult, GetInstancesSizeOutputArgs } from "./getInstancesSize";
-export const getInstancesSize: typeof import("./getInstancesSize").getInstancesSize = null as any;
-export const getInstancesSizeOutput: typeof import("./getInstancesSize").getInstancesSizeOutput = null as any;
-utilities.lazyLoad(exports, ["getInstancesSize","getInstancesSizeOutput"], () => require("./getInstancesSize"));
 
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;

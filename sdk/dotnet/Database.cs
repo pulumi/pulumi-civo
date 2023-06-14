@@ -22,6 +22,12 @@ namespace Pulumi.Civo
     public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The engine of the database
+        /// </summary>
+        [Output("engine")]
+        public Output<string> Engine { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         /// </summary>
         [Output("firewallId")]
@@ -75,6 +81,12 @@ namespace Pulumi.Civo
         [Output("username")]
         public Output<string> Username { get; private set; } = null!;
 
+        /// <summary>
+        /// The version of the database
+        /// </summary>
+        [Output("version")]
+        public Output<string> Version { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Database resource with the given unique name, arguments, and options.
@@ -122,6 +134,12 @@ namespace Pulumi.Civo
     public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The engine of the database
+        /// </summary>
+        [Input("engine", required: true)]
+        public Input<string> Engine { get; set; } = null!;
+
+        /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         /// </summary>
         [Input("firewallId")]
@@ -157,6 +175,12 @@ namespace Pulumi.Civo
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
 
+        /// <summary>
+        /// The version of the database
+        /// </summary>
+        [Input("version", required: true)]
+        public Input<string> Version { get; set; } = null!;
+
         public DatabaseArgs()
         {
         }
@@ -165,6 +189,12 @@ namespace Pulumi.Civo
 
     public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The engine of the database
+        /// </summary>
+        [Input("engine")]
+        public Input<string>? Engine { get; set; }
+
         /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         /// </summary>
@@ -218,6 +248,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
+
+        /// <summary>
+        /// The version of the database
+        /// </summary>
+        [Input("version")]
+        public Input<string>? Version { get; set; }
 
         public DatabaseState()
         {

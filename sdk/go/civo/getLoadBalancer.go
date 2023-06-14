@@ -56,7 +56,7 @@ type GetLoadBalancerArgs struct {
 	Id *string `pulumi:"id"`
 	// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
 	Name *string `pulumi:"name"`
-	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+	// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
 	Region *string `pulumi:"region"`
 }
 
@@ -81,7 +81,7 @@ type GetLoadBalancerResult struct {
 	PrivateIp string `pulumi:"privateIp"`
 	// The public ip of the load balancer
 	PublicIp string `pulumi:"publicIp"`
-	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+	// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
 	Region *string `pulumi:"region"`
 	// The session affinity of the load balancer
 	SessionAffinity string `pulumi:"sessionAffinity"`
@@ -110,7 +110,7 @@ type GetLoadBalancerOutputArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
 	Name pulumi.StringPtrInput `pulumi:"name"`
-	// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+	// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
 	Region pulumi.StringPtrInput `pulumi:"region"`
 }
 
@@ -182,7 +182,7 @@ func (o GetLoadBalancerResultOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) string { return v.PublicIp }).(pulumi.StringOutput)
 }
 
-// The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+// The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
 func (o GetLoadBalancerResultOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetLoadBalancerResult) *string { return v.Region }).(pulumi.StringPtrOutput)
 }

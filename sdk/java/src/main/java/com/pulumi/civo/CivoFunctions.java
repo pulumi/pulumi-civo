@@ -6,6 +6,8 @@ package com.pulumi.civo;
 import com.pulumi.civo.Utilities;
 import com.pulumi.civo.inputs.GetDatabaseArgs;
 import com.pulumi.civo.inputs.GetDatabasePlainArgs;
+import com.pulumi.civo.inputs.GetDatabaseVersionArgs;
+import com.pulumi.civo.inputs.GetDatabaseVersionPlainArgs;
 import com.pulumi.civo.inputs.GetDiskImageArgs;
 import com.pulumi.civo.inputs.GetDiskImagePlainArgs;
 import com.pulumi.civo.inputs.GetDnsDomainNameArgs;
@@ -18,8 +20,6 @@ import com.pulumi.civo.inputs.GetInstanceArgs;
 import com.pulumi.civo.inputs.GetInstancePlainArgs;
 import com.pulumi.civo.inputs.GetInstancesArgs;
 import com.pulumi.civo.inputs.GetInstancesPlainArgs;
-import com.pulumi.civo.inputs.GetInstancesSizeArgs;
-import com.pulumi.civo.inputs.GetInstancesSizePlainArgs;
 import com.pulumi.civo.inputs.GetKubernetesClusterArgs;
 import com.pulumi.civo.inputs.GetKubernetesClusterPlainArgs;
 import com.pulumi.civo.inputs.GetKubernetesVersionArgs;
@@ -43,13 +43,13 @@ import com.pulumi.civo.inputs.GetSshKeyPlainArgs;
 import com.pulumi.civo.inputs.GetVolumeArgs;
 import com.pulumi.civo.inputs.GetVolumePlainArgs;
 import com.pulumi.civo.outputs.GetDatabaseResult;
+import com.pulumi.civo.outputs.GetDatabaseVersionResult;
 import com.pulumi.civo.outputs.GetDiskImageResult;
 import com.pulumi.civo.outputs.GetDnsDomainNameResult;
 import com.pulumi.civo.outputs.GetDnsDomainRecordResult;
 import com.pulumi.civo.outputs.GetFirewallResult;
 import com.pulumi.civo.outputs.GetInstanceResult;
 import com.pulumi.civo.outputs.GetInstancesResult;
-import com.pulumi.civo.outputs.GetInstancesSizeResult;
 import com.pulumi.civo.outputs.GetKubernetesClusterResult;
 import com.pulumi.civo.outputs.GetKubernetesVersionResult;
 import com.pulumi.civo.outputs.GetLoadBalancerResult;
@@ -307,6 +307,48 @@ public final class CivoFunctions {
      */
     public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getDatabase:getDatabase", TypeShape.of(GetDatabaseResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static Output<GetDatabaseVersionResult> getDatabaseVersion() {
+        return getDatabaseVersion(GetDatabaseVersionArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static CompletableFuture<GetDatabaseVersionResult> getDatabaseVersionPlain() {
+        return getDatabaseVersionPlain(GetDatabaseVersionPlainArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static Output<GetDatabaseVersionResult> getDatabaseVersion(GetDatabaseVersionArgs args) {
+        return getDatabaseVersion(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static CompletableFuture<GetDatabaseVersionResult> getDatabaseVersionPlain(GetDatabaseVersionPlainArgs args) {
+        return getDatabaseVersionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static Output<GetDatabaseVersionResult> getDatabaseVersion(GetDatabaseVersionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDatabaseVersion:getDatabaseVersion", TypeShape.of(GetDatabaseVersionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static CompletableFuture<GetDatabaseVersionResult> getDatabaseVersionPlain(GetDatabaseVersionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("civo:index/getDatabaseVersion:getDatabaseVersion", TypeShape.of(GetDatabaseVersionResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
@@ -789,7 +831,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -831,7 +873,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -873,7 +915,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -915,7 +957,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -957,7 +999,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -999,7 +1041,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
      * 
-     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -1533,48 +1575,6 @@ public final class CivoFunctions {
      */
     public static CompletableFuture<GetInstancesResult> getInstancesPlain(GetInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getInstances:getInstances", TypeShape.of(GetInstancesResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static Output<GetInstancesSizeResult> getInstancesSize() {
-        return getInstancesSize(GetInstancesSizeArgs.Empty, InvokeOptions.Empty);
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static CompletableFuture<GetInstancesSizeResult> getInstancesSizePlain() {
-        return getInstancesSizePlain(GetInstancesSizePlainArgs.Empty, InvokeOptions.Empty);
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static Output<GetInstancesSizeResult> getInstancesSize(GetInstancesSizeArgs args) {
-        return getInstancesSize(args, InvokeOptions.Empty);
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static CompletableFuture<GetInstancesSizeResult> getInstancesSizePlain(GetInstancesSizePlainArgs args) {
-        return getInstancesSizePlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static Output<GetInstancesSizeResult> getInstancesSize(GetInstancesSizeArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("civo:index/getInstancesSize:getInstancesSize", TypeShape.of(GetInstancesSizeResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Retrieves information about the instance sizes that Civo supports, with the ability to filter the results.
-     * 
-     */
-    public static CompletableFuture<GetInstancesSizeResult> getInstancesSizePlain(GetInstancesSizePlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("civo:index/getInstancesSize:getInstancesSize", TypeShape.of(GetInstancesSizeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Provides a Civo Kubernetes cluster data source.
@@ -2349,7 +2349,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -2391,7 +2391,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -2433,7 +2433,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -2475,7 +2475,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -2517,7 +2517,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -2559,7 +2559,7 @@ public final class CivoFunctions {
      * 
      * This data source provides all of the network&#39;s properties as configured on your Civo account.
      * 
-     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for an expecific network inside that region.
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
      * ```java
@@ -3295,10 +3295,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```
@@ -3334,10 +3335,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```
@@ -3373,10 +3375,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```
@@ -3412,10 +3415,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```
@@ -3451,10 +3455,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```
@@ -3490,10 +3495,11 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var mysql = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;database-mysql&#34;)
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name(&#34;test-volume-name&#34;)
      *             .build());
      * 
+     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
      *     }
      * }
      * ```

@@ -7,29 +7,26 @@ using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
 
-namespace Pulumi.Civo.Outputs
+namespace Pulumi.Civo.Inputs
 {
 
-    [OutputType]
-    public sealed class GetInstancesSizeSortResult
+    public sealed class GetDatabaseVersionSortArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
         /// The sort direction. This may be either `asc` or `desc`.
         /// </summary>
-        public readonly string? Direction;
+        [Input("direction")]
+        public string? Direction { get; set; }
+
         /// <summary>
-        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Sort versions by this key. This may be one of `default`, `engine`, `version`.
         /// </summary>
-        public readonly string Key;
+        [Input("key", required: true)]
+        public string Key { get; set; } = null!;
 
-        [OutputConstructor]
-        private GetInstancesSizeSortResult(
-            string? direction,
-
-            string key)
+        public GetDatabaseVersionSortArgs()
         {
-            Direction = direction;
-            Key = key;
         }
+        public static new GetDatabaseVersionSortArgs Empty => new GetDatabaseVersionSortArgs();
     }
 }

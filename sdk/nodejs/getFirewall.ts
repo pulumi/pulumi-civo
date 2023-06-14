@@ -9,7 +9,7 @@ import * as utilities from "./utilities";
  *
  * This data source provides all of the firewall's properties as configured on your Civo account.
  *
- * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+ * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
  *
  * ## Example Usage
  *
@@ -78,7 +78,7 @@ export interface GetFirewallResult {
  *
  * This data source provides all of the firewall's properties as configured on your Civo account.
  *
- * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for an expecific firewall inside that region.
+ * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
  *
  * ## Example Usage
  *

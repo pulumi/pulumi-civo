@@ -10,41 +10,41 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo.Inputs
 {
 
-    public sealed class GetInstancesSizeFilterArgs : global::Pulumi.InvokeArgs
+    public sealed class GetDatabaseVersionFilterInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
         /// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         /// </summary>
         [Input("all")]
-        public bool? All { get; set; }
+        public Input<bool>? All { get; set; }
 
         /// <summary>
-        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Filter versions by this key. This may be one of `default`, `engine`, `version`.
         /// </summary>
         [Input("key", required: true)]
-        public string Key { get; set; } = null!;
+        public Input<string> Key { get; set; } = null!;
 
         /// <summary>
         /// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         /// </summary>
         [Input("matchBy")]
-        public string? MatchBy { get; set; }
+        public Input<string>? MatchBy { get; set; }
 
         [Input("values", required: true)]
-        private List<string>? _values;
+        private InputList<string>? _values;
 
         /// <summary>
-        /// Only retrieves `sizes` which keys has value that matches one of the values provided here
+        /// Only retrieves `versions` which keys has value that matches one of the values provided here
         /// </summary>
-        public List<string> Values
+        public InputList<string> Values
         {
-            get => _values ?? (_values = new List<string>());
+            get => _values ?? (_values = new InputList<string>());
             set => _values = value;
         }
 
-        public GetInstancesSizeFilterArgs()
+        public GetDatabaseVersionFilterInputArgs()
         {
         }
-        public static new GetInstancesSizeFilterArgs Empty => new GetInstancesSizeFilterArgs();
+        public static new GetDatabaseVersionFilterInputArgs Empty => new GetDatabaseVersionFilterInputArgs();
     }
 }

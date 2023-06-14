@@ -61,7 +61,7 @@ public final class GetLoadBalancerResult {
      */
     private String publicIp;
     /**
-     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * @return The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      * 
      */
     private @Nullable String region;
@@ -149,7 +149,7 @@ public final class GetLoadBalancerResult {
         return this.publicIp;
     }
     /**
-     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * @return The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      * 
      */
     public Optional<String> region() {

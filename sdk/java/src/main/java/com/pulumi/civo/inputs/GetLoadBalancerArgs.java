@@ -46,14 +46,14 @@ public final class GetLoadBalancerArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+     * @return The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
      * 
      */
     public Optional<Output<String>> region() {
@@ -129,7 +129,7 @@ public final class GetLoadBalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+         * @param region The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class GetLoadBalancerArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param region The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+         * @param region The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
          * 
          * @return builder
          * 

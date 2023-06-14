@@ -147,7 +147,7 @@ class GetLoadBalancerResult:
     @pulumi.getter
     def region(self) -> Optional[str]:
         """
-        The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+        The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
         """
         return pulumi.get(self, "region")
 
@@ -221,7 +221,7 @@ def get_load_balancer(id: Optional[str] = None,
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+    :param str region: The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
     """
     __args__ = dict()
     __args__['id'] = id
@@ -271,6 +271,6 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
-    :param str region: The region of the load balancer, if you delcare this field, the datasource will use this value instead of the one defined in the provider
+    :param str region: The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
     """
     ...

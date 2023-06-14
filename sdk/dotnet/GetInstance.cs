@@ -138,7 +138,7 @@ namespace Pulumi.Civo
     public sealed class GetInstanceResult
     {
         /// <summary>
-        /// Total cpu of the inatance
+        /// Total cpu of the instance
         /// </summary>
         public readonly int CpuCores;
         /// <summary>

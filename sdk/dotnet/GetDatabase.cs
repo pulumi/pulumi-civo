@@ -132,6 +132,10 @@ namespace Pulumi.Civo
     public sealed class GetDatabaseResult
     {
         /// <summary>
+        /// The engine of the database
+        /// </summary>
+        public readonly string Engine;
+        /// <summary>
         /// The firewall id of the Database
         /// </summary>
         public readonly string FirewallId;
@@ -171,9 +175,15 @@ namespace Pulumi.Civo
         /// The username of the database
         /// </summary>
         public readonly string Username;
+        /// <summary>
+        /// The version of the database
+        /// </summary>
+        public readonly string Version;
 
         [OutputConstructor]
         private GetDatabaseResult(
+            string engine,
+
             string firewallId,
 
             string? id,
@@ -192,8 +202,11 @@ namespace Pulumi.Civo
 
             string status,
 
-            string username)
+            string username,
+
+            string version)
         {
+            Engine = engine;
             FirewallId = firewallId;
             Id = id;
             Name = name;
@@ -204,6 +217,7 @@ namespace Pulumi.Civo
             Size = size;
             Status = status;
             Username = username;
+            Version = version;
         }
     }
 }

@@ -12,14 +12,14 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class GetInstancesSizeFilter {
+public final class GetDatabaseVersionFilter {
     /**
      * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
      * 
      */
     private @Nullable Boolean all;
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     private String key;
@@ -29,12 +29,12 @@ public final class GetInstancesSizeFilter {
      */
     private @Nullable String matchBy;
     /**
-     * @return Only retrieves `sizes` which keys has value that matches one of the values provided here
+     * @return Only retrieves `versions` which keys has value that matches one of the values provided here
      * 
      */
     private List<String> values;
 
-    private GetInstancesSizeFilter() {}
+    private GetDatabaseVersionFilter() {}
     /**
      * @return Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
      * 
@@ -43,7 +43,7 @@ public final class GetInstancesSizeFilter {
         return Optional.ofNullable(this.all);
     }
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter versions by this key. This may be one of `default`, `engine`, `version`.
      * 
      */
     public String key() {
@@ -57,7 +57,7 @@ public final class GetInstancesSizeFilter {
         return Optional.ofNullable(this.matchBy);
     }
     /**
-     * @return Only retrieves `sizes` which keys has value that matches one of the values provided here
+     * @return Only retrieves `versions` which keys has value that matches one of the values provided here
      * 
      */
     public List<String> values() {
@@ -68,7 +68,7 @@ public final class GetInstancesSizeFilter {
         return new Builder();
     }
 
-    public static Builder builder(GetInstancesSizeFilter defaults) {
+    public static Builder builder(GetDatabaseVersionFilter defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
@@ -78,7 +78,7 @@ public final class GetInstancesSizeFilter {
         private @Nullable String matchBy;
         private List<String> values;
         public Builder() {}
-        public Builder(GetInstancesSizeFilter defaults) {
+        public Builder(GetDatabaseVersionFilter defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.all = defaults.all;
     	      this.key = defaults.key;
@@ -109,8 +109,8 @@ public final class GetInstancesSizeFilter {
         public Builder values(String... values) {
             return values(List.of(values));
         }
-        public GetInstancesSizeFilter build() {
-            final var o = new GetInstancesSizeFilter();
+        public GetDatabaseVersionFilter build() {
+            final var o = new GetDatabaseVersionFilter();
             o.all = all;
             o.key = key;
             o.matchBy = matchBy;

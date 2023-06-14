@@ -119,7 +119,8 @@ def get_volume(id: Optional[str] = None,
     import pulumi
     import pulumi_civo as civo
 
-    mysql = civo.get_volume(name="database-mysql")
+    myvolume = civo.get_volume(name="test-volume-name")
+    pulumi.export("volumeOutput", myvolume)
     ```
 
 
@@ -159,7 +160,8 @@ def get_volume_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_civo as civo
 
-    mysql = civo.get_volume(name="database-mysql")
+    myvolume = civo.get_volume(name="test-volume-name")
+    pulumi.export("volumeOutput", myvolume)
     ```
 
 

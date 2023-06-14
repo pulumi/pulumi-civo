@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetInstanceResult {
     /**
-     * @return Total cpu of the inatance
+     * @return Total cpu of the instance
      * 
      */
     private Integer cpuCores;
@@ -126,7 +126,7 @@ public final class GetInstanceResult {
 
     private GetInstanceResult() {}
     /**
-     * @return Total cpu of the inatance
+     * @return Total cpu of the instance
      * 
      */
     public Integer cpuCores() {

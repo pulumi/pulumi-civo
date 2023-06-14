@@ -55,6 +55,10 @@ export interface GetDatabaseArgs {
  */
 export interface GetDatabaseResult {
     /**
+     * The engine of the database
+     */
+    readonly engine: string;
+    /**
      * The firewall id of the Database
      */
     readonly firewallId: string;
@@ -94,6 +98,10 @@ export interface GetDatabaseResult {
      * The username of the database
      */
     readonly username: string;
+    /**
+     * The version of the database
+     */
+    readonly version: string;
 }
 /**
  * Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.

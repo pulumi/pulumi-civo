@@ -3,9 +3,9 @@
 
 package com.pulumi.civo.outputs;
 
-import com.pulumi.civo.outputs.GetInstancesSizeFilter;
-import com.pulumi.civo.outputs.GetInstancesSizeSize;
-import com.pulumi.civo.outputs.GetInstancesSizeSort;
+import com.pulumi.civo.outputs.GetDatabaseVersionFilter;
+import com.pulumi.civo.outputs.GetDatabaseVersionSort;
+import com.pulumi.civo.outputs.GetDatabaseVersionVersion;
 import com.pulumi.core.annotations.CustomType;
 import java.lang.String;
 import java.util.List;
@@ -13,30 +13,30 @@ import java.util.Objects;
 import javax.annotation.Nullable;
 
 @CustomType
-public final class GetInstancesSizeResult {
+public final class GetDatabaseVersionResult {
     /**
      * @return One or more key/value pairs on which to filter results
      * 
      */
-    private @Nullable List<GetInstancesSizeFilter> filters;
+    private @Nullable List<GetDatabaseVersionFilter> filters;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
-    private List<GetInstancesSizeSize> sizes;
     /**
      * @return One or more key/direction pairs on which to sort results
      * 
      */
-    private @Nullable List<GetInstancesSizeSort> sorts;
+    private @Nullable List<GetDatabaseVersionSort> sorts;
+    private List<GetDatabaseVersionVersion> versions;
 
-    private GetInstancesSizeResult() {}
+    private GetDatabaseVersionResult() {}
     /**
      * @return One or more key/value pairs on which to filter results
      * 
      */
-    public List<GetInstancesSizeFilter> filters() {
+    public List<GetDatabaseVersionFilter> filters() {
         return this.filters == null ? List.of() : this.filters;
     }
     /**
@@ -46,45 +46,45 @@ public final class GetInstancesSizeResult {
     public String id() {
         return this.id;
     }
-    public List<GetInstancesSizeSize> sizes() {
-        return this.sizes;
-    }
     /**
      * @return One or more key/direction pairs on which to sort results
      * 
      */
-    public List<GetInstancesSizeSort> sorts() {
+    public List<GetDatabaseVersionSort> sorts() {
         return this.sorts == null ? List.of() : this.sorts;
+    }
+    public List<GetDatabaseVersionVersion> versions() {
+        return this.versions;
     }
 
     public static Builder builder() {
         return new Builder();
     }
 
-    public static Builder builder(GetInstancesSizeResult defaults) {
+    public static Builder builder(GetDatabaseVersionResult defaults) {
         return new Builder(defaults);
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable List<GetInstancesSizeFilter> filters;
+        private @Nullable List<GetDatabaseVersionFilter> filters;
         private String id;
-        private List<GetInstancesSizeSize> sizes;
-        private @Nullable List<GetInstancesSizeSort> sorts;
+        private @Nullable List<GetDatabaseVersionSort> sorts;
+        private List<GetDatabaseVersionVersion> versions;
         public Builder() {}
-        public Builder(GetInstancesSizeResult defaults) {
+        public Builder(GetDatabaseVersionResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.filters = defaults.filters;
     	      this.id = defaults.id;
-    	      this.sizes = defaults.sizes;
     	      this.sorts = defaults.sorts;
+    	      this.versions = defaults.versions;
         }
 
         @CustomType.Setter
-        public Builder filters(@Nullable List<GetInstancesSizeFilter> filters) {
+        public Builder filters(@Nullable List<GetDatabaseVersionFilter> filters) {
             this.filters = filters;
             return this;
         }
-        public Builder filters(GetInstancesSizeFilter... filters) {
+        public Builder filters(GetDatabaseVersionFilter... filters) {
             return filters(List.of(filters));
         }
         @CustomType.Setter
@@ -93,27 +93,27 @@ public final class GetInstancesSizeResult {
             return this;
         }
         @CustomType.Setter
-        public Builder sizes(List<GetInstancesSizeSize> sizes) {
-            this.sizes = Objects.requireNonNull(sizes);
-            return this;
-        }
-        public Builder sizes(GetInstancesSizeSize... sizes) {
-            return sizes(List.of(sizes));
-        }
-        @CustomType.Setter
-        public Builder sorts(@Nullable List<GetInstancesSizeSort> sorts) {
+        public Builder sorts(@Nullable List<GetDatabaseVersionSort> sorts) {
             this.sorts = sorts;
             return this;
         }
-        public Builder sorts(GetInstancesSizeSort... sorts) {
+        public Builder sorts(GetDatabaseVersionSort... sorts) {
             return sorts(List.of(sorts));
         }
-        public GetInstancesSizeResult build() {
-            final var o = new GetInstancesSizeResult();
+        @CustomType.Setter
+        public Builder versions(List<GetDatabaseVersionVersion> versions) {
+            this.versions = Objects.requireNonNull(versions);
+            return this;
+        }
+        public Builder versions(GetDatabaseVersionVersion... versions) {
+            return versions(List.of(versions));
+        }
+        public GetDatabaseVersionResult build() {
+            final var o = new GetDatabaseVersionResult();
             o.filters = filters;
             o.id = id;
-            o.sizes = sizes;
             o.sorts = sorts;
+            o.versions = versions;
             return o;
         }
     }

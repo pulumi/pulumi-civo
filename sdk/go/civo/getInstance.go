@@ -61,7 +61,7 @@ type LookupInstanceArgs struct {
 
 // A collection of values returned by getInstance.
 type LookupInstanceResult struct {
-	// Total cpu of the inatance
+	// Total cpu of the instance
 	CpuCores int `pulumi:"cpuCores"`
 	// The date of creation of the instance
 	CreatedAt string `pulumi:"createdAt"`
@@ -149,7 +149,7 @@ func (o LookupInstanceResultOutput) ToLookupInstanceResultOutputWithContext(ctx 
 	return o
 }
 
-// Total cpu of the inatance
+// Total cpu of the instance
 func (o LookupInstanceResultOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupInstanceResult) int { return v.CpuCores }).(pulumi.IntOutput)
 }

@@ -15,9 +15,10 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const mysql = civo.getVolume({
- *     name: "database-mysql",
+ * const myvolume = civo.getVolume({
+ *     name: "test-volume-name",
  * });
+ * export const volumeOutput = myvolume;
  * ```
  */
 export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
@@ -89,9 +90,10 @@ export interface GetVolumeResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const mysql = civo.getVolume({
- *     name: "database-mysql",
+ * const myvolume = civo.getVolume({
+ *     name: "test-volume-name",
  * });
+ * export const volumeOutput = myvolume;
  * ```
  */
 export function getVolumeOutput(args?: GetVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVolumeResult> {

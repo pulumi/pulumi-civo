@@ -27,6 +27,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/database:Database")
 public class Database extends com.pulumi.resources.CustomResource {
     /**
+     * The engine of the database
+     * 
+     */
+    @Export(name="engine", type=String.class, parameters={})
+    private Output<String> engine;
+
+    /**
+     * @return The engine of the database
+     * 
+     */
+    public Output<String> engine() {
+        return this.engine;
+    }
+    /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
@@ -151,6 +165,20 @@ public class Database extends com.pulumi.resources.CustomResource {
      */
     public Output<String> username() {
         return this.username;
+    }
+    /**
+     * The version of the database
+     * 
+     */
+    @Export(name="version", type=String.class, parameters={})
+    private Output<String> version;
+
+    /**
+     * @return The version of the database
+     * 
+     */
+    public Output<String> version() {
+        return this.version;
     }
 
     /**
