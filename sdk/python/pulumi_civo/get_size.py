@@ -96,10 +96,10 @@ def get_size(filters: Optional[Sequence[pulumi.InputType['GetSizeFilterArgs']]] 
     __ret__ = pulumi.runtime.invoke('civo:index/getSize:getSize', __args__, opts=opts, typ=GetSizeResult).value
 
     return AwaitableGetSizeResult(
-        filters=__ret__.filters,
-        id=__ret__.id,
-        sizes=__ret__.sizes,
-        sorts=__ret__.sorts)
+        filters=pulumi.get(__ret__, 'filters'),
+        id=pulumi.get(__ret__, 'id'),
+        sizes=pulumi.get(__ret__, 'sizes'),
+        sorts=pulumi.get(__ret__, 'sorts'))
 
 
 @_utilities.lift_output_func(get_size)

@@ -21,7 +21,13 @@ class GetDatabaseResult:
     """
     A collection of values returned by getDatabase.
     """
-    def __init__(__self__, engine=None, firewall_id=None, id=None, name=None, network_id=None, nodes=None, password=None, region=None, size=None, status=None, username=None, version=None):
+    def __init__(__self__, dns_endpoint=None, endpoint=None, engine=None, firewall_id=None, id=None, name=None, network_id=None, nodes=None, password=None, port=None, region=None, size=None, status=None, username=None, version=None):
+        if dns_endpoint and not isinstance(dns_endpoint, str):
+            raise TypeError("Expected argument 'dns_endpoint' to be a str")
+        pulumi.set(__self__, "dns_endpoint", dns_endpoint)
+        if endpoint and not isinstance(endpoint, str):
+            raise TypeError("Expected argument 'endpoint' to be a str")
+        pulumi.set(__self__, "endpoint", endpoint)
         if engine and not isinstance(engine, str):
             raise TypeError("Expected argument 'engine' to be a str")
         pulumi.set(__self__, "engine", engine)
@@ -43,6 +49,9 @@ class GetDatabaseResult:
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
+        if port and not isinstance(port, int):
+            raise TypeError("Expected argument 'port' to be a int")
+        pulumi.set(__self__, "port", port)
         if region and not isinstance(region, str):
             raise TypeError("Expected argument 'region' to be a str")
         pulumi.set(__self__, "region", region)
@@ -58,6 +67,22 @@ class GetDatabaseResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="dnsEndpoint")
+    def dns_endpoint(self) -> str:
+        """
+        The DNS endpoint of the database
+        """
+        return pulumi.get(self, "dns_endpoint")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        The endpoint of the database
+        """
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -117,6 +142,14 @@ class GetDatabaseResult:
 
     @property
     @pulumi.getter
+    def port(self) -> int:
+        """
+        The port of the database
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
     def region(self) -> str:
         """
         The region of an existing Database
@@ -162,6 +195,8 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
         if False:
             yield self
         return GetDatabaseResult(
+            dns_endpoint=self.dns_endpoint,
+            endpoint=self.endpoint,
             engine=self.engine,
             firewall_id=self.firewall_id,
             id=self.id,
@@ -169,6 +204,7 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
             network_id=self.network_id,
             nodes=self.nodes,
             password=self.password,
+            port=self.port,
             region=self.region,
             size=self.size,
             status=self.status,
@@ -208,18 +244,21 @@ def get_database(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getDatabase:getDatabase', __args__, opts=opts, typ=GetDatabaseResult).value
 
     return AwaitableGetDatabaseResult(
-        engine=__ret__.engine,
-        firewall_id=__ret__.firewall_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        network_id=__ret__.network_id,
-        nodes=__ret__.nodes,
-        password=__ret__.password,
-        region=__ret__.region,
-        size=__ret__.size,
-        status=__ret__.status,
-        username=__ret__.username,
-        version=__ret__.version)
+        dns_endpoint=pulumi.get(__ret__, 'dns_endpoint'),
+        endpoint=pulumi.get(__ret__, 'endpoint'),
+        engine=pulumi.get(__ret__, 'engine'),
+        firewall_id=pulumi.get(__ret__, 'firewall_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        network_id=pulumi.get(__ret__, 'network_id'),
+        nodes=pulumi.get(__ret__, 'nodes'),
+        password=pulumi.get(__ret__, 'password'),
+        port=pulumi.get(__ret__, 'port'),
+        region=pulumi.get(__ret__, 'region'),
+        size=pulumi.get(__ret__, 'size'),
+        status=pulumi.get(__ret__, 'status'),
+        username=pulumi.get(__ret__, 'username'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_database)

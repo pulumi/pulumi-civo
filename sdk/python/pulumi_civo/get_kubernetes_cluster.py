@@ -58,10 +58,6 @@ class GetKubernetesClusterResult:
         pulumi.set(__self__, "name", name)
         if num_target_nodes and not isinstance(num_target_nodes, int):
             raise TypeError("Expected argument 'num_target_nodes' to be a int")
-        if num_target_nodes is not None:
-            warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
-            pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated and will be removed in a future version of the provider""")
-
         pulumi.set(__self__, "num_target_nodes", num_target_nodes)
         if pools and not isinstance(pools, list):
             raise TypeError("Expected argument 'pools' to be a list")
@@ -80,10 +76,6 @@ class GetKubernetesClusterResult:
         pulumi.set(__self__, "tags", tags)
         if target_nodes_size and not isinstance(target_nodes_size, str):
             raise TypeError("Expected argument 'target_nodes_size' to be a str")
-        if target_nodes_size is not None:
-            warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
-            pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated and will be removed in a future version of the provider""")
-
         pulumi.set(__self__, "target_nodes_size", target_nodes_size)
 
     @property
@@ -177,6 +169,9 @@ class GetKubernetesClusterResult:
         """
         The size of the Kubernetes cluster
         """
+        warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
+        pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated and will be removed in a future version of the provider""")
+
         return pulumi.get(self, "num_target_nodes")
 
     @property
@@ -222,6 +217,9 @@ class GetKubernetesClusterResult:
         """
         The size of each node
         """
+        warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
+        pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated and will be removed in a future version of the provider""")
+
         return pulumi.get(self, "target_nodes_size")
 
 
@@ -283,24 +281,24 @@ def get_kubernetes_cluster(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult).value
 
     return AwaitableGetKubernetesClusterResult(
-        api_endpoint=__ret__.api_endpoint,
-        applications=__ret__.applications,
-        cni=__ret__.cni,
-        created_at=__ret__.created_at,
-        dns_entry=__ret__.dns_entry,
-        id=__ret__.id,
-        installed_applications=__ret__.installed_applications,
-        kubeconfig=__ret__.kubeconfig,
-        kubernetes_version=__ret__.kubernetes_version,
-        master_ip=__ret__.master_ip,
-        name=__ret__.name,
-        num_target_nodes=__ret__.num_target_nodes,
-        pools=__ret__.pools,
-        ready=__ret__.ready,
-        region=__ret__.region,
-        status=__ret__.status,
-        tags=__ret__.tags,
-        target_nodes_size=__ret__.target_nodes_size)
+        api_endpoint=pulumi.get(__ret__, 'api_endpoint'),
+        applications=pulumi.get(__ret__, 'applications'),
+        cni=pulumi.get(__ret__, 'cni'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        dns_entry=pulumi.get(__ret__, 'dns_entry'),
+        id=pulumi.get(__ret__, 'id'),
+        installed_applications=pulumi.get(__ret__, 'installed_applications'),
+        kubeconfig=pulumi.get(__ret__, 'kubeconfig'),
+        kubernetes_version=pulumi.get(__ret__, 'kubernetes_version'),
+        master_ip=pulumi.get(__ret__, 'master_ip'),
+        name=pulumi.get(__ret__, 'name'),
+        num_target_nodes=pulumi.get(__ret__, 'num_target_nodes'),
+        pools=pulumi.get(__ret__, 'pools'),
+        ready=pulumi.get(__ret__, 'ready'),
+        region=pulumi.get(__ret__, 'region'),
+        status=pulumi.get(__ret__, 'status'),
+        tags=pulumi.get(__ret__, 'tags'),
+        target_nodes_size=pulumi.get(__ret__, 'target_nodes_size'))
 
 
 @_utilities.lift_output_func(get_kubernetes_cluster)

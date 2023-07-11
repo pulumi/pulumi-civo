@@ -22,6 +22,18 @@ namespace Pulumi.Civo
     public partial class Database : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The DNS endpoint of the database
+        /// </summary>
+        [Output("dnsEndpoint")]
+        public Output<string> DnsEndpoint { get; private set; } = null!;
+
+        /// <summary>
+        /// The endpoint of the database
+        /// </summary>
+        [Output("endpoint")]
+        public Output<string> Endpoint { get; private set; } = null!;
+
+        /// <summary>
         /// The engine of the database
         /// </summary>
         [Output("engine")]
@@ -56,6 +68,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("password")]
         public Output<string> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// The port of the database
+        /// </summary>
+        [Output("port")]
+        public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
         /// The region where the database will be created.
@@ -190,6 +208,18 @@ namespace Pulumi.Civo
     public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The DNS endpoint of the database
+        /// </summary>
+        [Input("dnsEndpoint")]
+        public Input<string>? DnsEndpoint { get; set; }
+
+        /// <summary>
+        /// The endpoint of the database
+        /// </summary>
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
+
+        /// <summary>
         /// The engine of the database
         /// </summary>
         [Input("engine")]
@@ -224,6 +254,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
+
+        /// <summary>
+        /// The port of the database
+        /// </summary>
+        [Input("port")]
+        public Input<int>? Port { get; set; }
 
         /// <summary>
         /// The region where the database will be created.

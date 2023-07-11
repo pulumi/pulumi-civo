@@ -126,11 +126,11 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
     __ret__ = pulumi.runtime.invoke('civo:index/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult).value
 
     return AwaitableGetInstancesResult(
-        filters=__ret__.filters,
-        id=__ret__.id,
-        instances=__ret__.instances,
-        region=__ret__.region,
-        sorts=__ret__.sorts)
+        filters=pulumi.get(__ret__, 'filters'),
+        id=pulumi.get(__ret__, 'id'),
+        instances=pulumi.get(__ret__, 'instances'),
+        region=pulumi.get(__ret__, 'region'),
+        sorts=pulumi.get(__ret__, 'sorts'))
 
 
 @_utilities.lift_output_func(get_instances)

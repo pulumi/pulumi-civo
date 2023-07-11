@@ -132,6 +132,14 @@ namespace Pulumi.Civo
     public sealed class GetDatabaseResult
     {
         /// <summary>
+        /// The DNS endpoint of the database
+        /// </summary>
+        public readonly string DnsEndpoint;
+        /// <summary>
+        /// The endpoint of the database
+        /// </summary>
+        public readonly string Endpoint;
+        /// <summary>
         /// The engine of the database
         /// </summary>
         public readonly string Engine;
@@ -160,6 +168,10 @@ namespace Pulumi.Civo
         /// </summary>
         public readonly string Password;
         /// <summary>
+        /// The port of the database
+        /// </summary>
+        public readonly int Port;
+        /// <summary>
         /// The region of an existing Database
         /// </summary>
         public readonly string Region;
@@ -182,6 +194,10 @@ namespace Pulumi.Civo
 
         [OutputConstructor]
         private GetDatabaseResult(
+            string dnsEndpoint,
+
+            string endpoint,
+
             string engine,
 
             string firewallId,
@@ -196,6 +212,8 @@ namespace Pulumi.Civo
 
             string password,
 
+            int port,
+
             string region,
 
             string size,
@@ -206,6 +224,8 @@ namespace Pulumi.Civo
 
             string version)
         {
+            DnsEndpoint = dnsEndpoint;
+            Endpoint = endpoint;
             Engine = engine;
             FirewallId = firewallId;
             Id = id;
@@ -213,6 +233,7 @@ namespace Pulumi.Civo
             NetworkId = networkId;
             Nodes = nodes;
             Password = password;
+            Port = port;
             Region = region;
             Size = size;
             Status = status;

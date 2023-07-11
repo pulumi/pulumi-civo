@@ -96,10 +96,10 @@ def get_database_version(filters: Optional[Sequence[pulumi.InputType['GetDatabas
     __ret__ = pulumi.runtime.invoke('civo:index/getDatabaseVersion:getDatabaseVersion', __args__, opts=opts, typ=GetDatabaseVersionResult).value
 
     return AwaitableGetDatabaseVersionResult(
-        filters=__ret__.filters,
-        id=__ret__.id,
-        sorts=__ret__.sorts,
-        versions=__ret__.versions)
+        filters=pulumi.get(__ret__, 'filters'),
+        id=pulumi.get(__ret__, 'id'),
+        sorts=pulumi.get(__ret__, 'sorts'),
+        versions=pulumi.get(__ret__, 'versions'))
 
 
 @_utilities.lift_output_func(get_database_version)

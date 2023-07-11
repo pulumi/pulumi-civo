@@ -111,11 +111,11 @@ def get_disk_image(filters: Optional[Sequence[pulumi.InputType['GetDiskImageFilt
     __ret__ = pulumi.runtime.invoke('civo:index/getDiskImage:getDiskImage', __args__, opts=opts, typ=GetDiskImageResult).value
 
     return AwaitableGetDiskImageResult(
-        diskimages=__ret__.diskimages,
-        filters=__ret__.filters,
-        id=__ret__.id,
-        region=__ret__.region,
-        sorts=__ret__.sorts)
+        diskimages=pulumi.get(__ret__, 'diskimages'),
+        filters=pulumi.get(__ret__, 'filters'),
+        id=pulumi.get(__ret__, 'id'),
+        region=pulumi.get(__ret__, 'region'),
+        sorts=pulumi.get(__ret__, 'sorts'))
 
 
 @_utilities.lift_output_func(get_disk_image)

@@ -239,6 +239,9 @@ class InstanceArgs:
         """
         The ID for the template to use to build the instance
         """
+        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
+
         return pulumi.get(self, "template")
 
     @template.setter
@@ -634,6 +637,9 @@ class _InstanceState:
         """
         The ID for the template to use to build the instance
         """
+        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
+
         return pulumi.get(self, "template")
 
     @template.setter
@@ -1059,5 +1065,8 @@ class Instance(pulumi.CustomResource):
         """
         The ID for the template to use to build the instance
         """
+        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
+        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
+
         return pulumi.get(self, "template")
 

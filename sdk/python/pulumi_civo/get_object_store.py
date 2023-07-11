@@ -147,13 +147,13 @@ def get_object_store(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getObjectStore:getObjectStore', __args__, opts=opts, typ=GetObjectStoreResult).value
 
     return AwaitableGetObjectStoreResult(
-        access_key_id=__ret__.access_key_id,
-        bucket_url=__ret__.bucket_url,
-        id=__ret__.id,
-        max_size_gb=__ret__.max_size_gb,
-        name=__ret__.name,
-        region=__ret__.region,
-        status=__ret__.status)
+        access_key_id=pulumi.get(__ret__, 'access_key_id'),
+        bucket_url=pulumi.get(__ret__, 'bucket_url'),
+        id=pulumi.get(__ret__, 'id'),
+        max_size_gb=pulumi.get(__ret__, 'max_size_gb'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_object_store)

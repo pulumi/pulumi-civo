@@ -184,16 +184,16 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getDnsDomainRecord:getDnsDomainRecord', __args__, opts=opts, typ=GetDnsDomainRecordResult).value
 
     return AwaitableGetDnsDomainRecordResult(
-        account_id=__ret__.account_id,
-        created_at=__ret__.created_at,
-        domain_id=__ret__.domain_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        priority=__ret__.priority,
-        ttl=__ret__.ttl,
-        type=__ret__.type,
-        updated_at=__ret__.updated_at,
-        value=__ret__.value)
+        account_id=pulumi.get(__ret__, 'account_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        domain_id=pulumi.get(__ret__, 'domain_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        priority=pulumi.get(__ret__, 'priority'),
+        ttl=pulumi.get(__ret__, 'ttl'),
+        type=pulumi.get(__ret__, 'type'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        value=pulumi.get(__ret__, 'value'))
 
 
 @_utilities.lift_output_func(get_dns_domain_record)

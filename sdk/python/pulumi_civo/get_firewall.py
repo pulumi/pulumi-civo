@@ -114,10 +114,10 @@ def get_firewall(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getFirewall:getFirewall', __args__, opts=opts, typ=GetFirewallResult).value
 
     return AwaitableGetFirewallResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        network_id=__ret__.network_id,
-        region=__ret__.region)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        network_id=pulumi.get(__ret__, 'network_id'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_firewall)

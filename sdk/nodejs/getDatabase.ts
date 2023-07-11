@@ -55,6 +55,14 @@ export interface GetDatabaseArgs {
  */
 export interface GetDatabaseResult {
     /**
+     * The DNS endpoint of the database
+     */
+    readonly dnsEndpoint: string;
+    /**
+     * The endpoint of the database
+     */
+    readonly endpoint: string;
+    /**
      * The engine of the database
      */
     readonly engine: string;
@@ -82,6 +90,10 @@ export interface GetDatabaseResult {
      * The password of the database
      */
     readonly password: string;
+    /**
+     * The port of the database
+     */
+    readonly port: number;
     /**
      * The region of an existing Database
      */

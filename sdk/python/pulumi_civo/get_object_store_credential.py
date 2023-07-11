@@ -140,12 +140,12 @@ def get_object_store_credential(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getObjectStoreCredential:getObjectStoreCredential', __args__, opts=opts, typ=GetObjectStoreCredentialResult).value
 
     return AwaitableGetObjectStoreCredentialResult(
-        access_key_id=__ret__.access_key_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        region=__ret__.region,
-        secret_access_key=__ret__.secret_access_key,
-        status=__ret__.status)
+        access_key_id=pulumi.get(__ret__, 'access_key_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'),
+        secret_access_key=pulumi.get(__ret__, 'secret_access_key'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_object_store_credential)

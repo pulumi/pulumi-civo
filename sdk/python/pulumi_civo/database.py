@@ -146,12 +146,15 @@ class DatabaseArgs:
 @pulumi.input_type
 class _DatabaseState:
     def __init__(__self__, *,
+                 dns_endpoint: Optional[pulumi.Input[str]] = None,
+                 endpoint: Optional[pulumi.Input[str]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  firewall_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  nodes: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 port: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -159,18 +162,25 @@ class _DatabaseState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+        :param pulumi.Input[str] dns_endpoint: The DNS endpoint of the database
+        :param pulumi.Input[str] endpoint: The endpoint of the database
         :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] password: The password of the database
+        :param pulumi.Input[int] port: The port of the database
         :param pulumi.Input[str] region: The region where the database will be created.
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
         :param pulumi.Input[str] username: The username of the database
         :param pulumi.Input[str] version: The version of the database
         """
+        if dns_endpoint is not None:
+            pulumi.set(__self__, "dns_endpoint", dns_endpoint)
+        if endpoint is not None:
+            pulumi.set(__self__, "endpoint", endpoint)
         if engine is not None:
             pulumi.set(__self__, "engine", engine)
         if firewall_id is not None:
@@ -183,6 +193,8 @@ class _DatabaseState:
             pulumi.set(__self__, "nodes", nodes)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if size is not None:
@@ -193,6 +205,30 @@ class _DatabaseState:
             pulumi.set(__self__, "username", username)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="dnsEndpoint")
+    def dns_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS endpoint of the database
+        """
+        return pulumi.get(self, "dns_endpoint")
+
+    @dns_endpoint.setter
+    def dns_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_endpoint", value)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The endpoint of the database
+        """
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "endpoint", value)
 
     @property
     @pulumi.getter
@@ -265,6 +301,18 @@ class _DatabaseState:
     @password.setter
     def password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        The port of the database
+        """
+        return pulumi.get(self, "port")
+
+    @port.setter
+    def port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "port", value)
 
     @property
     @pulumi.getter
@@ -424,7 +472,10 @@ class Database(pulumi.CustomResource):
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
+            __props__.__dict__["dns_endpoint"] = None
+            __props__.__dict__["endpoint"] = None
             __props__.__dict__["password"] = None
+            __props__.__dict__["port"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["username"] = None
         super(Database, __self__).__init__(
@@ -437,12 +488,15 @@ class Database(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            dns_endpoint: Optional[pulumi.Input[str]] = None,
+            endpoint: Optional[pulumi.Input[str]] = None,
             engine: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             nodes: Optional[pulumi.Input[int]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            port: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -455,12 +509,15 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] dns_endpoint: The DNS endpoint of the database
+        :param pulumi.Input[str] endpoint: The endpoint of the database
         :param pulumi.Input[str] engine: The engine of the database
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         :param pulumi.Input[str] name: Name of the database
         :param pulumi.Input[str] network_id: The id of the associated network
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] password: The password of the database
+        :param pulumi.Input[int] port: The port of the database
         :param pulumi.Input[str] region: The region where the database will be created.
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
@@ -471,18 +528,37 @@ class Database(pulumi.CustomResource):
 
         __props__ = _DatabaseState.__new__(_DatabaseState)
 
+        __props__.__dict__["dns_endpoint"] = dns_endpoint
+        __props__.__dict__["endpoint"] = endpoint
         __props__.__dict__["engine"] = engine
         __props__.__dict__["firewall_id"] = firewall_id
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["password"] = password
+        __props__.__dict__["port"] = port
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
         __props__.__dict__["username"] = username
         __props__.__dict__["version"] = version
         return Database(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="dnsEndpoint")
+    def dns_endpoint(self) -> pulumi.Output[str]:
+        """
+        The DNS endpoint of the database
+        """
+        return pulumi.get(self, "dns_endpoint")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Output[str]:
+        """
+        The endpoint of the database
+        """
+        return pulumi.get(self, "endpoint")
 
     @property
     @pulumi.getter
@@ -531,6 +607,14 @@ class Database(pulumi.CustomResource):
         The password of the database
         """
         return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def port(self) -> pulumi.Output[int]:
+        """
+        The port of the database
+        """
+        return pulumi.get(self, "port")
 
     @property
     @pulumi.getter

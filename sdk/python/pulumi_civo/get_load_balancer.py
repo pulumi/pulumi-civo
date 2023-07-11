@@ -231,20 +231,20 @@ def get_load_balancer(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=GetLoadBalancerResult).value
 
     return AwaitableGetLoadBalancerResult(
-        algorithm=__ret__.algorithm,
-        backends=__ret__.backends,
-        cluster_id=__ret__.cluster_id,
-        enable_proxy_protocol=__ret__.enable_proxy_protocol,
-        external_traffic_policy=__ret__.external_traffic_policy,
-        firewall_id=__ret__.firewall_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        private_ip=__ret__.private_ip,
-        public_ip=__ret__.public_ip,
-        region=__ret__.region,
-        session_affinity=__ret__.session_affinity,
-        session_affinity_config_timeout=__ret__.session_affinity_config_timeout,
-        state=__ret__.state)
+        algorithm=pulumi.get(__ret__, 'algorithm'),
+        backends=pulumi.get(__ret__, 'backends'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        enable_proxy_protocol=pulumi.get(__ret__, 'enable_proxy_protocol'),
+        external_traffic_policy=pulumi.get(__ret__, 'external_traffic_policy'),
+        firewall_id=pulumi.get(__ret__, 'firewall_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        private_ip=pulumi.get(__ret__, 'private_ip'),
+        public_ip=pulumi.get(__ret__, 'public_ip'),
+        region=pulumi.get(__ret__, 'region'),
+        session_affinity=pulumi.get(__ret__, 'session_affinity'),
+        session_affinity_config_timeout=pulumi.get(__ret__, 'session_affinity_config_timeout'),
+        state=pulumi.get(__ret__, 'state'))
 
 
 @_utilities.lift_output_func(get_load_balancer)
