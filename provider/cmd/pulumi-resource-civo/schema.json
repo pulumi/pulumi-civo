@@ -39,6 +39,8 @@
             "disableUnionOutputTypes": true,
             "packageDescription": "A Pulumi package for creating and managing Civo cloud resources.",
             "packageName": "",
+            "pluginName": "",
+            "pluginVersion": "",
             "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
             "typescriptVersion": ""
         },
@@ -867,6 +869,14 @@
         "civo:index/database:Database": {
             "description": "\n\n## Import\n\nusing ID\n\n```sh\n $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e\n```\n\n ",
             "properties": {
+                "dnsEndpoint": {
+                    "type": "string",
+                    "description": "The DNS endpoint of the database\n"
+                },
+                "endpoint": {
+                    "type": "string",
+                    "description": "The endpoint of the database\n"
+                },
                 "engine": {
                     "type": "string",
                     "description": "The engine of the database\n"
@@ -891,6 +901,10 @@
                     "type": "string",
                     "description": "The password of the database\n"
                 },
+                "port": {
+                    "type": "integer",
+                    "description": "The port of the database\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The region where the database will be created.\n"
@@ -913,12 +927,15 @@
                 }
             },
             "required": [
+                "dnsEndpoint",
+                "endpoint",
                 "engine",
                 "firewallId",
                 "name",
                 "networkId",
                 "nodes",
                 "password",
+                "port",
                 "region",
                 "size",
                 "status",
@@ -941,7 +958,8 @@
                 },
                 "networkId": {
                     "type": "string",
-                    "description": "The id of the associated network\n"
+                    "description": "The id of the associated network\n",
+                    "willReplaceOnChanges": true
                 },
                 "nodes": {
                     "type": "integer",
@@ -969,6 +987,14 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Database resources.\n",
                 "properties": {
+                    "dnsEndpoint": {
+                        "type": "string",
+                        "description": "The DNS endpoint of the database\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the database\n"
+                    },
                     "engine": {
                         "type": "string",
                         "description": "The engine of the database\n"
@@ -984,7 +1010,8 @@
                     },
                     "networkId": {
                         "type": "string",
-                        "description": "The id of the associated network\n"
+                        "description": "The id of the associated network\n",
+                        "willReplaceOnChanges": true
                     },
                     "nodes": {
                         "type": "integer",
@@ -993,6 +1020,10 @@
                     "password": {
                         "type": "string",
                         "description": "The password of the database\n"
+                    },
+                    "port": {
+                        "type": "integer",
+                        "description": "The port of the database\n"
                     },
                     "region": {
                         "type": "string",
@@ -2691,6 +2722,14 @@
             "outputs": {
                 "description": "A collection of values returned by getDatabase.\n",
                 "properties": {
+                    "dnsEndpoint": {
+                        "type": "string",
+                        "description": "The DNS endpoint of the database\n"
+                    },
+                    "endpoint": {
+                        "type": "string",
+                        "description": "The endpoint of the database\n"
+                    },
                     "engine": {
                         "type": "string",
                         "description": "The engine of the database\n"
@@ -2719,6 +2758,10 @@
                         "type": "string",
                         "description": "The password of the database\n"
                     },
+                    "port": {
+                        "type": "integer",
+                        "description": "The port of the database\n"
+                    },
                     "region": {
                         "type": "string",
                         "description": "The region of an existing Database\n"
@@ -2742,11 +2785,14 @@
                 },
                 "type": "object",
                 "required": [
+                    "dnsEndpoint",
+                    "endpoint",
                     "engine",
                     "firewallId",
                     "networkId",
                     "nodes",
                     "password",
+                    "port",
                     "region",
                     "size",
                     "status",
