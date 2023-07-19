@@ -126,11 +126,11 @@ def get_network(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getNetwork:getNetwork', __args__, opts=opts, typ=GetNetworkResult).value
 
     return AwaitableGetNetworkResult(
-        default=__ret__.default,
-        id=__ret__.id,
-        label=__ret__.label,
-        name=__ret__.name,
-        region=__ret__.region)
+        default=pulumi.get(__ret__, 'default'),
+        id=pulumi.get(__ret__, 'id'),
+        label=pulumi.get(__ret__, 'label'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_network)

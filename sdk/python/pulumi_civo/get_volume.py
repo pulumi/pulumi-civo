@@ -136,12 +136,12 @@ def get_volume(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getVolume:getVolume', __args__, opts=opts, typ=GetVolumeResult).value
 
     return AwaitableGetVolumeResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        mount_point=__ret__.mount_point,
-        name=__ret__.name,
-        region=__ret__.region,
-        size_gb=__ret__.size_gb)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        mount_point=pulumi.get(__ret__, 'mount_point'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'),
+        size_gb=pulumi.get(__ret__, 'size_gb'))
 
 
 @_utilities.lift_output_func(get_volume)

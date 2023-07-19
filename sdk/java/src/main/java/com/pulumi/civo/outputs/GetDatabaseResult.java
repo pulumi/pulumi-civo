@@ -13,6 +13,16 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetDatabaseResult {
     /**
+     * @return The DNS endpoint of the database
+     * 
+     */
+    private String dnsEndpoint;
+    /**
+     * @return The endpoint of the database
+     * 
+     */
+    private String endpoint;
+    /**
      * @return The engine of the database
      * 
      */
@@ -48,6 +58,11 @@ public final class GetDatabaseResult {
      */
     private String password;
     /**
+     * @return The port of the database
+     * 
+     */
+    private Integer port;
+    /**
      * @return The region of an existing Database
      * 
      */
@@ -74,6 +89,20 @@ public final class GetDatabaseResult {
     private String version;
 
     private GetDatabaseResult() {}
+    /**
+     * @return The DNS endpoint of the database
+     * 
+     */
+    public String dnsEndpoint() {
+        return this.dnsEndpoint;
+    }
+    /**
+     * @return The endpoint of the database
+     * 
+     */
+    public String endpoint() {
+        return this.endpoint;
+    }
     /**
      * @return The engine of the database
      * 
@@ -124,6 +153,13 @@ public final class GetDatabaseResult {
         return this.password;
     }
     /**
+     * @return The port of the database
+     * 
+     */
+    public Integer port() {
+        return this.port;
+    }
+    /**
      * @return The region of an existing Database
      * 
      */
@@ -168,6 +204,8 @@ public final class GetDatabaseResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String dnsEndpoint;
+        private String endpoint;
         private String engine;
         private String firewallId;
         private @Nullable String id;
@@ -175,6 +213,7 @@ public final class GetDatabaseResult {
         private String networkId;
         private Integer nodes;
         private String password;
+        private Integer port;
         private String region;
         private String size;
         private String status;
@@ -183,6 +222,8 @@ public final class GetDatabaseResult {
         public Builder() {}
         public Builder(GetDatabaseResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.dnsEndpoint = defaults.dnsEndpoint;
+    	      this.endpoint = defaults.endpoint;
     	      this.engine = defaults.engine;
     	      this.firewallId = defaults.firewallId;
     	      this.id = defaults.id;
@@ -190,6 +231,7 @@ public final class GetDatabaseResult {
     	      this.networkId = defaults.networkId;
     	      this.nodes = defaults.nodes;
     	      this.password = defaults.password;
+    	      this.port = defaults.port;
     	      this.region = defaults.region;
     	      this.size = defaults.size;
     	      this.status = defaults.status;
@@ -197,6 +239,16 @@ public final class GetDatabaseResult {
     	      this.version = defaults.version;
         }
 
+        @CustomType.Setter
+        public Builder dnsEndpoint(String dnsEndpoint) {
+            this.dnsEndpoint = Objects.requireNonNull(dnsEndpoint);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder endpoint(String endpoint) {
+            this.endpoint = Objects.requireNonNull(endpoint);
+            return this;
+        }
         @CustomType.Setter
         public Builder engine(String engine) {
             this.engine = Objects.requireNonNull(engine);
@@ -233,6 +285,11 @@ public final class GetDatabaseResult {
             return this;
         }
         @CustomType.Setter
+        public Builder port(Integer port) {
+            this.port = Objects.requireNonNull(port);
+            return this;
+        }
+        @CustomType.Setter
         public Builder region(String region) {
             this.region = Objects.requireNonNull(region);
             return this;
@@ -259,6 +316,8 @@ public final class GetDatabaseResult {
         }
         public GetDatabaseResult build() {
             final var o = new GetDatabaseResult();
+            o.dnsEndpoint = dnsEndpoint;
+            o.endpoint = endpoint;
             o.engine = engine;
             o.firewallId = firewallId;
             o.id = id;
@@ -266,6 +325,7 @@ public final class GetDatabaseResult {
             o.networkId = networkId;
             o.nodes = nodes;
             o.password = password;
+            o.port = port;
             o.region = region;
             o.size = size;
             o.status = status;

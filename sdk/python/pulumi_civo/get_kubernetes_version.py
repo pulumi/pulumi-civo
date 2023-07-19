@@ -112,10 +112,10 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
     __ret__ = pulumi.runtime.invoke('civo:index/getKubernetesVersion:getKubernetesVersion', __args__, opts=opts, typ=GetKubernetesVersionResult).value
 
     return AwaitableGetKubernetesVersionResult(
-        filters=__ret__.filters,
-        id=__ret__.id,
-        sorts=__ret__.sorts,
-        versions=__ret__.versions)
+        filters=pulumi.get(__ret__, 'filters'),
+        id=pulumi.get(__ret__, 'id'),
+        sorts=pulumi.get(__ret__, 'sorts'),
+        versions=pulumi.get(__ret__, 'versions'))
 
 
 @_utilities.lift_output_func(get_kubernetes_version)

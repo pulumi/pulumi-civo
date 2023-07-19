@@ -27,6 +27,34 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/database:Database")
 public class Database extends com.pulumi.resources.CustomResource {
     /**
+     * The DNS endpoint of the database
+     * 
+     */
+    @Export(name="dnsEndpoint", type=String.class, parameters={})
+    private Output<String> dnsEndpoint;
+
+    /**
+     * @return The DNS endpoint of the database
+     * 
+     */
+    public Output<String> dnsEndpoint() {
+        return this.dnsEndpoint;
+    }
+    /**
+     * The endpoint of the database
+     * 
+     */
+    @Export(name="endpoint", type=String.class, parameters={})
+    private Output<String> endpoint;
+
+    /**
+     * @return The endpoint of the database
+     * 
+     */
+    public Output<String> endpoint() {
+        return this.endpoint;
+    }
+    /**
      * The engine of the database
      * 
      */
@@ -109,6 +137,20 @@ public class Database extends com.pulumi.resources.CustomResource {
      */
     public Output<String> password() {
         return this.password;
+    }
+    /**
+     * The port of the database
+     * 
+     */
+    @Export(name="port", type=Integer.class, parameters={})
+    private Output<Integer> port;
+
+    /**
+     * @return The port of the database
+     * 
+     */
+    public Output<Integer> port() {
+        return this.port;
     }
     /**
      * The region where the database will be created.

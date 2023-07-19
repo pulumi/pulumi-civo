@@ -23,6 +23,10 @@ import (
 type Database struct {
 	pulumi.CustomResourceState
 
+	// The DNS endpoint of the database
+	DnsEndpoint pulumi.StringOutput `pulumi:"dnsEndpoint"`
+	// The endpoint of the database
+	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
 	// The engine of the database
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
@@ -35,6 +39,8 @@ type Database struct {
 	Nodes pulumi.IntOutput `pulumi:"nodes"`
 	// The password of the database
 	Password pulumi.StringOutput `pulumi:"password"`
+	// The port of the database
+	Port pulumi.IntOutput `pulumi:"port"`
 	// The region where the database will be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Size of the database
@@ -88,6 +94,10 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
+	// The DNS endpoint of the database
+	DnsEndpoint *string `pulumi:"dnsEndpoint"`
+	// The endpoint of the database
+	Endpoint *string `pulumi:"endpoint"`
 	// The engine of the database
 	Engine *string `pulumi:"engine"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
@@ -100,6 +110,8 @@ type databaseState struct {
 	Nodes *int `pulumi:"nodes"`
 	// The password of the database
 	Password *string `pulumi:"password"`
+	// The port of the database
+	Port *int `pulumi:"port"`
 	// The region where the database will be created.
 	Region *string `pulumi:"region"`
 	// Size of the database
@@ -113,6 +125,10 @@ type databaseState struct {
 }
 
 type DatabaseState struct {
+	// The DNS endpoint of the database
+	DnsEndpoint pulumi.StringPtrInput
+	// The endpoint of the database
+	Endpoint pulumi.StringPtrInput
 	// The engine of the database
 	Engine pulumi.StringPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
@@ -125,6 +141,8 @@ type DatabaseState struct {
 	Nodes pulumi.IntPtrInput
 	// The password of the database
 	Password pulumi.StringPtrInput
+	// The port of the database
+	Port pulumi.IntPtrInput
 	// The region where the database will be created.
 	Region pulumi.StringPtrInput
 	// Size of the database
@@ -267,6 +285,16 @@ func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) Databas
 	return o
 }
 
+// The DNS endpoint of the database
+func (o DatabaseOutput) DnsEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.DnsEndpoint }).(pulumi.StringOutput)
+}
+
+// The endpoint of the database
+func (o DatabaseOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
+}
+
 // The engine of the database
 func (o DatabaseOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
@@ -295,6 +323,11 @@ func (o DatabaseOutput) Nodes() pulumi.IntOutput {
 // The password of the database
 func (o DatabaseOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.Password }).(pulumi.StringOutput)
+}
+
+// The port of the database
+func (o DatabaseOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v *Database) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
 }
 
 // The region where the database will be created.

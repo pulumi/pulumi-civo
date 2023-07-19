@@ -120,12 +120,12 @@ def get_reserved_ip(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getReservedIp:getReservedIp', __args__, opts=opts, typ=GetReservedIpResult).value
 
     return AwaitableGetReservedIpResult(
-        id=__ret__.id,
-        instance_id=__ret__.instance_id,
-        instance_name=__ret__.instance_name,
-        ip=__ret__.ip,
-        name=__ret__.name,
-        region=__ret__.region)
+        id=pulumi.get(__ret__, 'id'),
+        instance_id=pulumi.get(__ret__, 'instance_id'),
+        instance_name=pulumi.get(__ret__, 'instance_name'),
+        ip=pulumi.get(__ret__, 'ip'),
+        name=pulumi.get(__ret__, 'name'),
+        region=pulumi.get(__ret__, 'region'))
 
 
 @_utilities.lift_output_func(get_reserved_ip)

@@ -42,6 +42,14 @@ export class Database extends pulumi.CustomResource {
     }
 
     /**
+     * The DNS endpoint of the database
+     */
+    public /*out*/ readonly dnsEndpoint!: pulumi.Output<string>;
+    /**
+     * The endpoint of the database
+     */
+    public /*out*/ readonly endpoint!: pulumi.Output<string>;
+    /**
      * The engine of the database
      */
     public readonly engine!: pulumi.Output<string>;
@@ -65,6 +73,10 @@ export class Database extends pulumi.CustomResource {
      * The password of the database
      */
     public /*out*/ readonly password!: pulumi.Output<string>;
+    /**
+     * The port of the database
+     */
+    public /*out*/ readonly port!: pulumi.Output<number>;
     /**
      * The region where the database will be created.
      */
@@ -99,12 +111,15 @@ export class Database extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseState | undefined;
+            resourceInputs["dnsEndpoint"] = state ? state.dnsEndpoint : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
             resourceInputs["firewallId"] = state ? state.firewallId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["nodes"] = state ? state.nodes : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -132,7 +147,10 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["version"] = args ? args.version : undefined;
+            resourceInputs["dnsEndpoint"] = undefined /*out*/;
+            resourceInputs["endpoint"] = undefined /*out*/;
             resourceInputs["password"] = undefined /*out*/;
+            resourceInputs["port"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
         }
@@ -145,6 +163,14 @@ export class Database extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Database resources.
  */
 export interface DatabaseState {
+    /**
+     * The DNS endpoint of the database
+     */
+    dnsEndpoint?: pulumi.Input<string>;
+    /**
+     * The endpoint of the database
+     */
+    endpoint?: pulumi.Input<string>;
     /**
      * The engine of the database
      */
@@ -169,6 +195,10 @@ export interface DatabaseState {
      * The password of the database
      */
     password?: pulumi.Input<string>;
+    /**
+     * The port of the database
+     */
+    port?: pulumi.Input<number>;
     /**
      * The region where the database will be created.
      */

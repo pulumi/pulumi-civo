@@ -17,6 +17,36 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     public static final DatabaseState Empty = new DatabaseState();
 
     /**
+     * The DNS endpoint of the database
+     * 
+     */
+    @Import(name="dnsEndpoint")
+    private @Nullable Output<String> dnsEndpoint;
+
+    /**
+     * @return The DNS endpoint of the database
+     * 
+     */
+    public Optional<Output<String>> dnsEndpoint() {
+        return Optional.ofNullable(this.dnsEndpoint);
+    }
+
+    /**
+     * The endpoint of the database
+     * 
+     */
+    @Import(name="endpoint")
+    private @Nullable Output<String> endpoint;
+
+    /**
+     * @return The endpoint of the database
+     * 
+     */
+    public Optional<Output<String>> endpoint() {
+        return Optional.ofNullable(this.endpoint);
+    }
+
+    /**
      * The engine of the database
      * 
      */
@@ -107,6 +137,21 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The port of the database
+     * 
+     */
+    @Import(name="port")
+    private @Nullable Output<Integer> port;
+
+    /**
+     * @return The port of the database
+     * 
+     */
+    public Optional<Output<Integer>> port() {
+        return Optional.ofNullable(this.port);
+    }
+
+    /**
      * The region where the database will be created.
      * 
      */
@@ -184,12 +229,15 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     private DatabaseState() {}
 
     private DatabaseState(DatabaseState $) {
+        this.dnsEndpoint = $.dnsEndpoint;
+        this.endpoint = $.endpoint;
         this.engine = $.engine;
         this.firewallId = $.firewallId;
         this.name = $.name;
         this.networkId = $.networkId;
         this.nodes = $.nodes;
         this.password = $.password;
+        this.port = $.port;
         this.region = $.region;
         this.size = $.size;
         this.status = $.status;
@@ -213,6 +261,48 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DatabaseState defaults) {
             $ = new DatabaseState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param dnsEndpoint The DNS endpoint of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsEndpoint(@Nullable Output<String> dnsEndpoint) {
+            $.dnsEndpoint = dnsEndpoint;
+            return this;
+        }
+
+        /**
+         * @param dnsEndpoint The DNS endpoint of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder dnsEndpoint(String dnsEndpoint) {
+            return dnsEndpoint(Output.of(dnsEndpoint));
+        }
+
+        /**
+         * @param endpoint The endpoint of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endpoint(@Nullable Output<String> endpoint) {
+            $.endpoint = endpoint;
+            return this;
+        }
+
+        /**
+         * @param endpoint The endpoint of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder endpoint(String endpoint) {
+            return endpoint(Output.of(endpoint));
         }
 
         /**
@@ -339,6 +429,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param port The port of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder port(@Nullable Output<Integer> port) {
+            $.port = port;
+            return this;
+        }
+
+        /**
+         * @param port The port of the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder port(Integer port) {
+            return port(Output.of(port));
         }
 
         /**

@@ -87,9 +87,9 @@ def get_ssh_key(id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('civo:index/getSshKey:getSshKey', __args__, opts=opts, typ=GetSshKeyResult).value
 
     return AwaitableGetSshKeyResult(
-        fingerprint=__ret__.fingerprint,
-        id=__ret__.id,
-        name=__ret__.name)
+        fingerprint=pulumi.get(__ret__, 'fingerprint'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'))
 
 
 @_utilities.lift_output_func(get_ssh_key)

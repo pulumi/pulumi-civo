@@ -61,6 +61,10 @@ type LookupDatabaseArgs struct {
 
 // A collection of values returned by getDatabase.
 type LookupDatabaseResult struct {
+	// The DNS endpoint of the database
+	DnsEndpoint string `pulumi:"dnsEndpoint"`
+	// The endpoint of the database
+	Endpoint string `pulumi:"endpoint"`
 	// The engine of the database
 	Engine string `pulumi:"engine"`
 	// The firewall id of the Database
@@ -75,6 +79,8 @@ type LookupDatabaseResult struct {
 	Nodes int `pulumi:"nodes"`
 	// The password of the database
 	Password string `pulumi:"password"`
+	// The port of the database
+	Port int `pulumi:"port"`
 	// The region of an existing Database
 	Region string `pulumi:"region"`
 	// Size of the database
@@ -129,6 +135,16 @@ func (o LookupDatabaseResultOutput) ToLookupDatabaseResultOutputWithContext(ctx 
 	return o
 }
 
+// The DNS endpoint of the database
+func (o LookupDatabaseResultOutput) DnsEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) string { return v.DnsEndpoint }).(pulumi.StringOutput)
+}
+
+// The endpoint of the database
+func (o LookupDatabaseResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
 // The engine of the database
 func (o LookupDatabaseResultOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Engine }).(pulumi.StringOutput)
@@ -162,6 +178,11 @@ func (o LookupDatabaseResultOutput) Nodes() pulumi.IntOutput {
 // The password of the database
 func (o LookupDatabaseResultOutput) Password() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupDatabaseResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// The port of the database
+func (o LookupDatabaseResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupDatabaseResult) int { return v.Port }).(pulumi.IntOutput)
 }
 
 // The region of an existing Database
