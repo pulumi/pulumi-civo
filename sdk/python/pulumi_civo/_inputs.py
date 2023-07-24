@@ -289,12 +289,14 @@ class KubernetesClusterPoolsArgs:
                  node_count: pulumi.Input[int],
                  size: pulumi.Input[str],
                  instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 label: Optional[pulumi.Input[str]] = None):
+                 label: Optional[pulumi.Input[str]] = None,
+                 public_ip_node_pool: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[int] node_count: Number of nodes in the nodepool
         :param pulumi.Input[str] size: Size of the nodes in the nodepool
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
         :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
+        :param pulumi.Input[bool] public_ip_node_pool: Node pool belongs to the public ip node pool
         """
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
@@ -302,6 +304,8 @@ class KubernetesClusterPoolsArgs:
             pulumi.set(__self__, "instance_names", instance_names)
         if label is not None:
             pulumi.set(__self__, "label", label)
+        if public_ip_node_pool is not None:
+            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -350,6 +354,18 @@ class KubernetesClusterPoolsArgs:
     @label.setter
     def label(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "label", value)
+
+    @property
+    @pulumi.getter(name="publicIpNodePool")
+    def public_ip_node_pool(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Node pool belongs to the public ip node pool
+        """
+        return pulumi.get(self, "public_ip_node_pool")
+
+    @public_ip_node_pool.setter
+    def public_ip_node_pool(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "public_ip_node_pool", value)
 
 
 @pulumi.input_type

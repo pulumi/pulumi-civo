@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieves information about the sizes that Civo supports, with the ability to filter the results.
 func GetSize(ctx *pulumi.Context, args *GetSizeArgs, opts ...pulumi.InvokeOption) (*GetSizeResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSizeResult
 	err := ctx.Invoke("civo:index/getSize:getSize", args, &rv, opts...)
 	if err != nil {

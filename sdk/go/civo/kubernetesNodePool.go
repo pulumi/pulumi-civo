@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,6 +38,8 @@ type KubernetesNodePool struct {
 	//
 	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool pulumi.BoolOutput `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringOutput `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -60,6 +63,7 @@ func NewKubernetesNodePool(ctx *pulumi.Context,
 	if args.Region == nil {
 		return nil, errors.New("invalid value for required argument 'Region'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesNodePool
 	err := ctx.RegisterResource("civo:index/kubernetesNodePool:KubernetesNodePool", name, args, &resource, opts...)
 	if err != nil {
@@ -94,6 +98,8 @@ type kubernetesNodePoolState struct {
 	//
 	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region *string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -117,6 +123,8 @@ type KubernetesNodePoolState struct {
 	//
 	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes pulumi.IntPtrInput
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool pulumi.BoolPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringPtrInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -142,6 +150,8 @@ type kubernetesNodePoolArgs struct {
 	//
 	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes *int `pulumi:"numTargetNodes"`
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -164,6 +174,8 @@ type KubernetesNodePoolArgs struct {
 	//
 	// Deprecated: This field is deprecated, please use `node_count` instead
 	NumTargetNodes pulumi.IntPtrInput
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool pulumi.BoolPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
@@ -286,6 +298,11 @@ func (o KubernetesNodePoolOutput) NodeCount() pulumi.IntOutput {
 // Deprecated: This field is deprecated, please use `node_count` instead
 func (o KubernetesNodePoolOutput) NumTargetNodes() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.NumTargetNodes }).(pulumi.IntPtrOutput)
+}
+
+// Node pool belongs to the public ip node pool
+func (o KubernetesNodePoolOutput) PublicIpNodePool() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolOutput { return v.PublicIpNodePool }).(pulumi.BoolOutput)
 }
 
 // The region of the node pool, has to match that of the cluster

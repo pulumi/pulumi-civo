@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,6 +58,7 @@ func NewReservedIp(ctx *pulumi.Context,
 		args = &ReservedIpArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReservedIp
 	err := ctx.RegisterResource("civo:index/reservedIp:ReservedIp", name, args, &resource, opts...)
 	if err != nil {

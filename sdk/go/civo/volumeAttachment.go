@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,6 +37,7 @@ func NewVolumeAttachment(ctx *pulumi.Context,
 	if args.VolumeId == nil {
 		return nil, errors.New("invalid value for required argument 'VolumeId'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VolumeAttachment
 	err := ctx.RegisterResource("civo:index/volumeAttachment:VolumeAttachment", name, args, &resource, opts...)
 	if err != nil {

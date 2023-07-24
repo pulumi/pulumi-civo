@@ -37,6 +37,12 @@ namespace Pulumi.Civo.Inputs
         public Input<int> NodeCount { get; set; } = null!;
 
         /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
+        [Input("publicIpNodePool")]
+        public Input<bool>? PublicIpNodePool { get; set; }
+
+        /// <summary>
         /// Size of the nodes in the nodepool
         /// </summary>
         [Input("size", required: true)]

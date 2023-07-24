@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,6 +43,7 @@ import (
 //
 // ```
 func GetLoadBalancer(ctx *pulumi.Context, args *GetLoadBalancerArgs, opts ...pulumi.InvokeOption) (*GetLoadBalancerResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLoadBalancerResult
 	err := ctx.Invoke("civo:index/getLoadBalancer:getLoadBalancer", args, &rv, opts...)
 	if err != nil {

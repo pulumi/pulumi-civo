@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,6 +50,7 @@ import (
 //
 // ```
 func LookupDnsDomainRecord(ctx *pulumi.Context, args *LookupDnsDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDnsDomainRecordResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDnsDomainRecordResult
 	err := ctx.Invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", args, &rv, opts...)
 	if err != nil {

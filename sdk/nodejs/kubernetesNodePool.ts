@@ -66,6 +66,10 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly numTargetNodes!: pulumi.Output<number | undefined>;
     /**
+     * Node pool belongs to the public ip node pool
+     */
+    public readonly publicIpNodePool!: pulumi.Output<boolean>;
+    /**
      * The region of the node pool, has to match that of the cluster
      */
     public readonly region!: pulumi.Output<string>;
@@ -98,6 +102,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["nodeCount"] = state ? state.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
+            resourceInputs["publicIpNodePool"] = state ? state.publicIpNodePool : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
@@ -113,6 +118,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["nodeCount"] = args ? args.nodeCount : undefined;
             resourceInputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
+            resourceInputs["publicIpNodePool"] = args ? args.publicIpNodePool : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
@@ -149,6 +155,10 @@ export interface KubernetesNodePoolState {
      * @deprecated This field is deprecated, please use `node_count` instead
      */
     numTargetNodes?: pulumi.Input<number>;
+    /**
+     * Node pool belongs to the public ip node pool
+     */
+    publicIpNodePool?: pulumi.Input<boolean>;
     /**
      * The region of the node pool, has to match that of the cluster
      */
@@ -187,6 +197,10 @@ export interface KubernetesNodePoolArgs {
      * @deprecated This field is deprecated, please use `node_count` instead
      */
     numTargetNodes?: pulumi.Input<number>;
+    /**
+     * Node pool belongs to the public ip node pool
+     */
+    publicIpNodePool?: pulumi.Input<boolean>;
     /**
      * The region of the node pool, has to match that of the cluster
      */

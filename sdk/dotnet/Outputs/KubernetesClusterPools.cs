@@ -26,6 +26,10 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly int NodeCount;
         /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
+        public readonly bool? PublicIpNodePool;
+        /// <summary>
         /// Size of the nodes in the nodepool
         /// </summary>
         public readonly string Size;
@@ -38,11 +42,14 @@ namespace Pulumi.Civo.Outputs
 
             int nodeCount,
 
+            bool? publicIpNodePool,
+
             string size)
         {
             InstanceNames = instanceNames;
             Label = label;
             NodeCount = nodeCount;
+            PublicIpNodePool = publicIpNodePool;
             Size = size;
         }
     }

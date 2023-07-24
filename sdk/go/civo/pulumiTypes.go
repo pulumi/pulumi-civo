@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type FirewallEgressRule struct {
 	// The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
@@ -413,6 +416,8 @@ type KubernetesClusterPools struct {
 	Label *string `pulumi:"label"`
 	// Number of nodes in the nodepool
 	NodeCount int `pulumi:"nodeCount"`
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// Size of the nodes in the nodepool
 	Size string `pulumi:"size"`
 }
@@ -435,6 +440,8 @@ type KubernetesClusterPoolsArgs struct {
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	// Number of nodes in the nodepool
 	NodeCount pulumi.IntInput `pulumi:"nodeCount"`
+	// Node pool belongs to the public ip node pool
+	PublicIpNodePool pulumi.BoolPtrInput `pulumi:"publicIpNodePool"`
 	// Size of the nodes in the nodepool
 	Size pulumi.StringInput `pulumi:"size"`
 }
@@ -531,6 +538,11 @@ func (o KubernetesClusterPoolsOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v KubernetesClusterPools) int { return v.NodeCount }).(pulumi.IntOutput)
 }
 
+// Node pool belongs to the public ip node pool
+func (o KubernetesClusterPoolsOutput) PublicIpNodePool() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v KubernetesClusterPools) *bool { return v.PublicIpNodePool }).(pulumi.BoolPtrOutput)
+}
+
 // Size of the nodes in the nodepool
 func (o KubernetesClusterPoolsOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v KubernetesClusterPools) string { return v.Size }).(pulumi.StringOutput)
@@ -588,6 +600,16 @@ func (o KubernetesClusterPoolsPtrOutput) NodeCount() pulumi.IntPtrOutput {
 		}
 		return &v.NodeCount
 	}).(pulumi.IntPtrOutput)
+}
+
+// Node pool belongs to the public ip node pool
+func (o KubernetesClusterPoolsPtrOutput) PublicIpNodePool() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesClusterPools) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.PublicIpNodePool
+	}).(pulumi.BoolPtrOutput)
 }
 
 // Size of the nodes in the nodepool
@@ -1850,10 +1872,11 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntI
 }
 
 type GetKubernetesClusterPool struct {
-	InstanceNames []string `pulumi:"instanceNames"`
-	Label         string   `pulumi:"label"`
-	NodeCount     int      `pulumi:"nodeCount"`
-	Size          string   `pulumi:"size"`
+	InstanceNames    []string `pulumi:"instanceNames"`
+	Label            string   `pulumi:"label"`
+	NodeCount        int      `pulumi:"nodeCount"`
+	PublicIpNodePool bool     `pulumi:"publicIpNodePool"`
+	Size             string   `pulumi:"size"`
 }
 
 // GetKubernetesClusterPoolInput is an input type that accepts GetKubernetesClusterPoolArgs and GetKubernetesClusterPoolOutput values.
@@ -1868,10 +1891,11 @@ type GetKubernetesClusterPoolInput interface {
 }
 
 type GetKubernetesClusterPoolArgs struct {
-	InstanceNames pulumi.StringArrayInput `pulumi:"instanceNames"`
-	Label         pulumi.StringInput      `pulumi:"label"`
-	NodeCount     pulumi.IntInput         `pulumi:"nodeCount"`
-	Size          pulumi.StringInput      `pulumi:"size"`
+	InstanceNames    pulumi.StringArrayInput `pulumi:"instanceNames"`
+	Label            pulumi.StringInput      `pulumi:"label"`
+	NodeCount        pulumi.IntInput         `pulumi:"nodeCount"`
+	PublicIpNodePool pulumi.BoolInput        `pulumi:"publicIpNodePool"`
+	Size             pulumi.StringInput      `pulumi:"size"`
 }
 
 func (GetKubernetesClusterPoolArgs) ElementType() reflect.Type {
@@ -1935,6 +1959,10 @@ func (o GetKubernetesClusterPoolOutput) Label() pulumi.StringOutput {
 
 func (o GetKubernetesClusterPoolOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetKubernetesClusterPool) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+func (o GetKubernetesClusterPoolOutput) PublicIpNodePool() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterPool) bool { return v.PublicIpNodePool }).(pulumi.BoolOutput)
 }
 
 func (o GetKubernetesClusterPoolOutput) Size() pulumi.StringOutput {

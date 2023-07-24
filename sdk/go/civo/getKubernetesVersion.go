@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -58,6 +59,7 @@ import (
 //
 // ```
 func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, opts ...pulumi.InvokeOption) (*GetKubernetesVersionResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetKubernetesVersionResult
 	err := ctx.Invoke("civo:index/getKubernetesVersion:getKubernetesVersion", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -86,6 +87,7 @@ func NewKubernetesCluster(ctx *pulumi.Context,
 		"kubeconfig",
 	})
 	opts = append(opts, secrets)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesCluster
 	err := ctx.RegisterResource("civo:index/kubernetesCluster:KubernetesCluster", name, args, &resource, opts...)
 	if err != nil {
