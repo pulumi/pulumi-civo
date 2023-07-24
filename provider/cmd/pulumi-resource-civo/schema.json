@@ -203,6 +203,10 @@
                     "type": "integer",
                     "description": "Number of nodes in the nodepool\n"
                 },
+                "publicIpNodePool": {
+                    "type": "boolean",
+                    "description": "Node pool belongs to the public ip node pool\n"
+                },
                 "size": {
                     "type": "string",
                     "description": "Size of the nodes in the nodepool\n"
@@ -219,6 +223,7 @@
                         "instanceNames",
                         "label",
                         "nodeCount",
+                        "publicIpNodePool",
                         "size"
                     ]
                 }
@@ -556,6 +561,9 @@
                 "nodeCount": {
                     "type": "integer"
                 },
+                "publicIpNodePool": {
+                    "type": "boolean"
+                },
                 "size": {
                     "type": "string"
                 }
@@ -565,6 +573,7 @@
                 "instanceNames",
                 "label",
                 "nodeCount",
+                "publicIpNodePool",
                 "size"
             ],
             "language": {
@@ -2127,6 +2136,10 @@
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
                     "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                 },
+                "publicIpNodePool": {
+                    "type": "boolean",
+                    "description": "Node pool belongs to the public ip node pool\n"
+                },
                 "region": {
                     "type": "string",
                     "description": "The region of the node pool, has to match that of the cluster\n"
@@ -2146,6 +2159,7 @@
                 "instanceNames",
                 "label",
                 "nodeCount",
+                "publicIpNodePool",
                 "region",
                 "size"
             ],
@@ -2166,6 +2180,10 @@
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
                     "deprecationMessage": "This field is deprecated, please use `node_count` instead"
+                },
+                "publicIpNodePool": {
+                    "type": "boolean",
+                    "description": "Node pool belongs to the public ip node pool\n"
                 },
                 "region": {
                     "type": "string",
@@ -2211,6 +2229,10 @@
                         "type": "integer",
                         "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
                         "deprecationMessage": "This field is deprecated, please use `node_count` instead"
+                    },
+                    "publicIpNodePool": {
+                        "type": "boolean",
+                        "description": "Node pool belongs to the public ip node pool\n"
                     },
                     "region": {
                         "type": "string",
