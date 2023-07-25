@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -28,6 +29,11 @@ public final class KubernetesClusterPools {
      * 
      */
     private Integer nodeCount;
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
+    private @Nullable Boolean publicIpNodePool;
     /**
      * @return Size of the nodes in the nodepool
      * 
@@ -57,6 +63,13 @@ public final class KubernetesClusterPools {
         return this.nodeCount;
     }
     /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
+    public Optional<Boolean> publicIpNodePool() {
+        return Optional.ofNullable(this.publicIpNodePool);
+    }
+    /**
      * @return Size of the nodes in the nodepool
      * 
      */
@@ -76,6 +89,7 @@ public final class KubernetesClusterPools {
         private @Nullable List<String> instanceNames;
         private @Nullable String label;
         private Integer nodeCount;
+        private @Nullable Boolean publicIpNodePool;
         private String size;
         public Builder() {}
         public Builder(KubernetesClusterPools defaults) {
@@ -83,6 +97,7 @@ public final class KubernetesClusterPools {
     	      this.instanceNames = defaults.instanceNames;
     	      this.label = defaults.label;
     	      this.nodeCount = defaults.nodeCount;
+    	      this.publicIpNodePool = defaults.publicIpNodePool;
     	      this.size = defaults.size;
         }
 
@@ -105,6 +120,11 @@ public final class KubernetesClusterPools {
             return this;
         }
         @CustomType.Setter
+        public Builder publicIpNodePool(@Nullable Boolean publicIpNodePool) {
+            this.publicIpNodePool = publicIpNodePool;
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
@@ -114,6 +134,7 @@ public final class KubernetesClusterPools {
             o.instanceNames = instanceNames;
             o.label = label;
             o.nodeCount = nodeCount;
+            o.publicIpNodePool = publicIpNodePool;
             o.size = size;
             return o;
         }

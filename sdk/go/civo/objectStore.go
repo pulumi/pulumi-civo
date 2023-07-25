@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -75,6 +76,7 @@ func NewObjectStore(ctx *pulumi.Context,
 		args = &ObjectStoreArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectStore
 	err := ctx.RegisterResource("civo:index/objectStore:ObjectStore", name, args, &resource, opts...)
 	if err != nil {

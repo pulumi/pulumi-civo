@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -14,6 +15,7 @@ public final class GetKubernetesClusterPool {
     private List<String> instanceNames;
     private String label;
     private Integer nodeCount;
+    private Boolean publicIpNodePool;
     private String size;
 
     private GetKubernetesClusterPool() {}
@@ -25,6 +27,9 @@ public final class GetKubernetesClusterPool {
     }
     public Integer nodeCount() {
         return this.nodeCount;
+    }
+    public Boolean publicIpNodePool() {
+        return this.publicIpNodePool;
     }
     public String size() {
         return this.size;
@@ -42,6 +47,7 @@ public final class GetKubernetesClusterPool {
         private List<String> instanceNames;
         private String label;
         private Integer nodeCount;
+        private Boolean publicIpNodePool;
         private String size;
         public Builder() {}
         public Builder(GetKubernetesClusterPool defaults) {
@@ -49,6 +55,7 @@ public final class GetKubernetesClusterPool {
     	      this.instanceNames = defaults.instanceNames;
     	      this.label = defaults.label;
     	      this.nodeCount = defaults.nodeCount;
+    	      this.publicIpNodePool = defaults.publicIpNodePool;
     	      this.size = defaults.size;
         }
 
@@ -71,6 +78,11 @@ public final class GetKubernetesClusterPool {
             return this;
         }
         @CustomType.Setter
+        public Builder publicIpNodePool(Boolean publicIpNodePool) {
+            this.publicIpNodePool = Objects.requireNonNull(publicIpNodePool);
+            return this;
+        }
+        @CustomType.Setter
         public Builder size(String size) {
             this.size = Objects.requireNonNull(size);
             return this;
@@ -80,6 +92,7 @@ public final class GetKubernetesClusterPool {
             o.instanceNames = instanceNames;
             o.label = label;
             o.nodeCount = nodeCount;
+            o.publicIpNodePool = publicIpNodePool;
             o.size = size;
             return o;
         }

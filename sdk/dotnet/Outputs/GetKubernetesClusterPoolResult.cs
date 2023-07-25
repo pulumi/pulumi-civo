@@ -16,6 +16,7 @@ namespace Pulumi.Civo.Outputs
         public readonly ImmutableArray<string> InstanceNames;
         public readonly string Label;
         public readonly int NodeCount;
+        public readonly bool PublicIpNodePool;
         public readonly string Size;
 
         [OutputConstructor]
@@ -26,11 +27,14 @@ namespace Pulumi.Civo.Outputs
 
             int nodeCount,
 
+            bool publicIpNodePool,
+
             string size)
         {
             InstanceNames = instanceNames;
             Label = label;
             NodeCount = nodeCount;
+            PublicIpNodePool = publicIpNodePool;
             Size = size;
         }
     }

@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Retrieves information about the database versions that Civo supports, with the ability to filter the results.
 func GetDatabaseVersion(ctx *pulumi.Context, args *GetDatabaseVersionArgs, opts ...pulumi.InvokeOption) (*GetDatabaseVersionResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDatabaseVersionResult
 	err := ctx.Invoke("civo:index/getDatabaseVersion:getDatabaseVersion", args, &rv, opts...)
 	if err != nil {

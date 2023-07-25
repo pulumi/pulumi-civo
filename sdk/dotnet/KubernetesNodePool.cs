@@ -54,6 +54,12 @@ namespace Pulumi.Civo
         public Output<int?> NumTargetNodes { get; private set; } = null!;
 
         /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
+        [Output("publicIpNodePool")]
+        public Output<bool> PublicIpNodePool { get; private set; } = null!;
+
+        /// <summary>
         /// The region of the node pool, has to match that of the cluster
         /// </summary>
         [Output("region")]
@@ -142,6 +148,12 @@ namespace Pulumi.Civo
         public Input<int>? NumTargetNodes { get; set; }
 
         /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
+        [Input("publicIpNodePool")]
+        public Input<bool>? PublicIpNodePool { get; set; }
+
+        /// <summary>
         /// The region of the node pool, has to match that of the cluster
         /// </summary>
         [Input("region", required: true)]
@@ -202,6 +214,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("numTargetNodes")]
         public Input<int>? NumTargetNodes { get; set; }
+
+        /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
+        [Input("publicIpNodePool")]
+        public Input<bool>? PublicIpNodePool { get; set; }
 
         /// <summary>
         /// The region of the node pool, has to match that of the cluster

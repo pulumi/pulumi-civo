@@ -5,6 +5,7 @@ package com.pulumi.civo.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -63,6 +64,21 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
     }
 
     /**
+     * Node pool belongs to the public ip node pool
+     * 
+     */
+    @Import(name="publicIpNodePool")
+    private @Nullable Output<Boolean> publicIpNodePool;
+
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
+    public Optional<Output<Boolean>> publicIpNodePool() {
+        return Optional.ofNullable(this.publicIpNodePool);
+    }
+
+    /**
      * Size of the nodes in the nodepool
      * 
      */
@@ -83,6 +99,7 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
         this.instanceNames = $.instanceNames;
         this.label = $.label;
         this.nodeCount = $.nodeCount;
+        this.publicIpNodePool = $.publicIpNodePool;
         this.size = $.size;
     }
 
@@ -175,6 +192,27 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
          */
         public Builder nodeCount(Integer nodeCount) {
             return nodeCount(Output.of(nodeCount));
+        }
+
+        /**
+         * @param publicIpNodePool Node pool belongs to the public ip node pool
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpNodePool(@Nullable Output<Boolean> publicIpNodePool) {
+            $.publicIpNodePool = publicIpNodePool;
+            return this;
+        }
+
+        /**
+         * @param publicIpNodePool Node pool belongs to the public ip node pool
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpNodePool(Boolean publicIpNodePool) {
+            return publicIpNodePool(Output.of(publicIpNodePool));
         }
 
         /**

@@ -10,6 +10,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -103,6 +104,20 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> numTargetNodes() {
         return Codegen.optional(this.numTargetNodes);
+    }
+    /**
+     * Node pool belongs to the public ip node pool
+     * 
+     */
+    @Export(name="publicIpNodePool", type=Boolean.class, parameters={})
+    private Output<Boolean> publicIpNodePool;
+
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
+    public Output<Boolean> publicIpNodePool() {
+        return this.publicIpNodePool;
     }
     /**
      * The region of the node pool, has to match that of the cluster

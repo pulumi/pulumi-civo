@@ -440,6 +440,10 @@ export interface KubernetesClusterPools {
      */
     nodeCount: pulumi.Input<number>;
     /**
+     * Node pool belongs to the public ip node pool
+     */
+    publicIpNodePool?: pulumi.Input<boolean>;
+    /**
      * Size of the nodes in the nodepool
      */
     size: pulumi.Input<string>;

@@ -207,6 +207,7 @@ export interface GetKubernetesClusterPool {
     instanceNames: string[];
     label: string;
     nodeCount: number;
+    publicIpNodePool: boolean;
     size: string;
 }
 
@@ -352,6 +353,10 @@ export interface KubernetesClusterPools {
      * Number of nodes in the nodepool
      */
     nodeCount: number;
+    /**
+     * Node pool belongs to the public ip node pool
+     */
+    publicIpNodePool: boolean;
     /**
      * Size of the nodes in the nodepool
      */

@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The Base URL to use for CIVO API.
 func GetApiEndpoint(ctx *pulumi.Context) string {

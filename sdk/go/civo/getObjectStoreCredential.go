@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -48,6 +49,7 @@ import (
 //
 // ```
 func LookupObjectStoreCredential(ctx *pulumi.Context, args *LookupObjectStoreCredentialArgs, opts ...pulumi.InvokeOption) (*LookupObjectStoreCredentialResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectStoreCredentialResult
 	err := ctx.Invoke("civo:index/getObjectStoreCredential:getObjectStoreCredential", args, &rv, opts...)
 	if err != nil {

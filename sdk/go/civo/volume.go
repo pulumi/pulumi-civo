@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -85,6 +86,7 @@ func NewVolume(ctx *pulumi.Context,
 	if args.SizeGb == nil {
 		return nil, errors.New("invalid value for required argument 'SizeGb'")
 	}
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Volume
 	err := ctx.RegisterResource("civo:index/volume:Volume", name, args, &resource, opts...)
 	if err != nil {

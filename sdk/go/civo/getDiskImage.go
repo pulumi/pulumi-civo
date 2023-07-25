@@ -7,11 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
 func GetDiskImage(ctx *pulumi.Context, args *GetDiskImageArgs, opts ...pulumi.InvokeOption) (*GetDiskImageResult, error) {
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDiskImageResult
 	err := ctx.Invoke("civo:index/getDiskImage:getDiskImage", args, &rv, opts...)
 	if err != nil {

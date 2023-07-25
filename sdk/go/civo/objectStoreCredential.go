@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -84,6 +85,7 @@ func NewObjectStoreCredential(ctx *pulumi.Context,
 		args = &ObjectStoreCredentialArgs{}
 	}
 
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ObjectStoreCredential
 	err := ctx.RegisterResource("civo:index/objectStoreCredential:ObjectStoreCredential", name, args, &resource, opts...)
 	if err != nil {

@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -85,6 +86,21 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * Node pool belongs to the public ip node pool
+     * 
+     */
+    @Import(name="publicIpNodePool")
+    private @Nullable Output<Boolean> publicIpNodePool;
+
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
+    public Optional<Output<Boolean>> publicIpNodePool() {
+        return Optional.ofNullable(this.publicIpNodePool);
+    }
+
+    /**
      * The region of the node pool, has to match that of the cluster
      * 
      */
@@ -144,6 +160,7 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         this.label = $.label;
         this.nodeCount = $.nodeCount;
         this.numTargetNodes = $.numTargetNodes;
+        this.publicIpNodePool = $.publicIpNodePool;
         this.region = $.region;
         this.size = $.size;
         this.targetNodesSize = $.targetNodesSize;
@@ -257,6 +274,27 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         @Deprecated /* This field is deprecated, please use `node_count` instead */
         public Builder numTargetNodes(Integer numTargetNodes) {
             return numTargetNodes(Output.of(numTargetNodes));
+        }
+
+        /**
+         * @param publicIpNodePool Node pool belongs to the public ip node pool
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpNodePool(@Nullable Output<Boolean> publicIpNodePool) {
+            $.publicIpNodePool = publicIpNodePool;
+            return this;
+        }
+
+        /**
+         * @param publicIpNodePool Node pool belongs to the public ip node pool
+         * 
+         * @return builder
+         * 
+         */
+        public Builder publicIpNodePool(Boolean publicIpNodePool) {
+            return publicIpNodePool(Output.of(publicIpNodePool));
         }
 
         /**
