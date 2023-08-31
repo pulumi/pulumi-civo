@@ -1,6 +1,6 @@
 module github.com/pulumi/pulumi-civo/examples/network/go
 
-go 1.20
+go 1.21
 
 require (
 	github.com/pulumi/pulumi-civo/sdk/v2 v2.3.1
