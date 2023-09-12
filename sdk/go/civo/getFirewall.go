@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieve information about a firewall for use in other resources.
@@ -115,6 +116,12 @@ func (o LookupFirewallResultOutput) ToLookupFirewallResultOutput() LookupFirewal
 
 func (o LookupFirewallResultOutput) ToLookupFirewallResultOutputWithContext(ctx context.Context) LookupFirewallResultOutput {
 	return o
+}
+
+func (o LookupFirewallResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallResult] {
+	return pulumix.Output[LookupFirewallResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The ID of this resource.

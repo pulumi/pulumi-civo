@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
@@ -22,8 +23,9 @@ import (
 //
 // import (
 //
-// "github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-// "github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 // func main() {
 // pulumi.Run(func(ctx *pulumi.Context) error {
@@ -118,6 +120,12 @@ func (o GetInstancesResultOutput) ToGetInstancesResultOutput() GetInstancesResul
 
 func (o GetInstancesResultOutput) ToGetInstancesResultOutputWithContext(ctx context.Context) GetInstancesResultOutput {
 	return o
+}
+
+func (o GetInstancesResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstancesResult] {
+	return pulumix.Output[GetInstancesResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // One or more key/value pairs on which to filter results

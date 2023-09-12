@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
@@ -125,6 +126,12 @@ func (o GetKubernetesVersionResultOutput) ToGetKubernetesVersionResultOutput() G
 
 func (o GetKubernetesVersionResultOutput) ToGetKubernetesVersionResultOutputWithContext(ctx context.Context) GetKubernetesVersionResultOutput {
 	return o
+}
+
+func (o GetKubernetesVersionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionResult] {
+	return pulumix.Output[GetKubernetesVersionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // One or more key/value pairs on which to filter results

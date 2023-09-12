@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieves information about the region that Civo supports, with the ability to filter the results.
@@ -79,6 +80,12 @@ func (o GetRegionResultOutput) ToGetRegionResultOutput() GetRegionResultOutput {
 
 func (o GetRegionResultOutput) ToGetRegionResultOutputWithContext(ctx context.Context) GetRegionResultOutput {
 	return o
+}
+
+func (o GetRegionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegionResult] {
+	return pulumix.Output[GetRegionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // One or more key/value pairs on which to filter results

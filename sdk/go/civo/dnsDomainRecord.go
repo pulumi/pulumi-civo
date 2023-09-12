@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a Civo DNS domain record resource.
@@ -187,6 +188,12 @@ func (i *DnsDomainRecord) ToDnsDomainRecordOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordOutput)
 }
 
+func (i *DnsDomainRecord) ToOutput(ctx context.Context) pulumix.Output[*DnsDomainRecord] {
+	return pulumix.Output[*DnsDomainRecord]{
+		OutputState: i.ToDnsDomainRecordOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DnsDomainRecordArrayInput is an input type that accepts DnsDomainRecordArray and DnsDomainRecordArrayOutput values.
 // You can construct a concrete instance of `DnsDomainRecordArrayInput` via:
 //
@@ -210,6 +217,12 @@ func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutput() DnsDomainRecordArra
 
 func (i DnsDomainRecordArray) ToDnsDomainRecordArrayOutputWithContext(ctx context.Context) DnsDomainRecordArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordArrayOutput)
+}
+
+func (i DnsDomainRecordArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsDomainRecord] {
+	return pulumix.Output[[]*DnsDomainRecord]{
+		OutputState: i.ToDnsDomainRecordArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DnsDomainRecordMapInput is an input type that accepts DnsDomainRecordMap and DnsDomainRecordMapOutput values.
@@ -237,6 +250,12 @@ func (i DnsDomainRecordMap) ToDnsDomainRecordMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(DnsDomainRecordMapOutput)
 }
 
+func (i DnsDomainRecordMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsDomainRecord] {
+	return pulumix.Output[map[string]*DnsDomainRecord]{
+		OutputState: i.ToDnsDomainRecordMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DnsDomainRecordOutput struct{ *pulumi.OutputState }
 
 func (DnsDomainRecordOutput) ElementType() reflect.Type {
@@ -249,6 +268,12 @@ func (o DnsDomainRecordOutput) ToDnsDomainRecordOutput() DnsDomainRecordOutput {
 
 func (o DnsDomainRecordOutput) ToDnsDomainRecordOutputWithContext(ctx context.Context) DnsDomainRecordOutput {
 	return o
+}
+
+func (o DnsDomainRecordOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsDomainRecord] {
+	return pulumix.Output[*DnsDomainRecord]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The account ID of this resource
@@ -310,6 +335,12 @@ func (o DnsDomainRecordArrayOutput) ToDnsDomainRecordArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o DnsDomainRecordArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsDomainRecord] {
+	return pulumix.Output[[]*DnsDomainRecord]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DnsDomainRecordArrayOutput) Index(i pulumi.IntInput) DnsDomainRecordOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsDomainRecord {
 		return vs[0].([]*DnsDomainRecord)[vs[1].(int)]
@@ -328,6 +359,12 @@ func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutput() DnsDomainRecordMa
 
 func (o DnsDomainRecordMapOutput) ToDnsDomainRecordMapOutputWithContext(ctx context.Context) DnsDomainRecordMapOutput {
 	return o
+}
+
+func (o DnsDomainRecordMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsDomainRecord] {
+	return pulumix.Output[map[string]*DnsDomainRecord]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsDomainRecordMapOutput) MapIndex(k pulumi.StringInput) DnsDomainRecordOutput {

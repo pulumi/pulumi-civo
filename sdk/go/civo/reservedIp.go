@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a Civo reserved IP to represent a publicly-accessible static IP addresses that can be mapped to one of your Instancesor Load Balancer.
@@ -140,6 +141,12 @@ func (i *ReservedIp) ToReservedIpOutputWithContext(ctx context.Context) Reserved
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedIpOutput)
 }
 
+func (i *ReservedIp) ToOutput(ctx context.Context) pulumix.Output[*ReservedIp] {
+	return pulumix.Output[*ReservedIp]{
+		OutputState: i.ToReservedIpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReservedIpArrayInput is an input type that accepts ReservedIpArray and ReservedIpArrayOutput values.
 // You can construct a concrete instance of `ReservedIpArrayInput` via:
 //
@@ -163,6 +170,12 @@ func (i ReservedIpArray) ToReservedIpArrayOutput() ReservedIpArrayOutput {
 
 func (i ReservedIpArray) ToReservedIpArrayOutputWithContext(ctx context.Context) ReservedIpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedIpArrayOutput)
+}
+
+func (i ReservedIpArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedIp] {
+	return pulumix.Output[[]*ReservedIp]{
+		OutputState: i.ToReservedIpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReservedIpMapInput is an input type that accepts ReservedIpMap and ReservedIpMapOutput values.
@@ -190,6 +203,12 @@ func (i ReservedIpMap) ToReservedIpMapOutputWithContext(ctx context.Context) Res
 	return pulumi.ToOutputWithContext(ctx, i).(ReservedIpMapOutput)
 }
 
+func (i ReservedIpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedIp] {
+	return pulumix.Output[map[string]*ReservedIp]{
+		OutputState: i.ToReservedIpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReservedIpOutput struct{ *pulumi.OutputState }
 
 func (ReservedIpOutput) ElementType() reflect.Type {
@@ -202,6 +221,12 @@ func (o ReservedIpOutput) ToReservedIpOutput() ReservedIpOutput {
 
 func (o ReservedIpOutput) ToReservedIpOutputWithContext(ctx context.Context) ReservedIpOutput {
 	return o
+}
+
+func (o ReservedIpOutput) ToOutput(ctx context.Context) pulumix.Output[*ReservedIp] {
+	return pulumix.Output[*ReservedIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The IP Address of the resource
@@ -233,6 +258,12 @@ func (o ReservedIpArrayOutput) ToReservedIpArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o ReservedIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReservedIp] {
+	return pulumix.Output[[]*ReservedIp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReservedIpArrayOutput) Index(i pulumi.IntInput) ReservedIpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReservedIp {
 		return vs[0].([]*ReservedIp)[vs[1].(int)]
@@ -251,6 +282,12 @@ func (o ReservedIpMapOutput) ToReservedIpMapOutput() ReservedIpMapOutput {
 
 func (o ReservedIpMapOutput) ToReservedIpMapOutputWithContext(ctx context.Context) ReservedIpMapOutput {
 	return o
+}
+
+func (o ReservedIpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReservedIp] {
+	return pulumix.Output[map[string]*ReservedIp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReservedIpMapOutput) MapIndex(k pulumi.StringInput) ReservedIpOutput {

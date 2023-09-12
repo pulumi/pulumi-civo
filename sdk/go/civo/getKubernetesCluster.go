@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a Civo Kubernetes cluster data source.
@@ -143,6 +144,12 @@ func (o LookupKubernetesClusterResultOutput) ToLookupKubernetesClusterResultOutp
 
 func (o LookupKubernetesClusterResultOutput) ToLookupKubernetesClusterResultOutputWithContext(ctx context.Context) LookupKubernetesClusterResultOutput {
 	return o
+}
+
+func (o LookupKubernetesClusterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupKubernetesClusterResult] {
+	return pulumix.Output[LookupKubernetesClusterResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The base URL of the API server on the Kubernetes master node
