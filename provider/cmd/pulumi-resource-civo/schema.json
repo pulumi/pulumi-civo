@@ -14,21 +14,22 @@
     },
     "language": {
         "csharp": {
-            "compatibility": "tfbridge20",
+            "packageReferences": {
+                "Pulumi": "3.*"
+            },
             "namespaces": {
                 "civo": "Civo"
             },
-            "packageReferences": {
-                "Pulumi": "3.*"
-            }
+            "compatibility": "tfbridge20"
         },
         "go": {
-            "generateExtraInputTypes": true,
+            "importBasePath": "github.com/pulumi/pulumi-civo/sdk/v2/go/civo",
             "generateResourceContainerTypes": true,
-            "importBasePath": "github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+            "generateExtraInputTypes": true
         },
         "nodejs": {
-            "compatibility": "tfbridge20",
+            "packageDescription": "A Pulumi package for creating and managing Civo cloud resources.",
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
             "dependencies": {
                 "@pulumi/pulumi": "^3.0.0"
             },
@@ -36,20 +37,16 @@
                 "@types/mime": "^2.0.0",
                 "@types/node": "^10.0.0"
             },
-            "disableUnionOutputTypes": true,
-            "packageDescription": "A Pulumi package for creating and managing Civo cloud resources.",
-            "packageName": "",
-            "pluginName": "",
-            "pluginVersion": "",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
-            "typescriptVersion": ""
+            "compatibility": "tfbridge20",
+            "disableUnionOutputTypes": true
         },
         "python": {
-            "compatibility": "tfbridge20",
-            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
             "requires": {
                 "pulumi": "\u003e=3.0.0,\u003c4.0.0"
-            }
+            },
+            "readme": "\u003e This provider is a derived work of the [Terraform Provider](https://github.com/civo/terraform-provider-civo)\n\u003e distributed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/). If you encounter a bug or missing feature,\n\u003e first check the [`pulumi-civo` repo](https://github.com/pulumi/pulumi-civo/issues); however, if that doesn't turn up anything,\n\u003e please consult the source [`terraform-provider-civo` repo](https://github.com/civo/terraform-provider-civo/issues).",
+            "compatibility": "tfbridge20",
+            "pyproject": {}
         }
     },
     "config": {
@@ -3241,7 +3238,7 @@
             }
         },
         "civo:index/getInstances:getInstances": {
-            "description": "Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.\n\nNote: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst small-size = civo.getInstances({\n    region: \"LON1\",\n    filters: [{\n        key: \"size\",\n        values: [g3.small],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nsmall_size = civo.get_instances(region=\"LON1\",\n    filters=[civo.GetInstancesFilterArgs(\n        key=\"size\",\n        values=[g3[\"small\"]],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var small_size = Civo.GetInstances.Invoke(new()\n    {\n        Region = \"LON1\",\n        Filters = new[]\n        {\n            new Civo.Inputs.GetInstancesFilterInputArgs\n            {\n                Key = \"size\",\n                Values = new[]\n                {\n                    g3.Small,\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\n\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n)\nfunc main() {\npulumi.Run(func(ctx *pulumi.Context) error {\n_, err := civo.GetInstances(ctx, \u0026civo.GetInstancesArgs{\nRegion: pulumi.StringRef(\"LON1\"),\nFilters: []civo.GetInstancesFilter{\n{\nKey: \"size\",\nValues: interface{}{\ng3.Small,\n},\n},\n},\n}, nil);\nif err != nil {\nreturn err\n}\nreturn nil\n})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetInstancesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()\n            .region(\"LON1\")\n            .filters(GetInstancesFilterArgs.builder()\n                .key(\"size\")\n                .values(g3.small())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  small-size:\n    fn::invoke:\n      Function: civo:getInstances\n      Arguments:\n        region: LON1\n        filters:\n          - key: size\n            values:\n              - ${g3.small}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "description": "Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.\n\nNote: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst small-size = civo.getInstances({\n    region: \"LON1\",\n    filters: [{\n        key: \"size\",\n        values: [g3.small],\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nsmall_size = civo.get_instances(region=\"LON1\",\n    filters=[civo.GetInstancesFilterArgs(\n        key=\"size\",\n        values=[g3[\"small\"]],\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var small_size = Civo.GetInstances.Invoke(new()\n    {\n        Region = \"LON1\",\n        Filters = new[]\n        {\n            new Civo.Inputs.GetInstancesFilterInputArgs\n            {\n                Key = \"size\",\n                Values = new[]\n                {\n                    g3.Small,\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\nfunc main() {\npulumi.Run(func(ctx *pulumi.Context) error {\n_, err := civo.GetInstances(ctx, \u0026civo.GetInstancesArgs{\nRegion: pulumi.StringRef(\"LON1\"),\nFilters: []civo.GetInstancesFilter{\n{\nKey: \"size\",\nValues: interface{}{\ng3.Small,\n},\n},\n},\n}, nil);\nif err != nil {\nreturn err\n}\nreturn nil\n})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetInstancesArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()\n            .region(\"LON1\")\n            .filters(GetInstancesFilterArgs.builder()\n                .key(\"size\")\n                .values(g3.small())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  small-size:\n    fn::invoke:\n      Function: civo:getInstances\n      Arguments:\n        region: LON1\n        filters:\n          - key: size\n            values:\n              - ${g3.small}\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
                 "description": "A collection of arguments for invoking getInstances.\n",
                 "properties": {

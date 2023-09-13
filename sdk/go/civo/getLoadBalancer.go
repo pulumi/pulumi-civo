@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
@@ -133,6 +134,12 @@ func (o GetLoadBalancerResultOutput) ToGetLoadBalancerResultOutput() GetLoadBala
 
 func (o GetLoadBalancerResultOutput) ToGetLoadBalancerResultOutputWithContext(ctx context.Context) GetLoadBalancerResultOutput {
 	return o
+}
+
+func (o GetLoadBalancerResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetLoadBalancerResult] {
+	return pulumix.Output[GetLoadBalancerResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The algorithm used by the load balancer

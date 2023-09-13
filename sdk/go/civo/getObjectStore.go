@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
@@ -118,6 +119,12 @@ func (o LookupObjectStoreResultOutput) ToLookupObjectStoreResultOutput() LookupO
 
 func (o LookupObjectStoreResultOutput) ToLookupObjectStoreResultOutputWithContext(ctx context.Context) LookupObjectStoreResultOutput {
 	return o
+}
+
+func (o LookupObjectStoreResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupObjectStoreResult] {
+	return pulumix.Output[LookupObjectStoreResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The access key ID from the Object Store credential. If this is not set, a new credential will be created.

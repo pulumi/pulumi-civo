@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
@@ -117,6 +118,12 @@ func (o LookupVolumeResultOutput) ToLookupVolumeResultOutput() LookupVolumeResul
 
 func (o LookupVolumeResultOutput) ToLookupVolumeResultOutputWithContext(ctx context.Context) LookupVolumeResultOutput {
 	return o
+}
+
+func (o LookupVolumeResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupVolumeResult] {
+	return pulumix.Output[LookupVolumeResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The date of the creation of the volume

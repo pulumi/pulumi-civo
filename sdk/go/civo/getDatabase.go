@@ -9,6 +9,7 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
@@ -135,6 +136,12 @@ func (o LookupDatabaseResultOutput) ToLookupDatabaseResultOutput() LookupDatabas
 
 func (o LookupDatabaseResultOutput) ToLookupDatabaseResultOutputWithContext(ctx context.Context) LookupDatabaseResultOutput {
 	return o
+}
+
+func (o LookupDatabaseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDatabaseResult] {
+	return pulumix.Output[LookupDatabaseResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The DNS endpoint of the database
