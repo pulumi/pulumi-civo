@@ -30,14 +30,14 @@ public final class GetSizeSort extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     @Import(name="key", required=true)
     private String key;
 
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     public String key() {
@@ -81,7 +81,7 @@ public final class GetSizeSort extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * @param key Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
          * 
          * @return builder
          * 

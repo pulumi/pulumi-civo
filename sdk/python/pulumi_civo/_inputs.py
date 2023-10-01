@@ -1103,7 +1103,7 @@ class GetSizeFilterArgs:
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
         """
-        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         :param Sequence[str] values: Only retrieves `sizes` which keys has value that matches one of the values provided here
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
@@ -1134,7 +1134,7 @@ class GetSizeFilterArgs:
     @pulumi.getter
     def key(self) -> str:
         """
-        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         """
         return pulumi.get(self, "key")
 
@@ -1185,7 +1185,7 @@ class GetSizeSortArgs:
                  key: str,
                  direction: Optional[str] = None):
         """
-        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
         GetSizeSortArgs._configure(
@@ -1207,7 +1207,7 @@ class GetSizeSortArgs:
     @pulumi.getter
     def key(self) -> str:
         """
-        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         """
         return pulumi.get(self, "key")
 

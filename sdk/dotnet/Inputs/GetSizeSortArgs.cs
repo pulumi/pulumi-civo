@@ -19,7 +19,7 @@ namespace Pulumi.Civo.Inputs
         public Input<string>? Direction { get; set; }
 
         /// <summary>
-        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;

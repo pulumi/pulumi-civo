@@ -359,7 +359,7 @@ export interface GetSizeFilter {
      */
     all?: boolean;
     /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: string;
     /**
@@ -378,7 +378,7 @@ export interface GetSizeFilterArgs {
      */
     all?: pulumi.Input<boolean>;
     /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: pulumi.Input<string>;
     /**
@@ -397,7 +397,7 @@ export interface GetSizeSort {
      */
     direction?: string;
     /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: string;
 }
@@ -408,7 +408,7 @@ export interface GetSizeSortArgs {
      */
     direction?: pulumi.Input<string>;
     /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: pulumi.Input<string>;
 }

@@ -284,7 +284,7 @@ export interface GetSizeFilter {
      */
     all?: boolean;
     /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: string;
     /**
@@ -301,6 +301,8 @@ export interface GetSizeSize {
     cpu: number;
     description: string;
     disk: number;
+    gpu: number;
+    gpuType: string;
     name: string;
     ram: number;
     selectable: boolean;
@@ -313,7 +315,7 @@ export interface GetSizeSort {
      */
     direction?: string;
     /**
-     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
      */
     key: string;
 }

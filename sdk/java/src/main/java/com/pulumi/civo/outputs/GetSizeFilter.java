@@ -19,7 +19,7 @@ public final class GetSizeFilter {
      */
     private @Nullable Boolean all;
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     private String key;
@@ -43,7 +43,7 @@ public final class GetSizeFilter {
         return Optional.ofNullable(this.all);
     }
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     public String key() {

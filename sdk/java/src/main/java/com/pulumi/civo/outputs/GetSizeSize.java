@@ -14,6 +14,8 @@ public final class GetSizeSize {
     private Integer cpu;
     private String description;
     private Integer disk;
+    private Integer gpu;
+    private String gpuType;
     private String name;
     private Integer ram;
     private Boolean selectable;
@@ -28,6 +30,12 @@ public final class GetSizeSize {
     }
     public Integer disk() {
         return this.disk;
+    }
+    public Integer gpu() {
+        return this.gpu;
+    }
+    public String gpuType() {
+        return this.gpuType;
     }
     public String name() {
         return this.name;
@@ -54,6 +62,8 @@ public final class GetSizeSize {
         private Integer cpu;
         private String description;
         private Integer disk;
+        private Integer gpu;
+        private String gpuType;
         private String name;
         private Integer ram;
         private Boolean selectable;
@@ -64,6 +74,8 @@ public final class GetSizeSize {
     	      this.cpu = defaults.cpu;
     	      this.description = defaults.description;
     	      this.disk = defaults.disk;
+    	      this.gpu = defaults.gpu;
+    	      this.gpuType = defaults.gpuType;
     	      this.name = defaults.name;
     	      this.ram = defaults.ram;
     	      this.selectable = defaults.selectable;
@@ -83,6 +95,16 @@ public final class GetSizeSize {
         @CustomType.Setter
         public Builder disk(Integer disk) {
             this.disk = Objects.requireNonNull(disk);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gpu(Integer gpu) {
+            this.gpu = Objects.requireNonNull(gpu);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder gpuType(String gpuType) {
+            this.gpuType = Objects.requireNonNull(gpuType);
             return this;
         }
         @CustomType.Setter
@@ -110,6 +132,8 @@ public final class GetSizeSize {
             o.cpu = cpu;
             o.description = description;
             o.disk = disk;
+            o.gpu = gpu;
+            o.gpuType = gpuType;
             o.name = name;
             o.ram = ram;
             o.selectable = selectable;

@@ -32,14 +32,14 @@ public final class GetSizeFilter extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     @Import(name="key", required=true)
     private String key;
 
     /**
-     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     public String key() {
@@ -115,7 +115,7 @@ public final class GetSizeFilter extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param key Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+         * @param key Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
          * 
          * @return builder
          * 
