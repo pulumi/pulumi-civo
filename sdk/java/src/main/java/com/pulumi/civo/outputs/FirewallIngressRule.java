@@ -22,10 +22,6 @@ public final class FirewallIngressRule {
      * 
      */
     private List<String> cidrs;
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private @Nullable String id;
     /**
      * @return A string that will be the displayed name/reference for this rule
@@ -58,10 +54,6 @@ public final class FirewallIngressRule {
     public List<String> cidrs() {
         return this.cidrs;
     }
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }

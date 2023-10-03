@@ -9,20 +9,12 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDiskImageDiskimage {
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     private String id;
     private String label;
     private String name;
     private String version;
 
     private GetDiskImageDiskimage() {}
-    /**
-     * @return The ID of this resource.
-     * 
-     */
     public String id() {
         return this.id;
     }

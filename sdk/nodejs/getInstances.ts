@@ -45,9 +45,6 @@ export interface GetInstancesArgs {
      * One or more key/value pairs on which to filter results
      */
     filters?: inputs.GetInstancesFilter[];
-    /**
-     * If used, all instances will be from the provided region
-     */
     region?: string;
     /**
      * One or more key/direction pairs on which to sort results
@@ -109,9 +106,6 @@ export interface GetInstancesOutputArgs {
      * One or more key/value pairs on which to filter results
      */
     filters?: pulumi.Input<pulumi.Input<inputs.GetInstancesFilterArgs>[]>;
-    /**
-     * If used, all instances will be from the provided region
-     */
     region?: pulumi.Input<string>;
     /**
      * One or more key/direction pairs on which to sort results

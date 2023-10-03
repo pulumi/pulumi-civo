@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -66,21 +66,39 @@ class FirewallEgressRule(dict):
         """
         :param str action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param Sequence[str] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        :param str id: The ID of this resource.
         :param str label: A string that will be the displayed name/reference for this rule
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "cidrs", cidrs)
+        FirewallEgressRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            id=id,
+            label=label,
+            port_range=port_range,
+            protocol=protocol,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: str,
+             cidrs: Sequence[str],
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             port_range: Optional[str] = None,
+             protocol: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("cidrs", cidrs)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if port_range is not None:
-            pulumi.set(__self__, "port_range", port_range)
+            _setter("port_range", port_range)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
 
     @property
     @pulumi.getter
@@ -101,9 +119,6 @@ class FirewallEgressRule(dict):
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -160,21 +175,39 @@ class FirewallIngressRule(dict):
         """
         :param str action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param Sequence[str] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
-        :param str id: The ID of this resource.
         :param str label: A string that will be the displayed name/reference for this rule
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "cidrs", cidrs)
+        FirewallIngressRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            id=id,
+            label=label,
+            port_range=port_range,
+            protocol=protocol,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: str,
+             cidrs: Sequence[str],
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             port_range: Optional[str] = None,
+             protocol: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("cidrs", cidrs)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if port_range is not None:
-            pulumi.set(__self__, "port_range", port_range)
+            _setter("port_range", port_range)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
 
     @property
     @pulumi.getter
@@ -195,9 +228,6 @@ class FirewallIngressRule(dict):
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -232,14 +262,29 @@ class KubernetesClusterInstalledApplication(dict):
                  category: Optional[str] = None,
                  installed: Optional[bool] = None,
                  version: Optional[str] = None):
+        KubernetesClusterInstalledApplication._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application=application,
+            category=category,
+            installed=installed,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application: Optional[str] = None,
+             category: Optional[str] = None,
+             installed: Optional[bool] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if application is not None:
-            pulumi.set(__self__, "application", application)
+            _setter("application", application)
         if category is not None:
-            pulumi.set(__self__, "category", category)
+            _setter("category", category)
         if installed is not None:
-            pulumi.set(__self__, "installed", installed)
+            _setter("installed", installed)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -298,14 +343,31 @@ class KubernetesClusterPools(dict):
         :param str label: Node pool label, if you don't provide one, we will generate one for you
         :param bool public_ip_node_pool: Node pool belongs to the public ip node pool
         """
-        pulumi.set(__self__, "node_count", node_count)
-        pulumi.set(__self__, "size", size)
+        KubernetesClusterPools._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            node_count=node_count,
+            size=size,
+            instance_names=instance_names,
+            label=label,
+            public_ip_node_pool=public_ip_node_pool,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             node_count: int,
+             size: str,
+             instance_names: Optional[Sequence[str]] = None,
+             label: Optional[str] = None,
+             public_ip_node_pool: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("node_count", node_count)
+        _setter("size", size)
         if instance_names is not None:
-            pulumi.set(__self__, "instance_names", instance_names)
+            _setter("instance_names", instance_names)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if public_ip_node_pool is not None:
-            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+            _setter("public_ip_node_pool", public_ip_node_pool)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -361,12 +423,27 @@ class GetDatabaseVersionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetDatabaseVersionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -410,9 +487,20 @@ class GetDatabaseVersionSortResult(dict):
         :param str key: Sort versions by this key. This may be one of `default`, `engine`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetDatabaseVersionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -437,9 +525,22 @@ class GetDatabaseVersionVersionResult(dict):
                  default: bool,
                  engine: str,
                  version: str):
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "engine", engine)
-        pulumi.set(__self__, "version", version)
+        GetDatabaseVersionVersionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default=default,
+            engine=engine,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default: bool,
+             engine: str,
+             version: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default", default)
+        _setter("engine", engine)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -464,20 +565,29 @@ class GetDiskImageDiskimageResult(dict):
                  label: str,
                  name: str,
                  version: str):
-        """
-        :param str id: The ID of this resource.
-        """
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "version", version)
+        GetDiskImageDiskimageResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            label=label,
+            name=name,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: str,
+             label: str,
+             name: str,
+             version: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("id", id)
+        _setter("label", label)
+        _setter("name", name)
+        _setter("version", version)
 
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -509,12 +619,27 @@ class GetDiskImageFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetDiskImageFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -558,9 +683,20 @@ class GetDiskImageSortResult(dict):
         :param str key: Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetDiskImageSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -592,12 +728,27 @@ class GetInstancesFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetInstancesFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -657,32 +808,79 @@ class GetInstancesInstanceResult(dict):
                  status: str,
                  tags: Sequence[str],
                  template: str):
-        """
-        :param str id: The ID of this resource.
-        :param str region: If used, all instances will be from the provided region
-        """
-        pulumi.set(__self__, "cpu_cores", cpu_cores)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "disk_gb", disk_gb)
-        pulumi.set(__self__, "firewall_id", firewall_id)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "initial_password", initial_password)
-        pulumi.set(__self__, "initial_user", initial_user)
-        pulumi.set(__self__, "network_id", network_id)
-        pulumi.set(__self__, "notes", notes)
-        pulumi.set(__self__, "private_ip", private_ip)
-        pulumi.set(__self__, "pseudo_ip", pseudo_ip)
-        pulumi.set(__self__, "public_ip", public_ip)
-        pulumi.set(__self__, "ram_mb", ram_mb)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "reverse_dns", reverse_dns)
-        pulumi.set(__self__, "script", script)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "sshkey_id", sshkey_id)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "tags", tags)
-        pulumi.set(__self__, "template", template)
+        GetInstancesInstanceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu_cores=cpu_cores,
+            created_at=created_at,
+            disk_gb=disk_gb,
+            firewall_id=firewall_id,
+            hostname=hostname,
+            id=id,
+            initial_password=initial_password,
+            initial_user=initial_user,
+            network_id=network_id,
+            notes=notes,
+            private_ip=private_ip,
+            pseudo_ip=pseudo_ip,
+            public_ip=public_ip,
+            ram_mb=ram_mb,
+            region=region,
+            reverse_dns=reverse_dns,
+            script=script,
+            size=size,
+            sshkey_id=sshkey_id,
+            status=status,
+            tags=tags,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu_cores: int,
+             created_at: str,
+             disk_gb: int,
+             firewall_id: str,
+             hostname: str,
+             id: str,
+             initial_password: str,
+             initial_user: str,
+             network_id: str,
+             notes: str,
+             private_ip: str,
+             pseudo_ip: str,
+             public_ip: str,
+             ram_mb: int,
+             region: str,
+             reverse_dns: str,
+             script: str,
+             size: str,
+             sshkey_id: str,
+             status: str,
+             tags: Sequence[str],
+             template: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cpu_cores", cpu_cores)
+        _setter("created_at", created_at)
+        _setter("disk_gb", disk_gb)
+        _setter("firewall_id", firewall_id)
+        _setter("hostname", hostname)
+        _setter("id", id)
+        _setter("initial_password", initial_password)
+        _setter("initial_user", initial_user)
+        _setter("network_id", network_id)
+        _setter("notes", notes)
+        _setter("private_ip", private_ip)
+        _setter("pseudo_ip", pseudo_ip)
+        _setter("public_ip", public_ip)
+        _setter("ram_mb", ram_mb)
+        _setter("region", region)
+        _setter("reverse_dns", reverse_dns)
+        _setter("script", script)
+        _setter("size", size)
+        _setter("sshkey_id", sshkey_id)
+        _setter("status", status)
+        _setter("tags", tags)
+        _setter("template", template)
 
     @property
     @pulumi.getter(name="cpuCores")
@@ -712,9 +910,6 @@ class GetInstancesInstanceResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
-        """
-        The ID of this resource.
-        """
         return pulumi.get(self, "id")
 
     @property
@@ -760,9 +955,6 @@ class GetInstancesInstanceResult(dict):
     @property
     @pulumi.getter
     def region(self) -> str:
-        """
-        If used, all instances will be from the provided region
-        """
         return pulumi.get(self, "region")
 
     @property
@@ -810,9 +1002,20 @@ class GetInstancesSortResult(dict):
         :param str key: Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetInstancesSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -838,10 +1041,25 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
                  category: str,
                  installed: bool,
                  version: str):
-        pulumi.set(__self__, "application", application)
-        pulumi.set(__self__, "category", category)
-        pulumi.set(__self__, "installed", installed)
-        pulumi.set(__self__, "version", version)
+        GetKubernetesClusterInstalledApplicationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application=application,
+            category=category,
+            installed=installed,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application: str,
+             category: str,
+             installed: bool,
+             version: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("application", application)
+        _setter("category", category)
+        _setter("installed", installed)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -872,11 +1090,28 @@ class GetKubernetesClusterPoolResult(dict):
                  node_count: int,
                  public_ip_node_pool: bool,
                  size: str):
-        pulumi.set(__self__, "instance_names", instance_names)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "node_count", node_count)
-        pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
-        pulumi.set(__self__, "size", size)
+        GetKubernetesClusterPoolResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_names=instance_names,
+            label=label,
+            node_count=node_count,
+            public_ip_node_pool=public_ip_node_pool,
+            size=size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_names: Sequence[str],
+             label: str,
+             node_count: int,
+             public_ip_node_pool: bool,
+             size: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("instance_names", instance_names)
+        _setter("label", label)
+        _setter("node_count", node_count)
+        _setter("public_ip_node_pool", public_ip_node_pool)
+        _setter("size", size)
 
     @property
     @pulumi.getter(name="instanceNames")
@@ -917,12 +1152,27 @@ class GetKubernetesVersionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetKubernetesVersionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -966,9 +1216,20 @@ class GetKubernetesVersionSortResult(dict):
         :param str key: Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetKubernetesVersionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -994,10 +1255,25 @@ class GetKubernetesVersionVersionResult(dict):
                  label: str,
                  type: str,
                  version: str):
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "version", version)
+        GetKubernetesVersionVersionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default=default,
+            label=label,
+            type=type,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default: bool,
+             label: str,
+             type: str,
+             version: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("default", default)
+        _setter("label", label)
+        _setter("type", type)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -1028,11 +1304,28 @@ class GetLoadBalancerBackendResult(dict):
                  protocol: str,
                  source_port: int,
                  target_port: int):
-        pulumi.set(__self__, "health_check_port", health_check_port)
-        pulumi.set(__self__, "ip", ip)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "source_port", source_port)
-        pulumi.set(__self__, "target_port", target_port)
+        GetLoadBalancerBackendResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            health_check_port=health_check_port,
+            ip=ip,
+            protocol=protocol,
+            source_port=source_port,
+            target_port=target_port,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             health_check_port: int,
+             ip: str,
+             protocol: str,
+             source_port: int,
+             target_port: int,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("health_check_port", health_check_port)
+        _setter("ip", ip)
+        _setter("protocol", protocol)
+        _setter("source_port", source_port)
+        _setter("target_port", target_port)
 
     @property
     @pulumi.getter(name="healthCheckPort")
@@ -1073,12 +1366,27 @@ class GetRegionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetRegionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -1120,10 +1428,25 @@ class GetRegionRegionResult(dict):
                  country: str,
                  default: bool,
                  name: str):
-        pulumi.set(__self__, "code", code)
-        pulumi.set(__self__, "country", country)
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "name", name)
+        GetRegionRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            code=code,
+            country=country,
+            default=default,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             code: str,
+             country: str,
+             default: bool,
+             name: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("code", code)
+        _setter("country", country)
+        _setter("default", default)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1155,9 +1478,20 @@ class GetRegionSortResult(dict):
         :param str key: Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetRegionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -1189,12 +1523,27 @@ class GetSizeFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetSizeFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             values: Sequence[str],
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -1239,13 +1588,34 @@ class GetSizeSizeResult(dict):
                  ram: int,
                  selectable: bool,
                  type: str):
-        pulumi.set(__self__, "cpu", cpu)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "disk", disk)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "ram", ram)
-        pulumi.set(__self__, "selectable", selectable)
-        pulumi.set(__self__, "type", type)
+        GetSizeSizeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu=cpu,
+            description=description,
+            disk=disk,
+            name=name,
+            ram=ram,
+            selectable=selectable,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu: int,
+             description: str,
+             disk: int,
+             name: str,
+             ram: int,
+             selectable: bool,
+             type: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cpu", cpu)
+        _setter("description", description)
+        _setter("disk", disk)
+        _setter("name", name)
+        _setter("ram", ram)
+        _setter("selectable", selectable)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -1292,9 +1662,20 @@ class GetSizeSortResult(dict):
         :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetSizeSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: str,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter

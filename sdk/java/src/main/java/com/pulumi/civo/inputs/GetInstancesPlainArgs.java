@@ -32,17 +32,9 @@ public final class GetInstancesPlainArgs extends com.pulumi.resources.InvokeArgs
         return Optional.ofNullable(this.filters);
     }
 
-    /**
-     * If used, all instances will be from the provided region
-     * 
-     */
     @Import(name="region")
     private @Nullable String region;
 
-    /**
-     * @return If used, all instances will be from the provided region
-     * 
-     */
     public Optional<String> region() {
         return Optional.ofNullable(this.region);
     }
@@ -109,12 +101,6 @@ public final class GetInstancesPlainArgs extends com.pulumi.resources.InvokeArgs
             return filters(List.of(filters));
         }
 
-        /**
-         * @param region If used, all instances will be from the provided region
-         * 
-         * @return builder
-         * 
-         */
         public Builder region(@Nullable String region) {
             $.region = region;
             return this;

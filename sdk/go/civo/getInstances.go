@@ -61,8 +61,7 @@ func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.In
 type GetInstancesArgs struct {
 	// One or more key/value pairs on which to filter results
 	Filters []GetInstancesFilter `pulumi:"filters"`
-	// If used, all instances will be from the provided region
-	Region *string `pulumi:"region"`
+	Region  *string              `pulumi:"region"`
 	// One or more key/direction pairs on which to sort results
 	Sorts []GetInstancesSort `pulumi:"sorts"`
 }
@@ -97,8 +96,7 @@ func GetInstancesOutput(ctx *pulumi.Context, args GetInstancesOutputArgs, opts .
 type GetInstancesOutputArgs struct {
 	// One or more key/value pairs on which to filter results
 	Filters GetInstancesFilterArrayInput `pulumi:"filters"`
-	// If used, all instances will be from the provided region
-	Region pulumi.StringPtrInput `pulumi:"region"`
+	Region  pulumi.StringPtrInput        `pulumi:"region"`
 	// One or more key/direction pairs on which to sort results
 	Sorts GetInstancesSortArrayInput `pulumi:"sorts"`
 }

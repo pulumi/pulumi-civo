@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['FirewallRuleArgs', 'FirewallRule']
@@ -35,20 +35,45 @@ class FirewallRuleArgs:
         :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "cidrs", cidrs)
-        pulumi.set(__self__, "direction", direction)
-        pulumi.set(__self__, "firewall_id", firewall_id)
+        FirewallRuleArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            direction=direction,
+            firewall_id=firewall_id,
+            end_port=end_port,
+            label=label,
+            protocol=protocol,
+            region=region,
+            start_port=start_port,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: pulumi.Input[str],
+             cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
+             direction: pulumi.Input[str],
+             firewall_id: pulumi.Input[str],
+             end_port: Optional[pulumi.Input[str]] = None,
+             label: Optional[pulumi.Input[str]] = None,
+             protocol: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             start_port: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("action", action)
+        _setter("cidrs", cidrs)
+        _setter("direction", direction)
+        _setter("firewall_id", firewall_id)
         if end_port is not None:
-            pulumi.set(__self__, "end_port", end_port)
+            _setter("end_port", end_port)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if start_port is not None:
-            pulumi.set(__self__, "start_port", start_port)
+            _setter("start_port", start_port)
 
     @property
     @pulumi.getter
@@ -183,24 +208,49 @@ class _FirewallRuleState:
         :param pulumi.Input[str] region: The region for this rule
         :param pulumi.Input[str] start_port: The start of the port range to configure for this rule (or the single port if required)
         """
+        _FirewallRuleState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            direction=direction,
+            end_port=end_port,
+            firewall_id=firewall_id,
+            label=label,
+            protocol=protocol,
+            region=region,
+            start_port=start_port,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: Optional[pulumi.Input[str]] = None,
+             cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             direction: Optional[pulumi.Input[str]] = None,
+             end_port: Optional[pulumi.Input[str]] = None,
+             firewall_id: Optional[pulumi.Input[str]] = None,
+             label: Optional[pulumi.Input[str]] = None,
+             protocol: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             start_port: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if action is not None:
-            pulumi.set(__self__, "action", action)
+            _setter("action", action)
         if cidrs is not None:
-            pulumi.set(__self__, "cidrs", cidrs)
+            _setter("cidrs", cidrs)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
         if end_port is not None:
-            pulumi.set(__self__, "end_port", end_port)
+            _setter("end_port", end_port)
         if firewall_id is not None:
-            pulumi.set(__self__, "firewall_id", firewall_id)
+            _setter("firewall_id", firewall_id)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if start_port is not None:
-            pulumi.set(__self__, "start_port", start_port)
+            _setter("start_port", start_port)
 
     @property
     @pulumi.getter
@@ -376,6 +426,10 @@ class FirewallRule(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FirewallRuleArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
