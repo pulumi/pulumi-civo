@@ -19,8 +19,7 @@ type FirewallEgressRule struct {
 	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
+	Id    *string  `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label *string `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -45,8 +44,7 @@ type FirewallEgressRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput `pulumi:"cidrs"`
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id    pulumi.StringPtrInput   `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -134,7 +132,6 @@ func (o FirewallEgressRuleOutput) Cidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FirewallEgressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
 }
 
-// The ID of this resource.
 func (o FirewallEgressRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallEgressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -185,8 +182,7 @@ type FirewallIngressRule struct {
 	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	// The ID of this resource.
-	Id *string `pulumi:"id"`
+	Id    *string  `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label *string `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -211,8 +207,7 @@ type FirewallIngressRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput `pulumi:"cidrs"`
-	// The ID of this resource.
-	Id pulumi.StringPtrInput `pulumi:"id"`
+	Id    pulumi.StringPtrInput   `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -300,7 +295,6 @@ func (o FirewallIngressRuleOutput) Cidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FirewallIngressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
 }
 
-// The ID of this resource.
 func (o FirewallIngressRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallIngressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -1128,7 +1122,6 @@ func (o GetDatabaseVersionVersionArrayOutput) Index(i pulumi.IntInput) GetDataba
 }
 
 type GetDiskImageDiskimage struct {
-	// The ID of this resource.
 	Id      string `pulumi:"id"`
 	Label   string `pulumi:"label"`
 	Name    string `pulumi:"name"`
@@ -1147,7 +1140,6 @@ type GetDiskImageDiskimageInput interface {
 }
 
 type GetDiskImageDiskimageArgs struct {
-	// The ID of this resource.
 	Id      pulumi.StringInput `pulumi:"id"`
 	Label   pulumi.StringInput `pulumi:"label"`
 	Name    pulumi.StringInput `pulumi:"name"`
@@ -1223,7 +1215,6 @@ func (o GetDiskImageDiskimageOutput) ToOutput(ctx context.Context) pulumix.Outpu
 	}
 }
 
-// The ID of this resource.
 func (o GetDiskImageDiskimageOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDiskImageDiskimage) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1693,30 +1684,28 @@ func (o GetInstancesFilterArrayOutput) Index(i pulumi.IntInput) GetInstancesFilt
 }
 
 type GetInstancesInstance struct {
-	CpuCores   int    `pulumi:"cpuCores"`
-	CreatedAt  string `pulumi:"createdAt"`
-	DiskGb     int    `pulumi:"diskGb"`
-	FirewallId string `pulumi:"firewallId"`
-	Hostname   string `pulumi:"hostname"`
-	// The ID of this resource.
-	Id              string `pulumi:"id"`
-	InitialPassword string `pulumi:"initialPassword"`
-	InitialUser     string `pulumi:"initialUser"`
-	NetworkId       string `pulumi:"networkId"`
-	Notes           string `pulumi:"notes"`
-	PrivateIp       string `pulumi:"privateIp"`
-	PseudoIp        string `pulumi:"pseudoIp"`
-	PublicIp        string `pulumi:"publicIp"`
-	RamMb           int    `pulumi:"ramMb"`
-	// If used, all instances will be from the provided region
-	Region     string   `pulumi:"region"`
-	ReverseDns string   `pulumi:"reverseDns"`
-	Script     string   `pulumi:"script"`
-	Size       string   `pulumi:"size"`
-	SshkeyId   string   `pulumi:"sshkeyId"`
-	Status     string   `pulumi:"status"`
-	Tags       []string `pulumi:"tags"`
-	Template   string   `pulumi:"template"`
+	CpuCores        int      `pulumi:"cpuCores"`
+	CreatedAt       string   `pulumi:"createdAt"`
+	DiskGb          int      `pulumi:"diskGb"`
+	FirewallId      string   `pulumi:"firewallId"`
+	Hostname        string   `pulumi:"hostname"`
+	Id              string   `pulumi:"id"`
+	InitialPassword string   `pulumi:"initialPassword"`
+	InitialUser     string   `pulumi:"initialUser"`
+	NetworkId       string   `pulumi:"networkId"`
+	Notes           string   `pulumi:"notes"`
+	PrivateIp       string   `pulumi:"privateIp"`
+	PseudoIp        string   `pulumi:"pseudoIp"`
+	PublicIp        string   `pulumi:"publicIp"`
+	RamMb           int      `pulumi:"ramMb"`
+	Region          string   `pulumi:"region"`
+	ReverseDns      string   `pulumi:"reverseDns"`
+	Script          string   `pulumi:"script"`
+	Size            string   `pulumi:"size"`
+	SshkeyId        string   `pulumi:"sshkeyId"`
+	Status          string   `pulumi:"status"`
+	Tags            []string `pulumi:"tags"`
+	Template        string   `pulumi:"template"`
 }
 
 // GetInstancesInstanceInput is an input type that accepts GetInstancesInstanceArgs and GetInstancesInstanceOutput values.
@@ -1731,30 +1720,28 @@ type GetInstancesInstanceInput interface {
 }
 
 type GetInstancesInstanceArgs struct {
-	CpuCores   pulumi.IntInput    `pulumi:"cpuCores"`
-	CreatedAt  pulumi.StringInput `pulumi:"createdAt"`
-	DiskGb     pulumi.IntInput    `pulumi:"diskGb"`
-	FirewallId pulumi.StringInput `pulumi:"firewallId"`
-	Hostname   pulumi.StringInput `pulumi:"hostname"`
-	// The ID of this resource.
-	Id              pulumi.StringInput `pulumi:"id"`
-	InitialPassword pulumi.StringInput `pulumi:"initialPassword"`
-	InitialUser     pulumi.StringInput `pulumi:"initialUser"`
-	NetworkId       pulumi.StringInput `pulumi:"networkId"`
-	Notes           pulumi.StringInput `pulumi:"notes"`
-	PrivateIp       pulumi.StringInput `pulumi:"privateIp"`
-	PseudoIp        pulumi.StringInput `pulumi:"pseudoIp"`
-	PublicIp        pulumi.StringInput `pulumi:"publicIp"`
-	RamMb           pulumi.IntInput    `pulumi:"ramMb"`
-	// If used, all instances will be from the provided region
-	Region     pulumi.StringInput      `pulumi:"region"`
-	ReverseDns pulumi.StringInput      `pulumi:"reverseDns"`
-	Script     pulumi.StringInput      `pulumi:"script"`
-	Size       pulumi.StringInput      `pulumi:"size"`
-	SshkeyId   pulumi.StringInput      `pulumi:"sshkeyId"`
-	Status     pulumi.StringInput      `pulumi:"status"`
-	Tags       pulumi.StringArrayInput `pulumi:"tags"`
-	Template   pulumi.StringInput      `pulumi:"template"`
+	CpuCores        pulumi.IntInput         `pulumi:"cpuCores"`
+	CreatedAt       pulumi.StringInput      `pulumi:"createdAt"`
+	DiskGb          pulumi.IntInput         `pulumi:"diskGb"`
+	FirewallId      pulumi.StringInput      `pulumi:"firewallId"`
+	Hostname        pulumi.StringInput      `pulumi:"hostname"`
+	Id              pulumi.StringInput      `pulumi:"id"`
+	InitialPassword pulumi.StringInput      `pulumi:"initialPassword"`
+	InitialUser     pulumi.StringInput      `pulumi:"initialUser"`
+	NetworkId       pulumi.StringInput      `pulumi:"networkId"`
+	Notes           pulumi.StringInput      `pulumi:"notes"`
+	PrivateIp       pulumi.StringInput      `pulumi:"privateIp"`
+	PseudoIp        pulumi.StringInput      `pulumi:"pseudoIp"`
+	PublicIp        pulumi.StringInput      `pulumi:"publicIp"`
+	RamMb           pulumi.IntInput         `pulumi:"ramMb"`
+	Region          pulumi.StringInput      `pulumi:"region"`
+	ReverseDns      pulumi.StringInput      `pulumi:"reverseDns"`
+	Script          pulumi.StringInput      `pulumi:"script"`
+	Size            pulumi.StringInput      `pulumi:"size"`
+	SshkeyId        pulumi.StringInput      `pulumi:"sshkeyId"`
+	Status          pulumi.StringInput      `pulumi:"status"`
+	Tags            pulumi.StringArrayInput `pulumi:"tags"`
+	Template        pulumi.StringInput      `pulumi:"template"`
 }
 
 func (GetInstancesInstanceArgs) ElementType() reflect.Type {
@@ -1846,7 +1833,6 @@ func (o GetInstancesInstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// The ID of this resource.
 func (o GetInstancesInstanceOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Id }).(pulumi.StringOutput)
 }
@@ -1883,7 +1869,6 @@ func (o GetInstancesInstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstancesInstance) int { return v.RamMb }).(pulumi.IntOutput)
 }
 
-// If used, all instances will be from the provided region
 func (o GetInstancesInstanceOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstancesInstance) string { return v.Region }).(pulumi.StringOutput)
 }

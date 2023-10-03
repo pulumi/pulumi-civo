@@ -18,9 +18,6 @@ namespace Pulumi.Civo.Outputs
         public readonly int DiskGb;
         public readonly string FirewallId;
         public readonly string Hostname;
-        /// <summary>
-        /// The ID of this resource.
-        /// </summary>
         public readonly string Id;
         public readonly string InitialPassword;
         public readonly string InitialUser;
@@ -30,9 +27,6 @@ namespace Pulumi.Civo.Outputs
         public readonly string PseudoIp;
         public readonly string PublicIp;
         public readonly int RamMb;
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         public readonly string Region;
         public readonly string ReverseDns;
         public readonly string Script;

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['KubernetesNodePoolArgs', 'KubernetesNodePool']
@@ -33,26 +33,49 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[str] size: the size of each node (optional, the default is currently g4s.kube.medium)
         :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
-        pulumi.set(__self__, "cluster_id", cluster_id)
-        pulumi.set(__self__, "region", region)
+        KubernetesNodePoolArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            region=region,
+            label=label,
+            node_count=node_count,
+            num_target_nodes=num_target_nodes,
+            public_ip_node_pool=public_ip_node_pool,
+            size=size,
+            target_nodes_size=target_nodes_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: pulumi.Input[str],
+             region: pulumi.Input[str],
+             label: Optional[pulumi.Input[str]] = None,
+             node_count: Optional[pulumi.Input[int]] = None,
+             num_target_nodes: Optional[pulumi.Input[int]] = None,
+             public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             target_nodes_size: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("cluster_id", cluster_id)
+        _setter("region", region)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
         if num_target_nodes is not None:
             warnings.warn("""This field is deprecated, please use `node_count` instead""", DeprecationWarning)
             pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated, please use `node_count` instead""")
         if num_target_nodes is not None:
-            pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+            _setter("num_target_nodes", num_target_nodes)
         if public_ip_node_pool is not None:
-            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+            _setter("public_ip_node_pool", public_ip_node_pool)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if target_nodes_size is not None:
             warnings.warn("""This field is deprecated, please use `size` instead""", DeprecationWarning)
             pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated, please use `size` instead""")
         if target_nodes_size is not None:
-            pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+            _setter("target_nodes_size", target_nodes_size)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -181,30 +204,55 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[str] size: the size of each node (optional, the default is currently g4s.kube.medium)
         :param pulumi.Input[str] target_nodes_size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
+        _KubernetesNodePoolState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cluster_id=cluster_id,
+            instance_names=instance_names,
+            label=label,
+            node_count=node_count,
+            num_target_nodes=num_target_nodes,
+            public_ip_node_pool=public_ip_node_pool,
+            region=region,
+            size=size,
+            target_nodes_size=target_nodes_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             label: Optional[pulumi.Input[str]] = None,
+             node_count: Optional[pulumi.Input[int]] = None,
+             num_target_nodes: Optional[pulumi.Input[int]] = None,
+             public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             target_nodes_size: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if cluster_id is not None:
-            pulumi.set(__self__, "cluster_id", cluster_id)
+            _setter("cluster_id", cluster_id)
         if instance_names is not None:
-            pulumi.set(__self__, "instance_names", instance_names)
+            _setter("instance_names", instance_names)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if node_count is not None:
-            pulumi.set(__self__, "node_count", node_count)
+            _setter("node_count", node_count)
         if num_target_nodes is not None:
             warnings.warn("""This field is deprecated, please use `node_count` instead""", DeprecationWarning)
             pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated, please use `node_count` instead""")
         if num_target_nodes is not None:
-            pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+            _setter("num_target_nodes", num_target_nodes)
         if public_ip_node_pool is not None:
-            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+            _setter("public_ip_node_pool", public_ip_node_pool)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if target_nodes_size is not None:
             warnings.warn("""This field is deprecated, please use `size` instead""", DeprecationWarning)
             pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated, please use `size` instead""")
         if target_nodes_size is not None:
-            pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+            _setter("target_nodes_size", target_nodes_size)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -384,6 +432,10 @@ class KubernetesNodePool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            KubernetesNodePoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -411,18 +463,12 @@ class KubernetesNodePool(pulumi.CustomResource):
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["label"] = label
             __props__.__dict__["node_count"] = node_count
-            if num_target_nodes is not None and not opts.urn:
-                warnings.warn("""This field is deprecated, please use `node_count` instead""", DeprecationWarning)
-                pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated, please use `node_count` instead""")
             __props__.__dict__["num_target_nodes"] = num_target_nodes
             __props__.__dict__["public_ip_node_pool"] = public_ip_node_pool
             if region is None and not opts.urn:
                 raise TypeError("Missing required property 'region'")
             __props__.__dict__["region"] = region
             __props__.__dict__["size"] = size
-            if target_nodes_size is not None and not opts.urn:
-                warnings.warn("""This field is deprecated, please use `size` instead""", DeprecationWarning)
-                pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated, please use `size` instead""")
             __props__.__dict__["target_nodes_size"] = target_nodes_size
             __props__.__dict__["instance_names"] = None
         super(KubernetesNodePool, __self__).__init__(

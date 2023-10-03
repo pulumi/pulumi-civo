@@ -14,9 +14,6 @@ export interface FirewallEgressRule {
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs: string[];
-    /**
-     * The ID of this resource.
-     */
     id: string;
     /**
      * A string that will be the displayed name/reference for this rule
@@ -41,9 +38,6 @@ export interface FirewallIngressRule {
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs: string[];
-    /**
-     * The ID of this resource.
-     */
     id: string;
     /**
      * A string that will be the displayed name/reference for this rule
@@ -96,9 +90,6 @@ export interface GetDatabaseVersionVersion {
 }
 
 export interface GetDiskImageDiskimage {
-    /**
-     * The ID of this resource.
-     */
     id: string;
     label: string;
     name: string;
@@ -160,9 +151,6 @@ export interface GetInstancesInstance {
     diskGb: number;
     firewallId: string;
     hostname: string;
-    /**
-     * The ID of this resource.
-     */
     id: string;
     initialPassword: string;
     initialUser: string;
@@ -172,9 +160,6 @@ export interface GetInstancesInstance {
     pseudoIp: string;
     publicIp: string;
     ramMb: number;
-    /**
-     * If used, all instances will be from the provided region
-     */
     region: string;
     reverseDns: string;
     script: string;

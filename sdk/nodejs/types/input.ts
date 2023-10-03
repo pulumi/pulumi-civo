@@ -14,9 +14,6 @@ export interface FirewallEgressRule {
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
     /**
      * A string that will be the displayed name/reference for this rule
@@ -41,9 +38,6 @@ export interface FirewallIngressRule {
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      */
     cidrs: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID of this resource.
-     */
     id?: pulumi.Input<string>;
     /**
      * A string that will be the displayed name/reference for this rule

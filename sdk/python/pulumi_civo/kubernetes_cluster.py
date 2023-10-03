@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -42,34 +42,65 @@ class KubernetesClusterArgs:
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
-        pulumi.set(__self__, "firewall_id", firewall_id)
-        pulumi.set(__self__, "pools", pools)
+        KubernetesClusterArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            firewall_id=firewall_id,
+            pools=pools,
+            applications=applications,
+            cluster_type=cluster_type,
+            cni=cni,
+            kubernetes_version=kubernetes_version,
+            name=name,
+            network_id=network_id,
+            num_target_nodes=num_target_nodes,
+            region=region,
+            tags=tags,
+            target_nodes_size=target_nodes_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             firewall_id: pulumi.Input[str],
+             pools: pulumi.Input['KubernetesClusterPoolsArgs'],
+             applications: Optional[pulumi.Input[str]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             cni: Optional[pulumi.Input[str]] = None,
+             kubernetes_version: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             num_target_nodes: Optional[pulumi.Input[int]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[str]] = None,
+             target_nodes_size: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("firewall_id", firewall_id)
+        _setter("pools", pools)
         if applications is not None:
-            pulumi.set(__self__, "applications", applications)
+            _setter("applications", applications)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if cni is not None:
-            pulumi.set(__self__, "cni", cni)
+            _setter("cni", cni)
         if kubernetes_version is not None:
-            pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+            _setter("kubernetes_version", kubernetes_version)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if num_target_nodes is not None:
             warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
             pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if num_target_nodes is not None:
-            pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+            _setter("num_target_nodes", num_target_nodes)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if target_nodes_size is not None:
             warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
             pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
-            pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+            _setter("target_nodes_size", target_nodes_size)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -263,52 +294,99 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
         """
+        _KubernetesClusterState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            api_endpoint=api_endpoint,
+            applications=applications,
+            cluster_type=cluster_type,
+            cni=cni,
+            created_at=created_at,
+            dns_entry=dns_entry,
+            firewall_id=firewall_id,
+            installed_applications=installed_applications,
+            kubeconfig=kubeconfig,
+            kubernetes_version=kubernetes_version,
+            master_ip=master_ip,
+            name=name,
+            network_id=network_id,
+            num_target_nodes=num_target_nodes,
+            pools=pools,
+            ready=ready,
+            region=region,
+            status=status,
+            tags=tags,
+            target_nodes_size=target_nodes_size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             api_endpoint: Optional[pulumi.Input[str]] = None,
+             applications: Optional[pulumi.Input[str]] = None,
+             cluster_type: Optional[pulumi.Input[str]] = None,
+             cni: Optional[pulumi.Input[str]] = None,
+             created_at: Optional[pulumi.Input[str]] = None,
+             dns_entry: Optional[pulumi.Input[str]] = None,
+             firewall_id: Optional[pulumi.Input[str]] = None,
+             installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]]] = None,
+             kubeconfig: Optional[pulumi.Input[str]] = None,
+             kubernetes_version: Optional[pulumi.Input[str]] = None,
+             master_ip: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             num_target_nodes: Optional[pulumi.Input[int]] = None,
+             pools: Optional[pulumi.Input['KubernetesClusterPoolsArgs']] = None,
+             ready: Optional[pulumi.Input[bool]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             tags: Optional[pulumi.Input[str]] = None,
+             target_nodes_size: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None):
         if api_endpoint is not None:
-            pulumi.set(__self__, "api_endpoint", api_endpoint)
+            _setter("api_endpoint", api_endpoint)
         if applications is not None:
-            pulumi.set(__self__, "applications", applications)
+            _setter("applications", applications)
         if cluster_type is not None:
-            pulumi.set(__self__, "cluster_type", cluster_type)
+            _setter("cluster_type", cluster_type)
         if cni is not None:
-            pulumi.set(__self__, "cni", cni)
+            _setter("cni", cni)
         if created_at is not None:
-            pulumi.set(__self__, "created_at", created_at)
+            _setter("created_at", created_at)
         if dns_entry is not None:
-            pulumi.set(__self__, "dns_entry", dns_entry)
+            _setter("dns_entry", dns_entry)
         if firewall_id is not None:
-            pulumi.set(__self__, "firewall_id", firewall_id)
+            _setter("firewall_id", firewall_id)
         if installed_applications is not None:
-            pulumi.set(__self__, "installed_applications", installed_applications)
+            _setter("installed_applications", installed_applications)
         if kubeconfig is not None:
-            pulumi.set(__self__, "kubeconfig", kubeconfig)
+            _setter("kubeconfig", kubeconfig)
         if kubernetes_version is not None:
-            pulumi.set(__self__, "kubernetes_version", kubernetes_version)
+            _setter("kubernetes_version", kubernetes_version)
         if master_ip is not None:
-            pulumi.set(__self__, "master_ip", master_ip)
+            _setter("master_ip", master_ip)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if num_target_nodes is not None:
             warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
             pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if num_target_nodes is not None:
-            pulumi.set(__self__, "num_target_nodes", num_target_nodes)
+            _setter("num_target_nodes", num_target_nodes)
         if pools is not None:
-            pulumi.set(__self__, "pools", pools)
+            _setter("pools", pools)
         if ready is not None:
-            pulumi.set(__self__, "ready", ready)
+            _setter("ready", ready)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if tags is not None:
-            pulumi.set(__self__, "tags", tags)
+            _setter("tags", tags)
         if target_nodes_size is not None:
             warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
             pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
-            pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+            _setter("target_nodes_size", target_nodes_size)
 
     @property
     @pulumi.getter(name="apiEndpoint")
@@ -621,6 +699,10 @@ class KubernetesCluster(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            KubernetesClusterArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
@@ -656,18 +738,17 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["kubernetes_version"] = kubernetes_version
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
-            if num_target_nodes is not None and not opts.urn:
-                warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-                pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
             __props__.__dict__["num_target_nodes"] = num_target_nodes
+            if pools is not None and not isinstance(pools, KubernetesClusterPoolsArgs):
+                pools = pools or {}
+                def _setter(key, value):
+                    pools[key] = value
+                KubernetesClusterPoolsArgs._configure(_setter, **pools)
             if pools is None and not opts.urn:
                 raise TypeError("Missing required property 'pools'")
             __props__.__dict__["pools"] = pools
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
-            if target_nodes_size is not None and not opts.urn:
-                warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-                pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
             __props__.__dict__["target_nodes_size"] = target_nodes_size
             __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["created_at"] = None

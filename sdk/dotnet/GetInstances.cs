@@ -109,9 +109,6 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -147,9 +144,6 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
-        /// <summary>
-        /// If used, all instances will be from the provided region
-        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
