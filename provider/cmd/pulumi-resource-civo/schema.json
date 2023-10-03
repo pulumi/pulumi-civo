@@ -82,8 +82,7 @@
                     "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)\n"
                 },
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "label": {
                     "type": "string",
@@ -127,8 +126,7 @@
                     "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)\n"
                 },
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "label": {
                     "type": "string",
@@ -299,8 +297,7 @@
         "civo:index/getDiskImageDiskimage:getDiskImageDiskimage": {
             "properties": {
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "label": {
                     "type": "string"
@@ -415,8 +412,7 @@
                     "type": "string"
                 },
                 "id": {
-                    "type": "string",
-                    "description": "The ID of this resource.\n"
+                    "type": "string"
                 },
                 "initialPassword": {
                     "type": "string"
@@ -443,8 +439,7 @@
                     "type": "integer"
                 },
                 "region": {
-                    "type": "string",
-                    "description": "If used, all instances will be from the provided region\n"
+                    "type": "string"
                 },
                 "reverseDns": {
                     "type": "string"
@@ -3252,8 +3247,7 @@
                         "description": "One or more key/value pairs on which to filter results\n"
                     },
                     "region": {
-                        "type": "string",
-                        "description": "If used, all instances will be from the provided region\n"
+                        "type": "string"
                     },
                     "sorts": {
                         "type": "array",
