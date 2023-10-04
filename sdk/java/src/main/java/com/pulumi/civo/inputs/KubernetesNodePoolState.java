@@ -3,12 +3,14 @@
 
 package com.pulumi.civo.inputs;
 
+import com.pulumi.civo.inputs.KubernetesNodePoolTaintArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -63,6 +65,13 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.label);
     }
 
+    @Import(name="labels")
+    private @Nullable Output<Map<String,String>> labels;
+
+    public Optional<Output<Map<String,String>>> labels() {
+        return Optional.ofNullable(this.labels);
+    }
+
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      * 
@@ -76,29 +85,6 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
      */
     public Optional<Output<Integer>> nodeCount() {
         return Optional.ofNullable(this.nodeCount);
-    }
-
-    /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `node_count` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `node_count` instead */
-    @Import(name="numTargetNodes")
-    private @Nullable Output<Integer> numTargetNodes;
-
-    /**
-     * @return the number of instances to create (optional, the default at the time of writing is 3)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `node_count` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `node_count` instead */
-    public Optional<Output<Integer>> numTargetNodes() {
-        return Optional.ofNullable(this.numTargetNodes);
     }
 
     /**
@@ -146,27 +132,11 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         return Optional.ofNullable(this.size);
     }
 
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `size` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `size` instead */
-    @Import(name="targetNodesSize")
-    private @Nullable Output<String> targetNodesSize;
+    @Import(name="taints")
+    private @Nullable Output<List<KubernetesNodePoolTaintArgs>> taints;
 
-    /**
-     * @return the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `size` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `size` instead */
-    public Optional<Output<String>> targetNodesSize() {
-        return Optional.ofNullable(this.targetNodesSize);
+    public Optional<Output<List<KubernetesNodePoolTaintArgs>>> taints() {
+        return Optional.ofNullable(this.taints);
     }
 
     private KubernetesNodePoolState() {}
@@ -175,12 +145,12 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         this.clusterId = $.clusterId;
         this.instanceNames = $.instanceNames;
         this.label = $.label;
+        this.labels = $.labels;
         this.nodeCount = $.nodeCount;
-        this.numTargetNodes = $.numTargetNodes;
         this.publicIpNodePool = $.publicIpNodePool;
         this.region = $.region;
         this.size = $.size;
-        this.targetNodesSize = $.targetNodesSize;
+        this.taints = $.taints;
     }
 
     public static Builder builder() {
@@ -274,6 +244,15 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
             return label(Output.of(label));
         }
 
+        public Builder labels(@Nullable Output<Map<String,String>> labels) {
+            $.labels = labels;
+            return this;
+        }
+
+        public Builder labels(Map<String,String> labels) {
+            return labels(Output.of(labels));
+        }
+
         /**
          * @param nodeCount the number of instances to create (optional, the default at the time of writing is 3)
          * 
@@ -293,35 +272,6 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
          */
         public Builder nodeCount(Integer nodeCount) {
             return nodeCount(Output.of(nodeCount));
-        }
-
-        /**
-         * @param numTargetNodes the number of instances to create (optional, the default at the time of writing is 3)
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is deprecated, please use `node_count` instead
-         * 
-         */
-        @Deprecated /* This field is deprecated, please use `node_count` instead */
-        public Builder numTargetNodes(@Nullable Output<Integer> numTargetNodes) {
-            $.numTargetNodes = numTargetNodes;
-            return this;
-        }
-
-        /**
-         * @param numTargetNodes the number of instances to create (optional, the default at the time of writing is 3)
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is deprecated, please use `node_count` instead
-         * 
-         */
-        @Deprecated /* This field is deprecated, please use `node_count` instead */
-        public Builder numTargetNodes(Integer numTargetNodes) {
-            return numTargetNodes(Output.of(numTargetNodes));
         }
 
         /**
@@ -387,33 +337,17 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
             return size(Output.of(size));
         }
 
-        /**
-         * @param targetNodesSize the size of each node (optional, the default is currently g4s.kube.medium)
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is deprecated, please use `size` instead
-         * 
-         */
-        @Deprecated /* This field is deprecated, please use `size` instead */
-        public Builder targetNodesSize(@Nullable Output<String> targetNodesSize) {
-            $.targetNodesSize = targetNodesSize;
+        public Builder taints(@Nullable Output<List<KubernetesNodePoolTaintArgs>> taints) {
+            $.taints = taints;
             return this;
         }
 
-        /**
-         * @param targetNodesSize the size of each node (optional, the default is currently g4s.kube.medium)
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * This field is deprecated, please use `size` instead
-         * 
-         */
-        @Deprecated /* This field is deprecated, please use `size` instead */
-        public Builder targetNodesSize(String targetNodesSize) {
-            return targetNodesSize(Output.of(targetNodesSize));
+        public Builder taints(List<KubernetesNodePoolTaintArgs> taints) {
+            return taints(Output.of(taints));
+        }
+
+        public Builder taints(KubernetesNodePoolTaintArgs... taints) {
+            return taints(List.of(taints));
         }
 
         public KubernetesNodePoolState build() {

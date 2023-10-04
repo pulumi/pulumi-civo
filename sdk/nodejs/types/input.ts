@@ -442,3 +442,9 @@ export interface KubernetesClusterPools {
      */
     size: pulumi.Input<string>;
 }
+
+export interface KubernetesNodePoolTaint {
+    effect: pulumi.Input<string>;
+    key: pulumi.Input<string>;
+    value: pulumi.Input<string>;
+}
