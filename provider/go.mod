@@ -5,7 +5,7 @@ go 1.21
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20230912190043-e6d96b3b8f7e
 
 require (
-	github.com/civo/terraform-provider-civo v1.0.37
+	github.com/civo/terraform-provider-civo v1.0.38
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.61.0
 	github.com/pulumi/pulumi/sdk/v3 v3.86.0
 )
@@ -81,7 +81,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.24.2 // indirect
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
 	github.com/cheggaaa/pb v1.0.29 // indirect
-	github.com/civo/civogo v0.3.47 // indirect
+	github.com/civo/civogo v0.3.51 // indirect
 	github.com/cloudflare/circl v1.3.3 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
