@@ -1,0 +1,5 @@
+provider: civo
+env:
+  CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
+makeTemplate: bridged
+team: ecosystem
