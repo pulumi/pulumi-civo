@@ -17,7 +17,7 @@ public final class GetSizeSort {
      */
     private @Nullable String direction;
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     private String key;
@@ -31,7 +31,7 @@ public final class GetSizeSort {
         return Optional.ofNullable(this.direction);
     }
     /**
-     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+     * @return Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
      * 
      */
     public String key() {

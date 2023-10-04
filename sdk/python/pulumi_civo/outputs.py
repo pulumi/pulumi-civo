@@ -1518,7 +1518,7 @@ class GetSizeFilterResult(dict):
                  all: Optional[bool] = None,
                  match_by: Optional[str] = None):
         """
-        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str key: Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         :param Sequence[str] values: Only retrieves `sizes` which keys has value that matches one of the values provided here
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
@@ -1549,7 +1549,7 @@ class GetSizeFilterResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         """
         return pulumi.get(self, "key")
 
@@ -1584,6 +1584,8 @@ class GetSizeSizeResult(dict):
                  cpu: int,
                  description: str,
                  disk: int,
+                 gpu: int,
+                 gpu_type: str,
                  name: str,
                  ram: int,
                  selectable: bool,
@@ -1593,6 +1595,8 @@ class GetSizeSizeResult(dict):
             cpu=cpu,
             description=description,
             disk=disk,
+            gpu=gpu,
+            gpu_type=gpu_type,
             name=name,
             ram=ram,
             selectable=selectable,
@@ -1604,6 +1608,8 @@ class GetSizeSizeResult(dict):
              cpu: int,
              description: str,
              disk: int,
+             gpu: int,
+             gpu_type: str,
              name: str,
              ram: int,
              selectable: bool,
@@ -1612,6 +1618,8 @@ class GetSizeSizeResult(dict):
         _setter("cpu", cpu)
         _setter("description", description)
         _setter("disk", disk)
+        _setter("gpu", gpu)
+        _setter("gpu_type", gpu_type)
         _setter("name", name)
         _setter("ram", ram)
         _setter("selectable", selectable)
@@ -1631,6 +1639,16 @@ class GetSizeSizeResult(dict):
     @pulumi.getter
     def disk(self) -> int:
         return pulumi.get(self, "disk")
+
+    @property
+    @pulumi.getter
+    def gpu(self) -> int:
+        return pulumi.get(self, "gpu")
+
+    @property
+    @pulumi.getter(name="gpuType")
+    def gpu_type(self) -> str:
+        return pulumi.get(self, "gpu_type")
 
     @property
     @pulumi.getter
@@ -1659,7 +1677,7 @@ class GetSizeSortResult(dict):
                  key: str,
                  direction: Optional[str] = None):
         """
-        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
         GetSizeSortResult._configure(
@@ -1681,7 +1699,7 @@ class GetSizeSortResult(dict):
     @pulumi.getter
     def key(self) -> str:
         """
-        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         """
         return pulumi.get(self, "key")
 

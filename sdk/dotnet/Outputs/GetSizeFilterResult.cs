@@ -18,7 +18,7 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly bool? All;
         /// <summary>
-        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         /// </summary>
         public readonly string Key;
         /// <summary>

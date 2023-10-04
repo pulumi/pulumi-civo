@@ -3308,7 +3308,7 @@ func (o GetRegionSortArrayOutput) Index(i pulumi.IntInput) GetRegionSortOutput {
 type GetSizeFilter struct {
 	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 	All *bool `pulumi:"all"`
-	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 	Key string `pulumi:"key"`
 	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 	MatchBy *string `pulumi:"matchBy"`
@@ -3330,7 +3330,7 @@ type GetSizeFilterInput interface {
 type GetSizeFilterArgs struct {
 	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 	All pulumi.BoolPtrInput `pulumi:"all"`
-	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 	Key pulumi.StringInput `pulumi:"key"`
 	// One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
 	MatchBy pulumi.StringPtrInput `pulumi:"matchBy"`
@@ -3412,7 +3412,7 @@ func (o GetSizeFilterOutput) All() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GetSizeFilter) *bool { return v.All }).(pulumi.BoolPtrOutput)
 }
 
-// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 func (o GetSizeFilterOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSizeFilter) string { return v.Key }).(pulumi.StringOutput)
 }
@@ -3457,6 +3457,8 @@ type GetSizeSize struct {
 	Cpu         int    `pulumi:"cpu"`
 	Description string `pulumi:"description"`
 	Disk        int    `pulumi:"disk"`
+	Gpu         int    `pulumi:"gpu"`
+	GpuType     string `pulumi:"gpuType"`
 	Name        string `pulumi:"name"`
 	Ram         int    `pulumi:"ram"`
 	Selectable  bool   `pulumi:"selectable"`
@@ -3478,6 +3480,8 @@ type GetSizeSizeArgs struct {
 	Cpu         pulumi.IntInput    `pulumi:"cpu"`
 	Description pulumi.StringInput `pulumi:"description"`
 	Disk        pulumi.IntInput    `pulumi:"disk"`
+	Gpu         pulumi.IntInput    `pulumi:"gpu"`
+	GpuType     pulumi.StringInput `pulumi:"gpuType"`
 	Name        pulumi.StringInput `pulumi:"name"`
 	Ram         pulumi.IntInput    `pulumi:"ram"`
 	Selectable  pulumi.BoolInput   `pulumi:"selectable"`
@@ -3565,6 +3569,14 @@ func (o GetSizeSizeOutput) Disk() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSizeSize) int { return v.Disk }).(pulumi.IntOutput)
 }
 
+func (o GetSizeSizeOutput) Gpu() pulumi.IntOutput {
+	return o.ApplyT(func(v GetSizeSize) int { return v.Gpu }).(pulumi.IntOutput)
+}
+
+func (o GetSizeSizeOutput) GpuType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSizeSize) string { return v.GpuType }).(pulumi.StringOutput)
+}
+
 func (o GetSizeSizeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSizeSize) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -3610,7 +3622,7 @@ func (o GetSizeSizeArrayOutput) Index(i pulumi.IntInput) GetSizeSizeOutput {
 type GetSizeSort struct {
 	// The sort direction. This may be either `asc` or `desc`.
 	Direction *string `pulumi:"direction"`
-	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 	Key string `pulumi:"key"`
 }
 
@@ -3628,7 +3640,7 @@ type GetSizeSortInput interface {
 type GetSizeSortArgs struct {
 	// The sort direction. This may be either `asc` or `desc`.
 	Direction pulumi.StringPtrInput `pulumi:"direction"`
-	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+	// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 	Key pulumi.StringInput `pulumi:"key"`
 }
 
@@ -3706,7 +3718,7 @@ func (o GetSizeSortOutput) Direction() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetSizeSort) *string { return v.Direction }).(pulumi.StringPtrOutput)
 }
 
-// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+// Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpuType`, `gpu`, `name`, `ram`, `selectable`, `type`.
 func (o GetSizeSortOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSizeSort) string { return v.Key }).(pulumi.StringOutput)
 }

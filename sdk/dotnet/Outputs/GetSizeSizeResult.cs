@@ -16,6 +16,8 @@ namespace Pulumi.Civo.Outputs
         public readonly int Cpu;
         public readonly string Description;
         public readonly int Disk;
+        public readonly int Gpu;
+        public readonly string GpuType;
         public readonly string Name;
         public readonly int Ram;
         public readonly bool Selectable;
@@ -29,6 +31,10 @@ namespace Pulumi.Civo.Outputs
 
             int disk,
 
+            int gpu,
+
+            string gpuType,
+
             string name,
 
             int ram,
@@ -40,6 +46,8 @@ namespace Pulumi.Civo.Outputs
             Cpu = cpu;
             Description = description;
             Disk = disk;
+            Gpu = gpu;
+            GpuType = gpuType;
             Name = name;
             Ram = ram;
             Selectable = selectable;

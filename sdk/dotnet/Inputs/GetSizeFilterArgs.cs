@@ -19,7 +19,7 @@ namespace Pulumi.Civo.Inputs
         public Input<bool>? All { get; set; }
 
         /// <summary>
-        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.
+        /// Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;

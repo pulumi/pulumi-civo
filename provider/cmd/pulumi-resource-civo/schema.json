@@ -760,7 +760,7 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.\n"
+                    "description": "Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.\n"
                 },
                 "matchBy": {
                     "type": "string",
@@ -791,6 +791,12 @@
                 "disk": {
                     "type": "integer"
                 },
+                "gpu": {
+                    "type": "integer"
+                },
+                "gpuType": {
+                    "type": "string"
+                },
                 "name": {
                     "type": "string"
                 },
@@ -809,6 +815,8 @@
                 "cpu",
                 "description",
                 "disk",
+                "gpu",
+                "gpuType",
                 "name",
                 "ram",
                 "selectable",
@@ -828,7 +836,7 @@
                 },
                 "key": {
                     "type": "string",
-                    "description": "Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `name`, `ram`, `selectable`, `type`.\n"
+                    "description": "Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.\n"
                 }
             },
             "type": "object",
