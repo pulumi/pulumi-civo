@@ -6,6 +6,7 @@ package com.pulumi.civo;
 import com.pulumi.civo.KubernetesNodePoolArgs;
 import com.pulumi.civo.Utilities;
 import com.pulumi.civo.inputs.KubernetesNodePoolState;
+import com.pulumi.civo.outputs.KubernetesNodePoolTaint;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
@@ -14,15 +15,12 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `civo.KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
- * 
  * ## Import
- * 
- * using cluster_id:node_pool_id
  * 
  * ```sh
  *  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -73,6 +71,12 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
     public Output<String> label() {
         return this.label;
     }
+    @Export(name="labels", type=Map.class, parameters={String.class, String.class})
+    private Output</* @Nullable */ Map<String,String>> labels;
+
+    public Output<Optional<Map<String,String>>> labels() {
+        return Codegen.optional(this.labels);
+    }
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      * 
@@ -86,24 +90,6 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      */
     public Output<Integer> nodeCount() {
         return this.nodeCount;
-    }
-    /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `node_count` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `node_count` instead */
-    @Export(name="numTargetNodes", type=Integer.class, parameters={})
-    private Output</* @Nullable */ Integer> numTargetNodes;
-
-    /**
-     * @return the number of instances to create (optional, the default at the time of writing is 3)
-     * 
-     */
-    public Output<Optional<Integer>> numTargetNodes() {
-        return Codegen.optional(this.numTargetNodes);
     }
     /**
      * Node pool belongs to the public ip node pool
@@ -147,23 +133,11 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
     public Output<String> size() {
         return this.size;
     }
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     * @deprecated
-     * This field is deprecated, please use `size` instead
-     * 
-     */
-    @Deprecated /* This field is deprecated, please use `size` instead */
-    @Export(name="targetNodesSize", type=String.class, parameters={})
-    private Output</* @Nullable */ String> targetNodesSize;
+    @Export(name="taints", type=List.class, parameters={KubernetesNodePoolTaint.class})
+    private Output</* @Nullable */ List<KubernetesNodePoolTaint>> taints;
 
-    /**
-     * @return the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     */
-    public Output<Optional<String>> targetNodesSize() {
-        return Codegen.optional(this.targetNodesSize);
+    public Output<Optional<List<KubernetesNodePoolTaint>>> taints() {
+        return Codegen.optional(this.taints);
     }
 
     /**

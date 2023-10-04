@@ -2,14 +2,12 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `civo.KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
- *
  * ## Import
- *
- * using cluster_id:node_pool_id
  *
  * ```sh
  *  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -55,16 +53,11 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      * Node pool label, if you don't provide one, we will generate one for you
      */
     public readonly label!: pulumi.Output<string>;
+    public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
     public readonly nodeCount!: pulumi.Output<number>;
-    /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
-     *
-     * @deprecated This field is deprecated, please use `node_count` instead
-     */
-    public readonly numTargetNodes!: pulumi.Output<number | undefined>;
     /**
      * Node pool belongs to the public ip node pool
      */
@@ -77,12 +70,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     public readonly size!: pulumi.Output<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     *
-     * @deprecated This field is deprecated, please use `size` instead
-     */
-    public readonly targetNodesSize!: pulumi.Output<string | undefined>;
+    public readonly taints!: pulumi.Output<outputs.KubernetesNodePoolTaint[] | undefined>;
 
     /**
      * Create a KubernetesNodePool resource with the given unique name, arguments, and options.
@@ -100,12 +88,12 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["instanceNames"] = state ? state.instanceNames : undefined;
             resourceInputs["label"] = state ? state.label : undefined;
+            resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["nodeCount"] = state ? state.nodeCount : undefined;
-            resourceInputs["numTargetNodes"] = state ? state.numTargetNodes : undefined;
             resourceInputs["publicIpNodePool"] = state ? state.publicIpNodePool : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
-            resourceInputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
+            resourceInputs["taints"] = state ? state.taints : undefined;
         } else {
             const args = argsOrState as KubernetesNodePoolArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
@@ -116,12 +104,12 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
+            resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["nodeCount"] = args ? args.nodeCount : undefined;
-            resourceInputs["numTargetNodes"] = args ? args.numTargetNodes : undefined;
             resourceInputs["publicIpNodePool"] = args ? args.publicIpNodePool : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
-            resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
+            resourceInputs["taints"] = args ? args.taints : undefined;
             resourceInputs["instanceNames"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -145,16 +133,11 @@ export interface KubernetesNodePoolState {
      * Node pool label, if you don't provide one, we will generate one for you
      */
     label?: pulumi.Input<string>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
     nodeCount?: pulumi.Input<number>;
-    /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
-     *
-     * @deprecated This field is deprecated, please use `node_count` instead
-     */
-    numTargetNodes?: pulumi.Input<number>;
     /**
      * Node pool belongs to the public ip node pool
      */
@@ -167,12 +150,7 @@ export interface KubernetesNodePoolState {
      * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     size?: pulumi.Input<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     *
-     * @deprecated This field is deprecated, please use `size` instead
-     */
-    targetNodesSize?: pulumi.Input<string>;
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[]>;
 }
 
 /**
@@ -187,16 +165,11 @@ export interface KubernetesNodePoolArgs {
      * Node pool label, if you don't provide one, we will generate one for you
      */
     label?: pulumi.Input<string>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * the number of instances to create (optional, the default at the time of writing is 3)
      */
     nodeCount?: pulumi.Input<number>;
-    /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
-     *
-     * @deprecated This field is deprecated, please use `node_count` instead
-     */
-    numTargetNodes?: pulumi.Input<number>;
     /**
      * Node pool belongs to the public ip node pool
      */
@@ -209,10 +182,5 @@ export interface KubernetesNodePoolArgs {
      * the size of each node (optional, the default is currently g4s.kube.medium)
      */
     size?: pulumi.Input<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     *
-     * @deprecated This field is deprecated, please use `size` instead
-     */
-    targetNodesSize?: pulumi.Input<string>;
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[]>;
 }

@@ -350,3 +350,9 @@ export interface KubernetesClusterPools {
     size: string;
 }
 
+export interface KubernetesNodePoolTaint {
+    effect: string;
+    key: string;
+    value: string;
+}
+
