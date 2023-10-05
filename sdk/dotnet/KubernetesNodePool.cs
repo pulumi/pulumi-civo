@@ -10,11 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `civo.KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
-    /// 
     /// ## Import
-    /// 
-    /// using cluster_id:node_pool_id
     /// 
     /// ```sh
     ///  $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a
@@ -41,17 +37,14 @@ namespace Pulumi.Civo
         [Output("label")]
         public Output<string> Label { get; private set; } = null!;
 
+        [Output("labels")]
+        public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
+
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Output("nodeCount")]
         public Output<int> NodeCount { get; private set; } = null!;
-
-        /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
-        /// </summary>
-        [Output("numTargetNodes")]
-        public Output<int?> NumTargetNodes { get; private set; } = null!;
 
         /// <summary>
         /// Node pool belongs to the public ip node pool
@@ -71,11 +64,8 @@ namespace Pulumi.Civo
         [Output("size")]
         public Output<string> Size { get; private set; } = null!;
 
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
-        /// </summary>
-        [Output("targetNodesSize")]
-        public Output<string?> TargetNodesSize { get; private set; } = null!;
+        [Output("taints")]
+        public Output<ImmutableArray<Outputs.KubernetesNodePoolTaint>> Taints { get; private set; } = null!;
 
 
         /// <summary>
@@ -135,17 +125,19 @@ namespace Pulumi.Civo
         [Input("label")]
         public Input<string>? Label { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
-
-        /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
-        /// </summary>
-        [Input("numTargetNodes")]
-        public Input<int>? NumTargetNodes { get; set; }
 
         /// <summary>
         /// Node pool belongs to the public ip node pool
@@ -165,11 +157,13 @@ namespace Pulumi.Civo
         [Input("size")]
         public Input<string>? Size { get; set; }
 
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
-        /// </summary>
-        [Input("targetNodesSize")]
-        public Input<string>? TargetNodesSize { get; set; }
+        [Input("taints")]
+        private InputList<Inputs.KubernetesNodePoolTaintArgs>? _taints;
+        public InputList<Inputs.KubernetesNodePoolTaintArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.KubernetesNodePoolTaintArgs>());
+            set => _taints = value;
+        }
 
         public KubernetesNodePoolArgs()
         {
@@ -203,17 +197,19 @@ namespace Pulumi.Civo
         [Input("label")]
         public Input<string>? Label { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// the number of instances to create (optional, the default at the time of writing is 3)
         /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
-
-        /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
-        /// </summary>
-        [Input("numTargetNodes")]
-        public Input<int>? NumTargetNodes { get; set; }
 
         /// <summary>
         /// Node pool belongs to the public ip node pool
@@ -233,11 +229,13 @@ namespace Pulumi.Civo
         [Input("size")]
         public Input<string>? Size { get; set; }
 
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
-        /// </summary>
-        [Input("targetNodesSize")]
-        public Input<string>? TargetNodesSize { get; set; }
+        [Input("taints")]
+        private InputList<Inputs.KubernetesNodePoolTaintGetArgs>? _taints;
+        public InputList<Inputs.KubernetesNodePoolTaintGetArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.KubernetesNodePoolTaintGetArgs>());
+            set => _taints = value;
+        }
 
         public KubernetesNodePoolState()
         {

@@ -14,6 +14,7 @@ __all__ = [
     'FirewallIngressRuleArgs',
     'KubernetesClusterInstalledApplicationArgs',
     'KubernetesClusterPoolsArgs',
+    'KubernetesNodePoolTaintArgs',
     'GetDatabaseVersionFilterArgs',
     'GetDatabaseVersionSortArgs',
     'GetDiskImageFilterArgs',
@@ -428,6 +429,57 @@ class KubernetesClusterPoolsArgs:
     @public_ip_node_pool.setter
     def public_ip_node_pool(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "public_ip_node_pool", value)
+
+
+@pulumi.input_type
+class KubernetesNodePoolTaintArgs:
+    def __init__(__self__, *,
+                 effect: pulumi.Input[str],
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        KubernetesNodePoolTaintArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            effect=effect,
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             effect: pulumi.Input[str],
+             key: pulumi.Input[str],
+             value: pulumi.Input[str],
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("effect", effect)
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: pulumi.Input[str]):
+        pulumi.set(self, "effect", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

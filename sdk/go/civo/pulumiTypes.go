@@ -713,6 +713,136 @@ func (o KubernetesClusterPoolsPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+type KubernetesNodePoolTaint struct {
+	Effect string `pulumi:"effect"`
+	Key    string `pulumi:"key"`
+	Value  string `pulumi:"value"`
+}
+
+// KubernetesNodePoolTaintInput is an input type that accepts KubernetesNodePoolTaintArgs and KubernetesNodePoolTaintOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolTaintInput` via:
+//
+//	KubernetesNodePoolTaintArgs{...}
+type KubernetesNodePoolTaintInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput
+	ToKubernetesNodePoolTaintOutputWithContext(context.Context) KubernetesNodePoolTaintOutput
+}
+
+type KubernetesNodePoolTaintArgs struct {
+	Effect pulumi.StringInput `pulumi:"effect"`
+	Key    pulumi.StringInput `pulumi:"key"`
+	Value  pulumi.StringInput `pulumi:"value"`
+}
+
+func (KubernetesNodePoolTaintArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolTaintArgs) ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput {
+	return i.ToKubernetesNodePoolTaintOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolTaintArgs) ToKubernetesNodePoolTaintOutputWithContext(ctx context.Context) KubernetesNodePoolTaintOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintOutput)
+}
+
+func (i KubernetesNodePoolTaintArgs) ToOutput(ctx context.Context) pulumix.Output[KubernetesNodePoolTaint] {
+	return pulumix.Output[KubernetesNodePoolTaint]{
+		OutputState: i.ToKubernetesNodePoolTaintOutputWithContext(ctx).OutputState,
+	}
+}
+
+// KubernetesNodePoolTaintArrayInput is an input type that accepts KubernetesNodePoolTaintArray and KubernetesNodePoolTaintArrayOutput values.
+// You can construct a concrete instance of `KubernetesNodePoolTaintArrayInput` via:
+//
+//	KubernetesNodePoolTaintArray{ KubernetesNodePoolTaintArgs{...} }
+type KubernetesNodePoolTaintArrayInput interface {
+	pulumi.Input
+
+	ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput
+	ToKubernetesNodePoolTaintArrayOutputWithContext(context.Context) KubernetesNodePoolTaintArrayOutput
+}
+
+type KubernetesNodePoolTaintArray []KubernetesNodePoolTaintInput
+
+func (KubernetesNodePoolTaintArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (i KubernetesNodePoolTaintArray) ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput {
+	return i.ToKubernetesNodePoolTaintArrayOutputWithContext(context.Background())
+}
+
+func (i KubernetesNodePoolTaintArray) ToKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolTaintArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintArrayOutput)
+}
+
+func (i KubernetesNodePoolTaintArray) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesNodePoolTaint] {
+	return pulumix.Output[[]KubernetesNodePoolTaint]{
+		OutputState: i.ToKubernetesNodePoolTaintArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type KubernetesNodePoolTaintOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolTaintOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutput() KubernetesNodePoolTaintOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutputWithContext(ctx context.Context) KubernetesNodePoolTaintOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintOutput) ToOutput(ctx context.Context) pulumix.Output[KubernetesNodePoolTaint] {
+	return pulumix.Output[KubernetesNodePoolTaint]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o KubernetesNodePoolTaintOutput) Effect() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Effect }).(pulumi.StringOutput)
+}
+
+func (o KubernetesNodePoolTaintOutput) Key() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Key }).(pulumi.StringOutput)
+}
+
+func (o KubernetesNodePoolTaintOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v KubernetesNodePoolTaint) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type KubernetesNodePoolTaintArrayOutput struct{ *pulumi.OutputState }
+
+func (KubernetesNodePoolTaintArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubernetesNodePoolTaint)(nil)).Elem()
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutput() KubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolTaintArrayOutput {
+	return o
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesNodePoolTaint] {
+	return pulumix.Output[[]KubernetesNodePoolTaint]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o KubernetesNodePoolTaintArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolTaintOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubernetesNodePoolTaint {
+		return vs[0].([]KubernetesNodePoolTaint)[vs[1].(int)]
+	}).(KubernetesNodePoolTaintOutput)
+}
+
 type GetDatabaseVersionFilter struct {
 	// Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
 	All *bool `pulumi:"all"`
@@ -3758,6 +3888,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterInstalledApplicationArrayInput)(nil)).Elem(), KubernetesClusterInstalledApplicationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolsInput)(nil)).Elem(), KubernetesClusterPoolsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesClusterPoolsPtrInput)(nil)).Elem(), KubernetesClusterPoolsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolTaintInput)(nil)).Elem(), KubernetesNodePoolTaintArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubernetesNodePoolTaintArrayInput)(nil)).Elem(), KubernetesNodePoolTaintArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionFilterInput)(nil)).Elem(), GetDatabaseVersionFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionFilterArrayInput)(nil)).Elem(), GetDatabaseVersionFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDatabaseVersionSortInput)(nil)).Elem(), GetDatabaseVersionSortArgs{})
@@ -3808,6 +3940,8 @@ func init() {
 	pulumi.RegisterOutputType(KubernetesClusterInstalledApplicationArrayOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterPoolsOutput{})
 	pulumi.RegisterOutputType(KubernetesClusterPoolsPtrOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolTaintOutput{})
+	pulumi.RegisterOutputType(KubernetesNodePoolTaintArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseVersionFilterOutput{})
 	pulumi.RegisterOutputType(GetDatabaseVersionFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetDatabaseVersionSortOutput{})

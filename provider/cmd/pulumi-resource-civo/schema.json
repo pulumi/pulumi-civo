@@ -226,6 +226,25 @@
                 }
             }
         },
+        "civo:index/KubernetesNodePoolTaint:KubernetesNodePoolTaint": {
+            "properties": {
+                "effect": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "effect",
+                "key",
+                "value"
+            ]
+        },
         "civo:index/getDatabaseVersionFilter:getDatabaseVersionFilter": {
             "properties": {
                 "all": {
@@ -2112,7 +2131,7 @@
             }
         },
         "civo:index/kubernetesNodePool:KubernetesNodePool": {
-            "description": "Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `civo.KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.\n\n\n## Import\n\nusing cluster_id:node_pool_id\n\n```sh\n $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a\n```\n\n ",
+            "description": "\n\n\n## Import\n\n\n\n```sh\n $ pulumi import civo:index/kubernetesNodePool:KubernetesNodePool my-pool 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af:502c1130-cb9b-4a88-b6d2-307bd96d946a\n```\n\n ",
             "properties": {
                 "clusterId": {
                     "type": "string",
@@ -2129,14 +2148,15 @@
                     "type": "string",
                     "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "nodeCount": {
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
-                },
-                "numTargetNodes": {
-                    "type": "integer",
-                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
-                    "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                 },
                 "publicIpNodePool": {
                     "type": "boolean",
@@ -2150,10 +2170,11 @@
                     "type": "string",
                     "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 },
-                "targetNodesSize": {
-                    "type": "string",
-                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
-                    "deprecationMessage": "This field is deprecated, please use `size` instead"
+                "taints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/KubernetesNodePoolTaint:KubernetesNodePoolTaint"
+                    }
                 }
             },
             "required": [
@@ -2174,14 +2195,15 @@
                     "type": "string",
                     "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "nodeCount": {
                     "type": "integer",
                     "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
-                },
-                "numTargetNodes": {
-                    "type": "integer",
-                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
-                    "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                 },
                 "publicIpNodePool": {
                     "type": "boolean",
@@ -2195,10 +2217,11 @@
                     "type": "string",
                     "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                 },
-                "targetNodesSize": {
-                    "type": "string",
-                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
-                    "deprecationMessage": "This field is deprecated, please use `size` instead"
+                "taints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/KubernetesNodePoolTaint:KubernetesNodePoolTaint"
+                    }
                 }
             },
             "requiredInputs": [
@@ -2223,14 +2246,15 @@
                         "type": "string",
                         "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                     },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
                     "nodeCount": {
                         "type": "integer",
                         "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
-                    },
-                    "numTargetNodes": {
-                        "type": "integer",
-                        "description": "the number of instances to create (optional, the default at the time of writing is 3)\n",
-                        "deprecationMessage": "This field is deprecated, please use `node_count` instead"
                     },
                     "publicIpNodePool": {
                         "type": "boolean",
@@ -2244,10 +2268,11 @@
                         "type": "string",
                         "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
                     },
-                    "targetNodesSize": {
-                        "type": "string",
-                        "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n",
-                        "deprecationMessage": "This field is deprecated, please use `size` instead"
+                    "taints": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/civo:index/KubernetesNodePoolTaint:KubernetesNodePoolTaint"
+                        }
                     }
                 },
                 "type": "object"

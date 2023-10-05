@@ -13,11 +13,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-// Provides a Civo Kubernetes node pool resource. While the default node pool must be defined in the `KubernetesCluster` resource, this resource can be used to add additional ones to a cluster.
-//
 // ## Import
-//
-// using cluster_id:node_pool_id
 //
 // ```sh
 //
@@ -32,23 +28,17 @@ type KubernetesNodePool struct {
 	// Instance names in the nodepool
 	InstanceNames pulumi.StringArrayOutput `pulumi:"instanceNames"`
 	// Node pool label, if you don't provide one, we will generate one for you
-	Label pulumi.StringOutput `pulumi:"label"`
+	Label  pulumi.StringOutput    `pulumi:"label"`
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	//
-	// Deprecated: This field is deprecated, please use `node_count` instead
-	NumTargetNodes pulumi.IntPtrOutput `pulumi:"numTargetNodes"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolOutput `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringOutput `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size pulumi.StringOutput `pulumi:"size"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	//
-	// Deprecated: This field is deprecated, please use `size` instead
-	TargetNodesSize pulumi.StringPtrOutput `pulumi:"targetNodesSize"`
+	Size   pulumi.StringOutput                `pulumi:"size"`
+	Taints KubernetesNodePoolTaintArrayOutput `pulumi:"taints"`
 }
 
 // NewKubernetesNodePool registers a new resource with the given unique name, arguments, and options.
@@ -92,23 +82,17 @@ type kubernetesNodePoolState struct {
 	// Instance names in the nodepool
 	InstanceNames []string `pulumi:"instanceNames"`
 	// Node pool label, if you don't provide one, we will generate one for you
-	Label *string `pulumi:"label"`
+	Label  *string           `pulumi:"label"`
+	Labels map[string]string `pulumi:"labels"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount *int `pulumi:"nodeCount"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	//
-	// Deprecated: This field is deprecated, please use `node_count` instead
-	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region *string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size *string `pulumi:"size"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	//
-	// Deprecated: This field is deprecated, please use `size` instead
-	TargetNodesSize *string `pulumi:"targetNodesSize"`
+	Size   *string                   `pulumi:"size"`
+	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 }
 
 type KubernetesNodePoolState struct {
@@ -117,23 +101,17 @@ type KubernetesNodePoolState struct {
 	// Instance names in the nodepool
 	InstanceNames pulumi.StringArrayInput
 	// Node pool label, if you don't provide one, we will generate one for you
-	Label pulumi.StringPtrInput
+	Label  pulumi.StringPtrInput
+	Labels pulumi.StringMapInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntPtrInput
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	//
-	// Deprecated: This field is deprecated, please use `node_count` instead
-	NumTargetNodes pulumi.IntPtrInput
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringPtrInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size pulumi.StringPtrInput
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	//
-	// Deprecated: This field is deprecated, please use `size` instead
-	TargetNodesSize pulumi.StringPtrInput
+	Size   pulumi.StringPtrInput
+	Taints KubernetesNodePoolTaintArrayInput
 }
 
 func (KubernetesNodePoolState) ElementType() reflect.Type {
@@ -144,23 +122,17 @@ type kubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId string `pulumi:"clusterId"`
 	// Node pool label, if you don't provide one, we will generate one for you
-	Label *string `pulumi:"label"`
+	Label  *string           `pulumi:"label"`
+	Labels map[string]string `pulumi:"labels"`
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount *int `pulumi:"nodeCount"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	//
-	// Deprecated: This field is deprecated, please use `node_count` instead
-	NumTargetNodes *int `pulumi:"numTargetNodes"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// The region of the node pool, has to match that of the cluster
 	Region string `pulumi:"region"`
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size *string `pulumi:"size"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	//
-	// Deprecated: This field is deprecated, please use `size` instead
-	TargetNodesSize *string `pulumi:"targetNodesSize"`
+	Size   *string                   `pulumi:"size"`
+	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 }
 
 // The set of arguments for constructing a KubernetesNodePool resource.
@@ -168,23 +140,17 @@ type KubernetesNodePoolArgs struct {
 	// The ID of your cluster
 	ClusterId pulumi.StringInput
 	// Node pool label, if you don't provide one, we will generate one for you
-	Label pulumi.StringPtrInput
+	Label  pulumi.StringPtrInput
+	Labels pulumi.StringMapInput
 	// the number of instances to create (optional, the default at the time of writing is 3)
 	NodeCount pulumi.IntPtrInput
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	//
-	// Deprecated: This field is deprecated, please use `node_count` instead
-	NumTargetNodes pulumi.IntPtrInput
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolPtrInput
 	// The region of the node pool, has to match that of the cluster
 	Region pulumi.StringInput
 	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size pulumi.StringPtrInput
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	//
-	// Deprecated: This field is deprecated, please use `size` instead
-	TargetNodesSize pulumi.StringPtrInput
+	Size   pulumi.StringPtrInput
+	Taints KubernetesNodePoolTaintArrayInput
 }
 
 func (KubernetesNodePoolArgs) ElementType() reflect.Type {
@@ -313,16 +279,13 @@ func (o KubernetesNodePoolOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Label }).(pulumi.StringOutput)
 }
 
-// the number of instances to create (optional, the default at the time of writing is 3)
-func (o KubernetesNodePoolOutput) NodeCount() pulumi.IntOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
+func (o KubernetesNodePoolOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // the number of instances to create (optional, the default at the time of writing is 3)
-//
-// Deprecated: This field is deprecated, please use `node_count` instead
-func (o KubernetesNodePoolOutput) NumTargetNodes() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntPtrOutput { return v.NumTargetNodes }).(pulumi.IntPtrOutput)
+func (o KubernetesNodePoolOutput) NodeCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
 }
 
 // Node pool belongs to the public ip node pool
@@ -340,11 +303,8 @@ func (o KubernetesNodePoolOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }
 
-// the size of each node (optional, the default is currently g4s.kube.medium)
-//
-// Deprecated: This field is deprecated, please use `size` instead
-func (o KubernetesNodePoolOutput) TargetNodesSize() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringPtrOutput { return v.TargetNodesSize }).(pulumi.StringPtrOutput)
+func (o KubernetesNodePoolOutput) Taints() KubernetesNodePoolTaintArrayOutput {
+	return o.ApplyT(func(v *KubernetesNodePool) KubernetesNodePoolTaintArrayOutput { return v.Taints }).(KubernetesNodePoolTaintArrayOutput)
 }
 
 type KubernetesNodePoolArrayOutput struct{ *pulumi.OutputState }

@@ -14,6 +14,7 @@ __all__ = [
     'FirewallIngressRule',
     'KubernetesClusterInstalledApplication',
     'KubernetesClusterPools',
+    'KubernetesNodePoolTaint',
     'GetDatabaseVersionFilterResult',
     'GetDatabaseVersionSortResult',
     'GetDatabaseVersionVersionResult',
@@ -408,6 +409,45 @@ class KubernetesClusterPools(dict):
         Node pool belongs to the public ip node pool
         """
         return pulumi.get(self, "public_ip_node_pool")
+
+
+@pulumi.output_type
+class KubernetesNodePoolTaint(dict):
+    def __init__(__self__, *,
+                 effect: str,
+                 key: str,
+                 value: str):
+        KubernetesNodePoolTaint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            effect=effect,
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             effect: str,
+             key: str,
+             value: str,
+             opts: Optional[pulumi.ResourceOptions]=None):
+        _setter("effect", effect)
+        _setter("key", key)
+        _setter("value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> str:
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
