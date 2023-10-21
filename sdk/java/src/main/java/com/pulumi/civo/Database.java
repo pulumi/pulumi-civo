@@ -30,7 +30,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The DNS endpoint of the database
      * 
      */
-    @Export(name="dnsEndpoint", type=String.class, parameters={})
+    @Export(name="dnsEndpoint", refs={String.class}, tree="[0]")
     private Output<String> dnsEndpoint;
 
     /**
@@ -44,7 +44,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The endpoint of the database
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output<String> endpoint;
 
     /**
@@ -58,7 +58,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The engine of the database
      * 
      */
-    @Export(name="engine", type=String.class, parameters={})
+    @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
@@ -72,7 +72,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
-    @Export(name="firewallId", type=String.class, parameters={})
+    @Export(name="firewallId", refs={String.class}, tree="[0]")
     private Output<String> firewallId;
 
     /**
@@ -86,7 +86,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Name of the database
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -100,7 +100,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The id of the associated network
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -114,7 +114,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Count of nodes
      * 
      */
-    @Export(name="nodes", type=Integer.class, parameters={})
+    @Export(name="nodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodes;
 
     /**
@@ -128,7 +128,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The password of the database
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -142,7 +142,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The port of the database
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output<Integer> port;
 
     /**
@@ -156,7 +156,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The region where the database will be created.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -170,7 +170,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Size of the database
      * 
      */
-    @Export(name="size", type=String.class, parameters={})
+    @Export(name="size", refs={String.class}, tree="[0]")
     private Output<String> size;
 
     /**
@@ -184,7 +184,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The status of the database
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -198,7 +198,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The username of the database
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**
@@ -212,7 +212,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The version of the database
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

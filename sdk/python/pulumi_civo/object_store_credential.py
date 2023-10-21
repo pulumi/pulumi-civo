@@ -39,7 +39,13 @@ class ObjectStoreCredentialArgs:
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              secret_access_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if name is not None:
@@ -130,7 +136,13 @@ class _ObjectStoreCredentialState:
              region: Optional[pulumi.Input[str]] = None,
              secret_access_key: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if 'secretAccessKey' in kwargs:
+            secret_access_key = kwargs['secretAccessKey']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if name is not None:

@@ -59,7 +59,15 @@ class FirewallRuleArgs:
              protocol: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              start_port: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'endPort' in kwargs:
+            end_port = kwargs['endPort']
+        if 'startPort' in kwargs:
+            start_port = kwargs['startPort']
+
         _setter("action", action)
         _setter("cidrs", cidrs)
         _setter("direction", direction)
@@ -232,7 +240,15 @@ class _FirewallRuleState:
              protocol: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              start_port: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'endPort' in kwargs:
+            end_port = kwargs['endPort']
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'startPort' in kwargs:
+            start_port = kwargs['startPort']
+
         if action is not None:
             _setter("action", action)
         if cidrs is not None:

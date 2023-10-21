@@ -33,7 +33,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The ID of your cluster
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -47,7 +47,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * Instance names in the nodepool
      * 
      */
-    @Export(name="instanceNames", type=List.class, parameters={String.class})
+    @Export(name="instanceNames", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> instanceNames;
 
     /**
@@ -61,7 +61,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * Node pool label, if you don&#39;t provide one, we will generate one for you
      * 
      */
-    @Export(name="label", type=String.class, parameters={})
+    @Export(name="label", refs={String.class}, tree="[0]")
     private Output<String> label;
 
     /**
@@ -71,7 +71,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
     public Output<String> label() {
         return this.label;
     }
-    @Export(name="labels", type=Map.class, parameters={String.class, String.class})
+    @Export(name="labels", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> labels;
 
     public Output<Optional<Map<String,String>>> labels() {
@@ -81,7 +81,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * the number of instances to create (optional, the default at the time of writing is 3)
      * 
      */
-    @Export(name="nodeCount", type=Integer.class, parameters={})
+    @Export(name="nodeCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodeCount;
 
     /**
@@ -95,7 +95,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * Node pool belongs to the public ip node pool
      * 
      */
-    @Export(name="publicIpNodePool", type=Boolean.class, parameters={})
+    @Export(name="publicIpNodePool", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> publicIpNodePool;
 
     /**
@@ -109,7 +109,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * The region of the node pool, has to match that of the cluster
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -123,7 +123,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
      * the size of each node (optional, the default is currently g4s.kube.medium)
      * 
      */
-    @Export(name="size", type=String.class, parameters={})
+    @Export(name="size", refs={String.class}, tree="[0]")
     private Output<String> size;
 
     /**
@@ -133,7 +133,7 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
     public Output<String> size() {
         return this.size;
     }
-    @Export(name="taints", type=List.class, parameters={KubernetesNodePoolTaint.class})
+    @Export(name="taints", refs={List.class,KubernetesNodePoolTaint.class}, tree="[0,1]")
     private Output</* @Nullable */ List<KubernetesNodePoolTaint>> taints;
 
     public Output<Optional<List<KubernetesNodePoolTaint>>> taints() {

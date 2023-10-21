@@ -34,7 +34,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s CPU cores
      * 
      */
-    @Export(name="cpuCores", type=Integer.class, parameters={})
+    @Export(name="cpuCores", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpuCores;
 
     /**
@@ -48,7 +48,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Timestamp when the instance was created
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -62,7 +62,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s disk (GB)
      * 
      */
-    @Export(name="diskGb", type=Integer.class, parameters={})
+    @Export(name="diskGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> diskGb;
 
     /**
@@ -76,7 +76,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The ID for the disk image to use to build the instance
      * 
      */
-    @Export(name="diskImage", type=String.class, parameters={})
+    @Export(name="diskImage", refs={String.class}, tree="[0]")
     private Output<String> diskImage;
 
     /**
@@ -90,7 +90,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
-    @Export(name="firewallId", type=String.class, parameters={})
+    @Export(name="firewallId", refs={String.class}, tree="[0]")
     private Output<String> firewallId;
 
     /**
@@ -104,7 +104,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * A fully qualified domain name that should be set as the instance&#39;s hostname
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -118,7 +118,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Initial password for login
      * 
      */
-    @Export(name="initialPassword", type=String.class, parameters={})
+    @Export(name="initialPassword", refs={String.class}, tree="[0]")
     private Output<String> initialPassword;
 
     /**
@@ -132,7 +132,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
      * 
      */
-    @Export(name="initialUser", type=String.class, parameters={})
+    @Export(name="initialUser", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> initialUser;
 
     /**
@@ -146,7 +146,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * This must be the ID of the network from the network listing (optional; default network used when not specified)
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -160,7 +160,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Add some notes to the instance
      * 
      */
-    @Export(name="notes", type=String.class, parameters={})
+    @Export(name="notes", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> notes;
 
     /**
@@ -174,7 +174,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s private IP address
      * 
      */
-    @Export(name="privateIp", type=String.class, parameters={})
+    @Export(name="privateIp", refs={String.class}, tree="[0]")
     private Output<String> privateIp;
 
     /**
@@ -188,7 +188,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s public IP address
      * 
      */
-    @Export(name="publicIp", type=String.class, parameters={})
+    @Export(name="publicIp", refs={String.class}, tree="[0]")
     private Output<String> publicIp;
 
     /**
@@ -202,7 +202,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * This should be either &#39;none&#39; or &#39;create&#39; (default: &#39;create&#39;)
      * 
      */
-    @Export(name="publicIpRequired", type=String.class, parameters={})
+    @Export(name="publicIpRequired", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> publicIpRequired;
 
     /**
@@ -216,7 +216,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s RAM (MB)
      * 
      */
-    @Export(name="ramMb", type=Integer.class, parameters={})
+    @Export(name="ramMb", refs={Integer.class}, tree="[0]")
     private Output<Integer> ramMb;
 
     /**
@@ -230,7 +230,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The region for the instance, if not declare we use the region in declared in the provider
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -244,7 +244,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
-    @Export(name="reverseDns", type=String.class, parameters={})
+    @Export(name="reverseDns", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> reverseDns;
 
     /**
@@ -258,7 +258,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
-    @Export(name="script", type=String.class, parameters={})
+    @Export(name="script", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> script;
 
     /**
@@ -272,7 +272,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The name of the size, from the current list, e.g. g3.xsmall
      * 
      */
-    @Export(name="size", type=String.class, parameters={})
+    @Export(name="size", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> size;
 
     /**
@@ -286,7 +286,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s source ID
      * 
      */
-    @Export(name="sourceId", type=String.class, parameters={})
+    @Export(name="sourceId", refs={String.class}, tree="[0]")
     private Output<String> sourceId;
 
     /**
@@ -300,7 +300,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s source type
      * 
      */
-    @Export(name="sourceType", type=String.class, parameters={})
+    @Export(name="sourceType", refs={String.class}, tree="[0]")
     private Output<String> sourceType;
 
     /**
@@ -314,7 +314,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
-    @Export(name="sshkeyId", type=String.class, parameters={})
+    @Export(name="sshkeyId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> sshkeyId;
 
     /**
@@ -328,7 +328,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * Instance&#39;s status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -342,7 +342,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * An optional list of tags, represented as a key, value pair
      * 
      */
-    @Export(name="tags", type=List.class, parameters={String.class})
+    @Export(name="tags", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> tags;
 
     /**
@@ -360,7 +360,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    @Export(name="template", type=String.class, parameters={})
+    @Export(name="template", refs={String.class}, tree="[0]")
     private Output<String> template;
 
     /**

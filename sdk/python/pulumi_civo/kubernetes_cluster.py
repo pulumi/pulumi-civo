@@ -72,7 +72,21 @@ class KubernetesClusterArgs:
              region: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[str]] = None,
              target_nodes_size: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if 'kubernetesVersion' in kwargs:
+            kubernetes_version = kwargs['kubernetesVersion']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if 'numTargetNodes' in kwargs:
+            num_target_nodes = kwargs['numTargetNodes']
+        if 'targetNodesSize' in kwargs:
+            target_nodes_size = kwargs['targetNodesSize']
+
         _setter("firewall_id", firewall_id)
         _setter("pools", pools)
         if applications is not None:
@@ -340,7 +354,31 @@ class _KubernetesClusterState:
              status: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[str]] = None,
              target_nodes_size: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'apiEndpoint' in kwargs:
+            api_endpoint = kwargs['apiEndpoint']
+        if 'clusterType' in kwargs:
+            cluster_type = kwargs['clusterType']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'dnsEntry' in kwargs:
+            dns_entry = kwargs['dnsEntry']
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'installedApplications' in kwargs:
+            installed_applications = kwargs['installedApplications']
+        if 'kubernetesVersion' in kwargs:
+            kubernetes_version = kwargs['kubernetesVersion']
+        if 'masterIp' in kwargs:
+            master_ip = kwargs['masterIp']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if 'numTargetNodes' in kwargs:
+            num_target_nodes = kwargs['numTargetNodes']
+        if 'targetNodesSize' in kwargs:
+            target_nodes_size = kwargs['targetNodesSize']
+
         if api_endpoint is not None:
             _setter("api_endpoint", api_endpoint)
         if applications is not None:

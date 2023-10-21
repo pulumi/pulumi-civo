@@ -58,7 +58,7 @@ public class DnsDomainName extends com.pulumi.resources.CustomResource {
      * The account ID of the domain
      * 
      */
-    @Export(name="accountId", type=String.class, parameters={})
+    @Export(name="accountId", refs={String.class}, tree="[0]")
     private Output<String> accountId;
 
     /**
@@ -72,7 +72,7 @@ public class DnsDomainName extends com.pulumi.resources.CustomResource {
      * The name of the domain
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**

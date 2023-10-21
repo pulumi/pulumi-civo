@@ -54,7 +54,7 @@ public class ReservedIp extends com.pulumi.resources.CustomResource {
      * The IP Address of the resource
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -68,7 +68,7 @@ public class ReservedIp extends com.pulumi.resources.CustomResource {
      * Name for the ip address
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -82,7 +82,7 @@ public class ReservedIp extends com.pulumi.resources.CustomResource {
      * The region of the ip
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

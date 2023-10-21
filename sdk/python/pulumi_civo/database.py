@@ -55,7 +55,13 @@ class DatabaseArgs:
              name: Optional[pulumi.Input[str]] = None,
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
         _setter("engine", engine)
         _setter("nodes", nodes)
         _setter("size", size)
@@ -234,7 +240,15 @@ class _DatabaseState:
              status: Optional[pulumi.Input[str]] = None,
              username: Optional[pulumi.Input[str]] = None,
              version: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'dnsEndpoint' in kwargs:
+            dns_endpoint = kwargs['dnsEndpoint']
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
         if dns_endpoint is not None:
             _setter("dns_endpoint", dns_endpoint)
         if endpoint is not None:

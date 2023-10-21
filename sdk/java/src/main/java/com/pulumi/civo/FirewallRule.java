@@ -32,7 +32,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The action of the rule can be allow or deny. When we set the `action = &#39;allow&#39;`, this is going to add a rule to allow traffic. Similarly, setting `action = &#39;deny&#39;` will deny the traffic.
      * 
      */
-    @Export(name="action", type=String.class, parameters={})
+    @Export(name="action", refs={String.class}, tree="[0]")
     private Output<String> action;
 
     /**
@@ -46,7 +46,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
      * 
      */
-    @Export(name="cidrs", type=List.class, parameters={String.class})
+    @Export(name="cidrs", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> cidrs;
 
     /**
@@ -60,7 +60,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The direction of the rule can be ingress or egress
      * 
      */
-    @Export(name="direction", type=String.class, parameters={})
+    @Export(name="direction", refs={String.class}, tree="[0]")
     private Output<String> direction;
 
     /**
@@ -74,7 +74,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)
      * 
      */
-    @Export(name="endPort", type=String.class, parameters={})
+    @Export(name="endPort", refs={String.class}, tree="[0]")
     private Output<String> endPort;
 
     /**
@@ -88,7 +88,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The Firewall ID
      * 
      */
-    @Export(name="firewallId", type=String.class, parameters={})
+    @Export(name="firewallId", refs={String.class}, tree="[0]")
     private Output<String> firewallId;
 
     /**
@@ -102,7 +102,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * A string that will be the displayed name/reference for this rule
      * 
      */
-    @Export(name="label", type=String.class, parameters={})
+    @Export(name="label", refs={String.class}, tree="[0]")
     private Output<String> label;
 
     /**
@@ -116,7 +116,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
@@ -130,7 +130,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The region for this rule
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -144,7 +144,7 @@ public class FirewallRule extends com.pulumi.resources.CustomResource {
      * The start of the port range to configure for this rule (or the single port if required)
      * 
      */
-    @Export(name="startPort", type=String.class, parameters={})
+    @Export(name="startPort", refs={String.class}, tree="[0]")
     private Output<String> startPort;
 
     /**

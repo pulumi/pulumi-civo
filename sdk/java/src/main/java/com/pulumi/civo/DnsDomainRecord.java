@@ -33,7 +33,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * The account ID of this resource
      * 
      */
-    @Export(name="accountId", type=String.class, parameters={})
+    @Export(name="accountId", refs={String.class}, tree="[0]")
     private Output<String> accountId;
 
     /**
@@ -47,7 +47,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * Timestamp when this resource was created
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -61,7 +61,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * ID from domain name
      * 
      */
-    @Export(name="domainId", type=String.class, parameters={})
+    @Export(name="domainId", refs={String.class}, tree="[0]")
     private Output<String> domainId;
 
     /**
@@ -75,7 +75,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -89,7 +89,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * Useful for MX records only, the priority mail should be attempted it (defaults to 10)
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> priority;
 
     /**
@@ -103,7 +103,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * How long caching DNS servers should cache this record for, in seconds (the minimum is 600 and the default if unspecified is 600)
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output<Integer> ttl;
 
     /**
@@ -117,7 +117,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * The choice of RR type from a, cname, mx or txt
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -131,7 +131,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * Timestamp when this resource was updated
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -145,7 +145,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * The IP address (A or MX), hostname (CNAME or MX) or text value (TXT) to serve for this record
      * 
      */
-    @Export(name="value", type=String.class, parameters={})
+    @Export(name="value", refs={String.class}, tree="[0]")
     private Output<String> value;
 
     /**
