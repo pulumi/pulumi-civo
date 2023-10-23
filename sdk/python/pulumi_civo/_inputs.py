@@ -63,7 +63,11 @@ class FirewallEgressRuleArgs:
              label: Optional[pulumi.Input[str]] = None,
              port_range: Optional[pulumi.Input[str]] = None,
              protocol: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
         _setter("action", action)
         _setter("cidrs", cidrs)
         if id is not None:
@@ -179,7 +183,11 @@ class FirewallIngressRuleArgs:
              label: Optional[pulumi.Input[str]] = None,
              port_range: Optional[pulumi.Input[str]] = None,
              protocol: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
         _setter("action", action)
         _setter("cidrs", cidrs)
         if id is not None:
@@ -282,7 +290,9 @@ class KubernetesClusterInstalledApplicationArgs:
              category: Optional[pulumi.Input[str]] = None,
              installed: Optional[pulumi.Input[bool]] = None,
              version: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if application is not None:
             _setter("application", application)
         if category is not None:
@@ -360,7 +370,15 @@ class KubernetesClusterPoolsArgs:
              instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              label: Optional[pulumi.Input[str]] = None,
              public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
         _setter("node_count", node_count)
         _setter("size", size)
         if instance_names is not None:
@@ -449,7 +467,9 @@ class KubernetesNodePoolTaintArgs:
              effect: pulumi.Input[str],
              key: pulumi.Input[str],
              value: pulumi.Input[str],
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("effect", effect)
         _setter("key", key)
         _setter("value", value)
@@ -509,7 +529,11 @@ class GetDatabaseVersionFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -585,7 +609,9 @@ class GetDatabaseVersionSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -642,7 +668,11 @@ class GetDiskImageFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -718,7 +748,9 @@ class GetDiskImageSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -775,7 +807,11 @@ class GetInstancesFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -851,7 +887,9 @@ class GetInstancesSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -908,7 +946,11 @@ class GetKubernetesVersionFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -984,7 +1026,9 @@ class GetKubernetesVersionSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -1041,7 +1085,11 @@ class GetRegionFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -1117,7 +1165,9 @@ class GetRegionSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -1174,7 +1224,11 @@ class GetSizeFilterArgs:
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -1250,7 +1304,9 @@ class GetSizeSortArgs:
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)

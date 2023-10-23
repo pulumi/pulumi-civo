@@ -3,3 +3,4 @@ env:
   CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
 makeTemplate: bridged
 team: ecosystem
+javaGenVersion: "v0.9.7"

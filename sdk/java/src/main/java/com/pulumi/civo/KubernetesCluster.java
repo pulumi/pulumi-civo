@@ -37,7 +37,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The API server endpoint of the cluster
      * 
      */
-    @Export(name="apiEndpoint", type=String.class, parameters={})
+    @Export(name="apiEndpoint", refs={String.class}, tree="[0]")
     private Output<String> apiEndpoint;
 
     /**
@@ -51,7 +51,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
      * 
      */
-    @Export(name="applications", type=String.class, parameters={})
+    @Export(name="applications", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applications;
 
     /**
@@ -65,7 +65,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
      * 
      */
-    @Export(name="clusterType", type=String.class, parameters={})
+    @Export(name="clusterType", refs={String.class}, tree="[0]")
     private Output<String> clusterType;
 
     /**
@@ -79,7 +79,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
      * 
      */
-    @Export(name="cni", type=String.class, parameters={})
+    @Export(name="cni", refs={String.class}, tree="[0]")
     private Output<String> cni;
 
     /**
@@ -93,7 +93,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The timestamp when the cluster was created
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -107,7 +107,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The DNS name of the cluster
      * 
      */
-    @Export(name="dnsEntry", type=String.class, parameters={})
+    @Export(name="dnsEntry", refs={String.class}, tree="[0]")
     private Output<String> dnsEntry;
 
     /**
@@ -121,7 +121,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The existing firewall ID to use for this cluster
      * 
      */
-    @Export(name="firewallId", type=String.class, parameters={})
+    @Export(name="firewallId", refs={String.class}, tree="[0]")
     private Output<String> firewallId;
 
     /**
@@ -131,7 +131,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     public Output<String> firewallId() {
         return this.firewallId;
     }
-    @Export(name="installedApplications", type=List.class, parameters={KubernetesClusterInstalledApplication.class})
+    @Export(name="installedApplications", refs={List.class,KubernetesClusterInstalledApplication.class}, tree="[0,1]")
     private Output<List<KubernetesClusterInstalledApplication>> installedApplications;
 
     public Output<List<KubernetesClusterInstalledApplication>> installedApplications() {
@@ -141,7 +141,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The kubeconfig of the cluster
      * 
      */
-    @Export(name="kubeconfig", type=String.class, parameters={})
+    @Export(name="kubeconfig", refs={String.class}, tree="[0]")
     private Output<String> kubeconfig;
 
     /**
@@ -155,7 +155,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The version of k3s to install (optional, the default is currently the latest available)
      * 
      */
-    @Export(name="kubernetesVersion", type=String.class, parameters={})
+    @Export(name="kubernetesVersion", refs={String.class}, tree="[0]")
     private Output<String> kubernetesVersion;
 
     /**
@@ -169,7 +169,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The IP address of the master node
      * 
      */
-    @Export(name="masterIp", type=String.class, parameters={})
+    @Export(name="masterIp", refs={String.class}, tree="[0]")
     private Output<String> masterIp;
 
     /**
@@ -183,7 +183,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Name for your cluster, must be unique within your account
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -197,7 +197,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The network for the cluster, if not declare we use the default one
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -215,7 +215,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* This field will be deprecated in the next major release, please use the 'pools' field instead */
-    @Export(name="numTargetNodes", type=Integer.class, parameters={})
+    @Export(name="numTargetNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> numTargetNodes;
 
     /**
@@ -225,7 +225,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     public Output<Integer> numTargetNodes() {
         return this.numTargetNodes;
     }
-    @Export(name="pools", type=KubernetesClusterPools.class, parameters={})
+    @Export(name="pools", refs={KubernetesClusterPools.class}, tree="[0]")
     private Output<KubernetesClusterPools> pools;
 
     public Output<KubernetesClusterPools> pools() {
@@ -235,7 +235,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * When cluster is ready, this will return `true`
      * 
      */
-    @Export(name="ready", type=Boolean.class, parameters={})
+    @Export(name="ready", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> ready;
 
     /**
@@ -249,7 +249,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * The region for the cluster, if not declare we use the region in declared in the provider
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -263,7 +263,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Status of the cluster
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -277,7 +277,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * Space separated list of tags, to be used freely as required
      * 
      */
-    @Export(name="tags", type=String.class, parameters={})
+    @Export(name="tags", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> tags;
 
     /**
@@ -295,7 +295,7 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* This field will be deprecated in the next major release, please use the 'pools' field instead */
-    @Export(name="targetNodesSize", type=String.class, parameters={})
+    @Export(name="targetNodesSize", refs={String.class}, tree="[0]")
     private Output<String> targetNodesSize;
 
     /**

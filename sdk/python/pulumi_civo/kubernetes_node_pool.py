@@ -55,7 +55,15 @@ class KubernetesNodePoolArgs:
              public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
              size: Optional[pulumi.Input[str]] = None,
              taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
         _setter("cluster_id", cluster_id)
         _setter("region", region)
         if label is not None:
@@ -208,7 +216,17 @@ class _KubernetesNodePoolState:
              region: Optional[pulumi.Input[str]] = None,
              size: Optional[pulumi.Input[str]] = None,
              taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'clusterId' in kwargs:
+            cluster_id = kwargs['clusterId']
+        if 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
         if cluster_id is not None:
             _setter("cluster_id", cluster_id)
         if instance_names is not None:

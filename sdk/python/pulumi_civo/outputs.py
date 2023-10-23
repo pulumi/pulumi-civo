@@ -89,7 +89,11 @@ class FirewallEgressRule(dict):
              label: Optional[str] = None,
              port_range: Optional[str] = None,
              protocol: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
         _setter("action", action)
         _setter("cidrs", cidrs)
         if id is not None:
@@ -198,7 +202,11 @@ class FirewallIngressRule(dict):
              label: Optional[str] = None,
              port_range: Optional[str] = None,
              protocol: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
         _setter("action", action)
         _setter("cidrs", cidrs)
         if id is not None:
@@ -277,7 +285,9 @@ class KubernetesClusterInstalledApplication(dict):
              category: Optional[str] = None,
              installed: Optional[bool] = None,
              version: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if application is not None:
             _setter("application", application)
         if category is not None:
@@ -360,7 +370,15 @@ class KubernetesClusterPools(dict):
              instance_names: Optional[Sequence[str]] = None,
              label: Optional[str] = None,
              public_ip_node_pool: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
         _setter("node_count", node_count)
         _setter("size", size)
         if instance_names is not None:
@@ -429,7 +447,9 @@ class KubernetesNodePoolTaint(dict):
              effect: str,
              key: str,
              value: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("effect", effect)
         _setter("key", key)
         _setter("value", value)
@@ -477,7 +497,11 @@ class GetDatabaseVersionFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -537,7 +561,9 @@ class GetDatabaseVersionSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -577,7 +603,9 @@ class GetDatabaseVersionVersionResult(dict):
              default: bool,
              engine: str,
              version: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("default", default)
         _setter("engine", engine)
         _setter("version", version)
@@ -619,7 +647,9 @@ class GetDiskImageDiskimageResult(dict):
              label: str,
              name: str,
              version: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("id", id)
         _setter("label", label)
         _setter("name", name)
@@ -673,7 +703,11 @@ class GetDiskImageFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -733,7 +767,9 @@ class GetDiskImageSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -782,7 +818,11 @@ class GetInstancesFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -898,7 +938,35 @@ class GetInstancesInstanceResult(dict):
              status: str,
              tags: Sequence[str],
              template: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'cpuCores' in kwargs:
+            cpu_cores = kwargs['cpuCores']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'diskGb' in kwargs:
+            disk_gb = kwargs['diskGb']
+        if 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if 'initialPassword' in kwargs:
+            initial_password = kwargs['initialPassword']
+        if 'initialUser' in kwargs:
+            initial_user = kwargs['initialUser']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if 'privateIp' in kwargs:
+            private_ip = kwargs['privateIp']
+        if 'pseudoIp' in kwargs:
+            pseudo_ip = kwargs['pseudoIp']
+        if 'publicIp' in kwargs:
+            public_ip = kwargs['publicIp']
+        if 'ramMb' in kwargs:
+            ram_mb = kwargs['ramMb']
+        if 'reverseDns' in kwargs:
+            reverse_dns = kwargs['reverseDns']
+        if 'sshkeyId' in kwargs:
+            sshkey_id = kwargs['sshkeyId']
+
         _setter("cpu_cores", cpu_cores)
         _setter("created_at", created_at)
         _setter("disk_gb", disk_gb)
@@ -1052,7 +1120,9 @@ class GetInstancesSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -1095,7 +1165,9 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
              category: str,
              installed: bool,
              version: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("application", application)
         _setter("category", category)
         _setter("installed", installed)
@@ -1146,7 +1218,15 @@ class GetKubernetesClusterPoolResult(dict):
              node_count: int,
              public_ip_node_pool: bool,
              size: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
         _setter("instance_names", instance_names)
         _setter("label", label)
         _setter("node_count", node_count)
@@ -1206,7 +1286,11 @@ class GetKubernetesVersionFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -1266,7 +1350,9 @@ class GetKubernetesVersionSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -1309,7 +1395,9 @@ class GetKubernetesVersionVersionResult(dict):
              label: str,
              type: str,
              version: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("default", default)
         _setter("label", label)
         _setter("type", type)
@@ -1360,7 +1448,15 @@ class GetLoadBalancerBackendResult(dict):
              protocol: str,
              source_port: int,
              target_port: int,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'healthCheckPort' in kwargs:
+            health_check_port = kwargs['healthCheckPort']
+        if 'sourcePort' in kwargs:
+            source_port = kwargs['sourcePort']
+        if 'targetPort' in kwargs:
+            target_port = kwargs['targetPort']
+
         _setter("health_check_port", health_check_port)
         _setter("ip", ip)
         _setter("protocol", protocol)
@@ -1420,7 +1516,11 @@ class GetRegionFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -1482,7 +1582,9 @@ class GetRegionRegionResult(dict):
              country: str,
              default: bool,
              name: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("code", code)
         _setter("country", country)
         _setter("default", default)
@@ -1528,7 +1630,9 @@ class GetRegionSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)
@@ -1577,7 +1681,11 @@ class GetSizeFilterResult(dict):
              values: Sequence[str],
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
         _setter("key", key)
         _setter("values", values)
         if all is not None:
@@ -1654,7 +1762,11 @@ class GetSizeSizeResult(dict):
              ram: int,
              selectable: bool,
              type: str,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'gpuType' in kwargs:
+            gpu_type = kwargs['gpuType']
+
         _setter("cpu", cpu)
         _setter("description", description)
         _setter("disk", disk)
@@ -1730,7 +1842,9 @@ class GetSizeSortResult(dict):
              _setter: Callable[[Any, Any], None],
              key: str,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("key", key)
         if direction is not None:
             _setter("direction", direction)

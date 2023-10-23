@@ -35,7 +35,13 @@ class InstanceReservedIpAssignmentArgs:
              instance_id: pulumi.Input[str],
              reserved_ip_id: pulumi.Input[str],
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if 'reservedIpId' in kwargs:
+            reserved_ip_id = kwargs['reservedIpId']
+
         _setter("instance_id", instance_id)
         _setter("reserved_ip_id", reserved_ip_id)
         if region is not None:
@@ -102,7 +108,13 @@ class _InstanceReservedIpAssignmentState:
              instance_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              reserved_ip_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if 'reservedIpId' in kwargs:
+            reserved_ip_id = kwargs['reservedIpId']
+
         if instance_id is not None:
             _setter("instance_id", instance_id)
         if region is not None:

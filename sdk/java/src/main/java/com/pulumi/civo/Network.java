@@ -62,7 +62,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * If the network is default, this will be `true`
      * 
      */
-    @Export(name="default", type=Boolean.class, parameters={})
+    @Export(name="default", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> default_;
 
     /**
@@ -76,7 +76,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * Name for the network
      * 
      */
-    @Export(name="label", type=String.class, parameters={})
+    @Export(name="label", refs={String.class}, tree="[0]")
     private Output<String> label;
 
     /**
@@ -90,7 +90,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * The name of the network
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -104,7 +104,7 @@ public class Network extends com.pulumi.resources.CustomResource {
      * The region of the network
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

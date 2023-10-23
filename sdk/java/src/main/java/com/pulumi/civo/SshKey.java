@@ -61,7 +61,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * a string containing the SSH finger print.
      * 
      */
-    @Export(name="fingerprint", type=String.class, parameters={})
+    @Export(name="fingerprint", refs={String.class}, tree="[0]")
     private Output<String> fingerprint;
 
     /**
@@ -75,7 +75,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * a string that will be the reference for the SSH key.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -89,7 +89,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * a string containing the SSH public key.
      * 
      */
-    @Export(name="publicKey", type=String.class, parameters={})
+    @Export(name="publicKey", refs={String.class}, tree="[0]")
     private Output<String> publicKey;
 
     /**

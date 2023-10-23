@@ -31,7 +31,9 @@ class NetworkArgs:
              _setter: Callable[[Any, Any], None],
              label: pulumi.Input[str],
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         _setter("label", label)
         if region is not None:
             _setter("region", region)
@@ -89,7 +91,9 @@ class _NetworkState:
              label: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if default is not None:
             _setter("default", default)
         if label is not None:

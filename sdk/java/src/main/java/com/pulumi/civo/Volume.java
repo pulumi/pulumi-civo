@@ -73,7 +73,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * The mount point of the volume (from instance&#39;s perspective)
      * 
      */
-    @Export(name="mountPoint", type=String.class, parameters={})
+    @Export(name="mountPoint", refs={String.class}, tree="[0]")
     private Output<String> mountPoint;
 
     /**
@@ -87,7 +87,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * A name that you wish to use to refer to this volume
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -101,7 +101,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * The network that the volume belongs to
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -115,7 +115,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * The region for the volume, if not declare we use the region in declared in the provider.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -129,7 +129,7 @@ public class Volume extends com.pulumi.resources.CustomResource {
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      * 
      */
-    @Export(name="sizeGb", type=Integer.class, parameters={})
+    @Export(name="sizeGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> sizeGb;
 
     /**

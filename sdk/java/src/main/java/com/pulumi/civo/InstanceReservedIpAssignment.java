@@ -57,7 +57,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * The instance id
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
@@ -71,7 +71,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * The region of the ip
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -85,7 +85,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * The reserved ip id
      * 
      */
-    @Export(name="reservedIpId", type=String.class, parameters={})
+    @Export(name="reservedIpId", refs={String.class}, tree="[0]")
     private Output<String> reservedIpId;
 
     /**

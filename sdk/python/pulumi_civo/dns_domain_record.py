@@ -47,7 +47,11 @@ class DnsDomainRecordArgs:
              value: pulumi.Input[str],
              name: Optional[pulumi.Input[str]] = None,
              priority: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'domainId' in kwargs:
+            domain_id = kwargs['domainId']
+
         _setter("domain_id", domain_id)
         _setter("ttl", ttl)
         _setter("type", type)
@@ -178,7 +182,17 @@ class _DnsDomainRecordState:
              type: Optional[pulumi.Input[str]] = None,
              updated_at: Optional[pulumi.Input[str]] = None,
              value: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accountId' in kwargs:
+            account_id = kwargs['accountId']
+        if 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if 'domainId' in kwargs:
+            domain_id = kwargs['domainId']
+        if 'updatedAt' in kwargs:
+            updated_at = kwargs['updatedAt']
+
         if account_id is not None:
             _setter("account_id", account_id)
         if created_at is not None:

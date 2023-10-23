@@ -112,7 +112,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
      * 
      */
-    @Export(name="createDefaultRules", type=Boolean.class, parameters={})
+    @Export(name="createDefaultRules", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> createDefaultRules;
 
     /**
@@ -126,7 +126,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The egress rules, this is a list of rules that will be applied to the firewall
      * 
      */
-    @Export(name="egressRules", type=List.class, parameters={FirewallEgressRule.class})
+    @Export(name="egressRules", refs={List.class,FirewallEgressRule.class}, tree="[0,1]")
     private Output<List<FirewallEgressRule>> egressRules;
 
     /**
@@ -140,7 +140,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The ingress rules, this is a list of rules that will be applied to the firewall
      * 
      */
-    @Export(name="ingressRules", type=List.class, parameters={FirewallIngressRule.class})
+    @Export(name="ingressRules", refs={List.class,FirewallIngressRule.class}, tree="[0,1]")
     private Output<List<FirewallIngressRule>> ingressRules;
 
     /**
@@ -154,7 +154,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The firewall name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -168,7 +168,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The firewall network, if is not defined we use the default network
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -182,7 +182,7 @@ public class Firewall extends com.pulumi.resources.CustomResource {
      * The firewall region, if is not defined we use the global defined in the provider
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**

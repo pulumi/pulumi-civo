@@ -24,7 +24,7 @@ public class VolumeAttachment extends com.pulumi.resources.CustomResource {
      * The ID of target instance for attachment
      * 
      */
-    @Export(name="instanceId", type=String.class, parameters={})
+    @Export(name="instanceId", refs={String.class}, tree="[0]")
     private Output<String> instanceId;
 
     /**
@@ -38,7 +38,7 @@ public class VolumeAttachment extends com.pulumi.resources.CustomResource {
      * The region for the volume attachment
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -52,7 +52,7 @@ public class VolumeAttachment extends com.pulumi.resources.CustomResource {
      * The ID of target volume for attachment
      * 
      */
-    @Export(name="volumeId", type=String.class, parameters={})
+    @Export(name="volumeId", refs={String.class}, tree="[0]")
     private Output<String> volumeId;
 
     /**

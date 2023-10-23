@@ -26,7 +26,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The Base URL to use for CIVO API.
      * 
      */
-    @Export(name="apiEndpoint", type=String.class, parameters={})
+    @Export(name="apiEndpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> apiEndpoint;
 
     /**
@@ -41,7 +41,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * here you can overwrite in a resource.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> region;
 
     /**
@@ -56,7 +56,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
      * 
      */
-    @Export(name="token", type=String.class, parameters={})
+    @Export(name="token", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> token;
 
     /**

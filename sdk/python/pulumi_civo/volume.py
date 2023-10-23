@@ -39,7 +39,13 @@ class VolumeArgs:
              size_gb: pulumi.Input[int],
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if 'sizeGb' in kwargs:
+            size_gb = kwargs['sizeGb']
+
         _setter("network_id", network_id)
         _setter("size_gb", size_gb)
         if name is not None:
@@ -128,7 +134,15 @@ class _VolumeState:
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              size_gb: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'mountPoint' in kwargs:
+            mount_point = kwargs['mountPoint']
+        if 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if 'sizeGb' in kwargs:
+            size_gb = kwargs['sizeGb']
+
         if mount_point is not None:
             _setter("mount_point", mount_point)
         if name is not None:

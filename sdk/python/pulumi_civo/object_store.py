@@ -39,7 +39,13 @@ class ObjectStoreArgs:
              max_size_gb: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if 'maxSizeGb' in kwargs:
+            max_size_gb = kwargs['maxSizeGb']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if max_size_gb is not None:
@@ -134,7 +140,15 @@ class _ObjectStoreState:
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None):
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if 'bucketUrl' in kwargs:
+            bucket_url = kwargs['bucketUrl']
+        if 'maxSizeGb' in kwargs:
+            max_size_gb = kwargs['maxSizeGb']
+
         if access_key_id is not None:
             _setter("access_key_id", access_key_id)
         if bucket_url is not None:
