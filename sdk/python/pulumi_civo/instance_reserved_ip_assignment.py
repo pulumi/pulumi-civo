@@ -32,15 +32,19 @@ class InstanceReservedIpAssignmentArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_id: pulumi.Input[str],
-             reserved_ip_id: pulumi.Input[str],
+             instance_id: Optional[pulumi.Input[str]] = None,
+             reserved_ip_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'instanceId' in kwargs:
+        if instance_id is None and 'instanceId' in kwargs:
             instance_id = kwargs['instanceId']
-        if 'reservedIpId' in kwargs:
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if reserved_ip_id is None and 'reservedIpId' in kwargs:
             reserved_ip_id = kwargs['reservedIpId']
+        if reserved_ip_id is None:
+            raise TypeError("Missing 'reserved_ip_id' argument")
 
         _setter("instance_id", instance_id)
         _setter("reserved_ip_id", reserved_ip_id)
@@ -108,11 +112,11 @@ class _InstanceReservedIpAssignmentState:
              instance_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              reserved_ip_id: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'instanceId' in kwargs:
+        if instance_id is None and 'instanceId' in kwargs:
             instance_id = kwargs['instanceId']
-        if 'reservedIpId' in kwargs:
+        if reserved_ip_id is None and 'reservedIpId' in kwargs:
             reserved_ip_id = kwargs['reservedIpId']
 
         if instance_id is not None:
@@ -171,20 +175,6 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
         """
         The instance reserved ip assignment resource schema definition
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Send to create a reserved IP
-        www = civo.ReservedIp("www")
-        # We assign the reserved IP to the instance
-        webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
-            instance_id=civo_instance["www"]["id"],
-            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
-        ```
-
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The instance id
@@ -199,20 +189,6 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The instance reserved ip assignment resource schema definition
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Send to create a reserved IP
-        www = civo.ReservedIp("www")
-        # We assign the reserved IP to the instance
-        webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
-            instance_id=civo_instance["www"]["id"],
-            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
-        ```
 
         :param str resource_name: The name of the resource.
         :param InstanceReservedIpAssignmentArgs args: The arguments to use to populate this resource's properties.

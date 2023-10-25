@@ -207,17 +207,6 @@ def get_load_balancer(id: Optional[str] = None,
 
     An error will be raised if the provided load balancer name does not exist in your Civo account.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    my_lb = civo.get_load_balancer(name="lb-name",
-        region="LON1")
-    pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
-    ```
-
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
@@ -256,17 +245,6 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
 
     An error will be raised if the provided load balancer name does not exist in your Civo account.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    my_lb = civo.get_load_balancer(name="lb-name",
-        region="LON1")
-    pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
-    ```
 
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')

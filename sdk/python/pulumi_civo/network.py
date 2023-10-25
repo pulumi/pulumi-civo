@@ -29,10 +29,12 @@ class NetworkArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             label: pulumi.Input[str],
+             label: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if label is None:
+            raise TypeError("Missing 'label' argument")
 
         _setter("label", label)
         if region is not None:
@@ -91,7 +93,7 @@ class _NetworkState:
              label: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
 
         if default is not None:
@@ -163,15 +165,6 @@ class Network(pulumi.CustomResource):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        custom_net = civo.Network("customNet", label="test_network")
-        ```
-
         ## Import
 
         using ID
@@ -193,15 +186,6 @@ class Network(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        custom_net = civo.Network("customNet", label="test_network")
-        ```
 
         ## Import
 

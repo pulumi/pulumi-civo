@@ -15,33 +15,6 @@ namespace Pulumi.Civo
         /// Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
         /// 
         /// An error will be raised if the provided load balancer name does not exist in your Civo account.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var my_lb = Civo.GetLoadBalancer.Invoke(new()
-        ///     {
-        ///         Name = "lb-name",
-        ///         Region = "LON1",
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
-        ///     };
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetLoadBalancerResult> InvokeAsync(GetLoadBalancerArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoadBalancerResult>("civo:index/getLoadBalancer:getLoadBalancer", args ?? new GetLoadBalancerArgs(), options.WithDefaults());
@@ -50,33 +23,6 @@ namespace Pulumi.Civo
         /// Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
         /// 
         /// An error will be raised if the provided load balancer name does not exist in your Civo account.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var my_lb = Civo.GetLoadBalancer.Invoke(new()
-        ///     {
-        ///         Name = "lb-name",
-        ///         Region = "LON1",
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["civoLoadbalancerOutput"] = my_lb.Apply(my_lb =&gt; my_lb.Apply(getLoadBalancerResult =&gt; getLoadBalancerResult.PublicIp)),
-        ///     };
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetLoadBalancerResult> Invoke(GetLoadBalancerInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLoadBalancerResult>("civo:index/getLoadBalancer:getLoadBalancer", args ?? new GetLoadBalancerInvokeArgs(), options.WithDefaults());

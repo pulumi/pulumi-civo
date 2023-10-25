@@ -15,39 +15,6 @@ namespace Pulumi.Civo
         /// Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
         /// 
         /// An error will be raised if the provided domain name or record are not in your Civo account.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain = Civo.GetDnsDomainName.Invoke(new()
-        ///     {
-        ///         Name = "domain.com",
-        ///     });
-        /// 
-        ///     var www = Civo.GetDnsDomainRecord.Invoke(new()
-        ///     {
-        ///         DomainId = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Id),
-        ///         Name = "www",
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["recordType"] = www.Apply(getDnsDomainRecordResult =&gt; getDnsDomainRecordResult.Type),
-        ///         ["recordTtl"] = www.Apply(getDnsDomainRecordResult =&gt; getDnsDomainRecordResult.Ttl),
-        ///     };
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDnsDomainRecordResult> InvokeAsync(GetDnsDomainRecordArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordArgs(), options.WithDefaults());
@@ -56,39 +23,6 @@ namespace Pulumi.Civo
         /// Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
         /// 
         /// An error will be raised if the provided domain name or record are not in your Civo account.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var domain = Civo.GetDnsDomainName.Invoke(new()
-        ///     {
-        ///         Name = "domain.com",
-        ///     });
-        /// 
-        ///     var www = Civo.GetDnsDomainRecord.Invoke(new()
-        ///     {
-        ///         DomainId = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Id),
-        ///         Name = "www",
-        ///     });
-        /// 
-        ///     return new Dictionary&lt;string, object?&gt;
-        ///     {
-        ///         ["recordType"] = www.Apply(getDnsDomainRecordResult =&gt; getDnsDomainRecordResult.Type),
-        ///         ["recordTtl"] = www.Apply(getDnsDomainRecordResult =&gt; getDnsDomainRecordResult.Ttl),
-        ///     };
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDnsDomainRecordResult> Invoke(GetDnsDomainRecordInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDnsDomainRecordResult>("civo:index/getDnsDomainRecord:getDnsDomainRecord", args ?? new GetDnsDomainRecordInvokeArgs(), options.WithDefaults());

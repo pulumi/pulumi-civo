@@ -36,9 +36,9 @@ class ProviderArgs:
              api_endpoint: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              token: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'apiEndpoint' in kwargs:
+        if api_endpoint is None and 'apiEndpoint' in kwargs:
             api_endpoint = kwargs['apiEndpoint']
 
         if api_endpoint is not None:

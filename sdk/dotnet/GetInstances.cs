@@ -15,39 +15,6 @@ namespace Pulumi.Civo
         /// Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
         /// 
         /// Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var small_size = Civo.GetInstances.Invoke(new()
-        ///     {
-        ///         Region = "LON1",
-        ///         Filters = new[]
-        ///         {
-        ///             new Civo.Inputs.GetInstancesFilterInputArgs
-        ///             {
-        ///                 Key = "size",
-        ///                 Values = new[]
-        ///                 {
-        ///                     g3.Small,
-        ///                 },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstancesResult> InvokeAsync(GetInstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesArgs(), options.WithDefaults());
@@ -56,39 +23,6 @@ namespace Pulumi.Civo
         /// Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
         /// 
         /// Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var small_size = Civo.GetInstances.Invoke(new()
-        ///     {
-        ///         Region = "LON1",
-        ///         Filters = new[]
-        ///         {
-        ///             new Civo.Inputs.GetInstancesFilterInputArgs
-        ///             {
-        ///                 Key = "size",
-        ///                 Values = new[]
-        ///                 {
-        ///                     g3.Small,
-        ///                 },
-        ///             },
-        ///         },
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetInstancesResult> Invoke(GetInstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesInvokeArgs(), options.WithDefaults());

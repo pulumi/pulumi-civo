@@ -83,15 +83,19 @@ class FirewallEgressRule(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: str,
-             cidrs: Sequence[str],
+             action: Optional[str] = None,
+             cidrs: Optional[Sequence[str]] = None,
              id: Optional[str] = None,
              label: Optional[str] = None,
              port_range: Optional[str] = None,
              protocol: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'portRange' in kwargs:
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if cidrs is None:
+            raise TypeError("Missing 'cidrs' argument")
+        if port_range is None and 'portRange' in kwargs:
             port_range = kwargs['portRange']
 
         _setter("action", action)
@@ -196,15 +200,19 @@ class FirewallIngressRule(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: str,
-             cidrs: Sequence[str],
+             action: Optional[str] = None,
+             cidrs: Optional[Sequence[str]] = None,
              id: Optional[str] = None,
              label: Optional[str] = None,
              port_range: Optional[str] = None,
              protocol: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'portRange' in kwargs:
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if cidrs is None:
+            raise TypeError("Missing 'cidrs' argument")
+        if port_range is None and 'portRange' in kwargs:
             port_range = kwargs['portRange']
 
         _setter("action", action)
@@ -285,7 +293,7 @@ class KubernetesClusterInstalledApplication(dict):
              category: Optional[str] = None,
              installed: Optional[bool] = None,
              version: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
 
         if application is not None:
@@ -365,18 +373,22 @@ class KubernetesClusterPools(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             node_count: int,
-             size: str,
+             node_count: Optional[int] = None,
+             size: Optional[str] = None,
              instance_names: Optional[Sequence[str]] = None,
              label: Optional[str] = None,
              public_ip_node_pool: Optional[bool] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'nodeCount' in kwargs:
+        if node_count is None and 'nodeCount' in kwargs:
             node_count = kwargs['nodeCount']
-        if 'instanceNames' in kwargs:
+        if node_count is None:
+            raise TypeError("Missing 'node_count' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if instance_names is None and 'instanceNames' in kwargs:
             instance_names = kwargs['instanceNames']
-        if 'publicIpNodePool' in kwargs:
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
             public_ip_node_pool = kwargs['publicIpNodePool']
 
         _setter("node_count", node_count)
@@ -444,11 +456,17 @@ class KubernetesNodePoolTaint(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             effect: str,
-             key: str,
-             value: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             effect: Optional[str] = None,
+             key: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if effect is None:
+            raise TypeError("Missing 'effect' argument")
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if value is None:
+            raise TypeError("Missing 'value' argument")
 
         _setter("effect", effect)
         _setter("key", key)
@@ -493,13 +511,17 @@ class GetDatabaseVersionFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -559,10 +581,12 @@ class GetDatabaseVersionSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:
@@ -600,11 +624,17 @@ class GetDatabaseVersionVersionResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             default: bool,
-             engine: str,
-             version: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             default: Optional[bool] = None,
+             engine: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if engine is None:
+            raise TypeError("Missing 'engine' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
 
         _setter("default", default)
         _setter("engine", engine)
@@ -643,12 +673,20 @@ class GetDiskImageDiskimageResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             id: str,
-             label: str,
-             name: str,
-             version: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             name: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
 
         _setter("id", id)
         _setter("label", label)
@@ -699,13 +737,17 @@ class GetDiskImageFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -765,10 +807,12 @@ class GetDiskImageSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:
@@ -814,13 +858,17 @@ class GetInstancesFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -916,56 +964,100 @@ class GetInstancesInstanceResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cpu_cores: int,
-             created_at: str,
-             disk_gb: int,
-             firewall_id: str,
-             hostname: str,
-             id: str,
-             initial_password: str,
-             initial_user: str,
-             network_id: str,
-             notes: str,
-             private_ip: str,
-             pseudo_ip: str,
-             public_ip: str,
-             ram_mb: int,
-             region: str,
-             reverse_dns: str,
-             script: str,
-             size: str,
-             sshkey_id: str,
-             status: str,
-             tags: Sequence[str],
-             template: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             cpu_cores: Optional[int] = None,
+             created_at: Optional[str] = None,
+             disk_gb: Optional[int] = None,
+             firewall_id: Optional[str] = None,
+             hostname: Optional[str] = None,
+             id: Optional[str] = None,
+             initial_password: Optional[str] = None,
+             initial_user: Optional[str] = None,
+             network_id: Optional[str] = None,
+             notes: Optional[str] = None,
+             private_ip: Optional[str] = None,
+             pseudo_ip: Optional[str] = None,
+             public_ip: Optional[str] = None,
+             ram_mb: Optional[int] = None,
+             region: Optional[str] = None,
+             reverse_dns: Optional[str] = None,
+             script: Optional[str] = None,
+             size: Optional[str] = None,
+             sshkey_id: Optional[str] = None,
+             status: Optional[str] = None,
+             tags: Optional[Sequence[str]] = None,
+             template: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'cpuCores' in kwargs:
+        if cpu_cores is None and 'cpuCores' in kwargs:
             cpu_cores = kwargs['cpuCores']
-        if 'createdAt' in kwargs:
+        if cpu_cores is None:
+            raise TypeError("Missing 'cpu_cores' argument")
+        if created_at is None and 'createdAt' in kwargs:
             created_at = kwargs['createdAt']
-        if 'diskGb' in kwargs:
+        if created_at is None:
+            raise TypeError("Missing 'created_at' argument")
+        if disk_gb is None and 'diskGb' in kwargs:
             disk_gb = kwargs['diskGb']
-        if 'firewallId' in kwargs:
+        if disk_gb is None:
+            raise TypeError("Missing 'disk_gb' argument")
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'initialPassword' in kwargs:
+        if firewall_id is None:
+            raise TypeError("Missing 'firewall_id' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if initial_password is None and 'initialPassword' in kwargs:
             initial_password = kwargs['initialPassword']
-        if 'initialUser' in kwargs:
+        if initial_password is None:
+            raise TypeError("Missing 'initial_password' argument")
+        if initial_user is None and 'initialUser' in kwargs:
             initial_user = kwargs['initialUser']
-        if 'networkId' in kwargs:
+        if initial_user is None:
+            raise TypeError("Missing 'initial_user' argument")
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'privateIp' in kwargs:
+        if network_id is None:
+            raise TypeError("Missing 'network_id' argument")
+        if notes is None:
+            raise TypeError("Missing 'notes' argument")
+        if private_ip is None and 'privateIp' in kwargs:
             private_ip = kwargs['privateIp']
-        if 'pseudoIp' in kwargs:
+        if private_ip is None:
+            raise TypeError("Missing 'private_ip' argument")
+        if pseudo_ip is None and 'pseudoIp' in kwargs:
             pseudo_ip = kwargs['pseudoIp']
-        if 'publicIp' in kwargs:
+        if pseudo_ip is None:
+            raise TypeError("Missing 'pseudo_ip' argument")
+        if public_ip is None and 'publicIp' in kwargs:
             public_ip = kwargs['publicIp']
-        if 'ramMb' in kwargs:
+        if public_ip is None:
+            raise TypeError("Missing 'public_ip' argument")
+        if ram_mb is None and 'ramMb' in kwargs:
             ram_mb = kwargs['ramMb']
-        if 'reverseDns' in kwargs:
+        if ram_mb is None:
+            raise TypeError("Missing 'ram_mb' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+        if reverse_dns is None and 'reverseDns' in kwargs:
             reverse_dns = kwargs['reverseDns']
-        if 'sshkeyId' in kwargs:
+        if reverse_dns is None:
+            raise TypeError("Missing 'reverse_dns' argument")
+        if script is None:
+            raise TypeError("Missing 'script' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if sshkey_id is None and 'sshkeyId' in kwargs:
             sshkey_id = kwargs['sshkeyId']
+        if sshkey_id is None:
+            raise TypeError("Missing 'sshkey_id' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+        if tags is None:
+            raise TypeError("Missing 'tags' argument")
+        if template is None:
+            raise TypeError("Missing 'template' argument")
 
         _setter("cpu_cores", cpu_cores)
         _setter("created_at", created_at)
@@ -1118,10 +1210,12 @@ class GetInstancesSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:
@@ -1161,12 +1255,20 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             application: str,
-             category: str,
-             installed: bool,
-             version: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             application: Optional[str] = None,
+             category: Optional[str] = None,
+             installed: Optional[bool] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if application is None:
+            raise TypeError("Missing 'application' argument")
+        if category is None:
+            raise TypeError("Missing 'category' argument")
+        if installed is None:
+            raise TypeError("Missing 'installed' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
 
         _setter("application", application)
         _setter("category", category)
@@ -1213,19 +1315,29 @@ class GetKubernetesClusterPoolResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             instance_names: Sequence[str],
-             label: str,
-             node_count: int,
-             public_ip_node_pool: bool,
-             size: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             instance_names: Optional[Sequence[str]] = None,
+             label: Optional[str] = None,
+             node_count: Optional[int] = None,
+             public_ip_node_pool: Optional[bool] = None,
+             size: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'instanceNames' in kwargs:
+        if instance_names is None and 'instanceNames' in kwargs:
             instance_names = kwargs['instanceNames']
-        if 'nodeCount' in kwargs:
+        if instance_names is None:
+            raise TypeError("Missing 'instance_names' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if node_count is None and 'nodeCount' in kwargs:
             node_count = kwargs['nodeCount']
-        if 'publicIpNodePool' in kwargs:
+        if node_count is None:
+            raise TypeError("Missing 'node_count' argument")
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
             public_ip_node_pool = kwargs['publicIpNodePool']
+        if public_ip_node_pool is None:
+            raise TypeError("Missing 'public_ip_node_pool' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
 
         _setter("instance_names", instance_names)
         _setter("label", label)
@@ -1282,13 +1394,17 @@ class GetKubernetesVersionFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -1348,10 +1464,12 @@ class GetKubernetesVersionSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:
@@ -1391,12 +1509,20 @@ class GetKubernetesVersionVersionResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             default: bool,
-             label: str,
-             type: str,
-             version: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             default: Optional[bool] = None,
+             label: Optional[str] = None,
+             type: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
 
         _setter("default", default)
         _setter("label", label)
@@ -1443,19 +1569,29 @@ class GetLoadBalancerBackendResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             health_check_port: int,
-             ip: str,
-             protocol: str,
-             source_port: int,
-             target_port: int,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             health_check_port: Optional[int] = None,
+             ip: Optional[str] = None,
+             protocol: Optional[str] = None,
+             source_port: Optional[int] = None,
+             target_port: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'healthCheckPort' in kwargs:
+        if health_check_port is None and 'healthCheckPort' in kwargs:
             health_check_port = kwargs['healthCheckPort']
-        if 'sourcePort' in kwargs:
+        if health_check_port is None:
+            raise TypeError("Missing 'health_check_port' argument")
+        if ip is None:
+            raise TypeError("Missing 'ip' argument")
+        if protocol is None:
+            raise TypeError("Missing 'protocol' argument")
+        if source_port is None and 'sourcePort' in kwargs:
             source_port = kwargs['sourcePort']
-        if 'targetPort' in kwargs:
+        if source_port is None:
+            raise TypeError("Missing 'source_port' argument")
+        if target_port is None and 'targetPort' in kwargs:
             target_port = kwargs['targetPort']
+        if target_port is None:
+            raise TypeError("Missing 'target_port' argument")
 
         _setter("health_check_port", health_check_port)
         _setter("ip", ip)
@@ -1512,13 +1648,17 @@ class GetRegionFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -1578,12 +1718,20 @@ class GetRegionRegionResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             code: str,
-             country: str,
-             default: bool,
-             name: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             code: Optional[str] = None,
+             country: Optional[str] = None,
+             default: Optional[bool] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if code is None:
+            raise TypeError("Missing 'code' argument")
+        if country is None:
+            raise TypeError("Missing 'country' argument")
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
 
         _setter("code", code)
         _setter("country", country)
@@ -1628,10 +1776,12 @@ class GetRegionSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:
@@ -1677,13 +1827,17 @@ class GetSizeFilterResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
-             values: Sequence[str],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
              all: Optional[bool] = None,
              match_by: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'matchBy' in kwargs:
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
             match_by = kwargs['matchBy']
 
         _setter("key", key)
@@ -1753,19 +1907,37 @@ class GetSizeSizeResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cpu: int,
-             description: str,
-             disk: int,
-             gpu: int,
-             gpu_type: str,
-             name: str,
-             ram: int,
-             selectable: bool,
-             type: str,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             cpu: Optional[int] = None,
+             description: Optional[str] = None,
+             disk: Optional[int] = None,
+             gpu: Optional[int] = None,
+             gpu_type: Optional[str] = None,
+             name: Optional[str] = None,
+             ram: Optional[int] = None,
+             selectable: Optional[bool] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'gpuType' in kwargs:
+        if cpu is None:
+            raise TypeError("Missing 'cpu' argument")
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if disk is None:
+            raise TypeError("Missing 'disk' argument")
+        if gpu is None:
+            raise TypeError("Missing 'gpu' argument")
+        if gpu_type is None and 'gpuType' in kwargs:
             gpu_type = kwargs['gpuType']
+        if gpu_type is None:
+            raise TypeError("Missing 'gpu_type' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if ram is None:
+            raise TypeError("Missing 'ram' argument")
+        if selectable is None:
+            raise TypeError("Missing 'selectable' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
 
         _setter("cpu", cpu)
         _setter("description", description)
@@ -1840,10 +2012,12 @@ class GetSizeSortResult(dict):
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             key: str,
+             key: Optional[str] = None,
              direction: Optional[str] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
 
         _setter("key", key)
         if direction is not None:

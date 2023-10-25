@@ -47,21 +47,25 @@ class KubernetesNodePoolArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             cluster_id: pulumi.Input[str],
-             region: pulumi.Input[str],
+             cluster_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
              label: Optional[pulumi.Input[str]] = None,
              labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
              node_count: Optional[pulumi.Input[int]] = None,
              public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
              size: Optional[pulumi.Input[str]] = None,
              taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'clusterId' in kwargs:
+        if cluster_id is None and 'clusterId' in kwargs:
             cluster_id = kwargs['clusterId']
-        if 'nodeCount' in kwargs:
+        if cluster_id is None:
+            raise TypeError("Missing 'cluster_id' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+        if node_count is None and 'nodeCount' in kwargs:
             node_count = kwargs['nodeCount']
-        if 'publicIpNodePool' in kwargs:
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
             public_ip_node_pool = kwargs['publicIpNodePool']
 
         _setter("cluster_id", cluster_id)
@@ -216,15 +220,15 @@ class _KubernetesNodePoolState:
              region: Optional[pulumi.Input[str]] = None,
              size: Optional[pulumi.Input[str]] = None,
              taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'clusterId' in kwargs:
+        if cluster_id is None and 'clusterId' in kwargs:
             cluster_id = kwargs['clusterId']
-        if 'instanceNames' in kwargs:
+        if instance_names is None and 'instanceNames' in kwargs:
             instance_names = kwargs['instanceNames']
-        if 'nodeCount' in kwargs:
+        if node_count is None and 'nodeCount' in kwargs:
             node_count = kwargs['nodeCount']
-        if 'publicIpNodePool' in kwargs:
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
             public_ip_node_pool = kwargs['publicIpNodePool']
 
         if cluster_id is not None:

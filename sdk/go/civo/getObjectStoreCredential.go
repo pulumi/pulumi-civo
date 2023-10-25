@@ -15,40 +15,6 @@ import (
 // Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
 //
 // Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			backupObjectStoreCredential, err := civo.LookupObjectStoreCredential(ctx, &civo.LookupObjectStoreCredentialArgs{
-//				Name: pulumi.StringRef("backup-server"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
-//				MaxSizeGb:   pulumi.Int(500),
-//				Region:      pulumi.String("LON1"),
-//				AccessKeyId: *pulumi.String(backupObjectStoreCredential.AccessKeyId),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupObjectStoreCredential(ctx *pulumi.Context, args *LookupObjectStoreCredentialArgs, opts ...pulumi.InvokeOption) (*LookupObjectStoreCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectStoreCredentialResult

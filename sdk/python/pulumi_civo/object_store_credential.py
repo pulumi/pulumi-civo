@@ -39,11 +39,11 @@ class ObjectStoreCredentialArgs:
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              secret_access_key: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'accessKeyId' in kwargs:
+        if access_key_id is None and 'accessKeyId' in kwargs:
             access_key_id = kwargs['accessKeyId']
-        if 'secretAccessKey' in kwargs:
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
             secret_access_key = kwargs['secretAccessKey']
 
         if access_key_id is not None:
@@ -136,11 +136,11 @@ class _ObjectStoreCredentialState:
              region: Optional[pulumi.Input[str]] = None,
              secret_access_key: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'accessKeyId' in kwargs:
+        if access_key_id is None and 'accessKeyId' in kwargs:
             access_key_id = kwargs['accessKeyId']
-        if 'secretAccessKey' in kwargs:
+        if secret_access_key is None and 'secretAccessKey' in kwargs:
             secret_access_key = kwargs['secretAccessKey']
 
         if access_key_id is not None:
@@ -228,24 +228,6 @@ class ObjectStoreCredential(pulumi.CustomResource):
         """
         Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
-        # Create a credential for the object store with a specific access key and secret key
-        backup_index_object_store_credential_object_store_credential = civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential",
-            access_key_id="my-access-key",
-            secret_access_key="my-secret-key")
-        # Use the credential to create a bucket
-        backup_object_store = civo.ObjectStore("backupObjectStore",
-            max_size_gb=500,
-            region="LON1",
-            access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
-        ```
-
         ## Import
 
         using ID
@@ -269,24 +251,6 @@ class ObjectStoreCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
-        # Create a credential for the object store with a specific access key and secret key
-        backup_index_object_store_credential_object_store_credential = civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential",
-            access_key_id="my-access-key",
-            secret_access_key="my-secret-key")
-        # Use the credential to create a bucket
-        backup_object_store = civo.ObjectStore("backupObjectStore",
-            max_size_gb=500,
-            region="LON1",
-            access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
-        ```
 
         ## Import
 

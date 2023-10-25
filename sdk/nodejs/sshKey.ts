@@ -7,16 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- * import * as fs from "fs";
- *
- * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub")});
- * ```
- *
  * ## Import
  *
  * using ID

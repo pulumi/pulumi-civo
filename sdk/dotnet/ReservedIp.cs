@@ -12,21 +12,6 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo reserved IP to represent a publicly-accessible static IP addresses that can be mapped to one of your Instancesor Load Balancer.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var www = new Civo.ReservedIp("www");
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// terrafom import civo_reserved_ip.www 9f0e86fc-b2c6-46b4-82ed-2f28419f8ae3

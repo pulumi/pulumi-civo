@@ -79,21 +79,21 @@ class InstanceArgs:
              sshkey_id: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'diskImage' in kwargs:
+        if disk_image is None and 'diskImage' in kwargs:
             disk_image = kwargs['diskImage']
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'initialUser' in kwargs:
+        if initial_user is None and 'initialUser' in kwargs:
             initial_user = kwargs['initialUser']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'publicIpRequired' in kwargs:
+        if public_ip_required is None and 'publicIpRequired' in kwargs:
             public_ip_required = kwargs['publicIpRequired']
-        if 'reverseDns' in kwargs:
+        if reverse_dns is None and 'reverseDns' in kwargs:
             reverse_dns = kwargs['reverseDns']
-        if 'sshkeyId' in kwargs:
+        if sshkey_id is None and 'sshkeyId' in kwargs:
             sshkey_id = kwargs['sshkeyId']
 
         if disk_image is not None:
@@ -408,39 +408,39 @@ class _InstanceState:
              status: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
              template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'cpuCores' in kwargs:
+        if cpu_cores is None and 'cpuCores' in kwargs:
             cpu_cores = kwargs['cpuCores']
-        if 'createdAt' in kwargs:
+        if created_at is None and 'createdAt' in kwargs:
             created_at = kwargs['createdAt']
-        if 'diskGb' in kwargs:
+        if disk_gb is None and 'diskGb' in kwargs:
             disk_gb = kwargs['diskGb']
-        if 'diskImage' in kwargs:
+        if disk_image is None and 'diskImage' in kwargs:
             disk_image = kwargs['diskImage']
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'initialPassword' in kwargs:
+        if initial_password is None and 'initialPassword' in kwargs:
             initial_password = kwargs['initialPassword']
-        if 'initialUser' in kwargs:
+        if initial_user is None and 'initialUser' in kwargs:
             initial_user = kwargs['initialUser']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'privateIp' in kwargs:
+        if private_ip is None and 'privateIp' in kwargs:
             private_ip = kwargs['privateIp']
-        if 'publicIp' in kwargs:
+        if public_ip is None and 'publicIp' in kwargs:
             public_ip = kwargs['publicIp']
-        if 'publicIpRequired' in kwargs:
+        if public_ip_required is None and 'publicIpRequired' in kwargs:
             public_ip_required = kwargs['publicIpRequired']
-        if 'ramMb' in kwargs:
+        if ram_mb is None and 'ramMb' in kwargs:
             ram_mb = kwargs['ramMb']
-        if 'reverseDns' in kwargs:
+        if reverse_dns is None and 'reverseDns' in kwargs:
             reverse_dns = kwargs['reverseDns']
-        if 'sourceId' in kwargs:
+        if source_id is None and 'sourceId' in kwargs:
             source_id = kwargs['sourceId']
-        if 'sourceType' in kwargs:
+        if source_type is None and 'sourceType' in kwargs:
             source_type = kwargs['sourceType']
-        if 'sshkeyId' in kwargs:
+        if sshkey_id is None and 'sshkeyId' in kwargs:
             sshkey_id = kwargs['sshkeyId']
 
         if cpu_cores is not None:

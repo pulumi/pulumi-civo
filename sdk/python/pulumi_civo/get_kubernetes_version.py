@@ -85,22 +85,6 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
     """
     Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["talos"],
-    )])
-    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["k3s"],
-    )])
-    ```
-
 
     :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
     :param Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: One or more key/direction pairs on which to sort results
@@ -124,22 +108,6 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesVersionResult]:
     """
     Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["talos"],
-    )])
-    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["k3s"],
-    )])
-    ```
 
 
     :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results

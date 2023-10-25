@@ -39,11 +39,11 @@ class ObjectStoreArgs:
              max_size_gb: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'accessKeyId' in kwargs:
+        if access_key_id is None and 'accessKeyId' in kwargs:
             access_key_id = kwargs['accessKeyId']
-        if 'maxSizeGb' in kwargs:
+        if max_size_gb is None and 'maxSizeGb' in kwargs:
             max_size_gb = kwargs['maxSizeGb']
 
         if access_key_id is not None:
@@ -140,13 +140,13 @@ class _ObjectStoreState:
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              status: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'accessKeyId' in kwargs:
+        if access_key_id is None and 'accessKeyId' in kwargs:
             access_key_id = kwargs['accessKeyId']
-        if 'bucketUrl' in kwargs:
+        if bucket_url is None and 'bucketUrl' in kwargs:
             bucket_url = kwargs['bucketUrl']
-        if 'maxSizeGb' in kwargs:
+        if max_size_gb is None and 'maxSizeGb' in kwargs:
             max_size_gb = kwargs['maxSizeGb']
 
         if access_key_id is not None:
@@ -248,18 +248,6 @@ class ObjectStore(pulumi.CustomResource):
         """
         Provides an Object Store resource. This can be used to create, modify, and delete object stores.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        backup_object_store = civo.ObjectStore("backupObjectStore",
-            max_size_gb=500,
-            region="LON1")
-        backup_object_store_credential = civo.get_object_store_credential_output(id=backup_object_store.access_key_id)
-        ```
-
         ## Import
 
         using ID
@@ -283,18 +271,6 @@ class ObjectStore(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides an Object Store resource. This can be used to create, modify, and delete object stores.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        backup_object_store = civo.ObjectStore("backupObjectStore",
-            max_size_gb=500,
-            region="LON1")
-        backup_object_store_credential = civo.get_object_store_credential_output(id=backup_object_store.access_key_id)
-        ```
 
         ## Import
 

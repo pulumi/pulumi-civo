@@ -15,29 +15,6 @@ namespace Pulumi.Civo
         /// Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Civo.GetDatabase.Invoke(new()
-        ///     {
-        ///         Name = "test-database",
-        ///         Region = "LON1",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDatabaseResult> InvokeAsync(GetDatabaseArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseResult>("civo:index/getDatabase:getDatabase", args ?? new GetDatabaseArgs(), options.WithDefaults());
@@ -46,29 +23,6 @@ namespace Pulumi.Civo
         /// Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using System.Linq;
-        /// using Pulumi;
-        /// using Civo = Pulumi.Civo;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var test = Civo.GetDatabase.Invoke(new()
-        ///     {
-        ///         Name = "test-database",
-        ///         Region = "LON1",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDatabaseResult> Invoke(GetDatabaseInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseResult>("civo:index/getDatabase:getDatabase", args ?? new GetDatabaseInvokeArgs(), options.WithDefaults());

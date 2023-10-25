@@ -113,16 +113,6 @@ def get_volume(id: Optional[str] = None,
 
     An error will be raised if the provided volume name does not exist in your Civo account.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    myvolume = civo.get_volume(name="test-volume-name")
-    pulumi.export("volumeOutput", myvolume)
-    ```
-
 
     :param str id: The ID of this resource.
     :param str name: The name of the volume
@@ -153,16 +143,6 @@ def get_volume_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
 
     An error will be raised if the provided volume name does not exist in your Civo account.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    myvolume = civo.get_volume(name="test-volume-name")
-    pulumi.export("volumeOutput", myvolume)
-    ```
 
 
     :param str id: The ID of this resource.

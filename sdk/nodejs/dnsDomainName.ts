@@ -7,16 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo DNS domain name resource.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * // Create a new domain name
- * const main = new civo.DnsDomainName("main", {});
- * ```
- *
  * ## Import
  *
  * using domain name

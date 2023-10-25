@@ -15,33 +15,6 @@ import (
 // Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
 //
 // Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupDatabase(ctx, &civo.LookupDatabaseArgs{
-//				Name:   pulumi.StringRef("test-database"),
-//				Region: pulumi.StringRef("LON1"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupDatabase(ctx *pulumi.Context, args *LookupDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseResult

@@ -27,7 +27,7 @@ class DnsDomainNameArgs:
     def _configure(
              _setter: Callable[[Any, Any], None],
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
 
         if name is not None:
@@ -66,9 +66,9 @@ class _DnsDomainNameState:
              _setter: Callable[[Any, Any], None],
              account_id: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'accountId' in kwargs:
+        if account_id is None and 'accountId' in kwargs:
             account_id = kwargs['accountId']
 
         if account_id is not None:
@@ -111,16 +111,6 @@ class DnsDomainName(pulumi.CustomResource):
         """
         Provides a Civo DNS domain name resource.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a new domain name
-        main = civo.DnsDomainName("main")
-        ```
-
         ## Import
 
         using domain name
@@ -141,16 +131,6 @@ class DnsDomainName(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo DNS domain name resource.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a new domain name
-        main = civo.DnsDomainName("main")
-        ```
 
         ## Import
 

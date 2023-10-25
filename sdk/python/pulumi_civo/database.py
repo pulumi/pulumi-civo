@@ -47,19 +47,27 @@ class DatabaseArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             engine: pulumi.Input[str],
-             nodes: pulumi.Input[int],
-             size: pulumi.Input[str],
-             version: pulumi.Input[str],
+             engine: Optional[pulumi.Input[str]] = None,
+             nodes: Optional[pulumi.Input[int]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
              firewall_id: Optional[pulumi.Input[str]] = None,
              name: Optional[pulumi.Input[str]] = None,
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'firewallId' in kwargs:
+        if engine is None:
+            raise TypeError("Missing 'engine' argument")
+        if nodes is None:
+            raise TypeError("Missing 'nodes' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
 
         _setter("engine", engine)
@@ -240,13 +248,13 @@ class _DatabaseState:
              status: Optional[pulumi.Input[str]] = None,
              username: Optional[pulumi.Input[str]] = None,
              version: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'dnsEndpoint' in kwargs:
+        if dns_endpoint is None and 'dnsEndpoint' in kwargs:
             dns_endpoint = kwargs['dnsEndpoint']
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
 
         if dns_endpoint is not None:

@@ -10,18 +10,6 @@ import * as utilities from "./utilities";
  * This data source provides all of the firewall's properties as configured on your Civo account.
  *
  * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const test = civo.getFirewall({
- *     name: "test-firewall",
- *     region: "LON1",
- * });
- * ```
  */
 export function getFirewall(args?: GetFirewallArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallResult> {
     args = args || {};
@@ -79,18 +67,6 @@ export interface GetFirewallResult {
  * This data source provides all of the firewall's properties as configured on your Civo account.
  *
  * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const test = civo.getFirewall({
- *     name: "test-firewall",
- *     region: "LON1",
- * });
- * ```
  */
 export function getFirewallOutput(args?: GetFirewallOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallResult> {
     return pulumi.output(args).apply((a: any) => getFirewall(a, opts))

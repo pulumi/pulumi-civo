@@ -14,36 +14,6 @@ import (
 
 // Provides an Object Store resource. This can be used to create, modify, and delete object stores.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			backupObjectStore, err := civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
-//				MaxSizeGb: pulumi.Int(500),
-//				Region:    pulumi.String("LON1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_ = civo.LookupObjectStoreCredentialOutput(ctx, civo.GetObjectStoreCredentialOutputArgs{
-//				Id: backupObjectStore.AccessKeyId,
-//			}, nil)
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using ID

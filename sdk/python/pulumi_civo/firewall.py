@@ -49,15 +49,15 @@ class FirewallArgs:
              name: Optional[pulumi.Input[str]] = None,
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'createDefaultRules' in kwargs:
+        if create_default_rules is None and 'createDefaultRules' in kwargs:
             create_default_rules = kwargs['createDefaultRules']
-        if 'egressRules' in kwargs:
+        if egress_rules is None and 'egressRules' in kwargs:
             egress_rules = kwargs['egressRules']
-        if 'ingressRules' in kwargs:
+        if ingress_rules is None and 'ingressRules' in kwargs:
             ingress_rules = kwargs['ingressRules']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
 
         if create_default_rules is not None:
@@ -182,15 +182,15 @@ class _FirewallState:
              name: Optional[pulumi.Input[str]] = None,
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'createDefaultRules' in kwargs:
+        if create_default_rules is None and 'createDefaultRules' in kwargs:
             create_default_rules = kwargs['createDefaultRules']
-        if 'egressRules' in kwargs:
+        if egress_rules is None and 'egressRules' in kwargs:
             egress_rules = kwargs['egressRules']
-        if 'ingressRules' in kwargs:
+        if ingress_rules is None and 'ingressRules' in kwargs:
             ingress_rules = kwargs['ingressRules']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
 
         if create_default_rules is not None:
@@ -294,57 +294,6 @@ class Firewall(pulumi.CustomResource):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a network
-        custom_net = civo.Network("customNet", label="my-custom-network")
-        # Create a firewall
-        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
-        # Create a firewall with the default rules
-        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=True)
-        # Create a firewall withouth the default rules but with a custom rule
-        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=False,
-            ingress_rules=[
-                civo.FirewallIngressRuleArgs(
-                    label="k8s",
-                    protocol="tcp",
-                    port_range="6443",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-                civo.FirewallIngressRuleArgs(
-                    label="ssh",
-                    protocol="tcp",
-                    port_range="22",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-            ],
-            egress_rules=[civo.FirewallEgressRuleArgs(
-                label="all",
-                protocol="tcp",
-                port_range="1-65535",
-                cidrs=["0.0.0.0/0"],
-                action="allow",
-            )])
-        ```
-
         ## Import
 
         using ID
@@ -370,57 +319,6 @@ class Firewall(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a network
-        custom_net = civo.Network("customNet", label="my-custom-network")
-        # Create a firewall
-        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
-        # Create a firewall with the default rules
-        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=True)
-        # Create a firewall withouth the default rules but with a custom rule
-        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=False,
-            ingress_rules=[
-                civo.FirewallIngressRuleArgs(
-                    label="k8s",
-                    protocol="tcp",
-                    port_range="6443",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-                civo.FirewallIngressRuleArgs(
-                    label="ssh",
-                    protocol="tcp",
-                    port_range="22",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-            ],
-            egress_rules=[civo.FirewallEgressRuleArgs(
-                label="all",
-                protocol="tcp",
-                port_range="1-65535",
-                cidrs=["0.0.0.0/0"],
-                action="allow",
-            )])
-        ```
 
         ## Import
 

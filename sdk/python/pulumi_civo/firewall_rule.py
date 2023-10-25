@@ -50,22 +50,30 @@ class FirewallRuleArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             action: pulumi.Input[str],
-             cidrs: pulumi.Input[Sequence[pulumi.Input[str]]],
-             direction: pulumi.Input[str],
-             firewall_id: pulumi.Input[str],
+             action: Optional[pulumi.Input[str]] = None,
+             cidrs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+             direction: Optional[pulumi.Input[str]] = None,
+             firewall_id: Optional[pulumi.Input[str]] = None,
              end_port: Optional[pulumi.Input[str]] = None,
              label: Optional[pulumi.Input[str]] = None,
              protocol: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              start_port: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'firewallId' in kwargs:
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if cidrs is None:
+            raise TypeError("Missing 'cidrs' argument")
+        if direction is None:
+            raise TypeError("Missing 'direction' argument")
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'endPort' in kwargs:
+        if firewall_id is None:
+            raise TypeError("Missing 'firewall_id' argument")
+        if end_port is None and 'endPort' in kwargs:
             end_port = kwargs['endPort']
-        if 'startPort' in kwargs:
+        if start_port is None and 'startPort' in kwargs:
             start_port = kwargs['startPort']
 
         _setter("action", action)
@@ -240,13 +248,13 @@ class _FirewallRuleState:
              protocol: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              start_port: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'endPort' in kwargs:
+        if end_port is None and 'endPort' in kwargs:
             end_port = kwargs['endPort']
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'startPort' in kwargs:
+        if start_port is None and 'startPort' in kwargs:
             start_port = kwargs['startPort']
 
         if action is not None:
