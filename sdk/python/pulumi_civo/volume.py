@@ -35,16 +35,20 @@ class VolumeArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             network_id: pulumi.Input[str],
-             size_gb: pulumi.Input[int],
+             network_id: Optional[pulumi.Input[str]] = None,
+             size_gb: Optional[pulumi.Input[int]] = None,
              name: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'sizeGb' in kwargs:
+        if network_id is None:
+            raise TypeError("Missing 'network_id' argument")
+        if size_gb is None and 'sizeGb' in kwargs:
             size_gb = kwargs['sizeGb']
+        if size_gb is None:
+            raise TypeError("Missing 'size_gb' argument")
 
         _setter("network_id", network_id)
         _setter("size_gb", size_gb)
@@ -134,13 +138,13 @@ class _VolumeState:
              network_id: Optional[pulumi.Input[str]] = None,
              region: Optional[pulumi.Input[str]] = None,
              size_gb: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'mountPoint' in kwargs:
+        if mount_point is None and 'mountPoint' in kwargs:
             mount_point = kwargs['mountPoint']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'sizeGb' in kwargs:
+        if size_gb is None and 'sizeGb' in kwargs:
             size_gb = kwargs['sizeGb']
 
         if mount_point is not None:
@@ -228,20 +232,6 @@ class Volume(pulumi.CustomResource):
         """
         Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        default_network = civo.get_network(label="Default")
-        # Create volume
-        db = civo.Volume("db",
-            size_gb=5,
-            network_id=default_network.id,
-            opts=pulumi.ResourceOptions(depends_on=[default_network]))
-        ```
-
         ## Import
 
         using ID
@@ -265,20 +255,6 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
-
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        default_network = civo.get_network(label="Default")
-        # Create volume
-        db = civo.Volume("db",
-            size_gb=5,
-            network_id=default_network.id,
-            opts=pulumi.ResourceOptions(depends_on=[default_network]))
-        ```
 
         ## Import
 

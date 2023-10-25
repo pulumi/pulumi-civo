@@ -7,24 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const defaultNetwork = civo.getNetwork({
- *     label: "Default",
- * });
- * // Create volume
- * const db = new civo.Volume("db", {
- *     sizeGb: 5,
- *     networkId: defaultNetwork.then(defaultNetwork => defaultNetwork.id),
- * }, {
- *     dependsOn: [defaultNetwork],
- * });
- * ```
- *
  * ## Import
  *
  * using ID

@@ -15,38 +15,6 @@ import (
 // Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
 //
 // Note: You can use the `Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// _, err := civo.GetInstances(ctx, &civo.GetInstancesArgs{
-// Region: pulumi.StringRef("LON1"),
-// Filters: []civo.GetInstancesFilter{
-// {
-// Key: "size",
-// Values: interface{}{
-// g3.Small,
-// },
-// },
-// },
-// }, nil);
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
-// ```
 func GetInstances(ctx *pulumi.Context, args *GetInstancesArgs, opts ...pulumi.InvokeOption) (*GetInstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInstancesResult

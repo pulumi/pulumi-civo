@@ -15,34 +15,6 @@ import (
 // Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
 //
 // An error will be raised if the provided load balancer name does not exist in your Civo account.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			my_lb, err := civo.GetLoadBalancer(ctx, &civo.GetLoadBalancerArgs{
-//				Name:   pulumi.StringRef("lb-name"),
-//				Region: pulumi.StringRef("LON1"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("civoLoadbalancerOutput", my_lb.PublicIp)
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetLoadBalancer(ctx *pulumi.Context, args *GetLoadBalancerArgs, opts ...pulumi.InvokeOption) (*GetLoadBalancerResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetLoadBalancerResult

@@ -305,16 +305,6 @@ def get_instance(hostname: Optional[str] = None,
 
     Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    myhostaname = civo.get_instance(hostname="myhostname.com")
-    pulumi.export("instanceOutput", myhostaname.public_ip)
-    ```
-
 
     :param str hostname: The hostname of the Instance
     :param str id: The ID of this resource.
@@ -361,16 +351,6 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
 
     Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    myhostaname = civo.get_instance(hostname="myhostname.com")
-    pulumi.export("instanceOutput", myhostaname.public_ip)
-    ```
 
 
     :param str hostname: The hostname of the Instance

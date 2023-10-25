@@ -125,15 +125,6 @@ def get_object_store(id: Optional[str] = None,
 
     Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
 
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    backup = civo.get_object_store(name="backup-server")
-    ```
-
 
     :param str id: The ID of the Object Store
     :param str name: The name of the Object Store
@@ -165,15 +156,6 @@ def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 
     Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_civo as civo
-
-    backup = civo.get_object_store(name="backup-server")
-    ```
 
 
     :param str id: The ID of the Object Store

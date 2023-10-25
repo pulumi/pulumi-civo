@@ -60,8 +60,8 @@ class KubernetesClusterArgs:
     @staticmethod
     def _configure(
              _setter: Callable[[Any, Any], None],
-             firewall_id: pulumi.Input[str],
-             pools: pulumi.Input['KubernetesClusterPoolsArgs'],
+             firewall_id: Optional[pulumi.Input[str]] = None,
+             pools: Optional[pulumi.Input['KubernetesClusterPoolsArgs']] = None,
              applications: Optional[pulumi.Input[str]] = None,
              cluster_type: Optional[pulumi.Input[str]] = None,
              cni: Optional[pulumi.Input[str]] = None,
@@ -72,19 +72,23 @@ class KubernetesClusterArgs:
              region: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[str]] = None,
              target_nodes_size: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'clusterType' in kwargs:
+        if firewall_id is None:
+            raise TypeError("Missing 'firewall_id' argument")
+        if pools is None:
+            raise TypeError("Missing 'pools' argument")
+        if cluster_type is None and 'clusterType' in kwargs:
             cluster_type = kwargs['clusterType']
-        if 'kubernetesVersion' in kwargs:
+        if kubernetes_version is None and 'kubernetesVersion' in kwargs:
             kubernetes_version = kwargs['kubernetesVersion']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'numTargetNodes' in kwargs:
+        if num_target_nodes is None and 'numTargetNodes' in kwargs:
             num_target_nodes = kwargs['numTargetNodes']
-        if 'targetNodesSize' in kwargs:
+        if target_nodes_size is None and 'targetNodesSize' in kwargs:
             target_nodes_size = kwargs['targetNodesSize']
 
         _setter("firewall_id", firewall_id)
@@ -354,29 +358,29 @@ class _KubernetesClusterState:
              status: Optional[pulumi.Input[str]] = None,
              tags: Optional[pulumi.Input[str]] = None,
              target_nodes_size: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions]=None,
+             opts: Optional[pulumi.ResourceOptions] = None,
              **kwargs):
-        if 'apiEndpoint' in kwargs:
+        if api_endpoint is None and 'apiEndpoint' in kwargs:
             api_endpoint = kwargs['apiEndpoint']
-        if 'clusterType' in kwargs:
+        if cluster_type is None and 'clusterType' in kwargs:
             cluster_type = kwargs['clusterType']
-        if 'createdAt' in kwargs:
+        if created_at is None and 'createdAt' in kwargs:
             created_at = kwargs['createdAt']
-        if 'dnsEntry' in kwargs:
+        if dns_entry is None and 'dnsEntry' in kwargs:
             dns_entry = kwargs['dnsEntry']
-        if 'firewallId' in kwargs:
+        if firewall_id is None and 'firewallId' in kwargs:
             firewall_id = kwargs['firewallId']
-        if 'installedApplications' in kwargs:
+        if installed_applications is None and 'installedApplications' in kwargs:
             installed_applications = kwargs['installedApplications']
-        if 'kubernetesVersion' in kwargs:
+        if kubernetes_version is None and 'kubernetesVersion' in kwargs:
             kubernetes_version = kwargs['kubernetesVersion']
-        if 'masterIp' in kwargs:
+        if master_ip is None and 'masterIp' in kwargs:
             master_ip = kwargs['masterIp']
-        if 'networkId' in kwargs:
+        if network_id is None and 'networkId' in kwargs:
             network_id = kwargs['networkId']
-        if 'numTargetNodes' in kwargs:
+        if num_target_nodes is None and 'numTargetNodes' in kwargs:
             num_target_nodes = kwargs['numTargetNodes']
-        if 'targetNodesSize' in kwargs:
+        if target_nodes_size is None and 'targetNodesSize' in kwargs:
             target_nodes_size = kwargs['targetNodesSize']
 
         if api_endpoint is not None:
@@ -777,11 +781,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["num_target_nodes"] = num_target_nodes
-            if pools is not None and not isinstance(pools, KubernetesClusterPoolsArgs):
-                pools = pools or {}
-                def _setter(key, value):
-                    pools[key] = value
-                KubernetesClusterPoolsArgs._configure(_setter, **pools)
+            pools = _utilities.configure(pools, KubernetesClusterPoolsArgs, True)
             if pools is None and not opts.urn:
                 raise TypeError("Missing required property 'pools'")
             __props__.__dict__["pools"] = pools

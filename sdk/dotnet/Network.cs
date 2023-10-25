@@ -12,24 +12,6 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo network resource. This can be used to create, modify, and delete networks.
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using System.Linq;
-    /// using Pulumi;
-    /// using Civo = Pulumi.Civo;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var customNet = new Civo.Network("customNet", new()
-    ///     {
-    ///         Label = "test_network",
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
     /// ## Import
     /// 
     /// using ID

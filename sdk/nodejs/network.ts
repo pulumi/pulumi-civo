@@ -7,15 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo network resource. This can be used to create, modify, and delete networks.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const customNet = new civo.Network("customNet", {label: "test_network"});
- * ```
- *
  * ## Import
  *
  * using ID

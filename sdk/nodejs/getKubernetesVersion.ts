@@ -8,26 +8,6 @@ import * as utilities from "./utilities";
 
 /**
  * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const talos = civo.getKubernetesVersion({
- *     filters: [{
- *         key: "type",
- *         values: ["talos"],
- *     }],
- * });
- * const k3s = civo.getKubernetesVersion({
- *     filters: [{
- *         key: "type",
- *         values: ["k3s"],
- *     }],
- * });
- * ```
  */
 export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesVersionResult> {
     args = args || {};
@@ -73,26 +53,6 @@ export interface GetKubernetesVersionResult {
 }
 /**
  * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const talos = civo.getKubernetesVersion({
- *     filters: [{
- *         key: "type",
- *         values: ["talos"],
- *     }],
- * });
- * const k3s = civo.getKubernetesVersion({
- *     filters: [{
- *         key: "type",
- *         values: ["k3s"],
- *     }],
- * });
- * ```
  */
 export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesVersionResult> {
     return pulumi.output(args).apply((a: any) => getKubernetesVersion(a, opts))

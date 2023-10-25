@@ -14,47 +14,6 @@ import (
 
 // Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupObjectStoreCredential(ctx, &civo.LookupObjectStoreCredentialArgs{
-//				Name: pulumi.StringRef("backup-server"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = civo.NewObjectStoreCredential(ctx, "backupIndex/objectStoreCredentialObjectStoreCredential", &civo.ObjectStoreCredentialArgs{
-//				AccessKeyId:     pulumi.String("my-access-key"),
-//				SecretAccessKey: pulumi.String("my-secret-key"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
-//				MaxSizeGb:   pulumi.Int(500),
-//				Region:      pulumi.String("LON1"),
-//				AccessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
-//
 // ## Import
 //
 // using ID

@@ -7,21 +7,6 @@ import * as utilities from "./utilities";
 /**
  * Provides an Object Store resource. This can be used to create, modify, and delete object stores.
  *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
- *     maxSizeGb: 500,
- *     region: "LON1",
- * });
- * const backupObjectStoreCredential = civo.getObjectStoreCredentialOutput({
- *     id: backupObjectStore.accessKeyId,
- * });
- * ```
- *
  * ## Import
  *
  * using ID
