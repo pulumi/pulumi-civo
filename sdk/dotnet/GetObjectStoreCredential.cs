@@ -15,6 +15,36 @@ namespace Pulumi.Civo
         /// Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+        ///     {
+        ///         Name = "backup-server",
+        ///     });
+        /// 
+        ///     // Use the credential to create a bucket
+        ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+        ///     {
+        ///         MaxSizeGb = 500,
+        ///         Region = "LON1",
+        ///         AccessKeyId = backupObjectStoreCredential.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetObjectStoreCredentialResult> InvokeAsync(GetObjectStoreCredentialArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreCredentialResult>("civo:index/getObjectStoreCredential:getObjectStoreCredential", args ?? new GetObjectStoreCredentialArgs(), options.WithDefaults());
@@ -23,6 +53,36 @@ namespace Pulumi.Civo
         /// Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
         /// 
         /// Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+        ///     {
+        ///         Name = "backup-server",
+        ///     });
+        /// 
+        ///     // Use the credential to create a bucket
+        ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+        ///     {
+        ///         MaxSizeGb = 500,
+        ///         Region = "LON1",
+        ///         AccessKeyId = backupObjectStoreCredential.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetObjectStoreCredentialResult> Invoke(GetObjectStoreCredentialInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreCredentialResult>("civo:index/getObjectStoreCredential:getObjectStoreCredential", args ?? new GetObjectStoreCredentialInvokeArgs(), options.WithDefaults());

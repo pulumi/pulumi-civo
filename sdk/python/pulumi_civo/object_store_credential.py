@@ -228,6 +228,24 @@ class ObjectStoreCredential(pulumi.CustomResource):
         """
         Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+        # Create a credential for the object store with a specific access key and secret key
+        backup_index_object_store_credential_object_store_credential = civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential",
+            access_key_id="my-access-key",
+            secret_access_key="my-secret-key")
+        # Use the credential to create a bucket
+        backup_object_store = civo.ObjectStore("backupObjectStore",
+            max_size_gb=500,
+            region="LON1",
+            access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
+        ```
+
         ## Import
 
         using ID
@@ -251,6 +269,24 @@ class ObjectStoreCredential(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+        # Create a credential for the object store with a specific access key and secret key
+        backup_index_object_store_credential_object_store_credential = civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential",
+            access_key_id="my-access-key",
+            secret_access_key="my-secret-key")
+        # Use the credential to create a bucket
+        backup_object_store = civo.ObjectStore("backupObjectStore",
+            max_size_gb=500,
+            region="LON1",
+            access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
+        ```
 
         ## Import
 

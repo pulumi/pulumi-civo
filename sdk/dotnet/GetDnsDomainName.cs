@@ -15,6 +15,33 @@ namespace Pulumi.Civo
         /// Get information on a domain. This data source provides the name and the id.
         /// 
         /// An error will be raised if the provided domain name is not in your Civo account.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain = Civo.GetDnsDomainName.Invoke(new()
+        ///     {
+        ///         Name = "domain.com",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["domainOutput"] = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Name),
+        ///         ["domainIdOutput"] = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Id),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetDnsDomainNameResult> InvokeAsync(GetDnsDomainNameArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameArgs(), options.WithDefaults());
@@ -23,6 +50,33 @@ namespace Pulumi.Civo
         /// Get information on a domain. This data source provides the name and the id.
         /// 
         /// An error will be raised if the provided domain name is not in your Civo account.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var domain = Civo.GetDnsDomainName.Invoke(new()
+        ///     {
+        ///         Name = "domain.com",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["domainOutput"] = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Name),
+        ///         ["domainIdOutput"] = domain.Apply(getDnsDomainNameResult =&gt; getDnsDomainNameResult.Id),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetDnsDomainNameResult> Invoke(GetDnsDomainNameInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameInvokeArgs(), options.WithDefaults());

@@ -10,6 +10,18 @@ import * as utilities from "./utilities";
  * Provides a Civo Kubernetes cluster data source.
  *
  * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const my-cluster = civo.getKubernetesCluster({
+ *     name: "my-super-cluster",
+ * });
+ * export const kubernetesClusterOutput = my_cluster.then(my_cluster => my_cluster.masterIp);
+ * ```
  */
 export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
     args = args || {};
@@ -119,6 +131,18 @@ export interface GetKubernetesClusterResult {
  * Provides a Civo Kubernetes cluster data source.
  *
  * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const my-cluster = civo.getKubernetesCluster({
+ *     name: "my-super-cluster",
+ * });
+ * export const kubernetesClusterOutput = my_cluster.then(my_cluster => my_cluster.masterIp);
+ * ```
  */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
     return pulumi.output(args).apply((a: any) => getKubernetesCluster(a, opts))

@@ -12,6 +12,30 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides an Object Store resource. This can be used to create, modify, and delete object stores.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+    ///     {
+    ///         MaxSizeGb = 500,
+    ///         Region = "LON1",
+    ///     });
+    /// 
+    ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+    ///     {
+    ///         Id = backupObjectStore.AccessKeyId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using ID

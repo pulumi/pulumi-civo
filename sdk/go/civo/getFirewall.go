@@ -17,6 +17,33 @@ import (
 // This data source provides all of the firewall's properties as configured on your Civo account.
 //
 // Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.LookupFirewall(ctx, &civo.LookupFirewallArgs{
+//				Name:   pulumi.StringRef("test-firewall"),
+//				Region: pulumi.StringRef("LON1"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFirewall(ctx *pulumi.Context, args *LookupFirewallArgs, opts ...pulumi.InvokeOption) (*LookupFirewallResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallResult

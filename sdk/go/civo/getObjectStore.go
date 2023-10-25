@@ -15,6 +15,32 @@ import (
 // Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 //
 // Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.LookupObjectStore(ctx, &civo.LookupObjectStoreArgs{
+//				Name: pulumi.StringRef("backup-server"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupObjectStore(ctx *pulumi.Context, args *LookupObjectStoreArgs, opts ...pulumi.InvokeOption) (*LookupObjectStoreResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectStoreResult

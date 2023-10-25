@@ -258,6 +258,16 @@ def get_kubernetes_cluster(id: Optional[str] = None,
 
     Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
+    pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
+    ```
+
 
     :param str id: The ID of this resource.
     :param str name: The name of the Kubernetes Cluster
@@ -300,6 +310,16 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = No
     Provides a Civo Kubernetes cluster data source.
 
     Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
+    pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
+    ```
 
 
     :param str id: The ID of this resource.

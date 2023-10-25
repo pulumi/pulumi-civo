@@ -8,6 +8,18 @@ import * as utilities from "./utilities";
  * Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
  *
  * An error will be raised if the provided volume name does not exist in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const myvolume = civo.getVolume({
+ *     name: "test-volume-name",
+ * });
+ * export const volumeOutput = myvolume;
+ * ```
  */
 export function getVolume(args?: GetVolumeArgs, opts?: pulumi.InvokeOptions): Promise<GetVolumeResult> {
     args = args || {};
@@ -71,6 +83,18 @@ export interface GetVolumeResult {
  * Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
  *
  * An error will be raised if the provided volume name does not exist in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const myvolume = civo.getVolume({
+ *     name: "test-volume-name",
+ * });
+ * export const volumeOutput = myvolume;
+ * ```
  */
 export function getVolumeOutput(args?: GetVolumeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVolumeResult> {
     return pulumi.output(args).apply((a: any) => getVolume(a, opts))

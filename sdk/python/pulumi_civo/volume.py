@@ -232,6 +232,20 @@ class Volume(pulumi.CustomResource):
         """
         Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        default_network = civo.get_network(label="Default")
+        # Create volume
+        db = civo.Volume("db",
+            size_gb=5,
+            network_id=default_network.id,
+            opts=pulumi.ResourceOptions(depends_on=[default_network]))
+        ```
+
         ## Import
 
         using ID
@@ -255,6 +269,20 @@ class Volume(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        default_network = civo.get_network(label="Default")
+        # Create volume
+        db = civo.Volume("db",
+            size_gb=5,
+            network_id=default_network.id,
+            opts=pulumi.ResourceOptions(depends_on=[default_network]))
+        ```
 
         ## Import
 

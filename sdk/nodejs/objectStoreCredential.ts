@@ -7,6 +7,28 @@ import * as utilities from "./utilities";
 /**
  * Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
  *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const backupObjectStoreCredential = civo.getObjectStoreCredential({
+ *     name: "backup-server",
+ * });
+ * // Create a credential for the object store with a specific access key and secret key
+ * const backupIndex_objectStoreCredentialObjectStoreCredential = new civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential", {
+ *     accessKeyId: "my-access-key",
+ *     secretAccessKey: "my-secret-key",
+ * });
+ * // Use the credential to create a bucket
+ * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ *     maxSizeGb: 500,
+ *     region: "LON1",
+ *     accessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.accessKeyId,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using ID

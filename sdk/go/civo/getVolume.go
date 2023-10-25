@@ -15,6 +15,33 @@ import (
 // Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
 //
 // An error will be raised if the provided volume name does not exist in your Civo account.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myvolume, err := civo.LookupVolume(ctx, &civo.LookupVolumeArgs{
+//				Name: pulumi.StringRef("test-volume-name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("volumeOutput", myvolume)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupVolume(ctx *pulumi.Context, args *LookupVolumeArgs, opts ...pulumi.InvokeOption) (*LookupVolumeResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVolumeResult

@@ -15,6 +15,32 @@ import (
 
 // Provides a Civo network resource. This can be used to create, modify, and delete networks.
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
+//				Label: pulumi.String("test_network"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using ID

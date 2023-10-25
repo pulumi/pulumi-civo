@@ -64,6 +64,17 @@ def get_dns_domain_name(id: Optional[str] = None,
 
     An error will be raised if the provided domain name is not in your Civo account.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    domain = civo.get_dns_domain_name(name="domain.com")
+    pulumi.export("domainOutput", domain.name)
+    pulumi.export("domainIdOutput", domain.id)
+    ```
+
 
     :param str id: The ID of this resource.
     :param str name: The name of the domain
@@ -87,6 +98,17 @@ def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information on a domain. This data source provides the name and the id.
 
     An error will be raised if the provided domain name is not in your Civo account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    domain = civo.get_dns_domain_name(name="domain.com")
+    pulumi.export("domainOutput", domain.name)
+    pulumi.export("domainIdOutput", domain.id)
+    ```
 
 
     :param str id: The ID of this resource.

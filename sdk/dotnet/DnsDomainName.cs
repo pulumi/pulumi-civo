@@ -12,6 +12,22 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo DNS domain name resource.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create a new domain name
+    ///     var main = new Civo.DnsDomainName("main");
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using domain name

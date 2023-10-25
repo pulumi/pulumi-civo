@@ -160,6 +160,19 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
 
     An error will be raised if the provided domain name or record are not in your Civo account.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    domain = civo.get_dns_domain_name(name="domain.com")
+    www = civo.get_dns_domain_record(domain_id=domain.id,
+        name="www")
+    pulumi.export("recordType", www.type)
+    pulumi.export("recordTtl", www.ttl)
+    ```
+
 
     :param str domain_id: The ID of the domain
     :param str name: The name of the record
@@ -191,6 +204,19 @@ def get_dns_domain_record_output(domain_id: Optional[pulumi.Input[str]] = None,
     Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
 
     An error will be raised if the provided domain name or record are not in your Civo account.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    domain = civo.get_dns_domain_name(name="domain.com")
+    www = civo.get_dns_domain_record(domain_id=domain.id,
+        name="www")
+    pulumi.export("recordType", www.type)
+    pulumi.export("recordTtl", www.ttl)
+    ```
 
 
     :param str domain_id: The ID of the domain
