@@ -100,6 +100,19 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
 
     Note: You can use the `Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    small_size = civo.get_instances(region="LON1",
+        filters=[civo.GetInstancesFilterArgs(
+            key="size",
+            values=[g3["small"]],
+        )])
+    ```
+
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
     :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
@@ -128,6 +141,19 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
     Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
 
     Note: You can use the `Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    small_size = civo.get_instances(region="LON1",
+        filters=[civo.GetInstancesFilterArgs(
+            key="size",
+            values=[g3["small"]],
+        )])
+    ```
 
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results

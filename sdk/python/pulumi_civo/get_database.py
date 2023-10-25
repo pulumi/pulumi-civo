@@ -221,6 +221,16 @@ def get_database(id: Optional[str] = None,
 
     Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    test = civo.get_database(name="test-database",
+        region="LON1")
+    ```
+
 
     :param str id: The ID of the Database
     :param str name: The name of the Database
@@ -260,6 +270,16 @@ def get_database_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
 
     Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    test = civo.get_database(name="test-database",
+        region="LON1")
+    ```
 
 
     :param str id: The ID of the Database

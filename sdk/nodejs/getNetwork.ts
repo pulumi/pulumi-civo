@@ -10,6 +10,18 @@ import * as utilities from "./utilities";
  * This data source provides all of the network's properties as configured on your Civo account.
  *
  * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const test = civo.getNetwork({
+ *     label: "test-network",
+ *     region: "LON1",
+ * });
+ * ```
  */
 export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkResult> {
     args = args || {};
@@ -71,6 +83,18 @@ export interface GetNetworkResult {
  * This data source provides all of the network's properties as configured on your Civo account.
  *
  * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const test = civo.getNetwork({
+ *     label: "test-network",
+ *     region: "LON1",
+ * });
+ * ```
  */
 export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkResult> {
     return pulumi.output(args).apply((a: any) => getNetwork(a, opts))

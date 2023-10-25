@@ -8,6 +8,18 @@ import * as utilities from "./utilities";
  * Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
  *
  * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const test = civo.getDatabase({
+ *     name: "test-database",
+ *     region: "LON1",
+ * });
+ * ```
  */
 export function getDatabase(args?: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
     args = args || {};
@@ -107,6 +119,18 @@ export interface GetDatabaseResult {
  * Get information of an Database for use in other resources. This data source provides all of the Database's properties as configured on your Civo account.
  *
  * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const test = civo.getDatabase({
+ *     name: "test-database",
+ *     region: "LON1",
+ * });
+ * ```
  */
 export function getDatabaseOutput(args?: GetDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseResult> {
     return pulumi.output(args).apply((a: any) => getDatabase(a, opts))

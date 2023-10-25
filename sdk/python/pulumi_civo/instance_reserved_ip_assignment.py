@@ -175,6 +175,20 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
         """
         The instance reserved ip assignment resource schema definition
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Send to create a reserved IP
+        www = civo.ReservedIp("www")
+        # We assign the reserved IP to the instance
+        webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
+            instance_id=civo_instance["www"]["id"],
+            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] instance_id: The instance id
@@ -189,6 +203,20 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         The instance reserved ip assignment resource schema definition
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Send to create a reserved IP
+        www = civo.ReservedIp("www")
+        # We assign the reserved IP to the instance
+        webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
+            instance_id=civo_instance["www"]["id"],
+            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
+        ```
 
         :param str resource_name: The name of the resource.
         :param InstanceReservedIpAssignmentArgs args: The arguments to use to populate this resource's properties.

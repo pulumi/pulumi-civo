@@ -6,6 +6,21 @@ import * as utilities from "./utilities";
 
 /**
  * The instance reserved ip assignment resource schema definition
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * // Send to create a reserved IP
+ * const www = new civo.ReservedIp("www", {});
+ * // We assign the reserved IP to the instance
+ * const webserver_www = new civo.InstanceReservedIpAssignment("webserver-www", {
+ *     instanceId: civo_instance.www.id,
+ *     reservedIpId: civo_reserved_ip["web-server"].id,
+ * });
+ * ```
  */
 export class InstanceReservedIpAssignment extends pulumi.CustomResource {
     /**

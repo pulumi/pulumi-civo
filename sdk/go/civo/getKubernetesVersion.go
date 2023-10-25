@@ -13,6 +13,52 @@ import (
 )
 
 // Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
+//				Filters: []civo.GetKubernetesVersionFilter{
+//					{
+//						Key: "type",
+//						Values: []string{
+//							"talos",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.GetKubernetesVersion(ctx, &civo.GetKubernetesVersionArgs{
+//				Filters: []civo.GetKubernetesVersionFilter{
+//					{
+//						Key: "type",
+//						Values: []string{
+//							"k3s",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetKubernetesVersion(ctx *pulumi.Context, args *GetKubernetesVersionArgs, opts ...pulumi.InvokeOption) (*GetKubernetesVersionResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetKubernetesVersionResult

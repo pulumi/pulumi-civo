@@ -12,6 +12,39 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+    ///     {
+    ///         Name = "backup-server",
+    ///     });
+    /// 
+    ///     // Create a credential for the object store with a specific access key and secret key
+    ///     var backupIndex_objectStoreCredentialObjectStoreCredential = new Civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential", new()
+    ///     {
+    ///         AccessKeyId = "my-access-key",
+    ///         SecretAccessKey = "my-secret-key",
+    ///     });
+    /// 
+    ///     // Use the credential to create a bucket
+    ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+    ///     {
+    ///         MaxSizeGb = 500,
+    ///         Region = "LON1",
+    ///         AccessKeyId = backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using ID

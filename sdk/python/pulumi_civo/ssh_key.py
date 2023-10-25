@@ -151,6 +151,15 @@ class SshKey(pulumi.CustomResource):
         """
         Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
+        ```
+
         ## Import
 
         using ID
@@ -172,6 +181,15 @@ class SshKey(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
+        ```
 
         ## Import
 

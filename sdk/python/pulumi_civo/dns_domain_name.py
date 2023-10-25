@@ -111,6 +111,16 @@ class DnsDomainName(pulumi.CustomResource):
         """
         Provides a Civo DNS domain name resource.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Create a new domain name
+        main = civo.DnsDomainName("main")
+        ```
+
         ## Import
 
         using domain name
@@ -131,6 +141,16 @@ class DnsDomainName(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo DNS domain name resource.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # Create a new domain name
+        main = civo.DnsDomainName("main")
+        ```
 
         ## Import
 

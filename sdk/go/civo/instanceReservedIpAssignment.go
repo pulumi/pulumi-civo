@@ -14,6 +14,37 @@ import (
 )
 
 // The instance reserved ip assignment resource schema definition
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := civo.NewReservedIp(ctx, "www", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewInstanceReservedIpAssignment(ctx, "webserver-www", &civo.InstanceReservedIpAssignmentArgs{
+//				InstanceId:   pulumi.Any(civo_instance.Www.Id),
+//				ReservedIpId: pulumi.Any(civo_reserved_ip.WebServer.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type InstanceReservedIpAssignment struct {
 	pulumi.CustomResourceState
 

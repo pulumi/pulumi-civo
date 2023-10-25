@@ -12,6 +12,37 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo volume which can be attached to an instance in order to provide expanded storage.
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var defaultNetwork = Civo.GetNetwork.Invoke(new()
+    ///     {
+    ///         Label = "Default",
+    ///     });
+    /// 
+    ///     // Create volume
+    ///     var db = new Civo.Volume("db", new()
+    ///     {
+    ///         SizeGb = 5,
+    ///         NetworkId = defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult.Id),
+    ///     }, new CustomResourceOptions
+    ///     {
+    ///         DependsOn = new[]
+    ///         {
+    ///             defaultNetwork,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using ID

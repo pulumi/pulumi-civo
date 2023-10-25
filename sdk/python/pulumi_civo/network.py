@@ -165,6 +165,15 @@ class Network(pulumi.CustomResource):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        custom_net = civo.Network("customNet", label="test_network")
+        ```
+
         ## Import
 
         using ID
@@ -186,6 +195,15 @@ class Network(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        custom_net = civo.Network("customNet", label="test_network")
+        ```
 
         ## Import
 

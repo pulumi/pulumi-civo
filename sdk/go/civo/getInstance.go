@@ -15,6 +15,33 @@ import (
 // Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
 //
 // Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myhostaname, err := civo.LookupInstance(ctx, &civo.LookupInstanceArgs{
+//				Hostname: pulumi.StringRef("myhostname.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("instanceOutput", myhostaname.PublicIp)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupInstance(ctx *pulumi.Context, args *LookupInstanceArgs, opts ...pulumi.InvokeOption) (*LookupInstanceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupInstanceResult

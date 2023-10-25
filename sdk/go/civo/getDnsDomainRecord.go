@@ -15,6 +15,41 @@ import (
 // Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
 //
 // An error will be raised if the provided domain name or record are not in your Civo account.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			domain, err := civo.LookupDnsDomainName(ctx, &civo.LookupDnsDomainNameArgs{
+//				Name: pulumi.StringRef("domain.com"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			www, err := civo.LookupDnsDomainRecord(ctx, &civo.LookupDnsDomainRecordArgs{
+//				DomainId: domain.Id,
+//				Name:     "www",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("recordType", www.Type)
+//			ctx.Export("recordTtl", www.Ttl)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupDnsDomainRecord(ctx *pulumi.Context, args *LookupDnsDomainRecordArgs, opts ...pulumi.InvokeOption) (*LookupDnsDomainRecordResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDnsDomainRecordResult

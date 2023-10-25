@@ -10,6 +10,19 @@ import * as utilities from "./utilities";
  * Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
  *
  * An error will be raised if the provided load balancer name does not exist in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const my-lb = civo.getLoadBalancer({
+ *     name: "lb-name",
+ *     region: "LON1",
+ * });
+ * export const civoLoadbalancerOutput = my_lb.then(my_lb => my_lb.publicIp);
+ * ```
  */
 export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadBalancerResult> {
     args = args || {};
@@ -102,6 +115,19 @@ export interface GetLoadBalancerResult {
  * Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
  *
  * An error will be raised if the provided load balancer name does not exist in your Civo account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const my-lb = civo.getLoadBalancer({
+ *     name: "lb-name",
+ *     region: "LON1",
+ * });
+ * export const civoLoadbalancerOutput = my_lb.then(my_lb => my_lb.publicIp);
+ * ```
  */
 export function getLoadBalancerOutput(args?: GetLoadBalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadBalancerResult> {
     return pulumi.output(args).apply((a: any) => getLoadBalancer(a, opts))

@@ -10,6 +10,21 @@ import * as utilities from "./utilities";
  * Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
  *
  * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const small-size = civo.getInstances({
+ *     region: "LON1",
+ *     filters: [{
+ *         key: "size",
+ *         values: [g3.small],
+ *     }],
+ * });
+ * ```
  */
 export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancesResult> {
     args = args || {};
@@ -63,6 +78,21 @@ export interface GetInstancesResult {
  * Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
  *
  * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const small-size = civo.getInstances({
+ *     region: "LON1",
+ *     filters: [{
+ *         key: "size",
+ *         values: [g3.small],
+ *     }],
+ * });
+ * ```
  */
 export function getInstancesOutput(args?: GetInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancesResult> {
     return pulumi.output(args).apply((a: any) => getInstances(a, opts))

@@ -113,6 +113,20 @@ def get_object_store_credential(id: Optional[str] = None,
 
     Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+    # Use the credential to create a bucket
+    backup_object_store = civo.ObjectStore("backupObjectStore",
+        max_size_gb=500,
+        region="LON1",
+        access_key_id=backup_object_store_credential.access_key_id)
+    ```
+
 
     :param str id: The ID of the Object Store Credential
     :param str name: The name of the Object Store Credential
@@ -143,6 +157,20 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
     Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
 
     Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_civo as civo
+
+    backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+    # Use the credential to create a bucket
+    backup_object_store = civo.ObjectStore("backupObjectStore",
+        max_size_gb=500,
+        region="LON1",
+        access_key_id=backup_object_store_credential.access_key_id)
+    ```
 
 
     :param str id: The ID of the Object Store Credential
