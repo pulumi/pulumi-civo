@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -33,55 +33,20 @@ class KubernetesNodePoolArgs:
         :param pulumi.Input[bool] public_ip_node_pool: Node pool belongs to the public ip node pool
         :param pulumi.Input[str] size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
-        KubernetesNodePoolArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_id=cluster_id,
-            region=region,
-            label=label,
-            labels=labels,
-            node_count=node_count,
-            public_ip_node_pool=public_ip_node_pool,
-            size=size,
-            taints=taints,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             label: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             node_count: Optional[pulumi.Input[int]] = None,
-             public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
-             size: Optional[pulumi.Input[str]] = None,
-             taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if cluster_id is None:
-            raise TypeError("Missing 'cluster_id' argument")
-        if region is None:
-            raise TypeError("Missing 'region' argument")
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
-            public_ip_node_pool = kwargs['publicIpNodePool']
-
-        _setter("cluster_id", cluster_id)
-        _setter("region", region)
+        pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "region", region)
         if label is not None:
-            _setter("label", label)
+            pulumi.set(__self__, "label", label)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
         if public_ip_node_pool is not None:
-            _setter("public_ip_node_pool", public_ip_node_pool)
+            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if taints is not None:
-            _setter("taints", taints)
+            pulumi.set(__self__, "taints", taints)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -196,59 +161,24 @@ class _KubernetesNodePoolState:
         :param pulumi.Input[str] region: The region of the node pool, has to match that of the cluster
         :param pulumi.Input[str] size: the size of each node (optional, the default is currently g4s.kube.medium)
         """
-        _KubernetesNodePoolState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cluster_id=cluster_id,
-            instance_names=instance_names,
-            label=label,
-            labels=labels,
-            node_count=node_count,
-            public_ip_node_pool=public_ip_node_pool,
-            region=region,
-            size=size,
-            taints=taints,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cluster_id: Optional[pulumi.Input[str]] = None,
-             instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             label: Optional[pulumi.Input[str]] = None,
-             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-             node_count: Optional[pulumi.Input[int]] = None,
-             public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[str]] = None,
-             taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodePoolTaintArgs']]]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cluster_id is None and 'clusterId' in kwargs:
-            cluster_id = kwargs['clusterId']
-        if instance_names is None and 'instanceNames' in kwargs:
-            instance_names = kwargs['instanceNames']
-        if node_count is None and 'nodeCount' in kwargs:
-            node_count = kwargs['nodeCount']
-        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
-            public_ip_node_pool = kwargs['publicIpNodePool']
-
         if cluster_id is not None:
-            _setter("cluster_id", cluster_id)
+            pulumi.set(__self__, "cluster_id", cluster_id)
         if instance_names is not None:
-            _setter("instance_names", instance_names)
+            pulumi.set(__self__, "instance_names", instance_names)
         if label is not None:
-            _setter("label", label)
+            pulumi.set(__self__, "label", label)
         if labels is not None:
-            _setter("labels", labels)
+            pulumi.set(__self__, "labels", labels)
         if node_count is not None:
-            _setter("node_count", node_count)
+            pulumi.set(__self__, "node_count", node_count)
         if public_ip_node_pool is not None:
-            _setter("public_ip_node_pool", public_ip_node_pool)
+            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if taints is not None:
-            _setter("taints", taints)
+            pulumi.set(__self__, "taints", taints)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -406,10 +336,6 @@ class KubernetesNodePool(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            KubernetesNodePoolArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

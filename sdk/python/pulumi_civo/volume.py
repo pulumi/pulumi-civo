@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VolumeArgs', 'Volume']
@@ -25,37 +25,12 @@ class VolumeArgs:
         :param pulumi.Input[str] name: A name that you wish to use to refer to this volume
         :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
         """
-        VolumeArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            network_id=network_id,
-            size_gb=size_gb,
-            name=name,
-            region=region,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             network_id: Optional[pulumi.Input[str]] = None,
-             size_gb: Optional[pulumi.Input[int]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if network_id is None and 'networkId' in kwargs:
-            network_id = kwargs['networkId']
-        if network_id is None:
-            raise TypeError("Missing 'network_id' argument")
-        if size_gb is None and 'sizeGb' in kwargs:
-            size_gb = kwargs['sizeGb']
-        if size_gb is None:
-            raise TypeError("Missing 'size_gb' argument")
-
-        _setter("network_id", network_id)
-        _setter("size_gb", size_gb)
+        pulumi.set(__self__, "network_id", network_id)
+        pulumi.set(__self__, "size_gb", size_gb)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter(name="networkId")
@@ -122,41 +97,16 @@ class _VolumeState:
         :param pulumi.Input[str] region: The region for the volume, if not declare we use the region in declared in the provider.
         :param pulumi.Input[int] size_gb: A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
         """
-        _VolumeState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            mount_point=mount_point,
-            name=name,
-            network_id=network_id,
-            region=region,
-            size_gb=size_gb,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             mount_point: Optional[pulumi.Input[str]] = None,
-             name: Optional[pulumi.Input[str]] = None,
-             network_id: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             size_gb: Optional[pulumi.Input[int]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if mount_point is None and 'mountPoint' in kwargs:
-            mount_point = kwargs['mountPoint']
-        if network_id is None and 'networkId' in kwargs:
-            network_id = kwargs['networkId']
-        if size_gb is None and 'sizeGb' in kwargs:
-            size_gb = kwargs['sizeGb']
-
         if mount_point is not None:
-            _setter("mount_point", mount_point)
+            pulumi.set(__self__, "mount_point", mount_point)
         if name is not None:
-            _setter("name", name)
+            pulumi.set(__self__, "name", name)
         if network_id is not None:
-            _setter("network_id", network_id)
+            pulumi.set(__self__, "network_id", network_id)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if size_gb is not None:
-            _setter("size_gb", size_gb)
+            pulumi.set(__self__, "size_gb", size_gb)
 
     @property
     @pulumi.getter(name="mountPoint")
@@ -302,10 +252,6 @@ class Volume(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            VolumeArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
