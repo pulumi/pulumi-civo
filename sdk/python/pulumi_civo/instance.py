@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstanceArgs', 'Instance']
@@ -45,88 +45,37 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
         :param pulumi.Input[str] template: The ID for the template to use to build the instance
         """
-        InstanceArgs._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            disk_image=disk_image,
-            firewall_id=firewall_id,
-            hostname=hostname,
-            initial_user=initial_user,
-            network_id=network_id,
-            notes=notes,
-            public_ip_required=public_ip_required,
-            region=region,
-            reverse_dns=reverse_dns,
-            script=script,
-            size=size,
-            sshkey_id=sshkey_id,
-            tags=tags,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             disk_image: Optional[pulumi.Input[str]] = None,
-             firewall_id: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             initial_user: Optional[pulumi.Input[str]] = None,
-             network_id: Optional[pulumi.Input[str]] = None,
-             notes: Optional[pulumi.Input[str]] = None,
-             public_ip_required: Optional[pulumi.Input[str]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             reverse_dns: Optional[pulumi.Input[str]] = None,
-             script: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[str]] = None,
-             sshkey_id: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if disk_image is None and 'diskImage' in kwargs:
-            disk_image = kwargs['diskImage']
-        if firewall_id is None and 'firewallId' in kwargs:
-            firewall_id = kwargs['firewallId']
-        if initial_user is None and 'initialUser' in kwargs:
-            initial_user = kwargs['initialUser']
-        if network_id is None and 'networkId' in kwargs:
-            network_id = kwargs['networkId']
-        if public_ip_required is None and 'publicIpRequired' in kwargs:
-            public_ip_required = kwargs['publicIpRequired']
-        if reverse_dns is None and 'reverseDns' in kwargs:
-            reverse_dns = kwargs['reverseDns']
-        if sshkey_id is None and 'sshkeyId' in kwargs:
-            sshkey_id = kwargs['sshkeyId']
-
         if disk_image is not None:
-            _setter("disk_image", disk_image)
+            pulumi.set(__self__, "disk_image", disk_image)
         if firewall_id is not None:
-            _setter("firewall_id", firewall_id)
+            pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if initial_user is not None:
-            _setter("initial_user", initial_user)
+            pulumi.set(__self__, "initial_user", initial_user)
         if network_id is not None:
-            _setter("network_id", network_id)
+            pulumi.set(__self__, "network_id", network_id)
         if notes is not None:
-            _setter("notes", notes)
+            pulumi.set(__self__, "notes", notes)
         if public_ip_required is not None:
-            _setter("public_ip_required", public_ip_required)
+            pulumi.set(__self__, "public_ip_required", public_ip_required)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if reverse_dns is not None:
-            _setter("reverse_dns", reverse_dns)
+            pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
-            _setter("script", script)
+            pulumi.set(__self__, "script", script)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if sshkey_id is not None:
-            _setter("sshkey_id", sshkey_id)
+            pulumi.set(__self__, "sshkey_id", sshkey_id)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if template is not None:
             warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
             pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter(name="diskImage")
@@ -354,146 +303,57 @@ class _InstanceState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
         :param pulumi.Input[str] template: The ID for the template to use to build the instance
         """
-        _InstanceState._configure(
-            lambda key, value: pulumi.set(__self__, key, value),
-            cpu_cores=cpu_cores,
-            created_at=created_at,
-            disk_gb=disk_gb,
-            disk_image=disk_image,
-            firewall_id=firewall_id,
-            hostname=hostname,
-            initial_password=initial_password,
-            initial_user=initial_user,
-            network_id=network_id,
-            notes=notes,
-            private_ip=private_ip,
-            public_ip=public_ip,
-            public_ip_required=public_ip_required,
-            ram_mb=ram_mb,
-            region=region,
-            reverse_dns=reverse_dns,
-            script=script,
-            size=size,
-            source_id=source_id,
-            source_type=source_type,
-            sshkey_id=sshkey_id,
-            status=status,
-            tags=tags,
-            template=template,
-        )
-    @staticmethod
-    def _configure(
-             _setter: Callable[[Any, Any], None],
-             cpu_cores: Optional[pulumi.Input[int]] = None,
-             created_at: Optional[pulumi.Input[str]] = None,
-             disk_gb: Optional[pulumi.Input[int]] = None,
-             disk_image: Optional[pulumi.Input[str]] = None,
-             firewall_id: Optional[pulumi.Input[str]] = None,
-             hostname: Optional[pulumi.Input[str]] = None,
-             initial_password: Optional[pulumi.Input[str]] = None,
-             initial_user: Optional[pulumi.Input[str]] = None,
-             network_id: Optional[pulumi.Input[str]] = None,
-             notes: Optional[pulumi.Input[str]] = None,
-             private_ip: Optional[pulumi.Input[str]] = None,
-             public_ip: Optional[pulumi.Input[str]] = None,
-             public_ip_required: Optional[pulumi.Input[str]] = None,
-             ram_mb: Optional[pulumi.Input[int]] = None,
-             region: Optional[pulumi.Input[str]] = None,
-             reverse_dns: Optional[pulumi.Input[str]] = None,
-             script: Optional[pulumi.Input[str]] = None,
-             size: Optional[pulumi.Input[str]] = None,
-             source_id: Optional[pulumi.Input[str]] = None,
-             source_type: Optional[pulumi.Input[str]] = None,
-             sshkey_id: Optional[pulumi.Input[str]] = None,
-             status: Optional[pulumi.Input[str]] = None,
-             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-             template: Optional[pulumi.Input[str]] = None,
-             opts: Optional[pulumi.ResourceOptions] = None,
-             **kwargs):
-        if cpu_cores is None and 'cpuCores' in kwargs:
-            cpu_cores = kwargs['cpuCores']
-        if created_at is None and 'createdAt' in kwargs:
-            created_at = kwargs['createdAt']
-        if disk_gb is None and 'diskGb' in kwargs:
-            disk_gb = kwargs['diskGb']
-        if disk_image is None and 'diskImage' in kwargs:
-            disk_image = kwargs['diskImage']
-        if firewall_id is None and 'firewallId' in kwargs:
-            firewall_id = kwargs['firewallId']
-        if initial_password is None and 'initialPassword' in kwargs:
-            initial_password = kwargs['initialPassword']
-        if initial_user is None and 'initialUser' in kwargs:
-            initial_user = kwargs['initialUser']
-        if network_id is None and 'networkId' in kwargs:
-            network_id = kwargs['networkId']
-        if private_ip is None and 'privateIp' in kwargs:
-            private_ip = kwargs['privateIp']
-        if public_ip is None and 'publicIp' in kwargs:
-            public_ip = kwargs['publicIp']
-        if public_ip_required is None and 'publicIpRequired' in kwargs:
-            public_ip_required = kwargs['publicIpRequired']
-        if ram_mb is None and 'ramMb' in kwargs:
-            ram_mb = kwargs['ramMb']
-        if reverse_dns is None and 'reverseDns' in kwargs:
-            reverse_dns = kwargs['reverseDns']
-        if source_id is None and 'sourceId' in kwargs:
-            source_id = kwargs['sourceId']
-        if source_type is None and 'sourceType' in kwargs:
-            source_type = kwargs['sourceType']
-        if sshkey_id is None and 'sshkeyId' in kwargs:
-            sshkey_id = kwargs['sshkeyId']
-
         if cpu_cores is not None:
-            _setter("cpu_cores", cpu_cores)
+            pulumi.set(__self__, "cpu_cores", cpu_cores)
         if created_at is not None:
-            _setter("created_at", created_at)
+            pulumi.set(__self__, "created_at", created_at)
         if disk_gb is not None:
-            _setter("disk_gb", disk_gb)
+            pulumi.set(__self__, "disk_gb", disk_gb)
         if disk_image is not None:
-            _setter("disk_image", disk_image)
+            pulumi.set(__self__, "disk_image", disk_image)
         if firewall_id is not None:
-            _setter("firewall_id", firewall_id)
+            pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
-            _setter("hostname", hostname)
+            pulumi.set(__self__, "hostname", hostname)
         if initial_password is not None:
-            _setter("initial_password", initial_password)
+            pulumi.set(__self__, "initial_password", initial_password)
         if initial_user is not None:
-            _setter("initial_user", initial_user)
+            pulumi.set(__self__, "initial_user", initial_user)
         if network_id is not None:
-            _setter("network_id", network_id)
+            pulumi.set(__self__, "network_id", network_id)
         if notes is not None:
-            _setter("notes", notes)
+            pulumi.set(__self__, "notes", notes)
         if private_ip is not None:
-            _setter("private_ip", private_ip)
+            pulumi.set(__self__, "private_ip", private_ip)
         if public_ip is not None:
-            _setter("public_ip", public_ip)
+            pulumi.set(__self__, "public_ip", public_ip)
         if public_ip_required is not None:
-            _setter("public_ip_required", public_ip_required)
+            pulumi.set(__self__, "public_ip_required", public_ip_required)
         if ram_mb is not None:
-            _setter("ram_mb", ram_mb)
+            pulumi.set(__self__, "ram_mb", ram_mb)
         if region is not None:
-            _setter("region", region)
+            pulumi.set(__self__, "region", region)
         if reverse_dns is not None:
-            _setter("reverse_dns", reverse_dns)
+            pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
-            _setter("script", script)
+            pulumi.set(__self__, "script", script)
         if size is not None:
-            _setter("size", size)
+            pulumi.set(__self__, "size", size)
         if source_id is not None:
-            _setter("source_id", source_id)
+            pulumi.set(__self__, "source_id", source_id)
         if source_type is not None:
-            _setter("source_type", source_type)
+            pulumi.set(__self__, "source_type", source_type)
         if sshkey_id is not None:
-            _setter("sshkey_id", sshkey_id)
+            pulumi.set(__self__, "sshkey_id", sshkey_id)
         if status is not None:
-            _setter("status", status)
+            pulumi.set(__self__, "status", status)
         if tags is not None:
-            _setter("tags", tags)
+            pulumi.set(__self__, "tags", tags)
         if template is not None:
             warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
             pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
         if template is not None:
-            _setter("template", template)
+            pulumi.set(__self__, "template", template)
 
     @property
     @pulumi.getter(name="cpuCores")
@@ -862,10 +722,6 @@ class Instance(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
-            kwargs = kwargs or {}
-            def _setter(key, value):
-                kwargs[key] = value
-            InstanceArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
