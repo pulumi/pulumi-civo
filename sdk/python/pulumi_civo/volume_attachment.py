@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['VolumeAttachmentArgs', 'VolumeAttachment']
@@ -23,10 +23,33 @@ class VolumeAttachmentArgs:
         :param pulumi.Input[str] volume_id: The ID of target volume for attachment
         :param pulumi.Input[str] region: The region for the volume attachment
         """
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "volume_id", volume_id)
+        VolumeAttachmentArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_id=instance_id,
+            volume_id=volume_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_id: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+        if volume_id is None:
+            raise TypeError("Missing 'volume_id' argument")
+
+        _setter("instance_id", instance_id)
+        _setter("volume_id", volume_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -77,12 +100,31 @@ class _VolumeAttachmentState:
         :param pulumi.Input[str] region: The region for the volume attachment
         :param pulumi.Input[str] volume_id: The ID of target volume for attachment
         """
+        _VolumeAttachmentState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_id=instance_id,
+            region=region,
+            volume_id=volume_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             volume_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if volume_id is None and 'volumeId' in kwargs:
+            volume_id = kwargs['volumeId']
+
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if volume_id is not None:
-            pulumi.set(__self__, "volume_id", volume_id)
+            _setter("volume_id", volume_id)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -158,6 +200,10 @@ class VolumeAttachment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            VolumeAttachmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

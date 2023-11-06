@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -31,18 +31,47 @@ class FirewallArgs:
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
+        FirewallArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            create_default_rules=create_default_rules,
+            egress_rules=egress_rules,
+            ingress_rules=ingress_rules,
+            name=name,
+            network_id=network_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             create_default_rules: Optional[pulumi.Input[bool]] = None,
+             egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]] = None,
+             ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if create_default_rules is None and 'createDefaultRules' in kwargs:
+            create_default_rules = kwargs['createDefaultRules']
+        if egress_rules is None and 'egressRules' in kwargs:
+            egress_rules = kwargs['egressRules']
+        if ingress_rules is None and 'ingressRules' in kwargs:
+            ingress_rules = kwargs['ingressRules']
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
         if create_default_rules is not None:
-            pulumi.set(__self__, "create_default_rules", create_default_rules)
+            _setter("create_default_rules", create_default_rules)
         if egress_rules is not None:
-            pulumi.set(__self__, "egress_rules", egress_rules)
+            _setter("egress_rules", egress_rules)
         if ingress_rules is not None:
-            pulumi.set(__self__, "ingress_rules", ingress_rules)
+            _setter("ingress_rules", ingress_rules)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="createDefaultRules")
@@ -135,18 +164,47 @@ class _FirewallState:
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
         """
+        _FirewallState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            create_default_rules=create_default_rules,
+            egress_rules=egress_rules,
+            ingress_rules=ingress_rules,
+            name=name,
+            network_id=network_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             create_default_rules: Optional[pulumi.Input[bool]] = None,
+             egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]]] = None,
+             ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if create_default_rules is None and 'createDefaultRules' in kwargs:
+            create_default_rules = kwargs['createDefaultRules']
+        if egress_rules is None and 'egressRules' in kwargs:
+            egress_rules = kwargs['egressRules']
+        if ingress_rules is None and 'ingressRules' in kwargs:
+            ingress_rules = kwargs['ingressRules']
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
         if create_default_rules is not None:
-            pulumi.set(__self__, "create_default_rules", create_default_rules)
+            _setter("create_default_rules", create_default_rules)
         if egress_rules is not None:
-            pulumi.set(__self__, "egress_rules", egress_rules)
+            _setter("egress_rules", egress_rules)
         if ingress_rules is not None:
-            pulumi.set(__self__, "ingress_rules", ingress_rules)
+            _setter("ingress_rules", ingress_rules)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="createDefaultRules")
@@ -382,6 +440,10 @@ class Firewall(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            FirewallArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['InstanceReservedIpAssignmentArgs', 'InstanceReservedIpAssignment']
@@ -23,10 +23,33 @@ class InstanceReservedIpAssignmentArgs:
         :param pulumi.Input[str] reserved_ip_id: The reserved ip id
         :param pulumi.Input[str] region: The region of the ip
         """
-        pulumi.set(__self__, "instance_id", instance_id)
-        pulumi.set(__self__, "reserved_ip_id", reserved_ip_id)
+        InstanceReservedIpAssignmentArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_id=instance_id,
+            reserved_ip_id=reserved_ip_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_id: Optional[pulumi.Input[str]] = None,
+             reserved_ip_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if instance_id is None:
+            raise TypeError("Missing 'instance_id' argument")
+        if reserved_ip_id is None and 'reservedIpId' in kwargs:
+            reserved_ip_id = kwargs['reservedIpId']
+        if reserved_ip_id is None:
+            raise TypeError("Missing 'reserved_ip_id' argument")
+
+        _setter("instance_id", instance_id)
+        _setter("reserved_ip_id", reserved_ip_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -77,12 +100,31 @@ class _InstanceReservedIpAssignmentState:
         :param pulumi.Input[str] region: The region of the ip
         :param pulumi.Input[str] reserved_ip_id: The reserved ip id
         """
+        _InstanceReservedIpAssignmentState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_id=instance_id,
+            region=region,
+            reserved_ip_id=reserved_ip_id,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             reserved_ip_id: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_id is None and 'instanceId' in kwargs:
+            instance_id = kwargs['instanceId']
+        if reserved_ip_id is None and 'reservedIpId' in kwargs:
+            reserved_ip_id = kwargs['reservedIpId']
+
         if instance_id is not None:
-            pulumi.set(__self__, "instance_id", instance_id)
+            _setter("instance_id", instance_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if reserved_ip_id is not None:
-            pulumi.set(__self__, "reserved_ip_id", reserved_ip_id)
+            _setter("reserved_ip_id", reserved_ip_id)
 
     @property
     @pulumi.getter(name="instanceId")
@@ -186,6 +228,10 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            InstanceReservedIpAssignmentArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['ObjectStoreArgs', 'ObjectStore']
@@ -25,14 +25,35 @@ class ObjectStoreArgs:
         :param pulumi.Input[str] name: The name of the Object Store. Must be unique.
         :param pulumi.Input[str] region: The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
         """
+        ObjectStoreArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key_id=access_key_id,
+            max_size_gb=max_size_gb,
+            name=name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key_id: Optional[pulumi.Input[str]] = None,
+             max_size_gb: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if max_size_gb is None and 'maxSizeGb' in kwargs:
+            max_size_gb = kwargs['maxSizeGb']
+
         if access_key_id is not None:
-            pulumi.set(__self__, "access_key_id", access_key_id)
+            _setter("access_key_id", access_key_id)
         if max_size_gb is not None:
-            pulumi.set(__self__, "max_size_gb", max_size_gb)
+            _setter("max_size_gb", max_size_gb)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -101,18 +122,45 @@ class _ObjectStoreState:
         :param pulumi.Input[str] region: The region for the Object Store, if not declared we use the region as declared in the provider (Defaults to LON1)
         :param pulumi.Input[str] status: The status of the Object Store.
         """
+        _ObjectStoreState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            access_key_id=access_key_id,
+            bucket_url=bucket_url,
+            max_size_gb=max_size_gb,
+            name=name,
+            region=region,
+            status=status,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             access_key_id: Optional[pulumi.Input[str]] = None,
+             bucket_url: Optional[pulumi.Input[str]] = None,
+             max_size_gb: Optional[pulumi.Input[int]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if access_key_id is None and 'accessKeyId' in kwargs:
+            access_key_id = kwargs['accessKeyId']
+        if bucket_url is None and 'bucketUrl' in kwargs:
+            bucket_url = kwargs['bucketUrl']
+        if max_size_gb is None and 'maxSizeGb' in kwargs:
+            max_size_gb = kwargs['maxSizeGb']
+
         if access_key_id is not None:
-            pulumi.set(__self__, "access_key_id", access_key_id)
+            _setter("access_key_id", access_key_id)
         if bucket_url is not None:
-            pulumi.set(__self__, "bucket_url", bucket_url)
+            _setter("bucket_url", bucket_url)
         if max_size_gb is not None:
-            pulumi.set(__self__, "max_size_gb", max_size_gb)
+            _setter("max_size_gb", max_size_gb)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
 
     @property
     @pulumi.getter(name="accessKeyId")
@@ -266,6 +314,10 @@ class ObjectStore(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            ObjectStoreArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

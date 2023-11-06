@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = [
@@ -71,16 +71,43 @@ class FirewallEgressRule(dict):
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "cidrs", cidrs)
+        FirewallEgressRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            id=id,
+            label=label,
+            port_range=port_range,
+            protocol=protocol,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: Optional[str] = None,
+             cidrs: Optional[Sequence[str]] = None,
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             port_range: Optional[str] = None,
+             protocol: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if cidrs is None:
+            raise TypeError("Missing 'cidrs' argument")
+        if port_range is None and 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
+        _setter("action", action)
+        _setter("cidrs", cidrs)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if port_range is not None:
-            pulumi.set(__self__, "port_range", port_range)
+            _setter("port_range", port_range)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
 
     @property
     @pulumi.getter
@@ -161,16 +188,43 @@ class FirewallIngressRule(dict):
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
         """
-        pulumi.set(__self__, "action", action)
-        pulumi.set(__self__, "cidrs", cidrs)
+        FirewallIngressRule._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            action=action,
+            cidrs=cidrs,
+            id=id,
+            label=label,
+            port_range=port_range,
+            protocol=protocol,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             action: Optional[str] = None,
+             cidrs: Optional[Sequence[str]] = None,
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             port_range: Optional[str] = None,
+             protocol: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if action is None:
+            raise TypeError("Missing 'action' argument")
+        if cidrs is None:
+            raise TypeError("Missing 'cidrs' argument")
+        if port_range is None and 'portRange' in kwargs:
+            port_range = kwargs['portRange']
+
+        _setter("action", action)
+        _setter("cidrs", cidrs)
         if id is not None:
-            pulumi.set(__self__, "id", id)
+            _setter("id", id)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if port_range is not None:
-            pulumi.set(__self__, "port_range", port_range)
+            _setter("port_range", port_range)
         if protocol is not None:
-            pulumi.set(__self__, "protocol", protocol)
+            _setter("protocol", protocol)
 
     @property
     @pulumi.getter
@@ -225,14 +279,31 @@ class KubernetesClusterInstalledApplication(dict):
                  category: Optional[str] = None,
                  installed: Optional[bool] = None,
                  version: Optional[str] = None):
+        KubernetesClusterInstalledApplication._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application=application,
+            category=category,
+            installed=installed,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application: Optional[str] = None,
+             category: Optional[str] = None,
+             installed: Optional[bool] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if application is not None:
-            pulumi.set(__self__, "application", application)
+            _setter("application", application)
         if category is not None:
-            pulumi.set(__self__, "category", category)
+            _setter("category", category)
         if installed is not None:
-            pulumi.set(__self__, "installed", installed)
+            _setter("installed", installed)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter
@@ -291,14 +362,43 @@ class KubernetesClusterPools(dict):
         :param str label: Node pool label, if you don't provide one, we will generate one for you
         :param bool public_ip_node_pool: Node pool belongs to the public ip node pool
         """
-        pulumi.set(__self__, "node_count", node_count)
-        pulumi.set(__self__, "size", size)
+        KubernetesClusterPools._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            node_count=node_count,
+            size=size,
+            instance_names=instance_names,
+            label=label,
+            public_ip_node_pool=public_ip_node_pool,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             node_count: Optional[int] = None,
+             size: Optional[str] = None,
+             instance_names: Optional[Sequence[str]] = None,
+             label: Optional[str] = None,
+             public_ip_node_pool: Optional[bool] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if node_count is None and 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if node_count is None:
+            raise TypeError("Missing 'node_count' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if instance_names is None and 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+
+        _setter("node_count", node_count)
+        _setter("size", size)
         if instance_names is not None:
-            pulumi.set(__self__, "instance_names", instance_names)
+            _setter("instance_names", instance_names)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if public_ip_node_pool is not None:
-            pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+            _setter("public_ip_node_pool", public_ip_node_pool)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -347,9 +447,30 @@ class KubernetesNodePoolTaint(dict):
                  effect: str,
                  key: str,
                  value: str):
-        pulumi.set(__self__, "effect", effect)
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "value", value)
+        KubernetesNodePoolTaint._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            effect=effect,
+            key=key,
+            value=value,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             effect: Optional[str] = None,
+             key: Optional[str] = None,
+             value: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if effect is None:
+            raise TypeError("Missing 'effect' argument")
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if value is None:
+            raise TypeError("Missing 'value' argument")
+
+        _setter("effect", effect)
+        _setter("key", key)
+        _setter("value", value)
 
     @property
     @pulumi.getter
@@ -380,12 +501,35 @@ class GetDatabaseVersionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetDatabaseVersionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -429,9 +573,24 @@ class GetDatabaseVersionSortResult(dict):
         :param str key: Sort versions by this key. This may be one of `default`, `engine`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetDatabaseVersionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -456,9 +615,30 @@ class GetDatabaseVersionVersionResult(dict):
                  default: bool,
                  engine: str,
                  version: str):
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "engine", engine)
-        pulumi.set(__self__, "version", version)
+        GetDatabaseVersionVersionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default=default,
+            engine=engine,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default: Optional[bool] = None,
+             engine: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if engine is None:
+            raise TypeError("Missing 'engine' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+
+        _setter("default", default)
+        _setter("engine", engine)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -483,10 +663,35 @@ class GetDiskImageDiskimageResult(dict):
                  label: str,
                  name: str,
                  version: str):
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "version", version)
+        GetDiskImageDiskimageResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            id=id,
+            label=label,
+            name=name,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             id: Optional[str] = None,
+             label: Optional[str] = None,
+             name: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+
+        _setter("id", id)
+        _setter("label", label)
+        _setter("name", name)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -522,12 +727,35 @@ class GetDiskImageFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetDiskImageFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -571,9 +799,24 @@ class GetDiskImageSortResult(dict):
         :param str key: Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetDiskImageSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -605,12 +848,35 @@ class GetInstancesFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetInstancesFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -670,28 +936,151 @@ class GetInstancesInstanceResult(dict):
                  status: str,
                  tags: Sequence[str],
                  template: str):
-        pulumi.set(__self__, "cpu_cores", cpu_cores)
-        pulumi.set(__self__, "created_at", created_at)
-        pulumi.set(__self__, "disk_gb", disk_gb)
-        pulumi.set(__self__, "firewall_id", firewall_id)
-        pulumi.set(__self__, "hostname", hostname)
-        pulumi.set(__self__, "id", id)
-        pulumi.set(__self__, "initial_password", initial_password)
-        pulumi.set(__self__, "initial_user", initial_user)
-        pulumi.set(__self__, "network_id", network_id)
-        pulumi.set(__self__, "notes", notes)
-        pulumi.set(__self__, "private_ip", private_ip)
-        pulumi.set(__self__, "pseudo_ip", pseudo_ip)
-        pulumi.set(__self__, "public_ip", public_ip)
-        pulumi.set(__self__, "ram_mb", ram_mb)
-        pulumi.set(__self__, "region", region)
-        pulumi.set(__self__, "reverse_dns", reverse_dns)
-        pulumi.set(__self__, "script", script)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "sshkey_id", sshkey_id)
-        pulumi.set(__self__, "status", status)
-        pulumi.set(__self__, "tags", tags)
-        pulumi.set(__self__, "template", template)
+        GetInstancesInstanceResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu_cores=cpu_cores,
+            created_at=created_at,
+            disk_gb=disk_gb,
+            firewall_id=firewall_id,
+            hostname=hostname,
+            id=id,
+            initial_password=initial_password,
+            initial_user=initial_user,
+            network_id=network_id,
+            notes=notes,
+            private_ip=private_ip,
+            pseudo_ip=pseudo_ip,
+            public_ip=public_ip,
+            ram_mb=ram_mb,
+            region=region,
+            reverse_dns=reverse_dns,
+            script=script,
+            size=size,
+            sshkey_id=sshkey_id,
+            status=status,
+            tags=tags,
+            template=template,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu_cores: Optional[int] = None,
+             created_at: Optional[str] = None,
+             disk_gb: Optional[int] = None,
+             firewall_id: Optional[str] = None,
+             hostname: Optional[str] = None,
+             id: Optional[str] = None,
+             initial_password: Optional[str] = None,
+             initial_user: Optional[str] = None,
+             network_id: Optional[str] = None,
+             notes: Optional[str] = None,
+             private_ip: Optional[str] = None,
+             pseudo_ip: Optional[str] = None,
+             public_ip: Optional[str] = None,
+             ram_mb: Optional[int] = None,
+             region: Optional[str] = None,
+             reverse_dns: Optional[str] = None,
+             script: Optional[str] = None,
+             size: Optional[str] = None,
+             sshkey_id: Optional[str] = None,
+             status: Optional[str] = None,
+             tags: Optional[Sequence[str]] = None,
+             template: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cpu_cores is None and 'cpuCores' in kwargs:
+            cpu_cores = kwargs['cpuCores']
+        if cpu_cores is None:
+            raise TypeError("Missing 'cpu_cores' argument")
+        if created_at is None and 'createdAt' in kwargs:
+            created_at = kwargs['createdAt']
+        if created_at is None:
+            raise TypeError("Missing 'created_at' argument")
+        if disk_gb is None and 'diskGb' in kwargs:
+            disk_gb = kwargs['diskGb']
+        if disk_gb is None:
+            raise TypeError("Missing 'disk_gb' argument")
+        if firewall_id is None and 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if firewall_id is None:
+            raise TypeError("Missing 'firewall_id' argument")
+        if hostname is None:
+            raise TypeError("Missing 'hostname' argument")
+        if id is None:
+            raise TypeError("Missing 'id' argument")
+        if initial_password is None and 'initialPassword' in kwargs:
+            initial_password = kwargs['initialPassword']
+        if initial_password is None:
+            raise TypeError("Missing 'initial_password' argument")
+        if initial_user is None and 'initialUser' in kwargs:
+            initial_user = kwargs['initialUser']
+        if initial_user is None:
+            raise TypeError("Missing 'initial_user' argument")
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+        if network_id is None:
+            raise TypeError("Missing 'network_id' argument")
+        if notes is None:
+            raise TypeError("Missing 'notes' argument")
+        if private_ip is None and 'privateIp' in kwargs:
+            private_ip = kwargs['privateIp']
+        if private_ip is None:
+            raise TypeError("Missing 'private_ip' argument")
+        if pseudo_ip is None and 'pseudoIp' in kwargs:
+            pseudo_ip = kwargs['pseudoIp']
+        if pseudo_ip is None:
+            raise TypeError("Missing 'pseudo_ip' argument")
+        if public_ip is None and 'publicIp' in kwargs:
+            public_ip = kwargs['publicIp']
+        if public_ip is None:
+            raise TypeError("Missing 'public_ip' argument")
+        if ram_mb is None and 'ramMb' in kwargs:
+            ram_mb = kwargs['ramMb']
+        if ram_mb is None:
+            raise TypeError("Missing 'ram_mb' argument")
+        if region is None:
+            raise TypeError("Missing 'region' argument")
+        if reverse_dns is None and 'reverseDns' in kwargs:
+            reverse_dns = kwargs['reverseDns']
+        if reverse_dns is None:
+            raise TypeError("Missing 'reverse_dns' argument")
+        if script is None:
+            raise TypeError("Missing 'script' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if sshkey_id is None and 'sshkeyId' in kwargs:
+            sshkey_id = kwargs['sshkeyId']
+        if sshkey_id is None:
+            raise TypeError("Missing 'sshkey_id' argument")
+        if status is None:
+            raise TypeError("Missing 'status' argument")
+        if tags is None:
+            raise TypeError("Missing 'tags' argument")
+        if template is None:
+            raise TypeError("Missing 'template' argument")
+
+        _setter("cpu_cores", cpu_cores)
+        _setter("created_at", created_at)
+        _setter("disk_gb", disk_gb)
+        _setter("firewall_id", firewall_id)
+        _setter("hostname", hostname)
+        _setter("id", id)
+        _setter("initial_password", initial_password)
+        _setter("initial_user", initial_user)
+        _setter("network_id", network_id)
+        _setter("notes", notes)
+        _setter("private_ip", private_ip)
+        _setter("pseudo_ip", pseudo_ip)
+        _setter("public_ip", public_ip)
+        _setter("ram_mb", ram_mb)
+        _setter("region", region)
+        _setter("reverse_dns", reverse_dns)
+        _setter("script", script)
+        _setter("size", size)
+        _setter("sshkey_id", sshkey_id)
+        _setter("status", status)
+        _setter("tags", tags)
+        _setter("template", template)
 
     @property
     @pulumi.getter(name="cpuCores")
@@ -813,9 +1202,24 @@ class GetInstancesSortResult(dict):
         :param str key: Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetInstancesSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -841,10 +1245,35 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
                  category: str,
                  installed: bool,
                  version: str):
-        pulumi.set(__self__, "application", application)
-        pulumi.set(__self__, "category", category)
-        pulumi.set(__self__, "installed", installed)
-        pulumi.set(__self__, "version", version)
+        GetKubernetesClusterInstalledApplicationResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            application=application,
+            category=category,
+            installed=installed,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             application: Optional[str] = None,
+             category: Optional[str] = None,
+             installed: Optional[bool] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if application is None:
+            raise TypeError("Missing 'application' argument")
+        if category is None:
+            raise TypeError("Missing 'category' argument")
+        if installed is None:
+            raise TypeError("Missing 'installed' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+
+        _setter("application", application)
+        _setter("category", category)
+        _setter("installed", installed)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -875,11 +1304,46 @@ class GetKubernetesClusterPoolResult(dict):
                  node_count: int,
                  public_ip_node_pool: bool,
                  size: str):
-        pulumi.set(__self__, "instance_names", instance_names)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "node_count", node_count)
-        pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
-        pulumi.set(__self__, "size", size)
+        GetKubernetesClusterPoolResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            instance_names=instance_names,
+            label=label,
+            node_count=node_count,
+            public_ip_node_pool=public_ip_node_pool,
+            size=size,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             instance_names: Optional[Sequence[str]] = None,
+             label: Optional[str] = None,
+             node_count: Optional[int] = None,
+             public_ip_node_pool: Optional[bool] = None,
+             size: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if instance_names is None and 'instanceNames' in kwargs:
+            instance_names = kwargs['instanceNames']
+        if instance_names is None:
+            raise TypeError("Missing 'instance_names' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if node_count is None and 'nodeCount' in kwargs:
+            node_count = kwargs['nodeCount']
+        if node_count is None:
+            raise TypeError("Missing 'node_count' argument")
+        if public_ip_node_pool is None and 'publicIpNodePool' in kwargs:
+            public_ip_node_pool = kwargs['publicIpNodePool']
+        if public_ip_node_pool is None:
+            raise TypeError("Missing 'public_ip_node_pool' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+
+        _setter("instance_names", instance_names)
+        _setter("label", label)
+        _setter("node_count", node_count)
+        _setter("public_ip_node_pool", public_ip_node_pool)
+        _setter("size", size)
 
     @property
     @pulumi.getter(name="instanceNames")
@@ -920,12 +1384,35 @@ class GetKubernetesVersionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetKubernetesVersionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -969,9 +1456,24 @@ class GetKubernetesVersionSortResult(dict):
         :param str key: Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetKubernetesVersionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -997,10 +1499,35 @@ class GetKubernetesVersionVersionResult(dict):
                  label: str,
                  type: str,
                  version: str):
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "label", label)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "version", version)
+        GetKubernetesVersionVersionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default=default,
+            label=label,
+            type=type,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default: Optional[bool] = None,
+             label: Optional[str] = None,
+             type: Optional[str] = None,
+             version: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+
+        _setter("default", default)
+        _setter("label", label)
+        _setter("type", type)
+        _setter("version", version)
 
     @property
     @pulumi.getter
@@ -1031,11 +1558,46 @@ class GetLoadBalancerBackendResult(dict):
                  protocol: str,
                  source_port: int,
                  target_port: int):
-        pulumi.set(__self__, "health_check_port", health_check_port)
-        pulumi.set(__self__, "ip", ip)
-        pulumi.set(__self__, "protocol", protocol)
-        pulumi.set(__self__, "source_port", source_port)
-        pulumi.set(__self__, "target_port", target_port)
+        GetLoadBalancerBackendResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            health_check_port=health_check_port,
+            ip=ip,
+            protocol=protocol,
+            source_port=source_port,
+            target_port=target_port,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             health_check_port: Optional[int] = None,
+             ip: Optional[str] = None,
+             protocol: Optional[str] = None,
+             source_port: Optional[int] = None,
+             target_port: Optional[int] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if health_check_port is None and 'healthCheckPort' in kwargs:
+            health_check_port = kwargs['healthCheckPort']
+        if health_check_port is None:
+            raise TypeError("Missing 'health_check_port' argument")
+        if ip is None:
+            raise TypeError("Missing 'ip' argument")
+        if protocol is None:
+            raise TypeError("Missing 'protocol' argument")
+        if source_port is None and 'sourcePort' in kwargs:
+            source_port = kwargs['sourcePort']
+        if source_port is None:
+            raise TypeError("Missing 'source_port' argument")
+        if target_port is None and 'targetPort' in kwargs:
+            target_port = kwargs['targetPort']
+        if target_port is None:
+            raise TypeError("Missing 'target_port' argument")
+
+        _setter("health_check_port", health_check_port)
+        _setter("ip", ip)
+        _setter("protocol", protocol)
+        _setter("source_port", source_port)
+        _setter("target_port", target_port)
 
     @property
     @pulumi.getter(name="healthCheckPort")
@@ -1076,12 +1638,35 @@ class GetRegionFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetRegionFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -1123,10 +1708,35 @@ class GetRegionRegionResult(dict):
                  country: str,
                  default: bool,
                  name: str):
-        pulumi.set(__self__, "code", code)
-        pulumi.set(__self__, "country", country)
-        pulumi.set(__self__, "default", default)
-        pulumi.set(__self__, "name", name)
+        GetRegionRegionResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            code=code,
+            country=country,
+            default=default,
+            name=name,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             code: Optional[str] = None,
+             country: Optional[str] = None,
+             default: Optional[bool] = None,
+             name: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if code is None:
+            raise TypeError("Missing 'code' argument")
+        if country is None:
+            raise TypeError("Missing 'country' argument")
+        if default is None:
+            raise TypeError("Missing 'default' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+
+        _setter("code", code)
+        _setter("country", country)
+        _setter("default", default)
+        _setter("name", name)
 
     @property
     @pulumi.getter
@@ -1158,9 +1768,24 @@ class GetRegionSortResult(dict):
         :param str key: Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetRegionSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter
@@ -1192,12 +1817,35 @@ class GetSizeFilterResult(dict):
         :param bool all: Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
         :param str match_by: One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
         """
-        pulumi.set(__self__, "key", key)
-        pulumi.set(__self__, "values", values)
+        GetSizeFilterResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            values=values,
+            all=all,
+            match_by=match_by,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             values: Optional[Sequence[str]] = None,
+             all: Optional[bool] = None,
+             match_by: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+        if values is None:
+            raise TypeError("Missing 'values' argument")
+        if match_by is None and 'matchBy' in kwargs:
+            match_by = kwargs['matchBy']
+
+        _setter("key", key)
+        _setter("values", values)
         if all is not None:
-            pulumi.set(__self__, "all", all)
+            _setter("all", all)
         if match_by is not None:
-            pulumi.set(__self__, "match_by", match_by)
+            _setter("match_by", match_by)
 
     @property
     @pulumi.getter
@@ -1244,15 +1892,62 @@ class GetSizeSizeResult(dict):
                  ram: int,
                  selectable: bool,
                  type: str):
-        pulumi.set(__self__, "cpu", cpu)
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "disk", disk)
-        pulumi.set(__self__, "gpu", gpu)
-        pulumi.set(__self__, "gpu_type", gpu_type)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "ram", ram)
-        pulumi.set(__self__, "selectable", selectable)
-        pulumi.set(__self__, "type", type)
+        GetSizeSizeResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            cpu=cpu,
+            description=description,
+            disk=disk,
+            gpu=gpu,
+            gpu_type=gpu_type,
+            name=name,
+            ram=ram,
+            selectable=selectable,
+            type=type,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             cpu: Optional[int] = None,
+             description: Optional[str] = None,
+             disk: Optional[int] = None,
+             gpu: Optional[int] = None,
+             gpu_type: Optional[str] = None,
+             name: Optional[str] = None,
+             ram: Optional[int] = None,
+             selectable: Optional[bool] = None,
+             type: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if cpu is None:
+            raise TypeError("Missing 'cpu' argument")
+        if description is None:
+            raise TypeError("Missing 'description' argument")
+        if disk is None:
+            raise TypeError("Missing 'disk' argument")
+        if gpu is None:
+            raise TypeError("Missing 'gpu' argument")
+        if gpu_type is None and 'gpuType' in kwargs:
+            gpu_type = kwargs['gpuType']
+        if gpu_type is None:
+            raise TypeError("Missing 'gpu_type' argument")
+        if name is None:
+            raise TypeError("Missing 'name' argument")
+        if ram is None:
+            raise TypeError("Missing 'ram' argument")
+        if selectable is None:
+            raise TypeError("Missing 'selectable' argument")
+        if type is None:
+            raise TypeError("Missing 'type' argument")
+
+        _setter("cpu", cpu)
+        _setter("description", description)
+        _setter("disk", disk)
+        _setter("gpu", gpu)
+        _setter("gpu_type", gpu_type)
+        _setter("name", name)
+        _setter("ram", ram)
+        _setter("selectable", selectable)
+        _setter("type", type)
 
     @property
     @pulumi.getter
@@ -1309,9 +2004,24 @@ class GetSizeSortResult(dict):
         :param str key: Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
         :param str direction: The sort direction. This may be either `asc` or `desc`.
         """
-        pulumi.set(__self__, "key", key)
+        GetSizeSortResult._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            key=key,
+            direction=direction,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             key: Optional[str] = None,
+             direction: Optional[str] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if key is None:
+            raise TypeError("Missing 'key' argument")
+
+        _setter("key", key)
         if direction is not None:
-            pulumi.set(__self__, "direction", direction)
+            _setter("direction", direction)
 
     @property
     @pulumi.getter

@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['NetworkArgs', 'Network']
@@ -21,9 +21,24 @@ class NetworkArgs:
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] region: The region of the network
         """
-        pulumi.set(__self__, "label", label)
+        NetworkArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            label=label,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             label: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if label is None:
+            raise TypeError("Missing 'label' argument")
+
+        _setter("label", label)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -64,14 +79,31 @@ class _NetworkState:
         :param pulumi.Input[str] name: The name of the network
         :param pulumi.Input[str] region: The region of the network
         """
+        _NetworkState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            default=default,
+            label=label,
+            name=name,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             default: Optional[pulumi.Input[bool]] = None,
+             label: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+
         if default is not None:
-            pulumi.set(__self__, "default", default)
+            _setter("default", default)
         if label is not None:
-            pulumi.set(__self__, "label", label)
+            _setter("label", label)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -191,6 +223,10 @@ class Network(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            NetworkArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,

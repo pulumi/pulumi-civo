@@ -6,7 +6,7 @@ import copy
 import warnings
 import pulumi
 import pulumi.runtime
-from typing import Any, Mapping, Optional, Sequence, Union, overload
+from typing import Any, Callable, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
 
 __all__ = ['DatabaseArgs', 'Database']
@@ -33,18 +33,55 @@ class DatabaseArgs:
         :param pulumi.Input[str] network_id: The id of the associated network
         :param pulumi.Input[str] region: The region where the database will be created.
         """
-        pulumi.set(__self__, "engine", engine)
-        pulumi.set(__self__, "nodes", nodes)
-        pulumi.set(__self__, "size", size)
-        pulumi.set(__self__, "version", version)
+        DatabaseArgs._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            engine=engine,
+            nodes=nodes,
+            size=size,
+            version=version,
+            firewall_id=firewall_id,
+            name=name,
+            network_id=network_id,
+            region=region,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             engine: Optional[pulumi.Input[str]] = None,
+             nodes: Optional[pulumi.Input[int]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             firewall_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if engine is None:
+            raise TypeError("Missing 'engine' argument")
+        if nodes is None:
+            raise TypeError("Missing 'nodes' argument")
+        if size is None:
+            raise TypeError("Missing 'size' argument")
+        if version is None:
+            raise TypeError("Missing 'version' argument")
+        if firewall_id is None and 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
+        _setter("engine", engine)
+        _setter("nodes", nodes)
+        _setter("size", size)
+        _setter("version", version)
         if firewall_id is not None:
-            pulumi.set(__self__, "firewall_id", firewall_id)
+            _setter("firewall_id", firewall_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
 
     @property
     @pulumi.getter
@@ -177,34 +214,77 @@ class _DatabaseState:
         :param pulumi.Input[str] username: The username of the database
         :param pulumi.Input[str] version: The version of the database
         """
+        _DatabaseState._configure(
+            lambda key, value: pulumi.set(__self__, key, value),
+            dns_endpoint=dns_endpoint,
+            endpoint=endpoint,
+            engine=engine,
+            firewall_id=firewall_id,
+            name=name,
+            network_id=network_id,
+            nodes=nodes,
+            password=password,
+            port=port,
+            region=region,
+            size=size,
+            status=status,
+            username=username,
+            version=version,
+        )
+    @staticmethod
+    def _configure(
+             _setter: Callable[[Any, Any], None],
+             dns_endpoint: Optional[pulumi.Input[str]] = None,
+             endpoint: Optional[pulumi.Input[str]] = None,
+             engine: Optional[pulumi.Input[str]] = None,
+             firewall_id: Optional[pulumi.Input[str]] = None,
+             name: Optional[pulumi.Input[str]] = None,
+             network_id: Optional[pulumi.Input[str]] = None,
+             nodes: Optional[pulumi.Input[int]] = None,
+             password: Optional[pulumi.Input[str]] = None,
+             port: Optional[pulumi.Input[int]] = None,
+             region: Optional[pulumi.Input[str]] = None,
+             size: Optional[pulumi.Input[str]] = None,
+             status: Optional[pulumi.Input[str]] = None,
+             username: Optional[pulumi.Input[str]] = None,
+             version: Optional[pulumi.Input[str]] = None,
+             opts: Optional[pulumi.ResourceOptions]=None,
+             **kwargs):
+        if dns_endpoint is None and 'dnsEndpoint' in kwargs:
+            dns_endpoint = kwargs['dnsEndpoint']
+        if firewall_id is None and 'firewallId' in kwargs:
+            firewall_id = kwargs['firewallId']
+        if network_id is None and 'networkId' in kwargs:
+            network_id = kwargs['networkId']
+
         if dns_endpoint is not None:
-            pulumi.set(__self__, "dns_endpoint", dns_endpoint)
+            _setter("dns_endpoint", dns_endpoint)
         if endpoint is not None:
-            pulumi.set(__self__, "endpoint", endpoint)
+            _setter("endpoint", endpoint)
         if engine is not None:
-            pulumi.set(__self__, "engine", engine)
+            _setter("engine", engine)
         if firewall_id is not None:
-            pulumi.set(__self__, "firewall_id", firewall_id)
+            _setter("firewall_id", firewall_id)
         if name is not None:
-            pulumi.set(__self__, "name", name)
+            _setter("name", name)
         if network_id is not None:
-            pulumi.set(__self__, "network_id", network_id)
+            _setter("network_id", network_id)
         if nodes is not None:
-            pulumi.set(__self__, "nodes", nodes)
+            _setter("nodes", nodes)
         if password is not None:
-            pulumi.set(__self__, "password", password)
+            _setter("password", password)
         if port is not None:
-            pulumi.set(__self__, "port", port)
+            _setter("port", port)
         if region is not None:
-            pulumi.set(__self__, "region", region)
+            _setter("region", region)
         if size is not None:
-            pulumi.set(__self__, "size", size)
+            _setter("size", size)
         if status is not None:
-            pulumi.set(__self__, "status", status)
+            _setter("status", status)
         if username is not None:
-            pulumi.set(__self__, "username", username)
+            _setter("username", username)
         if version is not None:
-            pulumi.set(__self__, "version", version)
+            _setter("version", version)
 
     @property
     @pulumi.getter(name="dnsEndpoint")
@@ -434,6 +514,10 @@ class Database(pulumi.CustomResource):
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
+            kwargs = kwargs or {}
+            def _setter(key, value):
+                kwargs[key] = value
+            DatabaseArgs._configure(_setter, **kwargs)
             __self__._internal_init(resource_name, *args, **kwargs)
 
     def _internal_init(__self__,
