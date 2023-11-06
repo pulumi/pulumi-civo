@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // The instance reserved ip assignment resource schema definition
@@ -155,12 +154,6 @@ func (i *InstanceReservedIpAssignment) ToInstanceReservedIpAssignmentOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceReservedIpAssignmentOutput)
 }
 
-func (i *InstanceReservedIpAssignment) ToOutput(ctx context.Context) pulumix.Output[*InstanceReservedIpAssignment] {
-	return pulumix.Output[*InstanceReservedIpAssignment]{
-		OutputState: i.ToInstanceReservedIpAssignmentOutputWithContext(ctx).OutputState,
-	}
-}
-
 // InstanceReservedIpAssignmentArrayInput is an input type that accepts InstanceReservedIpAssignmentArray and InstanceReservedIpAssignmentArrayOutput values.
 // You can construct a concrete instance of `InstanceReservedIpAssignmentArrayInput` via:
 //
@@ -184,12 +177,6 @@ func (i InstanceReservedIpAssignmentArray) ToInstanceReservedIpAssignmentArrayOu
 
 func (i InstanceReservedIpAssignmentArray) ToInstanceReservedIpAssignmentArrayOutputWithContext(ctx context.Context) InstanceReservedIpAssignmentArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceReservedIpAssignmentArrayOutput)
-}
-
-func (i InstanceReservedIpAssignmentArray) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceReservedIpAssignment] {
-	return pulumix.Output[[]*InstanceReservedIpAssignment]{
-		OutputState: i.ToInstanceReservedIpAssignmentArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // InstanceReservedIpAssignmentMapInput is an input type that accepts InstanceReservedIpAssignmentMap and InstanceReservedIpAssignmentMapOutput values.
@@ -217,12 +204,6 @@ func (i InstanceReservedIpAssignmentMap) ToInstanceReservedIpAssignmentMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(InstanceReservedIpAssignmentMapOutput)
 }
 
-func (i InstanceReservedIpAssignmentMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceReservedIpAssignment] {
-	return pulumix.Output[map[string]*InstanceReservedIpAssignment]{
-		OutputState: i.ToInstanceReservedIpAssignmentMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type InstanceReservedIpAssignmentOutput struct{ *pulumi.OutputState }
 
 func (InstanceReservedIpAssignmentOutput) ElementType() reflect.Type {
@@ -235,12 +216,6 @@ func (o InstanceReservedIpAssignmentOutput) ToInstanceReservedIpAssignmentOutput
 
 func (o InstanceReservedIpAssignmentOutput) ToInstanceReservedIpAssignmentOutputWithContext(ctx context.Context) InstanceReservedIpAssignmentOutput {
 	return o
-}
-
-func (o InstanceReservedIpAssignmentOutput) ToOutput(ctx context.Context) pulumix.Output[*InstanceReservedIpAssignment] {
-	return pulumix.Output[*InstanceReservedIpAssignment]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The instance id
@@ -272,12 +247,6 @@ func (o InstanceReservedIpAssignmentArrayOutput) ToInstanceReservedIpAssignmentA
 	return o
 }
 
-func (o InstanceReservedIpAssignmentArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*InstanceReservedIpAssignment] {
-	return pulumix.Output[[]*InstanceReservedIpAssignment]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o InstanceReservedIpAssignmentArrayOutput) Index(i pulumi.IntInput) InstanceReservedIpAssignmentOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *InstanceReservedIpAssignment {
 		return vs[0].([]*InstanceReservedIpAssignment)[vs[1].(int)]
@@ -296,12 +265,6 @@ func (o InstanceReservedIpAssignmentMapOutput) ToInstanceReservedIpAssignmentMap
 
 func (o InstanceReservedIpAssignmentMapOutput) ToInstanceReservedIpAssignmentMapOutputWithContext(ctx context.Context) InstanceReservedIpAssignmentMapOutput {
 	return o
-}
-
-func (o InstanceReservedIpAssignmentMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*InstanceReservedIpAssignment] {
-	return pulumix.Output[map[string]*InstanceReservedIpAssignment]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o InstanceReservedIpAssignmentMapOutput) MapIndex(k pulumi.StringInput) InstanceReservedIpAssignmentOutput {

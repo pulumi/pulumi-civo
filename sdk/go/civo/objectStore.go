@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides an Object Store resource. This can be used to create, modify, and delete object stores.
@@ -179,12 +178,6 @@ func (i *ObjectStore) ToObjectStoreOutputWithContext(ctx context.Context) Object
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectStoreOutput)
 }
 
-func (i *ObjectStore) ToOutput(ctx context.Context) pulumix.Output[*ObjectStore] {
-	return pulumix.Output[*ObjectStore]{
-		OutputState: i.ToObjectStoreOutputWithContext(ctx).OutputState,
-	}
-}
-
 // ObjectStoreArrayInput is an input type that accepts ObjectStoreArray and ObjectStoreArrayOutput values.
 // You can construct a concrete instance of `ObjectStoreArrayInput` via:
 //
@@ -208,12 +201,6 @@ func (i ObjectStoreArray) ToObjectStoreArrayOutput() ObjectStoreArrayOutput {
 
 func (i ObjectStoreArray) ToObjectStoreArrayOutputWithContext(ctx context.Context) ObjectStoreArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectStoreArrayOutput)
-}
-
-func (i ObjectStoreArray) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectStore] {
-	return pulumix.Output[[]*ObjectStore]{
-		OutputState: i.ToObjectStoreArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // ObjectStoreMapInput is an input type that accepts ObjectStoreMap and ObjectStoreMapOutput values.
@@ -241,12 +228,6 @@ func (i ObjectStoreMap) ToObjectStoreMapOutputWithContext(ctx context.Context) O
 	return pulumi.ToOutputWithContext(ctx, i).(ObjectStoreMapOutput)
 }
 
-func (i ObjectStoreMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectStore] {
-	return pulumix.Output[map[string]*ObjectStore]{
-		OutputState: i.ToObjectStoreMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type ObjectStoreOutput struct{ *pulumi.OutputState }
 
 func (ObjectStoreOutput) ElementType() reflect.Type {
@@ -259,12 +240,6 @@ func (o ObjectStoreOutput) ToObjectStoreOutput() ObjectStoreOutput {
 
 func (o ObjectStoreOutput) ToObjectStoreOutputWithContext(ctx context.Context) ObjectStoreOutput {
 	return o
-}
-
-func (o ObjectStoreOutput) ToOutput(ctx context.Context) pulumix.Output[*ObjectStore] {
-	return pulumix.Output[*ObjectStore]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The access key ID from the Object Store credential. If this is not set, a new credential will be created.
@@ -311,12 +286,6 @@ func (o ObjectStoreArrayOutput) ToObjectStoreArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o ObjectStoreArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ObjectStore] {
-	return pulumix.Output[[]*ObjectStore]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o ObjectStoreArrayOutput) Index(i pulumi.IntInput) ObjectStoreOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ObjectStore {
 		return vs[0].([]*ObjectStore)[vs[1].(int)]
@@ -335,12 +304,6 @@ func (o ObjectStoreMapOutput) ToObjectStoreMapOutput() ObjectStoreMapOutput {
 
 func (o ObjectStoreMapOutput) ToObjectStoreMapOutputWithContext(ctx context.Context) ObjectStoreMapOutput {
 	return o
-}
-
-func (o ObjectStoreMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ObjectStore] {
-	return pulumix.Output[map[string]*ObjectStore]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o ObjectStoreMapOutput) MapIndex(k pulumi.StringInput) ObjectStoreOutput {

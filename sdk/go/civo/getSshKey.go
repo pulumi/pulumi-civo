@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
@@ -81,12 +80,6 @@ func (o LookupSshKeyResultOutput) ToLookupSshKeyResultOutput() LookupSshKeyResul
 
 func (o LookupSshKeyResultOutput) ToLookupSshKeyResultOutputWithContext(ctx context.Context) LookupSshKeyResultOutput {
 	return o
-}
-
-func (o LookupSshKeyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSshKeyResult] {
-	return pulumix.Output[LookupSshKeyResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The fingerprint of the public key of the SSH key

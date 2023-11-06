@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupReservedIp(ctx *pulumi.Context, args *LookupReservedIpArgs, opts ...pulumi.InvokeOption) (*LookupReservedIpResult, error) {
@@ -84,12 +83,6 @@ func (o LookupReservedIpResultOutput) ToLookupReservedIpResultOutput() LookupRes
 
 func (o LookupReservedIpResultOutput) ToLookupReservedIpResultOutputWithContext(ctx context.Context) LookupReservedIpResultOutput {
 	return o
-}
-
-func (o LookupReservedIpResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupReservedIpResult] {
-	return pulumix.Output[LookupReservedIpResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // ID for the ip address

@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on a domain. This data source provides the name and the id.
@@ -107,12 +106,6 @@ func (o LookupDnsDomainNameResultOutput) ToLookupDnsDomainNameResultOutput() Loo
 
 func (o LookupDnsDomainNameResultOutput) ToLookupDnsDomainNameResultOutputWithContext(ctx context.Context) LookupDnsDomainNameResultOutput {
 	return o
-}
-
-func (o LookupDnsDomainNameResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDnsDomainNameResult] {
-	return pulumix.Output[LookupDnsDomainNameResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID of this resource.
