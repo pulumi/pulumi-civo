@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieves information about the database versions that Civo supports, with the ability to filter the results.
@@ -80,12 +79,6 @@ func (o GetDatabaseVersionResultOutput) ToGetDatabaseVersionResultOutput() GetDa
 
 func (o GetDatabaseVersionResultOutput) ToGetDatabaseVersionResultOutputWithContext(ctx context.Context) GetDatabaseVersionResultOutput {
 	return o
-}
-
-func (o GetDatabaseVersionResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionResult] {
-	return pulumix.Output[GetDatabaseVersionResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // One or more key/value pairs on which to filter results

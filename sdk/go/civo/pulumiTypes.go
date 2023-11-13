@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
@@ -65,12 +64,6 @@ func (i FirewallEgressRuleArgs) ToFirewallEgressRuleOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallEgressRuleOutput)
 }
 
-func (i FirewallEgressRuleArgs) ToOutput(ctx context.Context) pulumix.Output[FirewallEgressRule] {
-	return pulumix.Output[FirewallEgressRule]{
-		OutputState: i.ToFirewallEgressRuleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallEgressRuleArrayInput is an input type that accepts FirewallEgressRuleArray and FirewallEgressRuleArrayOutput values.
 // You can construct a concrete instance of `FirewallEgressRuleArrayInput` via:
 //
@@ -96,12 +89,6 @@ func (i FirewallEgressRuleArray) ToFirewallEgressRuleArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallEgressRuleArrayOutput)
 }
 
-func (i FirewallEgressRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]FirewallEgressRule] {
-	return pulumix.Output[[]FirewallEgressRule]{
-		OutputState: i.ToFirewallEgressRuleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallEgressRuleOutput struct{ *pulumi.OutputState }
 
 func (FirewallEgressRuleOutput) ElementType() reflect.Type {
@@ -114,12 +101,6 @@ func (o FirewallEgressRuleOutput) ToFirewallEgressRuleOutput() FirewallEgressRul
 
 func (o FirewallEgressRuleOutput) ToFirewallEgressRuleOutputWithContext(ctx context.Context) FirewallEgressRuleOutput {
 	return o
-}
-
-func (o FirewallEgressRuleOutput) ToOutput(ctx context.Context) pulumix.Output[FirewallEgressRule] {
-	return pulumix.Output[FirewallEgressRule]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
@@ -163,12 +144,6 @@ func (o FirewallEgressRuleArrayOutput) ToFirewallEgressRuleArrayOutput() Firewal
 
 func (o FirewallEgressRuleArrayOutput) ToFirewallEgressRuleArrayOutputWithContext(ctx context.Context) FirewallEgressRuleArrayOutput {
 	return o
-}
-
-func (o FirewallEgressRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]FirewallEgressRule] {
-	return pulumix.Output[[]FirewallEgressRule]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o FirewallEgressRuleArrayOutput) Index(i pulumi.IntInput) FirewallEgressRuleOutput {
@@ -228,12 +203,6 @@ func (i FirewallIngressRuleArgs) ToFirewallIngressRuleOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIngressRuleOutput)
 }
 
-func (i FirewallIngressRuleArgs) ToOutput(ctx context.Context) pulumix.Output[FirewallIngressRule] {
-	return pulumix.Output[FirewallIngressRule]{
-		OutputState: i.ToFirewallIngressRuleOutputWithContext(ctx).OutputState,
-	}
-}
-
 // FirewallIngressRuleArrayInput is an input type that accepts FirewallIngressRuleArray and FirewallIngressRuleArrayOutput values.
 // You can construct a concrete instance of `FirewallIngressRuleArrayInput` via:
 //
@@ -259,12 +228,6 @@ func (i FirewallIngressRuleArray) ToFirewallIngressRuleArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIngressRuleArrayOutput)
 }
 
-func (i FirewallIngressRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]FirewallIngressRule] {
-	return pulumix.Output[[]FirewallIngressRule]{
-		OutputState: i.ToFirewallIngressRuleArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type FirewallIngressRuleOutput struct{ *pulumi.OutputState }
 
 func (FirewallIngressRuleOutput) ElementType() reflect.Type {
@@ -277,12 +240,6 @@ func (o FirewallIngressRuleOutput) ToFirewallIngressRuleOutput() FirewallIngress
 
 func (o FirewallIngressRuleOutput) ToFirewallIngressRuleOutputWithContext(ctx context.Context) FirewallIngressRuleOutput {
 	return o
-}
-
-func (o FirewallIngressRuleOutput) ToOutput(ctx context.Context) pulumix.Output[FirewallIngressRule] {
-	return pulumix.Output[FirewallIngressRule]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
@@ -328,12 +285,6 @@ func (o FirewallIngressRuleArrayOutput) ToFirewallIngressRuleArrayOutputWithCont
 	return o
 }
 
-func (o FirewallIngressRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]FirewallIngressRule] {
-	return pulumix.Output[[]FirewallIngressRule]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o FirewallIngressRuleArrayOutput) Index(i pulumi.IntInput) FirewallIngressRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIngressRule {
 		return vs[0].([]FirewallIngressRule)[vs[1].(int)]
@@ -377,12 +328,6 @@ func (i KubernetesClusterInstalledApplicationArgs) ToKubernetesClusterInstalledA
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterInstalledApplicationOutput)
 }
 
-func (i KubernetesClusterInstalledApplicationArgs) ToOutput(ctx context.Context) pulumix.Output[KubernetesClusterInstalledApplication] {
-	return pulumix.Output[KubernetesClusterInstalledApplication]{
-		OutputState: i.ToKubernetesClusterInstalledApplicationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KubernetesClusterInstalledApplicationArrayInput is an input type that accepts KubernetesClusterInstalledApplicationArray and KubernetesClusterInstalledApplicationArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterInstalledApplicationArrayInput` via:
 //
@@ -408,12 +353,6 @@ func (i KubernetesClusterInstalledApplicationArray) ToKubernetesClusterInstalled
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterInstalledApplicationArrayOutput)
 }
 
-func (i KubernetesClusterInstalledApplicationArray) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesClusterInstalledApplication] {
-	return pulumix.Output[[]KubernetesClusterInstalledApplication]{
-		OutputState: i.ToKubernetesClusterInstalledApplicationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KubernetesClusterInstalledApplicationOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterInstalledApplicationOutput) ElementType() reflect.Type {
@@ -426,12 +365,6 @@ func (o KubernetesClusterInstalledApplicationOutput) ToKubernetesClusterInstalle
 
 func (o KubernetesClusterInstalledApplicationOutput) ToKubernetesClusterInstalledApplicationOutputWithContext(ctx context.Context) KubernetesClusterInstalledApplicationOutput {
 	return o
-}
-
-func (o KubernetesClusterInstalledApplicationOutput) ToOutput(ctx context.Context) pulumix.Output[KubernetesClusterInstalledApplication] {
-	return pulumix.Output[KubernetesClusterInstalledApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesClusterInstalledApplicationOutput) Application() pulumi.StringPtrOutput {
@@ -462,12 +395,6 @@ func (o KubernetesClusterInstalledApplicationArrayOutput) ToKubernetesClusterIns
 
 func (o KubernetesClusterInstalledApplicationArrayOutput) ToKubernetesClusterInstalledApplicationArrayOutputWithContext(ctx context.Context) KubernetesClusterInstalledApplicationArrayOutput {
 	return o
-}
-
-func (o KubernetesClusterInstalledApplicationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesClusterInstalledApplication] {
-	return pulumix.Output[[]KubernetesClusterInstalledApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInput) KubernetesClusterInstalledApplicationOutput {
@@ -525,12 +452,6 @@ func (i KubernetesClusterPoolsArgs) ToKubernetesClusterPoolsOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolsOutput)
 }
 
-func (i KubernetesClusterPoolsArgs) ToOutput(ctx context.Context) pulumix.Output[KubernetesClusterPools] {
-	return pulumix.Output[KubernetesClusterPools]{
-		OutputState: i.ToKubernetesClusterPoolsOutputWithContext(ctx).OutputState,
-	}
-}
-
 func (i KubernetesClusterPoolsArgs) ToKubernetesClusterPoolsPtrOutput() KubernetesClusterPoolsPtrOutput {
 	return i.ToKubernetesClusterPoolsPtrOutputWithContext(context.Background())
 }
@@ -572,12 +493,6 @@ func (i *kubernetesClusterPoolsPtrType) ToKubernetesClusterPoolsPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesClusterPoolsPtrOutput)
 }
 
-func (i *kubernetesClusterPoolsPtrType) ToOutput(ctx context.Context) pulumix.Output[*KubernetesClusterPools] {
-	return pulumix.Output[*KubernetesClusterPools]{
-		OutputState: i.ToKubernetesClusterPoolsPtrOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KubernetesClusterPoolsOutput struct{ *pulumi.OutputState }
 
 func (KubernetesClusterPoolsOutput) ElementType() reflect.Type {
@@ -600,12 +515,6 @@ func (o KubernetesClusterPoolsOutput) ToKubernetesClusterPoolsPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubernetesClusterPools) *KubernetesClusterPools {
 		return &v
 	}).(KubernetesClusterPoolsPtrOutput)
-}
-
-func (o KubernetesClusterPoolsOutput) ToOutput(ctx context.Context) pulumix.Output[KubernetesClusterPools] {
-	return pulumix.Output[KubernetesClusterPools]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Instance names in the nodepool
@@ -645,12 +554,6 @@ func (o KubernetesClusterPoolsPtrOutput) ToKubernetesClusterPoolsPtrOutput() Kub
 
 func (o KubernetesClusterPoolsPtrOutput) ToKubernetesClusterPoolsPtrOutputWithContext(ctx context.Context) KubernetesClusterPoolsPtrOutput {
 	return o
-}
-
-func (o KubernetesClusterPoolsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*KubernetesClusterPools] {
-	return pulumix.Output[*KubernetesClusterPools]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesClusterPoolsPtrOutput) Elem() KubernetesClusterPoolsOutput {
@@ -748,12 +651,6 @@ func (i KubernetesNodePoolTaintArgs) ToKubernetesNodePoolTaintOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintOutput)
 }
 
-func (i KubernetesNodePoolTaintArgs) ToOutput(ctx context.Context) pulumix.Output[KubernetesNodePoolTaint] {
-	return pulumix.Output[KubernetesNodePoolTaint]{
-		OutputState: i.ToKubernetesNodePoolTaintOutputWithContext(ctx).OutputState,
-	}
-}
-
 // KubernetesNodePoolTaintArrayInput is an input type that accepts KubernetesNodePoolTaintArray and KubernetesNodePoolTaintArrayOutput values.
 // You can construct a concrete instance of `KubernetesNodePoolTaintArrayInput` via:
 //
@@ -779,12 +676,6 @@ func (i KubernetesNodePoolTaintArray) ToKubernetesNodePoolTaintArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(KubernetesNodePoolTaintArrayOutput)
 }
 
-func (i KubernetesNodePoolTaintArray) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesNodePoolTaint] {
-	return pulumix.Output[[]KubernetesNodePoolTaint]{
-		OutputState: i.ToKubernetesNodePoolTaintArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type KubernetesNodePoolTaintOutput struct{ *pulumi.OutputState }
 
 func (KubernetesNodePoolTaintOutput) ElementType() reflect.Type {
@@ -797,12 +688,6 @@ func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutput() Kuberne
 
 func (o KubernetesNodePoolTaintOutput) ToKubernetesNodePoolTaintOutputWithContext(ctx context.Context) KubernetesNodePoolTaintOutput {
 	return o
-}
-
-func (o KubernetesNodePoolTaintOutput) ToOutput(ctx context.Context) pulumix.Output[KubernetesNodePoolTaint] {
-	return pulumix.Output[KubernetesNodePoolTaint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesNodePoolTaintOutput) Effect() pulumi.StringOutput {
@@ -829,12 +714,6 @@ func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutput
 
 func (o KubernetesNodePoolTaintArrayOutput) ToKubernetesNodePoolTaintArrayOutputWithContext(ctx context.Context) KubernetesNodePoolTaintArrayOutput {
 	return o
-}
-
-func (o KubernetesNodePoolTaintArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]KubernetesNodePoolTaint] {
-	return pulumix.Output[[]KubernetesNodePoolTaint]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o KubernetesNodePoolTaintArrayOutput) Index(i pulumi.IntInput) KubernetesNodePoolTaintOutput {
@@ -888,12 +767,6 @@ func (i GetDatabaseVersionFilterArgs) ToGetDatabaseVersionFilterOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionFilterOutput)
 }
 
-func (i GetDatabaseVersionFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionFilter] {
-	return pulumix.Output[GetDatabaseVersionFilter]{
-		OutputState: i.ToGetDatabaseVersionFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDatabaseVersionFilterArrayInput is an input type that accepts GetDatabaseVersionFilterArray and GetDatabaseVersionFilterArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseVersionFilterArrayInput` via:
 //
@@ -919,12 +792,6 @@ func (i GetDatabaseVersionFilterArray) ToGetDatabaseVersionFilterArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionFilterArrayOutput)
 }
 
-func (i GetDatabaseVersionFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionFilter] {
-	return pulumix.Output[[]GetDatabaseVersionFilter]{
-		OutputState: i.ToGetDatabaseVersionFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDatabaseVersionFilterOutput struct{ *pulumi.OutputState }
 
 func (GetDatabaseVersionFilterOutput) ElementType() reflect.Type {
@@ -937,12 +804,6 @@ func (o GetDatabaseVersionFilterOutput) ToGetDatabaseVersionFilterOutput() GetDa
 
 func (o GetDatabaseVersionFilterOutput) ToGetDatabaseVersionFilterOutputWithContext(ctx context.Context) GetDatabaseVersionFilterOutput {
 	return o
-}
-
-func (o GetDatabaseVersionFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionFilter] {
-	return pulumix.Output[GetDatabaseVersionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -977,12 +838,6 @@ func (o GetDatabaseVersionFilterArrayOutput) ToGetDatabaseVersionFilterArrayOutp
 
 func (o GetDatabaseVersionFilterArrayOutput) ToGetDatabaseVersionFilterArrayOutputWithContext(ctx context.Context) GetDatabaseVersionFilterArrayOutput {
 	return o
-}
-
-func (o GetDatabaseVersionFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionFilter] {
-	return pulumix.Output[[]GetDatabaseVersionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDatabaseVersionFilterArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionFilterOutput {
@@ -1028,12 +883,6 @@ func (i GetDatabaseVersionSortArgs) ToGetDatabaseVersionSortOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionSortOutput)
 }
 
-func (i GetDatabaseVersionSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionSort] {
-	return pulumix.Output[GetDatabaseVersionSort]{
-		OutputState: i.ToGetDatabaseVersionSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDatabaseVersionSortArrayInput is an input type that accepts GetDatabaseVersionSortArray and GetDatabaseVersionSortArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseVersionSortArrayInput` via:
 //
@@ -1059,12 +908,6 @@ func (i GetDatabaseVersionSortArray) ToGetDatabaseVersionSortArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionSortArrayOutput)
 }
 
-func (i GetDatabaseVersionSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionSort] {
-	return pulumix.Output[[]GetDatabaseVersionSort]{
-		OutputState: i.ToGetDatabaseVersionSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDatabaseVersionSortOutput struct{ *pulumi.OutputState }
 
 func (GetDatabaseVersionSortOutput) ElementType() reflect.Type {
@@ -1077,12 +920,6 @@ func (o GetDatabaseVersionSortOutput) ToGetDatabaseVersionSortOutput() GetDataba
 
 func (o GetDatabaseVersionSortOutput) ToGetDatabaseVersionSortOutputWithContext(ctx context.Context) GetDatabaseVersionSortOutput {
 	return o
-}
-
-func (o GetDatabaseVersionSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionSort] {
-	return pulumix.Output[GetDatabaseVersionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -1107,12 +944,6 @@ func (o GetDatabaseVersionSortArrayOutput) ToGetDatabaseVersionSortArrayOutput()
 
 func (o GetDatabaseVersionSortArrayOutput) ToGetDatabaseVersionSortArrayOutputWithContext(ctx context.Context) GetDatabaseVersionSortArrayOutput {
 	return o
-}
-
-func (o GetDatabaseVersionSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionSort] {
-	return pulumix.Output[[]GetDatabaseVersionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDatabaseVersionSortArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionSortOutput {
@@ -1156,12 +987,6 @@ func (i GetDatabaseVersionVersionArgs) ToGetDatabaseVersionVersionOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionVersionOutput)
 }
 
-func (i GetDatabaseVersionVersionArgs) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionVersion] {
-	return pulumix.Output[GetDatabaseVersionVersion]{
-		OutputState: i.ToGetDatabaseVersionVersionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDatabaseVersionVersionArrayInput is an input type that accepts GetDatabaseVersionVersionArray and GetDatabaseVersionVersionArrayOutput values.
 // You can construct a concrete instance of `GetDatabaseVersionVersionArrayInput` via:
 //
@@ -1187,12 +1012,6 @@ func (i GetDatabaseVersionVersionArray) ToGetDatabaseVersionVersionArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(GetDatabaseVersionVersionArrayOutput)
 }
 
-func (i GetDatabaseVersionVersionArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionVersion] {
-	return pulumix.Output[[]GetDatabaseVersionVersion]{
-		OutputState: i.ToGetDatabaseVersionVersionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDatabaseVersionVersionOutput struct{ *pulumi.OutputState }
 
 func (GetDatabaseVersionVersionOutput) ElementType() reflect.Type {
@@ -1205,12 +1024,6 @@ func (o GetDatabaseVersionVersionOutput) ToGetDatabaseVersionVersionOutput() Get
 
 func (o GetDatabaseVersionVersionOutput) ToGetDatabaseVersionVersionOutputWithContext(ctx context.Context) GetDatabaseVersionVersionOutput {
 	return o
-}
-
-func (o GetDatabaseVersionVersionOutput) ToOutput(ctx context.Context) pulumix.Output[GetDatabaseVersionVersion] {
-	return pulumix.Output[GetDatabaseVersionVersion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDatabaseVersionVersionOutput) Default() pulumi.BoolOutput {
@@ -1237,12 +1050,6 @@ func (o GetDatabaseVersionVersionArrayOutput) ToGetDatabaseVersionVersionArrayOu
 
 func (o GetDatabaseVersionVersionArrayOutput) ToGetDatabaseVersionVersionArrayOutputWithContext(ctx context.Context) GetDatabaseVersionVersionArrayOutput {
 	return o
-}
-
-func (o GetDatabaseVersionVersionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDatabaseVersionVersion] {
-	return pulumix.Output[[]GetDatabaseVersionVersion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDatabaseVersionVersionArrayOutput) Index(i pulumi.IntInput) GetDatabaseVersionVersionOutput {
@@ -1288,12 +1095,6 @@ func (i GetDiskImageDiskimageArgs) ToGetDiskImageDiskimageOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageDiskimageOutput)
 }
 
-func (i GetDiskImageDiskimageArgs) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageDiskimage] {
-	return pulumix.Output[GetDiskImageDiskimage]{
-		OutputState: i.ToGetDiskImageDiskimageOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDiskImageDiskimageArrayInput is an input type that accepts GetDiskImageDiskimageArray and GetDiskImageDiskimageArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageDiskimageArrayInput` via:
 //
@@ -1319,12 +1120,6 @@ func (i GetDiskImageDiskimageArray) ToGetDiskImageDiskimageArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageDiskimageArrayOutput)
 }
 
-func (i GetDiskImageDiskimageArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageDiskimage] {
-	return pulumix.Output[[]GetDiskImageDiskimage]{
-		OutputState: i.ToGetDiskImageDiskimageArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDiskImageDiskimageOutput struct{ *pulumi.OutputState }
 
 func (GetDiskImageDiskimageOutput) ElementType() reflect.Type {
@@ -1337,12 +1132,6 @@ func (o GetDiskImageDiskimageOutput) ToGetDiskImageDiskimageOutput() GetDiskImag
 
 func (o GetDiskImageDiskimageOutput) ToGetDiskImageDiskimageOutputWithContext(ctx context.Context) GetDiskImageDiskimageOutput {
 	return o
-}
-
-func (o GetDiskImageDiskimageOutput) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageDiskimage] {
-	return pulumix.Output[GetDiskImageDiskimage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDiskImageDiskimageOutput) Id() pulumi.StringOutput {
@@ -1373,12 +1162,6 @@ func (o GetDiskImageDiskimageArrayOutput) ToGetDiskImageDiskimageArrayOutput() G
 
 func (o GetDiskImageDiskimageArrayOutput) ToGetDiskImageDiskimageArrayOutputWithContext(ctx context.Context) GetDiskImageDiskimageArrayOutput {
 	return o
-}
-
-func (o GetDiskImageDiskimageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageDiskimage] {
-	return pulumix.Output[[]GetDiskImageDiskimage]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDiskImageDiskimageArrayOutput) Index(i pulumi.IntInput) GetDiskImageDiskimageOutput {
@@ -1432,12 +1215,6 @@ func (i GetDiskImageFilterArgs) ToGetDiskImageFilterOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageFilterOutput)
 }
 
-func (i GetDiskImageFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageFilter] {
-	return pulumix.Output[GetDiskImageFilter]{
-		OutputState: i.ToGetDiskImageFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDiskImageFilterArrayInput is an input type that accepts GetDiskImageFilterArray and GetDiskImageFilterArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageFilterArrayInput` via:
 //
@@ -1463,12 +1240,6 @@ func (i GetDiskImageFilterArray) ToGetDiskImageFilterArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageFilterArrayOutput)
 }
 
-func (i GetDiskImageFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageFilter] {
-	return pulumix.Output[[]GetDiskImageFilter]{
-		OutputState: i.ToGetDiskImageFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDiskImageFilterOutput struct{ *pulumi.OutputState }
 
 func (GetDiskImageFilterOutput) ElementType() reflect.Type {
@@ -1481,12 +1252,6 @@ func (o GetDiskImageFilterOutput) ToGetDiskImageFilterOutput() GetDiskImageFilte
 
 func (o GetDiskImageFilterOutput) ToGetDiskImageFilterOutputWithContext(ctx context.Context) GetDiskImageFilterOutput {
 	return o
-}
-
-func (o GetDiskImageFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageFilter] {
-	return pulumix.Output[GetDiskImageFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -1521,12 +1286,6 @@ func (o GetDiskImageFilterArrayOutput) ToGetDiskImageFilterArrayOutput() GetDisk
 
 func (o GetDiskImageFilterArrayOutput) ToGetDiskImageFilterArrayOutputWithContext(ctx context.Context) GetDiskImageFilterArrayOutput {
 	return o
-}
-
-func (o GetDiskImageFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageFilter] {
-	return pulumix.Output[[]GetDiskImageFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDiskImageFilterArrayOutput) Index(i pulumi.IntInput) GetDiskImageFilterOutput {
@@ -1572,12 +1331,6 @@ func (i GetDiskImageSortArgs) ToGetDiskImageSortOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageSortOutput)
 }
 
-func (i GetDiskImageSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageSort] {
-	return pulumix.Output[GetDiskImageSort]{
-		OutputState: i.ToGetDiskImageSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetDiskImageSortArrayInput is an input type that accepts GetDiskImageSortArray and GetDiskImageSortArrayOutput values.
 // You can construct a concrete instance of `GetDiskImageSortArrayInput` via:
 //
@@ -1603,12 +1356,6 @@ func (i GetDiskImageSortArray) ToGetDiskImageSortArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetDiskImageSortArrayOutput)
 }
 
-func (i GetDiskImageSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageSort] {
-	return pulumix.Output[[]GetDiskImageSort]{
-		OutputState: i.ToGetDiskImageSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetDiskImageSortOutput struct{ *pulumi.OutputState }
 
 func (GetDiskImageSortOutput) ElementType() reflect.Type {
@@ -1621,12 +1368,6 @@ func (o GetDiskImageSortOutput) ToGetDiskImageSortOutput() GetDiskImageSortOutpu
 
 func (o GetDiskImageSortOutput) ToGetDiskImageSortOutputWithContext(ctx context.Context) GetDiskImageSortOutput {
 	return o
-}
-
-func (o GetDiskImageSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageSort] {
-	return pulumix.Output[GetDiskImageSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -1651,12 +1392,6 @@ func (o GetDiskImageSortArrayOutput) ToGetDiskImageSortArrayOutput() GetDiskImag
 
 func (o GetDiskImageSortArrayOutput) ToGetDiskImageSortArrayOutputWithContext(ctx context.Context) GetDiskImageSortArrayOutput {
 	return o
-}
-
-func (o GetDiskImageSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetDiskImageSort] {
-	return pulumix.Output[[]GetDiskImageSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDiskImageSortArrayOutput) Index(i pulumi.IntInput) GetDiskImageSortOutput {
@@ -1710,12 +1445,6 @@ func (i GetInstancesFilterArgs) ToGetInstancesFilterOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesFilterOutput)
 }
 
-func (i GetInstancesFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetInstancesFilter] {
-	return pulumix.Output[GetInstancesFilter]{
-		OutputState: i.ToGetInstancesFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetInstancesFilterArrayInput is an input type that accepts GetInstancesFilterArray and GetInstancesFilterArrayOutput values.
 // You can construct a concrete instance of `GetInstancesFilterArrayInput` via:
 //
@@ -1741,12 +1470,6 @@ func (i GetInstancesFilterArray) ToGetInstancesFilterArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesFilterArrayOutput)
 }
 
-func (i GetInstancesFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesFilter] {
-	return pulumix.Output[[]GetInstancesFilter]{
-		OutputState: i.ToGetInstancesFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetInstancesFilterOutput struct{ *pulumi.OutputState }
 
 func (GetInstancesFilterOutput) ElementType() reflect.Type {
@@ -1759,12 +1482,6 @@ func (o GetInstancesFilterOutput) ToGetInstancesFilterOutput() GetInstancesFilte
 
 func (o GetInstancesFilterOutput) ToGetInstancesFilterOutputWithContext(ctx context.Context) GetInstancesFilterOutput {
 	return o
-}
-
-func (o GetInstancesFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstancesFilter] {
-	return pulumix.Output[GetInstancesFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -1799,12 +1516,6 @@ func (o GetInstancesFilterArrayOutput) ToGetInstancesFilterArrayOutput() GetInst
 
 func (o GetInstancesFilterArrayOutput) ToGetInstancesFilterArrayOutputWithContext(ctx context.Context) GetInstancesFilterArrayOutput {
 	return o
-}
-
-func (o GetInstancesFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesFilter] {
-	return pulumix.Output[[]GetInstancesFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetInstancesFilterArrayOutput) Index(i pulumi.IntInput) GetInstancesFilterOutput {
@@ -1886,12 +1597,6 @@ func (i GetInstancesInstanceArgs) ToGetInstancesInstanceOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceOutput)
 }
 
-func (i GetInstancesInstanceArgs) ToOutput(ctx context.Context) pulumix.Output[GetInstancesInstance] {
-	return pulumix.Output[GetInstancesInstance]{
-		OutputState: i.ToGetInstancesInstanceOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetInstancesInstanceArrayInput is an input type that accepts GetInstancesInstanceArray and GetInstancesInstanceArrayOutput values.
 // You can construct a concrete instance of `GetInstancesInstanceArrayInput` via:
 //
@@ -1917,12 +1622,6 @@ func (i GetInstancesInstanceArray) ToGetInstancesInstanceArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesInstanceArrayOutput)
 }
 
-func (i GetInstancesInstanceArray) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesInstance] {
-	return pulumix.Output[[]GetInstancesInstance]{
-		OutputState: i.ToGetInstancesInstanceArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetInstancesInstanceOutput struct{ *pulumi.OutputState }
 
 func (GetInstancesInstanceOutput) ElementType() reflect.Type {
@@ -1935,12 +1634,6 @@ func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutput() GetInstancesI
 
 func (o GetInstancesInstanceOutput) ToGetInstancesInstanceOutputWithContext(ctx context.Context) GetInstancesInstanceOutput {
 	return o
-}
-
-func (o GetInstancesInstanceOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstancesInstance] {
-	return pulumix.Output[GetInstancesInstance]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetInstancesInstanceOutput) CpuCores() pulumi.IntOutput {
@@ -2045,12 +1738,6 @@ func (o GetInstancesInstanceArrayOutput) ToGetInstancesInstanceArrayOutputWithCo
 	return o
 }
 
-func (o GetInstancesInstanceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesInstance] {
-	return pulumix.Output[[]GetInstancesInstance]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetInstancesInstanceArrayOutput) Index(i pulumi.IntInput) GetInstancesInstanceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetInstancesInstance {
 		return vs[0].([]GetInstancesInstance)[vs[1].(int)]
@@ -2094,12 +1781,6 @@ func (i GetInstancesSortArgs) ToGetInstancesSortOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSortOutput)
 }
 
-func (i GetInstancesSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetInstancesSort] {
-	return pulumix.Output[GetInstancesSort]{
-		OutputState: i.ToGetInstancesSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetInstancesSortArrayInput is an input type that accepts GetInstancesSortArray and GetInstancesSortArrayOutput values.
 // You can construct a concrete instance of `GetInstancesSortArrayInput` via:
 //
@@ -2125,12 +1806,6 @@ func (i GetInstancesSortArray) ToGetInstancesSortArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetInstancesSortArrayOutput)
 }
 
-func (i GetInstancesSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesSort] {
-	return pulumix.Output[[]GetInstancesSort]{
-		OutputState: i.ToGetInstancesSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetInstancesSortOutput struct{ *pulumi.OutputState }
 
 func (GetInstancesSortOutput) ElementType() reflect.Type {
@@ -2143,12 +1818,6 @@ func (o GetInstancesSortOutput) ToGetInstancesSortOutput() GetInstancesSortOutpu
 
 func (o GetInstancesSortOutput) ToGetInstancesSortOutputWithContext(ctx context.Context) GetInstancesSortOutput {
 	return o
-}
-
-func (o GetInstancesSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetInstancesSort] {
-	return pulumix.Output[GetInstancesSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -2173,12 +1842,6 @@ func (o GetInstancesSortArrayOutput) ToGetInstancesSortArrayOutput() GetInstance
 
 func (o GetInstancesSortArrayOutput) ToGetInstancesSortArrayOutputWithContext(ctx context.Context) GetInstancesSortArrayOutput {
 	return o
-}
-
-func (o GetInstancesSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetInstancesSort] {
-	return pulumix.Output[[]GetInstancesSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetInstancesSortArrayOutput) Index(i pulumi.IntInput) GetInstancesSortOutput {
@@ -2224,12 +1887,6 @@ func (i GetKubernetesClusterInstalledApplicationArgs) ToGetKubernetesClusterInst
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterInstalledApplicationOutput)
 }
 
-func (i GetKubernetesClusterInstalledApplicationArgs) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesClusterInstalledApplication] {
-	return pulumix.Output[GetKubernetesClusterInstalledApplication]{
-		OutputState: i.ToGetKubernetesClusterInstalledApplicationOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetKubernetesClusterInstalledApplicationArrayInput is an input type that accepts GetKubernetesClusterInstalledApplicationArray and GetKubernetesClusterInstalledApplicationArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterInstalledApplicationArrayInput` via:
 //
@@ -2255,12 +1912,6 @@ func (i GetKubernetesClusterInstalledApplicationArray) ToGetKubernetesClusterIns
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterInstalledApplicationArrayOutput)
 }
 
-func (i GetKubernetesClusterInstalledApplicationArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesClusterInstalledApplication] {
-	return pulumix.Output[[]GetKubernetesClusterInstalledApplication]{
-		OutputState: i.ToGetKubernetesClusterInstalledApplicationArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetKubernetesClusterInstalledApplicationOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesClusterInstalledApplicationOutput) ElementType() reflect.Type {
@@ -2273,12 +1924,6 @@ func (o GetKubernetesClusterInstalledApplicationOutput) ToGetKubernetesClusterIn
 
 func (o GetKubernetesClusterInstalledApplicationOutput) ToGetKubernetesClusterInstalledApplicationOutputWithContext(ctx context.Context) GetKubernetesClusterInstalledApplicationOutput {
 	return o
-}
-
-func (o GetKubernetesClusterInstalledApplicationOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesClusterInstalledApplication] {
-	return pulumix.Output[GetKubernetesClusterInstalledApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesClusterInstalledApplicationOutput) Application() pulumi.StringOutput {
@@ -2309,12 +1954,6 @@ func (o GetKubernetesClusterInstalledApplicationArrayOutput) ToGetKubernetesClus
 
 func (o GetKubernetesClusterInstalledApplicationArrayOutput) ToGetKubernetesClusterInstalledApplicationArrayOutputWithContext(ctx context.Context) GetKubernetesClusterInstalledApplicationArrayOutput {
 	return o
-}
-
-func (o GetKubernetesClusterInstalledApplicationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesClusterInstalledApplication] {
-	return pulumix.Output[[]GetKubernetesClusterInstalledApplication]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesClusterInstalledApplicationArrayOutput) Index(i pulumi.IntInput) GetKubernetesClusterInstalledApplicationOutput {
@@ -2362,12 +2001,6 @@ func (i GetKubernetesClusterPoolArgs) ToGetKubernetesClusterPoolOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolOutput)
 }
 
-func (i GetKubernetesClusterPoolArgs) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesClusterPool] {
-	return pulumix.Output[GetKubernetesClusterPool]{
-		OutputState: i.ToGetKubernetesClusterPoolOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetKubernetesClusterPoolArrayInput is an input type that accepts GetKubernetesClusterPoolArray and GetKubernetesClusterPoolArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterPoolArrayInput` via:
 //
@@ -2393,12 +2026,6 @@ func (i GetKubernetesClusterPoolArray) ToGetKubernetesClusterPoolArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterPoolArrayOutput)
 }
 
-func (i GetKubernetesClusterPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesClusterPool] {
-	return pulumix.Output[[]GetKubernetesClusterPool]{
-		OutputState: i.ToGetKubernetesClusterPoolArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetKubernetesClusterPoolOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesClusterPoolOutput) ElementType() reflect.Type {
@@ -2411,12 +2038,6 @@ func (o GetKubernetesClusterPoolOutput) ToGetKubernetesClusterPoolOutput() GetKu
 
 func (o GetKubernetesClusterPoolOutput) ToGetKubernetesClusterPoolOutputWithContext(ctx context.Context) GetKubernetesClusterPoolOutput {
 	return o
-}
-
-func (o GetKubernetesClusterPoolOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesClusterPool] {
-	return pulumix.Output[GetKubernetesClusterPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesClusterPoolOutput) InstanceNames() pulumi.StringArrayOutput {
@@ -2451,12 +2072,6 @@ func (o GetKubernetesClusterPoolArrayOutput) ToGetKubernetesClusterPoolArrayOutp
 
 func (o GetKubernetesClusterPoolArrayOutput) ToGetKubernetesClusterPoolArrayOutputWithContext(ctx context.Context) GetKubernetesClusterPoolArrayOutput {
 	return o
-}
-
-func (o GetKubernetesClusterPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesClusterPool] {
-	return pulumix.Output[[]GetKubernetesClusterPool]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesClusterPoolArrayOutput) Index(i pulumi.IntInput) GetKubernetesClusterPoolOutput {
@@ -2510,12 +2125,6 @@ func (i GetKubernetesVersionFilterArgs) ToGetKubernetesVersionFilterOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionFilterOutput)
 }
 
-func (i GetKubernetesVersionFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionFilter] {
-	return pulumix.Output[GetKubernetesVersionFilter]{
-		OutputState: i.ToGetKubernetesVersionFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetKubernetesVersionFilterArrayInput is an input type that accepts GetKubernetesVersionFilterArray and GetKubernetesVersionFilterArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionFilterArrayInput` via:
 //
@@ -2541,12 +2150,6 @@ func (i GetKubernetesVersionFilterArray) ToGetKubernetesVersionFilterArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionFilterArrayOutput)
 }
 
-func (i GetKubernetesVersionFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionFilter] {
-	return pulumix.Output[[]GetKubernetesVersionFilter]{
-		OutputState: i.ToGetKubernetesVersionFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetKubernetesVersionFilterOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesVersionFilterOutput) ElementType() reflect.Type {
@@ -2559,12 +2162,6 @@ func (o GetKubernetesVersionFilterOutput) ToGetKubernetesVersionFilterOutput() G
 
 func (o GetKubernetesVersionFilterOutput) ToGetKubernetesVersionFilterOutputWithContext(ctx context.Context) GetKubernetesVersionFilterOutput {
 	return o
-}
-
-func (o GetKubernetesVersionFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionFilter] {
-	return pulumix.Output[GetKubernetesVersionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -2599,12 +2196,6 @@ func (o GetKubernetesVersionFilterArrayOutput) ToGetKubernetesVersionFilterArray
 
 func (o GetKubernetesVersionFilterArrayOutput) ToGetKubernetesVersionFilterArrayOutputWithContext(ctx context.Context) GetKubernetesVersionFilterArrayOutput {
 	return o
-}
-
-func (o GetKubernetesVersionFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionFilter] {
-	return pulumix.Output[[]GetKubernetesVersionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesVersionFilterArrayOutput) Index(i pulumi.IntInput) GetKubernetesVersionFilterOutput {
@@ -2650,12 +2241,6 @@ func (i GetKubernetesVersionSortArgs) ToGetKubernetesVersionSortOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionSortOutput)
 }
 
-func (i GetKubernetesVersionSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionSort] {
-	return pulumix.Output[GetKubernetesVersionSort]{
-		OutputState: i.ToGetKubernetesVersionSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetKubernetesVersionSortArrayInput is an input type that accepts GetKubernetesVersionSortArray and GetKubernetesVersionSortArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionSortArrayInput` via:
 //
@@ -2681,12 +2266,6 @@ func (i GetKubernetesVersionSortArray) ToGetKubernetesVersionSortArrayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionSortArrayOutput)
 }
 
-func (i GetKubernetesVersionSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionSort] {
-	return pulumix.Output[[]GetKubernetesVersionSort]{
-		OutputState: i.ToGetKubernetesVersionSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetKubernetesVersionSortOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesVersionSortOutput) ElementType() reflect.Type {
@@ -2699,12 +2278,6 @@ func (o GetKubernetesVersionSortOutput) ToGetKubernetesVersionSortOutput() GetKu
 
 func (o GetKubernetesVersionSortOutput) ToGetKubernetesVersionSortOutputWithContext(ctx context.Context) GetKubernetesVersionSortOutput {
 	return o
-}
-
-func (o GetKubernetesVersionSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionSort] {
-	return pulumix.Output[GetKubernetesVersionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -2729,12 +2302,6 @@ func (o GetKubernetesVersionSortArrayOutput) ToGetKubernetesVersionSortArrayOutp
 
 func (o GetKubernetesVersionSortArrayOutput) ToGetKubernetesVersionSortArrayOutputWithContext(ctx context.Context) GetKubernetesVersionSortArrayOutput {
 	return o
-}
-
-func (o GetKubernetesVersionSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionSort] {
-	return pulumix.Output[[]GetKubernetesVersionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesVersionSortArrayOutput) Index(i pulumi.IntInput) GetKubernetesVersionSortOutput {
@@ -2780,12 +2347,6 @@ func (i GetKubernetesVersionVersionArgs) ToGetKubernetesVersionVersionOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionVersionOutput)
 }
 
-func (i GetKubernetesVersionVersionArgs) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionVersion] {
-	return pulumix.Output[GetKubernetesVersionVersion]{
-		OutputState: i.ToGetKubernetesVersionVersionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetKubernetesVersionVersionArrayInput is an input type that accepts GetKubernetesVersionVersionArray and GetKubernetesVersionVersionArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesVersionVersionArrayInput` via:
 //
@@ -2811,12 +2372,6 @@ func (i GetKubernetesVersionVersionArray) ToGetKubernetesVersionVersionArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesVersionVersionArrayOutput)
 }
 
-func (i GetKubernetesVersionVersionArray) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionVersion] {
-	return pulumix.Output[[]GetKubernetesVersionVersion]{
-		OutputState: i.ToGetKubernetesVersionVersionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetKubernetesVersionVersionOutput struct{ *pulumi.OutputState }
 
 func (GetKubernetesVersionVersionOutput) ElementType() reflect.Type {
@@ -2829,12 +2384,6 @@ func (o GetKubernetesVersionVersionOutput) ToGetKubernetesVersionVersionOutput()
 
 func (o GetKubernetesVersionVersionOutput) ToGetKubernetesVersionVersionOutputWithContext(ctx context.Context) GetKubernetesVersionVersionOutput {
 	return o
-}
-
-func (o GetKubernetesVersionVersionOutput) ToOutput(ctx context.Context) pulumix.Output[GetKubernetesVersionVersion] {
-	return pulumix.Output[GetKubernetesVersionVersion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesVersionVersionOutput) Default() pulumi.BoolOutput {
@@ -2865,12 +2414,6 @@ func (o GetKubernetesVersionVersionArrayOutput) ToGetKubernetesVersionVersionArr
 
 func (o GetKubernetesVersionVersionArrayOutput) ToGetKubernetesVersionVersionArrayOutputWithContext(ctx context.Context) GetKubernetesVersionVersionArrayOutput {
 	return o
-}
-
-func (o GetKubernetesVersionVersionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetKubernetesVersionVersion] {
-	return pulumix.Output[[]GetKubernetesVersionVersion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetKubernetesVersionVersionArrayOutput) Index(i pulumi.IntInput) GetKubernetesVersionVersionOutput {
@@ -2918,12 +2461,6 @@ func (i GetLoadBalancerBackendArgs) ToGetLoadBalancerBackendOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerBackendOutput)
 }
 
-func (i GetLoadBalancerBackendArgs) ToOutput(ctx context.Context) pulumix.Output[GetLoadBalancerBackend] {
-	return pulumix.Output[GetLoadBalancerBackend]{
-		OutputState: i.ToGetLoadBalancerBackendOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetLoadBalancerBackendArrayInput is an input type that accepts GetLoadBalancerBackendArray and GetLoadBalancerBackendArrayOutput values.
 // You can construct a concrete instance of `GetLoadBalancerBackendArrayInput` via:
 //
@@ -2949,12 +2486,6 @@ func (i GetLoadBalancerBackendArray) ToGetLoadBalancerBackendArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(GetLoadBalancerBackendArrayOutput)
 }
 
-func (i GetLoadBalancerBackendArray) ToOutput(ctx context.Context) pulumix.Output[[]GetLoadBalancerBackend] {
-	return pulumix.Output[[]GetLoadBalancerBackend]{
-		OutputState: i.ToGetLoadBalancerBackendArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetLoadBalancerBackendOutput struct{ *pulumi.OutputState }
 
 func (GetLoadBalancerBackendOutput) ElementType() reflect.Type {
@@ -2967,12 +2498,6 @@ func (o GetLoadBalancerBackendOutput) ToGetLoadBalancerBackendOutput() GetLoadBa
 
 func (o GetLoadBalancerBackendOutput) ToGetLoadBalancerBackendOutputWithContext(ctx context.Context) GetLoadBalancerBackendOutput {
 	return o
-}
-
-func (o GetLoadBalancerBackendOutput) ToOutput(ctx context.Context) pulumix.Output[GetLoadBalancerBackend] {
-	return pulumix.Output[GetLoadBalancerBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetLoadBalancerBackendOutput) HealthCheckPort() pulumi.IntOutput {
@@ -3007,12 +2532,6 @@ func (o GetLoadBalancerBackendArrayOutput) ToGetLoadBalancerBackendArrayOutput()
 
 func (o GetLoadBalancerBackendArrayOutput) ToGetLoadBalancerBackendArrayOutputWithContext(ctx context.Context) GetLoadBalancerBackendArrayOutput {
 	return o
-}
-
-func (o GetLoadBalancerBackendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetLoadBalancerBackend] {
-	return pulumix.Output[[]GetLoadBalancerBackend]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetLoadBalancerBackendArrayOutput) Index(i pulumi.IntInput) GetLoadBalancerBackendOutput {
@@ -3066,12 +2585,6 @@ func (i GetRegionFilterArgs) ToGetRegionFilterOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionFilterOutput)
 }
 
-func (i GetRegionFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetRegionFilter] {
-	return pulumix.Output[GetRegionFilter]{
-		OutputState: i.ToGetRegionFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetRegionFilterArrayInput is an input type that accepts GetRegionFilterArray and GetRegionFilterArrayOutput values.
 // You can construct a concrete instance of `GetRegionFilterArrayInput` via:
 //
@@ -3097,12 +2610,6 @@ func (i GetRegionFilterArray) ToGetRegionFilterArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionFilterArrayOutput)
 }
 
-func (i GetRegionFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionFilter] {
-	return pulumix.Output[[]GetRegionFilter]{
-		OutputState: i.ToGetRegionFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetRegionFilterOutput struct{ *pulumi.OutputState }
 
 func (GetRegionFilterOutput) ElementType() reflect.Type {
@@ -3115,12 +2622,6 @@ func (o GetRegionFilterOutput) ToGetRegionFilterOutput() GetRegionFilterOutput {
 
 func (o GetRegionFilterOutput) ToGetRegionFilterOutputWithContext(ctx context.Context) GetRegionFilterOutput {
 	return o
-}
-
-func (o GetRegionFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegionFilter] {
-	return pulumix.Output[GetRegionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -3155,12 +2656,6 @@ func (o GetRegionFilterArrayOutput) ToGetRegionFilterArrayOutput() GetRegionFilt
 
 func (o GetRegionFilterArrayOutput) ToGetRegionFilterArrayOutputWithContext(ctx context.Context) GetRegionFilterArrayOutput {
 	return o
-}
-
-func (o GetRegionFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionFilter] {
-	return pulumix.Output[[]GetRegionFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRegionFilterArrayOutput) Index(i pulumi.IntInput) GetRegionFilterOutput {
@@ -3206,12 +2701,6 @@ func (i GetRegionRegionArgs) ToGetRegionRegionOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionRegionOutput)
 }
 
-func (i GetRegionRegionArgs) ToOutput(ctx context.Context) pulumix.Output[GetRegionRegion] {
-	return pulumix.Output[GetRegionRegion]{
-		OutputState: i.ToGetRegionRegionOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetRegionRegionArrayInput is an input type that accepts GetRegionRegionArray and GetRegionRegionArrayOutput values.
 // You can construct a concrete instance of `GetRegionRegionArrayInput` via:
 //
@@ -3237,12 +2726,6 @@ func (i GetRegionRegionArray) ToGetRegionRegionArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionRegionArrayOutput)
 }
 
-func (i GetRegionRegionArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionRegion] {
-	return pulumix.Output[[]GetRegionRegion]{
-		OutputState: i.ToGetRegionRegionArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetRegionRegionOutput struct{ *pulumi.OutputState }
 
 func (GetRegionRegionOutput) ElementType() reflect.Type {
@@ -3255,12 +2738,6 @@ func (o GetRegionRegionOutput) ToGetRegionRegionOutput() GetRegionRegionOutput {
 
 func (o GetRegionRegionOutput) ToGetRegionRegionOutputWithContext(ctx context.Context) GetRegionRegionOutput {
 	return o
-}
-
-func (o GetRegionRegionOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegionRegion] {
-	return pulumix.Output[GetRegionRegion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRegionRegionOutput) Code() pulumi.StringOutput {
@@ -3291,12 +2768,6 @@ func (o GetRegionRegionArrayOutput) ToGetRegionRegionArrayOutput() GetRegionRegi
 
 func (o GetRegionRegionArrayOutput) ToGetRegionRegionArrayOutputWithContext(ctx context.Context) GetRegionRegionArrayOutput {
 	return o
-}
-
-func (o GetRegionRegionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionRegion] {
-	return pulumix.Output[[]GetRegionRegion]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRegionRegionArrayOutput) Index(i pulumi.IntInput) GetRegionRegionOutput {
@@ -3342,12 +2813,6 @@ func (i GetRegionSortArgs) ToGetRegionSortOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionSortOutput)
 }
 
-func (i GetRegionSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetRegionSort] {
-	return pulumix.Output[GetRegionSort]{
-		OutputState: i.ToGetRegionSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetRegionSortArrayInput is an input type that accepts GetRegionSortArray and GetRegionSortArrayOutput values.
 // You can construct a concrete instance of `GetRegionSortArrayInput` via:
 //
@@ -3373,12 +2838,6 @@ func (i GetRegionSortArray) ToGetRegionSortArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetRegionSortArrayOutput)
 }
 
-func (i GetRegionSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionSort] {
-	return pulumix.Output[[]GetRegionSort]{
-		OutputState: i.ToGetRegionSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetRegionSortOutput struct{ *pulumi.OutputState }
 
 func (GetRegionSortOutput) ElementType() reflect.Type {
@@ -3391,12 +2850,6 @@ func (o GetRegionSortOutput) ToGetRegionSortOutput() GetRegionSortOutput {
 
 func (o GetRegionSortOutput) ToGetRegionSortOutputWithContext(ctx context.Context) GetRegionSortOutput {
 	return o
-}
-
-func (o GetRegionSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetRegionSort] {
-	return pulumix.Output[GetRegionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -3421,12 +2874,6 @@ func (o GetRegionSortArrayOutput) ToGetRegionSortArrayOutput() GetRegionSortArra
 
 func (o GetRegionSortArrayOutput) ToGetRegionSortArrayOutputWithContext(ctx context.Context) GetRegionSortArrayOutput {
 	return o
-}
-
-func (o GetRegionSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetRegionSort] {
-	return pulumix.Output[[]GetRegionSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetRegionSortArrayOutput) Index(i pulumi.IntInput) GetRegionSortOutput {
@@ -3480,12 +2927,6 @@ func (i GetSizeFilterArgs) ToGetSizeFilterOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeFilterOutput)
 }
 
-func (i GetSizeFilterArgs) ToOutput(ctx context.Context) pulumix.Output[GetSizeFilter] {
-	return pulumix.Output[GetSizeFilter]{
-		OutputState: i.ToGetSizeFilterOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetSizeFilterArrayInput is an input type that accepts GetSizeFilterArray and GetSizeFilterArrayOutput values.
 // You can construct a concrete instance of `GetSizeFilterArrayInput` via:
 //
@@ -3511,12 +2952,6 @@ func (i GetSizeFilterArray) ToGetSizeFilterArrayOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeFilterArrayOutput)
 }
 
-func (i GetSizeFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeFilter] {
-	return pulumix.Output[[]GetSizeFilter]{
-		OutputState: i.ToGetSizeFilterArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetSizeFilterOutput struct{ *pulumi.OutputState }
 
 func (GetSizeFilterOutput) ElementType() reflect.Type {
@@ -3529,12 +2964,6 @@ func (o GetSizeFilterOutput) ToGetSizeFilterOutput() GetSizeFilterOutput {
 
 func (o GetSizeFilterOutput) ToGetSizeFilterOutputWithContext(ctx context.Context) GetSizeFilterOutput {
 	return o
-}
-
-func (o GetSizeFilterOutput) ToOutput(ctx context.Context) pulumix.Output[GetSizeFilter] {
-	return pulumix.Output[GetSizeFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 // Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
@@ -3569,12 +2998,6 @@ func (o GetSizeFilterArrayOutput) ToGetSizeFilterArrayOutput() GetSizeFilterArra
 
 func (o GetSizeFilterArrayOutput) ToGetSizeFilterArrayOutputWithContext(ctx context.Context) GetSizeFilterArrayOutput {
 	return o
-}
-
-func (o GetSizeFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeFilter] {
-	return pulumix.Output[[]GetSizeFilter]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSizeFilterArrayOutput) Index(i pulumi.IntInput) GetSizeFilterOutput {
@@ -3630,12 +3053,6 @@ func (i GetSizeSizeArgs) ToGetSizeSizeOutputWithContext(ctx context.Context) Get
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSizeOutput)
 }
 
-func (i GetSizeSizeArgs) ToOutput(ctx context.Context) pulumix.Output[GetSizeSize] {
-	return pulumix.Output[GetSizeSize]{
-		OutputState: i.ToGetSizeSizeOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetSizeSizeArrayInput is an input type that accepts GetSizeSizeArray and GetSizeSizeArrayOutput values.
 // You can construct a concrete instance of `GetSizeSizeArrayInput` via:
 //
@@ -3661,12 +3078,6 @@ func (i GetSizeSizeArray) ToGetSizeSizeArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSizeArrayOutput)
 }
 
-func (i GetSizeSizeArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeSize] {
-	return pulumix.Output[[]GetSizeSize]{
-		OutputState: i.ToGetSizeSizeArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetSizeSizeOutput struct{ *pulumi.OutputState }
 
 func (GetSizeSizeOutput) ElementType() reflect.Type {
@@ -3679,12 +3090,6 @@ func (o GetSizeSizeOutput) ToGetSizeSizeOutput() GetSizeSizeOutput {
 
 func (o GetSizeSizeOutput) ToGetSizeSizeOutputWithContext(ctx context.Context) GetSizeSizeOutput {
 	return o
-}
-
-func (o GetSizeSizeOutput) ToOutput(ctx context.Context) pulumix.Output[GetSizeSize] {
-	return pulumix.Output[GetSizeSize]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSizeSizeOutput) Cpu() pulumi.IntOutput {
@@ -3737,12 +3142,6 @@ func (o GetSizeSizeArrayOutput) ToGetSizeSizeArrayOutputWithContext(ctx context.
 	return o
 }
 
-func (o GetSizeSizeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeSize] {
-	return pulumix.Output[[]GetSizeSize]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o GetSizeSizeArrayOutput) Index(i pulumi.IntInput) GetSizeSizeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetSizeSize {
 		return vs[0].([]GetSizeSize)[vs[1].(int)]
@@ -3786,12 +3185,6 @@ func (i GetSizeSortArgs) ToGetSizeSortOutputWithContext(ctx context.Context) Get
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSortOutput)
 }
 
-func (i GetSizeSortArgs) ToOutput(ctx context.Context) pulumix.Output[GetSizeSort] {
-	return pulumix.Output[GetSizeSort]{
-		OutputState: i.ToGetSizeSortOutputWithContext(ctx).OutputState,
-	}
-}
-
 // GetSizeSortArrayInput is an input type that accepts GetSizeSortArray and GetSizeSortArrayOutput values.
 // You can construct a concrete instance of `GetSizeSortArrayInput` via:
 //
@@ -3817,12 +3210,6 @@ func (i GetSizeSortArray) ToGetSizeSortArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(GetSizeSortArrayOutput)
 }
 
-func (i GetSizeSortArray) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeSort] {
-	return pulumix.Output[[]GetSizeSort]{
-		OutputState: i.ToGetSizeSortArrayOutputWithContext(ctx).OutputState,
-	}
-}
-
 type GetSizeSortOutput struct{ *pulumi.OutputState }
 
 func (GetSizeSortOutput) ElementType() reflect.Type {
@@ -3835,12 +3222,6 @@ func (o GetSizeSortOutput) ToGetSizeSortOutput() GetSizeSortOutput {
 
 func (o GetSizeSortOutput) ToGetSizeSortOutputWithContext(ctx context.Context) GetSizeSortOutput {
 	return o
-}
-
-func (o GetSizeSortOutput) ToOutput(ctx context.Context) pulumix.Output[GetSizeSort] {
-	return pulumix.Output[GetSizeSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The sort direction. This may be either `asc` or `desc`.
@@ -3865,12 +3246,6 @@ func (o GetSizeSortArrayOutput) ToGetSizeSortArrayOutput() GetSizeSortArrayOutpu
 
 func (o GetSizeSortArrayOutput) ToGetSizeSortArrayOutputWithContext(ctx context.Context) GetSizeSortArrayOutput {
 	return o
-}
-
-func (o GetSizeSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]GetSizeSort] {
-	return pulumix.Output[[]GetSizeSort]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetSizeSortArrayOutput) Index(i pulumi.IntInput) GetSizeSortOutput {

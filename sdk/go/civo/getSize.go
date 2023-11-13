@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Retrieves information about the sizes that Civo supports, with the ability to filter the results.
@@ -80,12 +79,6 @@ func (o GetSizeResultOutput) ToGetSizeResultOutput() GetSizeResultOutput {
 
 func (o GetSizeResultOutput) ToGetSizeResultOutputWithContext(ctx context.Context) GetSizeResultOutput {
 	return o
-}
-
-func (o GetSizeResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSizeResult] {
-	return pulumix.Output[GetSizeResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // One or more key/value pairs on which to filter results
