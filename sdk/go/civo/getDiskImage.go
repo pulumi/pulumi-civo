@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
@@ -86,12 +85,6 @@ func (o GetDiskImageResultOutput) ToGetDiskImageResultOutput() GetDiskImageResul
 
 func (o GetDiskImageResultOutput) ToGetDiskImageResultOutputWithContext(ctx context.Context) GetDiskImageResultOutput {
 	return o
-}
-
-func (o GetDiskImageResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetDiskImageResult] {
-	return pulumix.Output[GetDiskImageResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o GetDiskImageResultOutput) Diskimages() GetDiskImageDiskimageArrayOutput {

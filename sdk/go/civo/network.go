@@ -10,7 +10,6 @@ import (
 	"errors"
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Provides a Civo network resource. This can be used to create, modify, and delete networks.
@@ -159,12 +158,6 @@ func (i *Network) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkOutput)
 }
 
-func (i *Network) ToOutput(ctx context.Context) pulumix.Output[*Network] {
-	return pulumix.Output[*Network]{
-		OutputState: i.ToNetworkOutputWithContext(ctx).OutputState,
-	}
-}
-
 // NetworkArrayInput is an input type that accepts NetworkArray and NetworkArrayOutput values.
 // You can construct a concrete instance of `NetworkArrayInput` via:
 //
@@ -188,12 +181,6 @@ func (i NetworkArray) ToNetworkArrayOutput() NetworkArrayOutput {
 
 func (i NetworkArray) ToNetworkArrayOutputWithContext(ctx context.Context) NetworkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkArrayOutput)
-}
-
-func (i NetworkArray) ToOutput(ctx context.Context) pulumix.Output[[]*Network] {
-	return pulumix.Output[[]*Network]{
-		OutputState: i.ToNetworkArrayOutputWithContext(ctx).OutputState,
-	}
 }
 
 // NetworkMapInput is an input type that accepts NetworkMap and NetworkMapOutput values.
@@ -221,12 +208,6 @@ func (i NetworkMap) ToNetworkMapOutputWithContext(ctx context.Context) NetworkMa
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkMapOutput)
 }
 
-func (i NetworkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*Network] {
-	return pulumix.Output[map[string]*Network]{
-		OutputState: i.ToNetworkMapOutputWithContext(ctx).OutputState,
-	}
-}
-
 type NetworkOutput struct{ *pulumi.OutputState }
 
 func (NetworkOutput) ElementType() reflect.Type {
@@ -239,12 +220,6 @@ func (o NetworkOutput) ToNetworkOutput() NetworkOutput {
 
 func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOutput {
 	return o
-}
-
-func (o NetworkOutput) ToOutput(ctx context.Context) pulumix.Output[*Network] {
-	return pulumix.Output[*Network]{
-		OutputState: o.OutputState,
-	}
 }
 
 // If the network is default, this will be `true`
@@ -281,12 +256,6 @@ func (o NetworkArrayOutput) ToNetworkArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o NetworkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*Network] {
-	return pulumix.Output[[]*Network]{
-		OutputState: o.OutputState,
-	}
-}
-
 func (o NetworkArrayOutput) Index(i pulumi.IntInput) NetworkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Network {
 		return vs[0].([]*Network)[vs[1].(int)]
@@ -305,12 +274,6 @@ func (o NetworkMapOutput) ToNetworkMapOutput() NetworkMapOutput {
 
 func (o NetworkMapOutput) ToNetworkMapOutputWithContext(ctx context.Context) NetworkMapOutput {
 	return o
-}
-
-func (o NetworkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*Network] {
-	return pulumix.Output[map[string]*Network]{
-		OutputState: o.OutputState,
-	}
 }
 
 func (o NetworkMapOutput) MapIndex(k pulumi.StringInput) NetworkOutput {
