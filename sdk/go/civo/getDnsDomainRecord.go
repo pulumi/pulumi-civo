@@ -9,7 +9,6 @@ import (
 
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 // Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
@@ -130,12 +129,6 @@ func (o LookupDnsDomainRecordResultOutput) ToLookupDnsDomainRecordResultOutput()
 
 func (o LookupDnsDomainRecordResultOutput) ToLookupDnsDomainRecordResultOutputWithContext(ctx context.Context) LookupDnsDomainRecordResultOutput {
 	return o
-}
-
-func (o LookupDnsDomainRecordResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupDnsDomainRecordResult] {
-	return pulumix.Output[LookupDnsDomainRecordResult]{
-		OutputState: o.OutputState,
-	}
 }
 
 // The ID account of the domain
