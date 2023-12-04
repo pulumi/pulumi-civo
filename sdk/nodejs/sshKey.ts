@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as civo from "@pulumi/civo";
  * import * as fs from "fs";
  *
- * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub")});
+ * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub", "utf8")});
  * ```
  *
  * ## Import
