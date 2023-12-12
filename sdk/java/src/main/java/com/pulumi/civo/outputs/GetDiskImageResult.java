@@ -129,13 +129,13 @@ public final class GetDiskImageResult {
             return sorts(List.of(sorts));
         }
         public GetDiskImageResult build() {
-            final var o = new GetDiskImageResult();
-            o.diskimages = diskimages;
-            o.filters = filters;
-            o.id = id;
-            o.region = region;
-            o.sorts = sorts;
-            return o;
+            final var _resultValue = new GetDiskImageResult();
+            _resultValue.diskimages = diskimages;
+            _resultValue.filters = filters;
+            _resultValue.id = id;
+            _resultValue.region = region;
+            _resultValue.sorts = sorts;
+            return _resultValue;
         }
     }
 }

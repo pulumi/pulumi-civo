@@ -143,14 +143,14 @@ public final class GetObjectStoreCredentialResult {
             return this;
         }
         public GetObjectStoreCredentialResult build() {
-            final var o = new GetObjectStoreCredentialResult();
-            o.accessKeyId = accessKeyId;
-            o.id = id;
-            o.name = name;
-            o.region = region;
-            o.secretAccessKey = secretAccessKey;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetObjectStoreCredentialResult();
+            _resultValue.accessKeyId = accessKeyId;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.secretAccessKey = secretAccessKey;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

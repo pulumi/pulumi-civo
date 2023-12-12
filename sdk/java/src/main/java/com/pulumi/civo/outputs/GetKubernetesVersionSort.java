@@ -67,10 +67,10 @@ public final class GetKubernetesVersionSort {
             return this;
         }
         public GetKubernetesVersionSort build() {
-            final var o = new GetKubernetesVersionSort();
-            o.direction = direction;
-            o.key = key;
-            return o;
+            final var _resultValue = new GetKubernetesVersionSort();
+            _resultValue.direction = direction;
+            _resultValue.key = key;
+            return _resultValue;
         }
     }
 }

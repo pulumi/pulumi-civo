@@ -72,12 +72,12 @@ public final class GetKubernetesClusterInstalledApplication {
             return this;
         }
         public GetKubernetesClusterInstalledApplication build() {
-            final var o = new GetKubernetesClusterInstalledApplication();
-            o.application = application;
-            o.category = category;
-            o.installed = installed;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetKubernetesClusterInstalledApplication();
+            _resultValue.application = application;
+            _resultValue.category = category;
+            _resultValue.installed = installed;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

@@ -293,22 +293,22 @@ public final class GetLoadBalancerResult {
             return this;
         }
         public GetLoadBalancerResult build() {
-            final var o = new GetLoadBalancerResult();
-            o.algorithm = algorithm;
-            o.backends = backends;
-            o.clusterId = clusterId;
-            o.enableProxyProtocol = enableProxyProtocol;
-            o.externalTrafficPolicy = externalTrafficPolicy;
-            o.firewallId = firewallId;
-            o.id = id;
-            o.name = name;
-            o.privateIp = privateIp;
-            o.publicIp = publicIp;
-            o.region = region;
-            o.sessionAffinity = sessionAffinity;
-            o.sessionAffinityConfigTimeout = sessionAffinityConfigTimeout;
-            o.state = state;
-            return o;
+            final var _resultValue = new GetLoadBalancerResult();
+            _resultValue.algorithm = algorithm;
+            _resultValue.backends = backends;
+            _resultValue.clusterId = clusterId;
+            _resultValue.enableProxyProtocol = enableProxyProtocol;
+            _resultValue.externalTrafficPolicy = externalTrafficPolicy;
+            _resultValue.firewallId = firewallId;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.privateIp = privateIp;
+            _resultValue.publicIp = publicIp;
+            _resultValue.region = region;
+            _resultValue.sessionAffinity = sessionAffinity;
+            _resultValue.sessionAffinityConfigTimeout = sessionAffinityConfigTimeout;
+            _resultValue.state = state;
+            return _resultValue;
         }
     }
 }

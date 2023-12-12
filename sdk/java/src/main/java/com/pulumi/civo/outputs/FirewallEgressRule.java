@@ -139,14 +139,14 @@ public final class FirewallEgressRule {
             return this;
         }
         public FirewallEgressRule build() {
-            final var o = new FirewallEgressRule();
-            o.action = action;
-            o.cidrs = cidrs;
-            o.id = id;
-            o.label = label;
-            o.portRange = portRange;
-            o.protocol = protocol;
-            return o;
+            final var _resultValue = new FirewallEgressRule();
+            _resultValue.action = action;
+            _resultValue.cidrs = cidrs;
+            _resultValue.id = id;
+            _resultValue.label = label;
+            _resultValue.portRange = portRange;
+            _resultValue.protocol = protocol;
+            return _resultValue;
         }
     }
 }

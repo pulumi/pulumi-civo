@@ -72,12 +72,12 @@ public final class GetRegionRegion {
             return this;
         }
         public GetRegionRegion build() {
-            final var o = new GetRegionRegion();
-            o.code = code;
-            o.country = country;
-            o.default_ = default_;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetRegionRegion();
+            _resultValue.code = code;
+            _resultValue.country = country;
+            _resultValue.default_ = default_;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

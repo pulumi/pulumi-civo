@@ -110,12 +110,12 @@ public final class GetRegionFilter {
             return values(List.of(values));
         }
         public GetRegionFilter build() {
-            final var o = new GetRegionFilter();
-            o.all = all;
-            o.key = key;
-            o.matchBy = matchBy;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetRegionFilter();
+            _resultValue.all = all;
+            _resultValue.key = key;
+            _resultValue.matchBy = matchBy;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

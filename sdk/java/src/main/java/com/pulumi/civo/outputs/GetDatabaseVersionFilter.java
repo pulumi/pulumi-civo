@@ -110,12 +110,12 @@ public final class GetDatabaseVersionFilter {
             return values(List.of(values));
         }
         public GetDatabaseVersionFilter build() {
-            final var o = new GetDatabaseVersionFilter();
-            o.all = all;
-            o.key = key;
-            o.matchBy = matchBy;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetDatabaseVersionFilter();
+            _resultValue.all = all;
+            _resultValue.key = key;
+            _resultValue.matchBy = matchBy;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

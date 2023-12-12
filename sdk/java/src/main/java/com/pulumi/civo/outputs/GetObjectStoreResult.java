@@ -163,15 +163,15 @@ public final class GetObjectStoreResult {
             return this;
         }
         public GetObjectStoreResult build() {
-            final var o = new GetObjectStoreResult();
-            o.accessKeyId = accessKeyId;
-            o.bucketUrl = bucketUrl;
-            o.id = id;
-            o.maxSizeGb = maxSizeGb;
-            o.name = name;
-            o.region = region;
-            o.status = status;
-            return o;
+            final var _resultValue = new GetObjectStoreResult();
+            _resultValue.accessKeyId = accessKeyId;
+            _resultValue.bucketUrl = bucketUrl;
+            _resultValue.id = id;
+            _resultValue.maxSizeGb = maxSizeGb;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.status = status;
+            return _resultValue;
         }
     }
 }

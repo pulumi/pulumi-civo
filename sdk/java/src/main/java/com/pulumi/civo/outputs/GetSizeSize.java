@@ -128,17 +128,17 @@ public final class GetSizeSize {
             return this;
         }
         public GetSizeSize build() {
-            final var o = new GetSizeSize();
-            o.cpu = cpu;
-            o.description = description;
-            o.disk = disk;
-            o.gpu = gpu;
-            o.gpuType = gpuType;
-            o.name = name;
-            o.ram = ram;
-            o.selectable = selectable;
-            o.type = type;
-            return o;
+            final var _resultValue = new GetSizeSize();
+            _resultValue.cpu = cpu;
+            _resultValue.description = description;
+            _resultValue.disk = disk;
+            _resultValue.gpu = gpu;
+            _resultValue.gpuType = gpuType;
+            _resultValue.name = name;
+            _resultValue.ram = ram;
+            _resultValue.selectable = selectable;
+            _resultValue.type = type;
+            return _resultValue;
         }
     }
 }

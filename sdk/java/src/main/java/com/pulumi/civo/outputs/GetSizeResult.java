@@ -109,12 +109,12 @@ public final class GetSizeResult {
             return sorts(List.of(sorts));
         }
         public GetSizeResult build() {
-            final var o = new GetSizeResult();
-            o.filters = filters;
-            o.id = id;
-            o.sizes = sizes;
-            o.sorts = sorts;
-            return o;
+            final var _resultValue = new GetSizeResult();
+            _resultValue.filters = filters;
+            _resultValue.id = id;
+            _resultValue.sizes = sizes;
+            _resultValue.sorts = sorts;
+            return _resultValue;
         }
     }
 }

@@ -385,26 +385,26 @@ public final class GetKubernetesClusterResult {
             return this;
         }
         public GetKubernetesClusterResult build() {
-            final var o = new GetKubernetesClusterResult();
-            o.apiEndpoint = apiEndpoint;
-            o.applications = applications;
-            o.cni = cni;
-            o.createdAt = createdAt;
-            o.dnsEntry = dnsEntry;
-            o.id = id;
-            o.installedApplications = installedApplications;
-            o.kubeconfig = kubeconfig;
-            o.kubernetesVersion = kubernetesVersion;
-            o.masterIp = masterIp;
-            o.name = name;
-            o.numTargetNodes = numTargetNodes;
-            o.pools = pools;
-            o.ready = ready;
-            o.region = region;
-            o.status = status;
-            o.tags = tags;
-            o.targetNodesSize = targetNodesSize;
-            return o;
+            final var _resultValue = new GetKubernetesClusterResult();
+            _resultValue.apiEndpoint = apiEndpoint;
+            _resultValue.applications = applications;
+            _resultValue.cni = cni;
+            _resultValue.createdAt = createdAt;
+            _resultValue.dnsEntry = dnsEntry;
+            _resultValue.id = id;
+            _resultValue.installedApplications = installedApplications;
+            _resultValue.kubeconfig = kubeconfig;
+            _resultValue.kubernetesVersion = kubernetesVersion;
+            _resultValue.masterIp = masterIp;
+            _resultValue.name = name;
+            _resultValue.numTargetNodes = numTargetNodes;
+            _resultValue.pools = pools;
+            _resultValue.ready = ready;
+            _resultValue.region = region;
+            _resultValue.status = status;
+            _resultValue.tags = tags;
+            _resultValue.targetNodesSize = targetNodesSize;
+            return _resultValue;
         }
     }
 }

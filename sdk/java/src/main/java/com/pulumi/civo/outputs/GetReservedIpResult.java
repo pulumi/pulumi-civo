@@ -143,14 +143,14 @@ public final class GetReservedIpResult {
             return this;
         }
         public GetReservedIpResult build() {
-            final var o = new GetReservedIpResult();
-            o.id = id;
-            o.instanceId = instanceId;
-            o.instanceName = instanceName;
-            o.ip = ip;
-            o.name = name;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetReservedIpResult();
+            _resultValue.id = id;
+            _resultValue.instanceId = instanceId;
+            _resultValue.instanceName = instanceName;
+            _resultValue.ip = ip;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

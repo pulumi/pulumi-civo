@@ -110,12 +110,12 @@ public final class GetDiskImageFilter {
             return values(List.of(values));
         }
         public GetDiskImageFilter build() {
-            final var o = new GetDiskImageFilter();
-            o.all = all;
-            o.key = key;
-            o.matchBy = matchBy;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetDiskImageFilter();
+            _resultValue.all = all;
+            _resultValue.key = key;
+            _resultValue.matchBy = matchBy;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

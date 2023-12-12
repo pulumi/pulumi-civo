@@ -67,10 +67,10 @@ public final class GetDnsDomainNameResult {
             return this;
         }
         public GetDnsDomainNameResult build() {
-            final var o = new GetDnsDomainNameResult();
-            o.id = id;
-            o.name = name;
-            return o;
+            final var _resultValue = new GetDnsDomainNameResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            return _resultValue;
         }
     }
 }

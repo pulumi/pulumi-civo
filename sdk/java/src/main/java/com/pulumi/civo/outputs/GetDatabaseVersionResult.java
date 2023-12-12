@@ -109,12 +109,12 @@ public final class GetDatabaseVersionResult {
             return versions(List.of(versions));
         }
         public GetDatabaseVersionResult build() {
-            final var o = new GetDatabaseVersionResult();
-            o.filters = filters;
-            o.id = id;
-            o.sorts = sorts;
-            o.versions = versions;
-            return o;
+            final var _resultValue = new GetDatabaseVersionResult();
+            _resultValue.filters = filters;
+            _resultValue.id = id;
+            _resultValue.sorts = sorts;
+            _resultValue.versions = versions;
+            return _resultValue;
         }
     }
 }
