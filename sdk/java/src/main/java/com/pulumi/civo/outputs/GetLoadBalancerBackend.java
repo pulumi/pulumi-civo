@@ -83,13 +83,13 @@ public final class GetLoadBalancerBackend {
             return this;
         }
         public GetLoadBalancerBackend build() {
-            final var o = new GetLoadBalancerBackend();
-            o.healthCheckPort = healthCheckPort;
-            o.ip = ip;
-            o.protocol = protocol;
-            o.sourcePort = sourcePort;
-            o.targetPort = targetPort;
-            return o;
+            final var _resultValue = new GetLoadBalancerBackend();
+            _resultValue.healthCheckPort = healthCheckPort;
+            _resultValue.ip = ip;
+            _resultValue.protocol = protocol;
+            _resultValue.sourcePort = sourcePort;
+            _resultValue.targetPort = targetPort;
+            return _resultValue;
         }
     }
 }

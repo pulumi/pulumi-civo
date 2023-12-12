@@ -67,10 +67,10 @@ public final class GetDiskImageSort {
             return this;
         }
         public GetDiskImageSort build() {
-            final var o = new GetDiskImageSort();
-            o.direction = direction;
-            o.key = key;
-            return o;
+            final var _resultValue = new GetDiskImageSort();
+            _resultValue.direction = direction;
+            _resultValue.key = key;
+            return _resultValue;
         }
     }
 }

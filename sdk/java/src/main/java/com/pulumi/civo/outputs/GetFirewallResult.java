@@ -105,12 +105,12 @@ public final class GetFirewallResult {
             return this;
         }
         public GetFirewallResult build() {
-            final var o = new GetFirewallResult();
-            o.id = id;
-            o.name = name;
-            o.networkId = networkId;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetFirewallResult();
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.networkId = networkId;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

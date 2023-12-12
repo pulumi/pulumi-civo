@@ -129,13 +129,13 @@ public final class GetInstancesResult {
             return sorts(List.of(sorts));
         }
         public GetInstancesResult build() {
-            final var o = new GetInstancesResult();
-            o.filters = filters;
-            o.id = id;
-            o.instances = instances;
-            o.region = region;
-            o.sorts = sorts;
-            return o;
+            final var _resultValue = new GetInstancesResult();
+            _resultValue.filters = filters;
+            _resultValue.id = id;
+            _resultValue.instances = instances;
+            _resultValue.region = region;
+            _resultValue.sorts = sorts;
+            return _resultValue;
         }
     }
 }

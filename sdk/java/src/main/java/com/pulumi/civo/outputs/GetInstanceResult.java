@@ -452,30 +452,30 @@ public final class GetInstanceResult {
             return this;
         }
         public GetInstanceResult build() {
-            final var o = new GetInstanceResult();
-            o.cpuCores = cpuCores;
-            o.createdAt = createdAt;
-            o.diskGb = diskGb;
-            o.firewallId = firewallId;
-            o.hostname = hostname;
-            o.id = id;
-            o.initialPassword = initialPassword;
-            o.initialUser = initialUser;
-            o.networkId = networkId;
-            o.notes = notes;
-            o.privateIp = privateIp;
-            o.pseudoIp = pseudoIp;
-            o.publicIp = publicIp;
-            o.ramMb = ramMb;
-            o.region = region;
-            o.reverseDns = reverseDns;
-            o.script = script;
-            o.size = size;
-            o.sshkeyId = sshkeyId;
-            o.status = status;
-            o.tags = tags;
-            o.template = template;
-            return o;
+            final var _resultValue = new GetInstanceResult();
+            _resultValue.cpuCores = cpuCores;
+            _resultValue.createdAt = createdAt;
+            _resultValue.diskGb = diskGb;
+            _resultValue.firewallId = firewallId;
+            _resultValue.hostname = hostname;
+            _resultValue.id = id;
+            _resultValue.initialPassword = initialPassword;
+            _resultValue.initialUser = initialUser;
+            _resultValue.networkId = networkId;
+            _resultValue.notes = notes;
+            _resultValue.privateIp = privateIp;
+            _resultValue.pseudoIp = pseudoIp;
+            _resultValue.publicIp = publicIp;
+            _resultValue.ramMb = ramMb;
+            _resultValue.region = region;
+            _resultValue.reverseDns = reverseDns;
+            _resultValue.script = script;
+            _resultValue.size = size;
+            _resultValue.sshkeyId = sshkeyId;
+            _resultValue.status = status;
+            _resultValue.tags = tags;
+            _resultValue.template = template;
+            return _resultValue;
         }
     }
 }

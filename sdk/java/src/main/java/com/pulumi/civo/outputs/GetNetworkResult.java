@@ -125,13 +125,13 @@ public final class GetNetworkResult {
             return this;
         }
         public GetNetworkResult build() {
-            final var o = new GetNetworkResult();
-            o.default_ = default_;
-            o.id = id;
-            o.label = label;
-            o.name = name;
-            o.region = region;
-            return o;
+            final var _resultValue = new GetNetworkResult();
+            _resultValue.default_ = default_;
+            _resultValue.id = id;
+            _resultValue.label = label;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            return _resultValue;
         }
     }
 }

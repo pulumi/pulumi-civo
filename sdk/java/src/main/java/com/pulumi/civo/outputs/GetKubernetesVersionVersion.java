@@ -72,12 +72,12 @@ public final class GetKubernetesVersionVersion {
             return this;
         }
         public GetKubernetesVersionVersion build() {
-            final var o = new GetKubernetesVersionVersion();
-            o.default_ = default_;
-            o.label = label;
-            o.type = type;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetKubernetesVersionVersion();
+            _resultValue.default_ = default_;
+            _resultValue.label = label;
+            _resultValue.type = type;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

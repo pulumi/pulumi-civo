@@ -74,12 +74,12 @@ public final class KubernetesClusterInstalledApplication {
             return this;
         }
         public KubernetesClusterInstalledApplication build() {
-            final var o = new KubernetesClusterInstalledApplication();
-            o.application = application;
-            o.category = category;
-            o.installed = installed;
-            o.version = version;
-            return o;
+            final var _resultValue = new KubernetesClusterInstalledApplication();
+            _resultValue.application = application;
+            _resultValue.category = category;
+            _resultValue.installed = installed;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

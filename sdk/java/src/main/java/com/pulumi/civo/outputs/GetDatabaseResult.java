@@ -315,23 +315,23 @@ public final class GetDatabaseResult {
             return this;
         }
         public GetDatabaseResult build() {
-            final var o = new GetDatabaseResult();
-            o.dnsEndpoint = dnsEndpoint;
-            o.endpoint = endpoint;
-            o.engine = engine;
-            o.firewallId = firewallId;
-            o.id = id;
-            o.name = name;
-            o.networkId = networkId;
-            o.nodes = nodes;
-            o.password = password;
-            o.port = port;
-            o.region = region;
-            o.size = size;
-            o.status = status;
-            o.username = username;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDatabaseResult();
+            _resultValue.dnsEndpoint = dnsEndpoint;
+            _resultValue.endpoint = endpoint;
+            _resultValue.engine = engine;
+            _resultValue.firewallId = firewallId;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.networkId = networkId;
+            _resultValue.nodes = nodes;
+            _resultValue.password = password;
+            _resultValue.port = port;
+            _resultValue.region = region;
+            _resultValue.size = size;
+            _resultValue.status = status;
+            _resultValue.username = username;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

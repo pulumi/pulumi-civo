@@ -61,11 +61,11 @@ public final class GetDatabaseVersionVersion {
             return this;
         }
         public GetDatabaseVersionVersion build() {
-            final var o = new GetDatabaseVersionVersion();
-            o.default_ = default_;
-            o.engine = engine;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDatabaseVersionVersion();
+            _resultValue.default_ = default_;
+            _resultValue.engine = engine;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }

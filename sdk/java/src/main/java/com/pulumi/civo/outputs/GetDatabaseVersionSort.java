@@ -67,10 +67,10 @@ public final class GetDatabaseVersionSort {
             return this;
         }
         public GetDatabaseVersionSort build() {
-            final var o = new GetDatabaseVersionSort();
-            o.direction = direction;
-            o.key = key;
-            return o;
+            final var _resultValue = new GetDatabaseVersionSort();
+            _resultValue.direction = direction;
+            _resultValue.key = key;
+            return _resultValue;
         }
     }
 }

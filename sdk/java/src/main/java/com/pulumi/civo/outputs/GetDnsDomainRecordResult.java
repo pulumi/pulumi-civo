@@ -218,18 +218,18 @@ public final class GetDnsDomainRecordResult {
             return this;
         }
         public GetDnsDomainRecordResult build() {
-            final var o = new GetDnsDomainRecordResult();
-            o.accountId = accountId;
-            o.createdAt = createdAt;
-            o.domainId = domainId;
-            o.id = id;
-            o.name = name;
-            o.priority = priority;
-            o.ttl = ttl;
-            o.type = type;
-            o.updatedAt = updatedAt;
-            o.value = value;
-            return o;
+            final var _resultValue = new GetDnsDomainRecordResult();
+            _resultValue.accountId = accountId;
+            _resultValue.createdAt = createdAt;
+            _resultValue.domainId = domainId;
+            _resultValue.id = id;
+            _resultValue.name = name;
+            _resultValue.priority = priority;
+            _resultValue.ttl = ttl;
+            _resultValue.type = type;
+            _resultValue.updatedAt = updatedAt;
+            _resultValue.value = value;
+            return _resultValue;
         }
     }
 }

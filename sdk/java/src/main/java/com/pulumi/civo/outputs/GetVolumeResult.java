@@ -144,14 +144,14 @@ public final class GetVolumeResult {
             return this;
         }
         public GetVolumeResult build() {
-            final var o = new GetVolumeResult();
-            o.createdAt = createdAt;
-            o.id = id;
-            o.mountPoint = mountPoint;
-            o.name = name;
-            o.region = region;
-            o.sizeGb = sizeGb;
-            return o;
+            final var _resultValue = new GetVolumeResult();
+            _resultValue.createdAt = createdAt;
+            _resultValue.id = id;
+            _resultValue.mountPoint = mountPoint;
+            _resultValue.name = name;
+            _resultValue.region = region;
+            _resultValue.sizeGb = sizeGb;
+            return _resultValue;
         }
     }
 }

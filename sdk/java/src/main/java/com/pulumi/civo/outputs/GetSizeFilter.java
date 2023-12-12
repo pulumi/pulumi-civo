@@ -110,12 +110,12 @@ public final class GetSizeFilter {
             return values(List.of(values));
         }
         public GetSizeFilter build() {
-            final var o = new GetSizeFilter();
-            o.all = all;
-            o.key = key;
-            o.matchBy = matchBy;
-            o.values = values;
-            return o;
+            final var _resultValue = new GetSizeFilter();
+            _resultValue.all = all;
+            _resultValue.key = key;
+            _resultValue.matchBy = matchBy;
+            _resultValue.values = values;
+            return _resultValue;
         }
     }
 }

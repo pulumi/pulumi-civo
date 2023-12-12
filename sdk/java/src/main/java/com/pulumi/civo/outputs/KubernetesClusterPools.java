@@ -130,13 +130,13 @@ public final class KubernetesClusterPools {
             return this;
         }
         public KubernetesClusterPools build() {
-            final var o = new KubernetesClusterPools();
-            o.instanceNames = instanceNames;
-            o.label = label;
-            o.nodeCount = nodeCount;
-            o.publicIpNodePool = publicIpNodePool;
-            o.size = size;
-            return o;
+            final var _resultValue = new KubernetesClusterPools();
+            _resultValue.instanceNames = instanceNames;
+            _resultValue.label = label;
+            _resultValue.nodeCount = nodeCount;
+            _resultValue.publicIpNodePool = publicIpNodePool;
+            _resultValue.size = size;
+            return _resultValue;
         }
     }
 }

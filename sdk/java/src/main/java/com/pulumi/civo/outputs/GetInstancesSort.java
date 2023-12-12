@@ -67,10 +67,10 @@ public final class GetInstancesSort {
             return this;
         }
         public GetInstancesSort build() {
-            final var o = new GetInstancesSort();
-            o.direction = direction;
-            o.key = key;
-            return o;
+            final var _resultValue = new GetInstancesSort();
+            _resultValue.direction = direction;
+            _resultValue.key = key;
+            return _resultValue;
         }
     }
 }

@@ -71,12 +71,12 @@ public final class GetDiskImageDiskimage {
             return this;
         }
         public GetDiskImageDiskimage build() {
-            final var o = new GetDiskImageDiskimage();
-            o.id = id;
-            o.label = label;
-            o.name = name;
-            o.version = version;
-            return o;
+            final var _resultValue = new GetDiskImageDiskimage();
+            _resultValue.id = id;
+            _resultValue.label = label;
+            _resultValue.name = name;
+            _resultValue.version = version;
+            return _resultValue;
         }
     }
 }
