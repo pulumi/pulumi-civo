@@ -6,6 +6,7 @@ package com.pulumi.civo.outputs;
 import com.pulumi.civo.outputs.GetKubernetesClusterInstalledApplication;
 import com.pulumi.civo.outputs.GetKubernetesClusterPool;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -287,37 +288,56 @@ public final class GetKubernetesClusterResult {
 
         @CustomType.Setter
         public Builder apiEndpoint(String apiEndpoint) {
-            this.apiEndpoint = Objects.requireNonNull(apiEndpoint);
+            if (apiEndpoint == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "apiEndpoint");
+            }
+            this.apiEndpoint = apiEndpoint;
             return this;
         }
         @CustomType.Setter
         public Builder applications(String applications) {
-            this.applications = Objects.requireNonNull(applications);
+            if (applications == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "applications");
+            }
+            this.applications = applications;
             return this;
         }
         @CustomType.Setter
         public Builder cni(String cni) {
-            this.cni = Objects.requireNonNull(cni);
+            if (cni == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "cni");
+            }
+            this.cni = cni;
             return this;
         }
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder dnsEntry(String dnsEntry) {
-            this.dnsEntry = Objects.requireNonNull(dnsEntry);
+            if (dnsEntry == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "dnsEntry");
+            }
+            this.dnsEntry = dnsEntry;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder installedApplications(List<GetKubernetesClusterInstalledApplication> installedApplications) {
-            this.installedApplications = Objects.requireNonNull(installedApplications);
+            if (installedApplications == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "installedApplications");
+            }
+            this.installedApplications = installedApplications;
             return this;
         }
         public Builder installedApplications(GetKubernetesClusterInstalledApplication... installedApplications) {
@@ -325,32 +345,48 @@ public final class GetKubernetesClusterResult {
         }
         @CustomType.Setter
         public Builder kubeconfig(String kubeconfig) {
-            this.kubeconfig = Objects.requireNonNull(kubeconfig);
+            if (kubeconfig == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "kubeconfig");
+            }
+            this.kubeconfig = kubeconfig;
             return this;
         }
         @CustomType.Setter
         public Builder kubernetesVersion(String kubernetesVersion) {
-            this.kubernetesVersion = Objects.requireNonNull(kubernetesVersion);
+            if (kubernetesVersion == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "kubernetesVersion");
+            }
+            this.kubernetesVersion = kubernetesVersion;
             return this;
         }
         @CustomType.Setter
         public Builder masterIp(String masterIp) {
-            this.masterIp = Objects.requireNonNull(masterIp);
+            if (masterIp == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "masterIp");
+            }
+            this.masterIp = masterIp;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder numTargetNodes(Integer numTargetNodes) {
-            this.numTargetNodes = Objects.requireNonNull(numTargetNodes);
+            if (numTargetNodes == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "numTargetNodes");
+            }
+            this.numTargetNodes = numTargetNodes;
             return this;
         }
         @CustomType.Setter
         public Builder pools(List<GetKubernetesClusterPool> pools) {
-            this.pools = Objects.requireNonNull(pools);
+            if (pools == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "pools");
+            }
+            this.pools = pools;
             return this;
         }
         public Builder pools(GetKubernetesClusterPool... pools) {
@@ -358,22 +394,32 @@ public final class GetKubernetesClusterResult {
         }
         @CustomType.Setter
         public Builder ready(Boolean ready) {
-            this.ready = Objects.requireNonNull(ready);
+            if (ready == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "ready");
+            }
+            this.ready = ready;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "status");
+            }
+            this.status = status;
             return this;
         }
         @CustomType.Setter
         public Builder tags(List<String> tags) {
-            this.tags = Objects.requireNonNull(tags);
+            if (tags == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "tags");
+            }
+            this.tags = tags;
             return this;
         }
         public Builder tags(String... tags) {
@@ -381,7 +427,10 @@ public final class GetKubernetesClusterResult {
         }
         @CustomType.Setter
         public Builder targetNodesSize(String targetNodesSize) {
-            this.targetNodesSize = Objects.requireNonNull(targetNodesSize);
+            if (targetNodesSize == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterResult", "targetNodesSize");
+            }
+            this.targetNodesSize = targetNodesSize;
             return this;
         }
         public GetKubernetesClusterResult build() {

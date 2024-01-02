@@ -6,6 +6,7 @@ package com.pulumi.civo;
 import com.pulumi.civo.inputs.KubernetesClusterPoolsArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -497,8 +498,12 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         public KubernetesClusterArgs build() {
-            $.firewallId = Objects.requireNonNull($.firewallId, "expected parameter 'firewallId' to be non-null");
-            $.pools = Objects.requireNonNull($.pools, "expected parameter 'pools' to be non-null");
+            if ($.firewallId == null) {
+                throw new MissingRequiredPropertyException("KubernetesClusterArgs", "firewallId");
+            }
+            if ($.pools == null) {
+                throw new MissingRequiredPropertyException("KubernetesClusterArgs", "pools");
+            }
             return $;
         }
     }

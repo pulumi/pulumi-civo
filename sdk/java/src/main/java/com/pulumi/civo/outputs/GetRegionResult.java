@@ -7,6 +7,7 @@ import com.pulumi.civo.outputs.GetRegionFilter;
 import com.pulumi.civo.outputs.GetRegionRegion;
 import com.pulumi.civo.outputs.GetRegionSort;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -81,6 +82,7 @@ public final class GetRegionResult {
 
         @CustomType.Setter
         public Builder filters(@Nullable List<GetRegionFilter> filters) {
+
             this.filters = filters;
             return this;
         }
@@ -89,12 +91,18 @@ public final class GetRegionResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetRegionResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder regions(List<GetRegionRegion> regions) {
-            this.regions = Objects.requireNonNull(regions);
+            if (regions == null) {
+              throw new MissingRequiredPropertyException("GetRegionResult", "regions");
+            }
+            this.regions = regions;
             return this;
         }
         public Builder regions(GetRegionRegion... regions) {
@@ -102,6 +110,7 @@ public final class GetRegionResult {
         }
         @CustomType.Setter
         public Builder sorts(@Nullable List<GetRegionSort> sorts) {
+
             this.sorts = sorts;
             return this;
         }

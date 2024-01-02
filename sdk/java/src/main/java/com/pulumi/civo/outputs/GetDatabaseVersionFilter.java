@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -88,22 +89,30 @@ public final class GetDatabaseVersionFilter {
 
         @CustomType.Setter
         public Builder all(@Nullable Boolean all) {
+
             this.all = all;
             return this;
         }
         @CustomType.Setter
         public Builder key(String key) {
-            this.key = Objects.requireNonNull(key);
+            if (key == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseVersionFilter", "key");
+            }
+            this.key = key;
             return this;
         }
         @CustomType.Setter
         public Builder matchBy(@Nullable String matchBy) {
+
             this.matchBy = matchBy;
             return this;
         }
         @CustomType.Setter
         public Builder values(List<String> values) {
-            this.values = Objects.requireNonNull(values);
+            if (values == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseVersionFilter", "values");
+            }
+            this.values = values;
             return this;
         }
         public Builder values(String... values) {

@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -113,7 +114,9 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public NetworkArgs build() {
-            $.label = Objects.requireNonNull($.label, "expected parameter 'label' to be non-null");
+            if ($.label == null) {
+                throw new MissingRequiredPropertyException("NetworkArgs", "label");
+            }
             return $;
         }
     }

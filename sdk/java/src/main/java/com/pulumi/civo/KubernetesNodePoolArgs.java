@@ -6,6 +6,7 @@ package com.pulumi.civo;
 import com.pulumi.civo.inputs.KubernetesNodePoolTaintArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -304,8 +305,12 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         }
 
         public KubernetesNodePoolArgs build() {
-            $.clusterId = Objects.requireNonNull($.clusterId, "expected parameter 'clusterId' to be non-null");
-            $.region = Objects.requireNonNull($.region, "expected parameter 'region' to be non-null");
+            if ($.clusterId == null) {
+                throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "clusterId");
+            }
+            if ($.region == null) {
+                throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "region");
+            }
             return $;
         }
     }

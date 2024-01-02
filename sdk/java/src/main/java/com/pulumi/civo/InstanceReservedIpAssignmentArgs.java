@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -150,8 +151,12 @@ public final class InstanceReservedIpAssignmentArgs extends com.pulumi.resources
         }
 
         public InstanceReservedIpAssignmentArgs build() {
-            $.instanceId = Objects.requireNonNull($.instanceId, "expected parameter 'instanceId' to be non-null");
-            $.reservedIpId = Objects.requireNonNull($.reservedIpId, "expected parameter 'reservedIpId' to be non-null");
+            if ($.instanceId == null) {
+                throw new MissingRequiredPropertyException("InstanceReservedIpAssignmentArgs", "instanceId");
+            }
+            if ($.reservedIpId == null) {
+                throw new MissingRequiredPropertyException("InstanceReservedIpAssignmentArgs", "reservedIpId");
+            }
             return $;
         }
     }

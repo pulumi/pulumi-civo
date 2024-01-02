@@ -7,6 +7,7 @@ import com.pulumi.civo.outputs.GetSizeFilter;
 import com.pulumi.civo.outputs.GetSizeSize;
 import com.pulumi.civo.outputs.GetSizeSort;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -81,6 +82,7 @@ public final class GetSizeResult {
 
         @CustomType.Setter
         public Builder filters(@Nullable List<GetSizeFilter> filters) {
+
             this.filters = filters;
             return this;
         }
@@ -89,12 +91,18 @@ public final class GetSizeResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetSizeResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder sizes(List<GetSizeSize> sizes) {
-            this.sizes = Objects.requireNonNull(sizes);
+            if (sizes == null) {
+              throw new MissingRequiredPropertyException("GetSizeResult", "sizes");
+            }
+            this.sizes = sizes;
             return this;
         }
         public Builder sizes(GetSizeSize... sizes) {
@@ -102,6 +110,7 @@ public final class GetSizeResult {
         }
         @CustomType.Setter
         public Builder sorts(@Nullable List<GetSizeSort> sorts) {
+
             this.sorts = sorts;
             return this;
         }

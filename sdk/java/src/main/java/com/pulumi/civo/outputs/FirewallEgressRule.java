@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -107,12 +108,18 @@ public final class FirewallEgressRule {
 
         @CustomType.Setter
         public Builder action(String action) {
-            this.action = Objects.requireNonNull(action);
+            if (action == null) {
+              throw new MissingRequiredPropertyException("FirewallEgressRule", "action");
+            }
+            this.action = action;
             return this;
         }
         @CustomType.Setter
         public Builder cidrs(List<String> cidrs) {
-            this.cidrs = Objects.requireNonNull(cidrs);
+            if (cidrs == null) {
+              throw new MissingRequiredPropertyException("FirewallEgressRule", "cidrs");
+            }
+            this.cidrs = cidrs;
             return this;
         }
         public Builder cidrs(String... cidrs) {
@@ -120,21 +127,25 @@ public final class FirewallEgressRule {
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder label(@Nullable String label) {
+
             this.label = label;
             return this;
         }
         @CustomType.Setter
         public Builder portRange(@Nullable String portRange) {
+
             this.portRange = portRange;
             return this;
         }
         @CustomType.Setter
         public Builder protocol(@Nullable String protocol) {
+
             this.protocol = protocol;
             return this;
         }

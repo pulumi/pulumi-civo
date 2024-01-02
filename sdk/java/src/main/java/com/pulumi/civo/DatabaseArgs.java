@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -336,10 +337,18 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public DatabaseArgs build() {
-            $.engine = Objects.requireNonNull($.engine, "expected parameter 'engine' to be non-null");
-            $.nodes = Objects.requireNonNull($.nodes, "expected parameter 'nodes' to be non-null");
-            $.size = Objects.requireNonNull($.size, "expected parameter 'size' to be non-null");
-            $.version = Objects.requireNonNull($.version, "expected parameter 'version' to be non-null");
+            if ($.engine == null) {
+                throw new MissingRequiredPropertyException("DatabaseArgs", "engine");
+            }
+            if ($.nodes == null) {
+                throw new MissingRequiredPropertyException("DatabaseArgs", "nodes");
+            }
+            if ($.size == null) {
+                throw new MissingRequiredPropertyException("DatabaseArgs", "size");
+            }
+            if ($.version == null) {
+                throw new MissingRequiredPropertyException("DatabaseArgs", "version");
+            }
             return $;
         }
     }

@@ -5,6 +5,7 @@ package com.pulumi.civo.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -237,8 +238,12 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
         }
 
         public KubernetesClusterPoolsArgs build() {
-            $.nodeCount = Objects.requireNonNull($.nodeCount, "expected parameter 'nodeCount' to be non-null");
-            $.size = Objects.requireNonNull($.size, "expected parameter 'size' to be non-null");
+            if ($.nodeCount == null) {
+                throw new MissingRequiredPropertyException("KubernetesClusterPoolsArgs", "nodeCount");
+            }
+            if ($.size == null) {
+                throw new MissingRequiredPropertyException("KubernetesClusterPoolsArgs", "size");
+            }
             return $;
         }
     }

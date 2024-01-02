@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -61,7 +62,10 @@ public final class GetKubernetesClusterPool {
 
         @CustomType.Setter
         public Builder instanceNames(List<String> instanceNames) {
-            this.instanceNames = Objects.requireNonNull(instanceNames);
+            if (instanceNames == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "instanceNames");
+            }
+            this.instanceNames = instanceNames;
             return this;
         }
         public Builder instanceNames(String... instanceNames) {
@@ -69,22 +73,34 @@ public final class GetKubernetesClusterPool {
         }
         @CustomType.Setter
         public Builder label(String label) {
-            this.label = Objects.requireNonNull(label);
+            if (label == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "label");
+            }
+            this.label = label;
             return this;
         }
         @CustomType.Setter
         public Builder nodeCount(Integer nodeCount) {
-            this.nodeCount = Objects.requireNonNull(nodeCount);
+            if (nodeCount == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "nodeCount");
+            }
+            this.nodeCount = nodeCount;
             return this;
         }
         @CustomType.Setter
         public Builder publicIpNodePool(Boolean publicIpNodePool) {
-            this.publicIpNodePool = Objects.requireNonNull(publicIpNodePool);
+            if (publicIpNodePool == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "publicIpNodePool");
+            }
+            this.publicIpNodePool = publicIpNodePool;
             return this;
         }
         @CustomType.Setter
         public Builder size(String size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "size");
+            }
+            this.size = size;
             return this;
         }
         public GetKubernetesClusterPool build() {
