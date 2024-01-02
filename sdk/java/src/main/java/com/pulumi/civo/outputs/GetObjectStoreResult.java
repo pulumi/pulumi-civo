@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -129,37 +130,52 @@ public final class GetObjectStoreResult {
 
         @CustomType.Setter
         public Builder accessKeyId(String accessKeyId) {
-            this.accessKeyId = Objects.requireNonNull(accessKeyId);
+            if (accessKeyId == null) {
+              throw new MissingRequiredPropertyException("GetObjectStoreResult", "accessKeyId");
+            }
+            this.accessKeyId = accessKeyId;
             return this;
         }
         @CustomType.Setter
         public Builder bucketUrl(String bucketUrl) {
-            this.bucketUrl = Objects.requireNonNull(bucketUrl);
+            if (bucketUrl == null) {
+              throw new MissingRequiredPropertyException("GetObjectStoreResult", "bucketUrl");
+            }
+            this.bucketUrl = bucketUrl;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder maxSizeGb(Integer maxSizeGb) {
-            this.maxSizeGb = Objects.requireNonNull(maxSizeGb);
+            if (maxSizeGb == null) {
+              throw new MissingRequiredPropertyException("GetObjectStoreResult", "maxSizeGb");
+            }
+            this.maxSizeGb = maxSizeGb;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder status(String status) {
-            this.status = Objects.requireNonNull(status);
+            if (status == null) {
+              throw new MissingRequiredPropertyException("GetObjectStoreResult", "status");
+            }
+            this.status = status;
             return this;
         }
         public GetObjectStoreResult build() {

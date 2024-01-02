@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -115,32 +116,44 @@ public final class GetVolumeResult {
 
         @CustomType.Setter
         public Builder createdAt(String createdAt) {
-            this.createdAt = Objects.requireNonNull(createdAt);
+            if (createdAt == null) {
+              throw new MissingRequiredPropertyException("GetVolumeResult", "createdAt");
+            }
+            this.createdAt = createdAt;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder mountPoint(String mountPoint) {
-            this.mountPoint = Objects.requireNonNull(mountPoint);
+            if (mountPoint == null) {
+              throw new MissingRequiredPropertyException("GetVolumeResult", "mountPoint");
+            }
+            this.mountPoint = mountPoint;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder sizeGb(Integer sizeGb) {
-            this.sizeGb = Objects.requireNonNull(sizeGb);
+            if (sizeGb == null) {
+              throw new MissingRequiredPropertyException("GetVolumeResult", "sizeGb");
+            }
+            this.sizeGb = sizeGb;
             return this;
         }
         public GetVolumeResult build() {

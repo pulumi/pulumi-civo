@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -84,47 +85,74 @@ public final class GetSizeSize {
 
         @CustomType.Setter
         public Builder cpu(Integer cpu) {
-            this.cpu = Objects.requireNonNull(cpu);
+            if (cpu == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "cpu");
+            }
+            this.cpu = cpu;
             return this;
         }
         @CustomType.Setter
         public Builder description(String description) {
-            this.description = Objects.requireNonNull(description);
+            if (description == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "description");
+            }
+            this.description = description;
             return this;
         }
         @CustomType.Setter
         public Builder disk(Integer disk) {
-            this.disk = Objects.requireNonNull(disk);
+            if (disk == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "disk");
+            }
+            this.disk = disk;
             return this;
         }
         @CustomType.Setter
         public Builder gpu(Integer gpu) {
-            this.gpu = Objects.requireNonNull(gpu);
+            if (gpu == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "gpu");
+            }
+            this.gpu = gpu;
             return this;
         }
         @CustomType.Setter
         public Builder gpuType(String gpuType) {
-            this.gpuType = Objects.requireNonNull(gpuType);
+            if (gpuType == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "gpuType");
+            }
+            this.gpuType = gpuType;
             return this;
         }
         @CustomType.Setter
         public Builder name(String name) {
-            this.name = Objects.requireNonNull(name);
+            if (name == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "name");
+            }
+            this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder ram(Integer ram) {
-            this.ram = Objects.requireNonNull(ram);
+            if (ram == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "ram");
+            }
+            this.ram = ram;
             return this;
         }
         @CustomType.Setter
         public Builder selectable(Boolean selectable) {
-            this.selectable = Objects.requireNonNull(selectable);
+            if (selectable == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "selectable");
+            }
+            this.selectable = selectable;
             return this;
         }
         @CustomType.Setter
         public Builder type(String type) {
-            this.type = Objects.requireNonNull(type);
+            if (type == null) {
+              throw new MissingRequiredPropertyException("GetSizeSize", "type");
+            }
+            this.type = type;
             return this;
         }
         public GetSizeSize build() {

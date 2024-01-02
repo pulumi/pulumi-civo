@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -383,10 +384,18 @@ public final class FirewallRuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public FirewallRuleArgs build() {
-            $.action = Objects.requireNonNull($.action, "expected parameter 'action' to be non-null");
-            $.cidrs = Objects.requireNonNull($.cidrs, "expected parameter 'cidrs' to be non-null");
-            $.direction = Objects.requireNonNull($.direction, "expected parameter 'direction' to be non-null");
-            $.firewallId = Objects.requireNonNull($.firewallId, "expected parameter 'firewallId' to be non-null");
+            if ($.action == null) {
+                throw new MissingRequiredPropertyException("FirewallRuleArgs", "action");
+            }
+            if ($.cidrs == null) {
+                throw new MissingRequiredPropertyException("FirewallRuleArgs", "cidrs");
+            }
+            if ($.direction == null) {
+                throw new MissingRequiredPropertyException("FirewallRuleArgs", "direction");
+            }
+            if ($.firewallId == null) {
+                throw new MissingRequiredPropertyException("FirewallRuleArgs", "firewallId");
+            }
             return $;
         }
     }

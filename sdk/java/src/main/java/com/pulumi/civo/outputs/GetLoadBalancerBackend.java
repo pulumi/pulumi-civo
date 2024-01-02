@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -59,27 +60,42 @@ public final class GetLoadBalancerBackend {
 
         @CustomType.Setter
         public Builder healthCheckPort(Integer healthCheckPort) {
-            this.healthCheckPort = Objects.requireNonNull(healthCheckPort);
+            if (healthCheckPort == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerBackend", "healthCheckPort");
+            }
+            this.healthCheckPort = healthCheckPort;
             return this;
         }
         @CustomType.Setter
         public Builder ip(String ip) {
-            this.ip = Objects.requireNonNull(ip);
+            if (ip == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerBackend", "ip");
+            }
+            this.ip = ip;
             return this;
         }
         @CustomType.Setter
         public Builder protocol(String protocol) {
-            this.protocol = Objects.requireNonNull(protocol);
+            if (protocol == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerBackend", "protocol");
+            }
+            this.protocol = protocol;
             return this;
         }
         @CustomType.Setter
         public Builder sourcePort(Integer sourcePort) {
-            this.sourcePort = Objects.requireNonNull(sourcePort);
+            if (sourcePort == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerBackend", "sourcePort");
+            }
+            this.sourcePort = sourcePort;
             return this;
         }
         @CustomType.Setter
         public Builder targetPort(Integer targetPort) {
-            this.targetPort = Objects.requireNonNull(targetPort);
+            if (targetPort == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerBackend", "targetPort");
+            }
+            this.targetPort = targetPort;
             return this;
         }
         public GetLoadBalancerBackend build() {

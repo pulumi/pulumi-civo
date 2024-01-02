@@ -4,6 +4,7 @@
 package com.pulumi.civo.inputs;
 
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -92,7 +93,9 @@ public final class GetDatabaseVersionSort extends com.pulumi.resources.InvokeArg
         }
 
         public GetDatabaseVersionSort build() {
-            $.key = Objects.requireNonNull($.key, "expected parameter 'key' to be non-null");
+            if ($.key == null) {
+                throw new MissingRequiredPropertyException("GetDatabaseVersionSort", "key");
+            }
             return $;
         }
     }

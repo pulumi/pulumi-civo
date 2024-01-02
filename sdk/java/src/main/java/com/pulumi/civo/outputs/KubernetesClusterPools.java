@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
@@ -103,6 +104,7 @@ public final class KubernetesClusterPools {
 
         @CustomType.Setter
         public Builder instanceNames(@Nullable List<String> instanceNames) {
+
             this.instanceNames = instanceNames;
             return this;
         }
@@ -111,22 +113,30 @@ public final class KubernetesClusterPools {
         }
         @CustomType.Setter
         public Builder label(@Nullable String label) {
+
             this.label = label;
             return this;
         }
         @CustomType.Setter
         public Builder nodeCount(Integer nodeCount) {
-            this.nodeCount = Objects.requireNonNull(nodeCount);
+            if (nodeCount == null) {
+              throw new MissingRequiredPropertyException("KubernetesClusterPools", "nodeCount");
+            }
+            this.nodeCount = nodeCount;
             return this;
         }
         @CustomType.Setter
         public Builder publicIpNodePool(@Nullable Boolean publicIpNodePool) {
+
             this.publicIpNodePool = publicIpNodePool;
             return this;
         }
         @CustomType.Setter
         public Builder size(String size) {
-            this.size = Objects.requireNonNull(size);
+            if (size == null) {
+              throw new MissingRequiredPropertyException("KubernetesClusterPools", "size");
+            }
+            this.size = size;
             return this;
         }
         public KubernetesClusterPools build() {

@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -188,8 +189,12 @@ public final class VolumeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public VolumeArgs build() {
-            $.networkId = Objects.requireNonNull($.networkId, "expected parameter 'networkId' to be non-null");
-            $.sizeGb = Objects.requireNonNull($.sizeGb, "expected parameter 'sizeGb' to be non-null");
+            if ($.networkId == null) {
+                throw new MissingRequiredPropertyException("VolumeArgs", "networkId");
+            }
+            if ($.sizeGb == null) {
+                throw new MissingRequiredPropertyException("VolumeArgs", "sizeGb");
+            }
             return $;
         }
     }
