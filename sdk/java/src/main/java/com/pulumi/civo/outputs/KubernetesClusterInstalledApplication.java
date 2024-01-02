@@ -55,21 +55,25 @@ public final class KubernetesClusterInstalledApplication {
 
         @CustomType.Setter
         public Builder application(@Nullable String application) {
+
             this.application = application;
             return this;
         }
         @CustomType.Setter
         public Builder category(@Nullable String category) {
+
             this.category = category;
             return this;
         }
         @CustomType.Setter
         public Builder installed(@Nullable Boolean installed) {
+
             this.installed = installed;
             return this;
         }
         @CustomType.Setter
         public Builder version(@Nullable String version) {
+
             this.version = version;
             return this;
         }

@@ -7,6 +7,7 @@ import com.pulumi.civo.outputs.GetDiskImageDiskimage;
 import com.pulumi.civo.outputs.GetDiskImageFilter;
 import com.pulumi.civo.outputs.GetDiskImageSort;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -96,7 +97,10 @@ public final class GetDiskImageResult {
 
         @CustomType.Setter
         public Builder diskimages(List<GetDiskImageDiskimage> diskimages) {
-            this.diskimages = Objects.requireNonNull(diskimages);
+            if (diskimages == null) {
+              throw new MissingRequiredPropertyException("GetDiskImageResult", "diskimages");
+            }
+            this.diskimages = diskimages;
             return this;
         }
         public Builder diskimages(GetDiskImageDiskimage... diskimages) {
@@ -104,6 +108,7 @@ public final class GetDiskImageResult {
         }
         @CustomType.Setter
         public Builder filters(@Nullable List<GetDiskImageFilter> filters) {
+
             this.filters = filters;
             return this;
         }
@@ -112,16 +117,21 @@ public final class GetDiskImageResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDiskImageResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder sorts(@Nullable List<GetDiskImageSort> sorts) {
+
             this.sorts = sorts;
             return this;
         }

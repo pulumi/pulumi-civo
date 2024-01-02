@@ -7,6 +7,7 @@ import com.pulumi.civo.outputs.GetDatabaseVersionFilter;
 import com.pulumi.civo.outputs.GetDatabaseVersionSort;
 import com.pulumi.civo.outputs.GetDatabaseVersionVersion;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -81,6 +82,7 @@ public final class GetDatabaseVersionResult {
 
         @CustomType.Setter
         public Builder filters(@Nullable List<GetDatabaseVersionFilter> filters) {
+
             this.filters = filters;
             return this;
         }
@@ -89,11 +91,15 @@ public final class GetDatabaseVersionResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseVersionResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder sorts(@Nullable List<GetDatabaseVersionSort> sorts) {
+
             this.sorts = sorts;
             return this;
         }
@@ -102,7 +108,10 @@ public final class GetDatabaseVersionResult {
         }
         @CustomType.Setter
         public Builder versions(List<GetDatabaseVersionVersion> versions) {
-            this.versions = Objects.requireNonNull(versions);
+            if (versions == null) {
+              throw new MissingRequiredPropertyException("GetDatabaseVersionResult", "versions");
+            }
+            this.versions = versions;
             return this;
         }
         public Builder versions(GetDatabaseVersionVersion... versions) {

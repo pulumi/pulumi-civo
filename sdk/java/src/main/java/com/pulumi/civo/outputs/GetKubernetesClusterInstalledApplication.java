@@ -4,6 +4,7 @@
 package com.pulumi.civo.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -53,22 +54,34 @@ public final class GetKubernetesClusterInstalledApplication {
 
         @CustomType.Setter
         public Builder application(String application) {
-            this.application = Objects.requireNonNull(application);
+            if (application == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterInstalledApplication", "application");
+            }
+            this.application = application;
             return this;
         }
         @CustomType.Setter
         public Builder category(String category) {
-            this.category = Objects.requireNonNull(category);
+            if (category == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterInstalledApplication", "category");
+            }
+            this.category = category;
             return this;
         }
         @CustomType.Setter
         public Builder installed(Boolean installed) {
-            this.installed = Objects.requireNonNull(installed);
+            if (installed == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterInstalledApplication", "installed");
+            }
+            this.installed = installed;
             return this;
         }
         @CustomType.Setter
         public Builder version(String version) {
-            this.version = Objects.requireNonNull(version);
+            if (version == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesClusterInstalledApplication", "version");
+            }
+            this.version = version;
             return this;
         }
         public GetKubernetesClusterInstalledApplication build() {

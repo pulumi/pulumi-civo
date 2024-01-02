@@ -7,6 +7,7 @@ import com.pulumi.civo.outputs.GetKubernetesVersionFilter;
 import com.pulumi.civo.outputs.GetKubernetesVersionSort;
 import com.pulumi.civo.outputs.GetKubernetesVersionVersion;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -81,6 +82,7 @@ public final class GetKubernetesVersionResult {
 
         @CustomType.Setter
         public Builder filters(@Nullable List<GetKubernetesVersionFilter> filters) {
+
             this.filters = filters;
             return this;
         }
@@ -89,11 +91,15 @@ public final class GetKubernetesVersionResult {
         }
         @CustomType.Setter
         public Builder id(String id) {
-            this.id = Objects.requireNonNull(id);
+            if (id == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesVersionResult", "id");
+            }
+            this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder sorts(@Nullable List<GetKubernetesVersionSort> sorts) {
+
             this.sorts = sorts;
             return this;
         }
@@ -102,7 +108,10 @@ public final class GetKubernetesVersionResult {
         }
         @CustomType.Setter
         public Builder versions(List<GetKubernetesVersionVersion> versions) {
-            this.versions = Objects.requireNonNull(versions);
+            if (versions == null) {
+              throw new MissingRequiredPropertyException("GetKubernetesVersionResult", "versions");
+            }
+            this.versions = versions;
             return this;
         }
         public Builder versions(GetKubernetesVersionVersion... versions) {

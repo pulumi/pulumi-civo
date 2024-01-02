@@ -5,6 +5,7 @@ package com.pulumi.civo.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.Objects;
 
@@ -111,8 +112,12 @@ public final class GetDnsDomainRecordArgs extends com.pulumi.resources.InvokeArg
         }
 
         public GetDnsDomainRecordArgs build() {
-            $.domainId = Objects.requireNonNull($.domainId, "expected parameter 'domainId' to be non-null");
-            $.name = Objects.requireNonNull($.name, "expected parameter 'name' to be non-null");
+            if ($.domainId == null) {
+                throw new MissingRequiredPropertyException("GetDnsDomainRecordArgs", "domainId");
+            }
+            if ($.name == null) {
+                throw new MissingRequiredPropertyException("GetDnsDomainRecordArgs", "name");
+            }
             return $;
         }
     }

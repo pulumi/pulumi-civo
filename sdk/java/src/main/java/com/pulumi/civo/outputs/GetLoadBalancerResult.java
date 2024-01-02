@@ -5,6 +5,7 @@ package com.pulumi.civo.outputs;
 
 import com.pulumi.civo.outputs.GetLoadBalancerBackend;
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -221,12 +222,18 @@ public final class GetLoadBalancerResult {
 
         @CustomType.Setter
         public Builder algorithm(String algorithm) {
-            this.algorithm = Objects.requireNonNull(algorithm);
+            if (algorithm == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "algorithm");
+            }
+            this.algorithm = algorithm;
             return this;
         }
         @CustomType.Setter
         public Builder backends(List<GetLoadBalancerBackend> backends) {
-            this.backends = Objects.requireNonNull(backends);
+            if (backends == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "backends");
+            }
+            this.backends = backends;
             return this;
         }
         public Builder backends(GetLoadBalancerBackend... backends) {
@@ -234,62 +241,92 @@ public final class GetLoadBalancerResult {
         }
         @CustomType.Setter
         public Builder clusterId(String clusterId) {
-            this.clusterId = Objects.requireNonNull(clusterId);
+            if (clusterId == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "clusterId");
+            }
+            this.clusterId = clusterId;
             return this;
         }
         @CustomType.Setter
         public Builder enableProxyProtocol(String enableProxyProtocol) {
-            this.enableProxyProtocol = Objects.requireNonNull(enableProxyProtocol);
+            if (enableProxyProtocol == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "enableProxyProtocol");
+            }
+            this.enableProxyProtocol = enableProxyProtocol;
             return this;
         }
         @CustomType.Setter
         public Builder externalTrafficPolicy(String externalTrafficPolicy) {
-            this.externalTrafficPolicy = Objects.requireNonNull(externalTrafficPolicy);
+            if (externalTrafficPolicy == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "externalTrafficPolicy");
+            }
+            this.externalTrafficPolicy = externalTrafficPolicy;
             return this;
         }
         @CustomType.Setter
         public Builder firewallId(String firewallId) {
-            this.firewallId = Objects.requireNonNull(firewallId);
+            if (firewallId == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "firewallId");
+            }
+            this.firewallId = firewallId;
             return this;
         }
         @CustomType.Setter
         public Builder id(@Nullable String id) {
+
             this.id = id;
             return this;
         }
         @CustomType.Setter
         public Builder name(@Nullable String name) {
+
             this.name = name;
             return this;
         }
         @CustomType.Setter
         public Builder privateIp(String privateIp) {
-            this.privateIp = Objects.requireNonNull(privateIp);
+            if (privateIp == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "privateIp");
+            }
+            this.privateIp = privateIp;
             return this;
         }
         @CustomType.Setter
         public Builder publicIp(String publicIp) {
-            this.publicIp = Objects.requireNonNull(publicIp);
+            if (publicIp == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "publicIp");
+            }
+            this.publicIp = publicIp;
             return this;
         }
         @CustomType.Setter
         public Builder region(@Nullable String region) {
+
             this.region = region;
             return this;
         }
         @CustomType.Setter
         public Builder sessionAffinity(String sessionAffinity) {
-            this.sessionAffinity = Objects.requireNonNull(sessionAffinity);
+            if (sessionAffinity == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "sessionAffinity");
+            }
+            this.sessionAffinity = sessionAffinity;
             return this;
         }
         @CustomType.Setter
         public Builder sessionAffinityConfigTimeout(Integer sessionAffinityConfigTimeout) {
-            this.sessionAffinityConfigTimeout = Objects.requireNonNull(sessionAffinityConfigTimeout);
+            if (sessionAffinityConfigTimeout == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "sessionAffinityConfigTimeout");
+            }
+            this.sessionAffinityConfigTimeout = sessionAffinityConfigTimeout;
             return this;
         }
         @CustomType.Setter
         public Builder state(String state) {
-            this.state = Objects.requireNonNull(state);
+            if (state == null) {
+              throw new MissingRequiredPropertyException("GetLoadBalancerResult", "state");
+            }
+            this.state = state;
             return this;
         }
         public GetLoadBalancerResult build() {
