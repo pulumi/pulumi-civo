@@ -12,41 +12,113 @@ import java.util.Objects;
 
 @CustomType
 public final class GetSizeSize {
+    /**
+     * @return Total of CPU
+     * 
+     */
     private Integer cpu;
+    /**
+     * @return A description of the instance size
+     * 
+     */
     private String description;
+    /**
+     * @return The size of SSD
+     * 
+     */
     private Integer disk;
+    /**
+     * @return Total of GPU
+     * 
+     */
     private Integer gpu;
+    /**
+     * @return GPU type
+     * 
+     */
     private String gpuType;
+    /**
+     * @return The name of the size
+     * 
+     */
     private String name;
+    /**
+     * @return Total of RAM
+     * 
+     */
     private Integer ram;
+    /**
+     * @return If can use the instance size
+     * 
+     */
     private Boolean selectable;
+    /**
+     * @return A human name of the size
+     * 
+     */
     private String type;
 
     private GetSizeSize() {}
+    /**
+     * @return Total of CPU
+     * 
+     */
     public Integer cpu() {
         return this.cpu;
     }
+    /**
+     * @return A description of the instance size
+     * 
+     */
     public String description() {
         return this.description;
     }
+    /**
+     * @return The size of SSD
+     * 
+     */
     public Integer disk() {
         return this.disk;
     }
+    /**
+     * @return Total of GPU
+     * 
+     */
     public Integer gpu() {
         return this.gpu;
     }
+    /**
+     * @return GPU type
+     * 
+     */
     public String gpuType() {
         return this.gpuType;
     }
+    /**
+     * @return The name of the size
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Total of RAM
+     * 
+     */
     public Integer ram() {
         return this.ram;
     }
+    /**
+     * @return If can use the instance size
+     * 
+     */
     public Boolean selectable() {
         return this.selectable;
     }
+    /**
+     * @return A human name of the size
+     * 
+     */
     public String type() {
         return this.type;
     }

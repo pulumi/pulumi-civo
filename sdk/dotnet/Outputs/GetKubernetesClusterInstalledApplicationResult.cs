@@ -13,9 +13,21 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterInstalledApplicationResult
     {
+        /// <summary>
+        /// The name of the application
+        /// </summary>
         public readonly string Application;
+        /// <summary>
+        /// The category of the application
+        /// </summary>
         public readonly string Category;
+        /// <summary>
+        /// If the application is installed, this will return `true`
+        /// </summary>
         public readonly bool Installed;
+        /// <summary>
+        /// The version of the application
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

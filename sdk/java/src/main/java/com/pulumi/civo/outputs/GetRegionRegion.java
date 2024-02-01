@@ -11,21 +11,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetRegionRegion {
+    /**
+     * @return The code of the region
+     * 
+     */
     private String code;
+    /**
+     * @return The country of the region
+     * 
+     */
     private String country;
+    /**
+     * @return If the region is the default region, this will return `true`
+     * 
+     */
     private Boolean default_;
+    /**
+     * @return A human name of the region
+     * 
+     */
     private String name;
 
     private GetRegionRegion() {}
+    /**
+     * @return The code of the region
+     * 
+     */
     public String code() {
         return this.code;
     }
+    /**
+     * @return The country of the region
+     * 
+     */
     public String country() {
         return this.country;
     }
+    /**
+     * @return If the region is the default region, this will return `true`
+     * 
+     */
     public Boolean default_() {
         return this.default_;
     }
+    /**
+     * @return A human name of the region
+     * 
+     */
     public String name() {
         return this.name;
     }

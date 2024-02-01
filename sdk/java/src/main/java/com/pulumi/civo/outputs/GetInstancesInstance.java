@@ -12,93 +12,269 @@ import java.util.Objects;
 
 @CustomType
 public final class GetInstancesInstance {
+    /**
+     * @return CPU of the instance
+     * 
+     */
     private Integer cpuCores;
+    /**
+     * @return Creation date of the instance
+     * 
+     */
     private String createdAt;
+    /**
+     * @return SSD size of the instance
+     * 
+     */
     private Integer diskGb;
+    /**
+     * @return Firewall ID of the instance
+     * 
+     */
     private String firewallId;
+    /**
+     * @return Hostname of the instance
+     * 
+     */
     private String hostname;
+    /**
+     * @return ID of the instance
+     * 
+     */
     private String id;
+    /**
+     * @return Initial password of the instance
+     * 
+     */
     private String initialPassword;
+    /**
+     * @return Initial user of the instance
+     * 
+     */
     private String initialUser;
+    /**
+     * @return Network id of the instance
+     * 
+     */
     private String networkId;
+    /**
+     * @return Note of the instance
+     * 
+     */
     private String notes;
+    /**
+     * @return Private IP of the instance
+     * 
+     */
     private String privateIp;
+    /**
+     * @return Pseudo IP of the instance
+     * 
+     */
     private String pseudoIp;
+    /**
+     * @return Public IP of the instance
+     * 
+     */
     private String publicIp;
+    /**
+     * @return RAM of the instance
+     * 
+     */
     private Integer ramMb;
+    /**
+     * @return Region of the instance
+     * 
+     */
     private String region;
+    /**
+     * @return Reverse DNS of the instance
+     * 
+     */
     private String reverseDns;
+    /**
+     * @return Script of the instance
+     * 
+     */
     private String script;
+    /**
+     * @return Size of the instance
+     * 
+     */
     private String size;
+    /**
+     * @return SSH key id of the instance
+     * 
+     */
     private String sshkeyId;
+    /**
+     * @return Status of the instance
+     * 
+     */
     private String status;
+    /**
+     * @return Tags of the instance
+     * 
+     */
     private List<String> tags;
+    /**
+     * @return Disk image/template of the instance
+     * 
+     */
     private String template;
 
     private GetInstancesInstance() {}
+    /**
+     * @return CPU of the instance
+     * 
+     */
     public Integer cpuCores() {
         return this.cpuCores;
     }
+    /**
+     * @return Creation date of the instance
+     * 
+     */
     public String createdAt() {
         return this.createdAt;
     }
+    /**
+     * @return SSD size of the instance
+     * 
+     */
     public Integer diskGb() {
         return this.diskGb;
     }
+    /**
+     * @return Firewall ID of the instance
+     * 
+     */
     public String firewallId() {
         return this.firewallId;
     }
+    /**
+     * @return Hostname of the instance
+     * 
+     */
     public String hostname() {
         return this.hostname;
     }
+    /**
+     * @return ID of the instance
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Initial password of the instance
+     * 
+     */
     public String initialPassword() {
         return this.initialPassword;
     }
+    /**
+     * @return Initial user of the instance
+     * 
+     */
     public String initialUser() {
         return this.initialUser;
     }
+    /**
+     * @return Network id of the instance
+     * 
+     */
     public String networkId() {
         return this.networkId;
     }
+    /**
+     * @return Note of the instance
+     * 
+     */
     public String notes() {
         return this.notes;
     }
+    /**
+     * @return Private IP of the instance
+     * 
+     */
     public String privateIp() {
         return this.privateIp;
     }
+    /**
+     * @return Pseudo IP of the instance
+     * 
+     */
     public String pseudoIp() {
         return this.pseudoIp;
     }
+    /**
+     * @return Public IP of the instance
+     * 
+     */
     public String publicIp() {
         return this.publicIp;
     }
+    /**
+     * @return RAM of the instance
+     * 
+     */
     public Integer ramMb() {
         return this.ramMb;
     }
+    /**
+     * @return Region of the instance
+     * 
+     */
     public String region() {
         return this.region;
     }
+    /**
+     * @return Reverse DNS of the instance
+     * 
+     */
     public String reverseDns() {
         return this.reverseDns;
     }
+    /**
+     * @return Script of the instance
+     * 
+     */
     public String script() {
         return this.script;
     }
+    /**
+     * @return Size of the instance
+     * 
+     */
     public String size() {
         return this.size;
     }
+    /**
+     * @return SSH key id of the instance
+     * 
+     */
     public String sshkeyId() {
         return this.sshkeyId;
     }
+    /**
+     * @return Status of the instance
+     * 
+     */
     public String status() {
         return this.status;
     }
+    /**
+     * @return Tags of the instance
+     * 
+     */
     public List<String> tags() {
         return this.tags;
     }
+    /**
+     * @return Disk image/template of the instance
+     * 
+     */
     public String template() {
         return this.template;
     }

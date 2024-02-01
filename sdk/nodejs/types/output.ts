@@ -84,15 +84,36 @@ export interface GetDatabaseVersionSort {
 }
 
 export interface GetDatabaseVersionVersion {
+    /**
+     * If the version is the default
+     */
     default: boolean;
+    /**
+     * The engine of the database
+     */
     engine: string;
+    /**
+     * The version of the database
+     */
     version: string;
 }
 
 export interface GetDiskImageDiskimage {
+    /**
+     * ID of disk image
+     */
     id: string;
+    /**
+     * Label of disk image
+     */
     label: string;
+    /**
+     * Name of disk image
+     */
     name: string;
+    /**
+     * Version of disk image
+     */
     version: string;
 }
 
@@ -146,27 +167,93 @@ export interface GetInstancesFilter {
 }
 
 export interface GetInstancesInstance {
+    /**
+     * CPU of the instance
+     */
     cpuCores: number;
+    /**
+     * Creation date of the instance
+     */
     createdAt: string;
+    /**
+     * SSD size of the instance
+     */
     diskGb: number;
+    /**
+     * Firewall ID of the instance
+     */
     firewallId: string;
+    /**
+     * Hostname of the instance
+     */
     hostname: string;
+    /**
+     * ID of the instance
+     */
     id: string;
+    /**
+     * Initial password of the instance
+     */
     initialPassword: string;
+    /**
+     * Initial user of the instance
+     */
     initialUser: string;
+    /**
+     * Network id of the instance
+     */
     networkId: string;
+    /**
+     * Note of the instance
+     */
     notes: string;
+    /**
+     * Private IP of the instance
+     */
     privateIp: string;
+    /**
+     * Pseudo IP of the instance
+     */
     pseudoIp: string;
+    /**
+     * Public IP of the instance
+     */
     publicIp: string;
+    /**
+     * RAM of the instance
+     */
     ramMb: number;
+    /**
+     * Region of the instance
+     */
     region: string;
+    /**
+     * Reverse DNS of the instance
+     */
     reverseDns: string;
+    /**
+     * Script of the instance
+     */
     script: string;
+    /**
+     * Size of the instance
+     */
     size: string;
+    /**
+     * SSH key id of the instance
+     */
     sshkeyId: string;
+    /**
+     * Status of the instance
+     */
     status: string;
+    /**
+     * Tags of the instance
+     */
     tags: string[];
+    /**
+     * Disk image/template of the instance
+     */
     template: string;
 }
 
@@ -182,17 +269,44 @@ export interface GetInstancesSort {
 }
 
 export interface GetKubernetesClusterInstalledApplication {
+    /**
+     * The name of the application
+     */
     application: string;
+    /**
+     * The category of the application
+     */
     category: string;
+    /**
+     * If the application is installed, this will return `true`
+     */
     installed: boolean;
+    /**
+     * The version of the application
+     */
     version: string;
 }
 
 export interface GetKubernetesClusterPool {
+    /**
+     * A list of the instance in the pool
+     */
     instanceNames: string[];
+    /**
+     * Node pool label, if you don't provide one, we will generate one for you
+     */
     label: string;
+    /**
+     * The size of the pool
+     */
     nodeCount: number;
+    /**
+     * Node pool belongs to the public ip node pool
+     */
     publicIpNodePool: boolean;
+    /**
+     * The size of each node inside the pool
+     */
     size: string;
 }
 
@@ -227,17 +341,44 @@ export interface GetKubernetesVersionSort {
 }
 
 export interface GetKubernetesVersionVersion {
+    /**
+     * If is the default version used in all cluster, this will return `true`
+     */
     default: boolean;
+    /**
+     * The label of this version
+     */
     label: string;
+    /**
+     * The type of the cluster, can be `talos` or `k3s`
+     */
     type: string;
+    /**
+     * A version of the Kubernetes
+     */
     version: string;
 }
 
 export interface GetLoadBalancerBackend {
+    /**
+     * The health check port of the backend
+     */
     healthCheckPort: number;
+    /**
+     * The ip of the backend
+     */
     ip: string;
+    /**
+     * The protocol of the backend
+     */
     protocol: string;
+    /**
+     * The source port of the backend
+     */
     sourcePort: number;
+    /**
+     * The target port of the backend
+     */
     targetPort: number;
 }
 
@@ -261,9 +402,21 @@ export interface GetRegionFilter {
 }
 
 export interface GetRegionRegion {
+    /**
+     * The code of the region
+     */
     code: string;
+    /**
+     * The country of the region
+     */
     country: string;
+    /**
+     * If the region is the default region, this will return `true`
+     */
     default: boolean;
+    /**
+     * A human name of the region
+     */
     name: string;
 }
 
@@ -298,14 +451,41 @@ export interface GetSizeFilter {
 }
 
 export interface GetSizeSize {
+    /**
+     * Total of CPU
+     */
     cpu: number;
+    /**
+     * A description of the instance size
+     */
     description: string;
+    /**
+     * The size of SSD
+     */
     disk: number;
+    /**
+     * Total of GPU
+     */
     gpu: number;
+    /**
+     * GPU type
+     */
     gpuType: string;
+    /**
+     * The name of the size
+     */
     name: string;
+    /**
+     * Total of RAM
+     */
     ram: number;
+    /**
+     * If can use the instance size
+     */
     selectable: boolean;
+    /**
+     * A human name of the size
+     */
     type: string;
 }
 
@@ -321,9 +501,21 @@ export interface GetSizeSort {
 }
 
 export interface KubernetesClusterInstalledApplication {
+    /**
+     * Name of application
+     */
     application: string;
+    /**
+     * Category of the application
+     */
     category: string;
+    /**
+     * Application installation status (`true` if installed)
+     */
     installed: boolean;
+    /**
+     * Version of application
+     */
     version: string;
 }
 

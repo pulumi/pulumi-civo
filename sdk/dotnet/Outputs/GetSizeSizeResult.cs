@@ -13,14 +13,41 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetSizeSizeResult
     {
+        /// <summary>
+        /// Total of CPU
+        /// </summary>
         public readonly int Cpu;
+        /// <summary>
+        /// A description of the instance size
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// The size of SSD
+        /// </summary>
         public readonly int Disk;
+        /// <summary>
+        /// Total of GPU
+        /// </summary>
         public readonly int Gpu;
+        /// <summary>
+        /// GPU type
+        /// </summary>
         public readonly string GpuType;
+        /// <summary>
+        /// The name of the size
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Total of RAM
+        /// </summary>
         public readonly int Ram;
+        /// <summary>
+        /// If can use the instance size
+        /// </summary>
         public readonly bool Selectable;
+        /// <summary>
+        /// A human name of the size
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

@@ -10,21 +10,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDiskImageDiskimage {
+    /**
+     * @return ID of disk image
+     * 
+     */
     private String id;
+    /**
+     * @return Label of disk image
+     * 
+     */
     private String label;
+    /**
+     * @return Name of disk image
+     * 
+     */
     private String name;
+    /**
+     * @return Version of disk image
+     * 
+     */
     private String version;
 
     private GetDiskImageDiskimage() {}
+    /**
+     * @return ID of disk image
+     * 
+     */
     public String id() {
         return this.id;
     }
+    /**
+     * @return Label of disk image
+     * 
+     */
     public String label() {
         return this.label;
     }
+    /**
+     * @return Name of disk image
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Version of disk image
+     * 
+     */
     public String version() {
         return this.version;
     }
