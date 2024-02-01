@@ -13,10 +13,25 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterPoolResult
     {
+        /// <summary>
+        /// A list of the instance in the pool
+        /// </summary>
         public readonly ImmutableArray<string> InstanceNames;
+        /// <summary>
+        /// Node pool label, if you don't provide one, we will generate one for you
+        /// </summary>
         public readonly string Label;
+        /// <summary>
+        /// The size of the pool
+        /// </summary>
         public readonly int NodeCount;
+        /// <summary>
+        /// Node pool belongs to the public ip node pool
+        /// </summary>
         public readonly bool PublicIpNodePool;
+        /// <summary>
+        /// The size of each node inside the pool
+        /// </summary>
         public readonly string Size;
 
         [OutputConstructor]

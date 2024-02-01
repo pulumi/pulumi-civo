@@ -13,27 +13,93 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetInstancesInstanceResult
     {
+        /// <summary>
+        /// CPU of the instance
+        /// </summary>
         public readonly int CpuCores;
+        /// <summary>
+        /// Creation date of the instance
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// SSD size of the instance
+        /// </summary>
         public readonly int DiskGb;
+        /// <summary>
+        /// Firewall ID of the instance
+        /// </summary>
         public readonly string FirewallId;
+        /// <summary>
+        /// Hostname of the instance
+        /// </summary>
         public readonly string Hostname;
+        /// <summary>
+        /// ID of the instance
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Initial password of the instance
+        /// </summary>
         public readonly string InitialPassword;
+        /// <summary>
+        /// Initial user of the instance
+        /// </summary>
         public readonly string InitialUser;
+        /// <summary>
+        /// Network id of the instance
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// Note of the instance
+        /// </summary>
         public readonly string Notes;
+        /// <summary>
+        /// Private IP of the instance
+        /// </summary>
         public readonly string PrivateIp;
+        /// <summary>
+        /// Pseudo IP of the instance
+        /// </summary>
         public readonly string PseudoIp;
+        /// <summary>
+        /// Public IP of the instance
+        /// </summary>
         public readonly string PublicIp;
+        /// <summary>
+        /// RAM of the instance
+        /// </summary>
         public readonly int RamMb;
+        /// <summary>
+        /// Region of the instance
+        /// </summary>
         public readonly string Region;
+        /// <summary>
+        /// Reverse DNS of the instance
+        /// </summary>
         public readonly string ReverseDns;
+        /// <summary>
+        /// Script of the instance
+        /// </summary>
         public readonly string Script;
+        /// <summary>
+        /// Size of the instance
+        /// </summary>
         public readonly string Size;
+        /// <summary>
+        /// SSH key id of the instance
+        /// </summary>
         public readonly string SshkeyId;
+        /// <summary>
+        /// Status of the instance
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Tags of the instance
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// Disk image/template of the instance
+        /// </summary>
         public readonly string Template;
 
         [OutputConstructor]

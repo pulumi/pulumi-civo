@@ -414,9 +414,21 @@ export interface GetSizeSortArgs {
 }
 
 export interface KubernetesClusterInstalledApplication {
+    /**
+     * Name of application
+     */
     application?: pulumi.Input<string>;
+    /**
+     * Category of the application
+     */
     category?: pulumi.Input<string>;
+    /**
+     * Application installation status (`true` if installed)
+     */
     installed?: pulumi.Input<boolean>;
+    /**
+     * Version of application
+     */
     version?: pulumi.Input<string>;
 }
 

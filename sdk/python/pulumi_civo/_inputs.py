@@ -230,6 +230,12 @@ class KubernetesClusterInstalledApplicationArgs:
                  category: Optional[pulumi.Input[str]] = None,
                  installed: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] application: Name of application
+        :param pulumi.Input[str] category: Category of the application
+        :param pulumi.Input[bool] installed: Application installation status (`true` if installed)
+        :param pulumi.Input[str] version: Version of application
+        """
         if application is not None:
             pulumi.set(__self__, "application", application)
         if category is not None:
@@ -242,6 +248,9 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def application(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of application
+        """
         return pulumi.get(self, "application")
 
     @application.setter
@@ -251,6 +260,9 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
+        """
+        Category of the application
+        """
         return pulumi.get(self, "category")
 
     @category.setter
@@ -260,6 +272,9 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def installed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Application installation status (`true` if installed)
+        """
         return pulumi.get(self, "installed")
 
     @installed.setter
@@ -269,6 +284,9 @@ class KubernetesClusterInstalledApplicationArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of application
+        """
         return pulumi.get(self, "version")
 
     @version.setter

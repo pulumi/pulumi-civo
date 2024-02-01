@@ -11,17 +11,41 @@ import java.util.Objects;
 
 @CustomType
 public final class GetDatabaseVersionVersion {
+    /**
+     * @return If the version is the default
+     * 
+     */
     private Boolean default_;
+    /**
+     * @return The engine of the database
+     * 
+     */
     private String engine;
+    /**
+     * @return The version of the database
+     * 
+     */
     private String version;
 
     private GetDatabaseVersionVersion() {}
+    /**
+     * @return If the version is the default
+     * 
+     */
     public Boolean default_() {
         return this.default_;
     }
+    /**
+     * @return The engine of the database
+     * 
+     */
     public String engine() {
         return this.engine;
     }
+    /**
+     * @return The version of the database
+     * 
+     */
     public String version() {
         return this.version;
     }
