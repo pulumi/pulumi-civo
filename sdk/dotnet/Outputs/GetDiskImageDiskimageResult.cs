@@ -13,9 +13,21 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetDiskImageDiskimageResult
     {
+        /// <summary>
+        /// ID of disk image
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Label of disk image
+        /// </summary>
         public readonly string Label;
+        /// <summary>
+        /// Name of disk image
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Version of disk image
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

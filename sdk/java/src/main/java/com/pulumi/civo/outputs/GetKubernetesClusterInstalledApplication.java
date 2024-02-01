@@ -11,21 +11,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesClusterInstalledApplication {
+    /**
+     * @return The name of the application
+     * 
+     */
     private String application;
+    /**
+     * @return The category of the application
+     * 
+     */
     private String category;
+    /**
+     * @return If the application is installed, this will return `true`
+     * 
+     */
     private Boolean installed;
+    /**
+     * @return The version of the application
+     * 
+     */
     private String version;
 
     private GetKubernetesClusterInstalledApplication() {}
+    /**
+     * @return The name of the application
+     * 
+     */
     public String application() {
         return this.application;
     }
+    /**
+     * @return The category of the application
+     * 
+     */
     public String category() {
         return this.category;
     }
+    /**
+     * @return If the application is installed, this will return `true`
+     * 
+     */
     public Boolean installed() {
         return this.installed;
     }
+    /**
+     * @return The version of the application
+     * 
+     */
     public String version() {
         return this.version;
     }

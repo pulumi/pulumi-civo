@@ -13,10 +13,25 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetLoadBalancerBackendResult
     {
+        /// <summary>
+        /// The health check port of the backend
+        /// </summary>
         public readonly int HealthCheckPort;
+        /// <summary>
+        /// The ip of the backend
+        /// </summary>
         public readonly string Ip;
+        /// <summary>
+        /// The protocol of the backend
+        /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// The source port of the backend
+        /// </summary>
         public readonly int SourcePort;
+        /// <summary>
+        /// The target port of the backend
+        /// </summary>
         public readonly int TargetPort;
 
         [OutputConstructor]

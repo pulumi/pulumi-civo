@@ -13,8 +13,17 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetDatabaseVersionVersionResult
     {
+        /// <summary>
+        /// If the version is the default
+        /// </summary>
         public readonly bool Default;
+        /// <summary>
+        /// The engine of the database
+        /// </summary>
         public readonly string Engine;
+        /// <summary>
+        /// The version of the database
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

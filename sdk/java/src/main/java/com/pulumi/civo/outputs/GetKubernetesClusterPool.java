@@ -13,25 +13,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesClusterPool {
+    /**
+     * @return A list of the instance in the pool
+     * 
+     */
     private List<String> instanceNames;
+    /**
+     * @return Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     private String label;
+    /**
+     * @return The size of the pool
+     * 
+     */
     private Integer nodeCount;
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
     private Boolean publicIpNodePool;
+    /**
+     * @return The size of each node inside the pool
+     * 
+     */
     private String size;
 
     private GetKubernetesClusterPool() {}
+    /**
+     * @return A list of the instance in the pool
+     * 
+     */
     public List<String> instanceNames() {
         return this.instanceNames;
     }
+    /**
+     * @return Node pool label, if you don&#39;t provide one, we will generate one for you
+     * 
+     */
     public String label() {
         return this.label;
     }
+    /**
+     * @return The size of the pool
+     * 
+     */
     public Integer nodeCount() {
         return this.nodeCount;
     }
+    /**
+     * @return Node pool belongs to the public ip node pool
+     * 
+     */
     public Boolean publicIpNodePool() {
         return this.publicIpNodePool;
     }
+    /**
+     * @return The size of each node inside the pool
+     * 
+     */
     public String size() {
         return this.size;
     }

@@ -11,25 +11,65 @@ import java.util.Objects;
 
 @CustomType
 public final class GetLoadBalancerBackend {
+    /**
+     * @return The health check port of the backend
+     * 
+     */
     private Integer healthCheckPort;
+    /**
+     * @return The ip of the backend
+     * 
+     */
     private String ip;
+    /**
+     * @return The protocol of the backend
+     * 
+     */
     private String protocol;
+    /**
+     * @return The source port of the backend
+     * 
+     */
     private Integer sourcePort;
+    /**
+     * @return The target port of the backend
+     * 
+     */
     private Integer targetPort;
 
     private GetLoadBalancerBackend() {}
+    /**
+     * @return The health check port of the backend
+     * 
+     */
     public Integer healthCheckPort() {
         return this.healthCheckPort;
     }
+    /**
+     * @return The ip of the backend
+     * 
+     */
     public String ip() {
         return this.ip;
     }
+    /**
+     * @return The protocol of the backend
+     * 
+     */
     public String protocol() {
         return this.protocol;
     }
+    /**
+     * @return The source port of the backend
+     * 
+     */
     public Integer sourcePort() {
         return this.sourcePort;
     }
+    /**
+     * @return The target port of the backend
+     * 
+     */
     public Integer targetPort() {
         return this.targetPort;
     }
