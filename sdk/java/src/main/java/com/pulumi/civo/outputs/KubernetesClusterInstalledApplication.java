@@ -12,21 +12,53 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class KubernetesClusterInstalledApplication {
+    /**
+     * @return Name of application
+     * 
+     */
     private @Nullable String application;
+    /**
+     * @return Category of the application
+     * 
+     */
     private @Nullable String category;
+    /**
+     * @return Application installation status (`true` if installed)
+     * 
+     */
     private @Nullable Boolean installed;
+    /**
+     * @return Version of application
+     * 
+     */
     private @Nullable String version;
 
     private KubernetesClusterInstalledApplication() {}
+    /**
+     * @return Name of application
+     * 
+     */
     public Optional<String> application() {
         return Optional.ofNullable(this.application);
     }
+    /**
+     * @return Category of the application
+     * 
+     */
     public Optional<String> category() {
         return Optional.ofNullable(this.category);
     }
+    /**
+     * @return Application installation status (`true` if installed)
+     * 
+     */
     public Optional<Boolean> installed() {
         return Optional.ofNullable(this.installed);
     }
+    /**
+     * @return Version of application
+     * 
+     */
     public Optional<String> version() {
         return Optional.ofNullable(this.version);
     }

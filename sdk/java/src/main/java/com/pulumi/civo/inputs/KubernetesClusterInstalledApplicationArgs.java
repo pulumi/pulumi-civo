@@ -16,30 +16,62 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
 
     public static final KubernetesClusterInstalledApplicationArgs Empty = new KubernetesClusterInstalledApplicationArgs();
 
+    /**
+     * Name of application
+     * 
+     */
     @Import(name="application")
     private @Nullable Output<String> application;
 
+    /**
+     * @return Name of application
+     * 
+     */
     public Optional<Output<String>> application() {
         return Optional.ofNullable(this.application);
     }
 
+    /**
+     * Category of the application
+     * 
+     */
     @Import(name="category")
     private @Nullable Output<String> category;
 
+    /**
+     * @return Category of the application
+     * 
+     */
     public Optional<Output<String>> category() {
         return Optional.ofNullable(this.category);
     }
 
+    /**
+     * Application installation status (`true` if installed)
+     * 
+     */
     @Import(name="installed")
     private @Nullable Output<Boolean> installed;
 
+    /**
+     * @return Application installation status (`true` if installed)
+     * 
+     */
     public Optional<Output<Boolean>> installed() {
         return Optional.ofNullable(this.installed);
     }
 
+    /**
+     * Version of application
+     * 
+     */
     @Import(name="version")
     private @Nullable Output<String> version;
 
+    /**
+     * @return Version of application
+     * 
+     */
     public Optional<Output<String>> version() {
         return Optional.ofNullable(this.version);
     }
@@ -71,38 +103,86 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
             $ = new KubernetesClusterInstalledApplicationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param application Name of application
+         * 
+         * @return builder
+         * 
+         */
         public Builder application(@Nullable Output<String> application) {
             $.application = application;
             return this;
         }
 
+        /**
+         * @param application Name of application
+         * 
+         * @return builder
+         * 
+         */
         public Builder application(String application) {
             return application(Output.of(application));
         }
 
+        /**
+         * @param category Category of the application
+         * 
+         * @return builder
+         * 
+         */
         public Builder category(@Nullable Output<String> category) {
             $.category = category;
             return this;
         }
 
+        /**
+         * @param category Category of the application
+         * 
+         * @return builder
+         * 
+         */
         public Builder category(String category) {
             return category(Output.of(category));
         }
 
+        /**
+         * @param installed Application installation status (`true` if installed)
+         * 
+         * @return builder
+         * 
+         */
         public Builder installed(@Nullable Output<Boolean> installed) {
             $.installed = installed;
             return this;
         }
 
+        /**
+         * @param installed Application installation status (`true` if installed)
+         * 
+         * @return builder
+         * 
+         */
         public Builder installed(Boolean installed) {
             return installed(Output.of(installed));
         }
 
+        /**
+         * @param version Version of application
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(@Nullable Output<String> version) {
             $.version = version;
             return this;
         }
 
+        /**
+         * @param version Version of application
+         * 
+         * @return builder
+         * 
+         */
         public Builder version(String version) {
             return version(Output.of(version));
         }

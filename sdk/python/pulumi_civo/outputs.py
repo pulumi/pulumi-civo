@@ -225,6 +225,12 @@ class KubernetesClusterInstalledApplication(dict):
                  category: Optional[str] = None,
                  installed: Optional[bool] = None,
                  version: Optional[str] = None):
+        """
+        :param str application: Name of application
+        :param str category: Category of the application
+        :param bool installed: Application installation status (`true` if installed)
+        :param str version: Version of application
+        """
         if application is not None:
             pulumi.set(__self__, "application", application)
         if category is not None:
@@ -237,21 +243,33 @@ class KubernetesClusterInstalledApplication(dict):
     @property
     @pulumi.getter
     def application(self) -> Optional[str]:
+        """
+        Name of application
+        """
         return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
     def category(self) -> Optional[str]:
+        """
+        Category of the application
+        """
         return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
     def installed(self) -> Optional[bool]:
+        """
+        Application installation status (`true` if installed)
+        """
         return pulumi.get(self, "installed")
 
     @property
     @pulumi.getter
     def version(self) -> Optional[str]:
+        """
+        Version of application
+        """
         return pulumi.get(self, "version")
 
 
@@ -456,6 +474,11 @@ class GetDatabaseVersionVersionResult(dict):
                  default: bool,
                  engine: str,
                  version: str):
+        """
+        :param bool default: If the version is the default
+        :param str engine: The engine of the database
+        :param str version: The version of the database
+        """
         pulumi.set(__self__, "default", default)
         pulumi.set(__self__, "engine", engine)
         pulumi.set(__self__, "version", version)
@@ -463,16 +486,25 @@ class GetDatabaseVersionVersionResult(dict):
     @property
     @pulumi.getter
     def default(self) -> bool:
+        """
+        If the version is the default
+        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def engine(self) -> str:
+        """
+        The engine of the database
+        """
         return pulumi.get(self, "engine")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The version of the database
+        """
         return pulumi.get(self, "version")
 
 
@@ -483,6 +515,12 @@ class GetDiskImageDiskimageResult(dict):
                  label: str,
                  name: str,
                  version: str):
+        """
+        :param str id: ID of disk image
+        :param str label: Label of disk image
+        :param str name: Name of disk image
+        :param str version: Version of disk image
+        """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "name", name)
@@ -491,21 +529,33 @@ class GetDiskImageDiskimageResult(dict):
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        ID of disk image
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        Label of disk image
+        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of disk image
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Version of disk image
+        """
         return pulumi.get(self, "version")
 
 
@@ -670,6 +720,30 @@ class GetInstancesInstanceResult(dict):
                  status: str,
                  tags: Sequence[str],
                  template: str):
+        """
+        :param int cpu_cores: CPU of the instance
+        :param str created_at: Creation date of the instance
+        :param int disk_gb: SSD size of the instance
+        :param str firewall_id: Firewall ID of the instance
+        :param str hostname: Hostname of the instance
+        :param str id: ID of the instance
+        :param str initial_password: Initial password of the instance
+        :param str initial_user: Initial user of the instance
+        :param str network_id: Network id of the instance
+        :param str notes: Note of the instance
+        :param str private_ip: Private IP of the instance
+        :param str pseudo_ip: Pseudo IP of the instance
+        :param str public_ip: Public IP of the instance
+        :param int ram_mb: RAM of the instance
+        :param str region: Region of the instance
+        :param str reverse_dns: Reverse DNS of the instance
+        :param str script: Script of the instance
+        :param str size: Size of the instance
+        :param str sshkey_id: SSH key id of the instance
+        :param str status: Status of the instance
+        :param Sequence[str] tags: Tags of the instance
+        :param str template: Disk image/template of the instance
+        """
         pulumi.set(__self__, "cpu_cores", cpu_cores)
         pulumi.set(__self__, "created_at", created_at)
         pulumi.set(__self__, "disk_gb", disk_gb)
@@ -696,111 +770,177 @@ class GetInstancesInstanceResult(dict):
     @property
     @pulumi.getter(name="cpuCores")
     def cpu_cores(self) -> int:
+        """
+        CPU of the instance
+        """
         return pulumi.get(self, "cpu_cores")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation date of the instance
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="diskGb")
     def disk_gb(self) -> int:
+        """
+        SSD size of the instance
+        """
         return pulumi.get(self, "disk_gb")
 
     @property
     @pulumi.getter(name="firewallId")
     def firewall_id(self) -> str:
+        """
+        Firewall ID of the instance
+        """
         return pulumi.get(self, "firewall_id")
 
     @property
     @pulumi.getter
     def hostname(self) -> str:
+        """
+        Hostname of the instance
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def id(self) -> str:
+        """
+        ID of the instance
+        """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter(name="initialPassword")
     def initial_password(self) -> str:
+        """
+        Initial password of the instance
+        """
         return pulumi.get(self, "initial_password")
 
     @property
     @pulumi.getter(name="initialUser")
     def initial_user(self) -> str:
+        """
+        Initial user of the instance
+        """
         return pulumi.get(self, "initial_user")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        Network id of the instance
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def notes(self) -> str:
+        """
+        Note of the instance
+        """
         return pulumi.get(self, "notes")
 
     @property
     @pulumi.getter(name="privateIp")
     def private_ip(self) -> str:
+        """
+        Private IP of the instance
+        """
         return pulumi.get(self, "private_ip")
 
     @property
     @pulumi.getter(name="pseudoIp")
     def pseudo_ip(self) -> str:
+        """
+        Pseudo IP of the instance
+        """
         return pulumi.get(self, "pseudo_ip")
 
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> str:
+        """
+        Public IP of the instance
+        """
         return pulumi.get(self, "public_ip")
 
     @property
     @pulumi.getter(name="ramMb")
     def ram_mb(self) -> int:
+        """
+        RAM of the instance
+        """
         return pulumi.get(self, "ram_mb")
 
     @property
     @pulumi.getter
     def region(self) -> str:
+        """
+        Region of the instance
+        """
         return pulumi.get(self, "region")
 
     @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> str:
+        """
+        Reverse DNS of the instance
+        """
         return pulumi.get(self, "reverse_dns")
 
     @property
     @pulumi.getter
     def script(self) -> str:
+        """
+        Script of the instance
+        """
         return pulumi.get(self, "script")
 
     @property
     @pulumi.getter
     def size(self) -> str:
+        """
+        Size of the instance
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="sshkeyId")
     def sshkey_id(self) -> str:
+        """
+        SSH key id of the instance
+        """
         return pulumi.get(self, "sshkey_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the instance
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        Tags of the instance
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def template(self) -> str:
+        """
+        Disk image/template of the instance
+        """
         return pulumi.get(self, "template")
 
 
@@ -841,6 +981,12 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
                  category: str,
                  installed: bool,
                  version: str):
+        """
+        :param str application: The name of the application
+        :param str category: The category of the application
+        :param bool installed: If the application is installed, this will return `true`
+        :param str version: The version of the application
+        """
         pulumi.set(__self__, "application", application)
         pulumi.set(__self__, "category", category)
         pulumi.set(__self__, "installed", installed)
@@ -849,21 +995,33 @@ class GetKubernetesClusterInstalledApplicationResult(dict):
     @property
     @pulumi.getter
     def application(self) -> str:
+        """
+        The name of the application
+        """
         return pulumi.get(self, "application")
 
     @property
     @pulumi.getter
     def category(self) -> str:
+        """
+        The category of the application
+        """
         return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
     def installed(self) -> bool:
+        """
+        If the application is installed, this will return `true`
+        """
         return pulumi.get(self, "installed")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        The version of the application
+        """
         return pulumi.get(self, "version")
 
 
@@ -875,6 +1033,13 @@ class GetKubernetesClusterPoolResult(dict):
                  node_count: int,
                  public_ip_node_pool: bool,
                  size: str):
+        """
+        :param Sequence[str] instance_names: A list of the instance in the pool
+        :param str label: Node pool label, if you don't provide one, we will generate one for you
+        :param int node_count: The size of the pool
+        :param bool public_ip_node_pool: Node pool belongs to the public ip node pool
+        :param str size: The size of each node inside the pool
+        """
         pulumi.set(__self__, "instance_names", instance_names)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "node_count", node_count)
@@ -884,26 +1049,41 @@ class GetKubernetesClusterPoolResult(dict):
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Sequence[str]:
+        """
+        A list of the instance in the pool
+        """
         return pulumi.get(self, "instance_names")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> int:
+        """
+        The size of the pool
+        """
         return pulumi.get(self, "node_count")
 
     @property
     @pulumi.getter(name="publicIpNodePool")
     def public_ip_node_pool(self) -> bool:
+        """
+        Node pool belongs to the public ip node pool
+        """
         return pulumi.get(self, "public_ip_node_pool")
 
     @property
     @pulumi.getter
     def size(self) -> str:
+        """
+        The size of each node inside the pool
+        """
         return pulumi.get(self, "size")
 
 
@@ -997,6 +1177,12 @@ class GetKubernetesVersionVersionResult(dict):
                  label: str,
                  type: str,
                  version: str):
+        """
+        :param bool default: If is the default version used in all cluster, this will return `true`
+        :param str label: The label of this version
+        :param str type: The type of the cluster, can be `talos` or `k3s`
+        :param str version: A version of the Kubernetes
+        """
         pulumi.set(__self__, "default", default)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "type", type)
@@ -1005,21 +1191,33 @@ class GetKubernetesVersionVersionResult(dict):
     @property
     @pulumi.getter
     def default(self) -> bool:
+        """
+        If is the default version used in all cluster, this will return `true`
+        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def label(self) -> str:
+        """
+        The label of this version
+        """
         return pulumi.get(self, "label")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        The type of the cluster, can be `talos` or `k3s`
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        A version of the Kubernetes
+        """
         return pulumi.get(self, "version")
 
 
@@ -1031,6 +1229,13 @@ class GetLoadBalancerBackendResult(dict):
                  protocol: str,
                  source_port: int,
                  target_port: int):
+        """
+        :param int health_check_port: The health check port of the backend
+        :param str ip: The ip of the backend
+        :param str protocol: The protocol of the backend
+        :param int source_port: The source port of the backend
+        :param int target_port: The target port of the backend
+        """
         pulumi.set(__self__, "health_check_port", health_check_port)
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "protocol", protocol)
@@ -1040,26 +1245,41 @@ class GetLoadBalancerBackendResult(dict):
     @property
     @pulumi.getter(name="healthCheckPort")
     def health_check_port(self) -> int:
+        """
+        The health check port of the backend
+        """
         return pulumi.get(self, "health_check_port")
 
     @property
     @pulumi.getter
     def ip(self) -> str:
+        """
+        The ip of the backend
+        """
         return pulumi.get(self, "ip")
 
     @property
     @pulumi.getter
     def protocol(self) -> str:
+        """
+        The protocol of the backend
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="sourcePort")
     def source_port(self) -> int:
+        """
+        The source port of the backend
+        """
         return pulumi.get(self, "source_port")
 
     @property
     @pulumi.getter(name="targetPort")
     def target_port(self) -> int:
+        """
+        The target port of the backend
+        """
         return pulumi.get(self, "target_port")
 
 
@@ -1123,6 +1343,12 @@ class GetRegionRegionResult(dict):
                  country: str,
                  default: bool,
                  name: str):
+        """
+        :param str code: The code of the region
+        :param str country: The country of the region
+        :param bool default: If the region is the default region, this will return `true`
+        :param str name: A human name of the region
+        """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "country", country)
         pulumi.set(__self__, "default", default)
@@ -1131,21 +1357,33 @@ class GetRegionRegionResult(dict):
     @property
     @pulumi.getter
     def code(self) -> str:
+        """
+        The code of the region
+        """
         return pulumi.get(self, "code")
 
     @property
     @pulumi.getter
     def country(self) -> str:
+        """
+        The country of the region
+        """
         return pulumi.get(self, "country")
 
     @property
     @pulumi.getter
     def default(self) -> bool:
+        """
+        If the region is the default region, this will return `true`
+        """
         return pulumi.get(self, "default")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        A human name of the region
+        """
         return pulumi.get(self, "name")
 
 
@@ -1244,6 +1482,17 @@ class GetSizeSizeResult(dict):
                  ram: int,
                  selectable: bool,
                  type: str):
+        """
+        :param int cpu: Total of CPU
+        :param str description: A description of the instance size
+        :param int disk: The size of SSD
+        :param int gpu: Total of GPU
+        :param str gpu_type: GPU type
+        :param str name: The name of the size
+        :param int ram: Total of RAM
+        :param bool selectable: If can use the instance size
+        :param str type: A human name of the size
+        """
         pulumi.set(__self__, "cpu", cpu)
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "disk", disk)
@@ -1257,46 +1506,73 @@ class GetSizeSizeResult(dict):
     @property
     @pulumi.getter
     def cpu(self) -> int:
+        """
+        Total of CPU
+        """
         return pulumi.get(self, "cpu")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        A description of the instance size
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def disk(self) -> int:
+        """
+        The size of SSD
+        """
         return pulumi.get(self, "disk")
 
     @property
     @pulumi.getter
     def gpu(self) -> int:
+        """
+        Total of GPU
+        """
         return pulumi.get(self, "gpu")
 
     @property
     @pulumi.getter(name="gpuType")
     def gpu_type(self) -> str:
+        """
+        GPU type
+        """
         return pulumi.get(self, "gpu_type")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the size
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def ram(self) -> int:
+        """
+        Total of RAM
+        """
         return pulumi.get(self, "ram")
 
     @property
     @pulumi.getter
     def selectable(self) -> bool:
+        """
+        If can use the instance size
+        """
         return pulumi.get(self, "selectable")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        A human name of the size
+        """
         return pulumi.get(self, "type")
 
 

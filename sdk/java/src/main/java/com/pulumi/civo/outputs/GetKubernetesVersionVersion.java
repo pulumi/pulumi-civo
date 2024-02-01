@@ -11,21 +11,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetKubernetesVersionVersion {
+    /**
+     * @return If is the default version used in all cluster, this will return `true`
+     * 
+     */
     private Boolean default_;
+    /**
+     * @return The label of this version
+     * 
+     */
     private String label;
+    /**
+     * @return The type of the cluster, can be `talos` or `k3s`
+     * 
+     */
     private String type;
+    /**
+     * @return A version of the Kubernetes
+     * 
+     */
     private String version;
 
     private GetKubernetesVersionVersion() {}
+    /**
+     * @return If is the default version used in all cluster, this will return `true`
+     * 
+     */
     public Boolean default_() {
         return this.default_;
     }
+    /**
+     * @return The label of this version
+     * 
+     */
     public String label() {
         return this.label;
     }
+    /**
+     * @return The type of the cluster, can be `talos` or `k3s`
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return A version of the Kubernetes
+     * 
+     */
     public String version() {
         return this.version;
     }

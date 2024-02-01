@@ -12,15 +12,27 @@ namespace Pulumi.Civo.Inputs
 
     public sealed class KubernetesClusterInstalledApplicationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of application
+        /// </summary>
         [Input("application")]
         public Input<string>? Application { get; set; }
 
+        /// <summary>
+        /// Category of the application
+        /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
 
+        /// <summary>
+        /// Application installation status (`true` if installed)
+        /// </summary>
         [Input("installed")]
         public Input<bool>? Installed { get; set; }
 
+        /// <summary>
+        /// Version of application
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

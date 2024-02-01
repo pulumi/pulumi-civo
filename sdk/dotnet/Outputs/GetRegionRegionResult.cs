@@ -13,9 +13,21 @@ namespace Pulumi.Civo.Outputs
     [OutputType]
     public sealed class GetRegionRegionResult
     {
+        /// <summary>
+        /// The code of the region
+        /// </summary>
         public readonly string Code;
+        /// <summary>
+        /// The country of the region
+        /// </summary>
         public readonly string Country;
+        /// <summary>
+        /// If the region is the default region, this will return `true`
+        /// </summary>
         public readonly bool Default;
+        /// <summary>
+        /// A human name of the region
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]
