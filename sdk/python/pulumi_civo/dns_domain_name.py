@@ -100,7 +100,7 @@ class DnsDomainName(pulumi.CustomResource):
         using domain name
 
         ```sh
-         $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+        $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
         ```
 
         :param str resource_name: The name of the resource.
@@ -131,7 +131,7 @@ class DnsDomainName(pulumi.CustomResource):
         using domain name
 
         ```sh
-         $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+        $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
         ```
 
         :param str resource_name: The name of the resource.

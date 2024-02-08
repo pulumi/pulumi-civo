@@ -10,7 +10,7 @@ import * as utilities from "./utilities";
  * using ID
  *
  * ```sh
- *  $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
+ * $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
  * ```
  */
 export class Database extends pulumi.CustomResource {

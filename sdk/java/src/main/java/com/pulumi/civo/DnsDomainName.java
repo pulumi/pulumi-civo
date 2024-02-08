@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * using domain name
  * 
  * ```sh
- *  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+ * $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
  * ```
  * 
  */

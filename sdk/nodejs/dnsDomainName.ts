@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  * using domain name
  *
  * ```sh
- *  $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
+ * $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
  * ```
  */
 export class DnsDomainName extends pulumi.CustomResource {
