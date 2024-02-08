@@ -577,7 +577,7 @@ class KubernetesCluster(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+        $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
         ```
 
         :param str resource_name: The name of the resource.
@@ -608,7 +608,7 @@ class KubernetesCluster(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
+        $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
         ```
 
         :param str resource_name: The name of the resource.

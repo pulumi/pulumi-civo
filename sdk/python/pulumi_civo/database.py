@@ -395,7 +395,7 @@ class Database(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
+        $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
         ```
 
         :param str resource_name: The name of the resource.
@@ -421,7 +421,7 @@ class Database(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
+        $ pulumi import civo:index/database:Database mydb 29fcd1c4-fb61-44c7-b49c-dc7b98e9927e
         ```
 
         :param str resource_name: The name of the resource.

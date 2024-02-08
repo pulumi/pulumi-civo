@@ -50,7 +50,7 @@ namespace Pulumi.Civo
     /// using ID
     /// 
     /// ```sh
-    ///  $ pulumi import civo:index/objectStoreCredential:ObjectStoreCredential custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+    /// $ pulumi import civo:index/objectStoreCredential:ObjectStoreCredential custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
     /// ```
     /// </summary>
     [CivoResourceType("civo:index/objectStoreCredential:ObjectStoreCredential")]

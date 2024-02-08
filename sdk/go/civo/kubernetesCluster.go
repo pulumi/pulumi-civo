@@ -19,9 +19,7 @@ import (
 // using ID
 //
 // ```sh
-//
-//	$ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
-//
+// $ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af
 // ```
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
