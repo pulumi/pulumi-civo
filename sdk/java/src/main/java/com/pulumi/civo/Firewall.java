@@ -102,7 +102,7 @@ import javax.annotation.Nullable;
  * using ID
  * 
  * ```sh
- *  $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+ * $ pulumi import civo:index/firewall:Firewall www b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
  * ```
  * 
  */

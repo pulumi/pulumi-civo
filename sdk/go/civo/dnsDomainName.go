@@ -42,9 +42,7 @@ import (
 // using domain name
 //
 // ```sh
-//
-//	$ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
-//
+// $ pulumi import civo:index/dnsDomainName:DnsDomainName main mydomain.com
 // ```
 type DnsDomainName struct {
 	pulumi.CustomResourceState
