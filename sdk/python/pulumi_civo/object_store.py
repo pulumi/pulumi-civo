@@ -217,7 +217,7 @@ class ObjectStore(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+        $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
         ```
 
         :param str resource_name: The name of the resource.
@@ -253,7 +253,7 @@ class ObjectStore(pulumi.CustomResource):
         using ID
 
         ```sh
-         $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
+        $ pulumi import civo:index/objectStore:ObjectStore custom_object b8ecd2ab-2267-4a5e-8692-cbf1d32583e3
         ```
 
         :param str resource_name: The name of the resource.

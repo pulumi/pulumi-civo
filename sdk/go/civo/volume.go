@@ -54,9 +54,7 @@ import (
 // using ID
 //
 // ```sh
-//
-//	$ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
-//
+// $ pulumi import civo:index/volume:Volume db 506f78a4-e098-11e5-ad9f-000f53306ae1
 // ```
 type Volume struct {
 	pulumi.CustomResourceState
