@@ -33,6 +33,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create a credential for the object store with a specific access key and secret key
 //			_, err = civo.NewObjectStoreCredential(ctx, "backupIndex/objectStoreCredentialObjectStoreCredential", &civo.ObjectStoreCredentialArgs{
 //				AccessKeyId:     pulumi.String("my-access-key"),
 //				SecretAccessKey: pulumi.String("my-secret-key"),
@@ -40,6 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Use the credential to create a bucket
 //			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
 //				MaxSizeGb:   pulumi.Int(500),
 //				Region:      pulumi.String("LON1"),

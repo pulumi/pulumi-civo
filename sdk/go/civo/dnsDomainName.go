@@ -27,6 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a new domain name
 //			_, err := civo.NewDnsDomainName(ctx, "main", nil)
 //			if err != nil {
 //				return err
