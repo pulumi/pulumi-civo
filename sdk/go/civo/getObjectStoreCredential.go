@@ -35,6 +35,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Use the credential to create a bucket
 //			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
 //				MaxSizeGb:   pulumi.Int(500),
 //				Region:      pulumi.String("LON1"),
