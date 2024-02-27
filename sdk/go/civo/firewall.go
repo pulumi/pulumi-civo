@@ -27,18 +27,21 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a network
 //			customNet, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
 //				Label: pulumi.String("my-custom-network"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Create a firewall
 //			_, err = civo.NewFirewall(ctx, "wwwFirewall", &civo.FirewallArgs{
 //				NetworkId: customNet.ID(),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// Create a firewall with the default rules
 //			_, err = civo.NewFirewall(ctx, "wwwIndex/firewallFirewall", &civo.FirewallArgs{
 //				NetworkId:          customNet.ID(),
 //				CreateDefaultRules: pulumi.Bool(true),
@@ -46,6 +49,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
+//			// Create a firewall withouth the default rules but with a custom rule
 //			_, err = civo.NewFirewall(ctx, "wwwCivoIndex/firewallFirewall", &civo.FirewallArgs{
 //				NetworkId:          customNet.ID(),
 //				CreateDefaultRules: pulumi.Bool(false),
