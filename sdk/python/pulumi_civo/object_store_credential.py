@@ -186,6 +186,7 @@ class ObjectStoreCredential(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
@@ -201,6 +202,7 @@ class ObjectStoreCredential(pulumi.CustomResource):
             region="LON1",
             access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -228,6 +230,7 @@ class ObjectStoreCredential(pulumi.CustomResource):
 
         ## Example Usage
 
+        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
@@ -243,6 +246,7 @@ class ObjectStoreCredential(pulumi.CustomResource):
             region="LON1",
             access_key_id=backup_index / object_store_credential_object_store_credential["accessKeyId"])
         ```
+        <!--End PulumiCodeChooser -->
 
         ## Import
 

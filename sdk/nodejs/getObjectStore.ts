@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -19,6 +20,7 @@ import * as utilities from "./utilities";
  *     name: "backup-server",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreResult> {
     args = args || {};
@@ -89,6 +91,7 @@ export interface GetObjectStoreResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -97,6 +100,7 @@ export interface GetObjectStoreResult {
  *     name: "backup-server",
  * });
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreResult> {
     return pulumi.output(args).apply((a: any) => getObjectStore(a, opts))
