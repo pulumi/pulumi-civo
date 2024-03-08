@@ -162,6 +162,7 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -172,6 +173,7 @@ def get_dns_domain_record(domain_id: Optional[str] = None,
     pulumi.export("recordType", www.type)
     pulumi.export("recordTtl", www.ttl)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str domain_id: The ID of the domain
@@ -207,6 +209,7 @@ def get_dns_domain_record_output(domain_id: Optional[pulumi.Input[str]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -217,6 +220,7 @@ def get_dns_domain_record_output(domain_id: Optional[pulumi.Input[str]] = None,
     pulumi.export("recordType", www.type)
     pulumi.export("recordTtl", www.ttl)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str domain_id: The ID of the domain

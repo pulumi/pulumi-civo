@@ -87,6 +87,7 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -100,6 +101,7 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
         values=["k3s"],
     )])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
@@ -127,6 +129,7 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -140,6 +143,7 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
         values=["k3s"],
     )])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results

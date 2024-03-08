@@ -127,12 +127,14 @@ def get_object_store(id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
 
     backup = civo.get_object_store(name="backup-server")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Object Store
@@ -168,12 +170,14 @@ def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
 
     backup = civo.get_object_store(name="backup-server")
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Object Store

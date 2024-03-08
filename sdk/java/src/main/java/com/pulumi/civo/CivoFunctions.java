@@ -74,6 +74,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -103,6 +105,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatabaseResult> getDatabase() {
@@ -114,6 +117,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -143,6 +148,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatabaseResult> getDatabasePlain() {
@@ -154,6 +160,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -183,6 +191,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatabaseResult> getDatabase(GetDatabaseArgs args) {
@@ -194,6 +203,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -223,6 +234,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args) {
@@ -234,6 +246,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -263,6 +277,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDatabaseResult> getDatabase(GetDatabaseArgs args, InvokeOptions options) {
@@ -274,6 +289,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -303,6 +320,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args, InvokeOptions options) {
@@ -398,6 +416,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -428,6 +448,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDnsDomainNameResult> getDnsDomainName() {
@@ -439,6 +460,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -469,6 +492,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDnsDomainNameResult> getDnsDomainNamePlain() {
@@ -480,6 +504,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -510,6 +536,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDnsDomainNameResult> getDnsDomainName(GetDnsDomainNameArgs args) {
@@ -521,6 +548,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -551,6 +580,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDnsDomainNameResult> getDnsDomainNamePlain(GetDnsDomainNamePlainArgs args) {
@@ -562,6 +592,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -592,6 +624,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDnsDomainNameResult> getDnsDomainName(GetDnsDomainNameArgs args, InvokeOptions options) {
@@ -603,6 +636,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name is not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -633,6 +668,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDnsDomainNameResult> getDnsDomainNamePlain(GetDnsDomainNamePlainArgs args, InvokeOptions options) {
@@ -644,6 +680,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name or record are not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -680,6 +718,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDnsDomainRecordResult> getDnsDomainRecord(GetDnsDomainRecordArgs args) {
@@ -691,6 +730,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name or record are not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -727,6 +768,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDnsDomainRecordResult> getDnsDomainRecordPlain(GetDnsDomainRecordPlainArgs args) {
@@ -738,6 +780,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name or record are not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -774,6 +818,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetDnsDomainRecordResult> getDnsDomainRecord(GetDnsDomainRecordArgs args, InvokeOptions options) {
@@ -785,6 +830,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided domain name or record are not in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -821,6 +868,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetDnsDomainRecordResult> getDnsDomainRecordPlain(GetDnsDomainRecordPlainArgs args, InvokeOptions options) {
@@ -834,6 +882,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -863,6 +913,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFirewallResult> getFirewall() {
@@ -876,6 +927,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -905,6 +958,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFirewallResult> getFirewallPlain() {
@@ -918,6 +972,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -947,6 +1003,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFirewallResult> getFirewall(GetFirewallArgs args) {
@@ -960,6 +1017,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -989,6 +1048,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFirewallResult> getFirewallPlain(GetFirewallPlainArgs args) {
@@ -1002,6 +1062,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1031,6 +1093,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetFirewallResult> getFirewall(GetFirewallArgs args, InvokeOptions options) {
@@ -1044,6 +1107,8 @@ public final class CivoFunctions {
      * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1073,6 +1138,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetFirewallResult> getFirewallPlain(GetFirewallPlainArgs args, InvokeOptions options) {
@@ -1084,6 +1150,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1113,6 +1181,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstanceResult> getInstance() {
@@ -1124,6 +1193,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1153,6 +1224,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain() {
@@ -1164,6 +1236,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1193,6 +1267,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args) {
@@ -1204,6 +1279,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1233,6 +1310,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args) {
@@ -1244,6 +1322,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1273,6 +1353,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOptions options) {
@@ -1284,6 +1365,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1313,6 +1396,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstanceResult> getInstancePlain(GetInstancePlainArgs args, InvokeOptions options) {
@@ -1324,6 +1408,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1356,6 +1442,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstancesResult> getInstances() {
@@ -1367,6 +1454,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1399,6 +1488,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstancesResult> getInstancesPlain() {
@@ -1410,6 +1500,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1442,6 +1534,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstancesResult> getInstances(GetInstancesArgs args) {
@@ -1453,6 +1546,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1485,6 +1580,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstancesResult> getInstancesPlain(GetInstancesPlainArgs args) {
@@ -1496,6 +1592,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1528,6 +1626,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetInstancesResult> getInstances(GetInstancesArgs args, InvokeOptions options) {
@@ -1539,6 +1638,8 @@ public final class CivoFunctions {
      * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1571,6 +1672,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetInstancesResult> getInstancesPlain(GetInstancesPlainArgs args, InvokeOptions options) {
@@ -1582,6 +1684,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1611,6 +1715,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster() {
@@ -1622,6 +1727,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1651,6 +1758,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesClusterResult> getKubernetesClusterPlain() {
@@ -1662,6 +1770,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1691,6 +1801,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args) {
@@ -1702,6 +1813,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1731,6 +1844,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesClusterResult> getKubernetesClusterPlain(GetKubernetesClusterPlainArgs args) {
@@ -1742,6 +1856,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1771,6 +1887,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args, InvokeOptions options) {
@@ -1782,6 +1899,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1811,6 +1930,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesClusterResult> getKubernetesClusterPlain(GetKubernetesClusterPlainArgs args, InvokeOptions options) {
@@ -1820,6 +1940,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1858,6 +1980,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesVersionResult> getKubernetesVersion() {
@@ -1867,6 +1990,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1905,6 +2030,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesVersionResult> getKubernetesVersionPlain() {
@@ -1914,6 +2040,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1952,6 +2080,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesVersionResult> getKubernetesVersion(GetKubernetesVersionArgs args) {
@@ -1961,6 +2090,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -1999,6 +2130,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesVersionResult> getKubernetesVersionPlain(GetKubernetesVersionPlainArgs args) {
@@ -2008,6 +2140,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2046,6 +2180,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetKubernetesVersionResult> getKubernetesVersion(GetKubernetesVersionArgs args, InvokeOptions options) {
@@ -2055,6 +2190,8 @@ public final class CivoFunctions {
      * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2093,6 +2230,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetKubernetesVersionResult> getKubernetesVersionPlain(GetKubernetesVersionPlainArgs args, InvokeOptions options) {
@@ -2104,6 +2242,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2134,6 +2274,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetLoadBalancerResult> getLoadBalancer() {
@@ -2145,6 +2286,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2175,6 +2318,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetLoadBalancerResult> getLoadBalancerPlain() {
@@ -2186,6 +2330,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2216,6 +2362,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetLoadBalancerResult> getLoadBalancer(GetLoadBalancerArgs args) {
@@ -2227,6 +2374,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2257,6 +2406,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetLoadBalancerResult> getLoadBalancerPlain(GetLoadBalancerPlainArgs args) {
@@ -2268,6 +2418,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2298,6 +2450,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetLoadBalancerResult> getLoadBalancer(GetLoadBalancerArgs args, InvokeOptions options) {
@@ -2309,6 +2462,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided load balancer name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2339,6 +2494,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetLoadBalancerResult> getLoadBalancerPlain(GetLoadBalancerPlainArgs args, InvokeOptions options) {
@@ -2352,6 +2508,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2381,6 +2539,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkResult> getNetwork() {
@@ -2394,6 +2553,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2423,6 +2584,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkResult> getNetworkPlain() {
@@ -2436,6 +2598,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2465,6 +2629,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkResult> getNetwork(GetNetworkArgs args) {
@@ -2478,6 +2643,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2507,6 +2674,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkResult> getNetworkPlain(GetNetworkPlainArgs args) {
@@ -2520,6 +2688,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2549,6 +2719,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetNetworkResult> getNetwork(GetNetworkArgs args, InvokeOptions options) {
@@ -2562,6 +2733,8 @@ public final class CivoFunctions {
      * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2591,6 +2764,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetNetworkResult> getNetworkPlain(GetNetworkPlainArgs args, InvokeOptions options) {
@@ -2602,6 +2776,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2630,6 +2806,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreResult> getObjectStore() {
@@ -2641,6 +2818,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2669,6 +2848,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain() {
@@ -2680,6 +2860,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2708,6 +2890,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args) {
@@ -2719,6 +2902,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2747,6 +2932,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain(GetObjectStorePlainArgs args) {
@@ -2758,6 +2944,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2786,6 +2974,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args, InvokeOptions options) {
@@ -2797,6 +2986,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2825,6 +3016,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreResult> getObjectStorePlain(GetObjectStorePlainArgs args, InvokeOptions options) {
@@ -2836,6 +3028,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2872,6 +3066,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential() {
@@ -2883,6 +3078,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2919,6 +3116,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain() {
@@ -2930,6 +3128,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -2966,6 +3166,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential(GetObjectStoreCredentialArgs args) {
@@ -2977,6 +3178,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3013,6 +3216,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs args) {
@@ -3024,6 +3228,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3060,6 +3266,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential(GetObjectStoreCredentialArgs args, InvokeOptions options) {
@@ -3071,6 +3278,8 @@ public final class CivoFunctions {
      * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3107,6 +3316,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs args, InvokeOptions options) {
@@ -3274,6 +3484,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3303,6 +3515,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumeResult> getVolume() {
@@ -3314,6 +3527,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3343,6 +3558,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumeResult> getVolumePlain() {
@@ -3354,6 +3570,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3383,6 +3601,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumeResult> getVolume(GetVolumeArgs args) {
@@ -3394,6 +3613,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3423,6 +3644,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumeResult> getVolumePlain(GetVolumePlainArgs args) {
@@ -3434,6 +3656,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3463,6 +3687,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static Output<GetVolumeResult> getVolume(GetVolumeArgs args, InvokeOptions options) {
@@ -3474,6 +3699,8 @@ public final class CivoFunctions {
      * An error will be raised if the provided volume name does not exist in your Civo account.
      * 
      * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
      * ```java
      * package generated_program;
      * 
@@ -3503,6 +3730,7 @@ public final class CivoFunctions {
      *     }
      * }
      * ```
+     * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
     public static CompletableFuture<GetVolumeResult> getVolumePlain(GetVolumePlainArgs args, InvokeOptions options) {

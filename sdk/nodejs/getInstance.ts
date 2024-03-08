@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -20,6 +21,7 @@ import * as utilities from "./utilities";
  * });
  * export const instanceOutput = myhostaname.then(myhostaname => myhostaname.publicIp);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     args = args || {};
@@ -150,6 +152,7 @@ export interface GetInstanceResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -159,6 +162,7 @@ export interface GetInstanceResult {
  * });
  * export const instanceOutput = myhostaname.then(myhostaname => myhostaname.publicIp);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
     return pulumi.output(args).apply((a: any) => getInstance(a, opts))

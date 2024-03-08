@@ -307,6 +307,7 @@ def get_instance(hostname: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -314,6 +315,7 @@ def get_instance(hostname: Optional[str] = None,
     myhostaname = civo.get_instance(hostname="myhostname.com")
     pulumi.export("instanceOutput", myhostaname.public_ip)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str hostname: The hostname of the Instance
@@ -364,6 +366,7 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -371,6 +374,7 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     myhostaname = civo.get_instance(hostname="myhostname.com")
     pulumi.export("instanceOutput", myhostaname.public_ip)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str hostname: The hostname of the Instance

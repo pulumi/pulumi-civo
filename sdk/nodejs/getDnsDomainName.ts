@@ -11,6 +11,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -21,6 +22,7 @@ import * as utilities from "./utilities";
  * export const domainOutput = domain.then(domain => domain.name);
  * export const domainIdOutput = domain.then(domain => domain.id);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDnsDomainName(args?: GetDnsDomainNameArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainNameResult> {
     args = args || {};
@@ -66,6 +68,7 @@ export interface GetDnsDomainNameResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -76,6 +79,7 @@ export interface GetDnsDomainNameResult {
  * export const domainOutput = domain.then(domain => domain.name);
  * export const domainIdOutput = domain.then(domain => domain.id);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getDnsDomainNameOutput(args?: GetDnsDomainNameOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainNameResult> {
     return pulumi.output(args).apply((a: any) => getDnsDomainName(a, opts))
