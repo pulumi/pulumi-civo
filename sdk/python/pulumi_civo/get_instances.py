@@ -102,6 +102,7 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -112,6 +113,7 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
             values=[g3["small"]],
         )])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
@@ -144,6 +146,7 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -154,6 +157,7 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
             values=[g3["small"]],
         )])
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results

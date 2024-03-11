@@ -16,10 +16,9 @@ namespace Pulumi.Civo
         /// 
         /// Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -46,8 +45,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstancesResult> InvokeAsync(GetInstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesArgs(), options.WithDefaults());
@@ -57,10 +55,9 @@ namespace Pulumi.Civo
         /// 
         /// Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -87,8 +84,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstancesResult> Invoke(GetInstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesInvokeArgs(), options.WithDefaults());

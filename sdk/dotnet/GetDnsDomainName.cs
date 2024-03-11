@@ -16,10 +16,9 @@ namespace Pulumi.Civo
         /// 
         /// An error will be raised if the provided domain name is not in your Civo account.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -40,8 +39,7 @@ namespace Pulumi.Civo
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetDnsDomainNameResult> InvokeAsync(GetDnsDomainNameArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameArgs(), options.WithDefaults());
@@ -51,10 +49,9 @@ namespace Pulumi.Civo
         /// 
         /// An error will be raised if the provided domain name is not in your Civo account.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -75,8 +72,7 @@ namespace Pulumi.Civo
         ///     };
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetDnsDomainNameResult> Invoke(GetDnsDomainNameInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDnsDomainNameResult>("civo:index/getDnsDomainName:getDnsDomainName", args ?? new GetDnsDomainNameInvokeArgs(), options.WithDefaults());

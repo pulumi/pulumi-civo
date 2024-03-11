@@ -390,6 +390,8 @@ class Database(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
+        ## Example Usage
+
         ## Import
 
         using ID
@@ -416,6 +418,8 @@ class Database(pulumi.CustomResource):
                  args: DatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
+        ## Example Usage
+
         ## Import
 
         using ID

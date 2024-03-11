@@ -9,6 +9,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -16,6 +17,7 @@ import * as utilities from "./utilities";
  *
  * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub", "utf8")});
  * ```
+ * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
