@@ -16,10 +16,9 @@ namespace Pulumi.Civo
         /// 
         /// Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -35,8 +34,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetObjectStoreResult> InvokeAsync(GetObjectStoreArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
@@ -46,10 +44,9 @@ namespace Pulumi.Civo
         /// 
         /// Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -65,8 +62,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());

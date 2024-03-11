@@ -18,10 +18,9 @@ namespace Pulumi.Civo
         /// 
         /// Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -38,8 +37,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetFirewallResult> InvokeAsync(GetFirewallArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallArgs(), options.WithDefaults());
@@ -51,10 +49,9 @@ namespace Pulumi.Civo
         /// 
         /// Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
         /// 
-        /// {{% examples %}}
         /// ## Example Usage
-        /// {{% example %}}
         /// 
+        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -71,8 +68,7 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
+        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetFirewallResult> Invoke(GetFirewallInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFirewallResult>("civo:index/getFirewall:getFirewall", args ?? new GetFirewallInvokeArgs(), options.WithDefaults());

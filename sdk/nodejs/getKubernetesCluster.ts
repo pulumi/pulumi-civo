@@ -13,6 +13,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -22,6 +23,7 @@ import * as utilities from "./utilities";
  * });
  * export const kubernetesClusterOutput = my_cluster.then(my_cluster => my_cluster.masterIp);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getKubernetesCluster(args?: GetKubernetesClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesClusterResult> {
     args = args || {};
@@ -134,6 +136,7 @@ export interface GetKubernetesClusterResult {
  *
  * ## Example Usage
  *
+ * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -143,6 +146,7 @@ export interface GetKubernetesClusterResult {
  * });
  * export const kubernetesClusterOutput = my_cluster.then(my_cluster => my_cluster.masterIp);
  * ```
+ * <!--End PulumiCodeChooser -->
  */
 export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
     return pulumi.output(args).apply((a: any) => getKubernetesCluster(a, opts))

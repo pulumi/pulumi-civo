@@ -18,6 +18,8 @@ import javax.annotation.Nullable;
  * Provides an Object Store Credential resource. This can be used to create, modify, and delete object stores credential.
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -61,6 +63,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
  * 

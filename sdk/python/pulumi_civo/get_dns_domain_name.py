@@ -66,6 +66,7 @@ def get_dns_domain_name(id: Optional[str] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -74,6 +75,7 @@ def get_dns_domain_name(id: Optional[str] = None,
     pulumi.export("domainOutput", domain.name)
     pulumi.export("domainIdOutput", domain.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
@@ -101,6 +103,7 @@ def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
+    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -109,6 +112,7 @@ def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     pulumi.export("domainOutput", domain.name)
     pulumi.export("domainIdOutput", domain.id)
     ```
+    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.

@@ -10,6 +10,8 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
+    /// ## Example Usage
+    /// 
     /// ## Import
     /// 
     /// using ID

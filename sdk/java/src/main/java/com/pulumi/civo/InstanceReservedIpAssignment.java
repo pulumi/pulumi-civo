@@ -17,6 +17,8 @@ import javax.annotation.Nullable;
  * The instance reserved ip assignment resource schema definition
  * 
  * ## Example Usage
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
  * ```java
  * package generated_program;
  * 
@@ -49,6 +51,7 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */
 @ResourceType(type="civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment")
