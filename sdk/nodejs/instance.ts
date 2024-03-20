@@ -138,7 +138,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The ID for the template to use to build the instance
      *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
      */
     public readonly template!: pulumi.Output<string>;
 
@@ -312,7 +312,7 @@ export interface InstanceState {
     /**
      * The ID for the template to use to build the instance
      *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
      */
     template?: pulumi.Input<string>;
 }
@@ -376,7 +376,7 @@ export interface InstanceArgs {
     /**
      * The ID for the template to use to build the instance
      *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
+     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
      */
     template?: pulumi.Input<string>;
 }
