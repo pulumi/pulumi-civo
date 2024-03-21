@@ -40,7 +40,7 @@ import (
 //			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
 //				MaxSizeGb:   pulumi.Int(500),
 //				Region:      pulumi.String("LON1"),
-//				AccessKeyId: *pulumi.String(backupObjectStoreCredential.AccessKeyId),
+//				AccessKeyId: pulumi.String(backupObjectStoreCredential.AccessKeyId),
 //			})
 //			if err != nil {
 //				return err
