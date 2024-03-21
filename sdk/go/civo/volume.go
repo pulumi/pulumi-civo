@@ -38,7 +38,7 @@ import (
 //			// Create volume
 //			_, err = civo.NewVolume(ctx, "db", &civo.VolumeArgs{
 //				SizeGb:    pulumi.Int(5),
-//				NetworkId: *pulumi.String(defaultNetwork.Id),
+//				NetworkId: pulumi.String(defaultNetwork.Id),
 //			}, pulumi.DependsOn([]pulumi.Resource{
 //				defaultNetwork,
 //			}))
