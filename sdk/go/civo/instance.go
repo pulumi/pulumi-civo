@@ -71,7 +71,7 @@ type Instance struct {
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
 	// The ID for the template to use to build the instance
 	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringOutput `pulumi:"template"`
 }
 
@@ -157,7 +157,7 @@ type instanceState struct {
 	Tags []string `pulumi:"tags"`
 	// The ID for the template to use to build the instance
 	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template *string `pulumi:"template"`
 }
 
@@ -210,7 +210,7 @@ type InstanceState struct {
 	Tags pulumi.StringArrayInput
 	// The ID for the template to use to build the instance
 	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringPtrInput
 }
 
@@ -247,7 +247,7 @@ type instanceArgs struct {
 	Tags []string `pulumi:"tags"`
 	// The ID for the template to use to build the instance
 	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template *string `pulumi:"template"`
 }
 
@@ -281,7 +281,7 @@ type InstanceArgs struct {
 	Tags pulumi.StringArrayInput
 	// The ID for the template to use to build the instance
 	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+	// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 	Template pulumi.StringPtrInput
 }
 
@@ -489,7 +489,7 @@ func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
 
 // The ID for the template to use to build the instance
 //
-// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
+// Deprecated: "template" attribute is deprecated. Moving forward, please use "disk_image" attribute.
 func (o InstanceOutput) Template() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Template }).(pulumi.StringOutput)
 }
