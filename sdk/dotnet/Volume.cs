@@ -35,9 +35,9 @@ namespace Pulumi.Civo
     ///         NetworkId = defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult.Id),
     ///     }, new CustomResourceOptions
     ///     {
-    ///         DependsOn = new[]
+    ///         DependsOn =
     ///         {
-    ///             defaultNetwork,
+    ///             defaultNetwork, 
     ///         },
     ///     });
     /// 

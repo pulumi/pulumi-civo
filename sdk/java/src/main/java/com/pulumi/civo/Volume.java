@@ -49,6 +49,7 @@ import javax.annotation.Nullable;
  *             .label(&#34;Default&#34;)
  *             .build());
  * 
+ *         // Create volume
  *         var db = new Volume(&#34;db&#34;, VolumeArgs.builder()        
  *             .sizeGb(5)
  *             .networkId(defaultNetwork.applyValue(getNetworkResult -&gt; getNetworkResult.id()))
