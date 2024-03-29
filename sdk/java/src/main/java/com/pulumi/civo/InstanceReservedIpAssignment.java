@@ -41,8 +41,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Send to create a reserved IP
  *         var www = new ReservedIp(&#34;www&#34;);
  * 
+ *         // We assign the reserved IP to the instance
  *         var webserver_www = new InstanceReservedIpAssignment(&#34;webserver-www&#34;, InstanceReservedIpAssignmentArgs.builder()        
  *             .instanceId(civo_instance.www().id())
  *             .reservedIpId(civo_reserved_ip.web-server().id())

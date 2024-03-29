@@ -3057,6 +3057,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
@@ -3107,6 +3108,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
@@ -3157,6 +3159,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
@@ -3207,6 +3210,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
@@ -3257,6 +3261,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
@@ -3307,6 +3312,7 @@ public final class CivoFunctions {
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
+     *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
