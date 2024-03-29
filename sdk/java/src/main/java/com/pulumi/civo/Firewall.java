@@ -49,19 +49,23 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Create a network
  *         var customNet = new Network(&#34;customNet&#34;, NetworkArgs.builder()        
  *             .label(&#34;my-custom-network&#34;)
  *             .build());
  * 
+ *         // Create a firewall
  *         var wwwFirewall = new Firewall(&#34;wwwFirewall&#34;, FirewallArgs.builder()        
  *             .networkId(customNet.id())
  *             .build());
  * 
+ *         // Create a firewall with the default rules
  *         var wwwIndex_firewallFirewall = new Firewall(&#34;wwwIndex/firewallFirewall&#34;, FirewallArgs.builder()        
  *             .networkId(customNet.id())
  *             .createDefaultRules(true)
  *             .build());
  * 
+ *         // Create a firewall withouth the default rules but with a custom rule
  *         var wwwCivoIndex_firewallFirewall = new Firewall(&#34;wwwCivoIndex/firewallFirewall&#34;, FirewallArgs.builder()        
  *             .networkId(customNet.id())
  *             .createDefaultRules(false)
