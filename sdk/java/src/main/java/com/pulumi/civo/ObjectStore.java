@@ -45,11 +45,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+ *             .name(&#34;backup-server&#34;)
  *             .maxSizeGb(500)
  *             .region(&#34;LON1&#34;)
  *             .build());
  * 
- *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+ *         // If you create the bucket without credentials, you can read the credentials in this way
+ *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
  *             .id(backupObjectStore.accessKeyId())
  *             .build());
  * 

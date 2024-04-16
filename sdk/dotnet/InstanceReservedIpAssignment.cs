@@ -24,13 +24,16 @@ namespace Pulumi.Civo
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Send to create a reserved IP
-    ///     var www = new Civo.ReservedIp("www");
+    ///     var www = new Civo.ReservedIp("www", new()
+    ///     {
+    ///         Name = "nginx-www",
+    ///     });
     /// 
     ///     // We assign the reserved IP to the instance
     ///     var webserver_www = new Civo.InstanceReservedIpAssignment("webserver-www", new()
     ///     {
-    ///         InstanceId = civo_instance.Www.Id,
-    ///         ReservedIpId = civo_reserved_ip.Web_server.Id,
+    ///         InstanceId = wwwCivoInstance.Id,
+    ///         ReservedIpId = web_server.Id,
     ///     });
     /// 
     /// });

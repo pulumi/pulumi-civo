@@ -45,12 +45,14 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         // Get network
  *         final var defaultNetwork = CivoFunctions.getNetwork(GetNetworkArgs.builder()
  *             .label(&#34;Default&#34;)
  *             .build());
  * 
  *         // Create volume
  *         var db = new Volume(&#34;db&#34;, VolumeArgs.builder()        
+ *             .name(&#34;backup-data&#34;)
  *             .sizeGb(5)
  *             .networkId(defaultNetwork.applyValue(getNetworkResult -&gt; getNetworkResult.id()))
  *             .build(), CustomResourceOptions.builder()

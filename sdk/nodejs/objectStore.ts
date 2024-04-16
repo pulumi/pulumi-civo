@@ -14,11 +14,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ * const backupObjectStore = new civo.ObjectStore("backup", {
+ *     name: "backup-server",
  *     maxSizeGb: 500,
  *     region: "LON1",
  * });
- * const backupObjectStoreCredential = civo.getObjectStoreCredentialOutput({
+ * // If you create the bucket without credentials, you can read the credentials in this way
+ * const backup = civo.getObjectStoreCredentialOutput({
  *     id: backupObjectStore.accessKeyId,
  * });
  * ```

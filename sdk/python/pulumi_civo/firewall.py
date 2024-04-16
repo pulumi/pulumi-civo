@@ -236,59 +236,6 @@ class Firewall(pulumi.CustomResource):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
 
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a network
-        custom_net = civo.Network("customNet", label="my-custom-network")
-        # Create a firewall
-        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
-        # Create a firewall with the default rules
-        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=True)
-        # Create a firewall withouth the default rules but with a custom rule
-        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=False,
-            ingress_rules=[
-                civo.FirewallIngressRuleArgs(
-                    label="k8s",
-                    protocol="tcp",
-                    port_range="6443",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-                civo.FirewallIngressRuleArgs(
-                    label="ssh",
-                    protocol="tcp",
-                    port_range="22",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-            ],
-            egress_rules=[civo.FirewallEgressRuleArgs(
-                label="all",
-                protocol="tcp",
-                port_range="1-65535",
-                cidrs=["0.0.0.0/0"],
-                action="allow",
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
-
         ## Import
 
         using ID
@@ -314,59 +261,6 @@ class Firewall(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
-
-        ## Example Usage
-
-        <!--Start PulumiCodeChooser -->
-        ```python
-        import pulumi
-        import pulumi_civo as civo
-
-        # Create a network
-        custom_net = civo.Network("customNet", label="my-custom-network")
-        # Create a firewall
-        www_firewall = civo.Firewall("wwwFirewall", network_id=custom_net.id)
-        # Create a firewall with the default rules
-        www_index_firewall_firewall = civo.Firewall("wwwIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=True)
-        # Create a firewall withouth the default rules but with a custom rule
-        www_civo_index_firewall_firewall = civo.Firewall("wwwCivoIndex/firewallFirewall",
-            network_id=custom_net.id,
-            create_default_rules=False,
-            ingress_rules=[
-                civo.FirewallIngressRuleArgs(
-                    label="k8s",
-                    protocol="tcp",
-                    port_range="6443",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-                civo.FirewallIngressRuleArgs(
-                    label="ssh",
-                    protocol="tcp",
-                    port_range="22",
-                    cidrs=[
-                        "192.168.1.1/32",
-                        "192.168.10.4/32",
-                        "192.168.10.10/32",
-                    ],
-                    action="allow",
-                ),
-            ],
-            egress_rules=[civo.FirewallEgressRuleArgs(
-                label="all",
-                protocol="tcp",
-                port_range="1-65535",
-                cidrs=["0.0.0.0/0"],
-                action="allow",
-            )])
-        ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

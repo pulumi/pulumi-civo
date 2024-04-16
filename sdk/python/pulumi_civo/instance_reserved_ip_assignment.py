@@ -141,11 +141,11 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
         import pulumi_civo as civo
 
         # Send to create a reserved IP
-        www = civo.ReservedIp("www")
+        www = civo.ReservedIp("www", name="nginx-www")
         # We assign the reserved IP to the instance
         webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
-            instance_id=civo_instance["www"]["id"],
-            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
+            instance_id=www_civo_instance["id"],
+            reserved_ip_id=web_server["id"])
         ```
         <!--End PulumiCodeChooser -->
 
@@ -172,11 +172,11 @@ class InstanceReservedIpAssignment(pulumi.CustomResource):
         import pulumi_civo as civo
 
         # Send to create a reserved IP
-        www = civo.ReservedIp("www")
+        www = civo.ReservedIp("www", name="nginx-www")
         # We assign the reserved IP to the instance
         webserver_www = civo.InstanceReservedIpAssignment("webserver-www",
-            instance_id=civo_instance["www"]["id"],
-            reserved_ip_id=civo_reserved_ip["web-server"]["id"])
+            instance_id=www_civo_instance["id"],
+            reserved_ip_id=web_server["id"])
         ```
         <!--End PulumiCodeChooser -->
 

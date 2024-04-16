@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as civo from "@pulumi/civo";
  *
  * // Create a new domain name
- * const main = new civo.DnsDomainName("main", {});
+ * const main = new civo.DnsDomainName("main", {name: "mydomain.com"});
  * ```
  * <!--End PulumiCodeChooser -->
  *

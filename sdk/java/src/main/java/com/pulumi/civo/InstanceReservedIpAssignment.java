@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.civo.ReservedIp;
+ * import com.pulumi.civo.ReservedIpArgs;
  * import com.pulumi.civo.InstanceReservedIpAssignment;
  * import com.pulumi.civo.InstanceReservedIpAssignmentArgs;
  * import java.util.List;
@@ -42,12 +43,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Send to create a reserved IP
- *         var www = new ReservedIp(&#34;www&#34;);
+ *         var www = new ReservedIp(&#34;www&#34;, ReservedIpArgs.builder()        
+ *             .name(&#34;nginx-www&#34;)
+ *             .build());
  * 
  *         // We assign the reserved IP to the instance
  *         var webserver_www = new InstanceReservedIpAssignment(&#34;webserver-www&#34;, InstanceReservedIpAssignmentArgs.builder()        
- *             .instanceId(civo_instance.www().id())
- *             .reservedIpId(civo_reserved_ip.web-server().id())
+ *             .instanceId(wwwCivoInstance.id())
+ *             .reservedIpId(web_server.id())
  *             .build());
  * 
  *     }

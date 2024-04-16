@@ -14,11 +14,13 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
+ * // Get network
  * const defaultNetwork = civo.getNetwork({
  *     label: "Default",
  * });
  * // Create volume
  * const db = new civo.Volume("db", {
+ *     name: "backup-data",
  *     sizeGb: 5,
  *     networkId: defaultNetwork.then(defaultNetwork => defaultNetwork.id),
  * }, {

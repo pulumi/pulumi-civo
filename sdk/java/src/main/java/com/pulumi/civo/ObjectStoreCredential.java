@@ -45,21 +45,24 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+ *         // Create a simple credential for the object store
+ *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
  *             .name(&#34;backup-server&#34;)
  *             .build());
  * 
  *         // Create a credential for the object store with a specific access key and secret key
- *         var backupIndex_objectStoreCredentialObjectStoreCredential = new ObjectStoreCredential(&#34;backupIndex/objectStoreCredentialObjectStoreCredential&#34;, ObjectStoreCredentialArgs.builder()        
+ *         var backupObjectStoreCredential = new ObjectStoreCredential(&#34;backupObjectStoreCredential&#34;, ObjectStoreCredentialArgs.builder()        
+ *             .name(&#34;backup-server&#34;)
  *             .accessKeyId(&#34;my-access-key&#34;)
  *             .secretAccessKey(&#34;my-secret-key&#34;)
  *             .build());
  * 
  *         // Use the credential to create a bucket
  *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+ *             .name(&#34;backup-server&#34;)
  *             .maxSizeGb(500)
  *             .region(&#34;LON1&#34;)
- *             .accessKeyId(backupIndex / objectStoreCredentialObjectStoreCredential.accessKeyId())
+ *             .accessKeyId(backupObjectStoreCredential.accessKeyId())
  *             .build());
  * 
  *     }

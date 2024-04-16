@@ -120,12 +120,14 @@ def get_object_store_credential(id: Optional[str] = None,
     import pulumi
     import pulumi_civo as civo
 
-    backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+    # Read a credential for the object store
+    backup = civo.get_object_store_credential(name="backup-server")
     # Use the credential to create a bucket
-    backup_object_store = civo.ObjectStore("backupObjectStore",
+    backup_object_store = civo.ObjectStore("backup",
+        name="backup-server",
         max_size_gb=500,
         region="LON1",
-        access_key_id=backup_object_store_credential.access_key_id)
+        access_key_id=backup.access_key_id)
     ```
     <!--End PulumiCodeChooser -->
 
@@ -167,12 +169,14 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
     import pulumi
     import pulumi_civo as civo
 
-    backup_object_store_credential = civo.get_object_store_credential(name="backup-server")
+    # Read a credential for the object store
+    backup = civo.get_object_store_credential(name="backup-server")
     # Use the credential to create a bucket
-    backup_object_store = civo.ObjectStore("backupObjectStore",
+    backup_object_store = civo.ObjectStore("backup",
+        name="backup-server",
         max_size_gb=500,
         region="LON1",
-        access_key_id=backup_object_store_credential.access_key_id)
+        access_key_id=backup.access_key_id)
     ```
     <!--End PulumiCodeChooser -->
 

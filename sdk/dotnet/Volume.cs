@@ -23,6 +23,7 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     // Get network
     ///     var defaultNetwork = Civo.GetNetwork.Invoke(new()
     ///     {
     ///         Label = "Default",
@@ -31,6 +32,7 @@ namespace Pulumi.Civo
     ///     // Create volume
     ///     var db = new Civo.Volume("db", new()
     ///     {
+    ///         Name = "backup-data",
     ///         SizeGb = 5,
     ///         NetworkId = defaultNetwork.Apply(getNetworkResult =&gt; getNetworkResult.Id),
     ///     }, new CustomResourceOptions

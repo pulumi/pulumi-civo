@@ -29,7 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.NewNetwork(ctx, "customNet", &civo.NetworkArgs{
+//			_, err := civo.NewNetwork(ctx, "custom_net", &civo.NetworkArgs{
 //				Label: pulumi.String("test_network"),
 //			})
 //			if err != nil {

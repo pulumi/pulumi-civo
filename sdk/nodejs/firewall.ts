@@ -9,61 +9,6 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
  *
- * ## Example Usage
- *
- * <!--Start PulumiCodeChooser -->
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as civo from "@pulumi/civo";
- *
- * // Create a network
- * const customNet = new civo.Network("customNet", {label: "my-custom-network"});
- * // Create a firewall
- * const wwwFirewall = new civo.Firewall("wwwFirewall", {networkId: customNet.id});
- * // Create a firewall with the default rules
- * const wwwIndex_firewallFirewall = new civo.Firewall("wwwIndex/firewallFirewall", {
- *     networkId: customNet.id,
- *     createDefaultRules: true,
- * });
- * // Create a firewall withouth the default rules but with a custom rule
- * const wwwCivoIndex_firewallFirewall = new civo.Firewall("wwwCivoIndex/firewallFirewall", {
- *     networkId: customNet.id,
- *     createDefaultRules: false,
- *     ingressRules: [
- *         {
- *             label: "k8s",
- *             protocol: "tcp",
- *             portRange: "6443",
- *             cidrs: [
- *                 "192.168.1.1/32",
- *                 "192.168.10.4/32",
- *                 "192.168.10.10/32",
- *             ],
- *             action: "allow",
- *         },
- *         {
- *             label: "ssh",
- *             protocol: "tcp",
- *             portRange: "22",
- *             cidrs: [
- *                 "192.168.1.1/32",
- *                 "192.168.10.4/32",
- *                 "192.168.10.10/32",
- *             ],
- *             action: "allow",
- *         },
- *     ],
- *     egressRules: [{
- *         label: "all",
- *         protocol: "tcp",
- *         portRange: "1-65535",
- *         cidrs: ["0.0.0.0/0"],
- *         action: "allow",
- *     }],
- * });
- * ```
- * <!--End PulumiCodeChooser -->
- *
  * ## Import
  *
  * using ID

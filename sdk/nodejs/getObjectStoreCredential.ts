@@ -16,14 +16,16 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backupObjectStoreCredential = civo.getObjectStoreCredential({
+ * // Read a credential for the object store
+ * const backup = civo.getObjectStoreCredential({
  *     name: "backup-server",
  * });
  * // Use the credential to create a bucket
- * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ * const backupObjectStore = new civo.ObjectStore("backup", {
+ *     name: "backup-server",
  *     maxSizeGb: 500,
  *     region: "LON1",
- *     accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential => backupObjectStoreCredential.accessKeyId),
+ *     accessKeyId: backup.then(backup => backup.accessKeyId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->
@@ -98,14 +100,16 @@ export interface GetObjectStoreCredentialResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backupObjectStoreCredential = civo.getObjectStoreCredential({
+ * // Read a credential for the object store
+ * const backup = civo.getObjectStoreCredential({
  *     name: "backup-server",
  * });
  * // Use the credential to create a bucket
- * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ * const backupObjectStore = new civo.ObjectStore("backup", {
+ *     name: "backup-server",
  *     maxSizeGb: 500,
  *     region: "LON1",
- *     accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential => backupObjectStoreCredential.accessKeyId),
+ *     accessKeyId: backup.then(backup => backup.accessKeyId),
  * });
  * ```
  * <!--End PulumiCodeChooser -->

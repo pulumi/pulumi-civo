@@ -18,6 +18,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
+ * // TODO
  * const my-lb = civo.getLoadBalancer({
  *     name: "lb-name",
  *     region: "LON1",
@@ -125,6 +126,7 @@ export interface GetLoadBalancerResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
+ * // TODO
  * const my-lb = civo.getLoadBalancer({
  *     name: "lb-name",
  *     region: "LON1",

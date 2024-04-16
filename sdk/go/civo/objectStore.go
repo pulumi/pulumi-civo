@@ -28,13 +28,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			backupObjectStore, err := civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
+//			backupObjectStore, err := civo.NewObjectStore(ctx, "backup", &civo.ObjectStoreArgs{
+//				Name:      pulumi.String("backup-server"),
 //				MaxSizeGb: pulumi.Int(500),
 //				Region:    pulumi.String("LON1"),
 //			})
 //			if err != nil {
 //				return err
 //			}
+//			// If you create the bucket without credentials, you can read the credentials in this way
 //			_ = civo.LookupObjectStoreCredentialOutput(ctx, civo.GetObjectStoreCredentialOutputArgs{
 //				Id: backupObjectStore.AccessKeyId,
 //			}, nil)

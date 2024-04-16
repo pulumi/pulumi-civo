@@ -1435,7 +1435,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -1481,7 +1481,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -1527,7 +1527,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -1573,7 +1573,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -1619,7 +1619,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -1665,7 +1665,7 @@ public final class CivoFunctions {
      *             .region(&#34;LON1&#34;)
      *             .filters(GetInstancesFilterArgs.builder()
      *                 .key(&#34;size&#34;)
-     *                 .values(g3.small())
+     *                 .values(small)
      *                 .build())
      *             .build());
      * 
@@ -2265,6 +2265,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -2309,6 +2310,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -2353,6 +2355,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -2397,6 +2400,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -2441,6 +2445,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -2485,6 +2490,7 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
+     *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
      *             .name(&#34;lb-name&#34;)
      *             .region(&#34;LON1&#34;)
@@ -3053,15 +3059,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
@@ -3104,15 +3112,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
@@ -3155,15 +3165,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
@@ -3206,15 +3218,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
@@ -3257,15 +3271,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
@@ -3308,15 +3324,17 @@ public final class CivoFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         final var backupObjectStoreCredential = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
      *             .name(&#34;backup-server&#34;)
      *             .build());
      * 
      *         // Use the credential to create a bucket
      *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
+     *             .name(&#34;backup-server&#34;)
      *             .maxSizeGb(500)
      *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backupObjectStoreCredential.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
