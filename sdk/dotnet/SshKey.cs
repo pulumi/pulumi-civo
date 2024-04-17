@@ -12,6 +12,31 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
     /// 
+    /// ## Example Usage
+    /// 
+    /// &lt;!--Start PulumiCodeChooser --&gt;
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// using Std = Pulumi.Std;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var my_user = new Civo.SshKey("my-user", new()
+    ///     {
+    ///         Name = "my-user",
+    ///         PublicKey = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "~/.ssh/id_rsa.pub",
+    ///         }).Apply(invoke =&gt; invoke.Result),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// &lt;!--End PulumiCodeChooser --&gt;
+    /// 
     /// ## Import
     /// 
     /// using ID

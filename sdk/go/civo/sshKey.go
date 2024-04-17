@@ -14,6 +14,42 @@ import (
 
 // Provides a Civo SSH key resource to allow you to manage SSH keys for instance access. Keys created with this resource can be referenced in your instance configuration via their ID.
 //
+// ## Example Usage
+//
+// <!--Start PulumiCodeChooser -->
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "~/.ssh/id_rsa.pub",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = civo.NewSshKey(ctx, "my-user", &civo.SshKeyArgs{
+//				Name:      pulumi.String("my-user"),
+//				PublicKey: invokeFile.Result,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// <!--End PulumiCodeChooser -->
+//
 // ## Import
 //
 // using ID
