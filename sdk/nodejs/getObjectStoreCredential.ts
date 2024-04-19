@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential => backupObjectStoreCredential.accessKeyId),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getObjectStoreCredential(args?: GetObjectStoreCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreCredentialResult> {
     args = args || {};
@@ -93,7 +91,6 @@ export interface GetObjectStoreCredentialResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -108,7 +105,6 @@ export interface GetObjectStoreCredentialResult {
  *     accessKeyId: backupObjectStoreCredential.then(backupObjectStoreCredential => backupObjectStoreCredential.accessKeyId),
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getObjectStoreCredentialOutput(args?: GetObjectStoreCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreCredentialResult> {
     return pulumi.output(args).apply((a: any) => getObjectStoreCredential(a, opts))

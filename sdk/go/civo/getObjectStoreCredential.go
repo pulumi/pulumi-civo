@@ -17,7 +17,6 @@ import (
 //
 // ## Example Usage
 //
-// <!--Start PulumiCodeChooser -->
 // ```go
 // package main
 //
@@ -50,7 +49,6 @@ import (
 //	}
 //
 // ```
-// <!--End PulumiCodeChooser -->
 func LookupObjectStoreCredential(ctx *pulumi.Context, args *LookupObjectStoreCredentialArgs, opts ...pulumi.InvokeOption) (*LookupObjectStoreCredentialResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupObjectStoreCredentialResult

@@ -119,14 +119,12 @@ class SshKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
 
         my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -152,14 +150,12 @@ class SshKey(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
 
         my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

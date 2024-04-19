@@ -223,7 +223,6 @@ def get_database(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -231,7 +230,6 @@ def get_database(id: Optional[str] = None,
     test = civo.get_database(name="test-database",
         region="LON1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Database
@@ -275,7 +273,6 @@ def get_database_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -283,7 +280,6 @@ def get_database_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     test = civo.get_database(name="test-database",
         region="LON1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Database

@@ -260,7 +260,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -268,7 +267,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
     my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
     pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
@@ -315,7 +313,6 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = No
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -323,7 +320,6 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = No
     my_cluster = civo.get_kubernetes_cluster(name="my-super-cluster")
     pulumi.export("kubernetesClusterOutput", my_cluster.master_ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.

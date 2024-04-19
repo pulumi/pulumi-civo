@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  * export const recordType = www.then(www => www.type);
  * export const recordTtl = www.then(www => www.ttl);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainRecordResult> {
 
@@ -103,7 +101,6 @@ export interface GetDnsDomainRecordResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -118,7 +115,6 @@ export interface GetDnsDomainRecordResult {
  * export const recordType = www.then(www => www.type);
  * export const recordTtl = www.then(www => www.ttl);
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainRecordResult> {
     return pulumi.output(args).apply((a: any) => getDnsDomainRecord(a, opts))

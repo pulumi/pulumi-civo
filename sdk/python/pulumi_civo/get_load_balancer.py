@@ -209,7 +209,6 @@ def get_load_balancer(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -218,7 +217,6 @@ def get_load_balancer(id: Optional[str] = None,
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')
@@ -261,7 +259,6 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -270,7 +267,6 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The id of the load balancer to retrieve (You can find this id from service annotations 'kubernetes.civo.com/loadbalancer-id')

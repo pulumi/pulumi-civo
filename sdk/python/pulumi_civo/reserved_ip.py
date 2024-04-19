@@ -120,14 +120,12 @@ class ReservedIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
 
         www = civo.ReservedIp("www")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -149,14 +147,12 @@ class ReservedIp(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
 
         www = civo.ReservedIp("www")
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
