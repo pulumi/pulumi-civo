@@ -17,16 +17,20 @@ namespace Pulumi.Civo
     /// &lt;!--Start PulumiCodeChooser --&gt;
     /// ```csharp
     /// using System.Collections.Generic;
-    /// using System.IO;
     /// using System.Linq;
     /// using Pulumi;
     /// using Civo = Pulumi.Civo;
+    /// using Std = Pulumi.Std;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     var my_user = new Civo.SshKey("my-user", new()
     ///     {
-    ///         PublicKey = File.ReadAllText("~/.ssh/id_rsa.pub"),
+    ///         Name = "my-user",
+    ///         PublicKey = Std.File.Invoke(new()
+    ///         {
+    ///             Input = "~/.ssh/id_rsa.pub",
+    ///         }).Apply(invoke =&gt; invoke.Result),
     ///     });
     /// 
     /// });

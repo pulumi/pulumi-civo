@@ -27,6 +27,7 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // TODO
         ///     var my_lb = Civo.GetLoadBalancer.Invoke(new()
         ///     {
         ///         Name = "lb-name",
@@ -60,6 +61,7 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
+        ///     // TODO
         ///     var my_lb = Civo.GetLoadBalancer.Invoke(new()
         ///     {
         ///         Name = "lb-name",

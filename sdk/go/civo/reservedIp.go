@@ -28,7 +28,9 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.NewReservedIp(ctx, "www", nil)
+//			_, err := civo.NewReservedIp(ctx, "www", &civo.ReservedIpArgs{
+//				Name: pulumi.String("nginx-www"),
+//			})
 //			if err != nil {
 //				return err
 //			}

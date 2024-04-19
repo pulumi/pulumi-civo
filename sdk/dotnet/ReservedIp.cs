@@ -23,7 +23,10 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var www = new Civo.ReservedIp("www");
+    ///     var www = new Civo.ReservedIp("www", new()
+    ///     {
+    ///         Name = "nginx-www",
+    ///     });
     /// 
     /// });
     /// ```

@@ -189,9 +189,11 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
+        # Get network
         default_network = civo.get_network(label="Default")
         # Create volume
         db = civo.Volume("db",
+            name="backup-data",
             size_gb=5,
             network_id=default_network.id,
             opts=pulumi.ResourceOptions(depends_on=[default_network]))
@@ -229,9 +231,11 @@ class Volume(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
+        # Get network
         default_network = civo.get_network(label="Default")
         # Create volume
         db = civo.Volume("db",
+            name="backup-data",
             size_gb=5,
             network_id=default_network.id,
             opts=pulumi.ResourceOptions(depends_on=[default_network]))

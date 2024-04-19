@@ -13,9 +13,14 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
- * import * as fs from "fs";
+ * import * as std from "@pulumi/std";
  *
- * const my_user = new civo.SshKey("my-user", {publicKey: fs.readFileSync("~/.ssh/id_rsa.pub", "utf8")});
+ * const my_user = new civo.SshKey("my-user", {
+ *     name: "my-user",
+ *     publicKey: std.file({
+ *         input: "~/.ssh/id_rsa.pub",
+ *     }).then(invoke => invoke.result),
+ * });
  * ```
  * <!--End PulumiCodeChooser -->
  *

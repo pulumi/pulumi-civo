@@ -23,24 +23,27 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+    ///     // Create a simple credential for the object store
+    ///     var backup = Civo.GetObjectStoreCredential.Invoke(new()
     ///     {
     ///         Name = "backup-server",
     ///     });
     /// 
     ///     // Create a credential for the object store with a specific access key and secret key
-    ///     var backupIndex_objectStoreCredentialObjectStoreCredential = new Civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential", new()
+    ///     var backupObjectStoreCredential = new Civo.ObjectStoreCredential("backup", new()
     ///     {
+    ///         Name = "backup-server",
     ///         AccessKeyId = "my-access-key",
     ///         SecretAccessKey = "my-secret-key",
     ///     });
     /// 
     ///     // Use the credential to create a bucket
-    ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+    ///     var backupObjectStore = new Civo.ObjectStore("backup", new()
     ///     {
+    ///         Name = "backup-server",
     ///         MaxSizeGb = 500,
     ///         Region = "LON1",
-    ///         AccessKeyId = backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,
+    ///         AccessKeyId = backupObjectStoreCredential.AccessKeyId,
     ///     });
     /// 
     /// });

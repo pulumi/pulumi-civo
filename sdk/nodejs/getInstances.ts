@@ -22,7 +22,7 @@ import * as utilities from "./utilities";
  *     region: "LON1",
  *     filters: [{
  *         key: "size",
- *         values: [g3.small],
+ *         values: [small],
  *     }],
  * });
  * ```
@@ -92,7 +92,7 @@ export interface GetInstancesResult {
  *     region: "LON1",
  *     filters: [{
  *         key: "size",
- *         values: [g3.small],
+ *         values: [small],
  *     }],
  * });
  * ```

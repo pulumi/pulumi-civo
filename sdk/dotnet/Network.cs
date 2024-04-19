@@ -23,7 +23,7 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var customNet = new Civo.Network("customNet", new()
+    ///     var customNet = new Civo.Network("custom_net", new()
     ///     {
     ///         Label = "test_network",
     ///     });

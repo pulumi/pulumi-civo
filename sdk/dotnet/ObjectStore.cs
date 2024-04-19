@@ -23,13 +23,15 @@ namespace Pulumi.Civo
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+    ///     var backupObjectStore = new Civo.ObjectStore("backup", new()
     ///     {
+    ///         Name = "backup-server",
     ///         MaxSizeGb = 500,
     ///         Region = "LON1",
     ///     });
     /// 
-    ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+    ///     // If you create the bucket without credentials, you can read the credentials in this way
+    ///     var backup = Civo.GetObjectStoreCredential.Invoke(new()
     ///     {
     ///         Id = backupObjectStore.AccessKeyId,
     ///     });

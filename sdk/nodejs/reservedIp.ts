@@ -14,7 +14,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const www = new civo.ReservedIp("www", {});
+ * const www = new civo.ReservedIp("www", {name: "nginx-www"});
  * ```
  * <!--End PulumiCodeChooser -->
  *

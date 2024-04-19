@@ -29,6 +29,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Get network
 //			defaultNetwork, err := civo.LookupNetwork(ctx, &civo.LookupNetworkArgs{
 //				Label: pulumi.StringRef("Default"),
 //			}, nil)
@@ -37,6 +38,7 @@ import (
 //			}
 //			// Create volume
 //			_, err = civo.NewVolume(ctx, "db", &civo.VolumeArgs{
+//				Name:      pulumi.String("backup-data"),
 //				SizeGb:    pulumi.Int(5),
 //				NetworkId: pulumi.String(defaultNetwork.Id),
 //			}, pulumi.DependsOn([]pulumi.Resource{

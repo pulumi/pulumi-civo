@@ -35,7 +35,7 @@ import (
 // {
 // Key: "size",
 // Values: interface{}{
-// g3.Small,
+// small,
 // },
 // },
 // },

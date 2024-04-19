@@ -3,3 +3,10 @@ env:
   CIVO_TOKEN: ${{ secrets.CIVO_TOKEN }}
 makeTemplate: bridged
 team: ecosystem
+pulumiConvert: 1
+plugins:
+  - name: terraform
+    version: "1.0.16"
+    kind: converter
+  - name: std
+    version: "1.6.2"

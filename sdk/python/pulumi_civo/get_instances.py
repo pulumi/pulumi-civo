@@ -110,7 +110,7 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
     small_size = civo.get_instances(region="LON1",
         filters=[civo.GetInstancesFilterArgs(
             key="size",
-            values=[g3["small"]],
+            values=[small],
         )])
     ```
     <!--End PulumiCodeChooser -->
@@ -154,7 +154,7 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
     small_size = civo.get_instances(region="LON1",
         filters=[civo.GetInstancesFilterArgs(
             key="size",
-            values=[g3["small"]],
+            values=[small],
         )])
     ```
     <!--End PulumiCodeChooser -->

@@ -27,17 +27,19 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+        ///     // Read a credential for the object store
+        ///     var backup = Civo.GetObjectStoreCredential.Invoke(new()
         ///     {
         ///         Name = "backup-server",
         ///     });
         /// 
         ///     // Use the credential to create a bucket
-        ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+        ///     var backupObjectStore = new Civo.ObjectStore("backup", new()
         ///     {
+        ///         Name = "backup-server",
         ///         MaxSizeGb = 500,
         ///         Region = "LON1",
-        ///         AccessKeyId = backupObjectStoreCredential.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
+        ///         AccessKeyId = backup.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
         ///     });
         /// 
         /// });
@@ -63,17 +65,19 @@ namespace Pulumi.Civo
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var backupObjectStoreCredential = Civo.GetObjectStoreCredential.Invoke(new()
+        ///     // Read a credential for the object store
+        ///     var backup = Civo.GetObjectStoreCredential.Invoke(new()
         ///     {
         ///         Name = "backup-server",
         ///     });
         /// 
         ///     // Use the credential to create a bucket
-        ///     var backupObjectStore = new Civo.ObjectStore("backupObjectStore", new()
+        ///     var backupObjectStore = new Civo.ObjectStore("backup", new()
         ///     {
+        ///         Name = "backup-server",
         ///         MaxSizeGb = 500,
         ///         Region = "LON1",
-        ///         AccessKeyId = backupObjectStoreCredential.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
+        ///         AccessKeyId = backup.Apply(getObjectStoreCredentialResult =&gt; getObjectStoreCredentialResult.AccessKeyId),
         ///     });
         /// 
         /// });

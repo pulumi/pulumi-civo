@@ -93,7 +93,7 @@ class DnsDomainName(pulumi.CustomResource):
         import pulumi_civo as civo
 
         # Create a new domain name
-        main = civo.DnsDomainName("main")
+        main = civo.DnsDomainName("main", name="mydomain.com")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -126,7 +126,7 @@ class DnsDomainName(pulumi.CustomResource):
         import pulumi_civo as civo
 
         # Create a new domain name
-        main = civo.DnsDomainName("main")
+        main = civo.DnsDomainName("main", name="mydomain.com")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -140,7 +140,7 @@ class Network(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        custom_net = civo.Network("customNet", label="test_network")
+        custom_net = civo.Network("custom_net", label="test_network")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -173,7 +173,7 @@ class Network(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        custom_net = civo.Network("customNet", label="test_network")
+        custom_net = civo.Network("custom_net", label="test_network")
         ```
         <!--End PulumiCodeChooser -->
 

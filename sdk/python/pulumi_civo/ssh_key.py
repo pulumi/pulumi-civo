@@ -123,8 +123,11 @@ class SshKey(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_civo as civo
+        import pulumi_std as std
 
-        my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
+        my_user = civo.SshKey("my-user",
+            name="my-user",
+            public_key=std.file(input="~/.ssh/id_rsa.pub").result)
         ```
         <!--End PulumiCodeChooser -->
 
@@ -156,8 +159,11 @@ class SshKey(pulumi.CustomResource):
         ```python
         import pulumi
         import pulumi_civo as civo
+        import pulumi_std as std
 
-        my_user = civo.SshKey("my-user", public_key=(lambda path: open(path).read())("~/.ssh/id_rsa.pub"))
+        my_user = civo.SshKey("my-user",
+            name="my-user",
+            public_key=std.file(input="~/.ssh/id_rsa.pub").result)
         ```
         <!--End PulumiCodeChooser -->
 

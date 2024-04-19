@@ -41,7 +41,10 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var my_user = new SshKey(&#34;my-user&#34;, SshKeyArgs.builder()        
- *             .publicKey(Files.readString(Paths.get(&#34;~/.ssh/id_rsa.pub&#34;)))
+ *             .name(&#34;my-user&#34;)
+ *             .publicKey(StdFunctions.file(FileArgs.builder()
+ *                 .input(&#34;~/.ssh/id_rsa.pub&#34;)
+ *                 .build()).result())
  *             .build());
  * 
  *     }

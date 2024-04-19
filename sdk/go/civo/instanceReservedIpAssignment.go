@@ -30,14 +30,16 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Send to create a reserved IP
-//			_, err := civo.NewReservedIp(ctx, "www", nil)
+//			_, err := civo.NewReservedIp(ctx, "www", &civo.ReservedIpArgs{
+//				Name: pulumi.String("nginx-www"),
+//			})
 //			if err != nil {
 //				return err
 //			}
 //			// We assign the reserved IP to the instance
 //			_, err = civo.NewInstanceReservedIpAssignment(ctx, "webserver-www", &civo.InstanceReservedIpAssignmentArgs{
-//				InstanceId:   pulumi.Any(civo_instance.Www.Id),
-//				ReservedIpId: pulumi.Any(civo_reserved_ip.WebServer.Id),
+//				InstanceId:   pulumi.Any(wwwCivoInstance.Id),
+//				ReservedIpId: pulumi.Any(web_server.Id),
 //			})
 //			if err != nil {
 //				return err

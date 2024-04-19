@@ -15,11 +15,11 @@ import * as utilities from "./utilities";
  * import * as civo from "@pulumi/civo";
  *
  * // Send to create a reserved IP
- * const www = new civo.ReservedIp("www", {});
+ * const www = new civo.ReservedIp("www", {name: "nginx-www"});
  * // We assign the reserved IP to the instance
  * const webserver_www = new civo.InstanceReservedIpAssignment("webserver-www", {
- *     instanceId: civo_instance.www.id,
- *     reservedIpId: civo_reserved_ip["web-server"].id,
+ *     instanceId: wwwCivoInstance.id,
+ *     reservedIpId: web_server.id,
  * });
  * ```
  * <!--End PulumiCodeChooser -->

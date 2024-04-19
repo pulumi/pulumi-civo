@@ -37,7 +37,7 @@ namespace Pulumi.Civo
         ///                 Key = "size",
         ///                 Values = new[]
         ///                 {
-        ///                     g3.Small,
+        ///                     small,
         ///                 },
         ///             },
         ///         },
@@ -76,7 +76,7 @@ namespace Pulumi.Civo
         ///                 Key = "size",
         ///                 Values = new[]
         ///                 {
-        ///                     g3.Small,
+        ///                     small,
         ///                 },
         ///             },
         ///         },

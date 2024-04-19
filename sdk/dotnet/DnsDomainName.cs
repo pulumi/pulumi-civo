@@ -24,7 +24,10 @@ namespace Pulumi.Civo
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
     ///     // Create a new domain name
-    ///     var main = new Civo.DnsDomainName("main");
+    ///     var main = new Civo.DnsDomainName("main", new()
+    ///     {
+    ///         Name = "mydomain.com",
+    ///     });
     /// 
     /// });
     /// ```

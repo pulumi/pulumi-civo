@@ -26,6 +26,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
  * import com.pulumi.civo.DnsDomainName;
+ * import com.pulumi.civo.DnsDomainNameArgs;
  * import java.util.List;
  * import java.util.ArrayList;
  * import java.util.Map;
@@ -40,7 +41,9 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create a new domain name
- *         var main = new DnsDomainName(&#34;main&#34;);
+ *         var main = new DnsDomainName(&#34;main&#34;, DnsDomainNameArgs.builder()        
+ *             .name(&#34;mydomain.com&#34;)
+ *             .build());
  * 
  *     }
  * }

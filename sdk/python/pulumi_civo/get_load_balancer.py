@@ -214,6 +214,7 @@ def get_load_balancer(id: Optional[str] = None,
     import pulumi
     import pulumi_civo as civo
 
+    # TODO
     my_lb = civo.get_load_balancer(name="lb-name",
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)
@@ -266,6 +267,7 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_civo as civo
 
+    # TODO
     my_lb = civo.get_load_balancer(name="lb-name",
         region="LON1")
     pulumi.export("civoLoadbalancerOutput", my_lb.public_ip)

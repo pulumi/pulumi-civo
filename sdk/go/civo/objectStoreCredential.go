@@ -28,6 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a simple credential for the object store
 //			_, err := civo.LookupObjectStoreCredential(ctx, &civo.LookupObjectStoreCredentialArgs{
 //				Name: pulumi.StringRef("backup-server"),
 //			}, nil)
@@ -35,7 +36,8 @@ import (
 //				return err
 //			}
 //			// Create a credential for the object store with a specific access key and secret key
-//			_, err = civo.NewObjectStoreCredential(ctx, "backupIndex/objectStoreCredentialObjectStoreCredential", &civo.ObjectStoreCredentialArgs{
+//			backupObjectStoreCredential, err := civo.NewObjectStoreCredential(ctx, "backup", &civo.ObjectStoreCredentialArgs{
+//				Name:            pulumi.String("backup-server"),
 //				AccessKeyId:     pulumi.String("my-access-key"),
 //				SecretAccessKey: pulumi.String("my-secret-key"),
 //			})
@@ -43,10 +45,11 @@ import (
 //				return err
 //			}
 //			// Use the credential to create a bucket
-//			_, err = civo.NewObjectStore(ctx, "backupObjectStore", &civo.ObjectStoreArgs{
+//			_, err = civo.NewObjectStore(ctx, "backup", &civo.ObjectStoreArgs{
+//				Name:        pulumi.String("backup-server"),
 //				MaxSizeGb:   pulumi.Int(500),
 //				Region:      pulumi.String("LON1"),
-//				AccessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.AccessKeyId,
+//				AccessKeyId: backupObjectStoreCredential.AccessKeyId,
 //			})
 //			if err != nil {
 //				return err

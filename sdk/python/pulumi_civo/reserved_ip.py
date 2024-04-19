@@ -125,7 +125,7 @@ class ReservedIp(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        www = civo.ReservedIp("www")
+        www = civo.ReservedIp("www", name="nginx-www")
         ```
         <!--End PulumiCodeChooser -->
 
@@ -154,7 +154,7 @@ class ReservedIp(pulumi.CustomResource):
         import pulumi
         import pulumi_civo as civo
 
-        www = civo.ReservedIp("www")
+        www = civo.ReservedIp("www", name="nginx-www")
         ```
         <!--End PulumiCodeChooser -->
 

@@ -14,19 +14,22 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
- * const backupObjectStoreCredential = civo.getObjectStoreCredential({
+ * // Create a simple credential for the object store
+ * const backup = civo.getObjectStoreCredential({
  *     name: "backup-server",
  * });
  * // Create a credential for the object store with a specific access key and secret key
- * const backupIndex_objectStoreCredentialObjectStoreCredential = new civo.ObjectStoreCredential("backupIndex/objectStoreCredentialObjectStoreCredential", {
+ * const backupObjectStoreCredential = new civo.ObjectStoreCredential("backup", {
+ *     name: "backup-server",
  *     accessKeyId: "my-access-key",
  *     secretAccessKey: "my-secret-key",
  * });
  * // Use the credential to create a bucket
- * const backupObjectStore = new civo.ObjectStore("backupObjectStore", {
+ * const backupObjectStore = new civo.ObjectStore("backup", {
+ *     name: "backup-server",
  *     maxSizeGb: 500,
  *     region: "LON1",
- *     accessKeyId: backupIndex / objectStoreCredentialObjectStoreCredential.accessKeyId,
+ *     accessKeyId: backupObjectStoreCredential.accessKeyId,
  * });
  * ```
  * <!--End PulumiCodeChooser -->
