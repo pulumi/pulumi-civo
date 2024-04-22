@@ -39,7 +39,7 @@ namespace Pulumi.Civo
     ///     {
     ///         DependsOn =
     ///         {
-    ///             defaultNetwork, 
+    ///             defaultNetwork,
     ///         },
     ///     });
     /// 
