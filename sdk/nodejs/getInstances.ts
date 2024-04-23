@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -26,7 +25,6 @@ import * as utilities from "./utilities";
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstances(args?: GetInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetInstancesResult> {
     args = args || {};
@@ -47,6 +45,9 @@ export interface GetInstancesArgs {
      * One or more key/value pairs on which to filter results
      */
     filters?: inputs.GetInstancesFilter[];
+    /**
+     * If used, all instances will be from the provided region
+     */
     region?: string;
     /**
      * One or more key/direction pairs on which to sort results
@@ -83,7 +84,6 @@ export interface GetInstancesResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -96,7 +96,6 @@ export interface GetInstancesResult {
  *     }],
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getInstancesOutput(args?: GetInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstancesResult> {
     return pulumi.output(args).apply((a: any) => getInstances(a, opts))
@@ -110,6 +109,9 @@ export interface GetInstancesOutputArgs {
      * One or more key/value pairs on which to filter results
      */
     filters?: pulumi.Input<pulumi.Input<inputs.GetInstancesFilterArgs>[]>;
+    /**
+     * If used, all instances will be from the provided region
+     */
     region?: pulumi.Input<string>;
     /**
      * One or more key/direction pairs on which to sort results

@@ -9,14 +9,12 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
  *
  * const customNet = new civo.Network("custom_net", {label: "test_network"});
  * ```
- * <!--End PulumiCodeChooser -->
  *
  * ## Import
  *
