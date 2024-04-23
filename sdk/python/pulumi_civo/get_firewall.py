@@ -93,7 +93,6 @@ def get_firewall(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -101,7 +100,6 @@ def get_firewall(id: Optional[str] = None,
     test = civo.get_firewall(name="test-firewall",
         region="LON1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
@@ -136,7 +134,6 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -144,7 +141,6 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     test = civo.get_firewall(name="test-firewall",
         region="LON1")
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.

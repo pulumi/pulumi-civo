@@ -18,7 +18,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -45,7 +44,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetInstancesResult> InvokeAsync(GetInstancesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesArgs(), options.WithDefaults());
@@ -57,7 +55,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -84,7 +81,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetInstancesResult> Invoke(GetInstancesInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetInstancesResult>("civo:index/getInstances:getInstances", args ?? new GetInstancesInvokeArgs(), options.WithDefaults());
@@ -105,6 +101,9 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
+        /// <summary>
+        /// If used, all instances will be from the provided region
+        /// </summary>
         [Input("region")]
         public string? Region { get; set; }
 
@@ -140,6 +139,9 @@ namespace Pulumi.Civo
             set => _filters = value;
         }
 
+        /// <summary>
+        /// If used, all instances will be from the provided region
+        /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 

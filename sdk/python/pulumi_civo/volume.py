@@ -184,7 +184,6 @@ class Volume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
@@ -198,7 +197,6 @@ class Volume(pulumi.CustomResource):
             network_id=default_network.id,
             opts=pulumi.ResourceOptions(depends_on=[default_network]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 
@@ -226,7 +224,6 @@ class Volume(pulumi.CustomResource):
 
         ## Example Usage
 
-        <!--Start PulumiCodeChooser -->
         ```python
         import pulumi
         import pulumi_civo as civo
@@ -240,7 +237,6 @@ class Volume(pulumi.CustomResource):
             network_id=default_network.id,
             opts=pulumi.ResourceOptions(depends_on=[default_network]))
         ```
-        <!--End PulumiCodeChooser -->
 
         ## Import
 

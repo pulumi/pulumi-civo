@@ -115,7 +115,6 @@ def get_object_store_credential(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -129,7 +128,6 @@ def get_object_store_credential(id: Optional[str] = None,
         region="LON1",
         access_key_id=backup.access_key_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Object Store Credential
@@ -164,7 +162,6 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -178,7 +175,6 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
         region="LON1",
         access_key_id=backup.access_key_id)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of the Object Store Credential

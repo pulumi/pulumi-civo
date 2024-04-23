@@ -102,7 +102,6 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -113,10 +112,10 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
             values=[small],
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If used, all instances will be from the provided region
     :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
@@ -146,7 +145,6 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -157,10 +155,10 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
             values=[small],
         )])
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param str region: If used, all instances will be from the provided region
     :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
     """
     ...
