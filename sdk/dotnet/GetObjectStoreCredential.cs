@@ -18,7 +18,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -44,7 +43,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetObjectStoreCredentialResult> InvokeAsync(GetObjectStoreCredentialArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreCredentialResult>("civo:index/getObjectStoreCredential:getObjectStoreCredential", args ?? new GetObjectStoreCredentialArgs(), options.WithDefaults());
@@ -56,7 +54,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -82,7 +79,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetObjectStoreCredentialResult> Invoke(GetObjectStoreCredentialInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreCredentialResult>("civo:index/getObjectStoreCredential:getObjectStoreCredential", args ?? new GetObjectStoreCredentialInvokeArgs(), options.WithDefaults());

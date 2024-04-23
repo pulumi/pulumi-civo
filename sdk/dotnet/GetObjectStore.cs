@@ -18,7 +18,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -34,7 +33,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Task<GetObjectStoreResult> InvokeAsync(GetObjectStoreArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreArgs(), options.WithDefaults());
@@ -46,7 +44,6 @@ namespace Pulumi.Civo
         /// 
         /// ## Example Usage
         /// 
-        /// &lt;!--Start PulumiCodeChooser --&gt;
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
@@ -62,7 +59,6 @@ namespace Pulumi.Civo
         /// 
         /// });
         /// ```
-        /// &lt;!--End PulumiCodeChooser --&gt;
         /// </summary>
         public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());

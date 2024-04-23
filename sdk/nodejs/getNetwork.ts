@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -23,7 +22,6 @@ import * as utilities from "./utilities";
  *     region: "LON1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkResult> {
     args = args || {};
@@ -88,7 +86,6 @@ export interface GetNetworkResult {
  *
  * ## Example Usage
  *
- * <!--Start PulumiCodeChooser -->
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as civo from "@pulumi/civo";
@@ -98,7 +95,6 @@ export interface GetNetworkResult {
  *     region: "LON1",
  * });
  * ```
- * <!--End PulumiCodeChooser -->
  */
 export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkResult> {
     return pulumi.output(args).apply((a: any) => getNetwork(a, opts))

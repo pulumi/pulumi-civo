@@ -115,7 +115,6 @@ def get_volume(id: Optional[str] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -123,7 +122,6 @@ def get_volume(id: Optional[str] = None,
     myvolume = civo.get_volume(name="test-volume-name")
     pulumi.export("volumeOutput", myvolume)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
@@ -158,7 +156,6 @@ def get_volume_output(id: Optional[pulumi.Input[Optional[str]]] = None,
 
     ## Example Usage
 
-    <!--Start PulumiCodeChooser -->
     ```python
     import pulumi
     import pulumi_civo as civo
@@ -166,7 +163,6 @@ def get_volume_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     myvolume = civo.get_volume(name="test-volume-name")
     pulumi.export("volumeOutput", myvolume)
     ```
-    <!--End PulumiCodeChooser -->
 
 
     :param str id: The ID of this resource.
