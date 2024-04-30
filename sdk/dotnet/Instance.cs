@@ -114,6 +114,12 @@ namespace Pulumi.Civo
         public Output<string?> Region { get; private set; } = null!;
 
         /// <summary>
+        /// Can be either the UUID, name, or the IP address of the reserved IP
+        /// </summary>
+        [Output("reservedIpv4")]
+        public Output<string?> ReservedIpv4 { get; private set; } = null!;
+
+        /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
         /// </summary>
         [Output("reverseDns")]
@@ -147,7 +153,7 @@ namespace Pulumi.Civo
         /// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
         /// </summary>
         [Output("sshkeyId")]
-        public Output<string?> SshkeyId { get; private set; } = null!;
+        public Output<string> SshkeyId { get; private set; } = null!;
 
         /// <summary>
         /// Instance's status
@@ -264,6 +270,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Can be either the UUID, name, or the IP address of the reserved IP
+        /// </summary>
+        [Input("reservedIpv4")]
+        public Input<string>? ReservedIpv4 { get; set; }
 
         /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
@@ -414,6 +426,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// Can be either the UUID, name, or the IP address of the reserved IP
+        /// </summary>
+        [Input("reservedIpv4")]
+        public Input<string>? ReservedIpv4 { get; set; }
 
         /// <summary>
         /// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)

@@ -78,14 +78,14 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.labels);
     }
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      * 
      */
     @Export(name="nodeCount", refs={Integer.class}, tree="[0]")
     private Output<Integer> nodeCount;
 
     /**
-     * @return the number of instances to create (optional, the default at the time of writing is 3)
+     * @return Number of nodes in the nodepool
      * 
      */
     public Output<Integer> nodeCount() {
@@ -106,28 +106,14 @@ public class KubernetesNodePool extends com.pulumi.resources.CustomResource {
         return this.publicIpNodePool;
     }
     /**
-     * The region of the node pool, has to match that of the cluster
-     * 
-     */
-    @Export(name="region", refs={String.class}, tree="[0]")
-    private Output<String> region;
-
-    /**
-     * @return The region of the node pool, has to match that of the cluster
-     * 
-     */
-    public Output<String> region() {
-        return this.region;
-    }
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
+     * Size of the nodes in the nodepool
      * 
      */
     @Export(name="size", refs={String.class}, tree="[0]")
     private Output<String> size;
 
     /**
-     * @return the size of each node (optional, the default is currently g4s.kube.medium)
+     * @return Size of the nodes in the nodepool
      * 
      */
     public Output<String> size() {

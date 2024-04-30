@@ -12,6 +12,8 @@ import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.List;
+import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
@@ -62,6 +64,20 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/network:Network")
 public class Network extends com.pulumi.resources.CustomResource {
     /**
+     * The CIDR block for the network
+     * 
+     */
+    @Export(name="cidrV4", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> cidrV4;
+
+    /**
+     * @return The CIDR block for the network
+     * 
+     */
+    public Output<Optional<String>> cidrV4() {
+        return Codegen.optional(this.cidrV4);
+    }
+    /**
      * If the network is default, this will be `true`
      * 
      */
@@ -102,6 +118,20 @@ public class Network extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * List of nameservers for the network
+     * 
+     */
+    @Export(name="nameserversV4s", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> nameserversV4s;
+
+    /**
+     * @return List of nameservers for the network
+     * 
+     */
+    public Output<Optional<List<String>>> nameserversV4s() {
+        return Codegen.optional(this.nameserversV4s);
     }
     /**
      * The region of the network

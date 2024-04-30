@@ -104,6 +104,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string | undefined>;
     /**
+     * Can be either the UUID, name, or the IP address of the reserved IP
+     */
+    public readonly reservedIpv4!: pulumi.Output<string | undefined>;
+    /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
      */
     public readonly reverseDns!: pulumi.Output<string | undefined>;
@@ -126,7 +130,7 @@ export class Instance extends pulumi.CustomResource {
     /**
      * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
      */
-    public readonly sshkeyId!: pulumi.Output<string | undefined>;
+    public readonly sshkeyId!: pulumi.Output<string>;
     /**
      * Instance's status
      */
@@ -170,6 +174,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["publicIpRequired"] = state ? state.publicIpRequired : undefined;
             resourceInputs["ramMb"] = state ? state.ramMb : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["reservedIpv4"] = state ? state.reservedIpv4 : undefined;
             resourceInputs["reverseDns"] = state ? state.reverseDns : undefined;
             resourceInputs["script"] = state ? state.script : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
@@ -189,6 +194,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["notes"] = args ? args.notes : undefined;
             resourceInputs["publicIpRequired"] = args ? args.publicIpRequired : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["reservedIpv4"] = args ? args.reservedIpv4 : undefined;
             resourceInputs["reverseDns"] = args ? args.reverseDns : undefined;
             resourceInputs["script"] = args ? args.script : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
@@ -278,6 +284,10 @@ export interface InstanceState {
      */
     region?: pulumi.Input<string>;
     /**
+     * Can be either the UUID, name, or the IP address of the reserved IP
+     */
+    reservedIpv4?: pulumi.Input<string>;
+    /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
      */
     reverseDns?: pulumi.Input<string>;
@@ -353,6 +363,10 @@ export interface InstanceArgs {
      * The region for the instance, if not declare we use the region in declared in the provider
      */
     region?: pulumi.Input<string>;
+    /**
+     * Can be either the UUID, name, or the IP address of the reserved IP
+     */
+    reservedIpv4?: pulumi.Input<string>;
     /**
      * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
      */

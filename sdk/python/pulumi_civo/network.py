@@ -15,13 +15,21 @@ __all__ = ['NetworkArgs', 'Network']
 class NetworkArgs:
     def __init__(__self__, *,
                  label: pulumi.Input[str],
+                 cidr_v4: Optional[pulumi.Input[str]] = None,
+                 nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Network resource.
         :param pulumi.Input[str] label: Name for the network
+        :param pulumi.Input[str] cidr_v4: The CIDR block for the network
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
         """
         pulumi.set(__self__, "label", label)
+        if cidr_v4 is not None:
+            pulumi.set(__self__, "cidr_v4", cidr_v4)
+        if nameservers_v4s is not None:
+            pulumi.set(__self__, "nameservers_v4s", nameservers_v4s)
         if region is not None:
             pulumi.set(__self__, "region", region)
 
@@ -36,6 +44,30 @@ class NetworkArgs:
     @label.setter
     def label(self, value: pulumi.Input[str]):
         pulumi.set(self, "label", value)
+
+    @property
+    @pulumi.getter(name="cidrV4")
+    def cidr_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CIDR block for the network
+        """
+        return pulumi.get(self, "cidr_v4")
+
+    @cidr_v4.setter
+    def cidr_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cidr_v4", value)
+
+    @property
+    @pulumi.getter(name="nameserversV4s")
+    def nameservers_v4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of nameservers for the network
+        """
+        return pulumi.get(self, "nameservers_v4s")
+
+    @nameservers_v4s.setter
+    def nameservers_v4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "nameservers_v4s", value)
 
     @property
     @pulumi.getter
@@ -53,25 +85,45 @@ class NetworkArgs:
 @pulumi.input_type
 class _NetworkState:
     def __init__(__self__, *,
+                 cidr_v4: Optional[pulumi.Input[str]] = None,
                  default: Optional[pulumi.Input[bool]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
+        :param pulumi.Input[str] cidr_v4: The CIDR block for the network
         :param pulumi.Input[bool] default: If the network is default, this will be `true`
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] name: The name of the network
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
         """
+        if cidr_v4 is not None:
+            pulumi.set(__self__, "cidr_v4", cidr_v4)
         if default is not None:
             pulumi.set(__self__, "default", default)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nameservers_v4s is not None:
+            pulumi.set(__self__, "nameservers_v4s", nameservers_v4s)
         if region is not None:
             pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter(name="cidrV4")
+    def cidr_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        The CIDR block for the network
+        """
+        return pulumi.get(self, "cidr_v4")
+
+    @cidr_v4.setter
+    def cidr_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cidr_v4", value)
 
     @property
     @pulumi.getter
@@ -110,6 +162,18 @@ class _NetworkState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="nameserversV4s")
+    def nameservers_v4s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of nameservers for the network
+        """
+        return pulumi.get(self, "nameservers_v4s")
+
+    @nameservers_v4s.setter
+    def nameservers_v4s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "nameservers_v4s", value)
+
+    @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
@@ -127,7 +191,9 @@ class Network(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cidr_v4: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
+                 nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -152,7 +218,9 @@ class Network(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cidr_v4: The CIDR block for the network
         :param pulumi.Input[str] label: Name for the network
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
         """
         ...
@@ -196,7 +264,9 @@ class Network(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cidr_v4: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
+                 nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -207,9 +277,11 @@ class Network(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = NetworkArgs.__new__(NetworkArgs)
 
+            __props__.__dict__["cidr_v4"] = cidr_v4
             if label is None and not opts.urn:
                 raise TypeError("Missing required property 'label'")
             __props__.__dict__["label"] = label
+            __props__.__dict__["nameservers_v4s"] = nameservers_v4s
             __props__.__dict__["region"] = region
             __props__.__dict__["default"] = None
             __props__.__dict__["name"] = None
@@ -223,9 +295,11 @@ class Network(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            cidr_v4: Optional[pulumi.Input[str]] = None,
             default: Optional[pulumi.Input[bool]] = None,
             label: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
@@ -234,20 +308,32 @@ class Network(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cidr_v4: The CIDR block for the network
         :param pulumi.Input[bool] default: If the network is default, this will be `true`
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] name: The name of the network
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _NetworkState.__new__(_NetworkState)
 
+        __props__.__dict__["cidr_v4"] = cidr_v4
         __props__.__dict__["default"] = default
         __props__.__dict__["label"] = label
         __props__.__dict__["name"] = name
+        __props__.__dict__["nameservers_v4s"] = nameservers_v4s
         __props__.__dict__["region"] = region
         return Network(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cidrV4")
+    def cidr_v4(self) -> pulumi.Output[Optional[str]]:
+        """
+        The CIDR block for the network
+        """
+        return pulumi.get(self, "cidr_v4")
 
     @property
     @pulumi.getter
@@ -272,6 +358,14 @@ class Network(pulumi.CustomResource):
         The name of the network
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nameserversV4s")
+    def nameservers_v4s(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        List of nameservers for the network
+        """
+        return pulumi.get(self, "nameservers_v4s")
 
     @property
     @pulumi.getter

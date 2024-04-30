@@ -29,8 +29,6 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &DnsDomainRecord{}
 	case "civo:index/firewall:Firewall":
 		r = &Firewall{}
-	case "civo:index/firewallRule:FirewallRule":
-		r = &FirewallRule{}
 	case "civo:index/instance:Instance":
 		r = &Instance{}
 	case "civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment":
@@ -102,11 +100,6 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"civo",
 		"index/firewall",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"civo",
-		"index/firewallRule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

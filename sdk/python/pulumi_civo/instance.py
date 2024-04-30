@@ -22,6 +22,7 @@ class InstanceArgs:
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 reserved_ipv4: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,7 @@ class InstanceArgs:
         :param pulumi.Input[str] notes: Add some notes to the instance
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
+        :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
         :param pulumi.Input[str] script: The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.xsmall
@@ -61,6 +63,8 @@ class InstanceArgs:
             pulumi.set(__self__, "public_ip_required", public_ip_required)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if reserved_ipv4 is not None:
+            pulumi.set(__self__, "reserved_ipv4", reserved_ipv4)
         if reverse_dns is not None:
             pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
@@ -174,6 +178,18 @@ class InstanceArgs:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="reservedIpv4")
+    def reserved_ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be either the UUID, name, or the IP address of the reserved IP
+        """
+        return pulumi.get(self, "reserved_ipv4")
+
+    @reserved_ipv4.setter
+    def reserved_ipv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reserved_ipv4", value)
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> Optional[pulumi.Input[str]]:
         """
@@ -267,6 +283,7 @@ class _InstanceState:
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  ram_mb: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 reserved_ipv4: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -293,6 +310,7 @@ class _InstanceState:
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[int] ram_mb: Instance's RAM (MB)
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
+        :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
         :param pulumi.Input[str] script: The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.xsmall
@@ -333,6 +351,8 @@ class _InstanceState:
             pulumi.set(__self__, "ram_mb", ram_mb)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if reserved_ipv4 is not None:
+            pulumi.set(__self__, "reserved_ipv4", reserved_ipv4)
         if reverse_dns is not None:
             pulumi.set(__self__, "reverse_dns", reverse_dns)
         if script is not None:
@@ -536,6 +556,18 @@ class _InstanceState:
         pulumi.set(self, "region", value)
 
     @property
+    @pulumi.getter(name="reservedIpv4")
+    def reserved_ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Can be either the UUID, name, or the IP address of the reserved IP
+        """
+        return pulumi.get(self, "reserved_ipv4")
+
+    @reserved_ipv4.setter
+    def reserved_ipv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reserved_ipv4", value)
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> Optional[pulumi.Input[str]]:
         """
@@ -660,6 +692,7 @@ class Instance(pulumi.CustomResource):
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 reserved_ipv4: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -688,6 +721,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] notes: Add some notes to the instance
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
+        :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
         :param pulumi.Input[str] script: The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.xsmall
@@ -735,6 +769,7 @@ class Instance(pulumi.CustomResource):
                  notes: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 reserved_ipv4: Optional[pulumi.Input[str]] = None,
                  reverse_dns: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
@@ -758,6 +793,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["notes"] = notes
             __props__.__dict__["public_ip_required"] = public_ip_required
             __props__.__dict__["region"] = region
+            __props__.__dict__["reserved_ipv4"] = reserved_ipv4
             __props__.__dict__["reverse_dns"] = reverse_dns
             __props__.__dict__["script"] = script
             __props__.__dict__["size"] = size
@@ -801,6 +837,7 @@ class Instance(pulumi.CustomResource):
             public_ip_required: Optional[pulumi.Input[str]] = None,
             ram_mb: Optional[pulumi.Input[int]] = None,
             region: Optional[pulumi.Input[str]] = None,
+            reserved_ipv4: Optional[pulumi.Input[str]] = None,
             reverse_dns: Optional[pulumi.Input[str]] = None,
             script: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
@@ -832,6 +869,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[int] ram_mb: Instance's RAM (MB)
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
+        :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
         :param pulumi.Input[str] reverse_dns: A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
         :param pulumi.Input[str] script: The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
         :param pulumi.Input[str] size: The name of the size, from the current list, e.g. g3.xsmall
@@ -861,6 +899,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["public_ip_required"] = public_ip_required
         __props__.__dict__["ram_mb"] = ram_mb
         __props__.__dict__["region"] = region
+        __props__.__dict__["reserved_ipv4"] = reserved_ipv4
         __props__.__dict__["reverse_dns"] = reverse_dns
         __props__.__dict__["script"] = script
         __props__.__dict__["size"] = size
@@ -993,6 +1032,14 @@ class Instance(pulumi.CustomResource):
         return pulumi.get(self, "region")
 
     @property
+    @pulumi.getter(name="reservedIpv4")
+    def reserved_ipv4(self) -> pulumi.Output[Optional[str]]:
+        """
+        Can be either the UUID, name, or the IP address of the reserved IP
+        """
+        return pulumi.get(self, "reserved_ipv4")
+
+    @property
     @pulumi.getter(name="reverseDns")
     def reverse_dns(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1034,7 +1081,7 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="sshkeyId")
-    def sshkey_id(self) -> pulumi.Output[Optional[str]]:
+    def sshkey_id(self) -> pulumi.Output[str]:
         """
         The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)
         """

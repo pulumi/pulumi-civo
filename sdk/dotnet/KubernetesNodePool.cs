@@ -41,7 +41,7 @@ namespace Pulumi.Civo
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// Number of nodes in the nodepool
         /// </summary>
         [Output("nodeCount")]
         public Output<int> NodeCount { get; private set; } = null!;
@@ -53,13 +53,7 @@ namespace Pulumi.Civo
         public Output<bool> PublicIpNodePool { get; private set; } = null!;
 
         /// <summary>
-        /// The region of the node pool, has to match that of the cluster
-        /// </summary>
-        [Output("region")]
-        public Output<string> Region { get; private set; } = null!;
-
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
+        /// Size of the nodes in the nodepool
         /// </summary>
         [Output("size")]
         public Output<string> Size { get; private set; } = null!;
@@ -134,10 +128,10 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// Number of nodes in the nodepool
         /// </summary>
-        [Input("nodeCount")]
-        public Input<int>? NodeCount { get; set; }
+        [Input("nodeCount", required: true)]
+        public Input<int> NodeCount { get; set; } = null!;
 
         /// <summary>
         /// Node pool belongs to the public ip node pool
@@ -146,16 +140,10 @@ namespace Pulumi.Civo
         public Input<bool>? PublicIpNodePool { get; set; }
 
         /// <summary>
-        /// The region of the node pool, has to match that of the cluster
+        /// Size of the nodes in the nodepool
         /// </summary>
-        [Input("region", required: true)]
-        public Input<string> Region { get; set; } = null!;
-
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
-        /// </summary>
-        [Input("size")]
-        public Input<string>? Size { get; set; }
+        [Input("size", required: true)]
+        public Input<string> Size { get; set; } = null!;
 
         [Input("taints")]
         private InputList<Inputs.KubernetesNodePoolTaintArgs>? _taints;
@@ -206,7 +194,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// the number of instances to create (optional, the default at the time of writing is 3)
+        /// Number of nodes in the nodepool
         /// </summary>
         [Input("nodeCount")]
         public Input<int>? NodeCount { get; set; }
@@ -218,13 +206,7 @@ namespace Pulumi.Civo
         public Input<bool>? PublicIpNodePool { get; set; }
 
         /// <summary>
-        /// The region of the node pool, has to match that of the cluster
-        /// </summary>
-        [Input("region")]
-        public Input<string>? Region { get; set; }
-
-        /// <summary>
-        /// the size of each node (optional, the default is currently g4s.kube.medium)
+        /// Size of the nodes in the nodepool
         /// </summary>
         [Input("size")]
         public Input<string>? Size { get; set; }

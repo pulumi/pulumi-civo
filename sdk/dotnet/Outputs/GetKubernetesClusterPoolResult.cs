@@ -14,15 +14,16 @@ namespace Pulumi.Civo.Outputs
     public sealed class GetKubernetesClusterPoolResult
     {
         /// <summary>
-        /// A list of the instance in the pool
+        /// Instance names in the nodepool
         /// </summary>
         public readonly ImmutableArray<string> InstanceNames;
         /// <summary>
         /// Node pool label, if you don't provide one, we will generate one for you
         /// </summary>
         public readonly string Label;
+        public readonly ImmutableDictionary<string, string>? Labels;
         /// <summary>
-        /// The size of the pool
+        /// Number of nodes in the nodepool
         /// </summary>
         public readonly int NodeCount;
         /// <summary>
@@ -30,9 +31,10 @@ namespace Pulumi.Civo.Outputs
         /// </summary>
         public readonly bool PublicIpNodePool;
         /// <summary>
-        /// The size of each node inside the pool
+        /// Size of the nodes in the nodepool
         /// </summary>
         public readonly string Size;
+        public readonly ImmutableArray<Outputs.GetKubernetesClusterPoolTaintResult> Taints;
 
         [OutputConstructor]
         private GetKubernetesClusterPoolResult(
@@ -40,17 +42,23 @@ namespace Pulumi.Civo.Outputs
 
             string label,
 
+            ImmutableDictionary<string, string>? labels,
+
             int nodeCount,
 
             bool publicIpNodePool,
 
-            string size)
+            string size,
+
+            ImmutableArray<Outputs.GetKubernetesClusterPoolTaintResult> taints)
         {
             InstanceNames = instanceNames;
             Label = label;
+            Labels = labels;
             NodeCount = nodeCount;
             PublicIpNodePool = publicIpNodePool;
             Size = size;
+            Taints = taints;
         }
     }
 }

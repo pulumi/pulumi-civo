@@ -14,6 +14,7 @@ __all__ = [
     'FirewallIngressRuleArgs',
     'KubernetesClusterInstalledApplicationArgs',
     'KubernetesClusterPoolsArgs',
+    'KubernetesClusterPoolsTaintArgs',
     'KubernetesNodePoolTaintArgs',
     'GetDatabaseVersionFilterArgs',
     'GetDatabaseVersionSortArgs',
@@ -301,7 +302,9 @@ class KubernetesClusterPoolsArgs:
                  size: pulumi.Input[str],
                  instance_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  label: Optional[pulumi.Input[str]] = None,
-                 public_ip_node_pool: Optional[pulumi.Input[bool]] = None):
+                 labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgs']]]] = None):
         """
         :param pulumi.Input[int] node_count: Number of nodes in the nodepool
         :param pulumi.Input[str] size: Size of the nodes in the nodepool
@@ -315,8 +318,12 @@ class KubernetesClusterPoolsArgs:
             pulumi.set(__self__, "instance_names", instance_names)
         if label is not None:
             pulumi.set(__self__, "label", label)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if public_ip_node_pool is not None:
             pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -367,6 +374,15 @@ class KubernetesClusterPoolsArgs:
         pulumi.set(self, "label", value)
 
     @property
+    @pulumi.getter
+    def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "labels", value)
+
+    @property
     @pulumi.getter(name="publicIpNodePool")
     def public_ip_node_pool(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -377,6 +393,53 @@ class KubernetesClusterPoolsArgs:
     @public_ip_node_pool.setter
     def public_ip_node_pool(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "public_ip_node_pool", value)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgs']]]]:
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgs']]]]):
+        pulumi.set(self, "taints", value)
+
+
+@pulumi.input_type
+class KubernetesClusterPoolsTaintArgs:
+    def __init__(__self__, *,
+                 effect: pulumi.Input[str],
+                 key: pulumi.Input[str],
+                 value: pulumi.Input[str]):
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "effect")
+
+    @effect.setter
+    def effect(self, value: pulumi.Input[str]):
+        pulumi.set(self, "effect", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[str]):
+        pulumi.set(self, "value", value)
 
 
 @pulumi.input_type

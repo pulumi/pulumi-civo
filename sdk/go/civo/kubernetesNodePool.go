@@ -27,13 +27,11 @@ type KubernetesNodePool struct {
 	// Node pool label, if you don't provide one, we will generate one for you
 	Label  pulumi.StringOutput    `pulumi:"label"`
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
+	// Number of nodes in the nodepool
 	NodeCount pulumi.IntOutput `pulumi:"nodeCount"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolOutput `pulumi:"publicIpNodePool"`
-	// The region of the node pool, has to match that of the cluster
-	Region pulumi.StringOutput `pulumi:"region"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
+	// Size of the nodes in the nodepool
 	Size   pulumi.StringOutput                `pulumi:"size"`
 	Taints KubernetesNodePoolTaintArrayOutput `pulumi:"taints"`
 }
@@ -48,8 +46,11 @@ func NewKubernetesNodePool(ctx *pulumi.Context,
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
 	}
-	if args.Region == nil {
-		return nil, errors.New("invalid value for required argument 'Region'")
+	if args.NodeCount == nil {
+		return nil, errors.New("invalid value for required argument 'NodeCount'")
+	}
+	if args.Size == nil {
+		return nil, errors.New("invalid value for required argument 'Size'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KubernetesNodePool
@@ -81,13 +82,11 @@ type kubernetesNodePoolState struct {
 	// Node pool label, if you don't provide one, we will generate one for you
 	Label  *string           `pulumi:"label"`
 	Labels map[string]string `pulumi:"labels"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
+	// Number of nodes in the nodepool
 	NodeCount *int `pulumi:"nodeCount"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
-	// The region of the node pool, has to match that of the cluster
-	Region *string `pulumi:"region"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
+	// Size of the nodes in the nodepool
 	Size   *string                   `pulumi:"size"`
 	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 }
@@ -100,13 +99,11 @@ type KubernetesNodePoolState struct {
 	// Node pool label, if you don't provide one, we will generate one for you
 	Label  pulumi.StringPtrInput
 	Labels pulumi.StringMapInput
-	// the number of instances to create (optional, the default at the time of writing is 3)
+	// Number of nodes in the nodepool
 	NodeCount pulumi.IntPtrInput
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolPtrInput
-	// The region of the node pool, has to match that of the cluster
-	Region pulumi.StringPtrInput
-	// the size of each node (optional, the default is currently g4s.kube.medium)
+	// Size of the nodes in the nodepool
 	Size   pulumi.StringPtrInput
 	Taints KubernetesNodePoolTaintArrayInput
 }
@@ -121,14 +118,12 @@ type kubernetesNodePoolArgs struct {
 	// Node pool label, if you don't provide one, we will generate one for you
 	Label  *string           `pulumi:"label"`
 	Labels map[string]string `pulumi:"labels"`
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	NodeCount *int `pulumi:"nodeCount"`
+	// Number of nodes in the nodepool
+	NodeCount int `pulumi:"nodeCount"`
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
-	// The region of the node pool, has to match that of the cluster
-	Region string `pulumi:"region"`
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size   *string                   `pulumi:"size"`
+	// Size of the nodes in the nodepool
+	Size   string                    `pulumi:"size"`
 	Taints []KubernetesNodePoolTaint `pulumi:"taints"`
 }
 
@@ -139,14 +134,12 @@ type KubernetesNodePoolArgs struct {
 	// Node pool label, if you don't provide one, we will generate one for you
 	Label  pulumi.StringPtrInput
 	Labels pulumi.StringMapInput
-	// the number of instances to create (optional, the default at the time of writing is 3)
-	NodeCount pulumi.IntPtrInput
+	// Number of nodes in the nodepool
+	NodeCount pulumi.IntInput
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolPtrInput
-	// The region of the node pool, has to match that of the cluster
-	Region pulumi.StringInput
-	// the size of each node (optional, the default is currently g4s.kube.medium)
-	Size   pulumi.StringPtrInput
+	// Size of the nodes in the nodepool
+	Size   pulumi.StringInput
 	Taints KubernetesNodePoolTaintArrayInput
 }
 
@@ -256,7 +249,7 @@ func (o KubernetesNodePoolOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// the number of instances to create (optional, the default at the time of writing is 3)
+// Number of nodes in the nodepool
 func (o KubernetesNodePoolOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.IntOutput { return v.NodeCount }).(pulumi.IntOutput)
 }
@@ -266,12 +259,7 @@ func (o KubernetesNodePoolOutput) PublicIpNodePool() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.BoolOutput { return v.PublicIpNodePool }).(pulumi.BoolOutput)
 }
 
-// The region of the node pool, has to match that of the cluster
-func (o KubernetesNodePoolOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
-}
-
-// the size of each node (optional, the default is currently g4s.kube.medium)
+// Size of the nodes in the nodepool
 func (o KubernetesNodePoolOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesNodePool) pulumi.StringOutput { return v.Size }).(pulumi.StringOutput)
 }

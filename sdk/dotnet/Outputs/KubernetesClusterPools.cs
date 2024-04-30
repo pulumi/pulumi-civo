@@ -21,6 +21,7 @@ namespace Pulumi.Civo.Outputs
         /// Node pool label, if you don't provide one, we will generate one for you
         /// </summary>
         public readonly string? Label;
+        public readonly ImmutableDictionary<string, string>? Labels;
         /// <summary>
         /// Number of nodes in the nodepool
         /// </summary>
@@ -33,6 +34,7 @@ namespace Pulumi.Civo.Outputs
         /// Size of the nodes in the nodepool
         /// </summary>
         public readonly string Size;
+        public readonly ImmutableArray<Outputs.KubernetesClusterPoolsTaint> Taints;
 
         [OutputConstructor]
         private KubernetesClusterPools(
@@ -40,17 +42,23 @@ namespace Pulumi.Civo.Outputs
 
             string? label,
 
+            ImmutableDictionary<string, string>? labels,
+
             int nodeCount,
 
             bool? publicIpNodePool,
 
-            string size)
+            string size,
+
+            ImmutableArray<Outputs.KubernetesClusterPoolsTaint> taints)
         {
             InstanceNames = instanceNames;
             Label = label;
+            Labels = labels;
             NodeCount = nodeCount;
             PublicIpNodePool = publicIpNodePool;
             Size = size;
+            Taints = taints;
         }
     }
 }

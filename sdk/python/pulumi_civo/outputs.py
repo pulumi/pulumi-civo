@@ -8,12 +8,14 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'FirewallEgressRule',
     'FirewallIngressRule',
     'KubernetesClusterInstalledApplication',
     'KubernetesClusterPools',
+    'KubernetesClusterPoolsTaint',
     'KubernetesNodePoolTaint',
     'GetDatabaseVersionFilterResult',
     'GetDatabaseVersionSortResult',
@@ -26,6 +28,7 @@ __all__ = [
     'GetInstancesSortResult',
     'GetKubernetesClusterInstalledApplicationResult',
     'GetKubernetesClusterPoolResult',
+    'GetKubernetesClusterPoolTaintResult',
     'GetKubernetesVersionFilterResult',
     'GetKubernetesVersionSortResult',
     'GetKubernetesVersionVersionResult',
@@ -301,7 +304,9 @@ class KubernetesClusterPools(dict):
                  size: str,
                  instance_names: Optional[Sequence[str]] = None,
                  label: Optional[str] = None,
-                 public_ip_node_pool: Optional[bool] = None):
+                 labels: Optional[Mapping[str, str]] = None,
+                 public_ip_node_pool: Optional[bool] = None,
+                 taints: Optional[Sequence['outputs.KubernetesClusterPoolsTaint']] = None):
         """
         :param int node_count: Number of nodes in the nodepool
         :param str size: Size of the nodes in the nodepool
@@ -315,8 +320,12 @@ class KubernetesClusterPools(dict):
             pulumi.set(__self__, "instance_names", instance_names)
         if label is not None:
             pulumi.set(__self__, "label", label)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
         if public_ip_node_pool is not None:
             pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
 
     @property
     @pulumi.getter(name="nodeCount")
@@ -351,12 +360,48 @@ class KubernetesClusterPools(dict):
         return pulumi.get(self, "label")
 
     @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
+
+    @property
     @pulumi.getter(name="publicIpNodePool")
     def public_ip_node_pool(self) -> Optional[bool]:
         """
         Node pool belongs to the public ip node pool
         """
         return pulumi.get(self, "public_ip_node_pool")
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[Sequence['outputs.KubernetesClusterPoolsTaint']]:
+        return pulumi.get(self, "taints")
+
+
+@pulumi.output_type
+class KubernetesClusterPoolsTaint(dict):
+    def __init__(__self__, *,
+                 effect: str,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> str:
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -1032,25 +1077,31 @@ class GetKubernetesClusterPoolResult(dict):
                  label: str,
                  node_count: int,
                  public_ip_node_pool: bool,
-                 size: str):
+                 size: str,
+                 labels: Optional[Mapping[str, str]] = None,
+                 taints: Optional[Sequence['outputs.GetKubernetesClusterPoolTaintResult']] = None):
         """
-        :param Sequence[str] instance_names: A list of the instance in the pool
+        :param Sequence[str] instance_names: Instance names in the nodepool
         :param str label: Node pool label, if you don't provide one, we will generate one for you
-        :param int node_count: The size of the pool
+        :param int node_count: Number of nodes in the nodepool
         :param bool public_ip_node_pool: Node pool belongs to the public ip node pool
-        :param str size: The size of each node inside the pool
+        :param str size: Size of the nodes in the nodepool
         """
         pulumi.set(__self__, "instance_names", instance_names)
         pulumi.set(__self__, "label", label)
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "public_ip_node_pool", public_ip_node_pool)
         pulumi.set(__self__, "size", size)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
 
     @property
     @pulumi.getter(name="instanceNames")
     def instance_names(self) -> Sequence[str]:
         """
-        A list of the instance in the pool
+        Instance names in the nodepool
         """
         return pulumi.get(self, "instance_names")
 
@@ -1066,7 +1117,7 @@ class GetKubernetesClusterPoolResult(dict):
     @pulumi.getter(name="nodeCount")
     def node_count(self) -> int:
         """
-        The size of the pool
+        Number of nodes in the nodepool
         """
         return pulumi.get(self, "node_count")
 
@@ -1082,9 +1133,45 @@ class GetKubernetesClusterPoolResult(dict):
     @pulumi.getter
     def size(self) -> str:
         """
-        The size of each node inside the pool
+        Size of the nodes in the nodepool
         """
         return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[Sequence['outputs.GetKubernetesClusterPoolTaintResult']]:
+        return pulumi.get(self, "taints")
+
+
+@pulumi.output_type
+class GetKubernetesClusterPoolTaintResult(dict):
+    def __init__(__self__, *,
+                 effect: str,
+                 key: str,
+                 value: str):
+        pulumi.set(__self__, "effect", effect)
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def effect(self) -> str:
+        return pulumi.get(self, "effect")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> str:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type

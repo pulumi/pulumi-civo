@@ -9,7 +9,6 @@ from .database import *
 from .dns_domain_name import *
 from .dns_domain_record import *
 from .firewall import *
-from .firewall_rule import *
 from .get_database import *
 from .get_database_version import *
 from .get_disk_image import *
@@ -84,14 +83,6 @@ _utilities.register(
   "fqn": "pulumi_civo",
   "classes": {
    "civo:index/firewall:Firewall": "Firewall"
-  }
- },
- {
-  "pkg": "civo",
-  "mod": "index/firewallRule",
-  "fqn": "pulumi_civo",
-  "classes": {
-   "civo:index/firewallRule:FirewallRule": "FirewallRule"
   }
  },
  {

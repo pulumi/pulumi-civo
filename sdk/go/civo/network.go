@@ -50,12 +50,16 @@ import (
 type Network struct {
 	pulumi.CustomResourceState
 
+	// The CIDR block for the network
+	CidrV4 pulumi.StringPtrOutput `pulumi:"cidrV4"`
 	// If the network is default, this will be `true`
 	Default pulumi.BoolOutput `pulumi:"default"`
 	// Name for the network
 	Label pulumi.StringOutput `pulumi:"label"`
 	// The name of the network
 	Name pulumi.StringOutput `pulumi:"name"`
+	// List of nameservers for the network
+	NameserversV4s pulumi.StringArrayOutput `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region pulumi.StringOutput `pulumi:"region"`
 }
@@ -93,23 +97,31 @@ func GetNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Network resources.
 type networkState struct {
+	// The CIDR block for the network
+	CidrV4 *string `pulumi:"cidrV4"`
 	// If the network is default, this will be `true`
 	Default *bool `pulumi:"default"`
 	// Name for the network
 	Label *string `pulumi:"label"`
 	// The name of the network
 	Name *string `pulumi:"name"`
+	// List of nameservers for the network
+	NameserversV4s []string `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region *string `pulumi:"region"`
 }
 
 type NetworkState struct {
+	// The CIDR block for the network
+	CidrV4 pulumi.StringPtrInput
 	// If the network is default, this will be `true`
 	Default pulumi.BoolPtrInput
 	// Name for the network
 	Label pulumi.StringPtrInput
 	// The name of the network
 	Name pulumi.StringPtrInput
+	// List of nameservers for the network
+	NameserversV4s pulumi.StringArrayInput
 	// The region of the network
 	Region pulumi.StringPtrInput
 }
@@ -119,16 +131,24 @@ func (NetworkState) ElementType() reflect.Type {
 }
 
 type networkArgs struct {
+	// The CIDR block for the network
+	CidrV4 *string `pulumi:"cidrV4"`
 	// Name for the network
 	Label string `pulumi:"label"`
+	// List of nameservers for the network
+	NameserversV4s []string `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region *string `pulumi:"region"`
 }
 
 // The set of arguments for constructing a Network resource.
 type NetworkArgs struct {
+	// The CIDR block for the network
+	CidrV4 pulumi.StringPtrInput
 	// Name for the network
 	Label pulumi.StringInput
+	// List of nameservers for the network
+	NameserversV4s pulumi.StringArrayInput
 	// The region of the network
 	Region pulumi.StringPtrInput
 }
@@ -220,6 +240,11 @@ func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOu
 	return o
 }
 
+// The CIDR block for the network
+func (o NetworkOutput) CidrV4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.CidrV4 }).(pulumi.StringPtrOutput)
+}
+
 // If the network is default, this will be `true`
 func (o NetworkOutput) Default() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Network) pulumi.BoolOutput { return v.Default }).(pulumi.BoolOutput)
@@ -233,6 +258,11 @@ func (o NetworkOutput) Label() pulumi.StringOutput {
 // The name of the network
 func (o NetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// List of nameservers for the network
+func (o NetworkOutput) NameserversV4s() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringArrayOutput { return v.NameserversV4s }).(pulumi.StringArrayOutput)
 }
 
 // The region of the network
