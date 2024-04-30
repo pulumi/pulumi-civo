@@ -53,6 +53,10 @@ export class Network extends pulumi.CustomResource {
     }
 
     /**
+     * The CIDR block for the network
+     */
+    public readonly cidrV4!: pulumi.Output<string | undefined>;
+    /**
      * If the network is default, this will be `true`
      */
     public /*out*/ readonly default!: pulumi.Output<boolean>;
@@ -64,6 +68,10 @@ export class Network extends pulumi.CustomResource {
      * The name of the network
      */
     public /*out*/ readonly name!: pulumi.Output<string>;
+    /**
+     * List of nameservers for the network
+     */
+    public readonly nameserversV4s!: pulumi.Output<string[] | undefined>;
     /**
      * The region of the network
      */
@@ -82,16 +90,20 @@ export class Network extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkState | undefined;
+            resourceInputs["cidrV4"] = state ? state.cidrV4 : undefined;
             resourceInputs["default"] = state ? state.default : undefined;
             resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nameserversV4s"] = state ? state.nameserversV4s : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
         } else {
             const args = argsOrState as NetworkArgs | undefined;
             if ((!args || args.label === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'label'");
             }
+            resourceInputs["cidrV4"] = args ? args.cidrV4 : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
+            resourceInputs["nameserversV4s"] = args ? args.nameserversV4s : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["default"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
@@ -106,6 +118,10 @@ export class Network extends pulumi.CustomResource {
  */
 export interface NetworkState {
     /**
+     * The CIDR block for the network
+     */
+    cidrV4?: pulumi.Input<string>;
+    /**
      * If the network is default, this will be `true`
      */
     default?: pulumi.Input<boolean>;
@@ -118,6 +134,10 @@ export interface NetworkState {
      */
     name?: pulumi.Input<string>;
     /**
+     * List of nameservers for the network
+     */
+    nameserversV4s?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
      * The region of the network
      */
     region?: pulumi.Input<string>;
@@ -128,9 +148,17 @@ export interface NetworkState {
  */
 export interface NetworkArgs {
     /**
+     * The CIDR block for the network
+     */
+    cidrV4?: pulumi.Input<string>;
+    /**
      * Name for the network
      */
     label: pulumi.Input<string>;
+    /**
+     * List of nameservers for the network
+     */
+    nameserversV4s?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * The region of the network
      */

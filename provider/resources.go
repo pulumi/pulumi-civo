@@ -16,15 +16,13 @@ package civo
 
 import (
 	"fmt"
-	"path/filepath"
-	"unicode"
+	"path"
 
 	"github.com/civo/terraform-provider-civo/civo"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	tfbridgetokens "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
+	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge/tokens"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-civo/provider/v2/pkg/version"
 )
@@ -37,40 +35,10 @@ const (
 	mainMod = "index" // the y module
 )
 
-// makeMember manufactures a type token for the package and the given module and type.
-func makeMember(mod string, mem string) tokens.ModuleMember {
-	return tokens.ModuleMember(mainPkg + ":" + mod + ":" + mem)
-}
-
-// makeType manufactures a type token for the package and the given module and type.
-func makeType(mod string, typ string) tokens.Type {
-	return tokens.Type(makeMember(mod, typ))
-}
-
-// makeDataSource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the data source's
-// first character.
-func makeDataSource(mod string, res string) tokens.ModuleMember {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeMember(mod+"/"+fn, res)
-}
-
-// makeResource manufactures a standard resource token given a module and resource name.  It
-// automatically uses the main package and names the file by simply lower casing the resource's
-// first character.
-func makeResource(mod string, res string) tokens.Type {
-	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
-	return makeType(mod+"/"+fn, res)
-}
-
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
-	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(civo.Provider())
-
-	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
-		P:           p,
+		P:           shimv2.NewProvider(civo.Provider()),
 		Name:        "civo",
 		Description: "A Pulumi package for creating and managing Civo cloud resources.",
 		Keywords:    []string{"pulumi", "civo"},
@@ -79,41 +47,11 @@ func Provider() tfbridge.ProviderInfo {
 		Repository:  "https://github.com/pulumi/pulumi-civo",
 		GitHubOrg:   "civo",
 		Config:      map[string]*tfbridge.SchemaInfo{},
-		Resources: map[string]*tfbridge.ResourceInfo{
-			"civo_instance":                        {Tok: makeResource(mainMod, "Instance")},
-			"civo_network":                         {Tok: makeResource(mainMod, "Network")},
-			"civo_volume":                          {Tok: makeResource(mainMod, "Volume")},
-			"civo_volume_attachment":               {Tok: makeResource(mainMod, "VolumeAttachment")},
-			"civo_dns_domain_name":                 {Tok: makeResource(mainMod, "DnsDomainName")},
-			"civo_dns_domain_record":               {Tok: makeResource(mainMod, "DnsDomainRecord")},
-			"civo_firewall":                        {Tok: makeResource(mainMod, "Firewall")},
-			"civo_firewall_rule":                   {Tok: makeResource(mainMod, "FirewallRule")},
-			"civo_ssh_key":                         {Tok: makeResource(mainMod, "SshKey")},
-			"civo_kubernetes_cluster":              {Tok: makeResource(mainMod, "KubernetesCluster")},
-			"civo_kubernetes_node_pool":            {Tok: makeResource(mainMod, "KubernetesNodePool")},
-			"civo_instance_reserved_ip_assignment": {Tok: makeResource(mainMod, "InstanceReservedIpAssignment")},
-			"civo_reserved_ip":                     {Tok: makeResource(mainMod, "ReservedIp")},
-			"civo_object_store":                    {Tok: makeResource(mainMod, "ObjectStore")},
-			"civo_object_store_credential":         {Tok: makeResource(mainMod, "ObjectStoreCredential")},
-		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			"civo_kubernetes_cluster":      {Tok: makeDataSource(mainMod, "getKubernetesCluster")},
-			"civo_kubernetes_version":      {Tok: makeDataSource(mainMod, "getKubernetesVersion")},
-			"civo_instances":               {Tok: makeDataSource(mainMod, "getInstances")},
-			"civo_instance":                {Tok: makeDataSource(mainMod, "getInstance")},
-			"civo_dns_domain_name":         {Tok: makeDataSource(mainMod, "getDnsDomainName")},
-			"civo_dns_domain_record":       {Tok: makeDataSource(mainMod, "getDnsDomainRecord")},
-			"civo_network":                 {Tok: makeDataSource(mainMod, "getNetwork")},
-			"civo_volume":                  {Tok: makeDataSource(mainMod, "getVolume")},
-			"civo_ssh_key":                 {Tok: makeDataSource(mainMod, "getSshKey")},
-			"civo_region":                  {Tok: makeDataSource(mainMod, "getRegion")},
-			"civo_disk_image":              {Tok: makeDataSource(mainMod, "getDiskImage")},
-			"civo_firewall":                {Tok: makeDataSource(mainMod, "getFirewall")},
-			"civo_size":                    {Tok: makeDataSource(mainMod, "getSize")},
-			"civo_loadbalancer":            {Tok: makeDataSource(mainMod, "getLoadBalancer")},
-			"civo_reserved_ip":             {Tok: makeDataSource(mainMod, "getReservedIp")},
-			"civo_object_store":            {Tok: makeDataSource(mainMod, "getObjectStore")},
-			"civo_object_store_credential": {Tok: makeDataSource(mainMod, "getObjectStoreCredential")},
+			"civo_loadbalancer": {
+				// Tok override is to keep legacy capitalization.
+				Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getLoadBalancer"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
@@ -125,17 +63,14 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/mime": "^2.0.0",
 			},
 		},
-		Python: (func() *tfbridge.PythonInfo {
-			i := &tfbridge.PythonInfo{
-				Requires: map[string]string{
-					"pulumi": ">=3.0.0,<4.0.0",
-				}}
-			i.PyProject.Enabled = true
-			return i
-		})(),
-
+		Python: &tfbridge.PythonInfo{
+			Requires: map[string]string{
+				"pulumi": ">=3.0.0,<4.0.0",
+			},
+			PyProject: struct{ Enabled bool }{true},
+		},
 		Golang: &tfbridge.GolangInfo{
-			ImportBasePath: filepath.Join(
+			ImportBasePath: path.Join(
 				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
@@ -153,8 +88,8 @@ func Provider() tfbridge.ProviderInfo {
 		},
 	}
 
-	prov.MustComputeTokens(tfbridgetokens.SingleModule(
-		"civo_", mainMod, tfbridgetokens.MakeStandard(mainPkg)))
+	prov.MustComputeTokens(tokens.SingleModule(
+		"civo_", mainMod, tokens.MakeStandard(mainPkg)))
 
 	prov.SetAutonaming(255, "-")
 

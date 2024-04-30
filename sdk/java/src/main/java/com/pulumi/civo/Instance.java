@@ -241,6 +241,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.region);
     }
     /**
+     * Can be either the UUID, name, or the IP address of the reserved IP
+     * 
+     */
+    @Export(name="reservedIpv4", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> reservedIpv4;
+
+    /**
+     * @return Can be either the UUID, name, or the IP address of the reserved IP
+     * 
+     */
+    public Output<Optional<String>> reservedIpv4() {
+        return Codegen.optional(this.reservedIpv4);
+    }
+    /**
      * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
@@ -315,14 +329,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="sshkeyId", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> sshkeyId;
+    private Output<String> sshkeyId;
 
     /**
      * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
      * 
      */
-    public Output<Optional<String>> sshkeyId() {
-        return Codegen.optional(this.sshkeyId);
+    public Output<String> sshkeyId() {
+        return this.sshkeyId;
     }
     /**
      * Instance&#39;s status

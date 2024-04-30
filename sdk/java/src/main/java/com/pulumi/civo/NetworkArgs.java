@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,6 +16,21 @@ import javax.annotation.Nullable;
 public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final NetworkArgs Empty = new NetworkArgs();
+
+    /**
+     * The CIDR block for the network
+     * 
+     */
+    @Import(name="cidrV4")
+    private @Nullable Output<String> cidrV4;
+
+    /**
+     * @return The CIDR block for the network
+     * 
+     */
+    public Optional<Output<String>> cidrV4() {
+        return Optional.ofNullable(this.cidrV4);
+    }
 
     /**
      * Name for the network
@@ -29,6 +45,21 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Output<String> label() {
         return this.label;
+    }
+
+    /**
+     * List of nameservers for the network
+     * 
+     */
+    @Import(name="nameserversV4s")
+    private @Nullable Output<List<String>> nameserversV4s;
+
+    /**
+     * @return List of nameservers for the network
+     * 
+     */
+    public Optional<Output<List<String>>> nameserversV4s() {
+        return Optional.ofNullable(this.nameserversV4s);
     }
 
     /**
@@ -49,7 +80,9 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
     private NetworkArgs() {}
 
     private NetworkArgs(NetworkArgs $) {
+        this.cidrV4 = $.cidrV4;
         this.label = $.label;
+        this.nameserversV4s = $.nameserversV4s;
         this.region = $.region;
     }
 
@@ -72,6 +105,27 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param cidrV4 The CIDR block for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cidrV4(@Nullable Output<String> cidrV4) {
+            $.cidrV4 = cidrV4;
+            return this;
+        }
+
+        /**
+         * @param cidrV4 The CIDR block for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder cidrV4(String cidrV4) {
+            return cidrV4(Output.of(cidrV4));
+        }
+
+        /**
          * @param label Name for the network
          * 
          * @return builder
@@ -90,6 +144,37 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder label(String label) {
             return label(Output.of(label));
+        }
+
+        /**
+         * @param nameserversV4s List of nameservers for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nameserversV4s(@Nullable Output<List<String>> nameserversV4s) {
+            $.nameserversV4s = nameserversV4s;
+            return this;
+        }
+
+        /**
+         * @param nameserversV4s List of nameservers for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nameserversV4s(List<String> nameserversV4s) {
+            return nameserversV4s(Output.of(nameserversV4s));
+        }
+
+        /**
+         * @param nameserversV4s List of nameservers for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder nameserversV4s(String... nameserversV4s) {
+            return nameserversV4s(List.of(nameserversV4s));
         }
 
         /**

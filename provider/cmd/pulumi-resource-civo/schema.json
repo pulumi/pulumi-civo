@@ -200,6 +200,12 @@
                     "type": "string",
                     "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "nodeCount": {
                     "type": "integer",
                     "description": "Number of nodes in the nodepool\n"
@@ -211,6 +217,12 @@
                 "size": {
                     "type": "string",
                     "description": "Size of the nodes in the nodepool\n"
+                },
+                "taints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/KubernetesClusterPoolsTaint:KubernetesClusterPoolsTaint"
+                    }
                 }
             },
             "type": "object",
@@ -229,6 +241,25 @@
                     ]
                 }
             }
+        },
+        "civo:index/KubernetesClusterPoolsTaint:KubernetesClusterPoolsTaint": {
+            "properties": {
+                "effect": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "effect",
+                "key",
+                "value"
+            ]
         },
         "civo:index/KubernetesNodePoolTaint:KubernetesNodePoolTaint": {
             "properties": {
@@ -604,15 +635,21 @@
                     "items": {
                         "type": "string"
                     },
-                    "description": "A list of the instance in the pool\n"
+                    "description": "Instance names in the nodepool\n"
                 },
                 "label": {
                     "type": "string",
                     "description": "Node pool label, if you don't provide one, we will generate one for you\n"
                 },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
                 "nodeCount": {
                     "type": "integer",
-                    "description": "The size of the pool\n"
+                    "description": "Number of nodes in the nodepool\n"
                 },
                 "publicIpNodePool": {
                     "type": "boolean",
@@ -620,7 +657,13 @@
                 },
                 "size": {
                     "type": "string",
-                    "description": "The size of each node inside the pool\n"
+                    "description": "Size of the nodes in the nodepool\n"
+                },
+                "taints": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/civo:index/getKubernetesClusterPoolTaint:getKubernetesClusterPoolTaint"
+                    }
                 }
             },
             "type": "object",
@@ -630,6 +673,30 @@
                 "nodeCount",
                 "publicIpNodePool",
                 "size"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "civo:index/getKubernetesClusterPoolTaint:getKubernetesClusterPoolTaint": {
+            "properties": {
+                "effect": {
+                    "type": "string"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            },
+            "type": "object",
+            "required": [
+                "effect",
+                "key",
+                "value"
             ],
             "language": {
                 "nodejs": {
@@ -1419,171 +1486,6 @@
                 "type": "object"
             }
         },
-        "civo:index/firewallRule:FirewallRule": {
-            "description": "Provides a Civo firewall rule resource. This can be used to create, modify, and delete firewalls rules. This resource don't have an update option because Civo backend doesn't support it at this moment. In that case, we use `ForceNew` for all object in the resource.\n\n## Import\n\nusing firewall_id:firewall_rule_id\n\n```sh\n$ pulumi import civo:index/firewallRule:FirewallRule http b8ecd2ab-2267-4a5e-8692-cbf1d32583e3:4b0022ee-00b2-4f81-a40d-b4f8728923a7\n```\n\n",
-            "properties": {
-                "action": {
-                    "type": "string",
-                    "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n"
-                },
-                "cidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)\n"
-                },
-                "direction": {
-                    "type": "string",
-                    "description": "The direction of the rule can be ingress or egress\n"
-                },
-                "endPort": {
-                    "type": "string",
-                    "description": "The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)\n"
-                },
-                "firewallId": {
-                    "type": "string",
-                    "description": "The Firewall ID\n"
-                },
-                "label": {
-                    "type": "string",
-                    "description": "A string that will be the displayed name/reference for this rule\n"
-                },
-                "protocol": {
-                    "type": "string",
-                    "description": "The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)\n"
-                },
-                "region": {
-                    "type": "string",
-                    "description": "The region for this rule\n"
-                },
-                "startPort": {
-                    "type": "string",
-                    "description": "The start of the port range to configure for this rule (or the single port if required)\n"
-                }
-            },
-            "required": [
-                "action",
-                "cidrs",
-                "direction",
-                "endPort",
-                "firewallId",
-                "label",
-                "protocol",
-                "region",
-                "startPort"
-            ],
-            "inputProperties": {
-                "action": {
-                    "type": "string",
-                    "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n",
-                    "willReplaceOnChanges": true
-                },
-                "cidrs": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)\n",
-                    "willReplaceOnChanges": true
-                },
-                "direction": {
-                    "type": "string",
-                    "description": "The direction of the rule can be ingress or egress\n",
-                    "willReplaceOnChanges": true
-                },
-                "endPort": {
-                    "type": "string",
-                    "description": "The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)\n",
-                    "willReplaceOnChanges": true
-                },
-                "firewallId": {
-                    "type": "string",
-                    "description": "The Firewall ID\n",
-                    "willReplaceOnChanges": true
-                },
-                "label": {
-                    "type": "string",
-                    "description": "A string that will be the displayed name/reference for this rule\n",
-                    "willReplaceOnChanges": true
-                },
-                "protocol": {
-                    "type": "string",
-                    "description": "The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)\n",
-                    "willReplaceOnChanges": true
-                },
-                "region": {
-                    "type": "string",
-                    "description": "The region for this rule\n",
-                    "willReplaceOnChanges": true
-                },
-                "startPort": {
-                    "type": "string",
-                    "description": "The start of the port range to configure for this rule (or the single port if required)\n",
-                    "willReplaceOnChanges": true
-                }
-            },
-            "requiredInputs": [
-                "action",
-                "cidrs",
-                "direction",
-                "firewallId"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering FirewallRule resources.\n",
-                "properties": {
-                    "action": {
-                        "type": "string",
-                        "description": "The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "cidrs": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "direction": {
-                        "type": "string",
-                        "description": "The direction of the rule can be ingress or egress\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "endPort": {
-                        "type": "string",
-                        "description": "The end of the port range (this is optional, by default it will only apply to the single port listed in start_port)\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "firewallId": {
-                        "type": "string",
-                        "description": "The Firewall ID\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "label": {
-                        "type": "string",
-                        "description": "A string that will be the displayed name/reference for this rule\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "protocol": {
-                        "type": "string",
-                        "description": "The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "region": {
-                        "type": "string",
-                        "description": "The region for this rule\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "startPort": {
-                        "type": "string",
-                        "description": "The start of the port range to configure for this rule (or the single port if required)\n",
-                        "willReplaceOnChanges": true
-                    }
-                },
-                "type": "object"
-            }
-        },
         "civo:index/instance:Instance": {
             "description": "Provides a Civo instance resource. This can be used to create, modify, and delete instances.\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413\n```\n\n",
             "properties": {
@@ -1648,6 +1550,10 @@
                     "type": "string",
                     "description": "The region for the instance, if not declare we use the region in declared in the provider\n"
                 },
+                "reservedIpv4": {
+                    "type": "string",
+                    "description": "Can be either the UUID, name, or the IP address of the reserved IP\n"
+                },
                 "reverseDns": {
                     "type": "string",
                     "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)\n"
@@ -1703,6 +1609,7 @@
                 "ramMb",
                 "sourceId",
                 "sourceType",
+                "sshkeyId",
                 "status",
                 "template"
             ],
@@ -1739,6 +1646,10 @@
                 "region": {
                     "type": "string",
                     "description": "The region for the instance, if not declare we use the region in declared in the provider\n"
+                },
+                "reservedIpv4": {
+                    "type": "string",
+                    "description": "Can be either the UUID, name, or the IP address of the reserved IP\n"
                 },
                 "reverseDns": {
                     "type": "string",
@@ -1833,6 +1744,10 @@
                     "region": {
                         "type": "string",
                         "description": "The region for the instance, if not declare we use the region in declared in the provider\n"
+                    },
+                    "reservedIpv4": {
+                        "type": "string",
+                        "description": "Can be either the UUID, name, or the IP address of the reserved IP\n"
                     },
                     "reverseDns": {
                         "type": "string",
@@ -2220,19 +2135,15 @@
                 },
                 "nodeCount": {
                     "type": "integer",
-                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                    "description": "Number of nodes in the nodepool\n"
                 },
                 "publicIpNodePool": {
                     "type": "boolean",
                     "description": "Node pool belongs to the public ip node pool\n"
                 },
-                "region": {
-                    "type": "string",
-                    "description": "The region of the node pool, has to match that of the cluster\n"
-                },
                 "size": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                    "description": "Size of the nodes in the nodepool\n"
                 },
                 "taints": {
                     "type": "array",
@@ -2247,7 +2158,6 @@
                 "label",
                 "nodeCount",
                 "publicIpNodePool",
-                "region",
                 "size"
             ],
             "inputProperties": {
@@ -2267,19 +2177,15 @@
                 },
                 "nodeCount": {
                     "type": "integer",
-                    "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                    "description": "Number of nodes in the nodepool\n"
                 },
                 "publicIpNodePool": {
                     "type": "boolean",
                     "description": "Node pool belongs to the public ip node pool\n"
                 },
-                "region": {
-                    "type": "string",
-                    "description": "The region of the node pool, has to match that of the cluster\n"
-                },
                 "size": {
                     "type": "string",
-                    "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                    "description": "Size of the nodes in the nodepool\n"
                 },
                 "taints": {
                     "type": "array",
@@ -2290,7 +2196,8 @@
             },
             "requiredInputs": [
                 "clusterId",
-                "region"
+                "nodeCount",
+                "size"
             ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering KubernetesNodePool resources.\n",
@@ -2318,19 +2225,15 @@
                     },
                     "nodeCount": {
                         "type": "integer",
-                        "description": "the number of instances to create (optional, the default at the time of writing is 3)\n"
+                        "description": "Number of nodes in the nodepool\n"
                     },
                     "publicIpNodePool": {
                         "type": "boolean",
                         "description": "Node pool belongs to the public ip node pool\n"
                     },
-                    "region": {
-                        "type": "string",
-                        "description": "The region of the node pool, has to match that of the cluster\n"
-                    },
                     "size": {
                         "type": "string",
-                        "description": "the size of each node (optional, the default is currently g4s.kube.medium)\n"
+                        "description": "Size of the nodes in the nodepool\n"
                     },
                     "taints": {
                         "type": "array",
@@ -2345,6 +2248,10 @@
         "civo:index/network:Network": {
             "description": "Provides a Civo network resource. This can be used to create, modify, and delete networks.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst customNet = new civo.Network(\"custom_net\", {label: \"test_network\"});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ncustom_net = civo.Network(\"custom_net\", label=\"test_network\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var customNet = new Civo.Network(\"custom_net\", new()\n    {\n        Label = \"test_network\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.NewNetwork(ctx, \"custom_net\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"test_network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.Network;\nimport com.pulumi.civo.NetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var customNet = new Network(\"customNet\", NetworkArgs.builder()        \n            .label(\"test_network\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  customNet:\n    type: civo:Network\n    name: custom_net\n    properties:\n      label: test_network\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/network:Network custom_net b8ecd2ab-2267-4a5e-8692-cbf1d32583e3\n```\n\n",
             "properties": {
+                "cidrV4": {
+                    "type": "string",
+                    "description": "The CIDR block for the network\n"
+                },
                 "default": {
                     "type": "boolean",
                     "description": "If the network is default, this will be `true`\n"
@@ -2356,6 +2263,13 @@
                 "name": {
                     "type": "string",
                     "description": "The name of the network\n"
+                },
+                "nameserversV4s": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of nameservers for the network\n"
                 },
                 "region": {
                     "type": "string",
@@ -2369,9 +2283,20 @@
                 "region"
             ],
             "inputProperties": {
+                "cidrV4": {
+                    "type": "string",
+                    "description": "The CIDR block for the network\n"
+                },
                 "label": {
                     "type": "string",
                     "description": "Name for the network\n"
+                },
+                "nameserversV4s": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of nameservers for the network\n"
                 },
                 "region": {
                     "type": "string",
@@ -2384,6 +2309,10 @@
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering Network resources.\n",
                 "properties": {
+                    "cidrV4": {
+                        "type": "string",
+                        "description": "The CIDR block for the network\n"
+                    },
                     "default": {
                         "type": "boolean",
                         "description": "If the network is default, this will be `true`\n"
@@ -2395,6 +2324,13 @@
                     "name": {
                         "type": "string",
                         "description": "The name of the network\n"
+                    },
+                    "nameserversV4s": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of nameservers for the network\n"
                     },
                     "region": {
                         "type": "string",
@@ -3677,7 +3613,7 @@
             }
         },
         "civo:index/getNetwork:getNetwork": {
-            "description": "Retrieve information about a network for use in other resources.\n\nThis data source provides all of the network's properties as configured on your Civo account.\n\nNetworks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst test = civo.getNetwork({\n    label: \"test-network\",\n    region: \"LON1\",\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\ntest = civo.get_network(label=\"test-network\",\n    region=\"LON1\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test = Civo.GetNetwork.Invoke(new()\n    {\n        Label = \"test-network\",\n        Region = \"LON1\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := civo.LookupNetwork(ctx, \u0026civo.LookupNetworkArgs{\n\t\t\tLabel:  pulumi.StringRef(\"test-network\"),\n\t\t\tRegion: pulumi.StringRef(\"LON1\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()\n            .label(\"test-network\")\n            .region(\"LON1\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: civo:getNetwork\n      Arguments:\n        label: test-network\n        region: LON1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
+            "description": "Retrieve information about a network for use in other resources.\n\nThis data source provides all of the network's properties as configured on your Civo account.\n\nNetworks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.\n\n## Example Usage\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetNetworkArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()\n            .label(\"test-network\")\n            .region(\"LON1\")\n            .cidrV4(\"10.0.0.0/24\")\n            .nameserversV4(            \n                \"8.8.8.8\",\n                \"8.8.4.4\",\n                \"1.1.1.1\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  test:\n    fn::invoke:\n      Function: civo:getNetwork\n      Arguments:\n        label: test-network\n        region: LON1\n        cidrV4: 10.0.0.0/24\n        nameserversV4:\n          - 8.8.8.8\n          - 8.8.4.4\n          - 1.1.1.1\n```\n\u003c!--End PulumiCodeChooser --\u003e\n",
             "inputs": {
                 "description": "A collection of arguments for invoking getNetwork.\n",
                 "properties": {

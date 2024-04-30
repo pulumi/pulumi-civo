@@ -16,33 +16,6 @@ import (
 // This data source provides all of the network's properties as configured on your Civo account.
 //
 // Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := civo.LookupNetwork(ctx, &civo.LookupNetworkArgs{
-//				Label:  pulumi.StringRef("test-network"),
-//				Region: pulumi.StringRef("LON1"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func LookupNetwork(ctx *pulumi.Context, args *LookupNetworkArgs, opts ...pulumi.InvokeOption) (*LookupNetworkResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupNetworkResult

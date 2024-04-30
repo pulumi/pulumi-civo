@@ -30,6 +30,14 @@ namespace Pulumi.Civo.Inputs
         [Input("label")]
         public Input<string>? Label { get; set; }
 
+        [Input("labels")]
+        private InputMap<string>? _labels;
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
         /// <summary>
         /// Number of nodes in the nodepool
         /// </summary>
@@ -47,6 +55,14 @@ namespace Pulumi.Civo.Inputs
         /// </summary>
         [Input("size", required: true)]
         public Input<string> Size { get; set; } = null!;
+
+        [Input("taints")]
+        private InputList<Inputs.KubernetesClusterPoolsTaintArgs>? _taints;
+        public InputList<Inputs.KubernetesClusterPoolsTaintArgs> Taints
+        {
+            get => _taints ?? (_taints = new InputList<Inputs.KubernetesClusterPoolsTaintArgs>());
+            set => _taints = value;
+        }
 
         public KubernetesClusterPoolsArgs()
         {

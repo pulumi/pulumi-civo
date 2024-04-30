@@ -441,6 +441,7 @@ export interface KubernetesClusterPools {
      * Node pool label, if you don't provide one, we will generate one for you
      */
     label?: pulumi.Input<string>;
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Number of nodes in the nodepool
      */
@@ -453,6 +454,13 @@ export interface KubernetesClusterPools {
      * Size of the nodes in the nodepool
      */
     size: pulumi.Input<string>;
+    taints?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolsTaint>[]>;
+}
+
+export interface KubernetesClusterPoolsTaint {
+    effect: pulumi.Input<string>;
+    key: pulumi.Input<string>;
+    value: pulumi.Input<string>;
 }
 
 export interface KubernetesNodePoolTaint {

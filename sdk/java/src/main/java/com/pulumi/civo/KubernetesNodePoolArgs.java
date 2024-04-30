@@ -59,18 +59,18 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      * 
      */
-    @Import(name="nodeCount")
-    private @Nullable Output<Integer> nodeCount;
+    @Import(name="nodeCount", required=true)
+    private Output<Integer> nodeCount;
 
     /**
-     * @return the number of instances to create (optional, the default at the time of writing is 3)
+     * @return Number of nodes in the nodepool
      * 
      */
-    public Optional<Output<Integer>> nodeCount() {
-        return Optional.ofNullable(this.nodeCount);
+    public Output<Integer> nodeCount() {
+        return this.nodeCount;
     }
 
     /**
@@ -89,33 +89,18 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The region of the node pool, has to match that of the cluster
+     * Size of the nodes in the nodepool
      * 
      */
-    @Import(name="region", required=true)
-    private Output<String> region;
+    @Import(name="size", required=true)
+    private Output<String> size;
 
     /**
-     * @return The region of the node pool, has to match that of the cluster
+     * @return Size of the nodes in the nodepool
      * 
      */
-    public Output<String> region() {
-        return this.region;
-    }
-
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     */
-    @Import(name="size")
-    private @Nullable Output<String> size;
-
-    /**
-     * @return the size of each node (optional, the default is currently g4s.kube.medium)
-     * 
-     */
-    public Optional<Output<String>> size() {
-        return Optional.ofNullable(this.size);
+    public Output<String> size() {
+        return this.size;
     }
 
     @Import(name="taints")
@@ -133,7 +118,6 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         this.labels = $.labels;
         this.nodeCount = $.nodeCount;
         this.publicIpNodePool = $.publicIpNodePool;
-        this.region = $.region;
         this.size = $.size;
         this.taints = $.taints;
     }
@@ -208,18 +192,18 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param nodeCount the number of instances to create (optional, the default at the time of writing is 3)
+         * @param nodeCount Number of nodes in the nodepool
          * 
          * @return builder
          * 
          */
-        public Builder nodeCount(@Nullable Output<Integer> nodeCount) {
+        public Builder nodeCount(Output<Integer> nodeCount) {
             $.nodeCount = nodeCount;
             return this;
         }
 
         /**
-         * @param nodeCount the number of instances to create (optional, the default at the time of writing is 3)
+         * @param nodeCount Number of nodes in the nodepool
          * 
          * @return builder
          * 
@@ -250,39 +234,18 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param region The region of the node pool, has to match that of the cluster
+         * @param size Size of the nodes in the nodepool
          * 
          * @return builder
          * 
          */
-        public Builder region(Output<String> region) {
-            $.region = region;
-            return this;
-        }
-
-        /**
-         * @param region The region of the node pool, has to match that of the cluster
-         * 
-         * @return builder
-         * 
-         */
-        public Builder region(String region) {
-            return region(Output.of(region));
-        }
-
-        /**
-         * @param size the size of each node (optional, the default is currently g4s.kube.medium)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder size(@Nullable Output<String> size) {
+        public Builder size(Output<String> size) {
             $.size = size;
             return this;
         }
 
         /**
-         * @param size the size of each node (optional, the default is currently g4s.kube.medium)
+         * @param size Size of the nodes in the nodepool
          * 
          * @return builder
          * 
@@ -308,8 +271,11 @@ public final class KubernetesNodePoolArgs extends com.pulumi.resources.ResourceA
             if ($.clusterId == null) {
                 throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "clusterId");
             }
-            if ($.region == null) {
-                throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "region");
+            if ($.nodeCount == null) {
+                throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "nodeCount");
+            }
+            if ($.size == null) {
+                throw new MissingRequiredPropertyException("KubernetesNodePoolArgs", "size");
             }
             return $;
         }

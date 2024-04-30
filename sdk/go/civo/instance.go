@@ -53,6 +53,8 @@ type Instance struct {
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrOutput `pulumi:"region"`
+	// Can be either the UUID, name, or the IP address of the reserved IP
+	ReservedIpv4 pulumi.StringPtrOutput `pulumi:"reservedIpv4"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 	ReverseDns pulumi.StringPtrOutput `pulumi:"reverseDns"`
 	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -64,7 +66,7 @@ type Instance struct {
 	// Instance's source type
 	SourceType pulumi.StringOutput `pulumi:"sourceType"`
 	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
-	SshkeyId pulumi.StringPtrOutput `pulumi:"sshkeyId"`
+	SshkeyId pulumi.StringOutput `pulumi:"sshkeyId"`
 	// Instance's status
 	Status pulumi.StringOutput `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
@@ -139,6 +141,8 @@ type instanceState struct {
 	RamMb *int `pulumi:"ramMb"`
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
+	// Can be either the UUID, name, or the IP address of the reserved IP
+	ReservedIpv4 *string `pulumi:"reservedIpv4"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 	ReverseDns *string `pulumi:"reverseDns"`
 	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -192,6 +196,8 @@ type InstanceState struct {
 	RamMb pulumi.IntPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
+	// Can be either the UUID, name, or the IP address of the reserved IP
+	ReservedIpv4 pulumi.StringPtrInput
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 	ReverseDns pulumi.StringPtrInput
 	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -235,6 +241,8 @@ type instanceArgs struct {
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
+	// Can be either the UUID, name, or the IP address of the reserved IP
+	ReservedIpv4 *string `pulumi:"reservedIpv4"`
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 	ReverseDns *string `pulumi:"reverseDns"`
 	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -269,6 +277,8 @@ type InstanceArgs struct {
 	PublicIpRequired pulumi.StringPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
+	// Can be either the UUID, name, or the IP address of the reserved IP
+	ReservedIpv4 pulumi.StringPtrInput
 	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 	ReverseDns pulumi.StringPtrInput
 	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
@@ -447,6 +457,11 @@ func (o InstanceOutput) Region() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.Region }).(pulumi.StringPtrOutput)
 }
 
+// Can be either the UUID, name, or the IP address of the reserved IP
+func (o InstanceOutput) ReservedIpv4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ReservedIpv4 }).(pulumi.StringPtrOutput)
+}
+
 // A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
 func (o InstanceOutput) ReverseDns() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ReverseDns }).(pulumi.StringPtrOutput)
@@ -473,8 +488,8 @@ func (o InstanceOutput) SourceType() pulumi.StringOutput {
 }
 
 // The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
-func (o InstanceOutput) SshkeyId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.SshkeyId }).(pulumi.StringPtrOutput)
+func (o InstanceOutput) SshkeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SshkeyId }).(pulumi.StringOutput)
 }
 
 // Instance's status

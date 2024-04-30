@@ -42,6 +42,12 @@ namespace Pulumi.Civo
     public partial class Network : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// The CIDR block for the network
+        /// </summary>
+        [Output("cidrV4")]
+        public Output<string?> CidrV4 { get; private set; } = null!;
+
+        /// <summary>
         /// If the network is default, this will be `true`
         /// </summary>
         [Output("default")]
@@ -58,6 +64,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// List of nameservers for the network
+        /// </summary>
+        [Output("nameserversV4s")]
+        public Output<ImmutableArray<string>> NameserversV4s { get; private set; } = null!;
 
         /// <summary>
         /// The region of the network
@@ -112,10 +124,28 @@ namespace Pulumi.Civo
     public sealed class NetworkArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// The CIDR block for the network
+        /// </summary>
+        [Input("cidrV4")]
+        public Input<string>? CidrV4 { get; set; }
+
+        /// <summary>
         /// Name for the network
         /// </summary>
         [Input("label", required: true)]
         public Input<string> Label { get; set; } = null!;
+
+        [Input("nameserversV4s")]
+        private InputList<string>? _nameserversV4s;
+
+        /// <summary>
+        /// List of nameservers for the network
+        /// </summary>
+        public InputList<string> NameserversV4s
+        {
+            get => _nameserversV4s ?? (_nameserversV4s = new InputList<string>());
+            set => _nameserversV4s = value;
+        }
 
         /// <summary>
         /// The region of the network
@@ -131,6 +161,12 @@ namespace Pulumi.Civo
 
     public sealed class NetworkState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The CIDR block for the network
+        /// </summary>
+        [Input("cidrV4")]
+        public Input<string>? CidrV4 { get; set; }
+
         /// <summary>
         /// If the network is default, this will be `true`
         /// </summary>
@@ -148,6 +184,18 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("nameserversV4s")]
+        private InputList<string>? _nameserversV4s;
+
+        /// <summary>
+        /// List of nameservers for the network
+        /// </summary>
+        public InputList<string> NameserversV4s
+        {
+            get => _nameserversV4s ?? (_nameserversV4s = new InputList<string>());
+            set => _nameserversV4s = value;
+        }
 
         /// <summary>
         /// The region of the network

@@ -19,7 +19,6 @@
         "dnsDomainName.ts",
         "dnsDomainRecord.ts",
         "firewall.ts",
-        "firewallRule.ts",
         "getDatabase.ts",
         "getDatabaseVersion.ts",
         "getDiskImage.ts",

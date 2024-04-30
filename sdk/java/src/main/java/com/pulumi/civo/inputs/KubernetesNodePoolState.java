@@ -73,14 +73,14 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
     }
 
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      * 
      */
     @Import(name="nodeCount")
     private @Nullable Output<Integer> nodeCount;
 
     /**
-     * @return the number of instances to create (optional, the default at the time of writing is 3)
+     * @return Number of nodes in the nodepool
      * 
      */
     public Optional<Output<Integer>> nodeCount() {
@@ -103,29 +103,14 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
     }
 
     /**
-     * The region of the node pool, has to match that of the cluster
-     * 
-     */
-    @Import(name="region")
-    private @Nullable Output<String> region;
-
-    /**
-     * @return The region of the node pool, has to match that of the cluster
-     * 
-     */
-    public Optional<Output<String>> region() {
-        return Optional.ofNullable(this.region);
-    }
-
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
+     * Size of the nodes in the nodepool
      * 
      */
     @Import(name="size")
     private @Nullable Output<String> size;
 
     /**
-     * @return the size of each node (optional, the default is currently g4s.kube.medium)
+     * @return Size of the nodes in the nodepool
      * 
      */
     public Optional<Output<String>> size() {
@@ -148,7 +133,6 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         this.labels = $.labels;
         this.nodeCount = $.nodeCount;
         this.publicIpNodePool = $.publicIpNodePool;
-        this.region = $.region;
         this.size = $.size;
         this.taints = $.taints;
     }
@@ -254,7 +238,7 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param nodeCount the number of instances to create (optional, the default at the time of writing is 3)
+         * @param nodeCount Number of nodes in the nodepool
          * 
          * @return builder
          * 
@@ -265,7 +249,7 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param nodeCount the number of instances to create (optional, the default at the time of writing is 3)
+         * @param nodeCount Number of nodes in the nodepool
          * 
          * @return builder
          * 
@@ -296,28 +280,7 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param region The region of the node pool, has to match that of the cluster
-         * 
-         * @return builder
-         * 
-         */
-        public Builder region(@Nullable Output<String> region) {
-            $.region = region;
-            return this;
-        }
-
-        /**
-         * @param region The region of the node pool, has to match that of the cluster
-         * 
-         * @return builder
-         * 
-         */
-        public Builder region(String region) {
-            return region(Output.of(region));
-        }
-
-        /**
-         * @param size the size of each node (optional, the default is currently g4s.kube.medium)
+         * @param size Size of the nodes in the nodepool
          * 
          * @return builder
          * 
@@ -328,7 +291,7 @@ public final class KubernetesNodePoolState extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param size the size of each node (optional, the default is currently g4s.kube.medium)
+         * @param size Size of the nodes in the nodepool
          * 
          * @return builder
          * 

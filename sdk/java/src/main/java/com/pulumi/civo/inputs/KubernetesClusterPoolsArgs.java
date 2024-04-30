@@ -3,6 +3,7 @@
 
 package com.pulumi.civo.inputs;
 
+import com.pulumi.civo.inputs.KubernetesClusterPoolsTaintArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
@@ -10,6 +11,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -47,6 +49,13 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
      */
     public Optional<Output<String>> label() {
         return Optional.ofNullable(this.label);
+    }
+
+    @Import(name="labels")
+    private @Nullable Output<Map<String,String>> labels;
+
+    public Optional<Output<Map<String,String>>> labels() {
+        return Optional.ofNullable(this.labels);
     }
 
     /**
@@ -94,14 +103,23 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
         return this.size;
     }
 
+    @Import(name="taints")
+    private @Nullable Output<List<KubernetesClusterPoolsTaintArgs>> taints;
+
+    public Optional<Output<List<KubernetesClusterPoolsTaintArgs>>> taints() {
+        return Optional.ofNullable(this.taints);
+    }
+
     private KubernetesClusterPoolsArgs() {}
 
     private KubernetesClusterPoolsArgs(KubernetesClusterPoolsArgs $) {
         this.instanceNames = $.instanceNames;
         this.label = $.label;
+        this.labels = $.labels;
         this.nodeCount = $.nodeCount;
         this.publicIpNodePool = $.publicIpNodePool;
         this.size = $.size;
+        this.taints = $.taints;
     }
 
     public static Builder builder() {
@@ -174,6 +192,15 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
             return label(Output.of(label));
         }
 
+        public Builder labels(@Nullable Output<Map<String,String>> labels) {
+            $.labels = labels;
+            return this;
+        }
+
+        public Builder labels(Map<String,String> labels) {
+            return labels(Output.of(labels));
+        }
+
         /**
          * @param nodeCount Number of nodes in the nodepool
          * 
@@ -235,6 +262,19 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
          */
         public Builder size(String size) {
             return size(Output.of(size));
+        }
+
+        public Builder taints(@Nullable Output<List<KubernetesClusterPoolsTaintArgs>> taints) {
+            $.taints = taints;
+            return this;
+        }
+
+        public Builder taints(List<KubernetesClusterPoolsTaintArgs> taints) {
+            return taints(Output.of(taints));
+        }
+
+        public Builder taints(KubernetesClusterPoolsTaintArgs... taints) {
+            return taints(List.of(taints));
         }
 
         public KubernetesClusterPoolsArgs build() {

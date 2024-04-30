@@ -243,6 +243,21 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Can be either the UUID, name, or the IP address of the reserved IP
+     * 
+     */
+    @Import(name="reservedIpv4")
+    private @Nullable Output<String> reservedIpv4;
+
+    /**
+     * @return Can be either the UUID, name, or the IP address of the reserved IP
+     * 
+     */
+    public Optional<Output<String>> reservedIpv4() {
+        return Optional.ofNullable(this.reservedIpv4);
+    }
+
+    /**
      * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
      * 
      */
@@ -403,6 +418,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         this.publicIpRequired = $.publicIpRequired;
         this.ramMb = $.ramMb;
         this.region = $.region;
+        this.reservedIpv4 = $.reservedIpv4;
         this.reverseDns = $.reverseDns;
         this.script = $.script;
         this.size = $.size;
@@ -745,6 +761,27 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param reservedIpv4 Can be either the UUID, name, or the IP address of the reserved IP
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reservedIpv4(@Nullable Output<String> reservedIpv4) {
+            $.reservedIpv4 = reservedIpv4;
+            return this;
+        }
+
+        /**
+         * @param reservedIpv4 Can be either the UUID, name, or the IP address of the reserved IP
+         * 
+         * @return builder
+         * 
+         */
+        public Builder reservedIpv4(String reservedIpv4) {
+            return reservedIpv4(Output.of(reservedIpv4));
         }
 
         /**

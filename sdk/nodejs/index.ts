@@ -25,11 +25,6 @@ export type Firewall = import("./firewall").Firewall;
 export const Firewall: typeof import("./firewall").Firewall = null as any;
 utilities.lazyLoad(exports, ["Firewall"], () => require("./firewall"));
 
-export { FirewallRuleArgs, FirewallRuleState } from "./firewallRule";
-export type FirewallRule = import("./firewallRule").FirewallRule;
-export const FirewallRule: typeof import("./firewallRule").FirewallRule = null as any;
-utilities.lazyLoad(exports, ["FirewallRule"], () => require("./firewallRule"));
-
 export { GetDatabaseArgs, GetDatabaseResult, GetDatabaseOutputArgs } from "./getDatabase";
 export const getDatabase: typeof import("./getDatabase").getDatabase = null as any;
 export const getDatabaseOutput: typeof import("./getDatabase").getDatabaseOutput = null as any;
@@ -207,8 +202,6 @@ const _module = {
                 return new DnsDomainRecord(name, <any>undefined, { urn })
             case "civo:index/firewall:Firewall":
                 return new Firewall(name, <any>undefined, { urn })
-            case "civo:index/firewallRule:FirewallRule":
-                return new FirewallRule(name, <any>undefined, { urn })
             case "civo:index/instance:Instance":
                 return new Instance(name, <any>undefined, { urn })
             case "civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment":
@@ -240,7 +233,6 @@ pulumi.runtime.registerResourceModule("civo", "index/database", _module)
 pulumi.runtime.registerResourceModule("civo", "index/dnsDomainName", _module)
 pulumi.runtime.registerResourceModule("civo", "index/dnsDomainRecord", _module)
 pulumi.runtime.registerResourceModule("civo", "index/firewall", _module)
-pulumi.runtime.registerResourceModule("civo", "index/firewallRule", _module)
 pulumi.runtime.registerResourceModule("civo", "index/instance", _module)
 pulumi.runtime.registerResourceModule("civo", "index/instanceReservedIpAssignment", _module)
 pulumi.runtime.registerResourceModule("civo", "index/kubernetesCluster", _module)

@@ -55,7 +55,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
     public readonly label!: pulumi.Output<string>;
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      */
     public readonly nodeCount!: pulumi.Output<number>;
     /**
@@ -63,11 +63,7 @@ export class KubernetesNodePool extends pulumi.CustomResource {
      */
     public readonly publicIpNodePool!: pulumi.Output<boolean>;
     /**
-     * The region of the node pool, has to match that of the cluster
-     */
-    public readonly region!: pulumi.Output<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
+     * Size of the nodes in the nodepool
      */
     public readonly size!: pulumi.Output<string>;
     public readonly taints!: pulumi.Output<outputs.KubernetesNodePoolTaint[] | undefined>;
@@ -91,7 +87,6 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["nodeCount"] = state ? state.nodeCount : undefined;
             resourceInputs["publicIpNodePool"] = state ? state.publicIpNodePool : undefined;
-            resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["taints"] = state ? state.taints : undefined;
         } else {
@@ -99,15 +94,17 @@ export class KubernetesNodePool extends pulumi.CustomResource {
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
             }
-            if ((!args || args.region === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'region'");
+            if ((!args || args.nodeCount === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'nodeCount'");
+            }
+            if ((!args || args.size === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'size'");
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["nodeCount"] = args ? args.nodeCount : undefined;
             resourceInputs["publicIpNodePool"] = args ? args.publicIpNodePool : undefined;
-            resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["taints"] = args ? args.taints : undefined;
             resourceInputs["instanceNames"] = undefined /*out*/;
@@ -135,7 +132,7 @@ export interface KubernetesNodePoolState {
     label?: pulumi.Input<string>;
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      */
     nodeCount?: pulumi.Input<number>;
     /**
@@ -143,11 +140,7 @@ export interface KubernetesNodePoolState {
      */
     publicIpNodePool?: pulumi.Input<boolean>;
     /**
-     * The region of the node pool, has to match that of the cluster
-     */
-    region?: pulumi.Input<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
+     * Size of the nodes in the nodepool
      */
     size?: pulumi.Input<string>;
     taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[]>;
@@ -167,20 +160,16 @@ export interface KubernetesNodePoolArgs {
     label?: pulumi.Input<string>;
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * the number of instances to create (optional, the default at the time of writing is 3)
+     * Number of nodes in the nodepool
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount: pulumi.Input<number>;
     /**
      * Node pool belongs to the public ip node pool
      */
     publicIpNodePool?: pulumi.Input<boolean>;
     /**
-     * The region of the node pool, has to match that of the cluster
+     * Size of the nodes in the nodepool
      */
-    region: pulumi.Input<string>;
-    /**
-     * the size of each node (optional, the default is currently g4s.kube.medium)
-     */
-    size?: pulumi.Input<string>;
+    size: pulumi.Input<string>;
     taints?: pulumi.Input<pulumi.Input<inputs.KubernetesNodePoolTaint>[]>;
 }

@@ -289,15 +289,16 @@ export interface GetKubernetesClusterInstalledApplication {
 
 export interface GetKubernetesClusterPool {
     /**
-     * A list of the instance in the pool
+     * Instance names in the nodepool
      */
     instanceNames: string[];
     /**
      * Node pool label, if you don't provide one, we will generate one for you
      */
     label: string;
+    labels?: {[key: string]: string};
     /**
-     * The size of the pool
+     * Number of nodes in the nodepool
      */
     nodeCount: number;
     /**
@@ -305,9 +306,16 @@ export interface GetKubernetesClusterPool {
      */
     publicIpNodePool: boolean;
     /**
-     * The size of each node inside the pool
+     * Size of the nodes in the nodepool
      */
     size: string;
+    taints?: outputs.GetKubernetesClusterPoolTaint[];
+}
+
+export interface GetKubernetesClusterPoolTaint {
+    effect: string;
+    key: string;
+    value: string;
 }
 
 export interface GetKubernetesVersionFilter {
@@ -528,6 +536,7 @@ export interface KubernetesClusterPools {
      * Node pool label, if you don't provide one, we will generate one for you
      */
     label: string;
+    labels?: {[key: string]: string};
     /**
      * Number of nodes in the nodepool
      */
@@ -540,6 +549,13 @@ export interface KubernetesClusterPools {
      * Size of the nodes in the nodepool
      */
     size: string;
+    taints?: outputs.KubernetesClusterPoolsTaint[];
+}
+
+export interface KubernetesClusterPoolsTaint {
+    effect: string;
+    key: string;
+    value: string;
 }
 
 export interface KubernetesNodePoolTaint {

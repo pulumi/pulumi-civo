@@ -2540,6 +2540,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }
@@ -2585,6 +2590,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }
@@ -2630,6 +2640,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }
@@ -2675,6 +2690,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }
@@ -2720,6 +2740,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }
@@ -2765,6 +2790,11 @@ public final class CivoFunctions {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
      *             .label(&#34;test-network&#34;)
      *             .region(&#34;LON1&#34;)
+     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .nameserversV4(            
+     *                 &#34;8.8.8.8&#34;,
+     *                 &#34;8.8.4.4&#34;,
+     *                 &#34;1.1.1.1&#34;)
      *             .build());
      * 
      *     }

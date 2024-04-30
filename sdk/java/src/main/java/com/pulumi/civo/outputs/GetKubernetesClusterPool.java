@@ -3,18 +3,21 @@
 
 package com.pulumi.civo.outputs;
 
+import com.pulumi.civo.outputs.GetKubernetesClusterPoolTaint;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetKubernetesClusterPool {
     /**
-     * @return A list of the instance in the pool
+     * @return Instance names in the nodepool
      * 
      */
     private List<String> instanceNames;
@@ -23,8 +26,9 @@ public final class GetKubernetesClusterPool {
      * 
      */
     private String label;
+    private @Nullable Map<String,String> labels;
     /**
-     * @return The size of the pool
+     * @return Number of nodes in the nodepool
      * 
      */
     private Integer nodeCount;
@@ -34,14 +38,15 @@ public final class GetKubernetesClusterPool {
      */
     private Boolean publicIpNodePool;
     /**
-     * @return The size of each node inside the pool
+     * @return Size of the nodes in the nodepool
      * 
      */
     private String size;
+    private @Nullable List<GetKubernetesClusterPoolTaint> taints;
 
     private GetKubernetesClusterPool() {}
     /**
-     * @return A list of the instance in the pool
+     * @return Instance names in the nodepool
      * 
      */
     public List<String> instanceNames() {
@@ -54,8 +59,11 @@ public final class GetKubernetesClusterPool {
     public String label() {
         return this.label;
     }
+    public Map<String,String> labels() {
+        return this.labels == null ? Map.of() : this.labels;
+    }
     /**
-     * @return The size of the pool
+     * @return Number of nodes in the nodepool
      * 
      */
     public Integer nodeCount() {
@@ -69,11 +77,14 @@ public final class GetKubernetesClusterPool {
         return this.publicIpNodePool;
     }
     /**
-     * @return The size of each node inside the pool
+     * @return Size of the nodes in the nodepool
      * 
      */
     public String size() {
         return this.size;
+    }
+    public List<GetKubernetesClusterPoolTaint> taints() {
+        return this.taints == null ? List.of() : this.taints;
     }
 
     public static Builder builder() {
@@ -87,17 +98,21 @@ public final class GetKubernetesClusterPool {
     public static final class Builder {
         private List<String> instanceNames;
         private String label;
+        private @Nullable Map<String,String> labels;
         private Integer nodeCount;
         private Boolean publicIpNodePool;
         private String size;
+        private @Nullable List<GetKubernetesClusterPoolTaint> taints;
         public Builder() {}
         public Builder(GetKubernetesClusterPool defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.instanceNames = defaults.instanceNames;
     	      this.label = defaults.label;
+    	      this.labels = defaults.labels;
     	      this.nodeCount = defaults.nodeCount;
     	      this.publicIpNodePool = defaults.publicIpNodePool;
     	      this.size = defaults.size;
+    	      this.taints = defaults.taints;
         }
 
         @CustomType.Setter
@@ -117,6 +132,12 @@ public final class GetKubernetesClusterPool {
               throw new MissingRequiredPropertyException("GetKubernetesClusterPool", "label");
             }
             this.label = label;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder labels(@Nullable Map<String,String> labels) {
+
+            this.labels = labels;
             return this;
         }
         @CustomType.Setter
@@ -143,13 +164,24 @@ public final class GetKubernetesClusterPool {
             this.size = size;
             return this;
         }
+        @CustomType.Setter
+        public Builder taints(@Nullable List<GetKubernetesClusterPoolTaint> taints) {
+
+            this.taints = taints;
+            return this;
+        }
+        public Builder taints(GetKubernetesClusterPoolTaint... taints) {
+            return taints(List.of(taints));
+        }
         public GetKubernetesClusterPool build() {
             final var _resultValue = new GetKubernetesClusterPool();
             _resultValue.instanceNames = instanceNames;
             _resultValue.label = label;
+            _resultValue.labels = labels;
             _resultValue.nodeCount = nodeCount;
             _resultValue.publicIpNodePool = publicIpNodePool;
             _resultValue.size = size;
+            _resultValue.taints = taints;
             return _resultValue;
         }
     }

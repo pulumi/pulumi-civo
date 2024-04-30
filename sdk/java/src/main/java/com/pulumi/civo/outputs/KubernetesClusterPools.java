@@ -3,12 +3,14 @@
 
 package com.pulumi.civo.outputs;
 
+import com.pulumi.civo.outputs.KubernetesClusterPoolsTaint;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -25,6 +27,7 @@ public final class KubernetesClusterPools {
      * 
      */
     private @Nullable String label;
+    private @Nullable Map<String,String> labels;
     /**
      * @return Number of nodes in the nodepool
      * 
@@ -40,6 +43,7 @@ public final class KubernetesClusterPools {
      * 
      */
     private String size;
+    private @Nullable List<KubernetesClusterPoolsTaint> taints;
 
     private KubernetesClusterPools() {}
     /**
@@ -55,6 +59,9 @@ public final class KubernetesClusterPools {
      */
     public Optional<String> label() {
         return Optional.ofNullable(this.label);
+    }
+    public Map<String,String> labels() {
+        return this.labels == null ? Map.of() : this.labels;
     }
     /**
      * @return Number of nodes in the nodepool
@@ -77,6 +84,9 @@ public final class KubernetesClusterPools {
     public String size() {
         return this.size;
     }
+    public List<KubernetesClusterPoolsTaint> taints() {
+        return this.taints == null ? List.of() : this.taints;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -89,17 +99,21 @@ public final class KubernetesClusterPools {
     public static final class Builder {
         private @Nullable List<String> instanceNames;
         private @Nullable String label;
+        private @Nullable Map<String,String> labels;
         private Integer nodeCount;
         private @Nullable Boolean publicIpNodePool;
         private String size;
+        private @Nullable List<KubernetesClusterPoolsTaint> taints;
         public Builder() {}
         public Builder(KubernetesClusterPools defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.instanceNames = defaults.instanceNames;
     	      this.label = defaults.label;
+    	      this.labels = defaults.labels;
     	      this.nodeCount = defaults.nodeCount;
     	      this.publicIpNodePool = defaults.publicIpNodePool;
     	      this.size = defaults.size;
+    	      this.taints = defaults.taints;
         }
 
         @CustomType.Setter
@@ -115,6 +129,12 @@ public final class KubernetesClusterPools {
         public Builder label(@Nullable String label) {
 
             this.label = label;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder labels(@Nullable Map<String,String> labels) {
+
+            this.labels = labels;
             return this;
         }
         @CustomType.Setter
@@ -139,13 +159,24 @@ public final class KubernetesClusterPools {
             this.size = size;
             return this;
         }
+        @CustomType.Setter
+        public Builder taints(@Nullable List<KubernetesClusterPoolsTaint> taints) {
+
+            this.taints = taints;
+            return this;
+        }
+        public Builder taints(KubernetesClusterPoolsTaint... taints) {
+            return taints(List.of(taints));
+        }
         public KubernetesClusterPools build() {
             final var _resultValue = new KubernetesClusterPools();
             _resultValue.instanceNames = instanceNames;
             _resultValue.label = label;
+            _resultValue.labels = labels;
             _resultValue.nodeCount = nodeCount;
             _resultValue.publicIpNodePool = publicIpNodePool;
             _resultValue.size = size;
+            _resultValue.taints = taints;
             return _resultValue;
         }
     }
