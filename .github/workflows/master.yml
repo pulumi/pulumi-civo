@@ -301,6 +301,7 @@ jobs:
         echo "${{ env.MISSING_CONFIG }}"
         echo 'Please add a description for each of these options to `README.md`.'
         echo 'Details about them can be found in either the upstream docs or `schema.json`.'
+        exit 1
         fi
 
     - name: Tar provider binaries
