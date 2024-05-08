@@ -6,6 +6,7 @@ package com.pulumi.civo;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -77,6 +78,96 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.region);
     }
 
+    /**
+     * End of the IPv4 allocation pool for VLAN
+     * 
+     */
+    @Import(name="vlanAllocationPoolV4End")
+    private @Nullable Output<String> vlanAllocationPoolV4End;
+
+    /**
+     * @return End of the IPv4 allocation pool for VLAN
+     * 
+     */
+    public Optional<Output<String>> vlanAllocationPoolV4End() {
+        return Optional.ofNullable(this.vlanAllocationPoolV4End);
+    }
+
+    /**
+     * Start of the IPv4 allocation pool for VLAN
+     * 
+     */
+    @Import(name="vlanAllocationPoolV4Start")
+    private @Nullable Output<String> vlanAllocationPoolV4Start;
+
+    /**
+     * @return Start of the IPv4 allocation pool for VLAN
+     * 
+     */
+    public Optional<Output<String>> vlanAllocationPoolV4Start() {
+        return Optional.ofNullable(this.vlanAllocationPoolV4Start);
+    }
+
+    /**
+     * CIDR for VLAN IPv4
+     * 
+     */
+    @Import(name="vlanCidrV4")
+    private @Nullable Output<String> vlanCidrV4;
+
+    /**
+     * @return CIDR for VLAN IPv4
+     * 
+     */
+    public Optional<Output<String>> vlanCidrV4() {
+        return Optional.ofNullable(this.vlanCidrV4);
+    }
+
+    /**
+     * Gateway IP for VLAN IPv4
+     * 
+     */
+    @Import(name="vlanGatewayIpV4")
+    private @Nullable Output<String> vlanGatewayIpV4;
+
+    /**
+     * @return Gateway IP for VLAN IPv4
+     * 
+     */
+    public Optional<Output<String>> vlanGatewayIpV4() {
+        return Optional.ofNullable(this.vlanGatewayIpV4);
+    }
+
+    /**
+     * Hardware address for VLAN
+     * 
+     */
+    @Import(name="vlanHardwareAddr")
+    private @Nullable Output<String> vlanHardwareAddr;
+
+    /**
+     * @return Hardware address for VLAN
+     * 
+     */
+    public Optional<Output<String>> vlanHardwareAddr() {
+        return Optional.ofNullable(this.vlanHardwareAddr);
+    }
+
+    /**
+     * VLAN ID for the network
+     * 
+     */
+    @Import(name="vlanId")
+    private @Nullable Output<Integer> vlanId;
+
+    /**
+     * @return VLAN ID for the network
+     * 
+     */
+    public Optional<Output<Integer>> vlanId() {
+        return Optional.ofNullable(this.vlanId);
+    }
+
     private NetworkArgs() {}
 
     private NetworkArgs(NetworkArgs $) {
@@ -84,6 +175,12 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
         this.label = $.label;
         this.nameserversV4s = $.nameserversV4s;
         this.region = $.region;
+        this.vlanAllocationPoolV4End = $.vlanAllocationPoolV4End;
+        this.vlanAllocationPoolV4Start = $.vlanAllocationPoolV4Start;
+        this.vlanCidrV4 = $.vlanCidrV4;
+        this.vlanGatewayIpV4 = $.vlanGatewayIpV4;
+        this.vlanHardwareAddr = $.vlanHardwareAddr;
+        this.vlanId = $.vlanId;
     }
 
     public static Builder builder() {
@@ -196,6 +293,132 @@ public final class NetworkArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder region(String region) {
             return region(Output.of(region));
+        }
+
+        /**
+         * @param vlanAllocationPoolV4End End of the IPv4 allocation pool for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanAllocationPoolV4End(@Nullable Output<String> vlanAllocationPoolV4End) {
+            $.vlanAllocationPoolV4End = vlanAllocationPoolV4End;
+            return this;
+        }
+
+        /**
+         * @param vlanAllocationPoolV4End End of the IPv4 allocation pool for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanAllocationPoolV4End(String vlanAllocationPoolV4End) {
+            return vlanAllocationPoolV4End(Output.of(vlanAllocationPoolV4End));
+        }
+
+        /**
+         * @param vlanAllocationPoolV4Start Start of the IPv4 allocation pool for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanAllocationPoolV4Start(@Nullable Output<String> vlanAllocationPoolV4Start) {
+            $.vlanAllocationPoolV4Start = vlanAllocationPoolV4Start;
+            return this;
+        }
+
+        /**
+         * @param vlanAllocationPoolV4Start Start of the IPv4 allocation pool for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanAllocationPoolV4Start(String vlanAllocationPoolV4Start) {
+            return vlanAllocationPoolV4Start(Output.of(vlanAllocationPoolV4Start));
+        }
+
+        /**
+         * @param vlanCidrV4 CIDR for VLAN IPv4
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanCidrV4(@Nullable Output<String> vlanCidrV4) {
+            $.vlanCidrV4 = vlanCidrV4;
+            return this;
+        }
+
+        /**
+         * @param vlanCidrV4 CIDR for VLAN IPv4
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanCidrV4(String vlanCidrV4) {
+            return vlanCidrV4(Output.of(vlanCidrV4));
+        }
+
+        /**
+         * @param vlanGatewayIpV4 Gateway IP for VLAN IPv4
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanGatewayIpV4(@Nullable Output<String> vlanGatewayIpV4) {
+            $.vlanGatewayIpV4 = vlanGatewayIpV4;
+            return this;
+        }
+
+        /**
+         * @param vlanGatewayIpV4 Gateway IP for VLAN IPv4
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanGatewayIpV4(String vlanGatewayIpV4) {
+            return vlanGatewayIpV4(Output.of(vlanGatewayIpV4));
+        }
+
+        /**
+         * @param vlanHardwareAddr Hardware address for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanHardwareAddr(@Nullable Output<String> vlanHardwareAddr) {
+            $.vlanHardwareAddr = vlanHardwareAddr;
+            return this;
+        }
+
+        /**
+         * @param vlanHardwareAddr Hardware address for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanHardwareAddr(String vlanHardwareAddr) {
+            return vlanHardwareAddr(Output.of(vlanHardwareAddr));
+        }
+
+        /**
+         * @param vlanId VLAN ID for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanId(@Nullable Output<Integer> vlanId) {
+            $.vlanId = vlanId;
+            return this;
+        }
+
+        /**
+         * @param vlanId VLAN ID for the network
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanId(Integer vlanId) {
+            return vlanId(Output.of(vlanId));
         }
 
         public NetworkArgs build() {

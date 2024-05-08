@@ -76,6 +76,30 @@ export class Network extends pulumi.CustomResource {
      * The region of the network
      */
     public readonly region!: pulumi.Output<string>;
+    /**
+     * End of the IPv4 allocation pool for VLAN
+     */
+    public readonly vlanAllocationPoolV4End!: pulumi.Output<string | undefined>;
+    /**
+     * Start of the IPv4 allocation pool for VLAN
+     */
+    public readonly vlanAllocationPoolV4Start!: pulumi.Output<string | undefined>;
+    /**
+     * CIDR for VLAN IPv4
+     */
+    public readonly vlanCidrV4!: pulumi.Output<string | undefined>;
+    /**
+     * Gateway IP for VLAN IPv4
+     */
+    public readonly vlanGatewayIpV4!: pulumi.Output<string | undefined>;
+    /**
+     * Hardware address for VLAN
+     */
+    public readonly vlanHardwareAddr!: pulumi.Output<string | undefined>;
+    /**
+     * VLAN ID for the network
+     */
+    public readonly vlanId!: pulumi.Output<number | undefined>;
 
     /**
      * Create a Network resource with the given unique name, arguments, and options.
@@ -96,6 +120,12 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nameserversV4s"] = state ? state.nameserversV4s : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["vlanAllocationPoolV4End"] = state ? state.vlanAllocationPoolV4End : undefined;
+            resourceInputs["vlanAllocationPoolV4Start"] = state ? state.vlanAllocationPoolV4Start : undefined;
+            resourceInputs["vlanCidrV4"] = state ? state.vlanCidrV4 : undefined;
+            resourceInputs["vlanGatewayIpV4"] = state ? state.vlanGatewayIpV4 : undefined;
+            resourceInputs["vlanHardwareAddr"] = state ? state.vlanHardwareAddr : undefined;
+            resourceInputs["vlanId"] = state ? state.vlanId : undefined;
         } else {
             const args = argsOrState as NetworkArgs | undefined;
             if ((!args || args.label === undefined) && !opts.urn) {
@@ -105,6 +135,12 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["nameserversV4s"] = args ? args.nameserversV4s : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["vlanAllocationPoolV4End"] = args ? args.vlanAllocationPoolV4End : undefined;
+            resourceInputs["vlanAllocationPoolV4Start"] = args ? args.vlanAllocationPoolV4Start : undefined;
+            resourceInputs["vlanCidrV4"] = args ? args.vlanCidrV4 : undefined;
+            resourceInputs["vlanGatewayIpV4"] = args ? args.vlanGatewayIpV4 : undefined;
+            resourceInputs["vlanHardwareAddr"] = args ? args.vlanHardwareAddr : undefined;
+            resourceInputs["vlanId"] = args ? args.vlanId : undefined;
             resourceInputs["default"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
         }
@@ -141,6 +177,30 @@ export interface NetworkState {
      * The region of the network
      */
     region?: pulumi.Input<string>;
+    /**
+     * End of the IPv4 allocation pool for VLAN
+     */
+    vlanAllocationPoolV4End?: pulumi.Input<string>;
+    /**
+     * Start of the IPv4 allocation pool for VLAN
+     */
+    vlanAllocationPoolV4Start?: pulumi.Input<string>;
+    /**
+     * CIDR for VLAN IPv4
+     */
+    vlanCidrV4?: pulumi.Input<string>;
+    /**
+     * Gateway IP for VLAN IPv4
+     */
+    vlanGatewayIpV4?: pulumi.Input<string>;
+    /**
+     * Hardware address for VLAN
+     */
+    vlanHardwareAddr?: pulumi.Input<string>;
+    /**
+     * VLAN ID for the network
+     */
+    vlanId?: pulumi.Input<number>;
 }
 
 /**
@@ -163,4 +223,28 @@ export interface NetworkArgs {
      * The region of the network
      */
     region?: pulumi.Input<string>;
+    /**
+     * End of the IPv4 allocation pool for VLAN
+     */
+    vlanAllocationPoolV4End?: pulumi.Input<string>;
+    /**
+     * Start of the IPv4 allocation pool for VLAN
+     */
+    vlanAllocationPoolV4Start?: pulumi.Input<string>;
+    /**
+     * CIDR for VLAN IPv4
+     */
+    vlanCidrV4?: pulumi.Input<string>;
+    /**
+     * Gateway IP for VLAN IPv4
+     */
+    vlanGatewayIpV4?: pulumi.Input<string>;
+    /**
+     * Hardware address for VLAN
+     */
+    vlanHardwareAddr?: pulumi.Input<string>;
+    /**
+     * VLAN ID for the network
+     */
+    vlanId?: pulumi.Input<number>;
 }

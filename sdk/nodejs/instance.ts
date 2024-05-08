@@ -88,6 +88,10 @@ export class Instance extends pulumi.CustomResource {
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
+     * The private IPv4 address for the instance (optional)
+     */
+    public readonly privateIpv4!: pulumi.Output<string | undefined>;
+    /**
      * Instance's public IP address
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
@@ -170,6 +174,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["notes"] = state ? state.notes : undefined;
             resourceInputs["privateIp"] = state ? state.privateIp : undefined;
+            resourceInputs["privateIpv4"] = state ? state.privateIpv4 : undefined;
             resourceInputs["publicIp"] = state ? state.publicIp : undefined;
             resourceInputs["publicIpRequired"] = state ? state.publicIpRequired : undefined;
             resourceInputs["ramMb"] = state ? state.ramMb : undefined;
@@ -192,6 +197,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["initialUser"] = args ? args.initialUser : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["notes"] = args ? args.notes : undefined;
+            resourceInputs["privateIpv4"] = args ? args.privateIpv4 : undefined;
             resourceInputs["publicIpRequired"] = args ? args.publicIpRequired : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["reservedIpv4"] = args ? args.reservedIpv4 : undefined;
@@ -267,6 +273,10 @@ export interface InstanceState {
      * Instance's private IP address
      */
     privateIp?: pulumi.Input<string>;
+    /**
+     * The private IPv4 address for the instance (optional)
+     */
+    privateIpv4?: pulumi.Input<string>;
     /**
      * Instance's public IP address
      */
@@ -355,6 +365,10 @@ export interface InstanceArgs {
      * Add some notes to the instance
      */
     notes?: pulumi.Input<string>;
+    /**
+     * The private IPv4 address for the instance (optional)
+     */
+    privateIpv4?: pulumi.Input<string>;
     /**
      * This should be either 'none' or 'create' (default: 'create')
      */
