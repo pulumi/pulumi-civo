@@ -51,6 +51,7 @@ The following configuration points are available:
 - `civo:region` - (Optional) Region in which to create Civo resources.  It can also be sourced from the `CIVO_REGION`
   environment variable.
 
+Other: `apiEndpoint`
 ## Reference
 
 For further information, please visit [the Civo provider docs](https://www.pulumi.com/docs/intro/cloud-providers/civo)
