@@ -22,7 +22,7 @@ env:
   PULUMI_LOCAL_NUGET: ${{ github.workspace }}/nuget
   PYPI_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
   PYPI_USERNAME: __token__
-  PYTHONVERSION: 3.11.8
+  PYTHONVERSION: "3.11"
   SIGNING_KEY: ${{ secrets.JAVA_SIGNING_KEY }}
   SIGNING_KEY_ID: ${{ secrets.JAVA_SIGNING_KEY_ID }}
   SIGNING_PASSWORD: ${{ secrets.JAVA_SIGNING_PASSWORD }}
@@ -37,9 +37,14 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v4
-    - uses: pulumi/provider-version-action@v1
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v4
       with:
-        set-env: 'PROVIDER_VERSION'
+        path: ci-scripts
+        repository: pulumi/scripts
+        ref: deca2c5c6015ad7aaea6f572a1c2b198ca323592
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
     - name: Install Go
       uses: actions/setup-go@v5
       with:
@@ -99,10 +104,13 @@ jobs:
       run: make install_plugins
     - name: Update path
       run: echo "${{ github.workspace }}/bin" >> "$GITHUB_PATH"
+    - name: Set PACKAGE_VERSION to Env
+      run: echo "PACKAGE_VERSION=$(pulumictl get version --language generic)" >>
+        "$GITHUB_ENV"
     - name: Build SDK
       run: make build_${{ matrix.language }}
     - name: Check worktree clean
-      uses: pulumi/git-status-check-action@v1
+      run: ./ci-scripts/ci/check-worktree-is-clean
     - name: Compress SDK folder
       run: tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }} .
     - name: Upload artifacts
@@ -149,6 +157,14 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_CORP_S3_UPLOAD_ACCESS_KEY_ID }}
         aws-region: us-west-2
         aws-secret-access-key: ${{ secrets.AWS_CORP_S3_UPLOAD_SECRET_ACCESS_KEY }}
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v4
+      with:
+        path: ci-scripts
+        repository: pulumi/scripts
+        ref: deca2c5c6015ad7aaea6f572a1c2b198ca323592
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
     - name: Install Go
       uses: actions/setup-go@v5
       with:
@@ -196,15 +212,20 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v4
-    - uses: pulumi/provider-version-action@v1
-      with:
-        set-env: 'PROVIDER_VERSION'
     - name: Cache examples generation
       uses: actions/cache@v4
       with:
         path: |
           .pulumi/examples-cache
         key: ${{ runner.os }}-${{ hashFiles('provider/go.sum') }}
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v4
+      with:
+        path: ci-scripts
+        repository: pulumi/scripts
+        ref: deca2c5c6015ad7aaea6f572a1c2b198ca323592
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
     - name: Prepare upstream code
       run: make upstream
     - name: Install Go
@@ -254,11 +275,13 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         comment_tag: schemaCheck
         message: >+
+          ### Does the PR have any schema changes?
+
+
           ${{ env.SCHEMA_CHANGES }}
 
 
           Maintainer note: consult the [runbook](https://github.com/pulumi/platform-providers-team/blob/main/playbooks/tf-provider-updating.md) for dealing with any breaking changes.
-
     - if: github.event_name == 'pull_request'
       name: Check Configuration section
       run: |
@@ -272,19 +295,13 @@ jobs:
         } >> "$GITHUB_ENV"
 
     - if: github.event_name == 'pull_request' && github.actor != 'dependabot[bot]'
-      name: Comment on PR with Details of Configuration check
-      uses: thollander/actions-comment-pull-request@v2
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        comment_tag: configurationCheck
-        message: >+
-          ### Is README.md missing any configuration options?
-
-          ${{ env.MISSING_CONFIG || 'No missing config!' }}
-
-
-          ${{ env.MISSING_CONFIG && 'Please add a description for each of these options to `README.md`.' }}
-          ${{ env.MISSING_CONFIG && 'Details about them can be found in either the upstream docs or `schema.json`.' }}
+      name: Check for missing config
+      run: |
+        if [ ! -z "${{ env.MISSING_CONFIG }}" ]; then
+        echo "${{ env.MISSING_CONFIG }}"
+        echo 'Please add a description for each of these options to `README.md`.'
+        echo 'Details about them can be found in either the upstream docs or `schema.json`.'
+        fi
 
     - name: Tar provider binaries
       run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{
@@ -321,6 +338,8 @@ jobs:
         swap-storage: false
     - name: Checkout Repo
       uses: actions/checkout@v4
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
     - name: Install Go
       uses: actions/setup-go@v5
       with:
@@ -346,12 +365,10 @@ jobs:
         role-external-id: upload-pulumi-release
         role-session-name: ${{ env.PROVIDER }}@githubActions
         role-to-assume: ${{ secrets.AWS_UPLOAD_ROLE_ARN }}
-    - id: version
-      uses: pulumi/provider-version-action@v1
+    - name: Set PreRelease Version
+      run: echo "GORELEASER_CURRENT_TAG=v$(pulumictl get version --language generic)" >> "$GITHUB_ENV"
     - name: Run GoReleaser
       uses: goreleaser/goreleaser-action@v5
-      env:
-        GORELEASER_CURRENT_TAG: v${{ steps.version.outputs.version }}
       with:
         args: -p 3 -f .goreleaser.prerelease.yml --rm-dist --skip-validate --timeout
           60m0s
@@ -368,13 +385,10 @@ jobs:
     needs: publish
     runs-on: ubuntu-latest
     steps:
-    - id: version
-      uses: pulumi/provider-version-action@v1
     - name: Publish SDKs
-      uses: pulumi/pulumi-package-publisher@v0.0.15
+      uses: pulumi/pulumi-package-publisher@v0.0.14
       with:
         sdk: all
-        version: ${{ steps.version.outputs.version }}
     - env:
         SLACK_CHANNEL: provider-upgrade-publish-status
         SLACK_COLOR: "#FF0000"
@@ -414,9 +428,14 @@ jobs:
     steps:
     - name: Checkout Repo
       uses: actions/checkout@v4
-    - uses: pulumi/provider-version-action@v1
+    - name: Checkout Scripts Repo
+      uses: actions/checkout@v4
       with:
-        set-env: 'PROVIDER_VERSION'
+        path: ci-scripts
+        repository: pulumi/scripts
+        ref: deca2c5c6015ad7aaea6f572a1c2b198ca323592
+    - name: Unshallow clone for tags
+      run: git fetch --prune --unshallow --tags
     - name: Install Go
       uses: actions/setup-go@v5
       with:
