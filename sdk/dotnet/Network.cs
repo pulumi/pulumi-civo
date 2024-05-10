@@ -77,6 +77,42 @@ namespace Pulumi.Civo
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
+        /// <summary>
+        /// End of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Output("vlanAllocationPoolV4End")]
+        public Output<string?> VlanAllocationPoolV4End { get; private set; } = null!;
+
+        /// <summary>
+        /// Start of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Output("vlanAllocationPoolV4Start")]
+        public Output<string?> VlanAllocationPoolV4Start { get; private set; } = null!;
+
+        /// <summary>
+        /// CIDR for VLAN IPv4
+        /// </summary>
+        [Output("vlanCidrV4")]
+        public Output<string?> VlanCidrV4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Gateway IP for VLAN IPv4
+        /// </summary>
+        [Output("vlanGatewayIpV4")]
+        public Output<string?> VlanGatewayIpV4 { get; private set; } = null!;
+
+        /// <summary>
+        /// Hardware address for VLAN
+        /// </summary>
+        [Output("vlanHardwareAddr")]
+        public Output<string?> VlanHardwareAddr { get; private set; } = null!;
+
+        /// <summary>
+        /// VLAN ID for the network
+        /// </summary>
+        [Output("vlanId")]
+        public Output<int?> VlanId { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Network resource with the given unique name, arguments, and options.
@@ -153,6 +189,42 @@ namespace Pulumi.Civo
         [Input("region")]
         public Input<string>? Region { get; set; }
 
+        /// <summary>
+        /// End of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Input("vlanAllocationPoolV4End")]
+        public Input<string>? VlanAllocationPoolV4End { get; set; }
+
+        /// <summary>
+        /// Start of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Input("vlanAllocationPoolV4Start")]
+        public Input<string>? VlanAllocationPoolV4Start { get; set; }
+
+        /// <summary>
+        /// CIDR for VLAN IPv4
+        /// </summary>
+        [Input("vlanCidrV4")]
+        public Input<string>? VlanCidrV4 { get; set; }
+
+        /// <summary>
+        /// Gateway IP for VLAN IPv4
+        /// </summary>
+        [Input("vlanGatewayIpV4")]
+        public Input<string>? VlanGatewayIpV4 { get; set; }
+
+        /// <summary>
+        /// Hardware address for VLAN
+        /// </summary>
+        [Input("vlanHardwareAddr")]
+        public Input<string>? VlanHardwareAddr { get; set; }
+
+        /// <summary>
+        /// VLAN ID for the network
+        /// </summary>
+        [Input("vlanId")]
+        public Input<int>? VlanId { get; set; }
+
         public NetworkArgs()
         {
         }
@@ -202,6 +274,42 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
+
+        /// <summary>
+        /// End of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Input("vlanAllocationPoolV4End")]
+        public Input<string>? VlanAllocationPoolV4End { get; set; }
+
+        /// <summary>
+        /// Start of the IPv4 allocation pool for VLAN
+        /// </summary>
+        [Input("vlanAllocationPoolV4Start")]
+        public Input<string>? VlanAllocationPoolV4Start { get; set; }
+
+        /// <summary>
+        /// CIDR for VLAN IPv4
+        /// </summary>
+        [Input("vlanCidrV4")]
+        public Input<string>? VlanCidrV4 { get; set; }
+
+        /// <summary>
+        /// Gateway IP for VLAN IPv4
+        /// </summary>
+        [Input("vlanGatewayIpV4")]
+        public Input<string>? VlanGatewayIpV4 { get; set; }
+
+        /// <summary>
+        /// Hardware address for VLAN
+        /// </summary>
+        [Input("vlanHardwareAddr")]
+        public Input<string>? VlanHardwareAddr { get; set; }
+
+        /// <summary>
+        /// VLAN ID for the network
+        /// </summary>
+        [Input("vlanId")]
+        public Input<int>? VlanId { get; set; }
 
         public NetworkState()
         {

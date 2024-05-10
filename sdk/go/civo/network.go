@@ -62,6 +62,18 @@ type Network struct {
 	NameserversV4s pulumi.StringArrayOutput `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region pulumi.StringOutput `pulumi:"region"`
+	// End of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4End pulumi.StringPtrOutput `pulumi:"vlanAllocationPoolV4End"`
+	// Start of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4Start pulumi.StringPtrOutput `pulumi:"vlanAllocationPoolV4Start"`
+	// CIDR for VLAN IPv4
+	VlanCidrV4 pulumi.StringPtrOutput `pulumi:"vlanCidrV4"`
+	// Gateway IP for VLAN IPv4
+	VlanGatewayIpV4 pulumi.StringPtrOutput `pulumi:"vlanGatewayIpV4"`
+	// Hardware address for VLAN
+	VlanHardwareAddr pulumi.StringPtrOutput `pulumi:"vlanHardwareAddr"`
+	// VLAN ID for the network
+	VlanId pulumi.IntPtrOutput `pulumi:"vlanId"`
 }
 
 // NewNetwork registers a new resource with the given unique name, arguments, and options.
@@ -109,6 +121,18 @@ type networkState struct {
 	NameserversV4s []string `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region *string `pulumi:"region"`
+	// End of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4End *string `pulumi:"vlanAllocationPoolV4End"`
+	// Start of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4Start *string `pulumi:"vlanAllocationPoolV4Start"`
+	// CIDR for VLAN IPv4
+	VlanCidrV4 *string `pulumi:"vlanCidrV4"`
+	// Gateway IP for VLAN IPv4
+	VlanGatewayIpV4 *string `pulumi:"vlanGatewayIpV4"`
+	// Hardware address for VLAN
+	VlanHardwareAddr *string `pulumi:"vlanHardwareAddr"`
+	// VLAN ID for the network
+	VlanId *int `pulumi:"vlanId"`
 }
 
 type NetworkState struct {
@@ -124,6 +148,18 @@ type NetworkState struct {
 	NameserversV4s pulumi.StringArrayInput
 	// The region of the network
 	Region pulumi.StringPtrInput
+	// End of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4End pulumi.StringPtrInput
+	// Start of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4Start pulumi.StringPtrInput
+	// CIDR for VLAN IPv4
+	VlanCidrV4 pulumi.StringPtrInput
+	// Gateway IP for VLAN IPv4
+	VlanGatewayIpV4 pulumi.StringPtrInput
+	// Hardware address for VLAN
+	VlanHardwareAddr pulumi.StringPtrInput
+	// VLAN ID for the network
+	VlanId pulumi.IntPtrInput
 }
 
 func (NetworkState) ElementType() reflect.Type {
@@ -139,6 +175,18 @@ type networkArgs struct {
 	NameserversV4s []string `pulumi:"nameserversV4s"`
 	// The region of the network
 	Region *string `pulumi:"region"`
+	// End of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4End *string `pulumi:"vlanAllocationPoolV4End"`
+	// Start of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4Start *string `pulumi:"vlanAllocationPoolV4Start"`
+	// CIDR for VLAN IPv4
+	VlanCidrV4 *string `pulumi:"vlanCidrV4"`
+	// Gateway IP for VLAN IPv4
+	VlanGatewayIpV4 *string `pulumi:"vlanGatewayIpV4"`
+	// Hardware address for VLAN
+	VlanHardwareAddr *string `pulumi:"vlanHardwareAddr"`
+	// VLAN ID for the network
+	VlanId *int `pulumi:"vlanId"`
 }
 
 // The set of arguments for constructing a Network resource.
@@ -151,6 +199,18 @@ type NetworkArgs struct {
 	NameserversV4s pulumi.StringArrayInput
 	// The region of the network
 	Region pulumi.StringPtrInput
+	// End of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4End pulumi.StringPtrInput
+	// Start of the IPv4 allocation pool for VLAN
+	VlanAllocationPoolV4Start pulumi.StringPtrInput
+	// CIDR for VLAN IPv4
+	VlanCidrV4 pulumi.StringPtrInput
+	// Gateway IP for VLAN IPv4
+	VlanGatewayIpV4 pulumi.StringPtrInput
+	// Hardware address for VLAN
+	VlanHardwareAddr pulumi.StringPtrInput
+	// VLAN ID for the network
+	VlanId pulumi.IntPtrInput
 }
 
 func (NetworkArgs) ElementType() reflect.Type {
@@ -268,6 +328,36 @@ func (o NetworkOutput) NameserversV4s() pulumi.StringArrayOutput {
 // The region of the network
 func (o NetworkOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
+}
+
+// End of the IPv4 allocation pool for VLAN
+func (o NetworkOutput) VlanAllocationPoolV4End() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanAllocationPoolV4End }).(pulumi.StringPtrOutput)
+}
+
+// Start of the IPv4 allocation pool for VLAN
+func (o NetworkOutput) VlanAllocationPoolV4Start() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanAllocationPoolV4Start }).(pulumi.StringPtrOutput)
+}
+
+// CIDR for VLAN IPv4
+func (o NetworkOutput) VlanCidrV4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanCidrV4 }).(pulumi.StringPtrOutput)
+}
+
+// Gateway IP for VLAN IPv4
+func (o NetworkOutput) VlanGatewayIpV4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanGatewayIpV4 }).(pulumi.StringPtrOutput)
+}
+
+// Hardware address for VLAN
+func (o NetworkOutput) VlanHardwareAddr() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanHardwareAddr }).(pulumi.StringPtrOutput)
+}
+
+// VLAN ID for the network
+func (o NetworkOutput) VlanId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.IntPtrOutput { return v.VlanId }).(pulumi.IntPtrOutput)
 }
 
 type NetworkArrayOutput struct{ *pulumi.OutputState }

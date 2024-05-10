@@ -17,13 +17,25 @@ class NetworkArgs:
                  label: pulumi.Input[str],
                  cidr_v4: Optional[pulumi.Input[str]] = None,
                  nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_end: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
+                 vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
+                 vlan_id: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a Network resource.
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[str] cidr_v4: The CIDR block for the network
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
+        :param pulumi.Input[str] vlan_allocation_pool_v4_end: End of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
+        :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
+        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
+        :param pulumi.Input[int] vlan_id: VLAN ID for the network
         """
         pulumi.set(__self__, "label", label)
         if cidr_v4 is not None:
@@ -32,6 +44,18 @@ class NetworkArgs:
             pulumi.set(__self__, "nameservers_v4s", nameservers_v4s)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if vlan_allocation_pool_v4_end is not None:
+            pulumi.set(__self__, "vlan_allocation_pool_v4_end", vlan_allocation_pool_v4_end)
+        if vlan_allocation_pool_v4_start is not None:
+            pulumi.set(__self__, "vlan_allocation_pool_v4_start", vlan_allocation_pool_v4_start)
+        if vlan_cidr_v4 is not None:
+            pulumi.set(__self__, "vlan_cidr_v4", vlan_cidr_v4)
+        if vlan_gateway_ip_v4 is not None:
+            pulumi.set(__self__, "vlan_gateway_ip_v4", vlan_gateway_ip_v4)
+        if vlan_hardware_addr is not None:
+            pulumi.set(__self__, "vlan_hardware_addr", vlan_hardware_addr)
+        if vlan_id is not None:
+            pulumi.set(__self__, "vlan_id", vlan_id)
 
     @property
     @pulumi.getter
@@ -81,6 +105,78 @@ class NetworkArgs:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4End")
+    def vlan_allocation_pool_v4_end(self) -> Optional[pulumi.Input[str]]:
+        """
+        End of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_end")
+
+    @vlan_allocation_pool_v4_end.setter
+    def vlan_allocation_pool_v4_end(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_allocation_pool_v4_end", value)
+
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4Start")
+    def vlan_allocation_pool_v4_start(self) -> Optional[pulumi.Input[str]]:
+        """
+        Start of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_start")
+
+    @vlan_allocation_pool_v4_start.setter
+    def vlan_allocation_pool_v4_start(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_allocation_pool_v4_start", value)
+
+    @property
+    @pulumi.getter(name="vlanCidrV4")
+    def vlan_cidr_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_cidr_v4")
+
+    @vlan_cidr_v4.setter
+    def vlan_cidr_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_cidr_v4", value)
+
+    @property
+    @pulumi.getter(name="vlanGatewayIpV4")
+    def vlan_gateway_ip_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Gateway IP for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_gateway_ip_v4")
+
+    @vlan_gateway_ip_v4.setter
+    def vlan_gateway_ip_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_gateway_ip_v4", value)
+
+    @property
+    @pulumi.getter(name="vlanHardwareAddr")
+    def vlan_hardware_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hardware address for VLAN
+        """
+        return pulumi.get(self, "vlan_hardware_addr")
+
+    @vlan_hardware_addr.setter
+    def vlan_hardware_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_hardware_addr", value)
+
+    @property
+    @pulumi.getter(name="vlanId")
+    def vlan_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        VLAN ID for the network
+        """
+        return pulumi.get(self, "vlan_id")
+
+    @vlan_id.setter
+    def vlan_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan_id", value)
+
 
 @pulumi.input_type
 class _NetworkState:
@@ -90,7 +186,13 @@ class _NetworkState:
                  label: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-                 region: Optional[pulumi.Input[str]] = None):
+                 region: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_end: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
+                 vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
+                 vlan_id: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering Network resources.
         :param pulumi.Input[str] cidr_v4: The CIDR block for the network
@@ -99,6 +201,12 @@ class _NetworkState:
         :param pulumi.Input[str] name: The name of the network
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
+        :param pulumi.Input[str] vlan_allocation_pool_v4_end: End of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
+        :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
+        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
+        :param pulumi.Input[int] vlan_id: VLAN ID for the network
         """
         if cidr_v4 is not None:
             pulumi.set(__self__, "cidr_v4", cidr_v4)
@@ -112,6 +220,18 @@ class _NetworkState:
             pulumi.set(__self__, "nameservers_v4s", nameservers_v4s)
         if region is not None:
             pulumi.set(__self__, "region", region)
+        if vlan_allocation_pool_v4_end is not None:
+            pulumi.set(__self__, "vlan_allocation_pool_v4_end", vlan_allocation_pool_v4_end)
+        if vlan_allocation_pool_v4_start is not None:
+            pulumi.set(__self__, "vlan_allocation_pool_v4_start", vlan_allocation_pool_v4_start)
+        if vlan_cidr_v4 is not None:
+            pulumi.set(__self__, "vlan_cidr_v4", vlan_cidr_v4)
+        if vlan_gateway_ip_v4 is not None:
+            pulumi.set(__self__, "vlan_gateway_ip_v4", vlan_gateway_ip_v4)
+        if vlan_hardware_addr is not None:
+            pulumi.set(__self__, "vlan_hardware_addr", vlan_hardware_addr)
+        if vlan_id is not None:
+            pulumi.set(__self__, "vlan_id", vlan_id)
 
     @property
     @pulumi.getter(name="cidrV4")
@@ -185,6 +305,78 @@ class _NetworkState:
     def region(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "region", value)
 
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4End")
+    def vlan_allocation_pool_v4_end(self) -> Optional[pulumi.Input[str]]:
+        """
+        End of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_end")
+
+    @vlan_allocation_pool_v4_end.setter
+    def vlan_allocation_pool_v4_end(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_allocation_pool_v4_end", value)
+
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4Start")
+    def vlan_allocation_pool_v4_start(self) -> Optional[pulumi.Input[str]]:
+        """
+        Start of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_start")
+
+    @vlan_allocation_pool_v4_start.setter
+    def vlan_allocation_pool_v4_start(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_allocation_pool_v4_start", value)
+
+    @property
+    @pulumi.getter(name="vlanCidrV4")
+    def vlan_cidr_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_cidr_v4")
+
+    @vlan_cidr_v4.setter
+    def vlan_cidr_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_cidr_v4", value)
+
+    @property
+    @pulumi.getter(name="vlanGatewayIpV4")
+    def vlan_gateway_ip_v4(self) -> Optional[pulumi.Input[str]]:
+        """
+        Gateway IP for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_gateway_ip_v4")
+
+    @vlan_gateway_ip_v4.setter
+    def vlan_gateway_ip_v4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_gateway_ip_v4", value)
+
+    @property
+    @pulumi.getter(name="vlanHardwareAddr")
+    def vlan_hardware_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hardware address for VLAN
+        """
+        return pulumi.get(self, "vlan_hardware_addr")
+
+    @vlan_hardware_addr.setter
+    def vlan_hardware_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_hardware_addr", value)
+
+    @property
+    @pulumi.getter(name="vlanId")
+    def vlan_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        VLAN ID for the network
+        """
+        return pulumi.get(self, "vlan_id")
+
+    @vlan_id.setter
+    def vlan_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan_id", value)
+
 
 class Network(pulumi.CustomResource):
     @overload
@@ -195,6 +387,12 @@ class Network(pulumi.CustomResource):
                  label: Optional[pulumi.Input[str]] = None,
                  nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_end: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
+                 vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
+                 vlan_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
@@ -222,6 +420,12 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] label: Name for the network
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
+        :param pulumi.Input[str] vlan_allocation_pool_v4_end: End of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
+        :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
+        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
+        :param pulumi.Input[int] vlan_id: VLAN ID for the network
         """
         ...
     @overload
@@ -268,6 +472,12 @@ class Network(pulumi.CustomResource):
                  label: Optional[pulumi.Input[str]] = None,
                  nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  region: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_end: Optional[pulumi.Input[str]] = None,
+                 vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
+                 vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
+                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
+                 vlan_id: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -283,6 +493,12 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["label"] = label
             __props__.__dict__["nameservers_v4s"] = nameservers_v4s
             __props__.__dict__["region"] = region
+            __props__.__dict__["vlan_allocation_pool_v4_end"] = vlan_allocation_pool_v4_end
+            __props__.__dict__["vlan_allocation_pool_v4_start"] = vlan_allocation_pool_v4_start
+            __props__.__dict__["vlan_cidr_v4"] = vlan_cidr_v4
+            __props__.__dict__["vlan_gateway_ip_v4"] = vlan_gateway_ip_v4
+            __props__.__dict__["vlan_hardware_addr"] = vlan_hardware_addr
+            __props__.__dict__["vlan_id"] = vlan_id
             __props__.__dict__["default"] = None
             __props__.__dict__["name"] = None
         super(Network, __self__).__init__(
@@ -300,7 +516,13 @@ class Network(pulumi.CustomResource):
             label: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nameservers_v4s: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
-            region: Optional[pulumi.Input[str]] = None) -> 'Network':
+            region: Optional[pulumi.Input[str]] = None,
+            vlan_allocation_pool_v4_end: Optional[pulumi.Input[str]] = None,
+            vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
+            vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
+            vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
+            vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
+            vlan_id: Optional[pulumi.Input[int]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -314,6 +536,12 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] name: The name of the network
         :param pulumi.Input[Sequence[pulumi.Input[str]]] nameservers_v4s: List of nameservers for the network
         :param pulumi.Input[str] region: The region of the network
+        :param pulumi.Input[str] vlan_allocation_pool_v4_end: End of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
+        :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
+        :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
+        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
+        :param pulumi.Input[int] vlan_id: VLAN ID for the network
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -325,6 +553,12 @@ class Network(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["nameservers_v4s"] = nameservers_v4s
         __props__.__dict__["region"] = region
+        __props__.__dict__["vlan_allocation_pool_v4_end"] = vlan_allocation_pool_v4_end
+        __props__.__dict__["vlan_allocation_pool_v4_start"] = vlan_allocation_pool_v4_start
+        __props__.__dict__["vlan_cidr_v4"] = vlan_cidr_v4
+        __props__.__dict__["vlan_gateway_ip_v4"] = vlan_gateway_ip_v4
+        __props__.__dict__["vlan_hardware_addr"] = vlan_hardware_addr
+        __props__.__dict__["vlan_id"] = vlan_id
         return Network(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -374,4 +608,52 @@ class Network(pulumi.CustomResource):
         The region of the network
         """
         return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4End")
+    def vlan_allocation_pool_v4_end(self) -> pulumi.Output[Optional[str]]:
+        """
+        End of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_end")
+
+    @property
+    @pulumi.getter(name="vlanAllocationPoolV4Start")
+    def vlan_allocation_pool_v4_start(self) -> pulumi.Output[Optional[str]]:
+        """
+        Start of the IPv4 allocation pool for VLAN
+        """
+        return pulumi.get(self, "vlan_allocation_pool_v4_start")
+
+    @property
+    @pulumi.getter(name="vlanCidrV4")
+    def vlan_cidr_v4(self) -> pulumi.Output[Optional[str]]:
+        """
+        CIDR for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_cidr_v4")
+
+    @property
+    @pulumi.getter(name="vlanGatewayIpV4")
+    def vlan_gateway_ip_v4(self) -> pulumi.Output[Optional[str]]:
+        """
+        Gateway IP for VLAN IPv4
+        """
+        return pulumi.get(self, "vlan_gateway_ip_v4")
+
+    @property
+    @pulumi.getter(name="vlanHardwareAddr")
+    def vlan_hardware_addr(self) -> pulumi.Output[Optional[str]]:
+        """
+        Hardware address for VLAN
+        """
+        return pulumi.get(self, "vlan_hardware_addr")
+
+    @property
+    @pulumi.getter(name="vlanId")
+    def vlan_id(self) -> pulumi.Output[Optional[int]]:
+        """
+        VLAN ID for the network
+        """
+        return pulumi.get(self, "vlan_id")
 

@@ -183,6 +183,21 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The private IPv4 address for the instance (optional)
+     * 
+     */
+    @Import(name="privateIpv4")
+    private @Nullable Output<String> privateIpv4;
+
+    /**
+     * @return The private IPv4 address for the instance (optional)
+     * 
+     */
+    public Optional<Output<String>> privateIpv4() {
+        return Optional.ofNullable(this.privateIpv4);
+    }
+
+    /**
      * Instance&#39;s public IP address
      * 
      */
@@ -414,6 +429,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         this.networkId = $.networkId;
         this.notes = $.notes;
         this.privateIp = $.privateIp;
+        this.privateIpv4 = $.privateIpv4;
         this.publicIp = $.publicIp;
         this.publicIpRequired = $.publicIpRequired;
         this.ramMb = $.ramMb;
@@ -677,6 +693,27 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder privateIp(String privateIp) {
             return privateIp(Output.of(privateIp));
+        }
+
+        /**
+         * @param privateIpv4 The private IPv4 address for the instance (optional)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateIpv4(@Nullable Output<String> privateIpv4) {
+            $.privateIpv4 = privateIpv4;
+            return this;
+        }
+
+        /**
+         * @param privateIpv4 The private IPv4 address for the instance (optional)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateIpv4(String privateIpv4) {
+            return privateIpv4(Output.of(privateIpv4));
         }
 
         /**

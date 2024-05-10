@@ -1534,6 +1534,10 @@
                     "type": "string",
                     "description": "Instance's private IP address\n"
                 },
+                "privateIpv4": {
+                    "type": "string",
+                    "description": "The private IPv4 address for the instance (optional)\n"
+                },
                 "publicIp": {
                     "type": "string",
                     "description": "Instance's public IP address\n"
@@ -1639,6 +1643,10 @@
                     "type": "string",
                     "description": "Add some notes to the instance\n"
                 },
+                "privateIpv4": {
+                    "type": "string",
+                    "description": "The private IPv4 address for the instance (optional)\n"
+                },
                 "publicIpRequired": {
                     "type": "string",
                     "description": "This should be either 'none' or 'create' (default: 'create')\n"
@@ -1728,6 +1736,10 @@
                     "privateIp": {
                         "type": "string",
                         "description": "Instance's private IP address\n"
+                    },
+                    "privateIpv4": {
+                        "type": "string",
+                        "description": "The private IPv4 address for the instance (optional)\n"
                     },
                     "publicIp": {
                         "type": "string",
@@ -2274,6 +2286,30 @@
                 "region": {
                     "type": "string",
                     "description": "The region of the network\n"
+                },
+                "vlanAllocationPoolV4End": {
+                    "type": "string",
+                    "description": "End of the IPv4 allocation pool for VLAN\n"
+                },
+                "vlanAllocationPoolV4Start": {
+                    "type": "string",
+                    "description": "Start of the IPv4 allocation pool for VLAN\n"
+                },
+                "vlanCidrV4": {
+                    "type": "string",
+                    "description": "CIDR for VLAN IPv4\n"
+                },
+                "vlanGatewayIpV4": {
+                    "type": "string",
+                    "description": "Gateway IP for VLAN IPv4\n"
+                },
+                "vlanHardwareAddr": {
+                    "type": "string",
+                    "description": "Hardware address for VLAN\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID for the network\n"
                 }
             },
             "required": [
@@ -2301,6 +2337,30 @@
                 "region": {
                     "type": "string",
                     "description": "The region of the network\n"
+                },
+                "vlanAllocationPoolV4End": {
+                    "type": "string",
+                    "description": "End of the IPv4 allocation pool for VLAN\n"
+                },
+                "vlanAllocationPoolV4Start": {
+                    "type": "string",
+                    "description": "Start of the IPv4 allocation pool for VLAN\n"
+                },
+                "vlanCidrV4": {
+                    "type": "string",
+                    "description": "CIDR for VLAN IPv4\n"
+                },
+                "vlanGatewayIpV4": {
+                    "type": "string",
+                    "description": "Gateway IP for VLAN IPv4\n"
+                },
+                "vlanHardwareAddr": {
+                    "type": "string",
+                    "description": "Hardware address for VLAN\n"
+                },
+                "vlanId": {
+                    "type": "integer",
+                    "description": "VLAN ID for the network\n"
                 }
             },
             "requiredInputs": [
@@ -2335,6 +2395,30 @@
                     "region": {
                         "type": "string",
                         "description": "The region of the network\n"
+                    },
+                    "vlanAllocationPoolV4End": {
+                        "type": "string",
+                        "description": "End of the IPv4 allocation pool for VLAN\n"
+                    },
+                    "vlanAllocationPoolV4Start": {
+                        "type": "string",
+                        "description": "Start of the IPv4 allocation pool for VLAN\n"
+                    },
+                    "vlanCidrV4": {
+                        "type": "string",
+                        "description": "CIDR for VLAN IPv4\n"
+                    },
+                    "vlanGatewayIpV4": {
+                        "type": "string",
+                        "description": "Gateway IP for VLAN IPv4\n"
+                    },
+                    "vlanHardwareAddr": {
+                        "type": "string",
+                        "description": "Hardware address for VLAN\n"
+                    },
+                    "vlanId": {
+                        "type": "integer",
+                        "description": "VLAN ID for the network\n"
                     }
                 },
                 "type": "object"
