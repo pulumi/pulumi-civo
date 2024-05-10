@@ -1499,10 +1499,10 @@ github.com/cilium/ebpf v0.6.2/go.mod h1:4tRaxcgiL706VnOzHOdBlY8IEAIdxINsQBcU4xJJ
 github.com/cilium/ebpf v0.7.0/go.mod h1:/oI2+1shJiTGAMgl6/RgJr36Eo1jzrRcAWbcXO2usCA=
 github.com/circonus-labs/circonus-gometrics v2.3.1+incompatible/go.mod h1:nmEj6Dob7S7YxXgwXpfOuvO54S+tGdZdw9fuRZt25Ag=
 github.com/circonus-labs/circonusllhist v0.1.3/go.mod h1:kMXHVDlOchFAehlya5ePtbp5jckzBHf4XRpQvBOLI+I=
-github.com/civo/civogo v0.3.68 h1:WYqJTtMJDpNVtJE0dMpoQoU5T11A1fpHRqNPiL7hGYM=
-github.com/civo/civogo v0.3.68/go.mod h1:S/iYmGvQOraxdRtcXeq/2mVX01/ia2qfpQUp2SsTLKA=
-github.com/civo/terraform-provider-civo v1.0.40 h1:eX5VPwjWLLI9nMhPMFD3zRp1nIAQOEbNxNNFvCnFb9M=
-github.com/civo/terraform-provider-civo v1.0.40/go.mod h1:zM7K7iXJ27+ZXEGTizSjSiUy4x/kY6H3irgmrZuIWAk=
+github.com/civo/civogo v0.3.69 h1:Not+F3Z1mxtXjMvDhUD5Nwi/1ql3uBT0ioRfhKXYhOA=
+github.com/civo/civogo v0.3.69/go.mod h1:7UCYX+qeeJbrG55E1huv+0ySxcHTqq/26FcHLVelQJM=
+github.com/civo/terraform-provider-civo v1.0.41 h1:lTLS+RWtS1XVufr/s7NNCnkqy4HzkgfT8szS8Ynva3Q=
+github.com/civo/terraform-provider-civo v1.0.41/go.mod h1:9JC3eLD4helVg69/waNiAsPSOPycjNJCzFPdOIADv18=
 github.com/clbanning/x2j v0.0.0-20191024224557-825249438eec/go.mod h1:jMjuTZXRI4dUb/I5gc9Hdhagfvm9+RyrPryS/auMzxE=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cloudflare/circl v1.3.3/go.mod h1:5XYMA4rFBvNIrhs50XuiBJ15vF2pZn4nnUKZrLbUZFA=
