@@ -20,6 +20,7 @@ class InstanceArgs:
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
+                 private_ipv4: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reserved_ipv4: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,7 @@ class InstanceArgs:
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
         :param pulumi.Input[str] notes: Add some notes to the instance
+        :param pulumi.Input[str] private_ipv4: The private IPv4 address for the instance (optional)
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
@@ -59,6 +61,8 @@ class InstanceArgs:
             pulumi.set(__self__, "network_id", network_id)
         if notes is not None:
             pulumi.set(__self__, "notes", notes)
+        if private_ipv4 is not None:
+            pulumi.set(__self__, "private_ipv4", private_ipv4)
         if public_ip_required is not None:
             pulumi.set(__self__, "public_ip_required", public_ip_required)
         if region is not None:
@@ -152,6 +156,18 @@ class InstanceArgs:
     @notes.setter
     def notes(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "notes", value)
+
+    @property
+    @pulumi.getter(name="privateIpv4")
+    def private_ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address for the instance (optional)
+        """
+        return pulumi.get(self, "private_ipv4")
+
+    @private_ipv4.setter
+    def private_ipv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_ipv4", value)
 
     @property
     @pulumi.getter(name="publicIpRequired")
@@ -279,6 +295,7 @@ class _InstanceState:
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
                  private_ip: Optional[pulumi.Input[str]] = None,
+                 private_ipv4: Optional[pulumi.Input[str]] = None,
                  public_ip: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  ram_mb: Optional[pulumi.Input[int]] = None,
@@ -306,6 +323,7 @@ class _InstanceState:
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
         :param pulumi.Input[str] notes: Add some notes to the instance
         :param pulumi.Input[str] private_ip: Instance's private IP address
+        :param pulumi.Input[str] private_ipv4: The private IPv4 address for the instance (optional)
         :param pulumi.Input[str] public_ip: Instance's public IP address
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[int] ram_mb: Instance's RAM (MB)
@@ -343,6 +361,8 @@ class _InstanceState:
             pulumi.set(__self__, "notes", notes)
         if private_ip is not None:
             pulumi.set(__self__, "private_ip", private_ip)
+        if private_ipv4 is not None:
+            pulumi.set(__self__, "private_ipv4", private_ipv4)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
         if public_ip_required is not None:
@@ -506,6 +526,18 @@ class _InstanceState:
     @private_ip.setter
     def private_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_ip", value)
+
+    @property
+    @pulumi.getter(name="privateIpv4")
+    def private_ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv4 address for the instance (optional)
+        """
+        return pulumi.get(self, "private_ipv4")
+
+    @private_ipv4.setter
+    def private_ipv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_ipv4", value)
 
     @property
     @pulumi.getter(name="publicIp")
@@ -690,6 +722,7 @@ class Instance(pulumi.CustomResource):
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
+                 private_ipv4: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reserved_ipv4: Optional[pulumi.Input[str]] = None,
@@ -719,6 +752,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
         :param pulumi.Input[str] notes: Add some notes to the instance
+        :param pulumi.Input[str] private_ipv4: The private IPv4 address for the instance (optional)
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[str] region: The region for the instance, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] reserved_ipv4: Can be either the UUID, name, or the IP address of the reserved IP
@@ -767,6 +801,7 @@ class Instance(pulumi.CustomResource):
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  notes: Optional[pulumi.Input[str]] = None,
+                 private_ipv4: Optional[pulumi.Input[str]] = None,
                  public_ip_required: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  reserved_ipv4: Optional[pulumi.Input[str]] = None,
@@ -791,6 +826,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["initial_user"] = initial_user
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["notes"] = notes
+            __props__.__dict__["private_ipv4"] = private_ipv4
             __props__.__dict__["public_ip_required"] = public_ip_required
             __props__.__dict__["region"] = region
             __props__.__dict__["reserved_ipv4"] = reserved_ipv4
@@ -833,6 +869,7 @@ class Instance(pulumi.CustomResource):
             network_id: Optional[pulumi.Input[str]] = None,
             notes: Optional[pulumi.Input[str]] = None,
             private_ip: Optional[pulumi.Input[str]] = None,
+            private_ipv4: Optional[pulumi.Input[str]] = None,
             public_ip: Optional[pulumi.Input[str]] = None,
             public_ip_required: Optional[pulumi.Input[str]] = None,
             ram_mb: Optional[pulumi.Input[int]] = None,
@@ -865,6 +902,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
         :param pulumi.Input[str] notes: Add some notes to the instance
         :param pulumi.Input[str] private_ip: Instance's private IP address
+        :param pulumi.Input[str] private_ipv4: The private IPv4 address for the instance (optional)
         :param pulumi.Input[str] public_ip: Instance's public IP address
         :param pulumi.Input[str] public_ip_required: This should be either 'none' or 'create' (default: 'create')
         :param pulumi.Input[int] ram_mb: Instance's RAM (MB)
@@ -895,6 +933,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["notes"] = notes
         __props__.__dict__["private_ip"] = private_ip
+        __props__.__dict__["private_ipv4"] = private_ipv4
         __props__.__dict__["public_ip"] = public_ip
         __props__.__dict__["public_ip_required"] = public_ip_required
         __props__.__dict__["ram_mb"] = ram_mb
@@ -998,6 +1037,14 @@ class Instance(pulumi.CustomResource):
         Instance's private IP address
         """
         return pulumi.get(self, "private_ip")
+
+    @property
+    @pulumi.getter(name="privateIpv4")
+    def private_ipv4(self) -> pulumi.Output[Optional[str]]:
+        """
+        The private IPv4 address for the instance (optional)
+        """
+        return pulumi.get(self, "private_ipv4")
 
     @property
     @pulumi.getter(name="publicIp")

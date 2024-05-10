@@ -11,6 +11,7 @@ import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -148,6 +149,90 @@ public class Network extends com.pulumi.resources.CustomResource {
      */
     public Output<String> region() {
         return this.region;
+    }
+    /**
+     * End of the IPv4 allocation pool for VLAN
+     * 
+     */
+    @Export(name="vlanAllocationPoolV4End", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanAllocationPoolV4End;
+
+    /**
+     * @return End of the IPv4 allocation pool for VLAN
+     * 
+     */
+    public Output<Optional<String>> vlanAllocationPoolV4End() {
+        return Codegen.optional(this.vlanAllocationPoolV4End);
+    }
+    /**
+     * Start of the IPv4 allocation pool for VLAN
+     * 
+     */
+    @Export(name="vlanAllocationPoolV4Start", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanAllocationPoolV4Start;
+
+    /**
+     * @return Start of the IPv4 allocation pool for VLAN
+     * 
+     */
+    public Output<Optional<String>> vlanAllocationPoolV4Start() {
+        return Codegen.optional(this.vlanAllocationPoolV4Start);
+    }
+    /**
+     * CIDR for VLAN IPv4
+     * 
+     */
+    @Export(name="vlanCidrV4", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanCidrV4;
+
+    /**
+     * @return CIDR for VLAN IPv4
+     * 
+     */
+    public Output<Optional<String>> vlanCidrV4() {
+        return Codegen.optional(this.vlanCidrV4);
+    }
+    /**
+     * Gateway IP for VLAN IPv4
+     * 
+     */
+    @Export(name="vlanGatewayIpV4", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanGatewayIpV4;
+
+    /**
+     * @return Gateway IP for VLAN IPv4
+     * 
+     */
+    public Output<Optional<String>> vlanGatewayIpV4() {
+        return Codegen.optional(this.vlanGatewayIpV4);
+    }
+    /**
+     * Hardware address for VLAN
+     * 
+     */
+    @Export(name="vlanHardwareAddr", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanHardwareAddr;
+
+    /**
+     * @return Hardware address for VLAN
+     * 
+     */
+    public Output<Optional<String>> vlanHardwareAddr() {
+        return Codegen.optional(this.vlanHardwareAddr);
+    }
+    /**
+     * VLAN ID for the network
+     * 
+     */
+    @Export(name="vlanId", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> vlanId;
+
+    /**
+     * @return VLAN ID for the network
+     * 
+     */
+    public Output<Optional<Integer>> vlanId() {
+        return Codegen.optional(this.vlanId);
     }
 
     /**

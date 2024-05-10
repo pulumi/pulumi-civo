@@ -90,6 +90,12 @@ namespace Pulumi.Civo
         public Output<string> PrivateIp { get; private set; } = null!;
 
         /// <summary>
+        /// The private IPv4 address for the instance (optional)
+        /// </summary>
+        [Output("privateIpv4")]
+        public Output<string?> PrivateIpv4 { get; private set; } = null!;
+
+        /// <summary>
         /// Instance's public IP address
         /// </summary>
         [Output("publicIp")]
@@ -260,6 +266,12 @@ namespace Pulumi.Civo
         public Input<string>? Notes { get; set; }
 
         /// <summary>
+        /// The private IPv4 address for the instance (optional)
+        /// </summary>
+        [Input("privateIpv4")]
+        public Input<string>? PrivateIpv4 { get; set; }
+
+        /// <summary>
         /// This should be either 'none' or 'create' (default: 'create')
         /// </summary>
         [Input("publicIpRequired")]
@@ -402,6 +414,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("privateIp")]
         public Input<string>? PrivateIp { get; set; }
+
+        /// <summary>
+        /// The private IPv4 address for the instance (optional)
+        /// </summary>
+        [Input("privateIpv4")]
+        public Input<string>? PrivateIpv4 { get; set; }
 
         /// <summary>
         /// Instance's public IP address

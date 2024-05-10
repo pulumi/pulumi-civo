@@ -45,6 +45,8 @@ type Instance struct {
 	Notes pulumi.StringPtrOutput `pulumi:"notes"`
 	// Instance's private IP address
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
+	// The private IPv4 address for the instance (optional)
+	PrivateIpv4 pulumi.StringPtrOutput `pulumi:"privateIpv4"`
 	// Instance's public IP address
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
 	// This should be either 'none' or 'create' (default: 'create')
@@ -133,6 +135,8 @@ type instanceState struct {
 	Notes *string `pulumi:"notes"`
 	// Instance's private IP address
 	PrivateIp *string `pulumi:"privateIp"`
+	// The private IPv4 address for the instance (optional)
+	PrivateIpv4 *string `pulumi:"privateIpv4"`
 	// Instance's public IP address
 	PublicIp *string `pulumi:"publicIp"`
 	// This should be either 'none' or 'create' (default: 'create')
@@ -188,6 +192,8 @@ type InstanceState struct {
 	Notes pulumi.StringPtrInput
 	// Instance's private IP address
 	PrivateIp pulumi.StringPtrInput
+	// The private IPv4 address for the instance (optional)
+	PrivateIpv4 pulumi.StringPtrInput
 	// Instance's public IP address
 	PublicIp pulumi.StringPtrInput
 	// This should be either 'none' or 'create' (default: 'create')
@@ -237,6 +243,8 @@ type instanceArgs struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Add some notes to the instance
 	Notes *string `pulumi:"notes"`
+	// The private IPv4 address for the instance (optional)
+	PrivateIpv4 *string `pulumi:"privateIpv4"`
 	// This should be either 'none' or 'create' (default: 'create')
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
 	// The region for the instance, if not declare we use the region in declared in the provider
@@ -273,6 +281,8 @@ type InstanceArgs struct {
 	NetworkId pulumi.StringPtrInput
 	// Add some notes to the instance
 	Notes pulumi.StringPtrInput
+	// The private IPv4 address for the instance (optional)
+	PrivateIpv4 pulumi.StringPtrInput
 	// This should be either 'none' or 'create' (default: 'create')
 	PublicIpRequired pulumi.StringPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider
@@ -435,6 +445,11 @@ func (o InstanceOutput) Notes() pulumi.StringPtrOutput {
 // Instance's private IP address
 func (o InstanceOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
+}
+
+// The private IPv4 address for the instance (optional)
+func (o InstanceOutput) PrivateIpv4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.PrivateIpv4 }).(pulumi.StringPtrOutput)
 }
 
 // Instance's public IP address

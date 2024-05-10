@@ -185,6 +185,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.privateIp;
     }
     /**
+     * The private IPv4 address for the instance (optional)
+     * 
+     */
+    @Export(name="privateIpv4", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> privateIpv4;
+
+    /**
+     * @return The private IPv4 address for the instance (optional)
+     * 
+     */
+    public Output<Optional<String>> privateIpv4() {
+        return Codegen.optional(this.privateIpv4);
+    }
+    /**
      * Instance&#39;s public IP address
      * 
      */
