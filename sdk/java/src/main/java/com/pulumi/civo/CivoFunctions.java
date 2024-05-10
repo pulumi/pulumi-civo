@@ -76,7 +76,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -98,13 +99,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -119,7 +121,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -141,13 +144,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -162,7 +166,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -184,13 +189,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -205,7 +211,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -227,13 +234,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -248,7 +256,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -270,13 +279,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -291,7 +301,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -313,13 +324,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
-     *             .name(&#34;test-database&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-database")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -418,7 +430,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -440,14 +453,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -462,7 +476,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -484,14 +499,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -506,7 +522,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -528,14 +545,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -550,7 +568,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -572,14 +591,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -594,7 +614,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -616,14 +637,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -638,7 +660,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -660,14 +683,15 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
-     *         ctx.export(&#34;domainOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.name()));
-     *         ctx.export(&#34;domainIdOutput&#34;, domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()));
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -682,7 +706,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -705,19 +730,20 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
      *         final var www = CivoFunctions.getDnsDomainRecord(GetDnsDomainRecordArgs.builder()
-     *             .domainId(domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()))
-     *             .name(&#34;www&#34;)
+     *             .domainId(domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()))
+     *             .name("www")
      *             .build());
      * 
-     *         ctx.export(&#34;recordType&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.type()));
-     *         ctx.export(&#34;recordTtl&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.ttl()));
+     *         ctx.export("recordType", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.type()));
+     *         ctx.export("recordTtl", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.ttl()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -732,7 +758,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -755,19 +782,20 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
      *         final var www = CivoFunctions.getDnsDomainRecord(GetDnsDomainRecordArgs.builder()
-     *             .domainId(domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()))
-     *             .name(&#34;www&#34;)
+     *             .domainId(domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()))
+     *             .name("www")
      *             .build());
      * 
-     *         ctx.export(&#34;recordType&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.type()));
-     *         ctx.export(&#34;recordTtl&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.ttl()));
+     *         ctx.export("recordType", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.type()));
+     *         ctx.export("recordTtl", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.ttl()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -782,7 +810,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -805,19 +834,20 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
      *         final var www = CivoFunctions.getDnsDomainRecord(GetDnsDomainRecordArgs.builder()
-     *             .domainId(domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()))
-     *             .name(&#34;www&#34;)
+     *             .domainId(domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()))
+     *             .name("www")
      *             .build());
      * 
-     *         ctx.export(&#34;recordType&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.type()));
-     *         ctx.export(&#34;recordTtl&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.ttl()));
+     *         ctx.export("recordType", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.type()));
+     *         ctx.export("recordTtl", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.ttl()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -832,7 +862,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -855,19 +886,20 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
-     *             .name(&#34;domain.com&#34;)
+     *             .name("domain.com")
      *             .build());
      * 
      *         final var www = CivoFunctions.getDnsDomainRecord(GetDnsDomainRecordArgs.builder()
-     *             .domainId(domain.applyValue(getDnsDomainNameResult -&gt; getDnsDomainNameResult.id()))
-     *             .name(&#34;www&#34;)
+     *             .domainId(domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()))
+     *             .name("www")
      *             .build());
      * 
-     *         ctx.export(&#34;recordType&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.type()));
-     *         ctx.export(&#34;recordTtl&#34;, www.applyValue(getDnsDomainRecordResult -&gt; getDnsDomainRecordResult.ttl()));
+     *         ctx.export("recordType", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.type()));
+     *         ctx.export("recordTtl", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.ttl()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -884,7 +916,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -906,13 +939,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -929,7 +963,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -951,13 +986,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -974,7 +1010,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -996,13 +1033,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1019,7 +1057,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1041,13 +1080,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1064,7 +1104,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1086,13 +1127,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1109,7 +1151,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1131,13 +1174,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
-     *             .name(&#34;test-firewall&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("test-firewall")
+     *             .region("LON1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1152,7 +1196,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1174,13 +1219,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1195,7 +1241,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1217,13 +1264,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1238,7 +1286,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1260,13 +1309,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1281,7 +1331,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1303,13 +1354,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1324,7 +1376,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1346,13 +1399,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1367,7 +1421,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1389,13 +1444,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
-     *             .hostname(&#34;myhostname.com&#34;)
+     *             .hostname("myhostname.com")
      *             .build());
      * 
-     *         ctx.export(&#34;instanceOutput&#34;, myhostaname.applyValue(getInstanceResult -&gt; getInstanceResult.publicIp()));
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1410,7 +1466,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1432,16 +1489,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1456,7 +1514,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1478,16 +1537,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1502,7 +1562,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1524,16 +1585,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1548,7 +1610,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1570,16 +1633,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1594,7 +1658,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1616,16 +1681,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1640,7 +1706,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1662,16 +1729,17 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
-     *             .region(&#34;LON1&#34;)
+     *             .region("LON1")
      *             .filters(GetInstancesFilterArgs.builder()
-     *                 .key(&#34;size&#34;)
+     *                 .key("size")
      *                 .values(small)
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1686,7 +1754,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1708,13 +1777,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1729,7 +1799,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1751,13 +1822,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1772,7 +1844,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1794,13 +1867,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1815,7 +1889,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1837,13 +1912,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1858,7 +1934,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1880,13 +1957,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1901,7 +1979,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1923,13 +2002,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
-     *             .name(&#34;my-super-cluster&#34;)
+     *             .name("my-super-cluster")
      *             .build());
      * 
-     *         ctx.export(&#34;kubernetesClusterOutput&#34;, my_cluster.masterIp());
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1942,7 +2022,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -1965,21 +2046,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -1992,7 +2074,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2015,21 +2098,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2042,7 +2126,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2065,21 +2150,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2092,7 +2178,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2115,21 +2202,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2142,7 +2230,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2165,21 +2254,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2192,7 +2282,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2215,21 +2306,22 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;talos&#34;)
+     *                 .key("type")
+     *                 .values("talos")
      *                 .build())
      *             .build());
      * 
      *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
      *             .filters(GetKubernetesVersionFilterArgs.builder()
-     *                 .key(&#34;type&#34;)
-     *                 .values(&#34;k3s&#34;)
+     *                 .key("type")
+     *                 .values("k3s")
      *                 .build())
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2244,7 +2336,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2267,14 +2360,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2289,7 +2383,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2312,14 +2407,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2334,7 +2430,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2357,14 +2454,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2379,7 +2477,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2402,14 +2501,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2424,7 +2524,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2447,14 +2548,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2469,7 +2571,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2492,14 +2595,15 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // TODO
      *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
-     *             .name(&#34;lb-name&#34;)
-     *             .region(&#34;LON1&#34;)
+     *             .name("lb-name")
+     *             .region("LON1")
      *             .build());
      * 
-     *         ctx.export(&#34;civoLoadbalancerOutput&#34;, my_lb.publicIp());
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2516,7 +2620,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2538,18 +2643,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2566,7 +2672,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2588,18 +2695,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2616,7 +2724,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2638,18 +2747,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2666,7 +2776,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2688,18 +2799,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2716,7 +2828,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2738,18 +2851,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2766,7 +2880,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2788,18 +2903,19 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
-     *             .label(&#34;test-network&#34;)
-     *             .region(&#34;LON1&#34;)
-     *             .cidrV4(&#34;10.0.0.0/24&#34;)
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
      *             .nameserversV4(            
-     *                 &#34;8.8.8.8&#34;,
-     *                 &#34;8.8.4.4&#34;,
-     *                 &#34;1.1.1.1&#34;)
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2814,7 +2930,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2836,12 +2953,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2856,7 +2974,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2878,12 +2997,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2898,7 +3018,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2920,12 +3041,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2940,7 +3062,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -2962,12 +3085,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -2982,7 +3106,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3004,12 +3129,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3024,7 +3150,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3046,12 +3173,13 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3066,7 +3194,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3091,20 +3220,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3119,7 +3249,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3144,20 +3275,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3172,7 +3304,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3197,20 +3330,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3225,7 +3359,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3250,20 +3385,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3278,7 +3414,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3303,20 +3440,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3331,7 +3469,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3356,20 +3495,21 @@ public final class CivoFunctions {
      *     public static void stack(Context ctx) {
      *         // Read a credential for the object store
      *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
-     *             .name(&#34;backup-server&#34;)
+     *             .name("backup-server")
      *             .build());
      * 
      *         // Use the credential to create a bucket
-     *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
-     *             .name(&#34;backup-server&#34;)
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+     *             .name("backup-server")
      *             .maxSizeGb(500)
-     *             .region(&#34;LON1&#34;)
-     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -&gt; getObjectStoreCredentialResult.accessKeyId()))
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
      *             .build());
      * 
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3540,7 +3680,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3562,13 +3703,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3583,7 +3725,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3605,13 +3748,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3626,7 +3770,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3648,13 +3793,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3669,7 +3815,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3691,13 +3838,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3712,7 +3860,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3734,13 +3883,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
@@ -3755,7 +3905,8 @@ public final class CivoFunctions {
      * ## Example Usage
      * 
      * &lt;!--Start PulumiCodeChooser --&gt;
-     * ```java
+     * <pre>
+     * {@code
      * package generated_program;
      * 
      * import com.pulumi.Context;
@@ -3777,13 +3928,14 @@ public final class CivoFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
-     *             .name(&#34;test-volume-name&#34;)
+     *             .name("test-volume-name")
      *             .build());
      * 
-     *         ctx.export(&#34;volumeOutput&#34;, myvolume.applyValue(getVolumeResult -&gt; getVolumeResult));
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
      *     }
      * }
-     * ```
+     * }
+     * </pre>
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */

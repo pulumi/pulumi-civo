@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -43,19 +44,20 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Send to create a reserved IP
- *         var www = new ReservedIp(&#34;www&#34;, ReservedIpArgs.builder()        
- *             .name(&#34;nginx-www&#34;)
+ *         var www = new ReservedIp("www", ReservedIpArgs.builder()        
+ *             .name("nginx-www")
  *             .build());
  * 
  *         // We assign the reserved IP to the instance
- *         var webserver_www = new InstanceReservedIpAssignment(&#34;webserver-www&#34;, InstanceReservedIpAssignmentArgs.builder()        
+ *         var webserver_www = new InstanceReservedIpAssignment("webserver-www", InstanceReservedIpAssignmentArgs.builder()        
  *             .instanceId(wwwCivoInstance.id())
  *             .reservedIpId(web_server.id())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  */

@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -41,13 +42,14 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create a new domain name
- *         var main = new DnsDomainName(&#34;main&#34;, DnsDomainNameArgs.builder()        
- *             .name(&#34;mydomain.com&#34;)
+ *         var main = new DnsDomainName("main", DnsDomainNameArgs.builder()        
+ *             .name("mydomain.com")
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

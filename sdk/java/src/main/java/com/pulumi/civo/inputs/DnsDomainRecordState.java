@@ -62,14 +62,14 @@ public final class DnsDomainRecordState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * @return The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     public Optional<Output<String>> name() {
@@ -247,7 +247,7 @@ public final class DnsDomainRecordState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+         * @param name The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
          * 
          * @return builder
          * 
@@ -258,7 +258,7 @@ public final class DnsDomainRecordState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param name The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+         * @param name The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
          * 
          * @return builder
          * 

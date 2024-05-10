@@ -20,7 +20,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,27 +48,28 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Create a simple credential for the object store
  *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
- *             .name(&#34;backup-server&#34;)
+ *             .name("backup-server")
  *             .build());
  * 
  *         // Create a credential for the object store with a specific access key and secret key
- *         var backupObjectStoreCredential = new ObjectStoreCredential(&#34;backupObjectStoreCredential&#34;, ObjectStoreCredentialArgs.builder()        
- *             .name(&#34;backup-server&#34;)
- *             .accessKeyId(&#34;my-access-key&#34;)
- *             .secretAccessKey(&#34;my-secret-key&#34;)
+ *         var backupObjectStoreCredential = new ObjectStoreCredential("backupObjectStoreCredential", ObjectStoreCredentialArgs.builder()        
+ *             .name("backup-server")
+ *             .accessKeyId("my-access-key")
+ *             .secretAccessKey("my-secret-key")
  *             .build());
  * 
  *         // Use the credential to create a bucket
- *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
- *             .name(&#34;backup-server&#34;)
+ *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+ *             .name("backup-server")
  *             .maxSizeGb(500)
- *             .region(&#34;LON1&#34;)
+ *             .region("LON1")
  *             .accessKeyId(backupObjectStoreCredential.accessKeyId())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import
