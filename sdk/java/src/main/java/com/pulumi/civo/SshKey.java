@@ -19,7 +19,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -40,16 +41,17 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var my_user = new SshKey(&#34;my-user&#34;, SshKeyArgs.builder()        
- *             .name(&#34;my-user&#34;)
+ *         var my_user = new SshKey("my-user", SshKeyArgs.builder()        
+ *             .name("my-user")
  *             .publicKey(StdFunctions.file(FileArgs.builder()
- *                 .input(&#34;~/.ssh/id_rsa.pub&#34;)
+ *                 .input("~/.ssh/id_rsa.pub")
  *                 .build()).result())
  *             .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

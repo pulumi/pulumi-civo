@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -44,10 +45,10 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var backupObjectStore = new ObjectStore(&#34;backupObjectStore&#34;, ObjectStoreArgs.builder()        
- *             .name(&#34;backup-server&#34;)
+ *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+ *             .name("backup-server")
  *             .maxSizeGb(500)
- *             .region(&#34;LON1&#34;)
+ *             .region("LON1")
  *             .build());
  * 
  *         // If you create the bucket without credentials, you can read the credentials in this way
@@ -57,7 +58,8 @@ import javax.annotation.Nullable;
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

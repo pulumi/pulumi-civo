@@ -21,7 +21,8 @@ import javax.annotation.Nullable;
  * ## Example Usage
  * 
  * &lt;!--Start PulumiCodeChooser --&gt;
- * ```java
+ * <pre>
+ * {@code
  * package generated_program;
  * 
  * import com.pulumi.Context;
@@ -47,21 +48,22 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Get network
  *         final var defaultNetwork = CivoFunctions.getNetwork(GetNetworkArgs.builder()
- *             .label(&#34;Default&#34;)
+ *             .label("Default")
  *             .build());
  * 
  *         // Create volume
- *         var db = new Volume(&#34;db&#34;, VolumeArgs.builder()        
- *             .name(&#34;backup-data&#34;)
+ *         var db = new Volume("db", VolumeArgs.builder()        
+ *             .name("backup-data")
  *             .sizeGb(5)
- *             .networkId(defaultNetwork.applyValue(getNetworkResult -&gt; getNetworkResult.id()))
+ *             .networkId(defaultNetwork.applyValue(getNetworkResult -> getNetworkResult.id()))
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(defaultNetwork.applyValue(getNetworkResult -&gt; getNetworkResult))
+ *                 .dependsOn(defaultNetwork.applyValue(getNetworkResult -> getNetworkResult))
  *                 .build());
  * 
  *     }
  * }
- * ```
+ * }
+ * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
  * 
  * ## Import

@@ -72,14 +72,14 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
         return this.domainId;
     }
     /**
-     * The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The portion before the domain name (e.g. www) or an @ for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * @return The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     public Output<String> name() {
