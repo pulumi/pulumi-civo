@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var customNet = new Network("customNet", NetworkArgs.builder()        
+ *         var customNet = new Network("customNet", NetworkArgs.builder()
  *             .label("test_network")
  *             .build());
  * 

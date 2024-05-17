@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var my_user = new SshKey("my-user", SshKeyArgs.builder()        
+ *         var my_user = new SshKey("my-user", SshKeyArgs.builder()
  *             .name("my-user")
  *             .publicKey(StdFunctions.file(FileArgs.builder()
  *                 .input("~/.ssh/id_rsa.pub")
