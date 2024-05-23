@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Send to create a reserved IP
- *         var www = new ReservedIp("www", ReservedIpArgs.builder()        
+ *         var www = new ReservedIp("www", ReservedIpArgs.builder()
  *             .name("nginx-www")
  *             .build());
  * 
  *         // We assign the reserved IP to the instance
- *         var webserver_www = new InstanceReservedIpAssignment("webserver-www", InstanceReservedIpAssignmentArgs.builder()        
+ *         var webserver_www = new InstanceReservedIpAssignment("webserver-www", InstanceReservedIpAssignmentArgs.builder()
  *             .instanceId(wwwCivoInstance.id())
  *             .reservedIpId(web_server.id())
  *             .build());
