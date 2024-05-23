@@ -52,14 +52,14 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create a credential for the object store with a specific access key and secret key
- *         var backupObjectStoreCredential = new ObjectStoreCredential("backupObjectStoreCredential", ObjectStoreCredentialArgs.builder()        
+ *         var backupObjectStoreCredential = new ObjectStoreCredential("backupObjectStoreCredential", ObjectStoreCredentialArgs.builder()
  *             .name("backup-server")
  *             .accessKeyId("my-access-key")
  *             .secretAccessKey("my-secret-key")
  *             .build());
  * 
  *         // Use the credential to create a bucket
- *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+ *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()
  *             .name("backup-server")
  *             .maxSizeGb(500)
  *             .region("LON1")

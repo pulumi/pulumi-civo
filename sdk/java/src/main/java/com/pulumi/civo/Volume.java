@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // Create volume
- *         var db = new Volume("db", VolumeArgs.builder()        
+ *         var db = new Volume("db", VolumeArgs.builder()
  *             .name("backup-data")
  *             .sizeGb(5)
  *             .networkId(defaultNetwork.applyValue(getNetworkResult -> getNetworkResult.id()))
