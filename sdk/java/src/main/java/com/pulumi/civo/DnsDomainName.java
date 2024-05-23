@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         // Create a new domain name
- *         var main = new DnsDomainName("main", DnsDomainNameArgs.builder()        
+ *         var main = new DnsDomainName("main", DnsDomainNameArgs.builder()
  *             .name("mydomain.com")
  *             .build());
  * 
