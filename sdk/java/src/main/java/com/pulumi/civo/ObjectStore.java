@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()        
+ *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()
  *             .name("backup-server")
  *             .maxSizeGb(500)
  *             .region("LON1")

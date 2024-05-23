@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         var www = new ReservedIp("www", ReservedIpArgs.builder()        
+ *         var www = new ReservedIp("www", ReservedIpArgs.builder()
  *             .name("nginx-www")
  *             .build());
  * 
