@@ -325,10 +325,14 @@ jobs:
     - id: version
       uses: pulumi/provider-version-action@v1
     - name: Publish SDKs
-      uses: pulumi/pulumi-package-publisher@v0.0.16
+      uses: pulumi/pulumi-package-publisher@5c2d53147ccc3308bb3c4872490158a744c1bfd1
       with:
         sdk: all
         version: ${{ steps.version.outputs.version }}
+        java-version: "11"
+        node-version: "20.x"
+        python-version: "3.11.8"
+        dotnet-version: "6.0.x"
     - env:
         SLACK_CHANNEL: provider-upgrade-publish-status
         SLACK_COLOR: "#FF0000"
