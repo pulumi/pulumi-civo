@@ -70,10 +70,10 @@ type Network struct {
 	VlanCidrV4 pulumi.StringPtrOutput `pulumi:"vlanCidrV4"`
 	// Gateway IP for VLAN IPv4
 	VlanGatewayIpV4 pulumi.StringPtrOutput `pulumi:"vlanGatewayIpV4"`
-	// Hardware address for VLAN
-	VlanHardwareAddr pulumi.StringPtrOutput `pulumi:"vlanHardwareAddr"`
 	// VLAN ID for the network
 	VlanId pulumi.IntPtrOutput `pulumi:"vlanId"`
+	// Physical interface for VLAN
+	VlanPhysicalInterface pulumi.StringPtrOutput `pulumi:"vlanPhysicalInterface"`
 }
 
 // NewNetwork registers a new resource with the given unique name, arguments, and options.
@@ -129,10 +129,10 @@ type networkState struct {
 	VlanCidrV4 *string `pulumi:"vlanCidrV4"`
 	// Gateway IP for VLAN IPv4
 	VlanGatewayIpV4 *string `pulumi:"vlanGatewayIpV4"`
-	// Hardware address for VLAN
-	VlanHardwareAddr *string `pulumi:"vlanHardwareAddr"`
 	// VLAN ID for the network
 	VlanId *int `pulumi:"vlanId"`
+	// Physical interface for VLAN
+	VlanPhysicalInterface *string `pulumi:"vlanPhysicalInterface"`
 }
 
 type NetworkState struct {
@@ -156,10 +156,10 @@ type NetworkState struct {
 	VlanCidrV4 pulumi.StringPtrInput
 	// Gateway IP for VLAN IPv4
 	VlanGatewayIpV4 pulumi.StringPtrInput
-	// Hardware address for VLAN
-	VlanHardwareAddr pulumi.StringPtrInput
 	// VLAN ID for the network
 	VlanId pulumi.IntPtrInput
+	// Physical interface for VLAN
+	VlanPhysicalInterface pulumi.StringPtrInput
 }
 
 func (NetworkState) ElementType() reflect.Type {
@@ -183,10 +183,10 @@ type networkArgs struct {
 	VlanCidrV4 *string `pulumi:"vlanCidrV4"`
 	// Gateway IP for VLAN IPv4
 	VlanGatewayIpV4 *string `pulumi:"vlanGatewayIpV4"`
-	// Hardware address for VLAN
-	VlanHardwareAddr *string `pulumi:"vlanHardwareAddr"`
 	// VLAN ID for the network
 	VlanId *int `pulumi:"vlanId"`
+	// Physical interface for VLAN
+	VlanPhysicalInterface *string `pulumi:"vlanPhysicalInterface"`
 }
 
 // The set of arguments for constructing a Network resource.
@@ -207,10 +207,10 @@ type NetworkArgs struct {
 	VlanCidrV4 pulumi.StringPtrInput
 	// Gateway IP for VLAN IPv4
 	VlanGatewayIpV4 pulumi.StringPtrInput
-	// Hardware address for VLAN
-	VlanHardwareAddr pulumi.StringPtrInput
 	// VLAN ID for the network
 	VlanId pulumi.IntPtrInput
+	// Physical interface for VLAN
+	VlanPhysicalInterface pulumi.StringPtrInput
 }
 
 func (NetworkArgs) ElementType() reflect.Type {
@@ -350,14 +350,14 @@ func (o NetworkOutput) VlanGatewayIpV4() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanGatewayIpV4 }).(pulumi.StringPtrOutput)
 }
 
-// Hardware address for VLAN
-func (o NetworkOutput) VlanHardwareAddr() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanHardwareAddr }).(pulumi.StringPtrOutput)
-}
-
 // VLAN ID for the network
 func (o NetworkOutput) VlanId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *Network) pulumi.IntPtrOutput { return v.VlanId }).(pulumi.IntPtrOutput)
+}
+
+// Physical interface for VLAN
+func (o NetworkOutput) VlanPhysicalInterface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.VlanPhysicalInterface }).(pulumi.StringPtrOutput)
 }
 
 type NetworkArrayOutput struct{ *pulumi.OutputState }

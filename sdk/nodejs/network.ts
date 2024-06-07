@@ -93,13 +93,13 @@ export class Network extends pulumi.CustomResource {
      */
     public readonly vlanGatewayIpV4!: pulumi.Output<string | undefined>;
     /**
-     * Hardware address for VLAN
-     */
-    public readonly vlanHardwareAddr!: pulumi.Output<string | undefined>;
-    /**
      * VLAN ID for the network
      */
     public readonly vlanId!: pulumi.Output<number | undefined>;
+    /**
+     * Physical interface for VLAN
+     */
+    public readonly vlanPhysicalInterface!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Network resource with the given unique name, arguments, and options.
@@ -124,8 +124,8 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["vlanAllocationPoolV4Start"] = state ? state.vlanAllocationPoolV4Start : undefined;
             resourceInputs["vlanCidrV4"] = state ? state.vlanCidrV4 : undefined;
             resourceInputs["vlanGatewayIpV4"] = state ? state.vlanGatewayIpV4 : undefined;
-            resourceInputs["vlanHardwareAddr"] = state ? state.vlanHardwareAddr : undefined;
             resourceInputs["vlanId"] = state ? state.vlanId : undefined;
+            resourceInputs["vlanPhysicalInterface"] = state ? state.vlanPhysicalInterface : undefined;
         } else {
             const args = argsOrState as NetworkArgs | undefined;
             if ((!args || args.label === undefined) && !opts.urn) {
@@ -139,8 +139,8 @@ export class Network extends pulumi.CustomResource {
             resourceInputs["vlanAllocationPoolV4Start"] = args ? args.vlanAllocationPoolV4Start : undefined;
             resourceInputs["vlanCidrV4"] = args ? args.vlanCidrV4 : undefined;
             resourceInputs["vlanGatewayIpV4"] = args ? args.vlanGatewayIpV4 : undefined;
-            resourceInputs["vlanHardwareAddr"] = args ? args.vlanHardwareAddr : undefined;
             resourceInputs["vlanId"] = args ? args.vlanId : undefined;
+            resourceInputs["vlanPhysicalInterface"] = args ? args.vlanPhysicalInterface : undefined;
             resourceInputs["default"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
         }
@@ -194,13 +194,13 @@ export interface NetworkState {
      */
     vlanGatewayIpV4?: pulumi.Input<string>;
     /**
-     * Hardware address for VLAN
-     */
-    vlanHardwareAddr?: pulumi.Input<string>;
-    /**
      * VLAN ID for the network
      */
     vlanId?: pulumi.Input<number>;
+    /**
+     * Physical interface for VLAN
+     */
+    vlanPhysicalInterface?: pulumi.Input<string>;
 }
 
 /**
@@ -240,11 +240,11 @@ export interface NetworkArgs {
      */
     vlanGatewayIpV4?: pulumi.Input<string>;
     /**
-     * Hardware address for VLAN
-     */
-    vlanHardwareAddr?: pulumi.Input<string>;
-    /**
      * VLAN ID for the network
      */
     vlanId?: pulumi.Input<number>;
+    /**
+     * Physical interface for VLAN
+     */
+    vlanPhysicalInterface?: pulumi.Input<string>;
 }

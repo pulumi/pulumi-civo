@@ -22,8 +22,8 @@ class NetworkArgs:
                  vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
                  vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
                  vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
-                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
-                 vlan_id: Optional[pulumi.Input[int]] = None):
+                 vlan_id: Optional[pulumi.Input[int]] = None,
+                 vlan_physical_interface: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Network resource.
         :param pulumi.Input[str] label: Name for the network
@@ -34,8 +34,8 @@ class NetworkArgs:
         :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
         :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
         :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
-        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
         :param pulumi.Input[int] vlan_id: VLAN ID for the network
+        :param pulumi.Input[str] vlan_physical_interface: Physical interface for VLAN
         """
         pulumi.set(__self__, "label", label)
         if cidr_v4 is not None:
@@ -52,10 +52,10 @@ class NetworkArgs:
             pulumi.set(__self__, "vlan_cidr_v4", vlan_cidr_v4)
         if vlan_gateway_ip_v4 is not None:
             pulumi.set(__self__, "vlan_gateway_ip_v4", vlan_gateway_ip_v4)
-        if vlan_hardware_addr is not None:
-            pulumi.set(__self__, "vlan_hardware_addr", vlan_hardware_addr)
         if vlan_id is not None:
             pulumi.set(__self__, "vlan_id", vlan_id)
+        if vlan_physical_interface is not None:
+            pulumi.set(__self__, "vlan_physical_interface", vlan_physical_interface)
 
     @property
     @pulumi.getter
@@ -154,18 +154,6 @@ class NetworkArgs:
         pulumi.set(self, "vlan_gateway_ip_v4", value)
 
     @property
-    @pulumi.getter(name="vlanHardwareAddr")
-    def vlan_hardware_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        Hardware address for VLAN
-        """
-        return pulumi.get(self, "vlan_hardware_addr")
-
-    @vlan_hardware_addr.setter
-    def vlan_hardware_addr(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "vlan_hardware_addr", value)
-
-    @property
     @pulumi.getter(name="vlanId")
     def vlan_id(self) -> Optional[pulumi.Input[int]]:
         """
@@ -176,6 +164,18 @@ class NetworkArgs:
     @vlan_id.setter
     def vlan_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vlan_id", value)
+
+    @property
+    @pulumi.getter(name="vlanPhysicalInterface")
+    def vlan_physical_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Physical interface for VLAN
+        """
+        return pulumi.get(self, "vlan_physical_interface")
+
+    @vlan_physical_interface.setter
+    def vlan_physical_interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_physical_interface", value)
 
 
 @pulumi.input_type
@@ -191,8 +191,8 @@ class _NetworkState:
                  vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
                  vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
                  vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
-                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
-                 vlan_id: Optional[pulumi.Input[int]] = None):
+                 vlan_id: Optional[pulumi.Input[int]] = None,
+                 vlan_physical_interface: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Network resources.
         :param pulumi.Input[str] cidr_v4: The CIDR block for the network
@@ -205,8 +205,8 @@ class _NetworkState:
         :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
         :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
         :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
-        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
         :param pulumi.Input[int] vlan_id: VLAN ID for the network
+        :param pulumi.Input[str] vlan_physical_interface: Physical interface for VLAN
         """
         if cidr_v4 is not None:
             pulumi.set(__self__, "cidr_v4", cidr_v4)
@@ -228,10 +228,10 @@ class _NetworkState:
             pulumi.set(__self__, "vlan_cidr_v4", vlan_cidr_v4)
         if vlan_gateway_ip_v4 is not None:
             pulumi.set(__self__, "vlan_gateway_ip_v4", vlan_gateway_ip_v4)
-        if vlan_hardware_addr is not None:
-            pulumi.set(__self__, "vlan_hardware_addr", vlan_hardware_addr)
         if vlan_id is not None:
             pulumi.set(__self__, "vlan_id", vlan_id)
+        if vlan_physical_interface is not None:
+            pulumi.set(__self__, "vlan_physical_interface", vlan_physical_interface)
 
     @property
     @pulumi.getter(name="cidrV4")
@@ -354,18 +354,6 @@ class _NetworkState:
         pulumi.set(self, "vlan_gateway_ip_v4", value)
 
     @property
-    @pulumi.getter(name="vlanHardwareAddr")
-    def vlan_hardware_addr(self) -> Optional[pulumi.Input[str]]:
-        """
-        Hardware address for VLAN
-        """
-        return pulumi.get(self, "vlan_hardware_addr")
-
-    @vlan_hardware_addr.setter
-    def vlan_hardware_addr(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "vlan_hardware_addr", value)
-
-    @property
     @pulumi.getter(name="vlanId")
     def vlan_id(self) -> Optional[pulumi.Input[int]]:
         """
@@ -376,6 +364,18 @@ class _NetworkState:
     @vlan_id.setter
     def vlan_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "vlan_id", value)
+
+    @property
+    @pulumi.getter(name="vlanPhysicalInterface")
+    def vlan_physical_interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Physical interface for VLAN
+        """
+        return pulumi.get(self, "vlan_physical_interface")
+
+    @vlan_physical_interface.setter
+    def vlan_physical_interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_physical_interface", value)
 
 
 class Network(pulumi.CustomResource):
@@ -391,8 +391,8 @@ class Network(pulumi.CustomResource):
                  vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
                  vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
                  vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
-                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
                  vlan_id: Optional[pulumi.Input[int]] = None,
+                 vlan_physical_interface: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Provides a Civo network resource. This can be used to create, modify, and delete networks.
@@ -424,8 +424,8 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
         :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
         :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
-        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
         :param pulumi.Input[int] vlan_id: VLAN ID for the network
+        :param pulumi.Input[str] vlan_physical_interface: Physical interface for VLAN
         """
         ...
     @overload
@@ -476,8 +476,8 @@ class Network(pulumi.CustomResource):
                  vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
                  vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
                  vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
-                 vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
                  vlan_id: Optional[pulumi.Input[int]] = None,
+                 vlan_physical_interface: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -497,8 +497,8 @@ class Network(pulumi.CustomResource):
             __props__.__dict__["vlan_allocation_pool_v4_start"] = vlan_allocation_pool_v4_start
             __props__.__dict__["vlan_cidr_v4"] = vlan_cidr_v4
             __props__.__dict__["vlan_gateway_ip_v4"] = vlan_gateway_ip_v4
-            __props__.__dict__["vlan_hardware_addr"] = vlan_hardware_addr
             __props__.__dict__["vlan_id"] = vlan_id
+            __props__.__dict__["vlan_physical_interface"] = vlan_physical_interface
             __props__.__dict__["default"] = None
             __props__.__dict__["name"] = None
         super(Network, __self__).__init__(
@@ -521,8 +521,8 @@ class Network(pulumi.CustomResource):
             vlan_allocation_pool_v4_start: Optional[pulumi.Input[str]] = None,
             vlan_cidr_v4: Optional[pulumi.Input[str]] = None,
             vlan_gateway_ip_v4: Optional[pulumi.Input[str]] = None,
-            vlan_hardware_addr: Optional[pulumi.Input[str]] = None,
-            vlan_id: Optional[pulumi.Input[int]] = None) -> 'Network':
+            vlan_id: Optional[pulumi.Input[int]] = None,
+            vlan_physical_interface: Optional[pulumi.Input[str]] = None) -> 'Network':
         """
         Get an existing Network resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -540,8 +540,8 @@ class Network(pulumi.CustomResource):
         :param pulumi.Input[str] vlan_allocation_pool_v4_start: Start of the IPv4 allocation pool for VLAN
         :param pulumi.Input[str] vlan_cidr_v4: CIDR for VLAN IPv4
         :param pulumi.Input[str] vlan_gateway_ip_v4: Gateway IP for VLAN IPv4
-        :param pulumi.Input[str] vlan_hardware_addr: Hardware address for VLAN
         :param pulumi.Input[int] vlan_id: VLAN ID for the network
+        :param pulumi.Input[str] vlan_physical_interface: Physical interface for VLAN
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -557,8 +557,8 @@ class Network(pulumi.CustomResource):
         __props__.__dict__["vlan_allocation_pool_v4_start"] = vlan_allocation_pool_v4_start
         __props__.__dict__["vlan_cidr_v4"] = vlan_cidr_v4
         __props__.__dict__["vlan_gateway_ip_v4"] = vlan_gateway_ip_v4
-        __props__.__dict__["vlan_hardware_addr"] = vlan_hardware_addr
         __props__.__dict__["vlan_id"] = vlan_id
+        __props__.__dict__["vlan_physical_interface"] = vlan_physical_interface
         return Network(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -642,18 +642,18 @@ class Network(pulumi.CustomResource):
         return pulumi.get(self, "vlan_gateway_ip_v4")
 
     @property
-    @pulumi.getter(name="vlanHardwareAddr")
-    def vlan_hardware_addr(self) -> pulumi.Output[Optional[str]]:
-        """
-        Hardware address for VLAN
-        """
-        return pulumi.get(self, "vlan_hardware_addr")
-
-    @property
     @pulumi.getter(name="vlanId")
     def vlan_id(self) -> pulumi.Output[Optional[int]]:
         """
         VLAN ID for the network
         """
         return pulumi.get(self, "vlan_id")
+
+    @property
+    @pulumi.getter(name="vlanPhysicalInterface")
+    def vlan_physical_interface(self) -> pulumi.Output[Optional[str]]:
+        """
+        Physical interface for VLAN
+        """
+        return pulumi.get(self, "vlan_physical_interface")
 
