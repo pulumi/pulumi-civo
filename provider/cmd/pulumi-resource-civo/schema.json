@@ -2307,13 +2307,13 @@
                     "type": "string",
                     "description": "Gateway IP for VLAN IPv4\n"
                 },
-                "vlanHardwareAddr": {
-                    "type": "string",
-                    "description": "Hardware address for VLAN\n"
-                },
                 "vlanId": {
                     "type": "integer",
                     "description": "VLAN ID for the network\n"
+                },
+                "vlanPhysicalInterface": {
+                    "type": "string",
+                    "description": "Physical interface for VLAN\n"
                 }
             },
             "required": [
@@ -2358,13 +2358,13 @@
                     "type": "string",
                     "description": "Gateway IP for VLAN IPv4\n"
                 },
-                "vlanHardwareAddr": {
-                    "type": "string",
-                    "description": "Hardware address for VLAN\n"
-                },
                 "vlanId": {
                     "type": "integer",
                     "description": "VLAN ID for the network\n"
+                },
+                "vlanPhysicalInterface": {
+                    "type": "string",
+                    "description": "Physical interface for VLAN\n"
                 }
             },
             "requiredInputs": [
@@ -2416,13 +2416,13 @@
                         "type": "string",
                         "description": "Gateway IP for VLAN IPv4\n"
                     },
-                    "vlanHardwareAddr": {
-                        "type": "string",
-                        "description": "Hardware address for VLAN\n"
-                    },
                     "vlanId": {
                         "type": "integer",
                         "description": "VLAN ID for the network\n"
+                    },
+                    "vlanPhysicalInterface": {
+                        "type": "string",
+                        "description": "Physical interface for VLAN\n"
                     }
                 },
                 "type": "object"
