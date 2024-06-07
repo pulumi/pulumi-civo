@@ -169,21 +169,6 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Hardware address for VLAN
-     * 
-     */
-    @Import(name="vlanHardwareAddr")
-    private @Nullable Output<String> vlanHardwareAddr;
-
-    /**
-     * @return Hardware address for VLAN
-     * 
-     */
-    public Optional<Output<String>> vlanHardwareAddr() {
-        return Optional.ofNullable(this.vlanHardwareAddr);
-    }
-
-    /**
      * VLAN ID for the network
      * 
      */
@@ -196,6 +181,21 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Integer>> vlanId() {
         return Optional.ofNullable(this.vlanId);
+    }
+
+    /**
+     * Physical interface for VLAN
+     * 
+     */
+    @Import(name="vlanPhysicalInterface")
+    private @Nullable Output<String> vlanPhysicalInterface;
+
+    /**
+     * @return Physical interface for VLAN
+     * 
+     */
+    public Optional<Output<String>> vlanPhysicalInterface() {
+        return Optional.ofNullable(this.vlanPhysicalInterface);
     }
 
     private NetworkState() {}
@@ -211,8 +211,8 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
         this.vlanAllocationPoolV4Start = $.vlanAllocationPoolV4Start;
         this.vlanCidrV4 = $.vlanCidrV4;
         this.vlanGatewayIpV4 = $.vlanGatewayIpV4;
-        this.vlanHardwareAddr = $.vlanHardwareAddr;
         this.vlanId = $.vlanId;
+        this.vlanPhysicalInterface = $.vlanPhysicalInterface;
     }
 
     public static Builder builder() {
@@ -454,27 +454,6 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vlanHardwareAddr Hardware address for VLAN
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vlanHardwareAddr(@Nullable Output<String> vlanHardwareAddr) {
-            $.vlanHardwareAddr = vlanHardwareAddr;
-            return this;
-        }
-
-        /**
-         * @param vlanHardwareAddr Hardware address for VLAN
-         * 
-         * @return builder
-         * 
-         */
-        public Builder vlanHardwareAddr(String vlanHardwareAddr) {
-            return vlanHardwareAddr(Output.of(vlanHardwareAddr));
-        }
-
-        /**
          * @param vlanId VLAN ID for the network
          * 
          * @return builder
@@ -493,6 +472,27 @@ public final class NetworkState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder vlanId(Integer vlanId) {
             return vlanId(Output.of(vlanId));
+        }
+
+        /**
+         * @param vlanPhysicalInterface Physical interface for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanPhysicalInterface(@Nullable Output<String> vlanPhysicalInterface) {
+            $.vlanPhysicalInterface = vlanPhysicalInterface;
+            return this;
+        }
+
+        /**
+         * @param vlanPhysicalInterface Physical interface for VLAN
+         * 
+         * @return builder
+         * 
+         */
+        public Builder vlanPhysicalInterface(String vlanPhysicalInterface) {
+            return vlanPhysicalInterface(Output.of(vlanPhysicalInterface));
         }
 
         public NetworkState build() {

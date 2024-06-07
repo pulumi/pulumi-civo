@@ -207,20 +207,6 @@ public class Network extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.vlanGatewayIpV4);
     }
     /**
-     * Hardware address for VLAN
-     * 
-     */
-    @Export(name="vlanHardwareAddr", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> vlanHardwareAddr;
-
-    /**
-     * @return Hardware address for VLAN
-     * 
-     */
-    public Output<Optional<String>> vlanHardwareAddr() {
-        return Codegen.optional(this.vlanHardwareAddr);
-    }
-    /**
      * VLAN ID for the network
      * 
      */
@@ -233,6 +219,20 @@ public class Network extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<Integer>> vlanId() {
         return Codegen.optional(this.vlanId);
+    }
+    /**
+     * Physical interface for VLAN
+     * 
+     */
+    @Export(name="vlanPhysicalInterface", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> vlanPhysicalInterface;
+
+    /**
+     * @return Physical interface for VLAN
+     * 
+     */
+    public Output<Optional<String>> vlanPhysicalInterface() {
+        return Codegen.optional(this.vlanPhysicalInterface);
     }
 
     /**

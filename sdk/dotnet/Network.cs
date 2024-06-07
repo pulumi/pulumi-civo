@@ -102,16 +102,16 @@ namespace Pulumi.Civo
         public Output<string?> VlanGatewayIpV4 { get; private set; } = null!;
 
         /// <summary>
-        /// Hardware address for VLAN
-        /// </summary>
-        [Output("vlanHardwareAddr")]
-        public Output<string?> VlanHardwareAddr { get; private set; } = null!;
-
-        /// <summary>
         /// VLAN ID for the network
         /// </summary>
         [Output("vlanId")]
         public Output<int?> VlanId { get; private set; } = null!;
+
+        /// <summary>
+        /// Physical interface for VLAN
+        /// </summary>
+        [Output("vlanPhysicalInterface")]
+        public Output<string?> VlanPhysicalInterface { get; private set; } = null!;
 
 
         /// <summary>
@@ -214,16 +214,16 @@ namespace Pulumi.Civo
         public Input<string>? VlanGatewayIpV4 { get; set; }
 
         /// <summary>
-        /// Hardware address for VLAN
-        /// </summary>
-        [Input("vlanHardwareAddr")]
-        public Input<string>? VlanHardwareAddr { get; set; }
-
-        /// <summary>
         /// VLAN ID for the network
         /// </summary>
         [Input("vlanId")]
         public Input<int>? VlanId { get; set; }
+
+        /// <summary>
+        /// Physical interface for VLAN
+        /// </summary>
+        [Input("vlanPhysicalInterface")]
+        public Input<string>? VlanPhysicalInterface { get; set; }
 
         public NetworkArgs()
         {
@@ -300,16 +300,16 @@ namespace Pulumi.Civo
         public Input<string>? VlanGatewayIpV4 { get; set; }
 
         /// <summary>
-        /// Hardware address for VLAN
-        /// </summary>
-        [Input("vlanHardwareAddr")]
-        public Input<string>? VlanHardwareAddr { get; set; }
-
-        /// <summary>
         /// VLAN ID for the network
         /// </summary>
         [Input("vlanId")]
         public Input<int>? VlanId { get; set; }
+
+        /// <summary>
+        /// Physical interface for VLAN
+        /// </summary>
+        [Input("vlanPhysicalInterface")]
+        public Input<string>? VlanPhysicalInterface { get; set; }
 
         public NetworkState()
         {
