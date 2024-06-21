@@ -1624,7 +1624,8 @@
             "inputProperties": {
                 "diskImage": {
                     "type": "string",
-                    "description": "The ID for the disk image to use to build the instance\n"
+                    "description": "The ID for the disk image to use to build the instance\n",
+                    "willReplaceOnChanges": true
                 },
                 "firewallId": {
                     "type": "string",
@@ -1632,8 +1633,7 @@
                 },
                 "hostname": {
                     "type": "string",
-                    "description": "A fully qualified domain name that should be set as the instance's hostname\n",
-                    "willReplaceOnChanges": true
+                    "description": "A fully qualified domain name that should be set as the instance's hostname\n"
                 },
                 "initialUser": {
                     "type": "string",
@@ -1641,7 +1641,8 @@
                 },
                 "networkId": {
                     "type": "string",
-                    "description": "This must be the ID of the network from the network listing (optional; default network used when not specified)\n"
+                    "description": "This must be the ID of the network from the network listing (optional; default network used when not specified)\n",
+                    "willReplaceOnChanges": true
                 },
                 "notes": {
                     "type": "string",
@@ -1657,7 +1658,8 @@
                 },
                 "region": {
                     "type": "string",
-                    "description": "The region for the instance, if not declare we use the region in declared in the provider\n"
+                    "description": "The region for the instance, if not declare we use the region in declared in the provider\n",
+                    "willReplaceOnChanges": true
                 },
                 "reservedIpv4": {
                     "type": "string",
@@ -1709,7 +1711,8 @@
                     },
                     "diskImage": {
                         "type": "string",
-                        "description": "The ID for the disk image to use to build the instance\n"
+                        "description": "The ID for the disk image to use to build the instance\n",
+                        "willReplaceOnChanges": true
                     },
                     "firewallId": {
                         "type": "string",
@@ -1717,8 +1720,7 @@
                     },
                     "hostname": {
                         "type": "string",
-                        "description": "A fully qualified domain name that should be set as the instance's hostname\n",
-                        "willReplaceOnChanges": true
+                        "description": "A fully qualified domain name that should be set as the instance's hostname\n"
                     },
                     "initialPassword": {
                         "type": "string",
@@ -1731,7 +1733,8 @@
                     },
                     "networkId": {
                         "type": "string",
-                        "description": "This must be the ID of the network from the network listing (optional; default network used when not specified)\n"
+                        "description": "This must be the ID of the network from the network listing (optional; default network used when not specified)\n",
+                        "willReplaceOnChanges": true
                     },
                     "notes": {
                         "type": "string",
@@ -1759,7 +1762,8 @@
                     },
                     "region": {
                         "type": "string",
-                        "description": "The region for the instance, if not declare we use the region in declared in the provider\n"
+                        "description": "The region for the instance, if not declare we use the region in declared in the provider\n",
+                        "willReplaceOnChanges": true
                     },
                     "reservedIpv4": {
                         "type": "string",
