@@ -195,7 +195,7 @@ class Volume(pulumi.CustomResource):
             name="backup-data",
             size_gb=5,
             network_id=default_network.id,
-            opts=pulumi.ResourceOptions(depends_on=[default_network]))
+            opts = pulumi.ResourceOptions(depends_on=[default_network]))
         ```
 
         ## Import
@@ -235,7 +235,7 @@ class Volume(pulumi.CustomResource):
             name="backup-data",
             size_gb=5,
             network_id=default_network.id,
-            opts=pulumi.ResourceOptions(depends_on=[default_network]))
+            opts = pulumi.ResourceOptions(depends_on=[default_network]))
         ```
 
         ## Import

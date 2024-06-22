@@ -267,13 +267,11 @@ class InstanceArgs:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
     def template(self) -> Optional[pulumi.Input[str]]:
         """
         The ID for the template to use to build the instance
         """
-        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
-        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
-
         return pulumi.get(self, "template")
 
     @template.setter
@@ -697,13 +695,11 @@ class _InstanceState:
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
     def template(self) -> Optional[pulumi.Input[str]]:
         """
         The ID for the template to use to build the instance
         """
-        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
-        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
-
         return pulumi.get(self, "template")
 
     @template.setter
@@ -1152,12 +1148,10 @@ class Instance(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    @_utilities.deprecated("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
     def template(self) -> pulumi.Output[str]:
         """
         The ID for the template to use to build the instance
         """
-        warnings.warn("""\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""", DeprecationWarning)
-        pulumi.log.warn("""template is deprecated: \"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute.""")
-
         return pulumi.get(self, "template")
 
