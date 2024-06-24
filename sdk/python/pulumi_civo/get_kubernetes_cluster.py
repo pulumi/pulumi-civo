@@ -165,13 +165,11 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter(name="numTargetNodes")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider""")
     def num_target_nodes(self) -> int:
         """
         The size of the Kubernetes cluster
         """
-        warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
-        pulumi.log.warn("""num_target_nodes is deprecated: This field is deprecated and will be removed in a future version of the provider""")
-
         return pulumi.get(self, "num_target_nodes")
 
     @property
@@ -213,13 +211,11 @@ class GetKubernetesClusterResult:
 
     @property
     @pulumi.getter(name="targetNodesSize")
+    @_utilities.deprecated("""This field is deprecated and will be removed in a future version of the provider""")
     def target_nodes_size(self) -> str:
         """
         The size of each node
         """
-        warnings.warn("""This field is deprecated and will be removed in a future version of the provider""", DeprecationWarning)
-        pulumi.log.warn("""target_nodes_size is deprecated: This field is deprecated and will be removed in a future version of the provider""")
-
         return pulumi.get(self, "target_nodes_size")
 
 

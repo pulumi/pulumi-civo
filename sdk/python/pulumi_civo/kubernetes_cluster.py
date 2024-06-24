@@ -166,13 +166,11 @@ class KubernetesClusterArgs:
 
     @property
     @pulumi.getter(name="numTargetNodes")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def num_target_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         The number of instances to create (optional, the default at the time of writing is 3)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "num_target_nodes")
 
     @num_target_nodes.setter
@@ -205,13 +203,11 @@ class KubernetesClusterArgs:
 
     @property
     @pulumi.getter(name="targetNodesSize")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
         The size of each node (optional, the default is currently g4s.kube.medium)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "target_nodes_size")
 
     @target_nodes_size.setter
@@ -465,13 +461,11 @@ class _KubernetesClusterState:
 
     @property
     @pulumi.getter(name="numTargetNodes")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def num_target_nodes(self) -> Optional[pulumi.Input[int]]:
         """
         The number of instances to create (optional, the default at the time of writing is 3)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "num_target_nodes")
 
     @num_target_nodes.setter
@@ -537,13 +531,11 @@ class _KubernetesClusterState:
 
     @property
     @pulumi.getter(name="targetNodesSize")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def target_nodes_size(self) -> Optional[pulumi.Input[str]]:
         """
         The size of each node (optional, the default is currently g4s.kube.medium)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "target_nodes_size")
 
     @target_nodes_size.setter
@@ -858,13 +850,11 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="numTargetNodes")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def num_target_nodes(self) -> pulumi.Output[int]:
         """
         The number of instances to create (optional, the default at the time of writing is 3)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""num_target_nodes is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "num_target_nodes")
 
     @property
@@ -906,12 +896,10 @@ class KubernetesCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="targetNodesSize")
+    @_utilities.deprecated("""This field will be deprecated in the next major release, please use the 'pools' field instead""")
     def target_nodes_size(self) -> pulumi.Output[str]:
         """
         The size of each node (optional, the default is currently g4s.kube.medium)
         """
-        warnings.warn("""This field will be deprecated in the next major release, please use the 'pools' field instead""", DeprecationWarning)
-        pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
-
         return pulumi.get(self, "target_nodes_size")
 
