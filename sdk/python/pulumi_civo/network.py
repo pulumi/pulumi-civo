@@ -563,7 +563,7 @@ class Network(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="cidrV4")
-    def cidr_v4(self) -> pulumi.Output[Optional[str]]:
+    def cidr_v4(self) -> pulumi.Output[str]:
         """
         The CIDR block for the network
         """
@@ -595,7 +595,7 @@ class Network(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="nameserversV4s")
-    def nameservers_v4s(self) -> pulumi.Output[Optional[Sequence[str]]]:
+    def nameservers_v4s(self) -> pulumi.Output[Sequence[str]]:
         """
         List of nameservers for the network
         """

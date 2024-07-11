@@ -5,6 +5,7 @@ package com.pulumi.civo;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -35,15 +36,15 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
-    @Import(name="firewallId")
-    private @Nullable Output<String> firewallId;
+    @Import(name="firewallId", required=true)
+    private Output<String> firewallId;
 
     /**
      * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      * 
      */
-    public Optional<Output<String>> firewallId() {
-        return Optional.ofNullable(this.firewallId);
+    public Output<String> firewallId() {
+        return this.firewallId;
     }
 
     /**
@@ -330,7 +331,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder firewallId(@Nullable Output<String> firewallId) {
+        public Builder firewallId(Output<String> firewallId) {
             $.firewallId = firewallId;
             return this;
         }
@@ -658,6 +659,9 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public InstanceArgs build() {
+            if ($.firewallId == null) {
+                throw new MissingRequiredPropertyException("InstanceArgs", "firewallId");
+            }
             return $;
         }
     }

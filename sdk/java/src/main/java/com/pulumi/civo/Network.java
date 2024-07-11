@@ -71,14 +71,14 @@ public class Network extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="cidrV4", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> cidrV4;
+    private Output<String> cidrV4;
 
     /**
      * @return The CIDR block for the network
      * 
      */
-    public Output<Optional<String>> cidrV4() {
-        return Codegen.optional(this.cidrV4);
+    public Output<String> cidrV4() {
+        return this.cidrV4;
     }
     /**
      * If the network is default, this will be `true`
@@ -127,14 +127,14 @@ public class Network extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="nameserversV4s", refs={List.class,String.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<String>> nameserversV4s;
+    private Output<List<String>> nameserversV4s;
 
     /**
      * @return List of nameservers for the network
      * 
      */
-    public Output<Optional<List<String>>> nameserversV4s() {
-        return Codegen.optional(this.nameserversV4s);
+    public Output<List<String>> nameserversV4s() {
+        return this.nameserversV4s;
     }
     /**
      * The region of the network

@@ -45,7 +45,7 @@ namespace Pulumi.Civo
         /// The CIDR block for the network
         /// </summary>
         [Output("cidrV4")]
-        public Output<string?> CidrV4 { get; private set; } = null!;
+        public Output<string> CidrV4 { get; private set; } = null!;
 
         /// <summary>
         /// If the network is default, this will be `true`
