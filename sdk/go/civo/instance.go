@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"errors"
 	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
@@ -83,9 +84,12 @@ type Instance struct {
 func NewInstance(ctx *pulumi.Context,
 	name string, args *InstanceArgs, opts ...pulumi.ResourceOption) (*Instance, error) {
 	if args == nil {
-		args = &InstanceArgs{}
+		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.FirewallId == nil {
+		return nil, errors.New("invalid value for required argument 'FirewallId'")
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"initialPassword",
 	})
@@ -234,7 +238,7 @@ type instanceArgs struct {
 	// The ID for the disk image to use to build the instance
 	DiskImage *string `pulumi:"diskImage"`
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
-	FirewallId *string `pulumi:"firewallId"`
+	FirewallId string `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname *string `pulumi:"hostname"`
 	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
@@ -272,7 +276,7 @@ type InstanceArgs struct {
 	// The ID for the disk image to use to build the instance
 	DiskImage pulumi.StringPtrInput
 	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
-	FirewallId pulumi.StringPtrInput
+	FirewallId pulumi.StringInput
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringPtrInput
 	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)

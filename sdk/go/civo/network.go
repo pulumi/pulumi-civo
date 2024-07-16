@@ -51,7 +51,7 @@ type Network struct {
 	pulumi.CustomResourceState
 
 	// The CIDR block for the network
-	CidrV4 pulumi.StringPtrOutput `pulumi:"cidrV4"`
+	CidrV4 pulumi.StringOutput `pulumi:"cidrV4"`
 	// If the network is default, this will be `true`
 	Default pulumi.BoolOutput `pulumi:"default"`
 	// Name for the network
@@ -301,8 +301,8 @@ func (o NetworkOutput) ToNetworkOutputWithContext(ctx context.Context) NetworkOu
 }
 
 // The CIDR block for the network
-func (o NetworkOutput) CidrV4() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *Network) pulumi.StringPtrOutput { return v.CidrV4 }).(pulumi.StringPtrOutput)
+func (o NetworkOutput) CidrV4() pulumi.StringOutput {
+	return o.ApplyT(func(v *Network) pulumi.StringOutput { return v.CidrV4 }).(pulumi.StringOutput)
 }
 
 // If the network is default, this will be `true`

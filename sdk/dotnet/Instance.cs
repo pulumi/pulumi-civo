@@ -187,7 +187,7 @@ namespace Pulumi.Civo
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Instance(string name, InstanceArgs? args = null, CustomResourceOptions? options = null)
+        public Instance(string name, InstanceArgs args, CustomResourceOptions? options = null)
             : base("civo:index/instance:Instance", name, args ?? new InstanceArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -238,8 +238,8 @@ namespace Pulumi.Civo
         /// <summary>
         /// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
         /// </summary>
-        [Input("firewallId")]
-        public Input<string>? FirewallId { get; set; }
+        [Input("firewallId", required: true)]
+        public Input<string> FirewallId { get; set; } = null!;
 
         /// <summary>
         /// A fully qualified domain name that should be set as the instance's hostname

@@ -14,8 +14,8 @@ __all__ = ['InstanceArgs', 'Instance']
 @pulumi.input_type
 class InstanceArgs:
     def __init__(__self__, *,
+                 firewall_id: pulumi.Input[str],
                  disk_image: Optional[pulumi.Input[str]] = None,
-                 firewall_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  initial_user: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
@@ -32,8 +32,8 @@ class InstanceArgs:
                  template: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Instance resource.
-        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance
         :param pulumi.Input[str] firewall_id: The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+        :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance
         :param pulumi.Input[str] hostname: A fully qualified domain name that should be set as the instance's hostname
         :param pulumi.Input[str] initial_user: The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)
         :param pulumi.Input[str] network_id: This must be the ID of the network from the network listing (optional; default network used when not specified)
@@ -49,10 +49,9 @@ class InstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
         :param pulumi.Input[str] template: The ID for the template to use to build the instance
         """
+        pulumi.set(__self__, "firewall_id", firewall_id)
         if disk_image is not None:
             pulumi.set(__self__, "disk_image", disk_image)
-        if firewall_id is not None:
-            pulumi.set(__self__, "firewall_id", firewall_id)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if initial_user is not None:
@@ -86,6 +85,18 @@ class InstanceArgs:
             pulumi.set(__self__, "template", template)
 
     @property
+    @pulumi.getter(name="firewallId")
+    def firewall_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+        """
+        return pulumi.get(self, "firewall_id")
+
+    @firewall_id.setter
+    def firewall_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "firewall_id", value)
+
+    @property
     @pulumi.getter(name="diskImage")
     def disk_image(self) -> Optional[pulumi.Input[str]]:
         """
@@ -96,18 +107,6 @@ class InstanceArgs:
     @disk_image.setter
     def disk_image(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "disk_image", value)
-
-    @property
-    @pulumi.getter(name="firewallId")
-    def firewall_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
-        """
-        return pulumi.get(self, "firewall_id")
-
-    @firewall_id.setter
-    def firewall_id(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "firewall_id", value)
 
     @property
     @pulumi.getter
@@ -763,7 +762,7 @@ class Instance(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: Optional[InstanceArgs] = None,
+                 args: InstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo instance resource. This can be used to create, modify, and delete instances.
@@ -817,6 +816,8 @@ class Instance(pulumi.CustomResource):
             __props__ = InstanceArgs.__new__(InstanceArgs)
 
             __props__.__dict__["disk_image"] = disk_image
+            if firewall_id is None and not opts.urn:
+                raise TypeError("Missing required property 'firewall_id'")
             __props__.__dict__["firewall_id"] = firewall_id
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["initial_user"] = initial_user

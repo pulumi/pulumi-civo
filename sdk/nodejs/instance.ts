@@ -157,7 +157,7 @@ export class Instance extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args?: InstanceArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args: InstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: InstanceArgs | InstanceState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
@@ -191,6 +191,9 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
+            if ((!args || args.firewallId === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'firewallId'");
+            }
             resourceInputs["diskImage"] = args ? args.diskImage : undefined;
             resourceInputs["firewallId"] = args ? args.firewallId : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
@@ -348,7 +351,7 @@ export interface InstanceArgs {
     /**
      * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
      */
-    firewallId?: pulumi.Input<string>;
+    firewallId: pulumi.Input<string>;
     /**
      * A fully qualified domain name that should be set as the instance's hostname
      */

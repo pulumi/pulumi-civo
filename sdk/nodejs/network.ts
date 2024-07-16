@@ -55,7 +55,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * The CIDR block for the network
      */
-    public readonly cidrV4!: pulumi.Output<string | undefined>;
+    public readonly cidrV4!: pulumi.Output<string>;
     /**
      * If the network is default, this will be `true`
      */
@@ -71,7 +71,7 @@ export class Network extends pulumi.CustomResource {
     /**
      * List of nameservers for the network
      */
-    public readonly nameserversV4s!: pulumi.Output<string[] | undefined>;
+    public readonly nameserversV4s!: pulumi.Output<string[]>;
     /**
      * The region of the network
      */
