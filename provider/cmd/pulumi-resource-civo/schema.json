@@ -1650,7 +1650,8 @@
                 },
                 "privateIpv4": {
                     "type": "string",
-                    "description": "The private IPv4 address for the instance (optional)\n"
+                    "description": "The private IPv4 address for the instance (optional)\n",
+                    "willReplaceOnChanges": true
                 },
                 "publicIpRequired": {
                     "type": "string",
@@ -1749,7 +1750,8 @@
                     },
                     "privateIpv4": {
                         "type": "string",
-                        "description": "The private IPv4 address for the instance (optional)\n"
+                        "description": "The private IPv4 address for the instance (optional)\n",
+                        "willReplaceOnChanges": true
                     },
                     "publicIp": {
                         "type": "string",
