@@ -37,7 +37,7 @@ import (
 //			}
 //			_, err = civo.NewSshKey(ctx, "my-user", &civo.SshKeyArgs{
 //				Name:      pulumi.String("my-user"),
-//				PublicKey: invokeFile.Result,
+//				PublicKey: pulumi.String(invokeFile.Result),
 //			})
 //			if err != nil {
 //				return err
