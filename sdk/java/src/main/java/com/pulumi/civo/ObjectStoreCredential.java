@@ -176,11 +176,18 @@ public class ObjectStoreCredential extends com.pulumi.resources.CustomResource {
      * @param options A bag of options that control this resource's behavior.
      */
     public ObjectStoreCredential(String name, @Nullable ObjectStoreCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/objectStoreCredential:ObjectStoreCredential", name, args == null ? ObjectStoreCredentialArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
+        super("civo:index/objectStoreCredential:ObjectStoreCredential", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
     }
 
     private ObjectStoreCredential(String name, Output<String> id, @Nullable ObjectStoreCredentialState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("civo:index/objectStoreCredential:ObjectStoreCredential", name, state, makeResourceOptions(options, id));
+    }
+
+    private static ObjectStoreCredentialArgs makeArgs(@Nullable ObjectStoreCredentialArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        if (options != null && options.getUrn().isPresent()) {
+            return null;
+        }
+        return args == null ? ObjectStoreCredentialArgs.Empty : args;
     }
 
     private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
