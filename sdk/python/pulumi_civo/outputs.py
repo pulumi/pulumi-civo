@@ -229,10 +229,10 @@ class KubernetesClusterInstalledApplication(dict):
                  installed: Optional[bool] = None,
                  version: Optional[str] = None):
         """
-        :param str application: Name of application
-        :param str category: Category of the application
-        :param bool installed: Application installation status (`true` if installed)
-        :param str version: Version of application
+        :param str application: (String) name of the application
+        :param str category: (String) category of the application
+        :param bool installed: (Boolean) whether application is installed or not
+        :param str version: (String) version of the application
         """
         if application is not None:
             pulumi.set(__self__, "application", application)
@@ -247,7 +247,7 @@ class KubernetesClusterInstalledApplication(dict):
     @pulumi.getter
     def application(self) -> Optional[str]:
         """
-        Name of application
+        (String) name of the application
         """
         return pulumi.get(self, "application")
 
@@ -255,7 +255,7 @@ class KubernetesClusterInstalledApplication(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Category of the application
+        (String) category of the application
         """
         return pulumi.get(self, "category")
 
@@ -263,7 +263,7 @@ class KubernetesClusterInstalledApplication(dict):
     @pulumi.getter
     def installed(self) -> Optional[bool]:
         """
-        Application installation status (`true` if installed)
+        (Boolean) whether application is installed or not
         """
         return pulumi.get(self, "installed")
 
@@ -271,7 +271,7 @@ class KubernetesClusterInstalledApplication(dict):
     @pulumi.getter
     def version(self) -> Optional[str]:
         """
-        Version of application
+        (String) version of the application
         """
         return pulumi.get(self, "version")
 
@@ -313,6 +313,9 @@ class KubernetesClusterPools(dict):
         :param Sequence[str] instance_names: Instance names in the nodepool
         :param str label: Node pool label, if you don't provide one, we will generate one for you
         :param bool public_ip_node_pool: Node pool belongs to the public ip node pool
+        :param Sequence['KubernetesClusterPoolsTaintArgs'] taints: (see below for nested schema)
+               
+               Read-Only Output:
         """
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
@@ -375,6 +378,11 @@ class KubernetesClusterPools(dict):
     @property
     @pulumi.getter
     def taints(self) -> Optional[Sequence['outputs.KubernetesClusterPoolsTaint']]:
+        """
+        (see below for nested schema)
+
+        Read-Only Output:
+        """
         return pulumi.get(self, "taints")
 
 

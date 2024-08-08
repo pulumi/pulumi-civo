@@ -1307,8 +1307,8 @@ github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5P
 github.com/chzyer/test v0.0.0-20180213035817-a1ea475d72b1/go.mod h1:Q3SI9o4m/ZMnBNeIyt5eFwwo7qiLfzFZmjNmxjkiQlU=
 github.com/civo/civogo v0.3.73 h1:thkNnkziU+xh+MEOChIUwRZI1forN20+SSAPe/VFDME=
 github.com/civo/civogo v0.3.73/go.mod h1:7UCYX+qeeJbrG55E1huv+0ySxcHTqq/26FcHLVelQJM=
-github.com/civo/terraform-provider-civo v1.0.48 h1:xKxVVUl6U7zYVJHsqnKzDVcuq925KuaA0gxiuGWFVhI=
-github.com/civo/terraform-provider-civo v1.0.48/go.mod h1:+hxoKaojdqzo6SScNaoxehK/ZJMqgbDqzVjUSktUxvs=
+github.com/civo/terraform-provider-civo v1.0.49 h1:A8J1iNLVoeNUlMPGBkRUMszi9/H6LXt1a1c8wDkAw4Q=
+github.com/civo/terraform-provider-civo v1.0.49/go.mod h1:+hxoKaojdqzo6SScNaoxehK/ZJMqgbDqzVjUSktUxvs=
 github.com/client9/misspell v0.3.4/go.mod h1:qj6jICC3Q7zFZvVWo7KLAzC3yx5G7kyvSDkc90ppPyw=
 github.com/cloudflare/circl v1.3.3/go.mod h1:5XYMA4rFBvNIrhs50XuiBJ15vF2pZn4nnUKZrLbUZFA=
 github.com/cloudflare/circl v1.3.7 h1:qlCDlTPz2n9fu58M0Nh1J/JzcFpfgkFHHX3O35r5vcU=

@@ -19,54 +19,212 @@ import javax.annotation.Nullable;
 /**
  * Provides a Civo instance resource. This can be used to create, modify, and delete instances.
  * 
+ * ## Example Usage
+ * 
+ * * View instances after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * * View instances after creation on the [Dashboard](https://dashboard.civo.com/instances)
+ * * View node sizes on [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * 
+ * ### Simple and smallest instance with its own network
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.civo.Network;
+ * import com.pulumi.civo.NetworkArgs;
+ * import com.pulumi.civo.Firewall;
+ * import com.pulumi.civo.FirewallArgs;
+ * import com.pulumi.civo.CivoFunctions;
+ * import com.pulumi.civo.inputs.GetDiskImageArgs;
+ * import com.pulumi.civo.Instance;
+ * import com.pulumi.civo.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+ *             .label("example-network")
+ *             .build());
+ * 
+ *         var example = new Firewall("example", FirewallArgs.builder()
+ *             .name("example-firewall")
+ *             .createDefaultRules(true)
+ *             .networkId(exampleNetwork.id())
+ *             .build());
+ * 
+ *         // Query instance disk image
+ *         final var debian = CivoFunctions.getDiskImage(GetDiskImageArgs.builder()
+ *             .filters(GetDiskImageFilterArgs.builder()
+ *                 .key("name")
+ *                 .values("debian-10")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Create a new instance
+ *         var exampleInstance = new Instance("exampleInstance", InstanceArgs.builder()
+ *             .hostname("example")
+ *             .tags(            
+ *                 "example",
+ *                 "documentation")
+ *             .notes("This is an example instance")
+ *             .firewallId(example.id())
+ *             .networkId(exampleNetwork.id())
+ *             .size("g3.xsmall")
+ *             .diskImage(debian.applyValue(getDiskImageResult -> getDiskImageResult.diskimages()[0].id()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * With this configuration, an initial password for the instance gets written to the state on output `initial_password` which you can use to access the instance.
+ * 
+ * Alternative you can get the password with the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * 
+ * ### Instance with ssh login
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.civo.Network;
+ * import com.pulumi.civo.NetworkArgs;
+ * import com.pulumi.civo.Firewall;
+ * import com.pulumi.civo.FirewallArgs;
+ * import com.pulumi.civo.CivoFunctions;
+ * import com.pulumi.civo.inputs.GetDiskImageArgs;
+ * import com.pulumi.civo.SshKey;
+ * import com.pulumi.civo.SshKeyArgs;
+ * import com.pulumi.civo.Instance;
+ * import com.pulumi.civo.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
+ *             .label("example-network")
+ *             .build());
+ * 
+ *         var example = new Firewall("example", FirewallArgs.builder()
+ *             .name("example-firewall")
+ *             .createDefaultRules(true)
+ *             .networkId(exampleNetwork.id())
+ *             .build());
+ * 
+ *         // Query instance disk image
+ *         final var debian = CivoFunctions.getDiskImage(GetDiskImageArgs.builder()
+ *             .filters(GetDiskImageFilterArgs.builder()
+ *                 .key("name")
+ *                 .values("debian-10")
+ *                 .build())
+ *             .build());
+ * 
+ *         // To create the example key, run this command:
+ *         // ssh-keygen -f ~/.ssh/example-tf -C "terraform-example{@literal @}localmachine"
+ *         var exampleSshKey = new SshKey("exampleSshKey", SshKeyArgs.builder()
+ *             .name("example")
+ *             .publicKey(StdFunctions.file(FileArgs.builder()
+ *                 .input("~/.ssh/example-tf.pub")
+ *                 .build()).result())
+ *             .build());
+ * 
+ *         // Create a new instance
+ *         var exampleInstance = new Instance("exampleInstance", InstanceArgs.builder()
+ *             .hostname("example")
+ *             .tags(            
+ *                 "example",
+ *                 "documentation")
+ *             .notes("This is an example instance")
+ *             .sshkeyId(exampleSshKey.id())
+ *             .firewallId(example.id())
+ *             .networkId(exampleNetwork.id())
+ *             .size("g3.xsmall")
+ *             .diskImage(debian.applyValue(getDiskImageResult -> getDiskImageResult.diskimages()[0].id()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * using ID
  * 
  * ```sh
- * $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
+ * $ pulumi import civo:index/instance:Instance example 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
  * ```
  * 
  */
 @ResourceType(type="civo:index/instance:Instance")
 public class Instance extends com.pulumi.resources.CustomResource {
     /**
-     * Instance&#39;s CPU cores
+     * (Number) Instance&#39;s CPU cores
      * 
      */
     @Export(name="cpuCores", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpuCores;
 
     /**
-     * @return Instance&#39;s CPU cores
+     * @return (Number) Instance&#39;s CPU cores
      * 
      */
     public Output<Integer> cpuCores() {
         return this.cpuCores;
     }
     /**
-     * Timestamp when the instance was created
+     * (String) Timestamp when the instance was created
      * 
      */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
-     * @return Timestamp when the instance was created
+     * @return (String) Timestamp when the instance was created
      * 
      */
     public Output<String> createdAt() {
         return this.createdAt;
     }
     /**
-     * Instance&#39;s disk (GB)
+     * (Number) Instance&#39;s disk (GB)
      * 
      */
     @Export(name="diskGb", refs={Integer.class}, tree="[0]")
     private Output<Integer> diskGb;
 
     /**
-     * @return Instance&#39;s disk (GB)
+     * @return (Number) Instance&#39;s disk (GB)
      * 
      */
     public Output<Integer> diskGb() {
@@ -87,14 +245,16 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.diskImage;
     }
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     @Export(name="firewallId", refs={String.class}, tree="[0]")
     private Output<String> firewallId;
 
     /**
-     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     public Output<String> firewallId() {
@@ -115,28 +275,30 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return this.hostname;
     }
     /**
-     * Initial password for login
+     * (String, Sensitive) Initial password for login
      * 
      */
     @Export(name="initialPassword", refs={String.class}, tree="[0]")
     private Output<String> initialPassword;
 
     /**
-     * @return Initial password for login
+     * @return (String, Sensitive) Initial password for login
      * 
      */
     public Output<String> initialPassword() {
         return this.initialPassword;
     }
     /**
-     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     @Export(name="initialUser", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> initialUser;
 
     /**
-     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     public Output<Optional<String>> initialUser() {
@@ -171,14 +333,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.notes);
     }
     /**
-     * Instance&#39;s private IP address
+     * (String) Instance&#39;s private IP address
      * 
      */
     @Export(name="privateIp", refs={String.class}, tree="[0]")
     private Output<String> privateIp;
 
     /**
-     * @return Instance&#39;s private IP address
+     * @return (String) Instance&#39;s private IP address
      * 
      */
     public Output<String> privateIp() {
@@ -199,14 +361,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateIpv4);
     }
     /**
-     * Instance&#39;s public IP address
+     * (String) Instance&#39;s public IP address
      * 
      */
     @Export(name="publicIp", refs={String.class}, tree="[0]")
     private Output<String> publicIp;
 
     /**
-     * @return Instance&#39;s public IP address
+     * @return (String) Instance&#39;s public IP address
      * 
      */
     public Output<String> publicIp() {
@@ -227,14 +389,14 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.publicIpRequired);
     }
     /**
-     * Instance&#39;s RAM (MB)
+     * (Number) Instance&#39;s RAM (MB)
      * 
      */
     @Export(name="ramMb", refs={Integer.class}, tree="[0]")
     private Output<Integer> ramMb;
 
     /**
-     * @return Instance&#39;s RAM (MB)
+     * @return (Number) Instance&#39;s RAM (MB)
      * 
      */
     public Output<Integer> ramMb() {
@@ -269,28 +431,32 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.reservedIpv4);
     }
     /**
-     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     @Export(name="reverseDns", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> reverseDns;
 
     /**
-     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     public Output<Optional<String>> reverseDns() {
         return Codegen.optional(this.reverseDns);
     }
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     @Export(name="script", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> script;
 
     /**
-     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     public Output<Optional<String>> script() {
@@ -311,56 +477,58 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.size);
     }
     /**
-     * Instance&#39;s source ID
+     * (String) Instance&#39;s source ID
      * 
      */
     @Export(name="sourceId", refs={String.class}, tree="[0]")
     private Output<String> sourceId;
 
     /**
-     * @return Instance&#39;s source ID
+     * @return (String) Instance&#39;s source ID
      * 
      */
     public Output<String> sourceId() {
         return this.sourceId;
     }
     /**
-     * Instance&#39;s source type
+     * (String) Instance&#39;s source type
      * 
      */
     @Export(name="sourceType", refs={String.class}, tree="[0]")
     private Output<String> sourceType;
 
     /**
-     * @return Instance&#39;s source type
+     * @return (String) Instance&#39;s source type
      * 
      */
     public Output<String> sourceType() {
         return this.sourceType;
     }
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     @Export(name="sshkeyId", refs={String.class}, tree="[0]")
     private Output<String> sshkeyId;
 
     /**
-     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     public Output<String> sshkeyId() {
         return this.sshkeyId;
     }
     /**
-     * Instance&#39;s status
+     * (String) Instance&#39;s status
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return Instance&#39;s status
+     * @return (String) Instance&#39;s status
      * 
      */
     public Output<String> status() {
@@ -379,24 +547,6 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
-    }
-    /**
-     * The ID for the template to use to build the instance
-     * 
-     * @deprecated
-     * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-     * 
-     */
-    @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    @Export(name="template", refs={String.class}, tree="[0]")
-    private Output<String> template;
-
-    /**
-     * @return The ID for the template to use to build the instance
-     * 
-     */
-    public Output<String> template() {
-        return this.template;
     }
 
     /**

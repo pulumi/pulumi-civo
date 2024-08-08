@@ -14,70 +14,226 @@ import (
 
 // Provides a Civo instance resource. This can be used to create, modify, and delete instances.
 //
+// ## Example Usage
+//
+// * View instances after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+// * View instances after creation on the [Dashboard](https://dashboard.civo.com/instances)
+// * View node sizes on [CLI](https://www.civo.com/docs/overview/civo-cli):
+//
+// ### Simple and smallest instance with its own network
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleNetwork, err := civo.NewNetwork(ctx, "example", &civo.NetworkArgs{
+//				Label: pulumi.String("example-network"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := civo.NewFirewall(ctx, "example", &civo.FirewallArgs{
+//				Name:               pulumi.String("example-firewall"),
+//				CreateDefaultRules: pulumi.Bool(true),
+//				NetworkId:          exampleNetwork.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Query instance disk image
+//			debian, err := civo.GetDiskImage(ctx, &civo.GetDiskImageArgs{
+//				Filters: []civo.GetDiskImageFilter{
+//					{
+//						Key: "name",
+//						Values: []string{
+//							"debian-10",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Create a new instance
+//			_, err = civo.NewInstance(ctx, "example", &civo.InstanceArgs{
+//				Hostname: pulumi.String("example"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("example"),
+//					pulumi.String("documentation"),
+//				},
+//				Notes:      pulumi.String("This is an example instance"),
+//				FirewallId: example.ID(),
+//				NetworkId:  exampleNetwork.ID(),
+//				Size:       pulumi.String("g3.xsmall"),
+//				DiskImage:  pulumi.String(debian.Diskimages[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// With this configuration, an initial password for the instance gets written to the state on output `initialPassword` which you can use to access the instance.
+//
+// Alternative you can get the password with the [CLI](https://www.civo.com/docs/overview/civo-cli):
+//
+// ### Instance with ssh login
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi-std/sdk/go/std"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleNetwork, err := civo.NewNetwork(ctx, "example", &civo.NetworkArgs{
+//				Label: pulumi.String("example-network"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			example, err := civo.NewFirewall(ctx, "example", &civo.FirewallArgs{
+//				Name:               pulumi.String("example-firewall"),
+//				CreateDefaultRules: pulumi.Bool(true),
+//				NetworkId:          exampleNetwork.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Query instance disk image
+//			debian, err := civo.GetDiskImage(ctx, &civo.GetDiskImageArgs{
+//				Filters: []civo.GetDiskImageFilter{
+//					{
+//						Key: "name",
+//						Values: []string{
+//							"debian-10",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			invokeFile, err := std.File(ctx, &std.FileArgs{
+//				Input: "~/.ssh/example-tf.pub",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// To create the example key, run this command:
+//			// ssh-keygen -f ~/.ssh/example-tf -C "terraform-example@localmachine"
+//			exampleSshKey, err := civo.NewSshKey(ctx, "example", &civo.SshKeyArgs{
+//				Name:      pulumi.String("example"),
+//				PublicKey: pulumi.String(invokeFile.Result),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			// Create a new instance
+//			_, err = civo.NewInstance(ctx, "example", &civo.InstanceArgs{
+//				Hostname: pulumi.String("example"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("example"),
+//					pulumi.String("documentation"),
+//				},
+//				Notes:      pulumi.String("This is an example instance"),
+//				SshkeyId:   exampleSshKey.ID(),
+//				FirewallId: example.ID(),
+//				NetworkId:  exampleNetwork.ID(),
+//				Size:       pulumi.String("g3.xsmall"),
+//				DiskImage:  pulumi.String(debian.Diskimages[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using ID
 //
 // ```sh
-// $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
+// $ pulumi import civo:index/instance:Instance example 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
 // ```
 type Instance struct {
 	pulumi.CustomResourceState
 
-	// Instance's CPU cores
+	// (Number) Instance's CPU cores
 	CpuCores pulumi.IntOutput `pulumi:"cpuCores"`
-	// Timestamp when the instance was created
+	// (String) Timestamp when the instance was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Instance's disk (GB)
+	// (Number) Instance's disk (GB)
 	DiskGb pulumi.IntOutput `pulumi:"diskGb"`
 	// The ID for the disk image to use to build the instance
 	DiskImage pulumi.StringOutput `pulumi:"diskImage"`
-	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+	// to all)
 	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringOutput `pulumi:"hostname"`
-	// Initial password for login
+	// (String, Sensitive) Initial password for login
 	InitialPassword pulumi.StringOutput `pulumi:"initialPassword"`
-	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+	// fallback to civo)
 	InitialUser pulumi.StringPtrOutput `pulumi:"initialUser"`
 	// This must be the ID of the network from the network listing (optional; default network used when not specified)
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// Add some notes to the instance
 	Notes pulumi.StringPtrOutput `pulumi:"notes"`
-	// Instance's private IP address
+	// (String) Instance's private IP address
 	PrivateIp pulumi.StringOutput `pulumi:"privateIp"`
 	// The private IPv4 address for the instance (optional)
 	PrivateIpv4 pulumi.StringPtrOutput `pulumi:"privateIpv4"`
-	// Instance's public IP address
+	// (String) Instance's public IP address
 	PublicIp pulumi.StringOutput `pulumi:"publicIp"`
 	// This should be either 'none' or 'create' (default: 'create')
 	PublicIpRequired pulumi.StringPtrOutput `pulumi:"publicIpRequired"`
-	// Instance's RAM (MB)
+	// (Number) Instance's RAM (MB)
 	RamMb pulumi.IntOutput `pulumi:"ramMb"`
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// Can be either the UUID, name, or the IP address of the reserved IP
 	ReservedIpv4 pulumi.StringPtrOutput `pulumi:"reservedIpv4"`
-	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+	// unspecified)
 	ReverseDns pulumi.StringPtrOutput `pulumi:"reverseDns"`
-	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+	// read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrOutput `pulumi:"script"`
 	// The name of the size, from the current list, e.g. g3.xsmall
 	Size pulumi.StringPtrOutput `pulumi:"size"`
-	// Instance's source ID
+	// (String) Instance's source ID
 	SourceId pulumi.StringOutput `pulumi:"sourceId"`
-	// Instance's source type
+	// (String) Instance's source type
 	SourceType pulumi.StringOutput `pulumi:"sourceType"`
-	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+	// random password will be set and returned in the initialPassword field)
 	SshkeyId pulumi.StringOutput `pulumi:"sshkeyId"`
-	// Instance's status
+	// (String) Instance's status
 	Status pulumi.StringOutput `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
 	Tags pulumi.StringArrayOutput `pulumi:"tags"`
-	// The ID for the template to use to build the instance
-	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-	Template pulumi.StringOutput `pulumi:"template"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -87,6 +243,9 @@ func NewInstance(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
+	if args.DiskImage == nil {
+		return nil, errors.New("invalid value for required argument 'DiskImage'")
+	}
 	if args.FirewallId == nil {
 		return nil, errors.New("invalid value for required argument 'FirewallId'")
 	}
@@ -117,117 +276,119 @@ func GetInstance(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Instance resources.
 type instanceState struct {
-	// Instance's CPU cores
+	// (Number) Instance's CPU cores
 	CpuCores *int `pulumi:"cpuCores"`
-	// Timestamp when the instance was created
+	// (String) Timestamp when the instance was created
 	CreatedAt *string `pulumi:"createdAt"`
-	// Instance's disk (GB)
+	// (Number) Instance's disk (GB)
 	DiskGb *int `pulumi:"diskGb"`
 	// The ID for the disk image to use to build the instance
 	DiskImage *string `pulumi:"diskImage"`
-	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+	// to all)
 	FirewallId *string `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname *string `pulumi:"hostname"`
-	// Initial password for login
+	// (String, Sensitive) Initial password for login
 	InitialPassword *string `pulumi:"initialPassword"`
-	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+	// fallback to civo)
 	InitialUser *string `pulumi:"initialUser"`
 	// This must be the ID of the network from the network listing (optional; default network used when not specified)
 	NetworkId *string `pulumi:"networkId"`
 	// Add some notes to the instance
 	Notes *string `pulumi:"notes"`
-	// Instance's private IP address
+	// (String) Instance's private IP address
 	PrivateIp *string `pulumi:"privateIp"`
 	// The private IPv4 address for the instance (optional)
 	PrivateIpv4 *string `pulumi:"privateIpv4"`
-	// Instance's public IP address
+	// (String) Instance's public IP address
 	PublicIp *string `pulumi:"publicIp"`
 	// This should be either 'none' or 'create' (default: 'create')
 	PublicIpRequired *string `pulumi:"publicIpRequired"`
-	// Instance's RAM (MB)
+	// (Number) Instance's RAM (MB)
 	RamMb *int `pulumi:"ramMb"`
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
 	// Can be either the UUID, name, or the IP address of the reserved IP
 	ReservedIpv4 *string `pulumi:"reservedIpv4"`
-	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+	// unspecified)
 	ReverseDns *string `pulumi:"reverseDns"`
-	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+	// read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script *string `pulumi:"script"`
 	// The name of the size, from the current list, e.g. g3.xsmall
 	Size *string `pulumi:"size"`
-	// Instance's source ID
+	// (String) Instance's source ID
 	SourceId *string `pulumi:"sourceId"`
-	// Instance's source type
+	// (String) Instance's source type
 	SourceType *string `pulumi:"sourceType"`
-	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+	// random password will be set and returned in the initialPassword field)
 	SshkeyId *string `pulumi:"sshkeyId"`
-	// Instance's status
+	// (String) Instance's status
 	Status *string `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
 	Tags []string `pulumi:"tags"`
-	// The ID for the template to use to build the instance
-	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-	Template *string `pulumi:"template"`
 }
 
 type InstanceState struct {
-	// Instance's CPU cores
+	// (Number) Instance's CPU cores
 	CpuCores pulumi.IntPtrInput
-	// Timestamp when the instance was created
+	// (String) Timestamp when the instance was created
 	CreatedAt pulumi.StringPtrInput
-	// Instance's disk (GB)
+	// (Number) Instance's disk (GB)
 	DiskGb pulumi.IntPtrInput
 	// The ID for the disk image to use to build the instance
 	DiskImage pulumi.StringPtrInput
-	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+	// to all)
 	FirewallId pulumi.StringPtrInput
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringPtrInput
-	// Initial password for login
+	// (String, Sensitive) Initial password for login
 	InitialPassword pulumi.StringPtrInput
-	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+	// fallback to civo)
 	InitialUser pulumi.StringPtrInput
 	// This must be the ID of the network from the network listing (optional; default network used when not specified)
 	NetworkId pulumi.StringPtrInput
 	// Add some notes to the instance
 	Notes pulumi.StringPtrInput
-	// Instance's private IP address
+	// (String) Instance's private IP address
 	PrivateIp pulumi.StringPtrInput
 	// The private IPv4 address for the instance (optional)
 	PrivateIpv4 pulumi.StringPtrInput
-	// Instance's public IP address
+	// (String) Instance's public IP address
 	PublicIp pulumi.StringPtrInput
 	// This should be either 'none' or 'create' (default: 'create')
 	PublicIpRequired pulumi.StringPtrInput
-	// Instance's RAM (MB)
+	// (Number) Instance's RAM (MB)
 	RamMb pulumi.IntPtrInput
 	// The region for the instance, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
 	// Can be either the UUID, name, or the IP address of the reserved IP
 	ReservedIpv4 pulumi.StringPtrInput
-	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+	// unspecified)
 	ReverseDns pulumi.StringPtrInput
-	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+	// read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrInput
 	// The name of the size, from the current list, e.g. g3.xsmall
 	Size pulumi.StringPtrInput
-	// Instance's source ID
+	// (String) Instance's source ID
 	SourceId pulumi.StringPtrInput
-	// Instance's source type
+	// (String) Instance's source type
 	SourceType pulumi.StringPtrInput
-	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+	// random password will be set and returned in the initialPassword field)
 	SshkeyId pulumi.StringPtrInput
-	// Instance's status
+	// (String) Instance's status
 	Status pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
 	Tags pulumi.StringArrayInput
-	// The ID for the template to use to build the instance
-	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-	Template pulumi.StringPtrInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -236,12 +397,14 @@ func (InstanceState) ElementType() reflect.Type {
 
 type instanceArgs struct {
 	// The ID for the disk image to use to build the instance
-	DiskImage *string `pulumi:"diskImage"`
-	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+	DiskImage string `pulumi:"diskImage"`
+	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+	// to all)
 	FirewallId string `pulumi:"firewallId"`
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname *string `pulumi:"hostname"`
-	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+	// fallback to civo)
 	InitialUser *string `pulumi:"initialUser"`
 	// This must be the ID of the network from the network listing (optional; default network used when not specified)
 	NetworkId *string `pulumi:"networkId"`
@@ -255,31 +418,32 @@ type instanceArgs struct {
 	Region *string `pulumi:"region"`
 	// Can be either the UUID, name, or the IP address of the reserved IP
 	ReservedIpv4 *string `pulumi:"reservedIpv4"`
-	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+	// unspecified)
 	ReverseDns *string `pulumi:"reverseDns"`
-	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+	// read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script *string `pulumi:"script"`
 	// The name of the size, from the current list, e.g. g3.xsmall
 	Size *string `pulumi:"size"`
-	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+	// random password will be set and returned in the initialPassword field)
 	SshkeyId *string `pulumi:"sshkeyId"`
 	// An optional list of tags, represented as a key, value pair
 	Tags []string `pulumi:"tags"`
-	// The ID for the template to use to build the instance
-	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-	Template *string `pulumi:"template"`
 }
 
 // The set of arguments for constructing a Instance resource.
 type InstanceArgs struct {
 	// The ID for the disk image to use to build the instance
-	DiskImage pulumi.StringPtrInput
-	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+	DiskImage pulumi.StringInput
+	// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+	// to all)
 	FirewallId pulumi.StringInput
 	// A fully qualified domain name that should be set as the instance's hostname
 	Hostname pulumi.StringPtrInput
-	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+	// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+	// fallback to civo)
 	InitialUser pulumi.StringPtrInput
 	// This must be the ID of the network from the network listing (optional; default network used when not specified)
 	NetworkId pulumi.StringPtrInput
@@ -293,20 +457,19 @@ type InstanceArgs struct {
 	Region pulumi.StringPtrInput
 	// Can be either the UUID, name, or the IP address of the reserved IP
 	ReservedIpv4 pulumi.StringPtrInput
-	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+	// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+	// unspecified)
 	ReverseDns pulumi.StringPtrInput
-	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+	// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+	// read/write/executable only by root and then will be executed at the end of the cloud initialization
 	Script pulumi.StringPtrInput
 	// The name of the size, from the current list, e.g. g3.xsmall
 	Size pulumi.StringPtrInput
-	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+	// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+	// random password will be set and returned in the initialPassword field)
 	SshkeyId pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
 	Tags pulumi.StringArrayInput
-	// The ID for the template to use to build the instance
-	//
-	// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-	Template pulumi.StringPtrInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -396,17 +559,17 @@ func (o InstanceOutput) ToInstanceOutputWithContext(ctx context.Context) Instanc
 	return o
 }
 
-// Instance's CPU cores
+// (Number) Instance's CPU cores
 func (o InstanceOutput) CpuCores() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.CpuCores }).(pulumi.IntOutput)
 }
 
-// Timestamp when the instance was created
+// (String) Timestamp when the instance was created
 func (o InstanceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Instance's disk (GB)
+// (Number) Instance's disk (GB)
 func (o InstanceOutput) DiskGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.DiskGb }).(pulumi.IntOutput)
 }
@@ -416,7 +579,8 @@ func (o InstanceOutput) DiskImage() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.DiskImage }).(pulumi.StringOutput)
 }
 
-// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+// The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+// to all)
 func (o InstanceOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.FirewallId }).(pulumi.StringOutput)
 }
@@ -426,12 +590,13 @@ func (o InstanceOutput) Hostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Hostname }).(pulumi.StringOutput)
 }
 
-// Initial password for login
+// (String, Sensitive) Initial password for login
 func (o InstanceOutput) InitialPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.InitialPassword }).(pulumi.StringOutput)
 }
 
-// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+// The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+// fallback to civo)
 func (o InstanceOutput) InitialUser() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.InitialUser }).(pulumi.StringPtrOutput)
 }
@@ -446,7 +611,7 @@ func (o InstanceOutput) Notes() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.Notes }).(pulumi.StringPtrOutput)
 }
 
-// Instance's private IP address
+// (String) Instance's private IP address
 func (o InstanceOutput) PrivateIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PrivateIp }).(pulumi.StringOutput)
 }
@@ -456,7 +621,7 @@ func (o InstanceOutput) PrivateIpv4() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.PrivateIpv4 }).(pulumi.StringPtrOutput)
 }
 
-// Instance's public IP address
+// (String) Instance's public IP address
 func (o InstanceOutput) PublicIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.PublicIp }).(pulumi.StringOutput)
 }
@@ -466,7 +631,7 @@ func (o InstanceOutput) PublicIpRequired() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.PublicIpRequired }).(pulumi.StringPtrOutput)
 }
 
-// Instance's RAM (MB)
+// (Number) Instance's RAM (MB)
 func (o InstanceOutput) RamMb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Instance) pulumi.IntOutput { return v.RamMb }).(pulumi.IntOutput)
 }
@@ -481,12 +646,14 @@ func (o InstanceOutput) ReservedIpv4() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ReservedIpv4 }).(pulumi.StringPtrOutput)
 }
 
-// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+// A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+// unspecified)
 func (o InstanceOutput) ReverseDns() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.ReverseDns }).(pulumi.StringPtrOutput)
 }
 
-// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+// The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+// read/write/executable only by root and then will be executed at the end of the cloud initialization
 func (o InstanceOutput) Script() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.Script }).(pulumi.StringPtrOutput)
 }
@@ -496,22 +663,23 @@ func (o InstanceOutput) Size() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.Size }).(pulumi.StringPtrOutput)
 }
 
-// Instance's source ID
+// (String) Instance's source ID
 func (o InstanceOutput) SourceId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SourceId }).(pulumi.StringOutput)
 }
 
-// Instance's source type
+// (String) Instance's source type
 func (o InstanceOutput) SourceType() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SourceType }).(pulumi.StringOutput)
 }
 
-// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+// The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+// random password will be set and returned in the initialPassword field)
 func (o InstanceOutput) SshkeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.SshkeyId }).(pulumi.StringOutput)
 }
 
-// Instance's status
+// (String) Instance's status
 func (o InstanceOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
@@ -519,13 +687,6 @@ func (o InstanceOutput) Status() pulumi.StringOutput {
 // An optional list of tags, represented as a key, value pair
 func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
-}
-
-// The ID for the template to use to build the instance
-//
-// Deprecated: "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-func (o InstanceOutput) Template() pulumi.StringOutput {
-	return o.ApplyT(func(v *Instance) pulumi.StringOutput { return v.Template }).(pulumi.StringOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

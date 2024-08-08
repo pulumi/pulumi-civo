@@ -17,14 +17,14 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
     public static final KubernetesClusterInstalledApplicationArgs Empty = new KubernetesClusterInstalledApplicationArgs();
 
     /**
-     * Name of application
+     * (String) name of the application
      * 
      */
     @Import(name="application")
     private @Nullable Output<String> application;
 
     /**
-     * @return Name of application
+     * @return (String) name of the application
      * 
      */
     public Optional<Output<String>> application() {
@@ -32,14 +32,14 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
     }
 
     /**
-     * Category of the application
+     * (String) category of the application
      * 
      */
     @Import(name="category")
     private @Nullable Output<String> category;
 
     /**
-     * @return Category of the application
+     * @return (String) category of the application
      * 
      */
     public Optional<Output<String>> category() {
@@ -47,14 +47,14 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
     }
 
     /**
-     * Application installation status (`true` if installed)
+     * (Boolean) whether application is installed or not
      * 
      */
     @Import(name="installed")
     private @Nullable Output<Boolean> installed;
 
     /**
-     * @return Application installation status (`true` if installed)
+     * @return (Boolean) whether application is installed or not
      * 
      */
     public Optional<Output<Boolean>> installed() {
@@ -62,14 +62,14 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
     }
 
     /**
-     * Version of application
+     * (String) version of the application
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return Version of application
+     * @return (String) version of the application
      * 
      */
     public Optional<Output<String>> version() {
@@ -104,7 +104,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param application Name of application
+         * @param application (String) name of the application
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param application Name of application
+         * @param application (String) name of the application
          * 
          * @return builder
          * 
@@ -125,7 +125,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param category Category of the application
+         * @param category (String) category of the application
          * 
          * @return builder
          * 
@@ -136,7 +136,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param category Category of the application
+         * @param category (String) category of the application
          * 
          * @return builder
          * 
@@ -146,7 +146,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param installed Application installation status (`true` if installed)
+         * @param installed (Boolean) whether application is installed or not
          * 
          * @return builder
          * 
@@ -157,7 +157,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param installed Application installation status (`true` if installed)
+         * @param installed (Boolean) whether application is installed or not
          * 
          * @return builder
          * 
@@ -167,7 +167,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param version Version of application
+         * @param version (String) version of the application
          * 
          * @return builder
          * 
@@ -178,7 +178,7 @@ public final class KubernetesClusterInstalledApplicationArgs extends com.pulumi.
         }
 
         /**
-         * @param version Version of application
+         * @param version (String) version of the application
          * 
          * @return builder
          * 

@@ -510,19 +510,19 @@ export interface GetSizeSort {
 
 export interface KubernetesClusterInstalledApplication {
     /**
-     * Name of application
+     * (String) name of the application
      */
     application: string;
     /**
-     * Category of the application
+     * (String) category of the application
      */
     category: string;
     /**
-     * Application installation status (`true` if installed)
+     * (Boolean) whether application is installed or not
      */
     installed: boolean;
     /**
-     * Version of application
+     * (String) version of the application
      */
     version: string;
 }
@@ -549,6 +549,11 @@ export interface KubernetesClusterPools {
      * Size of the nodes in the nodepool
      */
     size: string;
+    /**
+     * (see below for nested schema)
+     *
+     * Read-Only Output:
+     */
     taints?: outputs.KubernetesClusterPoolsTaint[];
 }
 

@@ -34,6 +34,11 @@ namespace Pulumi.Civo.Outputs
         /// Size of the nodes in the nodepool
         /// </summary>
         public readonly string Size;
+        /// <summary>
+        /// (see below for nested schema)
+        /// 
+        /// Read-Only Output:
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesClusterPoolsTaint> Taints;
 
         [OutputConstructor]

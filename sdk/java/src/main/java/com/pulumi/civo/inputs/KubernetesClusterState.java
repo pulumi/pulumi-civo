@@ -21,14 +21,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     public static final KubernetesClusterState Empty = new KubernetesClusterState();
 
     /**
-     * The API server endpoint of the cluster
+     * (String) The API server endpoint of the cluster
      * 
      */
     @Import(name="apiEndpoint")
     private @Nullable Output<String> apiEndpoint;
 
     /**
-     * @return The API server endpoint of the cluster
+     * @return (String) The API server endpoint of the cluster
      * 
      */
     public Optional<Output<String>> apiEndpoint() {
@@ -36,14 +36,22 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+     * &#39;MariaDB:5GB&#39;.
      * 
      */
     @Import(name="applications")
     private @Nullable Output<String> applications;
 
     /**
-     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+     * &#39;MariaDB:5GB&#39;.
      * 
      */
     public Optional<Output<String>> applications() {
@@ -81,14 +89,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The timestamp when the cluster was created
+     * (String) The timestamp when the cluster was created
      * 
      */
     @Import(name="createdAt")
     private @Nullable Output<String> createdAt;
 
     /**
-     * @return The timestamp when the cluster was created
+     * @return (String) The timestamp when the cluster was created
      * 
      */
     public Optional<Output<String>> createdAt() {
@@ -96,14 +104,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The DNS name of the cluster
+     * (String) The DNS name of the cluster
      * 
      */
     @Import(name="dnsEntry")
     private @Nullable Output<String> dnsEntry;
 
     /**
-     * @return The DNS name of the cluster
+     * @return (String) The DNS name of the cluster
      * 
      */
     public Optional<Output<String>> dnsEntry() {
@@ -125,22 +133,30 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.firewallId);
     }
 
+    /**
+     * (List of Object) (see below for nested schema)
+     * 
+     */
     @Import(name="installedApplications")
     private @Nullable Output<List<KubernetesClusterInstalledApplicationArgs>> installedApplications;
 
+    /**
+     * @return (List of Object) (see below for nested schema)
+     * 
+     */
     public Optional<Output<List<KubernetesClusterInstalledApplicationArgs>>> installedApplications() {
         return Optional.ofNullable(this.installedApplications);
     }
 
     /**
-     * The kubeconfig of the cluster
+     * (String, Sensitive) The kubeconfig of the cluster
      * 
      */
     @Import(name="kubeconfig")
     private @Nullable Output<String> kubeconfig;
 
     /**
-     * @return The kubeconfig of the cluster
+     * @return (String, Sensitive) The kubeconfig of the cluster
      * 
      */
     public Optional<Output<String>> kubeconfig() {
@@ -163,14 +179,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The IP address of the master node
+     * (String) The IP address of the master node
      * 
      */
     @Import(name="masterIp")
     private @Nullable Output<String> masterIp;
 
     /**
-     * @return The IP address of the master node
+     * @return (String) The IP address of the master node
      * 
      */
     public Optional<Output<String>> masterIp() {
@@ -238,14 +254,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * When cluster is ready, this will return `true`
+     * (Boolean) When cluster is ready, this will return `true`
      * 
      */
     @Import(name="ready")
     private @Nullable Output<Boolean> ready;
 
     /**
-     * @return When cluster is ready, this will return `true`
+     * @return (Boolean) When cluster is ready, this will return `true`
      * 
      */
     public Optional<Output<Boolean>> ready() {
@@ -268,14 +284,14 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Status of the cluster
+     * (String) Status of the cluster
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return Status of the cluster
+     * @return (String) Status of the cluster
      * 
      */
     public Optional<Output<String>> status() {
@@ -364,7 +380,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param apiEndpoint The API server endpoint of the cluster
+         * @param apiEndpoint (String) The API server endpoint of the cluster
          * 
          * @return builder
          * 
@@ -375,7 +391,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param apiEndpoint The API server endpoint of the cluster
+         * @param apiEndpoint (String) The API server endpoint of the cluster
          * 
          * @return builder
          * 
@@ -385,7 +401,11 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+         * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+         * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+         * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+         * &#39;MariaDB:5GB&#39;.
          * 
          * @return builder
          * 
@@ -396,7 +416,11 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+         * @param applications Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+         * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+         * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+         * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+         * &#39;MariaDB:5GB&#39;.
          * 
          * @return builder
          * 
@@ -448,7 +472,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param createdAt The timestamp when the cluster was created
+         * @param createdAt (String) The timestamp when the cluster was created
          * 
          * @return builder
          * 
@@ -459,7 +483,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param createdAt The timestamp when the cluster was created
+         * @param createdAt (String) The timestamp when the cluster was created
          * 
          * @return builder
          * 
@@ -469,7 +493,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dnsEntry The DNS name of the cluster
+         * @param dnsEntry (String) The DNS name of the cluster
          * 
          * @return builder
          * 
@@ -480,7 +504,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dnsEntry The DNS name of the cluster
+         * @param dnsEntry (String) The DNS name of the cluster
          * 
          * @return builder
          * 
@@ -510,21 +534,39 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
             return firewallId(Output.of(firewallId));
         }
 
+        /**
+         * @param installedApplications (List of Object) (see below for nested schema)
+         * 
+         * @return builder
+         * 
+         */
         public Builder installedApplications(@Nullable Output<List<KubernetesClusterInstalledApplicationArgs>> installedApplications) {
             $.installedApplications = installedApplications;
             return this;
         }
 
+        /**
+         * @param installedApplications (List of Object) (see below for nested schema)
+         * 
+         * @return builder
+         * 
+         */
         public Builder installedApplications(List<KubernetesClusterInstalledApplicationArgs> installedApplications) {
             return installedApplications(Output.of(installedApplications));
         }
 
+        /**
+         * @param installedApplications (List of Object) (see below for nested schema)
+         * 
+         * @return builder
+         * 
+         */
         public Builder installedApplications(KubernetesClusterInstalledApplicationArgs... installedApplications) {
             return installedApplications(List.of(installedApplications));
         }
 
         /**
-         * @param kubeconfig The kubeconfig of the cluster
+         * @param kubeconfig (String, Sensitive) The kubeconfig of the cluster
          * 
          * @return builder
          * 
@@ -535,7 +577,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param kubeconfig The kubeconfig of the cluster
+         * @param kubeconfig (String, Sensitive) The kubeconfig of the cluster
          * 
          * @return builder
          * 
@@ -566,7 +608,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param masterIp The IP address of the master node
+         * @param masterIp (String) The IP address of the master node
          * 
          * @return builder
          * 
@@ -577,7 +619,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param masterIp The IP address of the master node
+         * @param masterIp (String) The IP address of the master node
          * 
          * @return builder
          * 
@@ -667,7 +709,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param ready When cluster is ready, this will return `true`
+         * @param ready (Boolean) When cluster is ready, this will return `true`
          * 
          * @return builder
          * 
@@ -678,7 +720,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param ready When cluster is ready, this will return `true`
+         * @param ready (Boolean) When cluster is ready, this will return `true`
          * 
          * @return builder
          * 
@@ -709,7 +751,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param status Status of the cluster
+         * @param status (String) Status of the cluster
          * 
          * @return builder
          * 
@@ -720,7 +762,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param status Status of the cluster
+         * @param status (String) Status of the cluster
          * 
          * @return builder
          * 

@@ -12,8 +12,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
-//
 // ## Import
 //
 // using ID
@@ -24,26 +22,31 @@ import (
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
 
-	// The API server endpoint of the cluster
+	// (String) The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringOutput `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrOutput `pulumi:"applications"`
 	// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
 	ClusterType pulumi.StringOutput `pulumi:"clusterType"`
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni pulumi.StringOutput `pulumi:"cni"`
-	// The timestamp when the cluster was created
+	// (String) The timestamp when the cluster was created
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// The DNS name of the cluster
+	// (String) The DNS name of the cluster
 	DnsEntry pulumi.StringOutput `pulumi:"dnsEntry"`
 	// The existing firewall ID to use for this cluster
-	FirewallId            pulumi.StringOutput                              `pulumi:"firewallId"`
+	FirewallId pulumi.StringOutput `pulumi:"firewallId"`
+	// (List of Object) (see below for nested schema)
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
-	// The kubeconfig of the cluster
+	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
 	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
-	// The IP address of the master node
+	// (String) The IP address of the master node
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
 	// Name for your cluster, must be unique within your account
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -54,11 +57,11 @@ type KubernetesCluster struct {
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes pulumi.IntOutput             `pulumi:"numTargetNodes"`
 	Pools          KubernetesClusterPoolsOutput `pulumi:"pools"`
-	// When cluster is ready, this will return `true`
+	// (Boolean) When cluster is ready, this will return `true`
 	Ready pulumi.BoolOutput `pulumi:"ready"`
 	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringOutput `pulumi:"region"`
-	// Status of the cluster
+	// (String) Status of the cluster
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrOutput `pulumi:"tags"`
@@ -108,26 +111,31 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesCluster resources.
 type kubernetesClusterState struct {
-	// The API server endpoint of the cluster
+	// (String) The API server endpoint of the cluster
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
 	ClusterType *string `pulumi:"clusterType"`
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni *string `pulumi:"cni"`
-	// The timestamp when the cluster was created
+	// (String) The timestamp when the cluster was created
 	CreatedAt *string `pulumi:"createdAt"`
-	// The DNS name of the cluster
+	// (String) The DNS name of the cluster
 	DnsEntry *string `pulumi:"dnsEntry"`
 	// The existing firewall ID to use for this cluster
-	FirewallId            *string                                 `pulumi:"firewallId"`
+	FirewallId *string `pulumi:"firewallId"`
+	// (List of Object) (see below for nested schema)
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
-	// The kubeconfig of the cluster
+	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig *string `pulumi:"kubeconfig"`
 	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
-	// The IP address of the master node
+	// (String) The IP address of the master node
 	MasterIp *string `pulumi:"masterIp"`
 	// Name for your cluster, must be unique within your account
 	Name *string `pulumi:"name"`
@@ -138,11 +146,11 @@ type kubernetesClusterState struct {
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes *int                    `pulumi:"numTargetNodes"`
 	Pools          *KubernetesClusterPools `pulumi:"pools"`
-	// When cluster is ready, this will return `true`
+	// (Boolean) When cluster is ready, this will return `true`
 	Ready *bool `pulumi:"ready"`
 	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region *string `pulumi:"region"`
-	// Status of the cluster
+	// (String) Status of the cluster
 	Status *string `pulumi:"status"`
 	// Space separated list of tags, to be used freely as required
 	Tags *string `pulumi:"tags"`
@@ -153,26 +161,31 @@ type kubernetesClusterState struct {
 }
 
 type KubernetesClusterState struct {
-	// The API server endpoint of the cluster
+	// (String) The API server endpoint of the cluster
 	ApiEndpoint pulumi.StringPtrInput
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
 	ClusterType pulumi.StringPtrInput
 	// The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
 	Cni pulumi.StringPtrInput
-	// The timestamp when the cluster was created
+	// (String) The timestamp when the cluster was created
 	CreatedAt pulumi.StringPtrInput
-	// The DNS name of the cluster
+	// (String) The DNS name of the cluster
 	DnsEntry pulumi.StringPtrInput
 	// The existing firewall ID to use for this cluster
-	FirewallId            pulumi.StringPtrInput
+	FirewallId pulumi.StringPtrInput
+	// (List of Object) (see below for nested schema)
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
-	// The kubeconfig of the cluster
+	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig pulumi.StringPtrInput
 	// The version of k3s to install (optional, the default is currently the latest available)
 	KubernetesVersion pulumi.StringPtrInput
-	// The IP address of the master node
+	// (String) The IP address of the master node
 	MasterIp pulumi.StringPtrInput
 	// Name for your cluster, must be unique within your account
 	Name pulumi.StringPtrInput
@@ -183,11 +196,11 @@ type KubernetesClusterState struct {
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	NumTargetNodes pulumi.IntPtrInput
 	Pools          KubernetesClusterPoolsPtrInput
-	// When cluster is ready, this will return `true`
+	// (Boolean) When cluster is ready, this will return `true`
 	Ready pulumi.BoolPtrInput
 	// The region for the cluster, if not declare we use the region in declared in the provider
 	Region pulumi.StringPtrInput
-	// Status of the cluster
+	// (String) Status of the cluster
 	Status pulumi.StringPtrInput
 	// Space separated list of tags, to be used freely as required
 	Tags pulumi.StringPtrInput
@@ -202,7 +215,11 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications *string `pulumi:"applications"`
 	// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
 	ClusterType *string `pulumi:"clusterType"`
@@ -233,7 +250,11 @@ type kubernetesClusterArgs struct {
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+	// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+	// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+	// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+	// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+	// 'MariaDB:5GB'.
 	Applications pulumi.StringPtrInput
 	// The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
 	ClusterType pulumi.StringPtrInput
@@ -349,12 +370,16 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx contex
 	return o
 }
 
-// The API server endpoint of the cluster
+// (String) The API server endpoint of the cluster
 func (o KubernetesClusterOutput) ApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ApiEndpoint }).(pulumi.StringOutput)
 }
 
-// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+// 'MariaDB:5GB'.
 func (o KubernetesClusterOutput) Applications() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.Applications }).(pulumi.StringPtrOutput)
 }
@@ -369,12 +394,12 @@ func (o KubernetesClusterOutput) Cni() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Cni }).(pulumi.StringOutput)
 }
 
-// The timestamp when the cluster was created
+// (String) The timestamp when the cluster was created
 func (o KubernetesClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// The DNS name of the cluster
+// (String) The DNS name of the cluster
 func (o KubernetesClusterOutput) DnsEntry() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.DnsEntry }).(pulumi.StringOutput)
 }
@@ -384,13 +409,14 @@ func (o KubernetesClusterOutput) FirewallId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.FirewallId }).(pulumi.StringOutput)
 }
 
+// (List of Object) (see below for nested schema)
 func (o KubernetesClusterOutput) InstalledApplications() KubernetesClusterInstalledApplicationArrayOutput {
 	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterInstalledApplicationArrayOutput {
 		return v.InstalledApplications
 	}).(KubernetesClusterInstalledApplicationArrayOutput)
 }
 
-// The kubeconfig of the cluster
+// (String, Sensitive) The kubeconfig of the cluster
 func (o KubernetesClusterOutput) Kubeconfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Kubeconfig }).(pulumi.StringOutput)
 }
@@ -400,7 +426,7 @@ func (o KubernetesClusterOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.KubernetesVersion }).(pulumi.StringOutput)
 }
 
-// The IP address of the master node
+// (String) The IP address of the master node
 func (o KubernetesClusterOutput) MasterIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.MasterIp }).(pulumi.StringOutput)
 }
@@ -426,7 +452,7 @@ func (o KubernetesClusterOutput) Pools() KubernetesClusterPoolsOutput {
 	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterPoolsOutput { return v.Pools }).(KubernetesClusterPoolsOutput)
 }
 
-// When cluster is ready, this will return `true`
+// (Boolean) When cluster is ready, this will return `true`
 func (o KubernetesClusterOutput) Ready() pulumi.BoolOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolOutput { return v.Ready }).(pulumi.BoolOutput)
 }
@@ -436,7 +462,7 @@ func (o KubernetesClusterOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// Status of the cluster
+// (String) Status of the cluster
 func (o KubernetesClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

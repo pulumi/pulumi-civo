@@ -21,26 +21,28 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
      * The ID for the disk image to use to build the instance
      * 
      */
-    @Import(name="diskImage")
-    private @Nullable Output<String> diskImage;
+    @Import(name="diskImage", required=true)
+    private Output<String> diskImage;
 
     /**
      * @return The ID for the disk image to use to build the instance
      * 
      */
-    public Optional<Output<String>> diskImage() {
-        return Optional.ofNullable(this.diskImage);
+    public Output<String> diskImage() {
+        return this.diskImage;
     }
 
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     @Import(name="firewallId", required=true)
     private Output<String> firewallId;
 
     /**
-     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     public Output<String> firewallId() {
@@ -63,14 +65,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     @Import(name="initialUser")
     private @Nullable Output<String> initialUser;
 
     /**
-     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     public Optional<Output<String>> initialUser() {
@@ -168,14 +172,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     @Import(name="reverseDns")
     private @Nullable Output<String> reverseDns;
 
     /**
-     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     public Optional<Output<String>> reverseDns() {
@@ -183,14 +189,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     @Import(name="script")
     private @Nullable Output<String> script;
 
     /**
-     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     public Optional<Output<String>> script() {
@@ -213,14 +221,16 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     @Import(name="sshkeyId")
     private @Nullable Output<String> sshkeyId;
 
     /**
-     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     public Optional<Output<String>> sshkeyId() {
@@ -242,29 +252,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
-    /**
-     * The ID for the template to use to build the instance
-     * 
-     * @deprecated
-     * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-     * 
-     */
-    @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    @Import(name="template")
-    private @Nullable Output<String> template;
-
-    /**
-     * @return The ID for the template to use to build the instance
-     * 
-     * @deprecated
-     * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-     * 
-     */
-    @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    public Optional<Output<String>> template() {
-        return Optional.ofNullable(this.template);
-    }
-
     private InstanceArgs() {}
 
     private InstanceArgs(InstanceArgs $) {
@@ -283,7 +270,6 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         this.size = $.size;
         this.sshkeyId = $.sshkeyId;
         this.tags = $.tags;
-        this.template = $.template;
     }
 
     public static Builder builder() {
@@ -310,7 +296,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder diskImage(@Nullable Output<String> diskImage) {
+        public Builder diskImage(Output<String> diskImage) {
             $.diskImage = diskImage;
             return this;
         }
@@ -326,7 +312,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+         * to all)
          * 
          * @return builder
          * 
@@ -337,7 +324,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+         * to all)
          * 
          * @return builder
          * 
@@ -368,7 +356,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+         * fallback to civo)
          * 
          * @return builder
          * 
@@ -379,7 +368,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+         * fallback to civo)
          * 
          * @return builder
          * 
@@ -515,7 +505,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+         * unspecified)
          * 
          * @return builder
          * 
@@ -526,7 +517,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+         * unspecified)
          * 
          * @return builder
          * 
@@ -536,7 +528,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+         * read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -547,7 +540,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+         * read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -578,7 +572,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+         * random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 
@@ -589,7 +584,8 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+         * random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 
@@ -629,36 +625,10 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
             return tags(List.of(tags));
         }
 
-        /**
-         * @param template The ID for the template to use to build the instance
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-         * 
-         */
-        @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-        public Builder template(@Nullable Output<String> template) {
-            $.template = template;
-            return this;
-        }
-
-        /**
-         * @param template The ID for the template to use to build the instance
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-         * 
-         */
-        @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-        public Builder template(String template) {
-            return template(Output.of(template));
-        }
-
         public InstanceArgs build() {
+            if ($.diskImage == null) {
+                throw new MissingRequiredPropertyException("InstanceArgs", "diskImage");
+            }
             if ($.firewallId == null) {
                 throw new MissingRequiredPropertyException("InstanceArgs", "firewallId");
             }
