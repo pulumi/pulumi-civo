@@ -576,7 +576,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
-                 pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
+                 pools: Optional[pulumi.Input[Union['KubernetesClusterPoolsArgs', 'KubernetesClusterPoolsArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
@@ -646,7 +646,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
-                 pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
+                 pools: Optional[pulumi.Input[Union['KubernetesClusterPoolsArgs', 'KubernetesClusterPoolsArgsDict']]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
@@ -702,14 +702,14 @@ class KubernetesCluster(pulumi.CustomResource):
             created_at: Optional[pulumi.Input[str]] = None,
             dns_entry: Optional[pulumi.Input[str]] = None,
             firewall_id: Optional[pulumi.Input[str]] = None,
-            installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]]] = None,
+            installed_applications: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesClusterInstalledApplicationArgs', 'KubernetesClusterInstalledApplicationArgsDict']]]]] = None,
             kubeconfig: Optional[pulumi.Input[str]] = None,
             kubernetes_version: Optional[pulumi.Input[str]] = None,
             master_ip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             num_target_nodes: Optional[pulumi.Input[int]] = None,
-            pools: Optional[pulumi.Input[pulumi.InputType['KubernetesClusterPoolsArgs']]] = None,
+            pools: Optional[pulumi.Input[Union['KubernetesClusterPoolsArgs', 'KubernetesClusterPoolsArgsDict']]] = None,
             ready: Optional[pulumi.Input[bool]] = None,
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -733,7 +733,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: (String) The timestamp when the cluster was created
         :param pulumi.Input[str] dns_entry: (String) The DNS name of the cluster
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesClusterInstalledApplicationArgs']]]] installed_applications: (List of Object) (see below for nested schema)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesClusterInstalledApplicationArgs', 'KubernetesClusterInstalledApplicationArgsDict']]]] installed_applications: (List of Object) (see below for nested schema)
         :param pulumi.Input[str] kubeconfig: (String, Sensitive) The kubeconfig of the cluster
         :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
         :param pulumi.Input[str] master_ip: (String) The IP address of the master node
