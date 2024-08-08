@@ -164,19 +164,19 @@
             "properties": {
                 "application": {
                     "type": "string",
-                    "description": "Name of application\n"
+                    "description": "(String) name of the application\n"
                 },
                 "category": {
                     "type": "string",
-                    "description": "Category of the application\n"
+                    "description": "(String) category of the application\n"
                 },
                 "installed": {
                     "type": "boolean",
-                    "description": "Application installation status (`true` if installed)\n"
+                    "description": "(Boolean) whether application is installed or not\n"
                 },
                 "version": {
                     "type": "string",
-                    "description": "Version of application\n"
+                    "description": "(String) version of the application\n"
                 }
             },
             "type": "object",
@@ -226,7 +226,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/civo:index/KubernetesClusterPoolsTaint:KubernetesClusterPoolsTaint"
-                    }
+                    },
+                    "description": "(see below for nested schema)\n\nRead-Only Output:\n"
                 }
             },
             "type": "object",
@@ -1491,19 +1492,19 @@
             }
         },
         "civo:index/instance:Instance": {
-            "description": "Provides a Civo instance resource. This can be used to create, modify, and delete instances.\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413\n```\n\n",
+            "description": "Provides a Civo instance resource. This can be used to create, modify, and delete instances.\n\n## Example Usage\n\n* View instances after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):\n```\ncivo instances ls\n```\n* View instances after creation on the [Dashboard](https://dashboard.civo.com/instances)\n* View node sizes on [CLI](https://www.civo.com/docs/overview/civo-cli):\n\n```\ncivo instances size\n```\n\n### Simple and smallest instance with its own network\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\n\nconst exampleNetwork = new civo.Network(\"example\", {label: \"example-network\"});\nconst example = new civo.Firewall(\"example\", {\n    name: \"example-firewall\",\n    createDefaultRules: true,\n    networkId: exampleNetwork.id,\n});\n// Query instance disk image\nconst debian = civo.getDiskImage({\n    filters: [{\n        key: \"name\",\n        values: [\"debian-10\"],\n    }],\n});\n// Create a new instance\nconst exampleInstance = new civo.Instance(\"example\", {\n    hostname: \"example\",\n    tags: [\n        \"example\",\n        \"documentation\",\n    ],\n    notes: \"This is an example instance\",\n    firewallId: example.id,\n    networkId: exampleNetwork.id,\n    size: \"g3.xsmall\",\n    diskImage: debian.then(debian =\u003e debian.diskimages?.[0]?.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\n\nexample_network = civo.Network(\"example\", label=\"example-network\")\nexample = civo.Firewall(\"example\",\n    name=\"example-firewall\",\n    create_default_rules=True,\n    network_id=example_network.id)\n# Query instance disk image\ndebian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(\n    key=\"name\",\n    values=[\"debian-10\"],\n)])\n# Create a new instance\nexample_instance = civo.Instance(\"example\",\n    hostname=\"example\",\n    tags=[\n        \"example\",\n        \"documentation\",\n    ],\n    notes=\"This is an example instance\",\n    firewall_id=example.id,\n    network_id=example_network.id,\n    size=\"g3.xsmall\",\n    disk_image=debian.diskimages[0].id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleNetwork = new Civo.Network(\"example\", new()\n    {\n        Label = \"example-network\",\n    });\n\n    var example = new Civo.Firewall(\"example\", new()\n    {\n        Name = \"example-firewall\",\n        CreateDefaultRules = true,\n        NetworkId = exampleNetwork.Id,\n    });\n\n    // Query instance disk image\n    var debian = Civo.GetDiskImage.Invoke(new()\n    {\n        Filters = new[]\n        {\n            new Civo.Inputs.GetDiskImageFilterInputArgs\n            {\n                Key = \"name\",\n                Values = new[]\n                {\n                    \"debian-10\",\n                },\n            },\n        },\n    });\n\n    // Create a new instance\n    var exampleInstance = new Civo.Instance(\"example\", new()\n    {\n        Hostname = \"example\",\n        Tags = new[]\n        {\n            \"example\",\n            \"documentation\",\n        },\n        Notes = \"This is an example instance\",\n        FirewallId = example.Id,\n        NetworkId = exampleNetwork.Id,\n        Size = \"g3.xsmall\",\n        DiskImage = debian.Apply(getDiskImageResult =\u003e getDiskImageResult.Diskimages[0]?.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleNetwork, err := civo.NewNetwork(ctx, \"example\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"example-network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := civo.NewFirewall(ctx, \"example\", \u0026civo.FirewallArgs{\n\t\t\tName:               pulumi.String(\"example-firewall\"),\n\t\t\tCreateDefaultRules: pulumi.Bool(true),\n\t\t\tNetworkId:          exampleNetwork.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Query instance disk image\n\t\tdebian, err := civo.GetDiskImage(ctx, \u0026civo.GetDiskImageArgs{\n\t\t\tFilters: []civo.GetDiskImageFilter{\n\t\t\t\t{\n\t\t\t\t\tKey: \"name\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"debian-10\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Create a new instance\n\t\t_, err = civo.NewInstance(ctx, \"example\", \u0026civo.InstanceArgs{\n\t\t\tHostname: pulumi.String(\"example\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t\tpulumi.String(\"documentation\"),\n\t\t\t},\n\t\t\tNotes:      pulumi.String(\"This is an example instance\"),\n\t\t\tFirewallId: example.ID(),\n\t\t\tNetworkId:  exampleNetwork.ID(),\n\t\t\tSize:       pulumi.String(\"g3.xsmall\"),\n\t\t\tDiskImage:  pulumi.String(debian.Diskimages[0].Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.Network;\nimport com.pulumi.civo.NetworkArgs;\nimport com.pulumi.civo.Firewall;\nimport com.pulumi.civo.FirewallArgs;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetDiskImageArgs;\nimport com.pulumi.civo.Instance;\nimport com.pulumi.civo.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleNetwork = new Network(\"exampleNetwork\", NetworkArgs.builder()\n            .label(\"example-network\")\n            .build());\n\n        var example = new Firewall(\"example\", FirewallArgs.builder()\n            .name(\"example-firewall\")\n            .createDefaultRules(true)\n            .networkId(exampleNetwork.id())\n            .build());\n\n        // Query instance disk image\n        final var debian = CivoFunctions.getDiskImage(GetDiskImageArgs.builder()\n            .filters(GetDiskImageFilterArgs.builder()\n                .key(\"name\")\n                .values(\"debian-10\")\n                .build())\n            .build());\n\n        // Create a new instance\n        var exampleInstance = new Instance(\"exampleInstance\", InstanceArgs.builder()\n            .hostname(\"example\")\n            .tags(            \n                \"example\",\n                \"documentation\")\n            .notes(\"This is an example instance\")\n            .firewallId(example.id())\n            .networkId(exampleNetwork.id())\n            .size(\"g3.xsmall\")\n            .diskImage(debian.applyValue(getDiskImageResult -\u003e getDiskImageResult.diskimages()[0].id()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: civo:Firewall\n    properties:\n      name: example-firewall\n      createDefaultRules: true\n      networkId: ${exampleNetwork.id}\n  exampleNetwork:\n    type: civo:Network\n    name: example\n    properties:\n      label: example-network\n  # Create a new instance\n  exampleInstance:\n    type: civo:Instance\n    name: example\n    properties:\n      hostname: example\n      tags:\n        - example\n        - documentation\n      notes: This is an example instance\n      firewallId: ${example.id}\n      networkId: ${exampleNetwork.id}\n      size: g3.xsmall\n      diskImage: ${debian.diskimages[0].id}\nvariables:\n  # Query instance disk image\n  debian:\n    fn::invoke:\n      Function: civo:getDiskImage\n      Arguments:\n        filters:\n          - key: name\n            values:\n              - debian-10\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\nWith this configuration, an initial password for the instance gets written to the state on output `initial_password` which you can use to access the instance.\n\nAlternative you can get the password with the [CLI](https://www.civo.com/docs/overview/civo-cli):\n\n```\ncivo instances show example\n```\n\n### Instance with ssh login\n\n\u003c!--Start PulumiCodeChooser --\u003e\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as civo from \"@pulumi/civo\";\nimport * as std from \"@pulumi/std\";\n\nconst exampleNetwork = new civo.Network(\"example\", {label: \"example-network\"});\nconst example = new civo.Firewall(\"example\", {\n    name: \"example-firewall\",\n    createDefaultRules: true,\n    networkId: exampleNetwork.id,\n});\n// Query instance disk image\nconst debian = civo.getDiskImage({\n    filters: [{\n        key: \"name\",\n        values: [\"debian-10\"],\n    }],\n});\n// To create the example key, run this command:\n// ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\nconst exampleSshKey = new civo.SshKey(\"example\", {\n    name: \"example\",\n    publicKey: std.file({\n        input: \"~/.ssh/example-tf.pub\",\n    }).then(invoke =\u003e invoke.result),\n});\n// Create a new instance\nconst exampleInstance = new civo.Instance(\"example\", {\n    hostname: \"example\",\n    tags: [\n        \"example\",\n        \"documentation\",\n    ],\n    notes: \"This is an example instance\",\n    sshkeyId: exampleSshKey.id,\n    firewallId: example.id,\n    networkId: exampleNetwork.id,\n    size: \"g3.xsmall\",\n    diskImage: debian.then(debian =\u003e debian.diskimages?.[0]?.id),\n});\n```\n```python\nimport pulumi\nimport pulumi_civo as civo\nimport pulumi_std as std\n\nexample_network = civo.Network(\"example\", label=\"example-network\")\nexample = civo.Firewall(\"example\",\n    name=\"example-firewall\",\n    create_default_rules=True,\n    network_id=example_network.id)\n# Query instance disk image\ndebian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(\n    key=\"name\",\n    values=[\"debian-10\"],\n)])\n# To create the example key, run this command:\n# ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\nexample_ssh_key = civo.SshKey(\"example\",\n    name=\"example\",\n    public_key=std.file(input=\"~/.ssh/example-tf.pub\").result)\n# Create a new instance\nexample_instance = civo.Instance(\"example\",\n    hostname=\"example\",\n    tags=[\n        \"example\",\n        \"documentation\",\n    ],\n    notes=\"This is an example instance\",\n    sshkey_id=example_ssh_key.id,\n    firewall_id=example.id,\n    network_id=example_network.id,\n    size=\"g3.xsmall\",\n    disk_image=debian.diskimages[0].id)\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Civo = Pulumi.Civo;\nusing Std = Pulumi.Std;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var exampleNetwork = new Civo.Network(\"example\", new()\n    {\n        Label = \"example-network\",\n    });\n\n    var example = new Civo.Firewall(\"example\", new()\n    {\n        Name = \"example-firewall\",\n        CreateDefaultRules = true,\n        NetworkId = exampleNetwork.Id,\n    });\n\n    // Query instance disk image\n    var debian = Civo.GetDiskImage.Invoke(new()\n    {\n        Filters = new[]\n        {\n            new Civo.Inputs.GetDiskImageFilterInputArgs\n            {\n                Key = \"name\",\n                Values = new[]\n                {\n                    \"debian-10\",\n                },\n            },\n        },\n    });\n\n    // To create the example key, run this command:\n    // ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\n    var exampleSshKey = new Civo.SshKey(\"example\", new()\n    {\n        Name = \"example\",\n        PublicKey = Std.File.Invoke(new()\n        {\n            Input = \"~/.ssh/example-tf.pub\",\n        }).Apply(invoke =\u003e invoke.Result),\n    });\n\n    // Create a new instance\n    var exampleInstance = new Civo.Instance(\"example\", new()\n    {\n        Hostname = \"example\",\n        Tags = new[]\n        {\n            \"example\",\n            \"documentation\",\n        },\n        Notes = \"This is an example instance\",\n        SshkeyId = exampleSshKey.Id,\n        FirewallId = example.Id,\n        NetworkId = exampleNetwork.Id,\n        Size = \"g3.xsmall\",\n        DiskImage = debian.Apply(getDiskImageResult =\u003e getDiskImageResult.Diskimages[0]?.Id),\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-civo/sdk/v2/go/civo\"\n\t\"github.com/pulumi/pulumi-std/sdk/go/std\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\texampleNetwork, err := civo.NewNetwork(ctx, \"example\", \u0026civo.NetworkArgs{\n\t\t\tLabel: pulumi.String(\"example-network\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\texample, err := civo.NewFirewall(ctx, \"example\", \u0026civo.FirewallArgs{\n\t\t\tName:               pulumi.String(\"example-firewall\"),\n\t\t\tCreateDefaultRules: pulumi.Bool(true),\n\t\t\tNetworkId:          exampleNetwork.ID(),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Query instance disk image\n\t\tdebian, err := civo.GetDiskImage(ctx, \u0026civo.GetDiskImageArgs{\n\t\t\tFilters: []civo.GetDiskImageFilter{\n\t\t\t\t{\n\t\t\t\t\tKey: \"name\",\n\t\t\t\t\tValues: []string{\n\t\t\t\t\t\t\"debian-10\",\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tinvokeFile, err := std.File(ctx, \u0026std.FileArgs{\n\t\t\tInput: \"~/.ssh/example-tf.pub\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// To create the example key, run this command:\n\t\t// ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\n\t\texampleSshKey, err := civo.NewSshKey(ctx, \"example\", \u0026civo.SshKeyArgs{\n\t\t\tName:      pulumi.String(\"example\"),\n\t\t\tPublicKey: pulumi.String(invokeFile.Result),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t// Create a new instance\n\t\t_, err = civo.NewInstance(ctx, \"example\", \u0026civo.InstanceArgs{\n\t\t\tHostname: pulumi.String(\"example\"),\n\t\t\tTags: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example\"),\n\t\t\t\tpulumi.String(\"documentation\"),\n\t\t\t},\n\t\t\tNotes:      pulumi.String(\"This is an example instance\"),\n\t\t\tSshkeyId:   exampleSshKey.ID(),\n\t\t\tFirewallId: example.ID(),\n\t\t\tNetworkId:  exampleNetwork.ID(),\n\t\t\tSize:       pulumi.String(\"g3.xsmall\"),\n\t\t\tDiskImage:  pulumi.String(debian.Diskimages[0].Id),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.civo.Network;\nimport com.pulumi.civo.NetworkArgs;\nimport com.pulumi.civo.Firewall;\nimport com.pulumi.civo.FirewallArgs;\nimport com.pulumi.civo.CivoFunctions;\nimport com.pulumi.civo.inputs.GetDiskImageArgs;\nimport com.pulumi.civo.SshKey;\nimport com.pulumi.civo.SshKeyArgs;\nimport com.pulumi.civo.Instance;\nimport com.pulumi.civo.InstanceArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var exampleNetwork = new Network(\"exampleNetwork\", NetworkArgs.builder()\n            .label(\"example-network\")\n            .build());\n\n        var example = new Firewall(\"example\", FirewallArgs.builder()\n            .name(\"example-firewall\")\n            .createDefaultRules(true)\n            .networkId(exampleNetwork.id())\n            .build());\n\n        // Query instance disk image\n        final var debian = CivoFunctions.getDiskImage(GetDiskImageArgs.builder()\n            .filters(GetDiskImageFilterArgs.builder()\n                .key(\"name\")\n                .values(\"debian-10\")\n                .build())\n            .build());\n\n        // To create the example key, run this command:\n        // ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\n        var exampleSshKey = new SshKey(\"exampleSshKey\", SshKeyArgs.builder()\n            .name(\"example\")\n            .publicKey(StdFunctions.file(FileArgs.builder()\n                .input(\"~/.ssh/example-tf.pub\")\n                .build()).result())\n            .build());\n\n        // Create a new instance\n        var exampleInstance = new Instance(\"exampleInstance\", InstanceArgs.builder()\n            .hostname(\"example\")\n            .tags(            \n                \"example\",\n                \"documentation\")\n            .notes(\"This is an example instance\")\n            .sshkeyId(exampleSshKey.id())\n            .firewallId(example.id())\n            .networkId(exampleNetwork.id())\n            .size(\"g3.xsmall\")\n            .diskImage(debian.applyValue(getDiskImageResult -\u003e getDiskImageResult.diskimages()[0].id()))\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: civo:Firewall\n    properties:\n      name: example-firewall\n      createDefaultRules: true\n      networkId: ${exampleNetwork.id}\n  exampleNetwork:\n    type: civo:Network\n    name: example\n    properties:\n      label: example-network\n  # To create the example key, run this command:\n  # ssh-keygen -f ~/.ssh/example-tf -C \"terraform-example@localmachine\"\n  exampleSshKey:\n    type: civo:SshKey\n    name: example\n    properties:\n      name: example\n      publicKey:\n        fn::invoke:\n          Function: std:file\n          Arguments:\n            input: ~/.ssh/example-tf.pub\n          Return: result\n  # Create a new instance\n  exampleInstance:\n    type: civo:Instance\n    name: example\n    properties:\n      hostname: example\n      tags:\n        - example\n        - documentation\n      notes: This is an example instance\n      sshkeyId: ${exampleSshKey.id}\n      firewallId: ${example.id}\n      networkId: ${exampleNetwork.id}\n      size: g3.xsmall\n      diskImage: ${debian.diskimages[0].id}\nvariables:\n  # Query instance disk image\n  debian:\n    fn::invoke:\n      Function: civo:getDiskImage\n      Arguments:\n        filters:\n          - key: name\n            values:\n              - debian-10\n```\n\u003c!--End PulumiCodeChooser --\u003e\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/instance:Instance example 18bd98ad-1b6e-4f87-b48f-e690b4fd7413\n```\n\n",
             "properties": {
                 "cpuCores": {
                     "type": "integer",
-                    "description": "Instance's CPU cores\n"
+                    "description": "(Number) Instance's CPU cores\n"
                 },
                 "createdAt": {
                     "type": "string",
-                    "description": "Timestamp when the instance was created\n"
+                    "description": "(String) Timestamp when the instance was created\n"
                 },
                 "diskGb": {
                     "type": "integer",
-                    "description": "Instance's disk (GB)\n"
+                    "description": "(Number) Instance's disk (GB)\n"
                 },
                 "diskImage": {
                     "type": "string",
@@ -1511,7 +1512,7 @@
                 },
                 "firewallId": {
                     "type": "string",
-                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)\n"
+                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open\nto all)\n"
                 },
                 "hostname": {
                     "type": "string",
@@ -1519,12 +1520,12 @@
                 },
                 "initialPassword": {
                     "type": "string",
-                    "description": "Initial password for login\n",
+                    "description": "(String, Sensitive) Initial password for login\n",
                     "secret": true
                 },
                 "initialUser": {
                     "type": "string",
-                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)\n"
+                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and\nfallback to civo)\n"
                 },
                 "networkId": {
                     "type": "string",
@@ -1536,7 +1537,7 @@
                 },
                 "privateIp": {
                     "type": "string",
-                    "description": "Instance's private IP address\n"
+                    "description": "(String) Instance's private IP address\n"
                 },
                 "privateIpv4": {
                     "type": "string",
@@ -1544,7 +1545,7 @@
                 },
                 "publicIp": {
                     "type": "string",
-                    "description": "Instance's public IP address\n"
+                    "description": "(String) Instance's public IP address\n"
                 },
                 "publicIpRequired": {
                     "type": "string",
@@ -1552,7 +1553,7 @@
                 },
                 "ramMb": {
                     "type": "integer",
-                    "description": "Instance's RAM (MB)\n"
+                    "description": "(Number) Instance's RAM (MB)\n"
                 },
                 "region": {
                     "type": "string",
@@ -1564,11 +1565,11 @@
                 },
                 "reverseDns": {
                     "type": "string",
-                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)\n"
+                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if\nunspecified)\n"
                 },
                 "script": {
                     "type": "string",
-                    "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                    "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,\nread/write/executable only by root and then will be executed at the end of the cloud initialization\n"
                 },
                 "size": {
                     "type": "string",
@@ -1576,19 +1577,19 @@
                 },
                 "sourceId": {
                     "type": "string",
-                    "description": "Instance's source ID\n"
+                    "description": "(String) Instance's source ID\n"
                 },
                 "sourceType": {
                     "type": "string",
-                    "description": "Instance's source type\n"
+                    "description": "(String) Instance's source type\n"
                 },
                 "sshkeyId": {
                     "type": "string",
-                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)\n"
+                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a\nrandom password will be set and returned in the initial_password field)\n"
                 },
                 "status": {
                     "type": "string",
-                    "description": "Instance's status\n"
+                    "description": "(String) Instance's status\n"
                 },
                 "tags": {
                     "type": "array",
@@ -1596,11 +1597,6 @@
                         "type": "string"
                     },
                     "description": "An optional list of tags, represented as a key, value pair\n"
-                },
-                "template": {
-                    "type": "string",
-                    "description": "The ID for the template to use to build the instance\n",
-                    "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                 }
             },
             "required": [
@@ -1618,8 +1614,7 @@
                 "sourceId",
                 "sourceType",
                 "sshkeyId",
-                "status",
-                "template"
+                "status"
             ],
             "inputProperties": {
                 "diskImage": {
@@ -1629,7 +1624,7 @@
                 },
                 "firewallId": {
                     "type": "string",
-                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)\n"
+                    "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open\nto all)\n"
                 },
                 "hostname": {
                     "type": "string",
@@ -1637,7 +1632,7 @@
                 },
                 "initialUser": {
                     "type": "string",
-                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)\n"
+                    "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and\nfallback to civo)\n"
                 },
                 "networkId": {
                     "type": "string",
@@ -1668,11 +1663,11 @@
                 },
                 "reverseDns": {
                     "type": "string",
-                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)\n"
+                    "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if\nunspecified)\n"
                 },
                 "script": {
                     "type": "string",
-                    "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                    "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,\nread/write/executable only by root and then will be executed at the end of the cloud initialization\n"
                 },
                 "size": {
                     "type": "string",
@@ -1680,7 +1675,7 @@
                 },
                 "sshkeyId": {
                     "type": "string",
-                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)\n"
+                    "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a\nrandom password will be set and returned in the initial_password field)\n"
                 },
                 "tags": {
                     "type": "array",
@@ -1688,14 +1683,10 @@
                         "type": "string"
                     },
                     "description": "An optional list of tags, represented as a key, value pair\n"
-                },
-                "template": {
-                    "type": "string",
-                    "description": "The ID for the template to use to build the instance\n",
-                    "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                 }
             },
             "requiredInputs": [
+                "diskImage",
                 "firewallId"
             ],
             "stateInputs": {
@@ -1703,15 +1694,15 @@
                 "properties": {
                     "cpuCores": {
                         "type": "integer",
-                        "description": "Instance's CPU cores\n"
+                        "description": "(Number) Instance's CPU cores\n"
                     },
                     "createdAt": {
                         "type": "string",
-                        "description": "Timestamp when the instance was created\n"
+                        "description": "(String) Timestamp when the instance was created\n"
                     },
                     "diskGb": {
                         "type": "integer",
-                        "description": "Instance's disk (GB)\n"
+                        "description": "(Number) Instance's disk (GB)\n"
                     },
                     "diskImage": {
                         "type": "string",
@@ -1720,7 +1711,7 @@
                     },
                     "firewallId": {
                         "type": "string",
-                        "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)\n"
+                        "description": "The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open\nto all)\n"
                     },
                     "hostname": {
                         "type": "string",
@@ -1728,12 +1719,12 @@
                     },
                     "initialPassword": {
                         "type": "string",
-                        "description": "Initial password for login\n",
+                        "description": "(String, Sensitive) Initial password for login\n",
                         "secret": true
                     },
                     "initialUser": {
                         "type": "string",
-                        "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and fallback to civo)\n"
+                        "description": "The name of the initial user created on the server (optional; this will default to the template's default_username and\nfallback to civo)\n"
                     },
                     "networkId": {
                         "type": "string",
@@ -1746,7 +1737,7 @@
                     },
                     "privateIp": {
                         "type": "string",
-                        "description": "Instance's private IP address\n"
+                        "description": "(String) Instance's private IP address\n"
                     },
                     "privateIpv4": {
                         "type": "string",
@@ -1755,7 +1746,7 @@
                     },
                     "publicIp": {
                         "type": "string",
-                        "description": "Instance's public IP address\n"
+                        "description": "(String) Instance's public IP address\n"
                     },
                     "publicIpRequired": {
                         "type": "string",
@@ -1763,7 +1754,7 @@
                     },
                     "ramMb": {
                         "type": "integer",
-                        "description": "Instance's RAM (MB)\n"
+                        "description": "(Number) Instance's RAM (MB)\n"
                     },
                     "region": {
                         "type": "string",
@@ -1776,11 +1767,11 @@
                     },
                     "reverseDns": {
                         "type": "string",
-                        "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)\n"
+                        "description": "A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if\nunspecified)\n"
                     },
                     "script": {
                         "type": "string",
-                        "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization\n"
+                        "description": "The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,\nread/write/executable only by root and then will be executed at the end of the cloud initialization\n"
                     },
                     "size": {
                         "type": "string",
@@ -1788,19 +1779,19 @@
                     },
                     "sourceId": {
                         "type": "string",
-                        "description": "Instance's source ID\n"
+                        "description": "(String) Instance's source ID\n"
                     },
                     "sourceType": {
                         "type": "string",
-                        "description": "Instance's source type\n"
+                        "description": "(String) Instance's source type\n"
                     },
                     "sshkeyId": {
                         "type": "string",
-                        "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initial_password field)\n"
+                        "description": "The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a\nrandom password will be set and returned in the initial_password field)\n"
                     },
                     "status": {
                         "type": "string",
-                        "description": "Instance's status\n"
+                        "description": "(String) Instance's status\n"
                     },
                     "tags": {
                         "type": "array",
@@ -1808,11 +1799,6 @@
                             "type": "string"
                         },
                         "description": "An optional list of tags, represented as a key, value pair\n"
-                    },
-                    "template": {
-                        "type": "string",
-                        "description": "The ID for the template to use to build the instance\n",
-                        "deprecationMessage": "\"template\" attribute is deprecated. Moving forward, please use \"disk_image\" attribute."
                     }
                 },
                 "type": "object"
@@ -1881,15 +1867,15 @@
             }
         },
         "civo:index/kubernetesCluster:KubernetesCluster": {
-            "description": "Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af\n```\n\n",
+            "description": "\n\n## Import\n\nusing ID\n\n```sh\n$ pulumi import civo:index/kubernetesCluster:KubernetesCluster my-cluster 1b8b2100-0e9f-4e8f-ad78-9eb578c2a0af\n```\n\n",
             "properties": {
                 "apiEndpoint": {
                     "type": "string",
-                    "description": "The API server endpoint of the cluster\n"
+                    "description": "(String) The API server endpoint of the cluster\n"
                 },
                 "applications": {
                     "type": "string",
-                    "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                    "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side\nof the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo\nkubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.\nFor application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or\n'MariaDB:5GB'.\n"
                 },
                 "clusterType": {
                     "type": "string",
@@ -1901,11 +1887,11 @@
                 },
                 "createdAt": {
                     "type": "string",
-                    "description": "The timestamp when the cluster was created\n"
+                    "description": "(String) The timestamp when the cluster was created\n"
                 },
                 "dnsEntry": {
                     "type": "string",
-                    "description": "The DNS name of the cluster\n"
+                    "description": "(String) The DNS name of the cluster\n"
                 },
                 "firewallId": {
                     "type": "string",
@@ -1915,11 +1901,12 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
-                    }
+                    },
+                    "description": "(List of Object) (see below for nested schema)\n"
                 },
                 "kubeconfig": {
                     "type": "string",
-                    "description": "The kubeconfig of the cluster\n",
+                    "description": "(String, Sensitive) The kubeconfig of the cluster\n",
                     "secret": true
                 },
                 "kubernetesVersion": {
@@ -1928,7 +1915,7 @@
                 },
                 "masterIp": {
                     "type": "string",
-                    "description": "The IP address of the master node\n"
+                    "description": "(String) The IP address of the master node\n"
                 },
                 "name": {
                     "type": "string",
@@ -1948,7 +1935,7 @@
                 },
                 "ready": {
                     "type": "boolean",
-                    "description": "When cluster is ready, this will return `true`\n"
+                    "description": "(Boolean) When cluster is ready, this will return `true`\n"
                 },
                 "region": {
                     "type": "string",
@@ -1956,7 +1943,7 @@
                 },
                 "status": {
                     "type": "string",
-                    "description": "Status of the cluster\n"
+                    "description": "(String) Status of the cluster\n"
                 },
                 "tags": {
                     "type": "string",
@@ -1991,7 +1978,7 @@
             "inputProperties": {
                 "applications": {
                     "type": "string",
-                    "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                    "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side\nof the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo\nkubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.\nFor application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or\n'MariaDB:5GB'.\n"
                 },
                 "clusterType": {
                     "type": "string",
@@ -2048,11 +2035,11 @@
                 "properties": {
                     "apiEndpoint": {
                         "type": "string",
-                        "description": "The API server endpoint of the cluster\n"
+                        "description": "(String) The API server endpoint of the cluster\n"
                     },
                     "applications": {
                         "type": "string",
-                        "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or 'MariaDB:5GB'.\n"
+                        "description": "Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side\nof the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo\nkubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.\nFor application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd \u0026 Jaeger' or\n'MariaDB:5GB'.\n"
                     },
                     "clusterType": {
                         "type": "string",
@@ -2064,11 +2051,11 @@
                     },
                     "createdAt": {
                         "type": "string",
-                        "description": "The timestamp when the cluster was created\n"
+                        "description": "(String) The timestamp when the cluster was created\n"
                     },
                     "dnsEntry": {
                         "type": "string",
-                        "description": "The DNS name of the cluster\n"
+                        "description": "(String) The DNS name of the cluster\n"
                     },
                     "firewallId": {
                         "type": "string",
@@ -2078,11 +2065,12 @@
                         "type": "array",
                         "items": {
                             "$ref": "#/types/civo:index/KubernetesClusterInstalledApplication:KubernetesClusterInstalledApplication"
-                        }
+                        },
+                        "description": "(List of Object) (see below for nested schema)\n"
                     },
                     "kubeconfig": {
                         "type": "string",
-                        "description": "The kubeconfig of the cluster\n",
+                        "description": "(String, Sensitive) The kubeconfig of the cluster\n",
                         "secret": true
                     },
                     "kubernetesVersion": {
@@ -2091,7 +2079,7 @@
                     },
                     "masterIp": {
                         "type": "string",
-                        "description": "The IP address of the master node\n"
+                        "description": "(String) The IP address of the master node\n"
                     },
                     "name": {
                         "type": "string",
@@ -2111,7 +2099,7 @@
                     },
                     "ready": {
                         "type": "boolean",
-                        "description": "When cluster is ready, this will return `true`\n"
+                        "description": "(Boolean) When cluster is ready, this will return `true`\n"
                     },
                     "region": {
                         "type": "string",
@@ -2119,7 +2107,7 @@
                     },
                     "status": {
                         "type": "string",
-                        "description": "Status of the cluster\n"
+                        "description": "(String) Status of the cluster\n"
                     },
                     "tags": {
                         "type": "string",
