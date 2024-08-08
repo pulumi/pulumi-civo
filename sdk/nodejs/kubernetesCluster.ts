@@ -7,8 +7,6 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
- *
  * ## Import
  *
  * using ID
@@ -46,11 +44,15 @@ export class KubernetesCluster extends pulumi.CustomResource {
     }
 
     /**
-     * The API server endpoint of the cluster
+     * (String) The API server endpoint of the cluster
      */
     public /*out*/ readonly apiEndpoint!: pulumi.Output<string>;
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+     * kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+     * For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+     * 'MariaDB:5GB'.
      */
     public readonly applications!: pulumi.Output<string | undefined>;
     /**
@@ -62,20 +64,23 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly cni!: pulumi.Output<string>;
     /**
-     * The timestamp when the cluster was created
+     * (String) The timestamp when the cluster was created
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * The DNS name of the cluster
+     * (String) The DNS name of the cluster
      */
     public /*out*/ readonly dnsEntry!: pulumi.Output<string>;
     /**
      * The existing firewall ID to use for this cluster
      */
     public readonly firewallId!: pulumi.Output<string>;
+    /**
+     * (List of Object) (see below for nested schema)
+     */
     public /*out*/ readonly installedApplications!: pulumi.Output<outputs.KubernetesClusterInstalledApplication[]>;
     /**
-     * The kubeconfig of the cluster
+     * (String, Sensitive) The kubeconfig of the cluster
      */
     public /*out*/ readonly kubeconfig!: pulumi.Output<string>;
     /**
@@ -83,7 +88,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
-     * The IP address of the master node
+     * (String) The IP address of the master node
      */
     public /*out*/ readonly masterIp!: pulumi.Output<string>;
     /**
@@ -102,7 +107,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
     public readonly numTargetNodes!: pulumi.Output<number>;
     public readonly pools!: pulumi.Output<outputs.KubernetesClusterPools>;
     /**
-     * When cluster is ready, this will return `true`
+     * (Boolean) When cluster is ready, this will return `true`
      */
     public /*out*/ readonly ready!: pulumi.Output<boolean>;
     /**
@@ -110,7 +115,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * Status of the cluster
+     * (String) Status of the cluster
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
@@ -198,11 +203,15 @@ export class KubernetesCluster extends pulumi.CustomResource {
  */
 export interface KubernetesClusterState {
     /**
-     * The API server endpoint of the cluster
+     * (String) The API server endpoint of the cluster
      */
     apiEndpoint?: pulumi.Input<string>;
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+     * kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+     * For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+     * 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
     /**
@@ -214,20 +223,23 @@ export interface KubernetesClusterState {
      */
     cni?: pulumi.Input<string>;
     /**
-     * The timestamp when the cluster was created
+     * (String) The timestamp when the cluster was created
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * The DNS name of the cluster
+     * (String) The DNS name of the cluster
      */
     dnsEntry?: pulumi.Input<string>;
     /**
      * The existing firewall ID to use for this cluster
      */
     firewallId?: pulumi.Input<string>;
+    /**
+     * (List of Object) (see below for nested schema)
+     */
     installedApplications?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterInstalledApplication>[]>;
     /**
-     * The kubeconfig of the cluster
+     * (String, Sensitive) The kubeconfig of the cluster
      */
     kubeconfig?: pulumi.Input<string>;
     /**
@@ -235,7 +247,7 @@ export interface KubernetesClusterState {
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**
-     * The IP address of the master node
+     * (String) The IP address of the master node
      */
     masterIp?: pulumi.Input<string>;
     /**
@@ -254,7 +266,7 @@ export interface KubernetesClusterState {
     numTargetNodes?: pulumi.Input<number>;
     pools?: pulumi.Input<inputs.KubernetesClusterPools>;
     /**
-     * When cluster is ready, this will return `true`
+     * (Boolean) When cluster is ready, this will return `true`
      */
     ready?: pulumi.Input<boolean>;
     /**
@@ -262,7 +274,7 @@ export interface KubernetesClusterState {
      */
     region?: pulumi.Input<string>;
     /**
-     * Status of the cluster
+     * (String) Status of the cluster
      */
     status?: pulumi.Input<string>;
     /**
@@ -282,7 +294,11 @@ export interface KubernetesClusterState {
  */
 export interface KubernetesClusterArgs {
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd & Jaeger' or 'MariaDB:5GB'.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+     * kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+     * For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd & Jaeger' or
+     * 'MariaDB:5GB'.
      */
     applications?: pulumi.Input<string>;
     /**

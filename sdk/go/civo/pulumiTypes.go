@@ -292,13 +292,13 @@ func (o FirewallIngressRuleArrayOutput) Index(i pulumi.IntInput) FirewallIngress
 }
 
 type KubernetesClusterInstalledApplication struct {
-	// Name of application
+	// (String) name of the application
 	Application *string `pulumi:"application"`
-	// Category of the application
+	// (String) category of the application
 	Category *string `pulumi:"category"`
-	// Application installation status (`true` if installed)
+	// (Boolean) whether application is installed or not
 	Installed *bool `pulumi:"installed"`
-	// Version of application
+	// (String) version of the application
 	Version *string `pulumi:"version"`
 }
 
@@ -314,13 +314,13 @@ type KubernetesClusterInstalledApplicationInput interface {
 }
 
 type KubernetesClusterInstalledApplicationArgs struct {
-	// Name of application
+	// (String) name of the application
 	Application pulumi.StringPtrInput `pulumi:"application"`
-	// Category of the application
+	// (String) category of the application
 	Category pulumi.StringPtrInput `pulumi:"category"`
-	// Application installation status (`true` if installed)
+	// (Boolean) whether application is installed or not
 	Installed pulumi.BoolPtrInput `pulumi:"installed"`
-	// Version of application
+	// (String) version of the application
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
 
@@ -375,22 +375,22 @@ func (o KubernetesClusterInstalledApplicationOutput) ToKubernetesClusterInstalle
 	return o
 }
 
-// Name of application
+// (String) name of the application
 func (o KubernetesClusterInstalledApplicationOutput) Application() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Application }).(pulumi.StringPtrOutput)
 }
 
-// Category of the application
+// (String) category of the application
 func (o KubernetesClusterInstalledApplicationOutput) Category() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Category }).(pulumi.StringPtrOutput)
 }
 
-// Application installation status (`true` if installed)
+// (Boolean) whether application is installed or not
 func (o KubernetesClusterInstalledApplicationOutput) Installed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *bool { return v.Installed }).(pulumi.BoolPtrOutput)
 }
 
-// Version of application
+// (String) version of the application
 func (o KubernetesClusterInstalledApplicationOutput) Version() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v KubernetesClusterInstalledApplication) *string { return v.Version }).(pulumi.StringPtrOutput)
 }
@@ -426,7 +426,10 @@ type KubernetesClusterPools struct {
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool *bool `pulumi:"publicIpNodePool"`
 	// Size of the nodes in the nodepool
-	Size   string                        `pulumi:"size"`
+	Size string `pulumi:"size"`
+	// (see below for nested schema)
+	//
+	// Read-Only Output:
 	Taints []KubernetesClusterPoolsTaint `pulumi:"taints"`
 }
 
@@ -452,7 +455,10 @@ type KubernetesClusterPoolsArgs struct {
 	// Node pool belongs to the public ip node pool
 	PublicIpNodePool pulumi.BoolPtrInput `pulumi:"publicIpNodePool"`
 	// Size of the nodes in the nodepool
-	Size   pulumi.StringInput                    `pulumi:"size"`
+	Size pulumi.StringInput `pulumi:"size"`
+	// (see below for nested schema)
+	//
+	// Read-Only Output:
 	Taints KubernetesClusterPoolsTaintArrayInput `pulumi:"taints"`
 }
 
@@ -562,6 +568,9 @@ func (o KubernetesClusterPoolsOutput) Size() pulumi.StringOutput {
 	return o.ApplyT(func(v KubernetesClusterPools) string { return v.Size }).(pulumi.StringOutput)
 }
 
+// (see below for nested schema)
+//
+// Read-Only Output:
 func (o KubernetesClusterPoolsOutput) Taints() KubernetesClusterPoolsTaintArrayOutput {
 	return o.ApplyT(func(v KubernetesClusterPools) []KubernetesClusterPoolsTaint { return v.Taints }).(KubernetesClusterPoolsTaintArrayOutput)
 }
@@ -649,6 +658,9 @@ func (o KubernetesClusterPoolsPtrOutput) Size() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// (see below for nested schema)
+//
+// Read-Only Output:
 func (o KubernetesClusterPoolsPtrOutput) Taints() KubernetesClusterPoolsTaintArrayOutput {
 	return o.ApplyT(func(v *KubernetesClusterPools) []KubernetesClusterPoolsTaint {
 		if v == nil {

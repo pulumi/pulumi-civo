@@ -103,9 +103,21 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
         return this.size;
     }
 
+    /**
+     * (see below for nested schema)
+     * 
+     * Read-Only Output:
+     * 
+     */
     @Import(name="taints")
     private @Nullable Output<List<KubernetesClusterPoolsTaintArgs>> taints;
 
+    /**
+     * @return (see below for nested schema)
+     * 
+     * Read-Only Output:
+     * 
+     */
     public Optional<Output<List<KubernetesClusterPoolsTaintArgs>>> taints() {
         return Optional.ofNullable(this.taints);
     }
@@ -264,15 +276,39 @@ public final class KubernetesClusterPoolsArgs extends com.pulumi.resources.Resou
             return size(Output.of(size));
         }
 
+        /**
+         * @param taints (see below for nested schema)
+         * 
+         * Read-Only Output:
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(@Nullable Output<List<KubernetesClusterPoolsTaintArgs>> taints) {
             $.taints = taints;
             return this;
         }
 
+        /**
+         * @param taints (see below for nested schema)
+         * 
+         * Read-Only Output:
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(List<KubernetesClusterPoolsTaintArgs> taints) {
             return taints(Output.of(taints));
         }
 
+        /**
+         * @param taints (see below for nested schema)
+         * 
+         * Read-Only Output:
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(KubernetesClusterPoolsTaintArgs... taints) {
             return taints(List.of(taints));
         }

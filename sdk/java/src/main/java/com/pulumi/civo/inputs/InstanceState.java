@@ -18,14 +18,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     public static final InstanceState Empty = new InstanceState();
 
     /**
-     * Instance&#39;s CPU cores
+     * (Number) Instance&#39;s CPU cores
      * 
      */
     @Import(name="cpuCores")
     private @Nullable Output<Integer> cpuCores;
 
     /**
-     * @return Instance&#39;s CPU cores
+     * @return (Number) Instance&#39;s CPU cores
      * 
      */
     public Optional<Output<Integer>> cpuCores() {
@@ -33,14 +33,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Timestamp when the instance was created
+     * (String) Timestamp when the instance was created
      * 
      */
     @Import(name="createdAt")
     private @Nullable Output<String> createdAt;
 
     /**
-     * @return Timestamp when the instance was created
+     * @return (String) Timestamp when the instance was created
      * 
      */
     public Optional<Output<String>> createdAt() {
@@ -48,14 +48,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s disk (GB)
+     * (Number) Instance&#39;s disk (GB)
      * 
      */
     @Import(name="diskGb")
     private @Nullable Output<Integer> diskGb;
 
     /**
-     * @return Instance&#39;s disk (GB)
+     * @return (Number) Instance&#39;s disk (GB)
      * 
      */
     public Optional<Output<Integer>> diskGb() {
@@ -78,14 +78,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     @Import(name="firewallId")
     private @Nullable Output<String> firewallId;
 
     /**
-     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * @return The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      * 
      */
     public Optional<Output<String>> firewallId() {
@@ -108,14 +110,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Initial password for login
+     * (String, Sensitive) Initial password for login
      * 
      */
     @Import(name="initialPassword")
     private @Nullable Output<String> initialPassword;
 
     /**
-     * @return Initial password for login
+     * @return (String, Sensitive) Initial password for login
      * 
      */
     public Optional<Output<String>> initialPassword() {
@@ -123,14 +125,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     @Import(name="initialUser")
     private @Nullable Output<String> initialUser;
 
     /**
-     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+     * @return The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+     * fallback to civo)
      * 
      */
     public Optional<Output<String>> initialUser() {
@@ -168,14 +172,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s private IP address
+     * (String) Instance&#39;s private IP address
      * 
      */
     @Import(name="privateIp")
     private @Nullable Output<String> privateIp;
 
     /**
-     * @return Instance&#39;s private IP address
+     * @return (String) Instance&#39;s private IP address
      * 
      */
     public Optional<Output<String>> privateIp() {
@@ -198,14 +202,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s public IP address
+     * (String) Instance&#39;s public IP address
      * 
      */
     @Import(name="publicIp")
     private @Nullable Output<String> publicIp;
 
     /**
-     * @return Instance&#39;s public IP address
+     * @return (String) Instance&#39;s public IP address
      * 
      */
     public Optional<Output<String>> publicIp() {
@@ -228,14 +232,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s RAM (MB)
+     * (Number) Instance&#39;s RAM (MB)
      * 
      */
     @Import(name="ramMb")
     private @Nullable Output<Integer> ramMb;
 
     /**
-     * @return Instance&#39;s RAM (MB)
+     * @return (Number) Instance&#39;s RAM (MB)
      * 
      */
     public Optional<Output<Integer>> ramMb() {
@@ -273,14 +277,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     @Import(name="reverseDns")
     private @Nullable Output<String> reverseDns;
 
     /**
-     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+     * @return A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+     * unspecified)
      * 
      */
     public Optional<Output<String>> reverseDns() {
@@ -288,14 +294,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     @Import(name="script")
     private @Nullable Output<String> script;
 
     /**
-     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * @return The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      * 
      */
     public Optional<Output<String>> script() {
@@ -318,14 +326,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s source ID
+     * (String) Instance&#39;s source ID
      * 
      */
     @Import(name="sourceId")
     private @Nullable Output<String> sourceId;
 
     /**
-     * @return Instance&#39;s source ID
+     * @return (String) Instance&#39;s source ID
      * 
      */
     public Optional<Output<String>> sourceId() {
@@ -333,14 +341,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s source type
+     * (String) Instance&#39;s source type
      * 
      */
     @Import(name="sourceType")
     private @Nullable Output<String> sourceType;
 
     /**
-     * @return Instance&#39;s source type
+     * @return (String) Instance&#39;s source type
      * 
      */
     public Optional<Output<String>> sourceType() {
@@ -348,14 +356,16 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     @Import(name="sshkeyId")
     private @Nullable Output<String> sshkeyId;
 
     /**
-     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+     * @return The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+     * random password will be set and returned in the initial_password field)
      * 
      */
     public Optional<Output<String>> sshkeyId() {
@@ -363,14 +373,14 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Instance&#39;s status
+     * (String) Instance&#39;s status
      * 
      */
     @Import(name="status")
     private @Nullable Output<String> status;
 
     /**
-     * @return Instance&#39;s status
+     * @return (String) Instance&#39;s status
      * 
      */
     public Optional<Output<String>> status() {
@@ -390,29 +400,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<List<String>>> tags() {
         return Optional.ofNullable(this.tags);
-    }
-
-    /**
-     * The ID for the template to use to build the instance
-     * 
-     * @deprecated
-     * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-     * 
-     */
-    @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    @Import(name="template")
-    private @Nullable Output<String> template;
-
-    /**
-     * @return The ID for the template to use to build the instance
-     * 
-     * @deprecated
-     * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-     * 
-     */
-    @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-    public Optional<Output<String>> template() {
-        return Optional.ofNullable(this.template);
     }
 
     private InstanceState() {}
@@ -443,7 +430,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         this.sshkeyId = $.sshkeyId;
         this.status = $.status;
         this.tags = $.tags;
-        this.template = $.template;
     }
 
     public static Builder builder() {
@@ -465,7 +451,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cpuCores Instance&#39;s CPU cores
+         * @param cpuCores (Number) Instance&#39;s CPU cores
          * 
          * @return builder
          * 
@@ -476,7 +462,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param cpuCores Instance&#39;s CPU cores
+         * @param cpuCores (Number) Instance&#39;s CPU cores
          * 
          * @return builder
          * 
@@ -486,7 +472,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createdAt Timestamp when the instance was created
+         * @param createdAt (String) Timestamp when the instance was created
          * 
          * @return builder
          * 
@@ -497,7 +483,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createdAt Timestamp when the instance was created
+         * @param createdAt (String) Timestamp when the instance was created
          * 
          * @return builder
          * 
@@ -507,7 +493,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param diskGb Instance&#39;s disk (GB)
+         * @param diskGb (Number) Instance&#39;s disk (GB)
          * 
          * @return builder
          * 
@@ -518,7 +504,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param diskGb Instance&#39;s disk (GB)
+         * @param diskGb (Number) Instance&#39;s disk (GB)
          * 
          * @return builder
          * 
@@ -549,7 +535,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+         * to all)
          * 
          * @return builder
          * 
@@ -560,7 +547,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+         * @param firewallId The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+         * to all)
          * 
          * @return builder
          * 
@@ -591,7 +579,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialPassword Initial password for login
+         * @param initialPassword (String, Sensitive) Initial password for login
          * 
          * @return builder
          * 
@@ -602,7 +590,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialPassword Initial password for login
+         * @param initialPassword (String, Sensitive) Initial password for login
          * 
          * @return builder
          * 
@@ -612,7 +600,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+         * fallback to civo)
          * 
          * @return builder
          * 
@@ -623,7 +612,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and fallback to civo)
+         * @param initialUser The name of the initial user created on the server (optional; this will default to the template&#39;s default_username and
+         * fallback to civo)
          * 
          * @return builder
          * 
@@ -675,7 +665,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateIp Instance&#39;s private IP address
+         * @param privateIp (String) Instance&#39;s private IP address
          * 
          * @return builder
          * 
@@ -686,7 +676,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateIp Instance&#39;s private IP address
+         * @param privateIp (String) Instance&#39;s private IP address
          * 
          * @return builder
          * 
@@ -717,7 +707,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIp Instance&#39;s public IP address
+         * @param publicIp (String) Instance&#39;s public IP address
          * 
          * @return builder
          * 
@@ -728,7 +718,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param publicIp Instance&#39;s public IP address
+         * @param publicIp (String) Instance&#39;s public IP address
          * 
          * @return builder
          * 
@@ -759,7 +749,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ramMb Instance&#39;s RAM (MB)
+         * @param ramMb (Number) Instance&#39;s RAM (MB)
          * 
          * @return builder
          * 
@@ -770,7 +760,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ramMb Instance&#39;s RAM (MB)
+         * @param ramMb (Number) Instance&#39;s RAM (MB)
          * 
          * @return builder
          * 
@@ -822,7 +812,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+         * unspecified)
          * 
          * @return builder
          * 
@@ -833,7 +824,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if unspecified)
+         * @param reverseDns A fully qualified domain name that should be used as the instance&#39;s IP&#39;s reverse DNS (optional, uses the hostname if
+         * unspecified)
          * 
          * @return builder
          * 
@@ -843,7 +835,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+         * read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -854,7 +847,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+         * @param script The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+         * read/write/executable only by root and then will be executed at the end of the cloud initialization
          * 
          * @return builder
          * 
@@ -885,7 +879,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceId Instance&#39;s source ID
+         * @param sourceId (String) Instance&#39;s source ID
          * 
          * @return builder
          * 
@@ -896,7 +890,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceId Instance&#39;s source ID
+         * @param sourceId (String) Instance&#39;s source ID
          * 
          * @return builder
          * 
@@ -906,7 +900,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceType Instance&#39;s source type
+         * @param sourceType (String) Instance&#39;s source type
          * 
          * @return builder
          * 
@@ -917,7 +911,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sourceType Instance&#39;s source type
+         * @param sourceType (String) Instance&#39;s source type
          * 
          * @return builder
          * 
@@ -927,7 +921,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+         * random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 
@@ -938,7 +933,8 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a random password will be set and returned in the initial_password field)
+         * @param sshkeyId The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn&#39;t provided a
+         * random password will be set and returned in the initial_password field)
          * 
          * @return builder
          * 
@@ -948,7 +944,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status Instance&#39;s status
+         * @param status (String) Instance&#39;s status
          * 
          * @return builder
          * 
@@ -959,7 +955,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param status Instance&#39;s status
+         * @param status (String) Instance&#39;s status
          * 
          * @return builder
          * 
@@ -997,35 +993,6 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
-        }
-
-        /**
-         * @param template The ID for the template to use to build the instance
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-         * 
-         */
-        @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-        public Builder template(@Nullable Output<String> template) {
-            $.template = template;
-            return this;
-        }
-
-        /**
-         * @param template The ID for the template to use to build the instance
-         * 
-         * @return builder
-         * 
-         * @deprecated
-         * &#34;template&#34; attribute is deprecated. Moving forward, please use &#34;disk_image&#34; attribute.
-         * 
-         */
-        @Deprecated /* ""template"" attribute is deprecated. Moving forward, please use ""disk_image"" attribute. */
-        public Builder template(String template) {
-            return template(Output.of(template));
         }
 
         public InstanceState build() {

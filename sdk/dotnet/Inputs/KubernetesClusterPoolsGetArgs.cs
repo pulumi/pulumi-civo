@@ -58,6 +58,12 @@ namespace Pulumi.Civo.Inputs
 
         [Input("taints")]
         private InputList<Inputs.KubernetesClusterPoolsTaintGetArgs>? _taints;
+
+        /// <summary>
+        /// (see below for nested schema)
+        /// 
+        /// Read-Only Output:
+        /// </summary>
         public InputList<Inputs.KubernetesClusterPoolsTaintGetArgs> Taints
         {
             get => _taints ?? (_taints = new InputList<Inputs.KubernetesClusterPoolsTaintGetArgs>());

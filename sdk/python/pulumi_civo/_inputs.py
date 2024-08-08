@@ -232,10 +232,10 @@ class KubernetesClusterInstalledApplicationArgs:
                  installed: Optional[pulumi.Input[bool]] = None,
                  version: Optional[pulumi.Input[str]] = None):
         """
-        :param pulumi.Input[str] application: Name of application
-        :param pulumi.Input[str] category: Category of the application
-        :param pulumi.Input[bool] installed: Application installation status (`true` if installed)
-        :param pulumi.Input[str] version: Version of application
+        :param pulumi.Input[str] application: (String) name of the application
+        :param pulumi.Input[str] category: (String) category of the application
+        :param pulumi.Input[bool] installed: (Boolean) whether application is installed or not
+        :param pulumi.Input[str] version: (String) version of the application
         """
         if application is not None:
             pulumi.set(__self__, "application", application)
@@ -250,7 +250,7 @@ class KubernetesClusterInstalledApplicationArgs:
     @pulumi.getter
     def application(self) -> Optional[pulumi.Input[str]]:
         """
-        Name of application
+        (String) name of the application
         """
         return pulumi.get(self, "application")
 
@@ -262,7 +262,7 @@ class KubernetesClusterInstalledApplicationArgs:
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
         """
-        Category of the application
+        (String) category of the application
         """
         return pulumi.get(self, "category")
 
@@ -274,7 +274,7 @@ class KubernetesClusterInstalledApplicationArgs:
     @pulumi.getter
     def installed(self) -> Optional[pulumi.Input[bool]]:
         """
-        Application installation status (`true` if installed)
+        (Boolean) whether application is installed or not
         """
         return pulumi.get(self, "installed")
 
@@ -286,7 +286,7 @@ class KubernetesClusterInstalledApplicationArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        Version of application
+        (String) version of the application
         """
         return pulumi.get(self, "version")
 
@@ -311,6 +311,9 @@ class KubernetesClusterPoolsArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] instance_names: Instance names in the nodepool
         :param pulumi.Input[str] label: Node pool label, if you don't provide one, we will generate one for you
         :param pulumi.Input[bool] public_ip_node_pool: Node pool belongs to the public ip node pool
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgs']]] taints: (see below for nested schema)
+               
+               Read-Only Output:
         """
         pulumi.set(__self__, "node_count", node_count)
         pulumi.set(__self__, "size", size)
@@ -397,6 +400,11 @@ class KubernetesClusterPoolsArgs:
     @property
     @pulumi.getter
     def taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgs']]]]:
+        """
+        (see below for nested schema)
+
+        Read-Only Output:
+        """
         return pulumi.get(self, "taints")
 
     @taints.setter

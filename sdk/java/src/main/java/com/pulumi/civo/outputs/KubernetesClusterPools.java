@@ -43,6 +43,12 @@ public final class KubernetesClusterPools {
      * 
      */
     private String size;
+    /**
+     * @return (see below for nested schema)
+     * 
+     * Read-Only Output:
+     * 
+     */
     private @Nullable List<KubernetesClusterPoolsTaint> taints;
 
     private KubernetesClusterPools() {}
@@ -84,6 +90,12 @@ public final class KubernetesClusterPools {
     public String size() {
         return this.size;
     }
+    /**
+     * @return (see below for nested schema)
+     * 
+     * Read-Only Output:
+     * 
+     */
     public List<KubernetesClusterPoolsTaint> taints() {
         return this.taints == null ? List.of() : this.taints;
     }

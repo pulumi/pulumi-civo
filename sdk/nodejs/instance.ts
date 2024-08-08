@@ -7,12 +7,100 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo instance resource. This can be used to create, modify, and delete instances.
  *
+ * ## Example Usage
+ *
+ * * View instances after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * * View instances after creation on the [Dashboard](https://dashboard.civo.com/instances)
+ * * View node sizes on [CLI](https://www.civo.com/docs/overview/civo-cli):
+ *
+ * ### Simple and smallest instance with its own network
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const exampleNetwork = new civo.Network("example", {label: "example-network"});
+ * const example = new civo.Firewall("example", {
+ *     name: "example-firewall",
+ *     createDefaultRules: true,
+ *     networkId: exampleNetwork.id,
+ * });
+ * // Query instance disk image
+ * const debian = civo.getDiskImage({
+ *     filters: [{
+ *         key: "name",
+ *         values: ["debian-10"],
+ *     }],
+ * });
+ * // Create a new instance
+ * const exampleInstance = new civo.Instance("example", {
+ *     hostname: "example",
+ *     tags: [
+ *         "example",
+ *         "documentation",
+ *     ],
+ *     notes: "This is an example instance",
+ *     firewallId: example.id,
+ *     networkId: exampleNetwork.id,
+ *     size: "g3.xsmall",
+ *     diskImage: debian.then(debian => debian.diskimages?.[0]?.id),
+ * });
+ * ```
+ *
+ * With this configuration, an initial password for the instance gets written to the state on output `initialPassword` which you can use to access the instance.
+ *
+ * Alternative you can get the password with the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ *
+ * ### Instance with ssh login
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ * import * as std from "@pulumi/std";
+ *
+ * const exampleNetwork = new civo.Network("example", {label: "example-network"});
+ * const example = new civo.Firewall("example", {
+ *     name: "example-firewall",
+ *     createDefaultRules: true,
+ *     networkId: exampleNetwork.id,
+ * });
+ * // Query instance disk image
+ * const debian = civo.getDiskImage({
+ *     filters: [{
+ *         key: "name",
+ *         values: ["debian-10"],
+ *     }],
+ * });
+ * // To create the example key, run this command:
+ * // ssh-keygen -f ~/.ssh/example-tf -C "terraform-example@localmachine"
+ * const exampleSshKey = new civo.SshKey("example", {
+ *     name: "example",
+ *     publicKey: std.file({
+ *         input: "~/.ssh/example-tf.pub",
+ *     }).then(invoke => invoke.result),
+ * });
+ * // Create a new instance
+ * const exampleInstance = new civo.Instance("example", {
+ *     hostname: "example",
+ *     tags: [
+ *         "example",
+ *         "documentation",
+ *     ],
+ *     notes: "This is an example instance",
+ *     sshkeyId: exampleSshKey.id,
+ *     firewallId: example.id,
+ *     networkId: exampleNetwork.id,
+ *     size: "g3.xsmall",
+ *     diskImage: debian.then(debian => debian.diskimages?.[0]?.id),
+ * });
+ * ```
+ *
  * ## Import
  *
  * using ID
  *
  * ```sh
- * $ pulumi import civo:index/instance:Instance myintance 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
+ * $ pulumi import civo:index/instance:Instance example 18bd98ad-1b6e-4f87-b48f-e690b4fd7413
  * ```
  */
 export class Instance extends pulumi.CustomResource {
@@ -44,15 +132,15 @@ export class Instance extends pulumi.CustomResource {
     }
 
     /**
-     * Instance's CPU cores
+     * (Number) Instance's CPU cores
      */
     public /*out*/ readonly cpuCores!: pulumi.Output<number>;
     /**
-     * Timestamp when the instance was created
+     * (String) Timestamp when the instance was created
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Instance's disk (GB)
+     * (Number) Instance's disk (GB)
      */
     public /*out*/ readonly diskGb!: pulumi.Output<number>;
     /**
@@ -60,7 +148,8 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly diskImage!: pulumi.Output<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     public readonly firewallId!: pulumi.Output<string>;
     /**
@@ -68,11 +157,12 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly hostname!: pulumi.Output<string>;
     /**
-     * Initial password for login
+     * (String, Sensitive) Initial password for login
      */
     public /*out*/ readonly initialPassword!: pulumi.Output<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+     * fallback to civo)
      */
     public readonly initialUser!: pulumi.Output<string | undefined>;
     /**
@@ -84,7 +174,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly notes!: pulumi.Output<string | undefined>;
     /**
-     * Instance's private IP address
+     * (String) Instance's private IP address
      */
     public /*out*/ readonly privateIp!: pulumi.Output<string>;
     /**
@@ -92,7 +182,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly privateIpv4!: pulumi.Output<string | undefined>;
     /**
-     * Instance's public IP address
+     * (String) Instance's public IP address
      */
     public /*out*/ readonly publicIp!: pulumi.Output<string>;
     /**
@@ -100,7 +190,7 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly publicIpRequired!: pulumi.Output<string | undefined>;
     /**
-     * Instance's RAM (MB)
+     * (Number) Instance's RAM (MB)
      */
     public /*out*/ readonly ramMb!: pulumi.Output<number>;
     /**
@@ -112,11 +202,13 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly reservedIpv4!: pulumi.Output<string | undefined>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     public readonly reverseDns!: pulumi.Output<string | undefined>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     public readonly script!: pulumi.Output<string | undefined>;
     /**
@@ -124,31 +216,26 @@ export class Instance extends pulumi.CustomResource {
      */
     public readonly size!: pulumi.Output<string | undefined>;
     /**
-     * Instance's source ID
+     * (String) Instance's source ID
      */
     public /*out*/ readonly sourceId!: pulumi.Output<string>;
     /**
-     * Instance's source type
+     * (String) Instance's source type
      */
     public /*out*/ readonly sourceType!: pulumi.Output<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initialPassword field)
      */
     public readonly sshkeyId!: pulumi.Output<string>;
     /**
-     * Instance's status
+     * (String) Instance's status
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
      * An optional list of tags, represented as a key, value pair
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
-    /**
-     * The ID for the template to use to build the instance
-     *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-     */
-    public readonly template!: pulumi.Output<string>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -188,9 +275,11 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["sshkeyId"] = state ? state.sshkeyId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
-            resourceInputs["template"] = state ? state.template : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
+            if ((!args || args.diskImage === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'diskImage'");
+            }
             if ((!args || args.firewallId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'firewallId'");
             }
@@ -209,7 +298,6 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["sshkeyId"] = args ? args.sshkeyId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
-            resourceInputs["template"] = args ? args.template : undefined;
             resourceInputs["cpuCores"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["diskGb"] = undefined /*out*/;
@@ -233,15 +321,15 @@ export class Instance extends pulumi.CustomResource {
  */
 export interface InstanceState {
     /**
-     * Instance's CPU cores
+     * (Number) Instance's CPU cores
      */
     cpuCores?: pulumi.Input<number>;
     /**
-     * Timestamp when the instance was created
+     * (String) Timestamp when the instance was created
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Instance's disk (GB)
+     * (Number) Instance's disk (GB)
      */
     diskGb?: pulumi.Input<number>;
     /**
@@ -249,7 +337,8 @@ export interface InstanceState {
      */
     diskImage?: pulumi.Input<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     firewallId?: pulumi.Input<string>;
     /**
@@ -257,11 +346,12 @@ export interface InstanceState {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * Initial password for login
+     * (String, Sensitive) Initial password for login
      */
     initialPassword?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+     * fallback to civo)
      */
     initialUser?: pulumi.Input<string>;
     /**
@@ -273,7 +363,7 @@ export interface InstanceState {
      */
     notes?: pulumi.Input<string>;
     /**
-     * Instance's private IP address
+     * (String) Instance's private IP address
      */
     privateIp?: pulumi.Input<string>;
     /**
@@ -281,7 +371,7 @@ export interface InstanceState {
      */
     privateIpv4?: pulumi.Input<string>;
     /**
-     * Instance's public IP address
+     * (String) Instance's public IP address
      */
     publicIp?: pulumi.Input<string>;
     /**
@@ -289,7 +379,7 @@ export interface InstanceState {
      */
     publicIpRequired?: pulumi.Input<string>;
     /**
-     * Instance's RAM (MB)
+     * (Number) Instance's RAM (MB)
      */
     ramMb?: pulumi.Input<number>;
     /**
@@ -301,11 +391,13 @@ export interface InstanceState {
      */
     reservedIpv4?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     reverseDns?: pulumi.Input<string>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     script?: pulumi.Input<string>;
     /**
@@ -313,31 +405,26 @@ export interface InstanceState {
      */
     size?: pulumi.Input<string>;
     /**
-     * Instance's source ID
+     * (String) Instance's source ID
      */
     sourceId?: pulumi.Input<string>;
     /**
-     * Instance's source type
+     * (String) Instance's source type
      */
     sourceType?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initialPassword field)
      */
     sshkeyId?: pulumi.Input<string>;
     /**
-     * Instance's status
+     * (String) Instance's status
      */
     status?: pulumi.Input<string>;
     /**
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID for the template to use to build the instance
-     *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-     */
-    template?: pulumi.Input<string>;
 }
 
 /**
@@ -347,9 +434,10 @@ export interface InstanceArgs {
     /**
      * The ID for the disk image to use to build the instance
      */
-    diskImage?: pulumi.Input<string>;
+    diskImage: pulumi.Input<string>;
     /**
-     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open to all)
+     * The ID of the firewall to use, from the current list. If left blank or not sent, the default firewall will be used (open
+     * to all)
      */
     firewallId: pulumi.Input<string>;
     /**
@@ -357,7 +445,8 @@ export interface InstanceArgs {
      */
     hostname?: pulumi.Input<string>;
     /**
-     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and fallback to civo)
+     * The name of the initial user created on the server (optional; this will default to the template's defaultUsername and
+     * fallback to civo)
      */
     initialUser?: pulumi.Input<string>;
     /**
@@ -385,11 +474,13 @@ export interface InstanceArgs {
      */
     reservedIpv4?: pulumi.Input<string>;
     /**
-     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if unspecified)
+     * A fully qualified domain name that should be used as the instance's IP's reverse DNS (optional, uses the hostname if
+     * unspecified)
      */
     reverseDns?: pulumi.Input<string>;
     /**
-     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance, read/write/executable only by root and then will be executed at the end of the cloud initialization
+     * The contents of a script that will be uploaded to /usr/local/bin/civo-user-init-script on your instance,
+     * read/write/executable only by root and then will be executed at the end of the cloud initialization
      */
     script?: pulumi.Input<string>;
     /**
@@ -397,17 +488,12 @@ export interface InstanceArgs {
      */
     size?: pulumi.Input<string>;
     /**
-     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a random password will be set and returned in the initialPassword field)
+     * The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
+     * random password will be set and returned in the initialPassword field)
      */
     sshkeyId?: pulumi.Input<string>;
     /**
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * The ID for the template to use to build the instance
-     *
-     * @deprecated "template" attribute is deprecated. Moving forward, please use "diskImage" attribute.
-     */
-    template?: pulumi.Input<string>;
 }

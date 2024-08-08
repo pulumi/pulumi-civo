@@ -20,8 +20,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
- * 
  * ## Import
  * 
  * using ID
@@ -34,28 +32,36 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/kubernetesCluster:KubernetesCluster")
 public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     /**
-     * The API server endpoint of the cluster
+     * (String) The API server endpoint of the cluster
      * 
      */
     @Export(name="apiEndpoint", refs={String.class}, tree="[0]")
     private Output<String> apiEndpoint;
 
     /**
-     * @return The API server endpoint of the cluster
+     * @return (String) The API server endpoint of the cluster
      * 
      */
     public Output<String> apiEndpoint() {
         return this.apiEndpoint;
     }
     /**
-     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+     * Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+     * &#39;MariaDB:5GB&#39;.
      * 
      */
     @Export(name="applications", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applications;
 
     /**
-     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik. For application that supports plans, you can use &#39;app*name:app*plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or &#39;MariaDB:5GB&#39;.
+     * @return Comma separated list of applications to install. Spaces within application names are fine, but shouldn&#39;t be either side
+     * of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: &#39;civo
+     * kubernetes applications ls&#39;. If you want to remove a default installed application, prefix it with a &#39;-&#39;, e.g. -Traefik.
+     * For application that supports plans, you can use &#39;app_name:app_plan&#39; format e.g. &#39;Linkerd:Linkerd &amp; Jaeger&#39; or
+     * &#39;MariaDB:5GB&#39;.
      * 
      */
     public Output<Optional<String>> applications() {
@@ -90,28 +96,28 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.cni;
     }
     /**
-     * The timestamp when the cluster was created
+     * (String) The timestamp when the cluster was created
      * 
      */
     @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
-     * @return The timestamp when the cluster was created
+     * @return (String) The timestamp when the cluster was created
      * 
      */
     public Output<String> createdAt() {
         return this.createdAt;
     }
     /**
-     * The DNS name of the cluster
+     * (String) The DNS name of the cluster
      * 
      */
     @Export(name="dnsEntry", refs={String.class}, tree="[0]")
     private Output<String> dnsEntry;
 
     /**
-     * @return The DNS name of the cluster
+     * @return (String) The DNS name of the cluster
      * 
      */
     public Output<String> dnsEntry() {
@@ -131,21 +137,29 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     public Output<String> firewallId() {
         return this.firewallId;
     }
+    /**
+     * (List of Object) (see below for nested schema)
+     * 
+     */
     @Export(name="installedApplications", refs={List.class,KubernetesClusterInstalledApplication.class}, tree="[0,1]")
     private Output<List<KubernetesClusterInstalledApplication>> installedApplications;
 
+    /**
+     * @return (List of Object) (see below for nested schema)
+     * 
+     */
     public Output<List<KubernetesClusterInstalledApplication>> installedApplications() {
         return this.installedApplications;
     }
     /**
-     * The kubeconfig of the cluster
+     * (String, Sensitive) The kubeconfig of the cluster
      * 
      */
     @Export(name="kubeconfig", refs={String.class}, tree="[0]")
     private Output<String> kubeconfig;
 
     /**
-     * @return The kubeconfig of the cluster
+     * @return (String, Sensitive) The kubeconfig of the cluster
      * 
      */
     public Output<String> kubeconfig() {
@@ -166,14 +180,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.kubernetesVersion;
     }
     /**
-     * The IP address of the master node
+     * (String) The IP address of the master node
      * 
      */
     @Export(name="masterIp", refs={String.class}, tree="[0]")
     private Output<String> masterIp;
 
     /**
-     * @return The IP address of the master node
+     * @return (String) The IP address of the master node
      * 
      */
     public Output<String> masterIp() {
@@ -232,14 +246,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.pools;
     }
     /**
-     * When cluster is ready, this will return `true`
+     * (Boolean) When cluster is ready, this will return `true`
      * 
      */
     @Export(name="ready", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> ready;
 
     /**
-     * @return When cluster is ready, this will return `true`
+     * @return (Boolean) When cluster is ready, this will return `true`
      * 
      */
     public Output<Boolean> ready() {
@@ -260,14 +274,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.region;
     }
     /**
-     * Status of the cluster
+     * (String) Status of the cluster
      * 
      */
     @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
-     * @return Status of the cluster
+     * @return (String) Status of the cluster
      * 
      */
     public Output<String> status() {

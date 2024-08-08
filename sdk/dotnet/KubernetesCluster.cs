@@ -10,8 +10,6 @@ using Pulumi.Serialization;
 namespace Pulumi.Civo
 {
     /// <summary>
-    /// Provides a Civo Kubernetes cluster resource. This can be used to create, delete, and modify clusters.
-    /// 
     /// ## Import
     /// 
     /// using ID
@@ -24,13 +22,17 @@ namespace Pulumi.Civo
     public partial class KubernetesCluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The API server endpoint of the cluster
+        /// (String) The API server endpoint of the cluster
         /// </summary>
         [Output("apiEndpoint")]
         public Output<string> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
+        /// 'MariaDB:5GB'.
         /// </summary>
         [Output("applications")]
         public Output<string?> Applications { get; private set; } = null!;
@@ -48,13 +50,13 @@ namespace Pulumi.Civo
         public Output<string> Cni { get; private set; } = null!;
 
         /// <summary>
-        /// The timestamp when the cluster was created
+        /// (String) The timestamp when the cluster was created
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// The DNS name of the cluster
+        /// (String) The DNS name of the cluster
         /// </summary>
         [Output("dnsEntry")]
         public Output<string> DnsEntry { get; private set; } = null!;
@@ -65,11 +67,14 @@ namespace Pulumi.Civo
         [Output("firewallId")]
         public Output<string> FirewallId { get; private set; } = null!;
 
+        /// <summary>
+        /// (List of Object) (see below for nested schema)
+        /// </summary>
         [Output("installedApplications")]
         public Output<ImmutableArray<Outputs.KubernetesClusterInstalledApplication>> InstalledApplications { get; private set; } = null!;
 
         /// <summary>
-        /// The kubeconfig of the cluster
+        /// (String, Sensitive) The kubeconfig of the cluster
         /// </summary>
         [Output("kubeconfig")]
         public Output<string> Kubeconfig { get; private set; } = null!;
@@ -81,7 +86,7 @@ namespace Pulumi.Civo
         public Output<string> KubernetesVersion { get; private set; } = null!;
 
         /// <summary>
-        /// The IP address of the master node
+        /// (String) The IP address of the master node
         /// </summary>
         [Output("masterIp")]
         public Output<string> MasterIp { get; private set; } = null!;
@@ -108,7 +113,7 @@ namespace Pulumi.Civo
         public Output<Outputs.KubernetesClusterPools> Pools { get; private set; } = null!;
 
         /// <summary>
-        /// When cluster is ready, this will return `true`
+        /// (Boolean) When cluster is ready, this will return `true`
         /// </summary>
         [Output("ready")]
         public Output<bool> Ready { get; private set; } = null!;
@@ -120,7 +125,7 @@ namespace Pulumi.Civo
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// Status of the cluster
+        /// (String) Status of the cluster
         /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
@@ -188,7 +193,11 @@ namespace Pulumi.Civo
     public sealed class KubernetesClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
+        /// 'MariaDB:5GB'.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
@@ -265,13 +274,17 @@ namespace Pulumi.Civo
     public sealed class KubernetesClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The API server endpoint of the cluster
+        /// (String) The API server endpoint of the cluster
         /// </summary>
         [Input("apiEndpoint")]
         public Input<string>? ApiEndpoint { get; set; }
 
         /// <summary>
-        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik. For application that supports plans, you can use 'app*name:app*plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or 'MariaDB:5GB'.
+        /// Comma separated list of applications to install. Spaces within application names are fine, but shouldn't be either side
+        /// of the comma. Application names are case-sensitive; the available applications can be listed with the Civo CLI: 'civo
+        /// kubernetes applications ls'. If you want to remove a default installed application, prefix it with a '-', e.g. -Traefik.
+        /// For application that supports plans, you can use 'app_name:app_plan' format e.g. 'Linkerd:Linkerd &amp; Jaeger' or
+        /// 'MariaDB:5GB'.
         /// </summary>
         [Input("applications")]
         public Input<string>? Applications { get; set; }
@@ -289,13 +302,13 @@ namespace Pulumi.Civo
         public Input<string>? Cni { get; set; }
 
         /// <summary>
-        /// The timestamp when the cluster was created
+        /// (String) The timestamp when the cluster was created
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// The DNS name of the cluster
+        /// (String) The DNS name of the cluster
         /// </summary>
         [Input("dnsEntry")]
         public Input<string>? DnsEntry { get; set; }
@@ -308,6 +321,10 @@ namespace Pulumi.Civo
 
         [Input("installedApplications")]
         private InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>? _installedApplications;
+
+        /// <summary>
+        /// (List of Object) (see below for nested schema)
+        /// </summary>
         public InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs> InstalledApplications
         {
             get => _installedApplications ?? (_installedApplications = new InputList<Inputs.KubernetesClusterInstalledApplicationGetArgs>());
@@ -318,7 +335,7 @@ namespace Pulumi.Civo
         private Input<string>? _kubeconfig;
 
         /// <summary>
-        /// The kubeconfig of the cluster
+        /// (String, Sensitive) The kubeconfig of the cluster
         /// </summary>
         public Input<string>? Kubeconfig
         {
@@ -337,7 +354,7 @@ namespace Pulumi.Civo
         public Input<string>? KubernetesVersion { get; set; }
 
         /// <summary>
-        /// The IP address of the master node
+        /// (String) The IP address of the master node
         /// </summary>
         [Input("masterIp")]
         public Input<string>? MasterIp { get; set; }
@@ -364,7 +381,7 @@ namespace Pulumi.Civo
         public Input<Inputs.KubernetesClusterPoolsGetArgs>? Pools { get; set; }
 
         /// <summary>
-        /// When cluster is ready, this will return `true`
+        /// (Boolean) When cluster is ready, this will return `true`
         /// </summary>
         [Input("ready")]
         public Input<bool>? Ready { get; set; }
@@ -376,7 +393,7 @@ namespace Pulumi.Civo
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// Status of the cluster
+        /// (String) Status of the cluster
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

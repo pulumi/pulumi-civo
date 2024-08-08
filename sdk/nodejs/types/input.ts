@@ -415,19 +415,19 @@ export interface GetSizeSortArgs {
 
 export interface KubernetesClusterInstalledApplication {
     /**
-     * Name of application
+     * (String) name of the application
      */
     application?: pulumi.Input<string>;
     /**
-     * Category of the application
+     * (String) category of the application
      */
     category?: pulumi.Input<string>;
     /**
-     * Application installation status (`true` if installed)
+     * (Boolean) whether application is installed or not
      */
     installed?: pulumi.Input<boolean>;
     /**
-     * Version of application
+     * (String) version of the application
      */
     version?: pulumi.Input<string>;
 }
@@ -454,6 +454,11 @@ export interface KubernetesClusterPools {
      * Size of the nodes in the nodepool
      */
     size: pulumi.Input<string>;
+    /**
+     * (see below for nested schema)
+     *
+     * Read-Only Output:
+     */
     taints?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterPoolsTaint>[]>;
 }
 
