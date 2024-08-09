@@ -79,15 +79,15 @@ class AwaitableGetSizeResult(GetSizeResult):
             sorts=self.sorts)
 
 
-def get_size(filters: Optional[Sequence[pulumi.InputType['GetSizeFilterArgs']]] = None,
-             sorts: Optional[Sequence[pulumi.InputType['GetSizeSortArgs']]] = None,
+def get_size(filters: Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']]] = None,
+             sorts: Optional[Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']]] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSizeResult:
     """
     Retrieves information about the sizes that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -103,14 +103,14 @@ def get_size(filters: Optional[Sequence[pulumi.InputType['GetSizeFilterArgs']]] 
 
 
 @_utilities.lift_output_func(get_size)
-def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetSizeFilterArgs']]]]] = None,
-                    sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetSizeSortArgs']]]]] = None,
+def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']]]]] = None,
+                    sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']]]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSizeResult]:
     """
     Retrieves information about the sizes that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetSizeFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetSizeSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

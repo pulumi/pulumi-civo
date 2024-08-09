@@ -79,8 +79,8 @@ class AwaitableGetKubernetesVersionResult(GetKubernetesVersionResult):
             versions=self.versions)
 
 
-def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']]] = None,
-                           sorts: Optional[Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']]] = None,
+def get_kubernetes_version(filters: Optional[Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']]] = None,
+                           sorts: Optional[Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesVersionResult:
     """
     Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
@@ -91,19 +91,19 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
     import pulumi
     import pulumi_civo as civo
 
-    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["talos"],
-    )])
-    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["k3s"],
-    )])
+    talos = civo.get_kubernetes_version(filters=[{
+        "key": "type",
+        "values": ["talos"],
+    }])
+    k3s = civo.get_kubernetes_version(filters=[{
+        "key": "type",
+        "values": ["k3s"],
+    }])
     ```
 
 
-    :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -119,8 +119,8 @@ def get_kubernetes_version(filters: Optional[Sequence[pulumi.InputType['GetKuber
 
 
 @_utilities.lift_output_func(get_kubernetes_version)
-def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']]]]] = None,
-                                  sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']]]]] = None,
+def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']]]]] = None,
+                                  sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']]]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesVersionResult]:
     """
     Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
@@ -131,18 +131,18 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
     import pulumi
     import pulumi_civo as civo
 
-    talos = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["talos"],
-    )])
-    k3s = civo.get_kubernetes_version(filters=[civo.GetKubernetesVersionFilterArgs(
-        key="type",
-        values=["k3s"],
-    )])
+    talos = civo.get_kubernetes_version(filters=[{
+        "key": "type",
+        "values": ["talos"],
+    }])
+    k3s = civo.get_kubernetes_version(filters=[{
+        "key": "type",
+        "values": ["k3s"],
+    }])
     ```
 
 
-    :param Sequence[pulumi.InputType['GetKubernetesVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetKubernetesVersionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

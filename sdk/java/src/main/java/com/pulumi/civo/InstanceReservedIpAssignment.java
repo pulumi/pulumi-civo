@@ -110,7 +110,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public InstanceReservedIpAssignment(String name) {
+    public InstanceReservedIpAssignment(java.lang.String name) {
         this(name, InstanceReservedIpAssignmentArgs.Empty);
     }
     /**
@@ -118,7 +118,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public InstanceReservedIpAssignment(String name, InstanceReservedIpAssignmentArgs args) {
+    public InstanceReservedIpAssignment(java.lang.String name, InstanceReservedIpAssignmentArgs args) {
         this(name, args, null);
     }
     /**
@@ -127,12 +127,12 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public InstanceReservedIpAssignment(String name, InstanceReservedIpAssignmentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public InstanceReservedIpAssignment(java.lang.String name, InstanceReservedIpAssignmentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private InstanceReservedIpAssignment(String name, Output<String> id, @Nullable InstanceReservedIpAssignmentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment", name, state, makeResourceOptions(options, id));
+    private InstanceReservedIpAssignment(java.lang.String name, Output<java.lang.String> id, @Nullable InstanceReservedIpAssignmentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/instanceReservedIpAssignment:InstanceReservedIpAssignment", name, state, makeResourceOptions(options, id), false);
     }
 
     private static InstanceReservedIpAssignmentArgs makeArgs(InstanceReservedIpAssignmentArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -142,7 +142,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
         return args == null ? InstanceReservedIpAssignmentArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -158,7 +158,7 @@ public class InstanceReservedIpAssignment extends com.pulumi.resources.CustomRes
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static InstanceReservedIpAssignment get(String name, Output<String> id, @Nullable InstanceReservedIpAssignmentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static InstanceReservedIpAssignment get(java.lang.String name, Output<java.lang.String> id, @Nullable InstanceReservedIpAssignmentState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new InstanceReservedIpAssignment(name, id, state, options);
     }
 }

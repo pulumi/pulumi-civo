@@ -162,7 +162,7 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public ObjectStore(String name) {
+    public ObjectStore(java.lang.String name) {
         this(name, ObjectStoreArgs.Empty);
     }
     /**
@@ -170,7 +170,7 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public ObjectStore(String name, @Nullable ObjectStoreArgs args) {
+    public ObjectStore(java.lang.String name, @Nullable ObjectStoreArgs args) {
         this(name, args, null);
     }
     /**
@@ -179,12 +179,12 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public ObjectStore(String name, @Nullable ObjectStoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/objectStore:ObjectStore", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public ObjectStore(java.lang.String name, @Nullable ObjectStoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/objectStore:ObjectStore", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private ObjectStore(String name, Output<String> id, @Nullable ObjectStoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/objectStore:ObjectStore", name, state, makeResourceOptions(options, id));
+    private ObjectStore(java.lang.String name, Output<java.lang.String> id, @Nullable ObjectStoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/objectStore:ObjectStore", name, state, makeResourceOptions(options, id), false);
     }
 
     private static ObjectStoreArgs makeArgs(@Nullable ObjectStoreArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -194,7 +194,7 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
         return args == null ? ObjectStoreArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -210,7 +210,7 @@ public class ObjectStore extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static ObjectStore get(String name, Output<String> id, @Nullable ObjectStoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static ObjectStore get(java.lang.String name, Output<java.lang.String> id, @Nullable ObjectStoreState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new ObjectStore(name, id, state, options);
     }
 }

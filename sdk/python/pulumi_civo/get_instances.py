@@ -91,9 +91,9 @@ class AwaitableGetInstancesResult(GetInstancesResult):
             sorts=self.sorts)
 
 
-def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilterArgs']]] = None,
+def get_instances(filters: Optional[Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']]] = None,
                   region: Optional[str] = None,
-                  sorts: Optional[Sequence[pulumi.InputType['GetInstancesSortArgs']]] = None,
+                  sorts: Optional[Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']]] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstancesResult:
     """
     Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
@@ -107,16 +107,16 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
     import pulumi_civo as civo
 
     small_size = civo.get_instances(region="LON1",
-        filters=[civo.GetInstancesFilterArgs(
-            key="size",
-            values=[small],
-        )])
+        filters=[{
+            "key": "size",
+            "values": [small],
+        }])
     ```
 
 
-    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']] filters: One or more key/value pairs on which to filter results
     :param str region: If used, all instances will be from the provided region
-    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -134,9 +134,9 @@ def get_instances(filters: Optional[Sequence[pulumi.InputType['GetInstancesFilte
 
 
 @_utilities.lift_output_func(get_instances)
-def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetInstancesFilterArgs']]]]] = None,
+def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']]]]] = None,
                          region: Optional[pulumi.Input[Optional[str]]] = None,
-                         sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetInstancesSortArgs']]]]] = None,
+                         sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']]]]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancesResult]:
     """
     Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
@@ -150,15 +150,15 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi
     import pulumi_civo as civo
 
     small_size = civo.get_instances(region="LON1",
-        filters=[civo.GetInstancesFilterArgs(
-            key="size",
-            values=[small],
-        )])
+        filters=[{
+            "key": "size",
+            "values": [small],
+        }])
     ```
 
 
-    :param Sequence[pulumi.InputType['GetInstancesFilterArgs']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']] filters: One or more key/value pairs on which to filter results
     :param str region: If used, all instances will be from the provided region
-    :param Sequence[pulumi.InputType['GetInstancesSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

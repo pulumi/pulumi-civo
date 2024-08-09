@@ -79,15 +79,15 @@ class AwaitableGetDatabaseVersionResult(GetDatabaseVersionResult):
             versions=self.versions)
 
 
-def get_database_version(filters: Optional[Sequence[pulumi.InputType['GetDatabaseVersionFilterArgs']]] = None,
-                         sorts: Optional[Sequence[pulumi.InputType['GetDatabaseVersionSortArgs']]] = None,
+def get_database_version(filters: Optional[Sequence[Union['GetDatabaseVersionFilterArgs', 'GetDatabaseVersionFilterArgsDict']]] = None,
+                         sorts: Optional[Sequence[Union['GetDatabaseVersionSortArgs', 'GetDatabaseVersionSortArgsDict']]] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDatabaseVersionResult:
     """
     Retrieves information about the database versions that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetDatabaseVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetDatabaseVersionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetDatabaseVersionFilterArgs', 'GetDatabaseVersionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetDatabaseVersionSortArgs', 'GetDatabaseVersionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -103,14 +103,14 @@ def get_database_version(filters: Optional[Sequence[pulumi.InputType['GetDatabas
 
 
 @_utilities.lift_output_func(get_database_version)
-def get_database_version_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDatabaseVersionFilterArgs']]]]] = None,
-                                sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetDatabaseVersionSortArgs']]]]] = None,
+def get_database_version_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetDatabaseVersionFilterArgs', 'GetDatabaseVersionFilterArgsDict']]]]] = None,
+                                sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetDatabaseVersionSortArgs', 'GetDatabaseVersionSortArgsDict']]]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseVersionResult]:
     """
     Retrieves information about the database versions that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetDatabaseVersionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetDatabaseVersionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetDatabaseVersionFilterArgs', 'GetDatabaseVersionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetDatabaseVersionSortArgs', 'GetDatabaseVersionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     ...

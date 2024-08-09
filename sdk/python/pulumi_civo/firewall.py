@@ -227,8 +227,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
-                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
-                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -247,8 +247,8 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider
@@ -286,8 +286,8 @@ class Firewall(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  create_default_rules: Optional[pulumi.Input[bool]] = None,
-                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
-                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
+                 egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]]] = None,
+                 ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
@@ -317,8 +317,8 @@ class Firewall(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             create_default_rules: Optional[pulumi.Input[bool]] = None,
-            egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]]] = None,
-            ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]]] = None,
+            egress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]]] = None,
+            ingress_rules: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None) -> 'Firewall':
@@ -330,8 +330,8 @@ class Firewall(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallEgressRuleArgs']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallIngressRuleArgs']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
         :param pulumi.Input[str] network_id: The firewall network, if is not defined we use the default network
         :param pulumi.Input[str] region: The firewall region, if is not defined we use the global defined in the provider

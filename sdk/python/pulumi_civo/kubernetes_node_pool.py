@@ -261,7 +261,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  node_count: Optional[pulumi.Input[int]] = None,
                  public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
                  size: Optional[pulumi.Input[str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolTaintArgs']]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  __props__=None):
         """
         ## Import
@@ -312,7 +312,7 @@ class KubernetesNodePool(pulumi.CustomResource):
                  node_count: Optional[pulumi.Input[int]] = None,
                  public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
                  size: Optional[pulumi.Input[str]] = None,
-                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolTaintArgs']]]]] = None,
+                 taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -353,7 +353,7 @@ class KubernetesNodePool(pulumi.CustomResource):
             node_count: Optional[pulumi.Input[int]] = None,
             public_ip_node_pool: Optional[pulumi.Input[bool]] = None,
             size: Optional[pulumi.Input[str]] = None,
-            taints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodePoolTaintArgs']]]]] = None) -> 'KubernetesNodePool':
+            taints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['KubernetesNodePoolTaintArgs', 'KubernetesNodePoolTaintArgsDict']]]]] = None) -> 'KubernetesNodePool':
         """
         Get an existing KubernetesNodePool resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

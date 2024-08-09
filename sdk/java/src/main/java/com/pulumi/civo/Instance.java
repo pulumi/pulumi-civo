@@ -124,12 +124,12 @@ import javax.annotation.Nullable;
  * import java.nio.file.Files;
  * import java.nio.file.Paths;
  * 
- * public class App {
- *     public static void main(String[] args) {
+ * public class App }{{@code
+ *     public static void main(String[] args) }{{@code
  *         Pulumi.run(App::stack);
- *     }
+ *     }}{@code
  * 
- *     public static void stack(Context ctx) {
+ *     public static void stack(Context ctx) }{{@code
  *         var exampleNetwork = new Network("exampleNetwork", NetworkArgs.builder()
  *             .label("example-network")
  *             .build());
@@ -149,7 +149,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         // To create the example key, run this command:
- *         // ssh-keygen -f ~/.ssh/example-tf -C "terraform-example{@literal @}localmachine"
+ *         // ssh-keygen -f ~/.ssh/example-tf -C "terraform-example}{@literal @}{@code localmachine"
  *         var exampleSshKey = new SshKey("exampleSshKey", SshKeyArgs.builder()
  *             .name("example")
  *             .publicKey(StdFunctions.file(FileArgs.builder()
@@ -171,8 +171,8 @@ import javax.annotation.Nullable;
  *             .diskImage(debian.applyValue(getDiskImageResult -> getDiskImageResult.diskimages()[0].id()))
  *             .build());
  * 
- *     }
- * }
+ *     }}{@code
+ * }}{@code
  * }
  * </pre>
  * &lt;!--End PulumiCodeChooser --&gt;
@@ -553,7 +553,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public Instance(String name) {
+    public Instance(java.lang.String name) {
         this(name, InstanceArgs.Empty);
     }
     /**
@@ -561,7 +561,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Instance(String name, InstanceArgs args) {
+    public Instance(java.lang.String name, InstanceArgs args) {
         this(name, args, null);
     }
     /**
@@ -570,12 +570,12 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Instance(String name, InstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/instance:Instance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public Instance(java.lang.String name, InstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/instance:Instance", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private Instance(String name, Output<String> id, @Nullable InstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/instance:Instance", name, state, makeResourceOptions(options, id));
+    private Instance(java.lang.String name, Output<java.lang.String> id, @Nullable InstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/instance:Instance", name, state, makeResourceOptions(options, id), false);
     }
 
     private static InstanceArgs makeArgs(InstanceArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -585,7 +585,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
         return args == null ? InstanceArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
@@ -604,7 +604,7 @@ public class Instance extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static Instance get(String name, Output<String> id, @Nullable InstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static Instance get(java.lang.String name, Output<java.lang.String> id, @Nullable InstanceState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new Instance(name, id, state, options);
     }
 }
