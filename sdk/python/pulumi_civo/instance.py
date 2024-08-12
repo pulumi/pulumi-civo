@@ -727,10 +727,10 @@ class Instance(pulumi.CustomResource):
             create_default_rules=True,
             network_id=example_network.id)
         # Query instance disk image
-        debian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(
-            key="name",
-            values=["debian-10"],
-        )])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
         # Create a new instance
         example_instance = civo.Instance("example",
             hostname="example",
@@ -762,10 +762,10 @@ class Instance(pulumi.CustomResource):
             create_default_rules=True,
             network_id=example_network.id)
         # Query instance disk image
-        debian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(
-            key="name",
-            values=["debian-10"],
-        )])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
         # To create the example key, run this command:
         # ssh-keygen -f ~/.ssh/example-tf -C "terraform-example@localmachine"
         example_ssh_key = civo.SshKey("example",
@@ -844,10 +844,10 @@ class Instance(pulumi.CustomResource):
             create_default_rules=True,
             network_id=example_network.id)
         # Query instance disk image
-        debian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(
-            key="name",
-            values=["debian-10"],
-        )])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
         # Create a new instance
         example_instance = civo.Instance("example",
             hostname="example",
@@ -879,10 +879,10 @@ class Instance(pulumi.CustomResource):
             create_default_rules=True,
             network_id=example_network.id)
         # Query instance disk image
-        debian = civo.get_disk_image(filters=[civo.GetDiskImageFilterArgs(
-            key="name",
-            values=["debian-10"],
-        )])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
         # To create the example key, run this command:
         # ssh-keygen -f ~/.ssh/example-tf -C "terraform-example@localmachine"
         example_ssh_key = civo.SshKey("example",

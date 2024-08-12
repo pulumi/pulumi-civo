@@ -72,14 +72,14 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
         return this.domainId;
     }
     /**
-     * The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * The portion before the domain name (e.g. www) or an {@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The portion before the domain name (e.g. www) or an{@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
+     * @return The portion before the domain name (e.g. www) or an {@literal @} for the apex/root domain (you cannot use an A record with an amex/root domain)
      * 
      */
     public Output<String> name() {
@@ -160,7 +160,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      *
      * @param name The _unique_ name of the resulting resource.
      */
-    public DnsDomainRecord(String name) {
+    public DnsDomainRecord(java.lang.String name) {
         this(name, DnsDomainRecordArgs.Empty);
     }
     /**
@@ -168,7 +168,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public DnsDomainRecord(String name, DnsDomainRecordArgs args) {
+    public DnsDomainRecord(java.lang.String name, DnsDomainRecordArgs args) {
         this(name, args, null);
     }
     /**
@@ -177,12 +177,12 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public DnsDomainRecord(String name, DnsDomainRecordArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/dnsDomainRecord:DnsDomainRecord", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()));
+    public DnsDomainRecord(java.lang.String name, DnsDomainRecordArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/dnsDomainRecord:DnsDomainRecord", name, makeArgs(args, options), makeResourceOptions(options, Codegen.empty()), false);
     }
 
-    private DnsDomainRecord(String name, Output<String> id, @Nullable DnsDomainRecordState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
-        super("civo:index/dnsDomainRecord:DnsDomainRecord", name, state, makeResourceOptions(options, id));
+    private DnsDomainRecord(java.lang.String name, Output<java.lang.String> id, @Nullable DnsDomainRecordState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+        super("civo:index/dnsDomainRecord:DnsDomainRecord", name, state, makeResourceOptions(options, id), false);
     }
 
     private static DnsDomainRecordArgs makeArgs(DnsDomainRecordArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
@@ -192,7 +192,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
         return args == null ? DnsDomainRecordArgs.Empty : args;
     }
 
-    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<String> id) {
+    private static com.pulumi.resources.CustomResourceOptions makeResourceOptions(@Nullable com.pulumi.resources.CustomResourceOptions options, @Nullable Output<java.lang.String> id) {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .build();
@@ -208,7 +208,7 @@ public class DnsDomainRecord extends com.pulumi.resources.CustomResource {
      * @param state
      * @param options Optional settings to control the behavior of the CustomResource.
      */
-    public static DnsDomainRecord get(String name, Output<String> id, @Nullable DnsDomainRecordState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public static DnsDomainRecord get(java.lang.String name, Output<java.lang.String> id, @Nullable DnsDomainRecordState state, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         return new DnsDomainRecord(name, id, state, options);
     }
 }
