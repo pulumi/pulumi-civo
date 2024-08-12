@@ -79,15 +79,15 @@ class AwaitableGetRegionResult(GetRegionResult):
             sorts=self.sorts)
 
 
-def get_region(filters: Optional[Sequence[pulumi.InputType['GetRegionFilterArgs']]] = None,
-               sorts: Optional[Sequence[pulumi.InputType['GetRegionSortArgs']]] = None,
+def get_region(filters: Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']]] = None,
+               sorts: Optional[Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']]] = None,
                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetRegionResult:
     """
     Retrieves information about the region that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetRegionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetRegionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     __args__ = dict()
     __args__['filters'] = filters
@@ -103,14 +103,14 @@ def get_region(filters: Optional[Sequence[pulumi.InputType['GetRegionFilterArgs'
 
 
 @_utilities.lift_output_func(get_region)
-def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRegionFilterArgs']]]]] = None,
-                      sorts: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetRegionSortArgs']]]]] = None,
+def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']]]]] = None,
+                      sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']]]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionResult]:
     """
     Retrieves information about the region that Civo supports, with the ability to filter the results.
 
 
-    :param Sequence[pulumi.InputType['GetRegionFilterArgs']] filters: One or more key/value pairs on which to filter results
-    :param Sequence[pulumi.InputType['GetRegionSortArgs']] sorts: One or more key/direction pairs on which to sort results
+    :param Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
+    :param Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
     ...
