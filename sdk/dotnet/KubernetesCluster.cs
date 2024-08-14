@@ -142,6 +142,12 @@ namespace Pulumi.Civo
         [Output("targetNodesSize")]
         public Output<string> TargetNodesSize { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether to write the kubeconfig to state
+        /// </summary>
+        [Output("writeKubeconfig")]
+        public Output<bool?> WriteKubeconfig { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a KubernetesCluster resource with the given unique name, arguments, and options.
@@ -264,6 +270,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
+
+        /// <summary>
+        /// Whether to write the kubeconfig to state
+        /// </summary>
+        [Input("writeKubeconfig")]
+        public Input<bool>? WriteKubeconfig { get; set; }
 
         public KubernetesClusterArgs()
         {
@@ -409,6 +421,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("targetNodesSize")]
         public Input<string>? TargetNodesSize { get; set; }
+
+        /// <summary>
+        /// Whether to write the kubeconfig to state
+        /// </summary>
+        [Input("writeKubeconfig")]
+        public Input<bool>? WriteKubeconfig { get; set; }
 
         public KubernetesClusterState()
         {

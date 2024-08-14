@@ -236,6 +236,7 @@ export class Instance extends pulumi.CustomResource {
      * An optional list of tags, represented as a key, value pair
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    public readonly writePassword!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a Instance resource with the given unique name, arguments, and options.
@@ -275,6 +276,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["sshkeyId"] = state ? state.sshkeyId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["writePassword"] = state ? state.writePassword : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
             if ((!args || args.diskImage === undefined) && !opts.urn) {
@@ -298,6 +300,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["sshkeyId"] = args ? args.sshkeyId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["writePassword"] = args ? args.writePassword : undefined;
             resourceInputs["cpuCores"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["diskGb"] = undefined /*out*/;
@@ -425,6 +428,7 @@ export interface InstanceState {
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    writePassword?: pulumi.Input<boolean>;
 }
 
 /**
@@ -496,4 +500,5 @@ export interface InstanceArgs {
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    writePassword?: pulumi.Input<boolean>;
 }

@@ -20,6 +20,8 @@ type Provider struct {
 
 	// The Base URL to use for CIVO API.
 	ApiEndpoint pulumi.StringPtrOutput `pulumi:"apiEndpoint"`
+	// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+	CredentialsFile pulumi.StringPtrOutput `pulumi:"credentialsFile"`
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region pulumi.StringPtrOutput `pulumi:"region"`
@@ -46,6 +48,8 @@ func NewProvider(ctx *pulumi.Context,
 type providerArgs struct {
 	// The Base URL to use for CIVO API.
 	ApiEndpoint *string `pulumi:"apiEndpoint"`
+	// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+	CredentialsFile *string `pulumi:"credentialsFile"`
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region *string `pulumi:"region"`
@@ -57,6 +61,8 @@ type providerArgs struct {
 type ProviderArgs struct {
 	// The Base URL to use for CIVO API.
 	ApiEndpoint pulumi.StringPtrInput
+	// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+	CredentialsFile pulumi.StringPtrInput
 	// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 	// here you can overwrite in a resource.
 	Region pulumi.StringPtrInput
@@ -104,6 +110,11 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 // The Base URL to use for CIVO API.
 func (o ProviderOutput) ApiEndpoint() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ApiEndpoint }).(pulumi.StringPtrOutput)
+}
+
+// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+func (o ProviderOutput) CredentialsFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.CredentialsFile }).(pulumi.StringPtrOutput)
 }
 
 // If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

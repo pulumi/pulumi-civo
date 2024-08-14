@@ -50,8 +50,30 @@ The following configuration points are available:
   environment variable.
 - `civo:region` - (Optional) Region in which to create Civo resources.  It can also be sourced from the `CIVO_REGION`
   environment variable.
+- `civo:credentialsFile - Path to the Civo credentials file. Can be specified using `CIVO_CREDENTIAL_FILE`
+  environment variable.
 
 Other: `apiEndpoint`
+
+### Using credentials file
+
+The format of the credentials file is as follows:
+
+```
+{
+    "apikeys": {
+        "tf_key": "write-your-token-here"
+    },
+    "meta": {
+        "current_apikey": "tf_key"
+    }
+}
+```
+You will then need to configure the credentials_file input to the correct location, for example:
+```
+credentialsFile = "/secure/path/civo.json"
+```
+
 ## Reference
 
 For further information, please visit [the Civo provider docs](https://www.pulumi.com/docs/intro/cloud-providers/civo)

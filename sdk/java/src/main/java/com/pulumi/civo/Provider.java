@@ -37,6 +37,20 @@ public class Provider extends com.pulumi.resources.ProviderResource {
         return Codegen.optional(this.apiEndpoint);
     }
     /**
+     * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     * 
+     */
+    @Export(name="credentialsFile", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> credentialsFile;
+
+    /**
+     * @return Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     * 
+     */
+    public Output<Optional<String>> credentialsFile() {
+        return Codegen.optional(this.credentialsFile);
+    }
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      * 

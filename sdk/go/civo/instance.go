@@ -233,7 +233,8 @@ type Instance struct {
 	// (String) Instance's status
 	Status pulumi.StringOutput `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
-	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	Tags          pulumi.StringArrayOutput `pulumi:"tags"`
+	WritePassword pulumi.BoolPtrOutput     `pulumi:"writePassword"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -330,7 +331,8 @@ type instanceState struct {
 	// (String) Instance's status
 	Status *string `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
-	Tags []string `pulumi:"tags"`
+	Tags          []string `pulumi:"tags"`
+	WritePassword *bool    `pulumi:"writePassword"`
 }
 
 type InstanceState struct {
@@ -388,7 +390,8 @@ type InstanceState struct {
 	// (String) Instance's status
 	Status pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
-	Tags pulumi.StringArrayInput
+	Tags          pulumi.StringArrayInput
+	WritePassword pulumi.BoolPtrInput
 }
 
 func (InstanceState) ElementType() reflect.Type {
@@ -430,7 +433,8 @@ type instanceArgs struct {
 	// random password will be set and returned in the initialPassword field)
 	SshkeyId *string `pulumi:"sshkeyId"`
 	// An optional list of tags, represented as a key, value pair
-	Tags []string `pulumi:"tags"`
+	Tags          []string `pulumi:"tags"`
+	WritePassword *bool    `pulumi:"writePassword"`
 }
 
 // The set of arguments for constructing a Instance resource.
@@ -469,7 +473,8 @@ type InstanceArgs struct {
 	// random password will be set and returned in the initialPassword field)
 	SshkeyId pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
-	Tags pulumi.StringArrayInput
+	Tags          pulumi.StringArrayInput
+	WritePassword pulumi.BoolPtrInput
 }
 
 func (InstanceArgs) ElementType() reflect.Type {
@@ -687,6 +692,10 @@ func (o InstanceOutput) Status() pulumi.StringOutput {
 // An optional list of tags, represented as a key, value pair
 func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+func (o InstanceOutput) WritePassword() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.BoolPtrOutput { return v.WritePassword }).(pulumi.BoolPtrOutput)
 }
 
 type InstanceArrayOutput struct{ *pulumi.OutputState }

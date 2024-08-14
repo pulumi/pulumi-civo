@@ -128,6 +128,10 @@ export class KubernetesCluster extends pulumi.CustomResource {
      * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     public readonly targetNodesSize!: pulumi.Output<string>;
+    /**
+     * Whether to write the kubeconfig to state
+     */
+    public readonly writeKubeconfig!: pulumi.Output<boolean | undefined>;
 
     /**
      * Create a KubernetesCluster resource with the given unique name, arguments, and options.
@@ -162,6 +166,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["targetNodesSize"] = state ? state.targetNodesSize : undefined;
+            resourceInputs["writeKubeconfig"] = state ? state.writeKubeconfig : undefined;
         } else {
             const args = argsOrState as KubernetesClusterArgs | undefined;
             if ((!args || args.firewallId === undefined) && !opts.urn) {
@@ -182,6 +187,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["targetNodesSize"] = args ? args.targetNodesSize : undefined;
+            resourceInputs["writeKubeconfig"] = args ? args.writeKubeconfig : undefined;
             resourceInputs["apiEndpoint"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["dnsEntry"] = undefined /*out*/;
@@ -287,6 +293,10 @@ export interface KubernetesClusterState {
      * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     targetNodesSize?: pulumi.Input<string>;
+    /**
+     * Whether to write the kubeconfig to state
+     */
+    writeKubeconfig?: pulumi.Input<boolean>;
 }
 
 /**
@@ -346,4 +356,8 @@ export interface KubernetesClusterArgs {
      * @deprecated This field will be deprecated in the next major release, please use the 'pools' field instead
      */
     targetNodesSize?: pulumi.Input<string>;
+    /**
+     * Whether to write the kubeconfig to state
+     */
+    writeKubeconfig?: pulumi.Input<boolean>;
 }
