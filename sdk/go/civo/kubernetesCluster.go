@@ -69,6 +69,8 @@ type KubernetesCluster struct {
 	//
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringOutput `pulumi:"targetNodesSize"`
+	// Whether to write the kubeconfig to state
+	WriteKubeconfig pulumi.BoolPtrOutput `pulumi:"writeKubeconfig"`
 }
 
 // NewKubernetesCluster registers a new resource with the given unique name, arguments, and options.
@@ -158,6 +160,8 @@ type kubernetesClusterState struct {
 	//
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
+	// Whether to write the kubeconfig to state
+	WriteKubeconfig *bool `pulumi:"writeKubeconfig"`
 }
 
 type KubernetesClusterState struct {
@@ -208,6 +212,8 @@ type KubernetesClusterState struct {
 	//
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringPtrInput
+	// Whether to write the kubeconfig to state
+	WriteKubeconfig pulumi.BoolPtrInput
 }
 
 func (KubernetesClusterState) ElementType() reflect.Type {
@@ -246,6 +252,8 @@ type kubernetesClusterArgs struct {
 	//
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize *string `pulumi:"targetNodesSize"`
+	// Whether to write the kubeconfig to state
+	WriteKubeconfig *bool `pulumi:"writeKubeconfig"`
 }
 
 // The set of arguments for constructing a KubernetesCluster resource.
@@ -281,6 +289,8 @@ type KubernetesClusterArgs struct {
 	//
 	// Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 	TargetNodesSize pulumi.StringPtrInput
+	// Whether to write the kubeconfig to state
+	WriteKubeconfig pulumi.BoolPtrInput
 }
 
 func (KubernetesClusterArgs) ElementType() reflect.Type {
@@ -477,6 +487,11 @@ func (o KubernetesClusterOutput) Tags() pulumi.StringPtrOutput {
 // Deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead
 func (o KubernetesClusterOutput) TargetNodesSize() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.TargetNodesSize }).(pulumi.StringOutput)
+}
+
+// Whether to write the kubeconfig to state
+func (o KubernetesClusterOutput) WriteKubeconfig() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KubernetesCluster) pulumi.BoolPtrOutput { return v.WriteKubeconfig }).(pulumi.BoolPtrOutput)
 }
 
 type KubernetesClusterArrayOutput struct{ *pulumi.OutputState }

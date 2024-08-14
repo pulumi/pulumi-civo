@@ -16,6 +16,11 @@ func GetApiEndpoint(ctx *pulumi.Context) string {
 	return config.Get(ctx, "civo:apiEndpoint")
 }
 
+// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+func GetCredentialsFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "civo:credentialsFile")
+}
+
 // If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
 // here you can overwrite in a resource.
 func GetRegion(ctx *pulumi.Context) string {

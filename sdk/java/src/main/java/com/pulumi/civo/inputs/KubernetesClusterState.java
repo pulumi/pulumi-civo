@@ -336,6 +336,21 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.targetNodesSize);
     }
 
+    /**
+     * Whether to write the kubeconfig to state
+     * 
+     */
+    @Import(name="writeKubeconfig")
+    private @Nullable Output<Boolean> writeKubeconfig;
+
+    /**
+     * @return Whether to write the kubeconfig to state
+     * 
+     */
+    public Optional<Output<Boolean>> writeKubeconfig() {
+        return Optional.ofNullable(this.writeKubeconfig);
+    }
+
     private KubernetesClusterState() {}
 
     private KubernetesClusterState(KubernetesClusterState $) {
@@ -359,6 +374,7 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         this.status = $.status;
         this.tags = $.tags;
         this.targetNodesSize = $.targetNodesSize;
+        this.writeKubeconfig = $.writeKubeconfig;
     }
 
     public static Builder builder() {
@@ -819,6 +835,27 @@ public final class KubernetesClusterState extends com.pulumi.resources.ResourceA
         @Deprecated /* This field will be deprecated in the next major release, please use the 'pools' field instead */
         public Builder targetNodesSize(String targetNodesSize) {
             return targetNodesSize(Output.of(targetNodesSize));
+        }
+
+        /**
+         * @param writeKubeconfig Whether to write the kubeconfig to state
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeKubeconfig(@Nullable Output<Boolean> writeKubeconfig) {
+            $.writeKubeconfig = writeKubeconfig;
+            return this;
+        }
+
+        /**
+         * @param writeKubeconfig Whether to write the kubeconfig to state
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeKubeconfig(Boolean writeKubeconfig) {
+            return writeKubeconfig(Output.of(writeKubeconfig));
         }
 
         public KubernetesClusterState build() {

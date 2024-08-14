@@ -31,6 +31,21 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     * 
+     */
+    @Import(name="credentialsFile")
+    private @Nullable Output<String> credentialsFile;
+
+    /**
+     * @return Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     * 
+     */
+    public Optional<Output<String>> credentialsFile() {
+        return Optional.ofNullable(this.credentialsFile);
+    }
+
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      * 
@@ -66,6 +81,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
 
     private ProviderArgs(ProviderArgs $) {
         this.apiEndpoint = $.apiEndpoint;
+        this.credentialsFile = $.credentialsFile;
         this.region = $.region;
         this.token = $.token;
     }
@@ -107,6 +123,27 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder apiEndpoint(String apiEndpoint) {
             return apiEndpoint(Output.of(apiEndpoint));
+        }
+
+        /**
+         * @param credentialsFile Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsFile(@Nullable Output<String> credentialsFile) {
+            $.credentialsFile = credentialsFile;
+            return this;
+        }
+
+        /**
+         * @param credentialsFile Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder credentialsFile(String credentialsFile) {
+            return credentialsFile(Output.of(credentialsFile));
         }
 
         /**

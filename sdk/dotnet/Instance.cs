@@ -315,6 +315,9 @@ namespace Pulumi.Civo
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
+        [Output("writePassword")]
+        public Output<bool?> WritePassword { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Instance resource with the given unique name, arguments, and options.
@@ -465,6 +468,9 @@ namespace Pulumi.Civo
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        [Input("writePassword")]
+        public Input<bool>? WritePassword { get; set; }
 
         public InstanceArgs()
         {
@@ -644,6 +650,9 @@ namespace Pulumi.Civo
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        [Input("writePassword")]
+        public Input<bool>? WritePassword { get; set; }
 
         public InstanceState()
         {

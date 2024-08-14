@@ -42,6 +42,16 @@ namespace Pulumi.Civo
             set => _apiEndpoint.Set(value);
         }
 
+        private static readonly __Value<string?> _credentialsFile = new __Value<string?>(() => __config.Get("credentialsFile"));
+        /// <summary>
+        /// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        /// </summary>
+        public static string? CredentialsFile
+        {
+            get => _credentialsFile.Get();
+            set => _credentialsFile.Set(value);
+        }
+
         private static readonly __Value<string?> _region = new __Value<string?>(() => __config.Get("region"));
         /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

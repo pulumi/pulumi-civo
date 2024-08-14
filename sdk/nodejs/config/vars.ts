@@ -19,6 +19,17 @@ Object.defineProperty(exports, "apiEndpoint", {
 });
 
 /**
+ * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+ */
+export declare const credentialsFile: string | undefined;
+Object.defineProperty(exports, "credentialsFile", {
+    get() {
+        return __config.get("credentialsFile");
+    },
+    enumerable: true,
+});
+
+/**
  * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
  * here you can overwrite in a resource.
  */

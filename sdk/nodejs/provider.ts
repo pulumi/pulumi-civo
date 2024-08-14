@@ -30,6 +30,10 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly apiEndpoint!: pulumi.Output<string | undefined>;
     /**
+     * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     */
+    public readonly credentialsFile!: pulumi.Output<string | undefined>;
+    /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.
      */
@@ -51,6 +55,7 @@ export class Provider extends pulumi.ProviderResource {
         opts = opts || {};
         {
             resourceInputs["apiEndpoint"] = args ? args.apiEndpoint : undefined;
+            resourceInputs["credentialsFile"] = args ? args.credentialsFile : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["token"] = args ? args.token : undefined;
         }
@@ -67,6 +72,10 @@ export interface ProviderArgs {
      * The Base URL to use for CIVO API.
      */
     apiEndpoint?: pulumi.Input<string>;
+    /**
+     * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+     */
+    credentialsFile?: pulumi.Input<string>;
     /**
      * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
      * here you can overwrite in a resource.

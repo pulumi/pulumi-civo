@@ -27,7 +27,8 @@ class KubernetesClusterArgs:
                  num_target_nodes: Optional[pulumi.Input[int]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
-                 target_nodes_size: Optional[pulumi.Input[str]] = None):
+                 target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 write_kubeconfig: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a KubernetesCluster resource.
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
@@ -45,6 +46,7 @@ class KubernetesClusterArgs:
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
+        :param pulumi.Input[bool] write_kubeconfig: Whether to write the kubeconfig to state
         """
         pulumi.set(__self__, "firewall_id", firewall_id)
         pulumi.set(__self__, "pools", pools)
@@ -74,6 +76,8 @@ class KubernetesClusterArgs:
             pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
             pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+        if write_kubeconfig is not None:
+            pulumi.set(__self__, "write_kubeconfig", write_kubeconfig)
 
     @property
     @pulumi.getter(name="firewallId")
@@ -222,6 +226,18 @@ class KubernetesClusterArgs:
     def target_nodes_size(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "target_nodes_size", value)
 
+    @property
+    @pulumi.getter(name="writeKubeconfig")
+    def write_kubeconfig(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to write the kubeconfig to state
+        """
+        return pulumi.get(self, "write_kubeconfig")
+
+    @write_kubeconfig.setter
+    def write_kubeconfig(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_kubeconfig", value)
+
 
 @pulumi.input_type
 class _KubernetesClusterState:
@@ -245,7 +261,8 @@ class _KubernetesClusterState:
                  region: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
-                 target_nodes_size: Optional[pulumi.Input[str]] = None):
+                 target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 write_kubeconfig: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
         :param pulumi.Input[str] api_endpoint: (String) The API server endpoint of the cluster
@@ -271,6 +288,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] status: (String) Status of the cluster
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
+        :param pulumi.Input[bool] write_kubeconfig: Whether to write the kubeconfig to state
         """
         if api_endpoint is not None:
             pulumi.set(__self__, "api_endpoint", api_endpoint)
@@ -318,6 +336,8 @@ class _KubernetesClusterState:
             pulumi.log.warn("""target_nodes_size is deprecated: This field will be deprecated in the next major release, please use the 'pools' field instead""")
         if target_nodes_size is not None:
             pulumi.set(__self__, "target_nodes_size", target_nodes_size)
+        if write_kubeconfig is not None:
+            pulumi.set(__self__, "write_kubeconfig", write_kubeconfig)
 
     @property
     @pulumi.getter(name="apiEndpoint")
@@ -562,6 +582,18 @@ class _KubernetesClusterState:
     def target_nodes_size(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "target_nodes_size", value)
 
+    @property
+    @pulumi.getter(name="writeKubeconfig")
+    def write_kubeconfig(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to write the kubeconfig to state
+        """
+        return pulumi.get(self, "write_kubeconfig")
+
+    @write_kubeconfig.setter
+    def write_kubeconfig(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_kubeconfig", value)
+
 
 class KubernetesCluster(pulumi.CustomResource):
     @overload
@@ -580,6 +612,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 write_kubeconfig: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         ## Import
@@ -607,6 +640,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] region: The region for the cluster, if not declare we use the region in declared in the provider
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
+        :param pulumi.Input[bool] write_kubeconfig: Whether to write the kubeconfig to state
         """
         ...
     @overload
@@ -650,6 +684,7 @@ class KubernetesCluster(pulumi.CustomResource):
                  region: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[str]] = None,
                  target_nodes_size: Optional[pulumi.Input[str]] = None,
+                 write_kubeconfig: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -675,6 +710,7 @@ class KubernetesCluster(pulumi.CustomResource):
             __props__.__dict__["region"] = region
             __props__.__dict__["tags"] = tags
             __props__.__dict__["target_nodes_size"] = target_nodes_size
+            __props__.__dict__["write_kubeconfig"] = write_kubeconfig
             __props__.__dict__["api_endpoint"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["dns_entry"] = None
@@ -714,7 +750,8 @@ class KubernetesCluster(pulumi.CustomResource):
             region: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[str]] = None,
-            target_nodes_size: Optional[pulumi.Input[str]] = None) -> 'KubernetesCluster':
+            target_nodes_size: Optional[pulumi.Input[str]] = None,
+            write_kubeconfig: Optional[pulumi.Input[bool]] = None) -> 'KubernetesCluster':
         """
         Get an existing KubernetesCluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -745,6 +782,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] status: (String) Status of the cluster
         :param pulumi.Input[str] tags: Space separated list of tags, to be used freely as required
         :param pulumi.Input[str] target_nodes_size: The size of each node (optional, the default is currently g4s.kube.medium)
+        :param pulumi.Input[bool] write_kubeconfig: Whether to write the kubeconfig to state
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -770,6 +808,7 @@ class KubernetesCluster(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
         __props__.__dict__["target_nodes_size"] = target_nodes_size
+        __props__.__dict__["write_kubeconfig"] = write_kubeconfig
         return KubernetesCluster(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -934,4 +973,12 @@ class KubernetesCluster(pulumi.CustomResource):
         The size of each node (optional, the default is currently g4s.kube.medium)
         """
         return pulumi.get(self, "target_nodes_size")
+
+    @property
+    @pulumi.getter(name="writeKubeconfig")
+    def write_kubeconfig(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to write the kubeconfig to state
+        """
+        return pulumi.get(self, "write_kubeconfig")
 

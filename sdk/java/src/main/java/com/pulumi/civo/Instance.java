@@ -10,6 +10,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Export;
 import com.pulumi.core.annotations.ResourceType;
 import com.pulumi.core.internal.Codegen;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -547,6 +548,12 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
+    }
+    @Export(name="writePassword", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> writePassword;
+
+    public Output<Optional<Boolean>> writePassword() {
+        return Codegen.optional(this.writePassword);
     }
 
     /**
