@@ -28,7 +28,8 @@ class InstanceArgs:
                  script: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 write_password: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Instance resource.
         :param pulumi.Input[str] disk_image: The ID for the disk image to use to build the instance
@@ -80,6 +81,8 @@ class InstanceArgs:
             pulumi.set(__self__, "sshkey_id", sshkey_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if write_password is not None:
+            pulumi.set(__self__, "write_password", write_password)
 
     @property
     @pulumi.getter(name="diskImage")
@@ -266,6 +269,15 @@ class InstanceArgs:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="writePassword")
+    def write_password(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "write_password")
+
+    @write_password.setter
+    def write_password(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_password", value)
+
 
 @pulumi.input_type
 class _InstanceState:
@@ -294,7 +306,8 @@ class _InstanceState:
                  source_type: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 write_password: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
         :param pulumi.Input[int] cpu_cores: (Number) Instance's CPU cores
@@ -378,6 +391,8 @@ class _InstanceState:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if write_password is not None:
+            pulumi.set(__self__, "write_password", write_password)
 
     @property
     @pulumi.getter(name="cpuCores")
@@ -684,6 +699,15 @@ class _InstanceState:
     def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "tags", value)
 
+    @property
+    @pulumi.getter(name="writePassword")
+    def write_password(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "write_password")
+
+    @write_password.setter
+    def write_password(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "write_password", value)
+
 
 class Instance(pulumi.CustomResource):
     @overload
@@ -705,6 +729,7 @@ class Instance(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 write_password: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
         Provides a Civo instance resource. This can be used to create, modify, and delete instances.
@@ -941,6 +966,7 @@ class Instance(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 write_password: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -969,6 +995,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["size"] = size
             __props__.__dict__["sshkey_id"] = sshkey_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["write_password"] = write_password
             __props__.__dict__["cpu_cores"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["disk_gb"] = None
@@ -1015,7 +1042,8 @@ class Instance(pulumi.CustomResource):
             source_type: Optional[pulumi.Input[str]] = None,
             sshkey_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'Instance':
+            tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            write_password: Optional[pulumi.Input[bool]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1083,6 +1111,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["sshkey_id"] = sshkey_id
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["write_password"] = write_password
         return Instance(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1289,4 +1318,9 @@ class Instance(pulumi.CustomResource):
         An optional list of tags, represented as a key, value pair
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="writePassword")
+    def write_password(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "write_password")
 

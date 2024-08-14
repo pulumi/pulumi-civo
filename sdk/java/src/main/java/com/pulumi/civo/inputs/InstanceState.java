@@ -5,6 +5,7 @@ package com.pulumi.civo.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -402,6 +403,13 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
+    @Import(name="writePassword")
+    private @Nullable Output<Boolean> writePassword;
+
+    public Optional<Output<Boolean>> writePassword() {
+        return Optional.ofNullable(this.writePassword);
+    }
+
     private InstanceState() {}
 
     private InstanceState(InstanceState $) {
@@ -430,6 +438,7 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
         this.sshkeyId = $.sshkeyId;
         this.status = $.status;
         this.tags = $.tags;
+        this.writePassword = $.writePassword;
     }
 
     public static Builder builder() {
@@ -993,6 +1002,15 @@ public final class InstanceState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        public Builder writePassword(@Nullable Output<Boolean> writePassword) {
+            $.writePassword = writePassword;
+            return this;
+        }
+
+        public Builder writePassword(Boolean writePassword) {
+            return writePassword(Output.of(writePassword));
         }
 
         public InstanceState build() {

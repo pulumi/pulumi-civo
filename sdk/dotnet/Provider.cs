@@ -25,6 +25,12 @@ namespace Pulumi.Civo
         public Output<string?> ApiEndpoint { get; private set; } = null!;
 
         /// <summary>
+        /// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        /// </summary>
+        [Output("credentialsFile")]
+        public Output<string?> CredentialsFile { get; private set; } = null!;
+
+        /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
         /// here you can overwrite in a resource.
         /// </summary>
@@ -70,6 +76,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("apiEndpoint")]
         public Input<string>? ApiEndpoint { get; set; }
+
+        /// <summary>
+        /// Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        /// </summary>
+        [Input("credentialsFile")]
+        public Input<string>? CredentialsFile { get; set; }
 
         /// <summary>
         /// If region is not set, then no region will be used and them you need expensify in every resource even if you expensify

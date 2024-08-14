@@ -6,6 +6,7 @@ package com.pulumi.civo;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -252,6 +253,13 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
+    @Import(name="writePassword")
+    private @Nullable Output<Boolean> writePassword;
+
+    public Optional<Output<Boolean>> writePassword() {
+        return Optional.ofNullable(this.writePassword);
+    }
+
     private InstanceArgs() {}
 
     private InstanceArgs(InstanceArgs $) {
@@ -270,6 +278,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         this.size = $.size;
         this.sshkeyId = $.sshkeyId;
         this.tags = $.tags;
+        this.writePassword = $.writePassword;
     }
 
     public static Builder builder() {
@@ -623,6 +632,15 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        public Builder writePassword(@Nullable Output<Boolean> writePassword) {
+            $.writePassword = writePassword;
+            return this;
+        }
+
+        public Builder writePassword(Boolean writePassword) {
+            return writePassword(Output.of(writePassword));
         }
 
         public InstanceArgs build() {

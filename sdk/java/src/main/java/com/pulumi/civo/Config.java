@@ -18,6 +18,13 @@ public final class Config {
         return Codegen.stringProp("apiEndpoint").config(config).get();
     }
 /**
+ * Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+ * 
+ */
+    public Optional<String> credentialsFile() {
+        return Codegen.stringProp("credentialsFile").config(config).get();
+    }
+/**
  * If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
  * here you can overwrite in a resource.
  * 

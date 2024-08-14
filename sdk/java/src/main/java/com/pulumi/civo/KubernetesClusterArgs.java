@@ -7,6 +7,7 @@ import com.pulumi.civo.inputs.KubernetesClusterPoolsArgs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
@@ -214,6 +215,21 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.targetNodesSize);
     }
 
+    /**
+     * Whether to write the kubeconfig to state
+     * 
+     */
+    @Import(name="writeKubeconfig")
+    private @Nullable Output<Boolean> writeKubeconfig;
+
+    /**
+     * @return Whether to write the kubeconfig to state
+     * 
+     */
+    public Optional<Output<Boolean>> writeKubeconfig() {
+        return Optional.ofNullable(this.writeKubeconfig);
+    }
+
     private KubernetesClusterArgs() {}
 
     private KubernetesClusterArgs(KubernetesClusterArgs $) {
@@ -229,6 +245,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         this.region = $.region;
         this.tags = $.tags;
         this.targetNodesSize = $.targetNodesSize;
+        this.writeKubeconfig = $.writeKubeconfig;
     }
 
     public static Builder builder() {
@@ -511,6 +528,27 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         @Deprecated /* This field will be deprecated in the next major release, please use the 'pools' field instead */
         public Builder targetNodesSize(String targetNodesSize) {
             return targetNodesSize(Output.of(targetNodesSize));
+        }
+
+        /**
+         * @param writeKubeconfig Whether to write the kubeconfig to state
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeKubeconfig(@Nullable Output<Boolean> writeKubeconfig) {
+            $.writeKubeconfig = writeKubeconfig;
+            return this;
+        }
+
+        /**
+         * @param writeKubeconfig Whether to write the kubeconfig to state
+         * 
+         * @return builder
+         * 
+         */
+        public Builder writeKubeconfig(Boolean writeKubeconfig) {
+            return writeKubeconfig(Output.of(writeKubeconfig));
         }
 
         public KubernetesClusterArgs build() {

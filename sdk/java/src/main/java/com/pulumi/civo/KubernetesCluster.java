@@ -319,6 +319,20 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
     public Output<String> targetNodesSize() {
         return this.targetNodesSize;
     }
+    /**
+     * Whether to write the kubeconfig to state
+     * 
+     */
+    @Export(name="writeKubeconfig", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> writeKubeconfig;
+
+    /**
+     * @return Whether to write the kubeconfig to state
+     * 
+     */
+    public Output<Optional<Boolean>> writeKubeconfig() {
+        return Codegen.optional(this.writeKubeconfig);
+    }
 
     /**
      *

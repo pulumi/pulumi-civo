@@ -15,17 +15,21 @@ __all__ = ['ProviderArgs', 'Provider']
 class ProviderArgs:
     def __init__(__self__, *,
                  api_endpoint: Optional[pulumi.Input[str]] = None,
+                 credentials_file: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Provider resource.
         :param pulumi.Input[str] api_endpoint: The Base URL to use for CIVO API.
+        :param pulumi.Input[str] credentials_file: Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
         :param pulumi.Input[str] region: If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
                here you can overwrite in a resource.
         :param pulumi.Input[str] token: This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
         """
         if api_endpoint is not None:
             pulumi.set(__self__, "api_endpoint", api_endpoint)
+        if credentials_file is not None:
+            pulumi.set(__self__, "credentials_file", credentials_file)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if token is not None:
@@ -42,6 +46,18 @@ class ProviderArgs:
     @api_endpoint.setter
     def api_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "api_endpoint", value)
+
+    @property
+    @pulumi.getter(name="credentialsFile")
+    def credentials_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        """
+        return pulumi.get(self, "credentials_file")
+
+    @credentials_file.setter
+    def credentials_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "credentials_file", value)
 
     @property
     @pulumi.getter
@@ -75,6 +91,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_endpoint: Optional[pulumi.Input[str]] = None,
+                 credentials_file: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -87,6 +104,7 @@ class Provider(pulumi.ProviderResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] api_endpoint: The Base URL to use for CIVO API.
+        :param pulumi.Input[str] credentials_file: Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
         :param pulumi.Input[str] region: If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
                here you can overwrite in a resource.
         :param pulumi.Input[str] token: This is the Civo API token. Alternatively, this can also be specified using `CIVO_TOKEN` environment variable.
@@ -119,6 +137,7 @@ class Provider(pulumi.ProviderResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_endpoint: Optional[pulumi.Input[str]] = None,
+                 credentials_file: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  token: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -131,6 +150,7 @@ class Provider(pulumi.ProviderResource):
             __props__ = ProviderArgs.__new__(ProviderArgs)
 
             __props__.__dict__["api_endpoint"] = api_endpoint
+            __props__.__dict__["credentials_file"] = credentials_file
             __props__.__dict__["region"] = region
             __props__.__dict__["token"] = token
         super(Provider, __self__).__init__(
@@ -146,6 +166,14 @@ class Provider(pulumi.ProviderResource):
         The Base URL to use for CIVO API.
         """
         return pulumi.get(self, "api_endpoint")
+
+    @property
+    @pulumi.getter(name="credentialsFile")
+    def credentials_file(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        """
+        return pulumi.get(self, "credentials_file")
 
     @property
     @pulumi.getter

@@ -23,6 +23,13 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get('apiEndpoint')
 
     @property
+    def credentials_file(self) -> Optional[str]:
+        """
+        Path to the Civo credentials file. Can be specified using CIVO_CREDENTIAL_FILE environment variable.
+        """
+        return __config__.get('credentialsFile')
+
+    @property
     def region(self) -> Optional[str]:
         """
         If region is not set, then no region will be used and them you need expensify in every resource even if you expensify
