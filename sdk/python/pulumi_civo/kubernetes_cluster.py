@@ -39,7 +39,7 @@ class KubernetesClusterArgs:
                'MariaDB:5GB'.
         :param pulumi.Input[str] cluster_type: The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
         :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
-        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
+        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest stable available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (optional, the default at the time of writing is 3)
@@ -144,7 +144,7 @@ class KubernetesClusterArgs:
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of k3s to install (optional, the default is currently the latest available)
+        The version of k3s to install (optional, the default is currently the latest stable available)
         """
         return pulumi.get(self, "kubernetes_version")
 
@@ -278,7 +278,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
         :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterInstalledApplicationArgs']]] installed_applications: (List of Object) (see below for nested schema)
         :param pulumi.Input[str] kubeconfig: (String, Sensitive) The kubeconfig of the cluster
-        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
+        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest stable available)
         :param pulumi.Input[str] master_ip: (String) The IP address of the master node
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
@@ -455,7 +455,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> Optional[pulumi.Input[str]]:
         """
-        The version of k3s to install (optional, the default is currently the latest available)
+        The version of k3s to install (optional, the default is currently the latest stable available)
         """
         return pulumi.get(self, "kubernetes_version")
 
@@ -633,7 +633,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_type: The type of cluster to create, valid options are `k3s` or `talos` the default is `k3s`
         :param pulumi.Input[str] cni: The cni for the k3s to install (the default is `flannel`) valid options are `cilium` or `flannel`
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
-        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
+        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest stable available)
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
         :param pulumi.Input[int] num_target_nodes: The number of instances to create (optional, the default at the time of writing is 3)
@@ -772,7 +772,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] firewall_id: The existing firewall ID to use for this cluster
         :param pulumi.Input[Sequence[pulumi.Input[Union['KubernetesClusterInstalledApplicationArgs', 'KubernetesClusterInstalledApplicationArgsDict']]]] installed_applications: (List of Object) (see below for nested schema)
         :param pulumi.Input[str] kubeconfig: (String, Sensitive) The kubeconfig of the cluster
-        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest available)
+        :param pulumi.Input[str] kubernetes_version: The version of k3s to install (optional, the default is currently the latest stable available)
         :param pulumi.Input[str] master_ip: (String) The IP address of the master node
         :param pulumi.Input[str] name: Name for your cluster, must be unique within your account
         :param pulumi.Input[str] network_id: The network for the cluster, if not declare we use the default one
@@ -891,7 +891,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="kubernetesVersion")
     def kubernetes_version(self) -> pulumi.Output[str]:
         """
-        The version of k3s to install (optional, the default is currently the latest available)
+        The version of k3s to install (optional, the default is currently the latest stable available)
         """
         return pulumi.get(self, "kubernetes_version")
 
