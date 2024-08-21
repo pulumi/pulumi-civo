@@ -1932,7 +1932,7 @@
                 },
                 "kubernetesVersion": {
                     "type": "string",
-                    "description": "The version of k3s to install (optional, the default is currently the latest available)\n"
+                    "description": "The version of k3s to install (optional, the default is currently the latest stable available)\n"
                 },
                 "masterIp": {
                     "type": "string",
@@ -2019,7 +2019,7 @@
                 },
                 "kubernetesVersion": {
                     "type": "string",
-                    "description": "The version of k3s to install (optional, the default is currently the latest available)\n"
+                    "description": "The version of k3s to install (optional, the default is currently the latest stable available)\n"
                 },
                 "name": {
                     "type": "string",
@@ -2104,7 +2104,7 @@
                     },
                     "kubernetesVersion": {
                         "type": "string",
-                        "description": "The version of k3s to install (optional, the default is currently the latest available)\n"
+                        "description": "The version of k3s to install (optional, the default is currently the latest stable available)\n"
                     },
                     "masterIp": {
                         "type": "string",
