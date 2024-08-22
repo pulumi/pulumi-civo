@@ -44,7 +44,7 @@ type KubernetesCluster struct {
 	InstalledApplications KubernetesClusterInstalledApplicationArrayOutput `pulumi:"installedApplications"`
 	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available)
+	// The version of k3s to install (optional, the default is currently the latest stable available)
 	KubernetesVersion pulumi.StringOutput `pulumi:"kubernetesVersion"`
 	// (String) The IP address of the master node
 	MasterIp pulumi.StringOutput `pulumi:"masterIp"`
@@ -135,7 +135,7 @@ type kubernetesClusterState struct {
 	InstalledApplications []KubernetesClusterInstalledApplication `pulumi:"installedApplications"`
 	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig *string `pulumi:"kubeconfig"`
-	// The version of k3s to install (optional, the default is currently the latest available)
+	// The version of k3s to install (optional, the default is currently the latest stable available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// (String) The IP address of the master node
 	MasterIp *string `pulumi:"masterIp"`
@@ -187,7 +187,7 @@ type KubernetesClusterState struct {
 	InstalledApplications KubernetesClusterInstalledApplicationArrayInput
 	// (String, Sensitive) The kubeconfig of the cluster
 	Kubeconfig pulumi.StringPtrInput
-	// The version of k3s to install (optional, the default is currently the latest available)
+	// The version of k3s to install (optional, the default is currently the latest stable available)
 	KubernetesVersion pulumi.StringPtrInput
 	// (String) The IP address of the master node
 	MasterIp pulumi.StringPtrInput
@@ -233,7 +233,7 @@ type kubernetesClusterArgs struct {
 	Cni *string `pulumi:"cni"`
 	// The existing firewall ID to use for this cluster
 	FirewallId string `pulumi:"firewallId"`
-	// The version of k3s to install (optional, the default is currently the latest available)
+	// The version of k3s to install (optional, the default is currently the latest stable available)
 	KubernetesVersion *string `pulumi:"kubernetesVersion"`
 	// Name for your cluster, must be unique within your account
 	Name *string `pulumi:"name"`
@@ -270,7 +270,7 @@ type KubernetesClusterArgs struct {
 	Cni pulumi.StringPtrInput
 	// The existing firewall ID to use for this cluster
 	FirewallId pulumi.StringInput
-	// The version of k3s to install (optional, the default is currently the latest available)
+	// The version of k3s to install (optional, the default is currently the latest stable available)
 	KubernetesVersion pulumi.StringPtrInput
 	// Name for your cluster, must be unique within your account
 	Name pulumi.StringPtrInput
@@ -431,7 +431,7 @@ func (o KubernetesClusterOutput) Kubeconfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Kubeconfig }).(pulumi.StringOutput)
 }
 
-// The version of k3s to install (optional, the default is currently the latest available)
+// The version of k3s to install (optional, the default is currently the latest stable available)
 func (o KubernetesClusterOutput) KubernetesVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.KubernetesVersion }).(pulumi.StringOutput)
 }

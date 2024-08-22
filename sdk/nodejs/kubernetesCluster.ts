@@ -84,7 +84,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly kubeconfig!: pulumi.Output<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available)
+     * The version of k3s to install (optional, the default is currently the latest stable available)
      */
     public readonly kubernetesVersion!: pulumi.Output<string>;
     /**
@@ -249,7 +249,7 @@ export interface KubernetesClusterState {
      */
     kubeconfig?: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available)
+     * The version of k3s to install (optional, the default is currently the latest stable available)
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**
@@ -324,7 +324,7 @@ export interface KubernetesClusterArgs {
      */
     firewallId: pulumi.Input<string>;
     /**
-     * The version of k3s to install (optional, the default is currently the latest available)
+     * The version of k3s to install (optional, the default is currently the latest stable available)
      */
     kubernetesVersion?: pulumi.Input<string>;
     /**

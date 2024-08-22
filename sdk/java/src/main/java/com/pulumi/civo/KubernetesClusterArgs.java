@@ -88,14 +88,14 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * The version of k3s to install (optional, the default is currently the latest available)
+     * The version of k3s to install (optional, the default is currently the latest stable available)
      * 
      */
     @Import(name="kubernetesVersion")
     private @Nullable Output<String> kubernetesVersion;
 
     /**
-     * @return The version of k3s to install (optional, the default is currently the latest available)
+     * @return The version of k3s to install (optional, the default is currently the latest stable available)
      * 
      */
     public Optional<Output<String>> kubernetesVersion() {
@@ -359,7 +359,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param kubernetesVersion The version of k3s to install (optional, the default is currently the latest available)
+         * @param kubernetesVersion The version of k3s to install (optional, the default is currently the latest stable available)
          * 
          * @return builder
          * 
@@ -370,7 +370,7 @@ public final class KubernetesClusterArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param kubernetesVersion The version of k3s to install (optional, the default is currently the latest available)
+         * @param kubernetesVersion The version of k3s to install (optional, the default is currently the latest stable available)
          * 
          * @return builder
          * 

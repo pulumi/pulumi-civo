@@ -80,7 +80,7 @@ namespace Pulumi.Civo
         public Output<string> Kubeconfig { get; private set; } = null!;
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available)
+        /// The version of k3s to install (optional, the default is currently the latest stable available)
         /// </summary>
         [Output("kubernetesVersion")]
         public Output<string> KubernetesVersion { get; private set; } = null!;
@@ -227,7 +227,7 @@ namespace Pulumi.Civo
         public Input<string> FirewallId { get; set; } = null!;
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available)
+        /// The version of k3s to install (optional, the default is currently the latest stable available)
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }
@@ -360,7 +360,7 @@ namespace Pulumi.Civo
         }
 
         /// <summary>
-        /// The version of k3s to install (optional, the default is currently the latest available)
+        /// The version of k3s to install (optional, the default is currently the latest stable available)
         /// </summary>
         [Input("kubernetesVersion")]
         public Input<string>? KubernetesVersion { get; set; }

@@ -166,14 +166,14 @@ public class KubernetesCluster extends com.pulumi.resources.CustomResource {
         return this.kubeconfig;
     }
     /**
-     * The version of k3s to install (optional, the default is currently the latest available)
+     * The version of k3s to install (optional, the default is currently the latest stable available)
      * 
      */
     @Export(name="kubernetesVersion", refs={String.class}, tree="[0]")
     private Output<String> kubernetesVersion;
 
     /**
-     * @return The version of k3s to install (optional, the default is currently the latest available)
+     * @return The version of k3s to install (optional, the default is currently the latest stable available)
      * 
      */
     public Output<String> kubernetesVersion() {
