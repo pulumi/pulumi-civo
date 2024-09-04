@@ -47,9 +47,17 @@ public final class FirewallEgressRuleArgs extends com.pulumi.resources.ResourceA
         return this.cidrs;
     }
 
+    /**
+     * (String) The ID of this resource.
+     * 
+     */
     @Import(name="id")
     private @Nullable Output<String> id;
 
+    /**
+     * @return (String) The ID of this resource.
+     * 
+     */
     public Optional<Output<String>> id() {
         return Optional.ofNullable(this.id);
     }
@@ -180,11 +188,23 @@ public final class FirewallEgressRuleArgs extends com.pulumi.resources.ResourceA
             return cidrs(List.of(cidrs));
         }
 
+        /**
+         * @param id (String) The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(@Nullable Output<String> id) {
             $.id = id;
             return this;
         }
 
+        /**
+         * @param id (String) The ID of this resource.
+         * 
+         * @return builder
+         * 
+         */
         public Builder id(String id) {
             return id(Output.of(id));
         }

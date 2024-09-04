@@ -24,7 +24,8 @@ class FirewallArgs:
                  region: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Firewall resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -48,7 +49,8 @@ class FirewallArgs:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
@@ -128,7 +130,8 @@ class _FirewallState:
                  region: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Firewall resources.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input['FirewallEgressRuleArgs']]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input['FirewallIngressRuleArgs']]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -152,7 +155,8 @@ class _FirewallState:
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> Optional[pulumi.Input[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 
@@ -236,6 +240,85 @@ class Firewall(pulumi.CustomResource):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
 
+        ## Example Usage
+
+        * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+        * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+        * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+
+        ### Custom ingress and egress rules firewall
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        example = civo.Network("example", label="example-network")
+        example_firewall = civo.Firewall("example",
+            name="example-firewall",
+            network_id=example.id,
+            create_default_rules=False,
+            ingress_rules=[
+                {
+                    "label": "http",
+                    "protocol": "tcp",
+                    "port_range": "80",
+                    "cidrs": ["0.0.0.0"],
+                    "action": "allow",
+                },
+                {
+                    "label": "https",
+                    "protocol": "tcp",
+                    "port_range": "443",
+                    "cidrs": ["0.0.0.0"],
+                    "action": "allow",
+                },
+                {
+                    "label": "ssh",
+                    "protocol": "tcp",
+                    "port_range": "22",
+                    "cidrs": [
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    "action": "allow",
+                },
+            ],
+            egress_rules=[{
+                "label": "all",
+                "protocol": "tcp",
+                "port_range": "1-65535",
+                "cidrs": ["0.0.0.0/0"],
+                "action": "allow",
+            }])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
+        # Create a new instance
+        example_instance = civo.Instance("example",
+            hostname="example",
+            notes="This is an example instance",
+            firewall_id=example_firewall.id,
+            network_id=example.id,
+            size="g3.xsmall",
+            disk_image=debian.diskimages[0].id)
+        ```
+
+        ### Simple firewall
+
+        This the minimum amount of code to create a firewall with default rules:
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # ...
+        example = civo.Firewall("example",
+            name="example-firewall",
+            network_id=example_civo_network["id"])
+        ```
+
         ## Import
 
         using ID
@@ -246,7 +329,8 @@ class Firewall(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -261,6 +345,85 @@ class Firewall(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
+
+        ## Example Usage
+
+        * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+        * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+        * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+
+        ### Custom ingress and egress rules firewall
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        example = civo.Network("example", label="example-network")
+        example_firewall = civo.Firewall("example",
+            name="example-firewall",
+            network_id=example.id,
+            create_default_rules=False,
+            ingress_rules=[
+                {
+                    "label": "http",
+                    "protocol": "tcp",
+                    "port_range": "80",
+                    "cidrs": ["0.0.0.0"],
+                    "action": "allow",
+                },
+                {
+                    "label": "https",
+                    "protocol": "tcp",
+                    "port_range": "443",
+                    "cidrs": ["0.0.0.0"],
+                    "action": "allow",
+                },
+                {
+                    "label": "ssh",
+                    "protocol": "tcp",
+                    "port_range": "22",
+                    "cidrs": [
+                        "192.168.1.1/32",
+                        "192.168.10.4/32",
+                        "192.168.10.10/32",
+                    ],
+                    "action": "allow",
+                },
+            ],
+            egress_rules=[{
+                "label": "all",
+                "protocol": "tcp",
+                "port_range": "1-65535",
+                "cidrs": ["0.0.0.0/0"],
+                "action": "allow",
+            }])
+        debian = civo.get_disk_image(filters=[{
+            "key": "name",
+            "values": ["debian-10"],
+        }])
+        # Create a new instance
+        example_instance = civo.Instance("example",
+            hostname="example",
+            notes="This is an example instance",
+            firewall_id=example_firewall.id,
+            network_id=example.id,
+            size="g3.xsmall",
+            disk_image=debian.diskimages[0].id)
+        ```
+
+        ### Simple firewall
+
+        This the minimum amount of code to create a firewall with default rules:
+
+        ```python
+        import pulumi
+        import pulumi_civo as civo
+
+        # ...
+        example = civo.Firewall("example",
+            name="example-firewall",
+            network_id=example_civo_network["id"])
+        ```
 
         ## Import
 
@@ -329,7 +492,8 @@ class Firewall(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        :param pulumi.Input[bool] create_default_rules: The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+               set to false you need to define at least one ingress or egress rule
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallEgressRuleArgs', 'FirewallEgressRuleArgsDict']]]] egress_rules: The egress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[Sequence[pulumi.Input[Union['FirewallIngressRuleArgs', 'FirewallIngressRuleArgsDict']]]] ingress_rules: The ingress rules, this is a list of rules that will be applied to the firewall
         :param pulumi.Input[str] name: The firewall name
@@ -352,7 +516,8 @@ class Firewall(pulumi.CustomResource):
     @pulumi.getter(name="createDefaultRules")
     def create_default_rules(self) -> pulumi.Output[Optional[bool]]:
         """
-        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        set to false you need to define at least one ingress or egress rule
         """
         return pulumi.get(self, "create_default_rules")
 

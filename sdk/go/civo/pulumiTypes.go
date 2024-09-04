@@ -18,7 +18,8 @@ type FirewallEgressRule struct {
 	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	Id    *string  `pulumi:"id"`
+	// (String) The ID of this resource.
+	Id *string `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label *string `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -43,7 +44,8 @@ type FirewallEgressRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput `pulumi:"cidrs"`
-	Id    pulumi.StringPtrInput   `pulumi:"id"`
+	// (String) The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -113,6 +115,7 @@ func (o FirewallEgressRuleOutput) Cidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FirewallEgressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
 }
 
+// (String) The ID of this resource.
 func (o FirewallEgressRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallEgressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }
@@ -157,7 +160,8 @@ type FirewallIngressRule struct {
 	Action string `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs []string `pulumi:"cidrs"`
-	Id    *string  `pulumi:"id"`
+	// (String) The ID of this resource.
+	Id *string `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label *string `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -182,7 +186,8 @@ type FirewallIngressRuleArgs struct {
 	Action pulumi.StringInput `pulumi:"action"`
 	// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
 	Cidrs pulumi.StringArrayInput `pulumi:"cidrs"`
-	Id    pulumi.StringPtrInput   `pulumi:"id"`
+	// (String) The ID of this resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
 	// A string that will be the displayed name/reference for this rule
 	Label pulumi.StringPtrInput `pulumi:"label"`
 	// The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
@@ -252,6 +257,7 @@ func (o FirewallIngressRuleOutput) Cidrs() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v FirewallIngressRule) []string { return v.Cidrs }).(pulumi.StringArrayOutput)
 }
 
+// (String) The ID of this resource.
 func (o FirewallIngressRuleOutput) Id() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallIngressRule) *string { return v.Id }).(pulumi.StringPtrOutput)
 }

@@ -78,6 +78,12 @@ namespace Pulumi.Civo
         public Output<int> Port { get; private set; } = null!;
 
         /// <summary>
+        /// The private IP assigned to the database
+        /// </summary>
+        [Output("privateIpv4")]
+        public Output<string> PrivateIpv4 { get; private set; } = null!;
+
+        /// <summary>
         /// The region where the database will be created.
         /// </summary>
         [Output("region")]
@@ -262,6 +268,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
+
+        /// <summary>
+        /// The private IP assigned to the database
+        /// </summary>
+        [Input("privateIpv4")]
+        public Input<string>? PrivateIpv4 { get; set; }
 
         /// <summary>
         /// The region where the database will be created.

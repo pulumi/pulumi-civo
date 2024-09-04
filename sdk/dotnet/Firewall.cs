@@ -12,6 +12,137 @@ namespace Pulumi.Civo
     /// <summary>
     /// Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
     /// 
+    /// ## Example Usage
+    /// 
+    /// * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+    /// * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+    /// * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+    /// 
+    /// ### Custom ingress and egress rules firewall
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Civo.Network("example", new()
+    ///     {
+    ///         Label = "example-network",
+    ///     });
+    /// 
+    ///     var exampleFirewall = new Civo.Firewall("example", new()
+    ///     {
+    ///         Name = "example-firewall",
+    ///         NetworkId = example.Id,
+    ///         CreateDefaultRules = false,
+    ///         IngressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "http",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "80",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "0.0.0.0",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "https",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "443",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "0.0.0.0",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///             new Civo.Inputs.FirewallIngressRuleArgs
+    ///             {
+    ///                 Label = "ssh",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "22",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "192.168.1.1/32",
+    ///                     "192.168.10.4/32",
+    ///                     "192.168.10.10/32",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///         EgressRules = new[]
+    ///         {
+    ///             new Civo.Inputs.FirewallEgressRuleArgs
+    ///             {
+    ///                 Label = "all",
+    ///                 Protocol = "tcp",
+    ///                 PortRange = "1-65535",
+    ///                 Cidrs = new[]
+    ///                 {
+    ///                     "0.0.0.0/0",
+    ///                 },
+    ///                 Action = "allow",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var debian = Civo.GetDiskImage.Invoke(new()
+    ///     {
+    ///         Filters = new[]
+    ///         {
+    ///             new Civo.Inputs.GetDiskImageFilterInputArgs
+    ///             {
+    ///                 Key = "name",
+    ///                 Values = new[]
+    ///                 {
+    ///                     "debian-10",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     // Create a new instance
+    ///     var exampleInstance = new Civo.Instance("example", new()
+    ///     {
+    ///         Hostname = "example",
+    ///         Notes = "This is an example instance",
+    ///         FirewallId = exampleFirewall.Id,
+    ///         NetworkId = example.Id,
+    ///         Size = "g3.xsmall",
+    ///         DiskImage = debian.Apply(getDiskImageResult =&gt; getDiskImageResult.Diskimages[0]?.Id),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ### Simple firewall
+    /// 
+    /// This the minimum amount of code to create a firewall with default rules:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Civo = Pulumi.Civo;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // ...
+    ///     var example = new Civo.Firewall("example", new()
+    ///     {
+    ///         Name = "example-firewall",
+    ///         NetworkId = exampleCivoNetwork.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// using ID
@@ -24,7 +155,8 @@ namespace Pulumi.Civo
     public partial class Firewall : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        /// set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Output("createDefaultRules")]
         public Output<bool?> CreateDefaultRules { get; private set; } = null!;
@@ -106,7 +238,8 @@ namespace Pulumi.Civo
     public sealed class FirewallArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        /// set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }
@@ -162,7 +295,8 @@ namespace Pulumi.Civo
     public sealed class FirewallState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+        /// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+        /// set to false you need to define at least one ingress or egress rule
         /// </summary>
         [Input("createDefaultRules")]
         public Input<bool>? CreateDefaultRules { get; set; }

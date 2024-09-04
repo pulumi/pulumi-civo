@@ -42,6 +42,7 @@ class FirewallEgressRuleArgs:
         """
         :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] id: (String) The ID of this resource.
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
         :param pulumi.Input[str] port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param pulumi.Input[str] protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -84,6 +85,9 @@ class FirewallEgressRuleArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (String) The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -139,6 +143,7 @@ class FirewallIngressRuleArgs:
         """
         :param pulumi.Input[str] action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param pulumi.Input[str] id: (String) The ID of this resource.
         :param pulumi.Input[str] label: A string that will be the displayed name/reference for this rule
         :param pulumi.Input[str] port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param pulumi.Input[str] protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -181,6 +186,9 @@ class FirewallIngressRuleArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (String) The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @id.setter

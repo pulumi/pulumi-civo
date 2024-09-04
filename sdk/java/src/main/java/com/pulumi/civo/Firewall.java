@@ -21,6 +21,149 @@ import javax.annotation.Nullable;
 /**
  * Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
  * 
+ * ## Example Usage
+ * 
+ * * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+ * * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * 
+ * ### Custom ingress and egress rules firewall
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.civo.Network;
+ * import com.pulumi.civo.NetworkArgs;
+ * import com.pulumi.civo.Firewall;
+ * import com.pulumi.civo.FirewallArgs;
+ * import com.pulumi.civo.inputs.FirewallIngressRuleArgs;
+ * import com.pulumi.civo.inputs.FirewallEgressRuleArgs;
+ * import com.pulumi.civo.CivoFunctions;
+ * import com.pulumi.civo.inputs.GetDiskImageArgs;
+ * import com.pulumi.civo.Instance;
+ * import com.pulumi.civo.InstanceArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var example = new Network("example", NetworkArgs.builder()
+ *             .label("example-network")
+ *             .build());
+ * 
+ *         var exampleFirewall = new Firewall("exampleFirewall", FirewallArgs.builder()
+ *             .name("example-firewall")
+ *             .networkId(example.id())
+ *             .createDefaultRules(false)
+ *             .ingressRules(            
+ *                 FirewallIngressRuleArgs.builder()
+ *                     .label("http")
+ *                     .protocol("tcp")
+ *                     .portRange("80")
+ *                     .cidrs("0.0.0.0")
+ *                     .action("allow")
+ *                     .build(),
+ *                 FirewallIngressRuleArgs.builder()
+ *                     .label("https")
+ *                     .protocol("tcp")
+ *                     .portRange("443")
+ *                     .cidrs("0.0.0.0")
+ *                     .action("allow")
+ *                     .build(),
+ *                 FirewallIngressRuleArgs.builder()
+ *                     .label("ssh")
+ *                     .protocol("tcp")
+ *                     .portRange("22")
+ *                     .cidrs(                    
+ *                         "192.168.1.1/32",
+ *                         "192.168.10.4/32",
+ *                         "192.168.10.10/32")
+ *                     .action("allow")
+ *                     .build())
+ *             .egressRules(FirewallEgressRuleArgs.builder()
+ *                 .label("all")
+ *                 .protocol("tcp")
+ *                 .portRange("1-65535")
+ *                 .cidrs("0.0.0.0/0")
+ *                 .action("allow")
+ *                 .build())
+ *             .build());
+ * 
+ *         final var debian = CivoFunctions.getDiskImage(GetDiskImageArgs.builder()
+ *             .filters(GetDiskImageFilterArgs.builder()
+ *                 .key("name")
+ *                 .values("debian-10")
+ *                 .build())
+ *             .build());
+ * 
+ *         // Create a new instance
+ *         var exampleInstance = new Instance("exampleInstance", InstanceArgs.builder()
+ *             .hostname("example")
+ *             .notes("This is an example instance")
+ *             .firewallId(exampleFirewall.id())
+ *             .networkId(example.id())
+ *             .size("g3.xsmall")
+ *             .diskImage(debian.applyValue(getDiskImageResult -> getDiskImageResult.diskimages()[0].id()))
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
+ * ### Simple firewall
+ * 
+ * This the minimum amount of code to create a firewall with default rules:
+ * 
+ * &lt;!--Start PulumiCodeChooser --&gt;
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.civo.Firewall;
+ * import com.pulumi.civo.FirewallArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // ...
+ *         var example = new Firewall("example", FirewallArgs.builder()
+ *             .name("example-firewall")
+ *             .networkId(exampleCivoNetwork.id())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * &lt;!--End PulumiCodeChooser --&gt;
+ * 
  * ## Import
  * 
  * using ID
@@ -33,14 +176,16 @@ import javax.annotation.Nullable;
 @ResourceType(type="civo:index/firewall:Firewall")
 public class Firewall extends com.pulumi.resources.CustomResource {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     @Export(name="createDefaultRules", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> createDefaultRules;
 
     /**
-     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     public Output<Optional<Boolean>> createDefaultRules() {

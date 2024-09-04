@@ -9,6 +9,90 @@ import * as utilities from "./utilities";
 /**
  * Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
  *
+ * ## Example Usage
+ *
+ * * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+ * * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+ * * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+ *
+ * ### Custom ingress and egress rules firewall
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * const example = new civo.Network("example", {label: "example-network"});
+ * const exampleFirewall = new civo.Firewall("example", {
+ *     name: "example-firewall",
+ *     networkId: example.id,
+ *     createDefaultRules: false,
+ *     ingressRules: [
+ *         {
+ *             label: "http",
+ *             protocol: "tcp",
+ *             portRange: "80",
+ *             cidrs: ["0.0.0.0"],
+ *             action: "allow",
+ *         },
+ *         {
+ *             label: "https",
+ *             protocol: "tcp",
+ *             portRange: "443",
+ *             cidrs: ["0.0.0.0"],
+ *             action: "allow",
+ *         },
+ *         {
+ *             label: "ssh",
+ *             protocol: "tcp",
+ *             portRange: "22",
+ *             cidrs: [
+ *                 "192.168.1.1/32",
+ *                 "192.168.10.4/32",
+ *                 "192.168.10.10/32",
+ *             ],
+ *             action: "allow",
+ *         },
+ *     ],
+ *     egressRules: [{
+ *         label: "all",
+ *         protocol: "tcp",
+ *         portRange: "1-65535",
+ *         cidrs: ["0.0.0.0/0"],
+ *         action: "allow",
+ *     }],
+ * });
+ * const debian = civo.getDiskImage({
+ *     filters: [{
+ *         key: "name",
+ *         values: ["debian-10"],
+ *     }],
+ * });
+ * // Create a new instance
+ * const exampleInstance = new civo.Instance("example", {
+ *     hostname: "example",
+ *     notes: "This is an example instance",
+ *     firewallId: exampleFirewall.id,
+ *     networkId: example.id,
+ *     size: "g3.xsmall",
+ *     diskImage: debian.then(debian => debian.diskimages?.[0]?.id),
+ * });
+ * ```
+ *
+ * ### Simple firewall
+ *
+ * This the minimum amount of code to create a firewall with default rules:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as civo from "@pulumi/civo";
+ *
+ * // ...
+ * const example = new civo.Firewall("example", {
+ *     name: "example-firewall",
+ *     networkId: exampleCivoNetwork.id,
+ * });
+ * ```
+ *
  * ## Import
  *
  * using ID
@@ -46,7 +130,8 @@ export class Firewall extends pulumi.CustomResource {
     }
 
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      */
     public readonly createDefaultRules!: pulumi.Output<boolean | undefined>;
     /**
@@ -108,7 +193,8 @@ export class Firewall extends pulumi.CustomResource {
  */
 export interface FirewallState {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
     /**
@@ -138,7 +224,8 @@ export interface FirewallState {
  */
 export interface FirewallArgs {
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      */
     createDefaultRules?: pulumi.Input<boolean>;
     /**

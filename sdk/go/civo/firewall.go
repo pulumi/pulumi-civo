@@ -13,6 +13,143 @@ import (
 
 // Provides a Civo firewall resource. This can be used to create, modify, and delete firewalls.
 //
+// ## Example Usage
+//
+// * View firewalls after creation on the [CLI](https://www.civo.com/docs/overview/civo-cli):
+// * View firewalls after creation on the [Dashboard](https://dashboard.civo.com/firewalls)
+// * View firewall rules on [CLI](https://www.civo.com/docs/overview/civo-cli):
+//
+// ### Custom ingress and egress rules firewall
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := civo.NewNetwork(ctx, "example", &civo.NetworkArgs{
+//				Label: pulumi.String("example-network"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			exampleFirewall, err := civo.NewFirewall(ctx, "example", &civo.FirewallArgs{
+//				Name:               pulumi.String("example-firewall"),
+//				NetworkId:          example.ID(),
+//				CreateDefaultRules: pulumi.Bool(false),
+//				IngressRules: civo.FirewallIngressRuleArray{
+//					&civo.FirewallIngressRuleArgs{
+//						Label:     pulumi.String("http"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("80"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("0.0.0.0"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//					&civo.FirewallIngressRuleArgs{
+//						Label:     pulumi.String("https"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("443"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("0.0.0.0"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//					&civo.FirewallIngressRuleArgs{
+//						Label:     pulumi.String("ssh"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("22"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("192.168.1.1/32"),
+//							pulumi.String("192.168.10.4/32"),
+//							pulumi.String("192.168.10.10/32"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//				},
+//				EgressRules: civo.FirewallEgressRuleArray{
+//					&civo.FirewallEgressRuleArgs{
+//						Label:     pulumi.String("all"),
+//						Protocol:  pulumi.String("tcp"),
+//						PortRange: pulumi.String("1-65535"),
+//						Cidrs: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//						Action: pulumi.String("allow"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			debian, err := civo.GetDiskImage(ctx, &civo.GetDiskImageArgs{
+//				Filters: []civo.GetDiskImageFilter{
+//					{
+//						Key: "name",
+//						Values: []string{
+//							"debian-10",
+//						},
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			// Create a new instance
+//			_, err = civo.NewInstance(ctx, "example", &civo.InstanceArgs{
+//				Hostname:   pulumi.String("example"),
+//				Notes:      pulumi.String("This is an example instance"),
+//				FirewallId: exampleFirewall.ID(),
+//				NetworkId:  example.ID(),
+//				Size:       pulumi.String("g3.xsmall"),
+//				DiskImage:  pulumi.String(debian.Diskimages[0].Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ### Simple firewall
+//
+// This the minimum amount of code to create a firewall with default rules:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-civo/sdk/v2/go/civo"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// ...
+//			_, err := civo.NewFirewall(ctx, "example", &civo.FirewallArgs{
+//				Name:      pulumi.String("example-firewall"),
+//				NetworkId: pulumi.Any(exampleCivoNetwork.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // using ID
@@ -23,7 +160,8 @@ import (
 type Firewall struct {
 	pulumi.CustomResourceState
 
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrOutput `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayOutput `pulumi:"egressRules"`
@@ -67,7 +205,8 @@ func GetFirewall(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Firewall resources.
 type firewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
@@ -82,7 +221,8 @@ type firewallState struct {
 }
 
 type FirewallState struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayInput
@@ -101,7 +241,8 @@ func (FirewallState) ElementType() reflect.Type {
 }
 
 type firewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules *bool `pulumi:"createDefaultRules"`
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules []FirewallEgressRule `pulumi:"egressRules"`
@@ -117,7 +258,8 @@ type firewallArgs struct {
 
 // The set of arguments for constructing a Firewall resource.
 type FirewallArgs struct {
-	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+	// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+	// set to false you need to define at least one ingress or egress rule
 	CreateDefaultRules pulumi.BoolPtrInput
 	// The egress rules, this is a list of rules that will be applied to the firewall
 	EgressRules FirewallEgressRuleArrayInput
@@ -218,7 +360,8 @@ func (o FirewallOutput) ToFirewallOutputWithContext(ctx context.Context) Firewal
 	return o
 }
 
-// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+// The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+// set to false you need to define at least one ingress or egress rule
 func (o FirewallOutput) CreateDefaultRules() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *Firewall) pulumi.BoolPtrOutput { return v.CreateDefaultRules }).(pulumi.BoolPtrOutput)
 }

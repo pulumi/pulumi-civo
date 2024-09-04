@@ -30,6 +30,9 @@ namespace Pulumi.Civo.Inputs
             set => _cidrs = value;
         }
 
+        /// <summary>
+        /// (String) The ID of this resource.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

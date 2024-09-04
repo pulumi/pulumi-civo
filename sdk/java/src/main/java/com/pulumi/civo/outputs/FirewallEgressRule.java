@@ -23,6 +23,10 @@ public final class FirewallEgressRule {
      * 
      */
     private List<String> cidrs;
+    /**
+     * @return (String) The ID of this resource.
+     * 
+     */
     private @Nullable String id;
     /**
      * @return A string that will be the displayed name/reference for this rule
@@ -55,6 +59,10 @@ public final class FirewallEgressRule {
     public List<String> cidrs() {
         return this.cidrs;
     }
+    /**
+     * @return (String) The ID of this resource.
+     * 
+     */
     public Optional<String> id() {
         return Optional.ofNullable(this.id);
     }
