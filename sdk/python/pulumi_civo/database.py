@@ -155,6 +155,7 @@ class _DatabaseState:
                  nodes: Optional[pulumi.Input[int]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
+                 private_ipv4: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  size: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -171,6 +172,7 @@ class _DatabaseState:
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] password: The password of the database
         :param pulumi.Input[int] port: The port of the database
+        :param pulumi.Input[str] private_ipv4: The private IP assigned to the database
         :param pulumi.Input[str] region: The region where the database will be created.
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
@@ -195,6 +197,8 @@ class _DatabaseState:
             pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if private_ipv4 is not None:
+            pulumi.set(__self__, "private_ipv4", private_ipv4)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if size is not None:
@@ -313,6 +317,18 @@ class _DatabaseState:
     @port.setter
     def port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "port", value)
+
+    @property
+    @pulumi.getter(name="privateIpv4")
+    def private_ipv4(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IP assigned to the database
+        """
+        return pulumi.get(self, "private_ipv4")
+
+    @private_ipv4.setter
+    def private_ipv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_ipv4", value)
 
     @property
     @pulumi.getter
@@ -480,6 +496,7 @@ class Database(pulumi.CustomResource):
             __props__.__dict__["endpoint"] = None
             __props__.__dict__["password"] = None
             __props__.__dict__["port"] = None
+            __props__.__dict__["private_ipv4"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["username"] = None
         super(Database, __self__).__init__(
@@ -501,6 +518,7 @@ class Database(pulumi.CustomResource):
             nodes: Optional[pulumi.Input[int]] = None,
             password: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
+            private_ipv4: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             size: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -522,6 +540,7 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[int] nodes: Count of nodes
         :param pulumi.Input[str] password: The password of the database
         :param pulumi.Input[int] port: The port of the database
+        :param pulumi.Input[str] private_ipv4: The private IP assigned to the database
         :param pulumi.Input[str] region: The region where the database will be created.
         :param pulumi.Input[str] size: Size of the database
         :param pulumi.Input[str] status: The status of the database
@@ -541,6 +560,7 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["nodes"] = nodes
         __props__.__dict__["password"] = password
         __props__.__dict__["port"] = port
+        __props__.__dict__["private_ipv4"] = private_ipv4
         __props__.__dict__["region"] = region
         __props__.__dict__["size"] = size
         __props__.__dict__["status"] = status
@@ -619,6 +639,14 @@ class Database(pulumi.CustomResource):
         The port of the database
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="privateIpv4")
+    def private_ipv4(self) -> pulumi.Output[str]:
+        """
+        The private IP assigned to the database
+        """
+        return pulumi.get(self, "private_ipv4")
 
     @property
     @pulumi.getter

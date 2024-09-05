@@ -42,6 +42,8 @@ type Database struct {
 	Password pulumi.StringOutput `pulumi:"password"`
 	// The port of the database
 	Port pulumi.IntOutput `pulumi:"port"`
+	// The private IP assigned to the database
+	PrivateIpv4 pulumi.StringOutput `pulumi:"privateIpv4"`
 	// The region where the database will be created.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Size of the database
@@ -114,6 +116,8 @@ type databaseState struct {
 	Password *string `pulumi:"password"`
 	// The port of the database
 	Port *int `pulumi:"port"`
+	// The private IP assigned to the database
+	PrivateIpv4 *string `pulumi:"privateIpv4"`
 	// The region where the database will be created.
 	Region *string `pulumi:"region"`
 	// Size of the database
@@ -145,6 +149,8 @@ type DatabaseState struct {
 	Password pulumi.StringPtrInput
 	// The port of the database
 	Port pulumi.IntPtrInput
+	// The private IP assigned to the database
+	PrivateIpv4 pulumi.StringPtrInput
 	// The region where the database will be created.
 	Region pulumi.StringPtrInput
 	// Size of the database
@@ -330,6 +336,11 @@ func (o DatabaseOutput) Password() pulumi.StringOutput {
 // The port of the database
 func (o DatabaseOutput) Port() pulumi.IntOutput {
 	return o.ApplyT(func(v *Database) pulumi.IntOutput { return v.Port }).(pulumi.IntOutput)
+}
+
+// The private IP assigned to the database
+func (o DatabaseOutput) PrivateIpv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.PrivateIpv4 }).(pulumi.StringOutput)
 }
 
 // The region where the database will be created.

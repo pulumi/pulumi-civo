@@ -155,6 +155,20 @@ public class Database extends com.pulumi.resources.CustomResource {
         return this.port;
     }
     /**
+     * The private IP assigned to the database
+     * 
+     */
+    @Export(name="privateIpv4", refs={String.class}, tree="[0]")
+    private Output<String> privateIpv4;
+
+    /**
+     * @return The private IP assigned to the database
+     * 
+     */
+    public Output<String> privateIpv4() {
+        return this.privateIpv4;
+    }
+    /**
      * The region where the database will be created.
      * 
      */

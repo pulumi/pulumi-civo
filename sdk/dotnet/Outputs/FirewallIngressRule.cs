@@ -21,6 +21,9 @@ namespace Pulumi.Civo.Outputs
         /// The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
         /// </summary>
         public readonly ImmutableArray<string> Cidrs;
+        /// <summary>
+        /// (String) The ID of this resource.
+        /// </summary>
         public readonly string? Id;
         /// <summary>
         /// A string that will be the displayed name/reference for this rule

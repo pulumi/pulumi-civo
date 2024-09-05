@@ -70,6 +70,7 @@ class FirewallEgressRule(dict):
         """
         :param str action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param Sequence[str] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param str id: (String) The ID of this resource.
         :param str label: A string that will be the displayed name/reference for this rule
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -104,6 +105,9 @@ class FirewallEgressRule(dict):
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        (String) The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property
@@ -160,6 +164,7 @@ class FirewallIngressRule(dict):
         """
         :param str action: The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
         :param Sequence[str] cidrs: The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        :param str id: (String) The ID of this resource.
         :param str label: A string that will be the displayed name/reference for this rule
         :param str port_range: The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
         :param str protocol: The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
@@ -194,6 +199,9 @@ class FirewallIngressRule(dict):
     @property
     @pulumi.getter
     def id(self) -> Optional[str]:
+        """
+        (String) The ID of this resource.
+        """
         return pulumi.get(self, "id")
 
     @property

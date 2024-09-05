@@ -152,6 +152,21 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * The private IP assigned to the database
+     * 
+     */
+    @Import(name="privateIpv4")
+    private @Nullable Output<String> privateIpv4;
+
+    /**
+     * @return The private IP assigned to the database
+     * 
+     */
+    public Optional<Output<String>> privateIpv4() {
+        return Optional.ofNullable(this.privateIpv4);
+    }
+
+    /**
      * The region where the database will be created.
      * 
      */
@@ -238,6 +253,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         this.nodes = $.nodes;
         this.password = $.password;
         this.port = $.port;
+        this.privateIpv4 = $.privateIpv4;
         this.region = $.region;
         this.size = $.size;
         this.status = $.status;
@@ -450,6 +466,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder port(Integer port) {
             return port(Output.of(port));
+        }
+
+        /**
+         * @param privateIpv4 The private IP assigned to the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateIpv4(@Nullable Output<String> privateIpv4) {
+            $.privateIpv4 = privateIpv4;
+            return this;
+        }
+
+        /**
+         * @param privateIpv4 The private IP assigned to the database
+         * 
+         * @return builder
+         * 
+         */
+        public Builder privateIpv4(String privateIpv4) {
+            return privateIpv4(Output.of(privateIpv4));
         }
 
         /**

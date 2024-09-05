@@ -80,6 +80,10 @@ export class Database extends pulumi.CustomResource {
      */
     public /*out*/ readonly port!: pulumi.Output<number>;
     /**
+     * The private IP assigned to the database
+     */
+    public /*out*/ readonly privateIpv4!: pulumi.Output<string>;
+    /**
      * The region where the database will be created.
      */
     public readonly region!: pulumi.Output<string>;
@@ -122,6 +126,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["nodes"] = state ? state.nodes : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["privateIpv4"] = state ? state.privateIpv4 : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["size"] = state ? state.size : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -153,6 +158,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["endpoint"] = undefined /*out*/;
             resourceInputs["password"] = undefined /*out*/;
             resourceInputs["port"] = undefined /*out*/;
+            resourceInputs["privateIpv4"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
         }
@@ -201,6 +207,10 @@ export interface DatabaseState {
      * The port of the database
      */
     port?: pulumi.Input<number>;
+    /**
+     * The private IP assigned to the database
+     */
+    privateIpv4?: pulumi.Input<string>;
     /**
      * The region where the database will be created.
      */

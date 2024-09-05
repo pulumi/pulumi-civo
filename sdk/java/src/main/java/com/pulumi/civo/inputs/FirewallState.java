@@ -20,14 +20,16 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
     public static final FirewallState Empty = new FirewallState();
 
     /**
-     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     @Import(name="createDefaultRules")
     private @Nullable Output<Boolean> createDefaultRules;
 
     /**
-     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+     * @return The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+     * set to false you need to define at least one ingress or egress rule
      * 
      */
     public Optional<Output<Boolean>> createDefaultRules() {
@@ -139,7 +141,8 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+         * set to false you need to define at least one ingress or egress rule
          * 
          * @return builder
          * 
@@ -150,7 +153,8 @@ public final class FirewallState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you set to false you need to define at least one ingress or egress rule
+         * @param createDefaultRules The create rules flag is used to create the default firewall rules, if is not defined will be set to true, and if you
+         * set to false you need to define at least one ingress or egress rule
          * 
          * @return builder
          * 
