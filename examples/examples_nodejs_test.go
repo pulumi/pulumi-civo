@@ -12,6 +12,8 @@ import (
 )
 
 func TestAccNetworkTs(t *testing.T) {
+	// TODO[pulumi/home#3623]: Re-enable this test once the account issues are resolved.
+	t.Skipf("Skipping due to issues with account")
 	test := getJSBaseOptions(t).
 		With(integration.ProgramTestOptions{
 			Dir: path.Join(getCwd(t), "network", "ts"),
