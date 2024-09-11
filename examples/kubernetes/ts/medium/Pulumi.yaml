@@ -1,3 +1,0 @@
-name: kubernetes-ts-medium
-runtime: nodejs
-description: A medium complexity TypeScript Pulumi program that creates a Civo Kubernetes cluster
