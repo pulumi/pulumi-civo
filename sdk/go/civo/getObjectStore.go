@@ -80,14 +80,20 @@ type LookupObjectStoreResult struct {
 
 func LookupObjectStoreOutput(ctx *pulumi.Context, args LookupObjectStoreOutputArgs, opts ...pulumi.InvokeOption) LookupObjectStoreResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (LookupObjectStoreResult, error) {
+		ApplyT(func(v interface{}) (LookupObjectStoreResultOutput, error) {
 			args := v.(LookupObjectStoreArgs)
-			r, err := LookupObjectStore(ctx, &args, opts...)
-			var s LookupObjectStoreResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv LookupObjectStoreResult
+			secret, err := ctx.InvokePackageRaw("civo:index/getObjectStore:getObjectStore", args, &rv, "", opts...)
+			if err != nil {
+				return LookupObjectStoreResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(LookupObjectStoreResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(LookupObjectStoreResultOutput), nil
+			}
+			return output, nil
 		}).(LookupObjectStoreResultOutput)
 }
 

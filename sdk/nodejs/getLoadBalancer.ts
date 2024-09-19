@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  */
 export function getLoadBalancer(args?: GetLoadBalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLoadBalancerResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getLoadBalancer:getLoadBalancer", {
         "id": args.id,
@@ -132,7 +131,13 @@ export interface GetLoadBalancerResult {
  * ```
  */
 export function getLoadBalancerOutput(args?: GetLoadBalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadBalancerResult> {
-    return pulumi.output(args).apply((a: any) => getLoadBalancer(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getLoadBalancer:getLoadBalancer", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

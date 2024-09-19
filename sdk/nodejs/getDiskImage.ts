@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getDiskImage(args?: GetDiskImageArgs, opts?: pulumi.InvokeOptions): Promise<GetDiskImageResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDiskImage:getDiskImage", {
         "filters": args.filters,
@@ -64,7 +63,13 @@ export interface GetDiskImageResult {
  * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
  */
 export function getDiskImageOutput(args?: GetDiskImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDiskImageResult> {
-    return pulumi.output(args).apply((a: any) => getDiskImage(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getDiskImage:getDiskImage", {
+        "filters": args.filters,
+        "region": args.region,
+        "sorts": args.sorts,
+    }, opts);
 }
 
 /**

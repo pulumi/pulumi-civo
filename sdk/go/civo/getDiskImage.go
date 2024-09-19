@@ -47,14 +47,20 @@ type GetDiskImageResult struct {
 
 func GetDiskImageOutput(ctx *pulumi.Context, args GetDiskImageOutputArgs, opts ...pulumi.InvokeOption) GetDiskImageResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDiskImageResult, error) {
+		ApplyT(func(v interface{}) (GetDiskImageResultOutput, error) {
 			args := v.(GetDiskImageArgs)
-			r, err := GetDiskImage(ctx, &args, opts...)
-			var s GetDiskImageResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDiskImageResult
+			secret, err := ctx.InvokePackageRaw("civo:index/getDiskImage:getDiskImage", args, &rv, "", opts...)
+			if err != nil {
+				return GetDiskImageResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDiskImageResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDiskImageResultOutput), nil
+			}
+			return output, nil
 		}).(GetDiskImageResultOutput)
 }
 

@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  */
 export function getDatabase(args?: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDatabase:getDatabase", {
         "id": args.id,
@@ -133,7 +132,13 @@ export interface GetDatabaseResult {
  * ```
  */
 export function getDatabaseOutput(args?: GetDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseResult> {
-    return pulumi.output(args).apply((a: any) => getDatabase(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getDatabase:getDatabase", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

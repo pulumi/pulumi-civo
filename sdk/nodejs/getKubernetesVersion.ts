@@ -31,7 +31,6 @@ import * as utilities from "./utilities";
  */
 export function getKubernetesVersion(args?: GetKubernetesVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetKubernetesVersionResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getKubernetesVersion:getKubernetesVersion", {
         "filters": args.filters,
@@ -95,7 +94,12 @@ export interface GetKubernetesVersionResult {
  * ```
  */
 export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesVersionResult> {
-    return pulumi.output(args).apply((a: any) => getKubernetesVersion(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getKubernetesVersion:getKubernetesVersion", {
+        "filters": args.filters,
+        "sorts": args.sorts,
+    }, opts);
 }
 
 /**
