@@ -13,7 +13,6 @@ import * as utilities from "./utilities";
  */
 export function getNetwork(args?: GetNetworkArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getNetwork:getNetwork", {
         "id": args.id,
@@ -73,7 +72,13 @@ export interface GetNetworkResult {
  * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
  */
 export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkResult> {
-    return pulumi.output(args).apply((a: any) => getNetwork(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getNetwork:getNetwork", {
+        "id": args.id,
+        "label": args.label,
+        "region": args.region,
+    }, opts);
 }
 
 /**

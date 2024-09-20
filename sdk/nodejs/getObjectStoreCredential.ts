@@ -30,7 +30,6 @@ import * as utilities from "./utilities";
  */
 export function getObjectStoreCredential(args?: GetObjectStoreCredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreCredentialResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getObjectStoreCredential:getObjectStoreCredential", {
         "id": args.id,
@@ -111,7 +110,13 @@ export interface GetObjectStoreCredentialResult {
  * ```
  */
 export function getObjectStoreCredentialOutput(args?: GetObjectStoreCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreCredentialResult> {
-    return pulumi.output(args).apply((a: any) => getObjectStoreCredential(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getObjectStoreCredential:getObjectStoreCredential", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

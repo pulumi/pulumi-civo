@@ -11,7 +11,6 @@ import * as utilities from "./utilities";
  */
 export function getDatabaseVersion(args?: GetDatabaseVersionArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseVersionResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDatabaseVersion:getDatabaseVersion", {
         "filters": args.filters,
@@ -55,7 +54,12 @@ export interface GetDatabaseVersionResult {
  * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
  */
 export function getDatabaseVersionOutput(args?: GetDatabaseVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseVersionResult> {
-    return pulumi.output(args).apply((a: any) => getDatabaseVersion(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getDatabaseVersion:getDatabaseVersion", {
+        "filters": args.filters,
+        "sorts": args.sorts,
+    }, opts);
 }
 
 /**
