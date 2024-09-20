@@ -22,7 +22,6 @@ import * as utilities from "./utilities";
  */
 export function getObjectStore(args?: GetObjectStoreArgs, opts?: pulumi.InvokeOptions): Promise<GetObjectStoreResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getObjectStore:getObjectStore", {
         "id": args.id,
@@ -99,7 +98,13 @@ export interface GetObjectStoreResult {
  * ```
  */
 export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreResult> {
-    return pulumi.output(args).apply((a: any) => getObjectStore(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getObjectStore:getObjectStore", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

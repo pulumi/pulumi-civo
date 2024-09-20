@@ -43,14 +43,20 @@ type GetDatabaseVersionResult struct {
 
 func GetDatabaseVersionOutput(ctx *pulumi.Context, args GetDatabaseVersionOutputArgs, opts ...pulumi.InvokeOption) GetDatabaseVersionResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetDatabaseVersionResult, error) {
+		ApplyT(func(v interface{}) (GetDatabaseVersionResultOutput, error) {
 			args := v.(GetDatabaseVersionArgs)
-			r, err := GetDatabaseVersion(ctx, &args, opts...)
-			var s GetDatabaseVersionResult
-			if r != nil {
-				s = *r
+			opts = internal.PkgInvokeDefaultOpts(opts)
+			var rv GetDatabaseVersionResult
+			secret, err := ctx.InvokePackageRaw("civo:index/getDatabaseVersion:getDatabaseVersion", args, &rv, "", opts...)
+			if err != nil {
+				return GetDatabaseVersionResultOutput{}, err
 			}
-			return s, err
+
+			output := pulumi.ToOutput(rv).(GetDatabaseVersionResultOutput)
+			if secret {
+				return pulumi.ToSecret(output).(GetDatabaseVersionResultOutput), nil
+			}
+			return output, nil
 		}).(GetDatabaseVersionResultOutput)
 }
 

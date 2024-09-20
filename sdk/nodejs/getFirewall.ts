@@ -25,7 +25,6 @@ import * as utilities from "./utilities";
  */
 export function getFirewall(args?: GetFirewallArgs, opts?: pulumi.InvokeOptions): Promise<GetFirewallResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getFirewall:getFirewall", {
         "id": args.id,
@@ -93,7 +92,13 @@ export interface GetFirewallResult {
  * ```
  */
 export function getFirewallOutput(args?: GetFirewallOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallResult> {
-    return pulumi.output(args).apply((a: any) => getFirewall(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getFirewall:getFirewall", {
+        "id": args.id,
+        "name": args.name,
+        "region": args.region,
+    }, opts);
 }
 
 /**

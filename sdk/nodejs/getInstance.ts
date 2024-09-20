@@ -23,7 +23,6 @@ import * as utilities from "./utilities";
  */
 export function getInstance(args?: GetInstanceArgs, opts?: pulumi.InvokeOptions): Promise<GetInstanceResult> {
     args = args || {};
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getInstance:getInstance", {
         "hostname": args.hostname,
@@ -161,7 +160,13 @@ export interface GetInstanceResult {
  * ```
  */
 export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
-    return pulumi.output(args).apply((a: any) => getInstance(a, opts))
+    args = args || {};
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getInstance:getInstance", {
+        "hostname": args.hostname,
+        "id": args.id,
+        "region": args.region,
+    }, opts);
 }
 
 /**

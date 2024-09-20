@@ -27,7 +27,6 @@ import * as utilities from "./utilities";
  * ```
  */
 export function getDnsDomainRecord(args: GetDnsDomainRecordArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsDomainRecordResult> {
-
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", {
         "domainId": args.domainId,
@@ -117,7 +116,11 @@ export interface GetDnsDomainRecordResult {
  * ```
  */
 export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainRecordResult> {
-    return pulumi.output(args).apply((a: any) => getDnsDomainRecord(a, opts))
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
+    return pulumi.runtime.invokeOutput("civo:index/getDnsDomainRecord:getDnsDomainRecord", {
+        "domainId": args.domainId,
+        "name": args.name,
+    }, opts);
 }
 
 /**
