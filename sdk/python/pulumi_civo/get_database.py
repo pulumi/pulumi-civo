@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -259,9 +264,6 @@ def get_database(id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         username=pulumi.get(__ret__, 'username'),
         version=pulumi.get(__ret__, 'version'))
-
-
-@_utilities.lift_output_func(get_database)
 def get_database_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -286,4 +288,25 @@ def get_database_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: The name of the Database
     :param str region: The region of an existing Database
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getDatabase:getDatabase', __args__, opts=opts, typ=GetDatabaseResult)
+    return __ret__.apply(lambda __response__: GetDatabaseResult(
+        dns_endpoint=pulumi.get(__response__, 'dns_endpoint'),
+        endpoint=pulumi.get(__response__, 'endpoint'),
+        engine=pulumi.get(__response__, 'engine'),
+        firewall_id=pulumi.get(__response__, 'firewall_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        network_id=pulumi.get(__response__, 'network_id'),
+        nodes=pulumi.get(__response__, 'nodes'),
+        password=pulumi.get(__response__, 'password'),
+        port=pulumi.get(__response__, 'port'),
+        region=pulumi.get(__response__, 'region'),
+        size=pulumi.get(__response__, 'size'),
+        status=pulumi.get(__response__, 'status'),
+        username=pulumi.get(__response__, 'username'),
+        version=pulumi.get(__response__, 'version')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -148,9 +153,6 @@ def get_object_store_credential(id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'),
         secret_access_key=pulumi.get(__ret__, 'secret_access_key'),
         status=pulumi.get(__ret__, 'status'))
-
-
-@_utilities.lift_output_func(get_object_store_credential)
 def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                        name: Optional[pulumi.Input[Optional[str]]] = None,
                                        region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -181,4 +183,16 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
     :param str name: The name of the Object Store Credential
     :param str region: The region of an existing Object Store
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getObjectStoreCredential:getObjectStoreCredential', __args__, opts=opts, typ=GetObjectStoreCredentialResult)
+    return __ret__.apply(lambda __response__: GetObjectStoreCredentialResult(
+        access_key_id=pulumi.get(__response__, 'access_key_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        region=pulumi.get(__response__, 'region'),
+        secret_access_key=pulumi.get(__response__, 'secret_access_key'),
+        status=pulumi.get(__response__, 'status')))
