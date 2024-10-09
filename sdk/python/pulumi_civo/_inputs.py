@@ -4,31 +4,85 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
     'FirewallEgressRuleArgs',
+    'FirewallEgressRuleArgsDict',
     'FirewallIngressRuleArgs',
+    'FirewallIngressRuleArgsDict',
     'KubernetesClusterInstalledApplicationArgs',
+    'KubernetesClusterInstalledApplicationArgsDict',
     'KubernetesClusterPoolsArgs',
+    'KubernetesClusterPoolsArgsDict',
     'KubernetesClusterPoolsTaintArgs',
+    'KubernetesClusterPoolsTaintArgsDict',
     'KubernetesNodePoolTaintArgs',
+    'KubernetesNodePoolTaintArgsDict',
     'GetDatabaseVersionFilterArgs',
+    'GetDatabaseVersionFilterArgsDict',
     'GetDatabaseVersionSortArgs',
+    'GetDatabaseVersionSortArgsDict',
     'GetDiskImageFilterArgs',
+    'GetDiskImageFilterArgsDict',
     'GetDiskImageSortArgs',
+    'GetDiskImageSortArgsDict',
     'GetInstancesFilterArgs',
+    'GetInstancesFilterArgsDict',
     'GetInstancesSortArgs',
+    'GetInstancesSortArgsDict',
     'GetKubernetesVersionFilterArgs',
+    'GetKubernetesVersionFilterArgsDict',
     'GetKubernetesVersionSortArgs',
+    'GetKubernetesVersionSortArgsDict',
     'GetRegionFilterArgs',
+    'GetRegionFilterArgsDict',
     'GetRegionSortArgs',
+    'GetRegionSortArgsDict',
     'GetSizeFilterArgs',
+    'GetSizeFilterArgsDict',
     'GetSizeSortArgs',
+    'GetSizeSortArgsDict',
 ]
+
+MYPY = False
+
+if not MYPY:
+    class FirewallEgressRuleArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        """
+        cidrs: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        (String) The ID of this resource.
+        """
+        label: NotRequired[pulumi.Input[str]]
+        """
+        A string that will be the displayed name/reference for this rule
+        """
+        port_range: NotRequired[pulumi.Input[str]]
+        """
+        The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+        """
+elif False:
+    FirewallEgressRuleArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class FirewallEgressRuleArgs:
@@ -131,6 +185,35 @@ class FirewallEgressRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
+if not MYPY:
+    class FirewallIngressRuleArgsDict(TypedDict):
+        action: pulumi.Input[str]
+        """
+        The action of the rule can be allow or deny. When we set the `action = 'allow'`, this is going to add a rule to allow traffic. Similarly, setting `action = 'deny'` will deny the traffic.
+        """
+        cidrs: pulumi.Input[Sequence[pulumi.Input[str]]]
+        """
+        The CIDR notation of the other end to affect, or a valid network CIDR (e.g. 0.0.0.0/0 to open for everyone or 1.2.3.4/32 to open just for a specific IP address)
+        """
+        id: NotRequired[pulumi.Input[str]]
+        """
+        (String) The ID of this resource.
+        """
+        label: NotRequired[pulumi.Input[str]]
+        """
+        A string that will be the displayed name/reference for this rule
+        """
+        port_range: NotRequired[pulumi.Input[str]]
+        """
+        The port or port range to open, can be a single port or a range separated by a dash (`-`), e.g. `80` or `80-443`
+        """
+        protocol: NotRequired[pulumi.Input[str]]
+        """
+        The protocol choice from `tcp`, `udp` or `icmp` (the default if unspecified is `tcp`)
+        """
+elif False:
+    FirewallIngressRuleArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class FirewallIngressRuleArgs:
     def __init__(__self__, *,
@@ -232,6 +315,27 @@ class FirewallIngressRuleArgs:
         pulumi.set(self, "protocol", value)
 
 
+if not MYPY:
+    class KubernetesClusterInstalledApplicationArgsDict(TypedDict):
+        application: NotRequired[pulumi.Input[str]]
+        """
+        (String) name of the application
+        """
+        category: NotRequired[pulumi.Input[str]]
+        """
+        (String) category of the application
+        """
+        installed: NotRequired[pulumi.Input[bool]]
+        """
+        (Boolean) whether application is installed or not
+        """
+        version: NotRequired[pulumi.Input[str]]
+        """
+        (String) version of the application
+        """
+elif False:
+    KubernetesClusterInstalledApplicationArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class KubernetesClusterInstalledApplicationArgs:
     def __init__(__self__, *,
@@ -302,6 +406,38 @@ class KubernetesClusterInstalledApplicationArgs:
     def version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "version", value)
 
+
+if not MYPY:
+    class KubernetesClusterPoolsArgsDict(TypedDict):
+        node_count: pulumi.Input[int]
+        """
+        Number of nodes in the nodepool
+        """
+        size: pulumi.Input[str]
+        """
+        Size of the nodes in the nodepool
+        """
+        instance_names: NotRequired[pulumi.Input[Sequence[pulumi.Input[str]]]]
+        """
+        Instance names in the nodepool
+        """
+        label: NotRequired[pulumi.Input[str]]
+        """
+        Node pool label, if you don't provide one, we will generate one for you
+        """
+        labels: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[str]]]]
+        public_ip_node_pool: NotRequired[pulumi.Input[bool]]
+        """
+        Node pool belongs to the public ip node pool
+        """
+        taints: NotRequired[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterPoolsTaintArgsDict']]]]
+        """
+        (see below for nested schema)
+
+        Read-Only Output:
+        """
+elif False:
+    KubernetesClusterPoolsArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class KubernetesClusterPoolsArgs:
@@ -420,6 +556,14 @@ class KubernetesClusterPoolsArgs:
         pulumi.set(self, "taints", value)
 
 
+if not MYPY:
+    class KubernetesClusterPoolsTaintArgsDict(TypedDict):
+        effect: pulumi.Input[str]
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    KubernetesClusterPoolsTaintArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class KubernetesClusterPoolsTaintArgs:
     def __init__(__self__, *,
@@ -458,6 +602,14 @@ class KubernetesClusterPoolsTaintArgs:
         pulumi.set(self, "value", value)
 
 
+if not MYPY:
+    class KubernetesNodePoolTaintArgsDict(TypedDict):
+        effect: pulumi.Input[str]
+        key: pulumi.Input[str]
+        value: pulumi.Input[str]
+elif False:
+    KubernetesNodePoolTaintArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class KubernetesNodePoolTaintArgs:
     def __init__(__self__, *,
@@ -495,6 +647,27 @@ class KubernetesNodePoolTaintArgs:
     def value(self, value: pulumi.Input[str]):
         pulumi.set(self, "value", value)
 
+
+if not MYPY:
+    class GetDatabaseVersionFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter versions by this key. This may be one of `default`, `engine`, `version`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `versions` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetDatabaseVersionFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetDatabaseVersionFilterArgs:
@@ -565,6 +738,19 @@ class GetDatabaseVersionFilterArgs:
         pulumi.set(self, "match_by", value)
 
 
+if not MYPY:
+    class GetDatabaseVersionSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort versions by this key. This may be one of `default`, `engine`, `version`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetDatabaseVersionSortArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetDatabaseVersionSortArgs:
     def __init__(__self__, *,
@@ -602,6 +788,27 @@ class GetDatabaseVersionSortArgs:
     def direction(self, value: Optional[str]):
         pulumi.set(self, "direction", value)
 
+
+if not MYPY:
+    class GetDiskImageFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `diskimages` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetDiskImageFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetDiskImageFilterArgs:
@@ -672,6 +879,19 @@ class GetDiskImageFilterArgs:
         pulumi.set(self, "match_by", value)
 
 
+if not MYPY:
+    class GetDiskImageSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort diskimages by this key. This may be one of `id`, `label`, `name`, `version`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetDiskImageSortArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetDiskImageSortArgs:
     def __init__(__self__, *,
@@ -709,6 +929,27 @@ class GetDiskImageSortArgs:
     def direction(self, value: Optional[str]):
         pulumi.set(self, "direction", value)
 
+
+if not MYPY:
+    class GetInstancesFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `tags`, `template`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `instances` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetInstancesFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetInstancesFilterArgs:
@@ -779,6 +1020,19 @@ class GetInstancesFilterArgs:
         pulumi.set(self, "match_by", value)
 
 
+if not MYPY:
+    class GetInstancesSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort instances by this key. This may be one of `cpu_cores`, `created_at`, `disk_gb`, `firewall_id`, `hostname`, `id`, `initial_password`, `initial_user`, `network_id`, `notes`, `private_ip`, `pseudo_ip`, `public_ip`, `ram_mb`, `region`, `reverse_dns`, `script`, `size`, `sshkey_id`, `status`, `template`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetInstancesSortArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetInstancesSortArgs:
     def __init__(__self__, *,
@@ -816,6 +1070,27 @@ class GetInstancesSortArgs:
     def direction(self, value: Optional[str]):
         pulumi.set(self, "direction", value)
 
+
+if not MYPY:
+    class GetKubernetesVersionFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `versions` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetKubernetesVersionFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetKubernetesVersionFilterArgs:
@@ -886,6 +1161,19 @@ class GetKubernetesVersionFilterArgs:
         pulumi.set(self, "match_by", value)
 
 
+if not MYPY:
+    class GetKubernetesVersionSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort versions by this key. This may be one of `default`, `label`, `type`, `version`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetKubernetesVersionSortArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetKubernetesVersionSortArgs:
     def __init__(__self__, *,
@@ -923,6 +1211,27 @@ class GetKubernetesVersionSortArgs:
     def direction(self, value: Optional[str]):
         pulumi.set(self, "direction", value)
 
+
+if not MYPY:
+    class GetRegionFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `regions` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetRegionFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetRegionFilterArgs:
@@ -993,6 +1302,19 @@ class GetRegionFilterArgs:
         pulumi.set(self, "match_by", value)
 
 
+if not MYPY:
+    class GetRegionSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort regions by this key. This may be one of `code`, `country`, `default`, `name`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetRegionSortArgsDict: TypeAlias = Mapping[str, Any]
+
 @pulumi.input_type
 class GetRegionSortArgs:
     def __init__(__self__, *,
@@ -1030,6 +1352,27 @@ class GetRegionSortArgs:
     def direction(self, value: Optional[str]):
         pulumi.set(self, "direction", value)
 
+
+if not MYPY:
+    class GetSizeFilterArgsDict(TypedDict):
+        key: str
+        """
+        Filter sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
+        """
+        values: Sequence[str]
+        """
+        Only retrieves `sizes` which keys has value that matches one of the values provided here
+        """
+        all: NotRequired[bool]
+        """
+        Set to `true` to require that a field match all of the `values` instead of just one or more of them. This is useful when matching against multi-valued fields such as lists or sets where you want to ensure that all of the `values` are present in the list or set.
+        """
+        match_by: NotRequired[str]
+        """
+        One of `exact` (default), `re`, or `substring`. For string-typed fields, specify `re` to match by using the `values` as regular expressions, or specify `substring` to match by treating the `values` as substrings to find within the string field.
+        """
+elif False:
+    GetSizeFilterArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetSizeFilterArgs:
@@ -1099,6 +1442,19 @@ class GetSizeFilterArgs:
     def match_by(self, value: Optional[str]):
         pulumi.set(self, "match_by", value)
 
+
+if not MYPY:
+    class GetSizeSortArgsDict(TypedDict):
+        key: str
+        """
+        Sort sizes by this key. This may be one of `cpu`, `description`, `disk`, `gpu_type`, `gpu`, `name`, `ram`, `selectable`, `type`.
+        """
+        direction: NotRequired[str]
+        """
+        The sort direction. This may be either `asc` or `desc`.
+        """
+elif False:
+    GetSizeSortArgsDict: TypeAlias = Mapping[str, Any]
 
 @pulumi.input_type
 class GetSizeSortArgs:

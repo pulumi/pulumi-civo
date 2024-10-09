@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -131,9 +136,6 @@ def get_instances(filters: Optional[Sequence[Union['GetInstancesFilterArgs', 'Ge
         instances=pulumi.get(__ret__, 'instances'),
         region=pulumi.get(__ret__, 'region'),
         sorts=pulumi.get(__ret__, 'sorts'))
-
-
-@_utilities.lift_output_func(get_instances)
 def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']]]]] = None,
                          region: Optional[pulumi.Input[Optional[str]]] = None,
                          sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']]]]] = None,
@@ -161,4 +163,15 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[Union[
     :param str region: If used, all instances will be from the provided region
     :param Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
-    ...
+    __args__ = dict()
+    __args__['filters'] = filters
+    __args__['region'] = region
+    __args__['sorts'] = sorts
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
+    return __ret__.apply(lambda __response__: GetInstancesResult(
+        filters=pulumi.get(__response__, 'filters'),
+        id=pulumi.get(__response__, 'id'),
+        instances=pulumi.get(__response__, 'instances'),
+        region=pulumi.get(__response__, 'region'),
+        sorts=pulumi.get(__response__, 'sorts')))
