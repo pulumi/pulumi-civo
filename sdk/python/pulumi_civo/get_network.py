@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -121,9 +126,6 @@ def get_network(id: Optional[str] = None,
         label=pulumi.get(__ret__, 'label'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_network)
 def get_network_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        label: Optional[pulumi.Input[Optional[str]]] = None,
                        region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -140,4 +142,15 @@ def get_network_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str label: The label of an existing network
     :param str region: The region of an existing network
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['label'] = label
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getNetwork:getNetwork', __args__, opts=opts, typ=GetNetworkResult)
+    return __ret__.apply(lambda __response__: GetNetworkResult(
+        default=pulumi.get(__response__, 'default'),
+        id=pulumi.get(__response__, 'id'),
+        label=pulumi.get(__response__, 'label'),
+        name=pulumi.get(__response__, 'name'),
+        region=pulumi.get(__response__, 'region')))

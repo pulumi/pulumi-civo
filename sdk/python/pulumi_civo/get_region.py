@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -100,9 +105,6 @@ def get_region(filters: Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegio
         id=pulumi.get(__ret__, 'id'),
         regions=pulumi.get(__ret__, 'regions'),
         sorts=pulumi.get(__ret__, 'sorts'))
-
-
-@_utilities.lift_output_func(get_region)
 def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']]]]] = None,
                       sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']]]]] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionResult]:
@@ -113,4 +115,13 @@ def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['Ge
     :param Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
     :param Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
-    ...
+    __args__ = dict()
+    __args__['filters'] = filters
+    __args__['sorts'] = sorts
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getRegion:getRegion', __args__, opts=opts, typ=GetRegionResult)
+    return __ret__.apply(lambda __response__: GetRegionResult(
+        filters=pulumi.get(__response__, 'filters'),
+        id=pulumi.get(__response__, 'id'),
+        regions=pulumi.get(__response__, 'regions'),
+        sorts=pulumi.get(__response__, 'sorts')))

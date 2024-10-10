@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -126,9 +131,6 @@ def get_reserved_ip(id: Optional[str] = None,
         ip=pulumi.get(__ret__, 'ip'),
         name=pulumi.get(__ret__, 'name'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_reserved_ip)
 def get_reserved_ip_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetReservedIpResult]:
@@ -138,4 +140,15 @@ def get_reserved_ip_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str id: ID for the ip address
     :param str name: Name for the ip address
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getReservedIp:getReservedIp', __args__, opts=opts, typ=GetReservedIpResult)
+    return __ret__.apply(lambda __response__: GetReservedIpResult(
+        id=pulumi.get(__response__, 'id'),
+        instance_id=pulumi.get(__response__, 'instance_id'),
+        instance_name=pulumi.get(__response__, 'instance_name'),
+        ip=pulumi.get(__response__, 'ip'),
+        name=pulumi.get(__response__, 'name'),
+        region=pulumi.get(__response__, 'region')))

@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -246,9 +251,6 @@ def get_load_balancer(id: Optional[str] = None,
         session_affinity=pulumi.get(__ret__, 'session_affinity'),
         session_affinity_config_timeout=pulumi.get(__ret__, 'session_affinity_config_timeout'),
         state=pulumi.get(__ret__, 'state'))
-
-
-@_utilities.lift_output_func(get_load_balancer)
 def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                              name: Optional[pulumi.Input[Optional[str]]] = None,
                              region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -275,4 +277,24 @@ def get_load_balancer_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: The name of the load balancer (You can find this name from service annotations 'kubernetes.civo.com/loadbalancer-name')
     :param str region: The region of the load balancer, if you declare this field, the datasource will use this value instead of the one defined in the provider
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getLoadBalancer:getLoadBalancer', __args__, opts=opts, typ=GetLoadBalancerResult)
+    return __ret__.apply(lambda __response__: GetLoadBalancerResult(
+        algorithm=pulumi.get(__response__, 'algorithm'),
+        backends=pulumi.get(__response__, 'backends'),
+        cluster_id=pulumi.get(__response__, 'cluster_id'),
+        enable_proxy_protocol=pulumi.get(__response__, 'enable_proxy_protocol'),
+        external_traffic_policy=pulumi.get(__response__, 'external_traffic_policy'),
+        firewall_id=pulumi.get(__response__, 'firewall_id'),
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        private_ip=pulumi.get(__response__, 'private_ip'),
+        public_ip=pulumi.get(__response__, 'public_ip'),
+        region=pulumi.get(__response__, 'region'),
+        session_affinity=pulumi.get(__response__, 'session_affinity'),
+        session_affinity_config_timeout=pulumi.get(__response__, 'session_affinity_config_timeout'),
+        state=pulumi.get(__response__, 'state')))
