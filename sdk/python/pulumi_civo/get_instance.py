@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -350,9 +355,6 @@ def get_instance(hostname: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         template=pulumi.get(__ret__, 'template'))
-
-
-@_utilities.lift_output_func(get_instance)
 def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
                         id: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -377,4 +379,32 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     :param str id: The ID of this resource.
     :param str region: The region of an existing Instance
     """
-    ...
+    __args__ = dict()
+    __args__['hostname'] = hostname
+    __args__['id'] = id
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
+    return __ret__.apply(lambda __response__: GetInstanceResult(
+        cpu_cores=pulumi.get(__response__, 'cpu_cores'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        disk_gb=pulumi.get(__response__, 'disk_gb'),
+        firewall_id=pulumi.get(__response__, 'firewall_id'),
+        hostname=pulumi.get(__response__, 'hostname'),
+        id=pulumi.get(__response__, 'id'),
+        initial_password=pulumi.get(__response__, 'initial_password'),
+        initial_user=pulumi.get(__response__, 'initial_user'),
+        network_id=pulumi.get(__response__, 'network_id'),
+        notes=pulumi.get(__response__, 'notes'),
+        private_ip=pulumi.get(__response__, 'private_ip'),
+        pseudo_ip=pulumi.get(__response__, 'pseudo_ip'),
+        public_ip=pulumi.get(__response__, 'public_ip'),
+        ram_mb=pulumi.get(__response__, 'ram_mb'),
+        region=pulumi.get(__response__, 'region'),
+        reverse_dns=pulumi.get(__response__, 'reverse_dns'),
+        script=pulumi.get(__response__, 'script'),
+        size=pulumi.get(__response__, 'size'),
+        sshkey_id=pulumi.get(__response__, 'sshkey_id'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        template=pulumi.get(__response__, 'template')))

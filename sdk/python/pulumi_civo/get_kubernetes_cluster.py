@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 
@@ -295,9 +300,6 @@ def get_kubernetes_cluster(id: Optional[str] = None,
         status=pulumi.get(__ret__, 'status'),
         tags=pulumi.get(__ret__, 'tags'),
         target_nodes_size=pulumi.get(__ret__, 'target_nodes_size'))
-
-
-@_utilities.lift_output_func(get_kubernetes_cluster)
 def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                   region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -322,4 +324,28 @@ def get_kubernetes_cluster_output(id: Optional[pulumi.Input[Optional[str]]] = No
     :param str name: The name of the Kubernetes Cluster
     :param str region: The region where cluster is running
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getKubernetesCluster:getKubernetesCluster', __args__, opts=opts, typ=GetKubernetesClusterResult)
+    return __ret__.apply(lambda __response__: GetKubernetesClusterResult(
+        api_endpoint=pulumi.get(__response__, 'api_endpoint'),
+        applications=pulumi.get(__response__, 'applications'),
+        cni=pulumi.get(__response__, 'cni'),
+        created_at=pulumi.get(__response__, 'created_at'),
+        dns_entry=pulumi.get(__response__, 'dns_entry'),
+        id=pulumi.get(__response__, 'id'),
+        installed_applications=pulumi.get(__response__, 'installed_applications'),
+        kubeconfig=pulumi.get(__response__, 'kubeconfig'),
+        kubernetes_version=pulumi.get(__response__, 'kubernetes_version'),
+        master_ip=pulumi.get(__response__, 'master_ip'),
+        name=pulumi.get(__response__, 'name'),
+        num_target_nodes=pulumi.get(__response__, 'num_target_nodes'),
+        pools=pulumi.get(__response__, 'pools'),
+        ready=pulumi.get(__response__, 'ready'),
+        region=pulumi.get(__response__, 'region'),
+        status=pulumi.get(__response__, 'status'),
+        tags=pulumi.get(__response__, 'tags'),
+        target_nodes_size=pulumi.get(__response__, 'target_nodes_size')))

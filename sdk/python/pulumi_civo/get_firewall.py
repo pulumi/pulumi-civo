@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 
 __all__ = [
@@ -118,9 +123,6 @@ def get_firewall(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'),
         network_id=pulumi.get(__ret__, 'network_id'),
         region=pulumi.get(__ret__, 'region'))
-
-
-@_utilities.lift_output_func(get_firewall)
 def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
@@ -147,4 +149,14 @@ def get_firewall_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     :param str name: The name of the firewall
     :param str region: The region where the firewall is
     """
-    ...
+    __args__ = dict()
+    __args__['id'] = id
+    __args__['name'] = name
+    __args__['region'] = region
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getFirewall:getFirewall', __args__, opts=opts, typ=GetFirewallResult)
+    return __ret__.apply(lambda __response__: GetFirewallResult(
+        id=pulumi.get(__response__, 'id'),
+        name=pulumi.get(__response__, 'name'),
+        network_id=pulumi.get(__response__, 'network_id'),
+        region=pulumi.get(__response__, 'region')))

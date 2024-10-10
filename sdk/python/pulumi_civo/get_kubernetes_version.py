@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -116,9 +121,6 @@ def get_kubernetes_version(filters: Optional[Sequence[Union['GetKubernetesVersio
         id=pulumi.get(__ret__, 'id'),
         sorts=pulumi.get(__ret__, 'sorts'),
         versions=pulumi.get(__ret__, 'versions'))
-
-
-@_utilities.lift_output_func(get_kubernetes_version)
 def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']]]]] = None,
                                   sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']]]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesVersionResult]:
@@ -145,4 +147,13 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
     :param Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']] filters: One or more key/value pairs on which to filter results
     :param Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
-    ...
+    __args__ = dict()
+    __args__['filters'] = filters
+    __args__['sorts'] = sorts
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getKubernetesVersion:getKubernetesVersion', __args__, opts=opts, typ=GetKubernetesVersionResult)
+    return __ret__.apply(lambda __response__: GetKubernetesVersionResult(
+        filters=pulumi.get(__response__, 'filters'),
+        id=pulumi.get(__response__, 'id'),
+        sorts=pulumi.get(__response__, 'sorts'),
+        versions=pulumi.get(__response__, 'versions')))

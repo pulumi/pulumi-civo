@@ -4,9 +4,14 @@
 
 import copy
 import warnings
+import sys
 import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
+if sys.version_info >= (3, 11):
+    from typing import NotRequired, TypedDict, TypeAlias
+else:
+    from typing_extensions import NotRequired, TypedDict, TypeAlias
 from . import _utilities
 from . import outputs
 from ._inputs import *
@@ -100,9 +105,6 @@ def get_size(filters: Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilte
         id=pulumi.get(__ret__, 'id'),
         sizes=pulumi.get(__ret__, 'sizes'),
         sorts=pulumi.get(__ret__, 'sorts'))
-
-
-@_utilities.lift_output_func(get_size)
 def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']]]]] = None,
                     sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']]]]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSizeResult]:
@@ -113,4 +115,13 @@ def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetS
     :param Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']] filters: One or more key/value pairs on which to filter results
     :param Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']] sorts: One or more key/direction pairs on which to sort results
     """
-    ...
+    __args__ = dict()
+    __args__['filters'] = filters
+    __args__['sorts'] = sorts
+    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    __ret__ = pulumi.runtime.invoke_output('civo:index/getSize:getSize', __args__, opts=opts, typ=GetSizeResult)
+    return __ret__.apply(lambda __response__: GetSizeResult(
+        filters=pulumi.get(__response__, 'filters'),
+        id=pulumi.get(__response__, 'id'),
+        sizes=pulumi.get(__response__, 'sizes'),
+        sorts=pulumi.get(__response__, 'sorts')))
