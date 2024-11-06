@@ -144,6 +144,7 @@ namespace Pulumi.Civo
     ///         NetworkId = exampleNetwork.Id,
     ///         Size = "g3.xsmall",
     ///         DiskImage = debian.Apply(getDiskImageResult =&gt; getDiskImageResult.Diskimages[0]?.Id),
+    ///         VolumeType = "csi-s3",
     ///     });
     /// 
     /// });
@@ -315,6 +316,12 @@ namespace Pulumi.Civo
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
+        /// <summary>
+        /// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        /// </summary>
+        [Output("volumeType")]
+        public Output<string?> VolumeType { get; private set; } = null!;
+
         [Output("writePassword")]
         public Output<bool?> WritePassword { get; private set; } = null!;
 
@@ -468,6 +475,12 @@ namespace Pulumi.Civo
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        /// </summary>
+        [Input("volumeType")]
+        public Input<string>? VolumeType { get; set; }
 
         [Input("writePassword")]
         public Input<bool>? WritePassword { get; set; }
@@ -650,6 +663,12 @@ namespace Pulumi.Civo
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
+
+        /// <summary>
+        /// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        /// </summary>
+        [Input("volumeType")]
+        public Input<string>? VolumeType { get; set; }
 
         [Input("writePassword")]
         public Input<bool>? WritePassword { get; set; }

@@ -86,6 +86,12 @@ namespace Pulumi.Civo
         [Output("sizeGb")]
         public Output<int> SizeGb { get; private set; } = null!;
 
+        /// <summary>
+        /// The type of the volume
+        /// </summary>
+        [Output("volumeType")]
+        public Output<string?> VolumeType { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Volume resource with the given unique name, arguments, and options.
@@ -156,6 +162,12 @@ namespace Pulumi.Civo
         [Input("sizeGb", required: true)]
         public Input<int> SizeGb { get; set; } = null!;
 
+        /// <summary>
+        /// The type of the volume
+        /// </summary>
+        [Input("volumeType")]
+        public Input<string>? VolumeType { get; set; }
+
         public VolumeArgs()
         {
         }
@@ -193,6 +205,12 @@ namespace Pulumi.Civo
         /// </summary>
         [Input("sizeGb")]
         public Input<int>? SizeGb { get; set; }
+
+        /// <summary>
+        /// The type of the volume
+        /// </summary>
+        [Input("volumeType")]
+        public Input<string>? VolumeType { get; set; }
 
         public VolumeState()
         {

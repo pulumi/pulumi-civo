@@ -83,6 +83,10 @@ export class Volume extends pulumi.CustomResource {
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     public readonly sizeGb!: pulumi.Output<number>;
+    /**
+     * The type of the volume
+     */
+    public readonly volumeType!: pulumi.Output<string | undefined>;
 
     /**
      * Create a Volume resource with the given unique name, arguments, and options.
@@ -102,6 +106,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["sizeGb"] = state ? state.sizeGb : undefined;
+            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
         } else {
             const args = argsOrState as VolumeArgs | undefined;
             if ((!args || args.networkId === undefined) && !opts.urn) {
@@ -114,6 +119,7 @@ export class Volume extends pulumi.CustomResource {
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["sizeGb"] = args ? args.sizeGb : undefined;
+            resourceInputs["volumeType"] = args ? args.volumeType : undefined;
             resourceInputs["mountPoint"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -145,6 +151,10 @@ export interface VolumeState {
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     sizeGb?: pulumi.Input<number>;
+    /**
+     * The type of the volume
+     */
+    volumeType?: pulumi.Input<string>;
 }
 
 /**
@@ -167,4 +177,8 @@ export interface VolumeArgs {
      * A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
      */
     sizeGb: pulumi.Input<number>;
+    /**
+     * The type of the volume
+     */
+    volumeType?: pulumi.Input<string>;
 }

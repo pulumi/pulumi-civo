@@ -170,6 +170,7 @@ import javax.annotation.Nullable;
  *             .networkId(exampleNetwork.id())
  *             .size("g3.xsmall")
  *             .diskImage(debian.applyValue(getDiskImageResult -> getDiskImageResult.diskimages()[0].id()))
+ *             .volumeType("csi-s3")
  *             .build());
  * 
  *     }}{@code
@@ -548,6 +549,20 @@ public class Instance extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<List<String>>> tags() {
         return Codegen.optional(this.tags);
+    }
+    /**
+     * The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+     * 
+     */
+    @Export(name="volumeType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> volumeType;
+
+    /**
+     * @return The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+     * 
+     */
+    public Output<Optional<String>> volumeType() {
+        return Codegen.optional(this.volumeType);
     }
     @Export(name="writePassword", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> writePassword;

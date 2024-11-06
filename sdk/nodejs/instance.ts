@@ -92,6 +92,7 @@ import * as utilities from "./utilities";
  *     networkId: exampleNetwork.id,
  *     size: "g3.xsmall",
  *     diskImage: debian.then(debian => debian.diskimages?.[0]?.id),
+ *     volumeType: "csi-s3",
  * });
  * ```
  *
@@ -236,6 +237,10 @@ export class Instance extends pulumi.CustomResource {
      * An optional list of tags, represented as a key, value pair
      */
     public readonly tags!: pulumi.Output<string[] | undefined>;
+    /**
+     * The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+     */
+    public readonly volumeType!: pulumi.Output<string | undefined>;
     public readonly writePassword!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -276,6 +281,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["sshkeyId"] = state ? state.sshkeyId : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["volumeType"] = state ? state.volumeType : undefined;
             resourceInputs["writePassword"] = state ? state.writePassword : undefined;
         } else {
             const args = argsOrState as InstanceArgs | undefined;
@@ -300,6 +306,7 @@ export class Instance extends pulumi.CustomResource {
             resourceInputs["size"] = args ? args.size : undefined;
             resourceInputs["sshkeyId"] = args ? args.sshkeyId : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["volumeType"] = args ? args.volumeType : undefined;
             resourceInputs["writePassword"] = args ? args.writePassword : undefined;
             resourceInputs["cpuCores"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -428,6 +435,10 @@ export interface InstanceState {
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+     */
+    volumeType?: pulumi.Input<string>;
     writePassword?: pulumi.Input<boolean>;
 }
 
@@ -500,5 +511,9 @@ export interface InstanceArgs {
      * An optional list of tags, represented as a key, value pair
      */
     tags?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+     */
+    volumeType?: pulumi.Input<string>;
     writePassword?: pulumi.Input<boolean>;
 }

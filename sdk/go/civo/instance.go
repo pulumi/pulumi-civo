@@ -159,6 +159,7 @@ import (
 //				NetworkId:  exampleNetwork.ID(),
 //				Size:       pulumi.String("g3.xsmall"),
 //				DiskImage:  pulumi.String(debian.Diskimages[0].Id),
+//				VolumeType: pulumi.String("csi-s3"),
 //			})
 //			if err != nil {
 //				return err
@@ -233,8 +234,10 @@ type Instance struct {
 	// (String) Instance's status
 	Status pulumi.StringOutput `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
-	Tags          pulumi.StringArrayOutput `pulumi:"tags"`
-	WritePassword pulumi.BoolPtrOutput     `pulumi:"writePassword"`
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+	VolumeType    pulumi.StringPtrOutput `pulumi:"volumeType"`
+	WritePassword pulumi.BoolPtrOutput   `pulumi:"writePassword"`
 }
 
 // NewInstance registers a new resource with the given unique name, arguments, and options.
@@ -331,8 +334,10 @@ type instanceState struct {
 	// (String) Instance's status
 	Status *string `pulumi:"status"`
 	// An optional list of tags, represented as a key, value pair
-	Tags          []string `pulumi:"tags"`
-	WritePassword *bool    `pulumi:"writePassword"`
+	Tags []string `pulumi:"tags"`
+	// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+	VolumeType    *string `pulumi:"volumeType"`
+	WritePassword *bool   `pulumi:"writePassword"`
 }
 
 type InstanceState struct {
@@ -390,7 +395,9 @@ type InstanceState struct {
 	// (String) Instance's status
 	Status pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
-	Tags          pulumi.StringArrayInput
+	Tags pulumi.StringArrayInput
+	// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+	VolumeType    pulumi.StringPtrInput
 	WritePassword pulumi.BoolPtrInput
 }
 
@@ -433,8 +440,10 @@ type instanceArgs struct {
 	// random password will be set and returned in the initialPassword field)
 	SshkeyId *string `pulumi:"sshkeyId"`
 	// An optional list of tags, represented as a key, value pair
-	Tags          []string `pulumi:"tags"`
-	WritePassword *bool    `pulumi:"writePassword"`
+	Tags []string `pulumi:"tags"`
+	// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+	VolumeType    *string `pulumi:"volumeType"`
+	WritePassword *bool   `pulumi:"writePassword"`
 }
 
 // The set of arguments for constructing a Instance resource.
@@ -473,7 +482,9 @@ type InstanceArgs struct {
 	// random password will be set and returned in the initialPassword field)
 	SshkeyId pulumi.StringPtrInput
 	// An optional list of tags, represented as a key, value pair
-	Tags          pulumi.StringArrayInput
+	Tags pulumi.StringArrayInput
+	// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+	VolumeType    pulumi.StringPtrInput
 	WritePassword pulumi.BoolPtrInput
 }
 
@@ -692,6 +703,11 @@ func (o InstanceOutput) Status() pulumi.StringOutput {
 // An optional list of tags, represented as a key, value pair
 func (o InstanceOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Instance) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
+}
+
+// The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+func (o InstanceOutput) VolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Instance) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
 
 func (o InstanceOutput) WritePassword() pulumi.BoolPtrOutput {

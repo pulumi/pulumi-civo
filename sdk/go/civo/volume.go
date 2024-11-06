@@ -72,6 +72,8 @@ type Volume struct {
 	Region pulumi.StringPtrOutput `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 	SizeGb pulumi.IntOutput `pulumi:"sizeGb"`
+	// The type of the volume
+	VolumeType pulumi.StringPtrOutput `pulumi:"volumeType"`
 }
 
 // NewVolume registers a new resource with the given unique name, arguments, and options.
@@ -120,6 +122,8 @@ type volumeState struct {
 	Region *string `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 	SizeGb *int `pulumi:"sizeGb"`
+	// The type of the volume
+	VolumeType *string `pulumi:"volumeType"`
 }
 
 type VolumeState struct {
@@ -133,6 +137,8 @@ type VolumeState struct {
 	Region pulumi.StringPtrInput
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 	SizeGb pulumi.IntPtrInput
+	// The type of the volume
+	VolumeType pulumi.StringPtrInput
 }
 
 func (VolumeState) ElementType() reflect.Type {
@@ -148,6 +154,8 @@ type volumeArgs struct {
 	Region *string `pulumi:"region"`
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 	SizeGb int `pulumi:"sizeGb"`
+	// The type of the volume
+	VolumeType *string `pulumi:"volumeType"`
 }
 
 // The set of arguments for constructing a Volume resource.
@@ -160,6 +168,8 @@ type VolumeArgs struct {
 	Region pulumi.StringPtrInput
 	// A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 	SizeGb pulumi.IntInput
+	// The type of the volume
+	VolumeType pulumi.StringPtrInput
 }
 
 func (VolumeArgs) ElementType() reflect.Type {
@@ -272,6 +282,11 @@ func (o VolumeOutput) Region() pulumi.StringPtrOutput {
 // A minimum of 1 and a maximum of your available disk space from your quota specifies the size of the volume in gigabytes
 func (o VolumeOutput) SizeGb() pulumi.IntOutput {
 	return o.ApplyT(func(v *Volume) pulumi.IntOutput { return v.SizeGb }).(pulumi.IntOutput)
+}
+
+// The type of the volume
+func (o VolumeOutput) VolumeType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Volume) pulumi.StringPtrOutput { return v.VolumeType }).(pulumi.StringPtrOutput)
 }
 
 type VolumeArrayOutput struct{ *pulumi.OutputState }
