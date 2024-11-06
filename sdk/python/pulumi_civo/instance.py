@@ -34,6 +34,7 @@ class InstanceArgs:
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 volume_type: Optional[pulumi.Input[str]] = None,
                  write_password: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a Instance resource.
@@ -57,6 +58,7 @@ class InstanceArgs:
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
                random password will be set and returned in the initial_password field)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] volume_type: The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
         """
         pulumi.set(__self__, "disk_image", disk_image)
         pulumi.set(__self__, "firewall_id", firewall_id)
@@ -86,6 +88,8 @@ class InstanceArgs:
             pulumi.set(__self__, "sshkey_id", sshkey_id)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
         if write_password is not None:
             pulumi.set(__self__, "write_password", write_password)
 
@@ -275,6 +279,18 @@ class InstanceArgs:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume_type", value)
+
+    @property
     @pulumi.getter(name="writePassword")
     def write_password(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "write_password")
@@ -312,6 +328,7 @@ class _InstanceState:
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 volume_type: Optional[pulumi.Input[str]] = None,
                  write_password: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering Instance resources.
@@ -345,6 +362,7 @@ class _InstanceState:
                random password will be set and returned in the initial_password field)
         :param pulumi.Input[str] status: (String) Instance's status
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] volume_type: The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
         """
         if cpu_cores is not None:
             pulumi.set(__self__, "cpu_cores", cpu_cores)
@@ -396,6 +414,8 @@ class _InstanceState:
             pulumi.set(__self__, "status", status)
         if tags is not None:
             pulumi.set(__self__, "tags", tags)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
         if write_password is not None:
             pulumi.set(__self__, "write_password", write_password)
 
@@ -705,6 +725,18 @@ class _InstanceState:
         pulumi.set(self, "tags", value)
 
     @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        """
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "volume_type", value)
+
+    @property
     @pulumi.getter(name="writePassword")
     def write_password(self) -> Optional[pulumi.Input[bool]]:
         return pulumi.get(self, "write_password")
@@ -734,6 +766,7 @@ class Instance(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 volume_type: Optional[pulumi.Input[str]] = None,
                  write_password: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
@@ -813,7 +846,8 @@ class Instance(pulumi.CustomResource):
             firewall_id=example.id,
             network_id=example_network.id,
             size="g3.xsmall",
-            disk_image=debian.diskimages[0].id)
+            disk_image=debian.diskimages[0].id,
+            volume_type="csi-s3")
         ```
 
         ## Import
@@ -846,6 +880,7 @@ class Instance(pulumi.CustomResource):
         :param pulumi.Input[str] sshkey_id: The ID of an already uploaded SSH public key to use for login to the default user (optional; if one isn't provided a
                random password will be set and returned in the initial_password field)
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] volume_type: The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
         """
         ...
     @overload
@@ -930,7 +965,8 @@ class Instance(pulumi.CustomResource):
             firewall_id=example.id,
             network_id=example_network.id,
             size="g3.xsmall",
-            disk_image=debian.diskimages[0].id)
+            disk_image=debian.diskimages[0].id,
+            volume_type="csi-s3")
         ```
 
         ## Import
@@ -971,6 +1007,7 @@ class Instance(pulumi.CustomResource):
                  size: Optional[pulumi.Input[str]] = None,
                  sshkey_id: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 volume_type: Optional[pulumi.Input[str]] = None,
                  write_password: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1000,6 +1037,7 @@ class Instance(pulumi.CustomResource):
             __props__.__dict__["size"] = size
             __props__.__dict__["sshkey_id"] = sshkey_id
             __props__.__dict__["tags"] = tags
+            __props__.__dict__["volume_type"] = volume_type
             __props__.__dict__["write_password"] = write_password
             __props__.__dict__["cpu_cores"] = None
             __props__.__dict__["created_at"] = None
@@ -1048,6 +1086,7 @@ class Instance(pulumi.CustomResource):
             sshkey_id: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            volume_type: Optional[pulumi.Input[str]] = None,
             write_password: Optional[pulumi.Input[bool]] = None) -> 'Instance':
         """
         Get an existing Instance resource's state with the given name, id, and optional extra
@@ -1086,6 +1125,7 @@ class Instance(pulumi.CustomResource):
                random password will be set and returned in the initial_password field)
         :param pulumi.Input[str] status: (String) Instance's status
         :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: An optional list of tags, represented as a key, value pair
+        :param pulumi.Input[str] volume_type: The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1116,6 +1156,7 @@ class Instance(pulumi.CustomResource):
         __props__.__dict__["sshkey_id"] = sshkey_id
         __props__.__dict__["status"] = status
         __props__.__dict__["tags"] = tags
+        __props__.__dict__["volume_type"] = volume_type
         __props__.__dict__["write_password"] = write_password
         return Instance(resource_name, opts=opts, __props__=__props__)
 
@@ -1323,6 +1364,14 @@ class Instance(pulumi.CustomResource):
         An optional list of tags, represented as a key, value pair
         """
         return pulumi.get(self, "tags")
+
+    @property
+    @pulumi.getter(name="volumeType")
+    def volume_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of volume to use, either 'ssd' or 'bssd' (optional; default 'ssd')
+        """
+        return pulumi.get(self, "volume_type")
 
     @property
     @pulumi.getter(name="writePassword")

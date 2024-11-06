@@ -253,6 +253,21 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.tags);
     }
 
+    /**
+     * The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+     * 
+     */
+    @Import(name="volumeType")
+    private @Nullable Output<String> volumeType;
+
+    /**
+     * @return The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+     * 
+     */
+    public Optional<Output<String>> volumeType() {
+        return Optional.ofNullable(this.volumeType);
+    }
+
     @Import(name="writePassword")
     private @Nullable Output<Boolean> writePassword;
 
@@ -278,6 +293,7 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
         this.size = $.size;
         this.sshkeyId = $.sshkeyId;
         this.tags = $.tags;
+        this.volumeType = $.volumeType;
         this.writePassword = $.writePassword;
     }
 
@@ -632,6 +648,27 @@ public final class InstanceArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder tags(String... tags) {
             return tags(List.of(tags));
+        }
+
+        /**
+         * @param volumeType The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder volumeType(@Nullable Output<String> volumeType) {
+            $.volumeType = volumeType;
+            return this;
+        }
+
+        /**
+         * @param volumeType The type of volume to use, either &#39;ssd&#39; or &#39;bssd&#39; (optional; default &#39;ssd&#39;)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder volumeType(String volumeType) {
+            return volumeType(Output.of(volumeType));
         }
 
         public Builder writePassword(@Nullable Output<Boolean> writePassword) {

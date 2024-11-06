@@ -91,6 +91,21 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.sizeGb);
     }
 
+    /**
+     * The type of the volume
+     * 
+     */
+    @Import(name="volumeType")
+    private @Nullable Output<String> volumeType;
+
+    /**
+     * @return The type of the volume
+     * 
+     */
+    public Optional<Output<String>> volumeType() {
+        return Optional.ofNullable(this.volumeType);
+    }
+
     private VolumeState() {}
 
     private VolumeState(VolumeState $) {
@@ -99,6 +114,7 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
         this.networkId = $.networkId;
         this.region = $.region;
         this.sizeGb = $.sizeGb;
+        this.volumeType = $.volumeType;
     }
 
     public static Builder builder() {
@@ -222,6 +238,27 @@ public final class VolumeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder sizeGb(Integer sizeGb) {
             return sizeGb(Output.of(sizeGb));
+        }
+
+        /**
+         * @param volumeType The type of the volume
+         * 
+         * @return builder
+         * 
+         */
+        public Builder volumeType(@Nullable Output<String> volumeType) {
+            $.volumeType = volumeType;
+            return this;
+        }
+
+        /**
+         * @param volumeType The type of the volume
+         * 
+         * @return builder
+         * 
+         */
+        public Builder volumeType(String volumeType) {
+            return volumeType(Output.of(volumeType));
         }
 
         public VolumeState build() {

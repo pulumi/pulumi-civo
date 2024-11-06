@@ -230,8 +230,6 @@ config:
 
 {{% /choosable %}}
 {{< /chooser >}}
-
-<del>> **Note** currently only full path is supported on the `credentialsFile` input, but in the future using tilde (</del>) will work as well.
 ## Configuration Reference
 
 - `apiEndpoint` (String) The Base URL to use for CIVO API.

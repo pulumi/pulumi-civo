@@ -147,6 +147,20 @@ public class Volume extends com.pulumi.resources.CustomResource {
     public Output<Integer> sizeGb() {
         return this.sizeGb;
     }
+    /**
+     * The type of the volume
+     * 
+     */
+    @Export(name="volumeType", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> volumeType;
+
+    /**
+     * @return The type of the volume
+     * 
+     */
+    public Output<Optional<String>> volumeType() {
+        return Codegen.optional(this.volumeType);
+    }
 
     /**
      *
