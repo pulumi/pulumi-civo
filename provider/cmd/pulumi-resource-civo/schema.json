@@ -1,5 +1,6 @@
 {
     "name": "civo",
+    "displayName": "Civo",
     "description": "A Pulumi package for creating and managing Civo cloud resources.",
     "keywords": [
         "pulumi",
