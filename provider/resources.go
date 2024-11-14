@@ -40,6 +40,7 @@ func Provider() tfbridge.ProviderInfo {
 	prov := tfbridge.ProviderInfo{
 		P:           shimv2.NewProvider(civo.Provider()),
 		Name:        "civo",
+		DisplayName: "Civo",
 		Description: "A Pulumi package for creating and managing Civo cloud resources.",
 		Keywords:    []string{"pulumi", "civo"},
 		License:     "Apache-2.0",
