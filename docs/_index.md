@@ -6,7 +6,7 @@ layout: package
 ---
 ## Installation
 
-The civo provider is available as a package in all Pulumi languages:
+The Civo provider is available as a package in all Pulumi languages:
 
 * JavaScript/TypeScript: [`@pulumi/civo`](https://www.npmjs.com/package/@pulumi/civo)
 * Python: [`pulumi-civo`](https://pypi.org/project/pulumi-civo/)
