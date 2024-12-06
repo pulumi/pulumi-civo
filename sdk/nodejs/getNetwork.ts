@@ -71,7 +71,7 @@ export interface GetNetworkResult {
  *
  * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
  */
-export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetNetworkResult> {
+export function getNetworkOutput(args?: GetNetworkOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getNetwork:getNetwork", {

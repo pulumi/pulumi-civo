@@ -109,7 +109,7 @@ export interface GetObjectStoreCredentialResult {
  * });
  * ```
  */
-export function getObjectStoreCredentialOutput(args?: GetObjectStoreCredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreCredentialResult> {
+export function getObjectStoreCredentialOutput(args?: GetObjectStoreCredentialOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectStoreCredentialResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getObjectStoreCredential:getObjectStoreCredential", {

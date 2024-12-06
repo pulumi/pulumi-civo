@@ -62,7 +62,7 @@ export interface GetDiskImageResult {
 /**
  * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
  */
-export function getDiskImageOutput(args?: GetDiskImageOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDiskImageResult> {
+export function getDiskImageOutput(args?: GetDiskImageOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDiskImageResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getDiskImage:getDiskImage", {

@@ -76,7 +76,7 @@ export interface GetDnsDomainNameResult {
  * export const domainIdOutput = domain.then(domain => domain.id);
  * ```
  */
-export function getDnsDomainNameOutput(args?: GetDnsDomainNameOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainNameResult> {
+export function getDnsDomainNameOutput(args?: GetDnsDomainNameOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDnsDomainNameResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getDnsDomainName:getDnsDomainName", {

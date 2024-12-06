@@ -95,7 +95,7 @@ def get_dns_domain_name(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'))
 def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                name: Optional[pulumi.Input[Optional[str]]] = None,
-                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDnsDomainNameResult]:
+                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDnsDomainNameResult]:
     """
     Get information on a domain. This data source provides the name and the id.
 
@@ -119,7 +119,7 @@ def get_dns_domain_name_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getDnsDomainName:getDnsDomainName', __args__, opts=opts, typ=GetDnsDomainNameResult)
     return __ret__.apply(lambda __response__: GetDnsDomainNameResult(
         id=pulumi.get(__response__, 'id'),
