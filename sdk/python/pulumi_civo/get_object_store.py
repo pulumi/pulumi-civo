@@ -162,7 +162,7 @@ def get_object_store(id: Optional[str] = None,
 def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             region: Optional[pulumi.Input[Optional[str]]] = None,
-                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectStoreResult]:
+                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectStoreResult]:
     """
     Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
 
@@ -186,7 +186,7 @@ def get_object_store_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['id'] = id
     __args__['name'] = name
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getObjectStore:getObjectStore', __args__, opts=opts, typ=GetObjectStoreResult)
     return __ret__.apply(lambda __response__: GetObjectStoreResult(
         access_key_id=pulumi.get(__response__, 'access_key_id'),
