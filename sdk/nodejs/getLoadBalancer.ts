@@ -130,7 +130,7 @@ export interface GetLoadBalancerResult {
  * export const civoLoadbalancerOutput = my_lb.then(my_lb => my_lb.publicIp);
  * ```
  */
-export function getLoadBalancerOutput(args?: GetLoadBalancerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLoadBalancerResult> {
+export function getLoadBalancerOutput(args?: GetLoadBalancerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetLoadBalancerResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getLoadBalancer:getLoadBalancer", {

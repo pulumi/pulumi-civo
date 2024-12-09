@@ -107,7 +107,7 @@ def get_size(filters: Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilte
         sorts=pulumi.get(__ret__, 'sorts'))
 def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeFilterArgs', 'GetSizeFilterArgsDict']]]]] = None,
                     sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetSizeSortArgs', 'GetSizeSortArgsDict']]]]] = None,
-                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSizeResult]:
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSizeResult]:
     """
     Retrieves information about the sizes that Civo supports, with the ability to filter the results.
 
@@ -118,7 +118,7 @@ def get_size_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetS
     __args__ = dict()
     __args__['filters'] = filters
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getSize:getSize', __args__, opts=opts, typ=GetSizeResult)
     return __ret__.apply(lambda __response__: GetSizeResult(
         filters=pulumi.get(__response__, 'filters'),

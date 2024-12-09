@@ -107,7 +107,7 @@ def get_region(filters: Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegio
         sorts=pulumi.get(__ret__, 'sorts'))
 def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionFilterArgs', 'GetRegionFilterArgsDict']]]]] = None,
                       sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetRegionSortArgs', 'GetRegionSortArgsDict']]]]] = None,
-                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRegionResult]:
+                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetRegionResult]:
     """
     Retrieves information about the region that Civo supports, with the ability to filter the results.
 
@@ -118,7 +118,7 @@ def get_region_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['Ge
     __args__ = dict()
     __args__['filters'] = filters
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getRegion:getRegion', __args__, opts=opts, typ=GetRegionResult)
     return __ret__.apply(lambda __response__: GetRegionResult(
         filters=pulumi.get(__response__, 'filters'),

@@ -156,7 +156,7 @@ def get_object_store_credential(id: Optional[str] = None,
 def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                                        name: Optional[pulumi.Input[Optional[str]]] = None,
                                        region: Optional[pulumi.Input[Optional[str]]] = None,
-                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetObjectStoreCredentialResult]:
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetObjectStoreCredentialResult]:
     """
     Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential's properties as configured on your Civo account.
 
@@ -187,7 +187,7 @@ def get_object_store_credential_output(id: Optional[pulumi.Input[Optional[str]]]
     __args__['id'] = id
     __args__['name'] = name
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getObjectStoreCredential:getObjectStoreCredential', __args__, opts=opts, typ=GetObjectStoreCredentialResult)
     return __ret__.apply(lambda __response__: GetObjectStoreCredentialResult(
         access_key_id=pulumi.get(__response__, 'access_key_id'),

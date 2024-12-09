@@ -115,7 +115,7 @@ export interface GetDnsDomainRecordResult {
  * export const recordTtl = www.then(www => www.ttl);
  * ```
  */
-export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDnsDomainRecordResult> {
+export function getDnsDomainRecordOutput(args: GetDnsDomainRecordOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDnsDomainRecordResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getDnsDomainRecord:getDnsDomainRecord", {
         "domainId": args.domainId,
