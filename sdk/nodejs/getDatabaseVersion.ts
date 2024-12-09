@@ -53,7 +53,7 @@ export interface GetDatabaseVersionResult {
 /**
  * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
  */
-export function getDatabaseVersionOutput(args?: GetDatabaseVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseVersionResult> {
+export function getDatabaseVersionOutput(args?: GetDatabaseVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetDatabaseVersionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getDatabaseVersion:getDatabaseVersion", {

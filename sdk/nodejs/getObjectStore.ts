@@ -97,7 +97,7 @@ export interface GetObjectStoreResult {
  * });
  * ```
  */
-export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetObjectStoreResult> {
+export function getObjectStoreOutput(args?: GetObjectStoreOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetObjectStoreResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getObjectStore:getObjectStore", {
