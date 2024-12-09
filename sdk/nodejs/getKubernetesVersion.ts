@@ -93,7 +93,7 @@ export interface GetKubernetesVersionResult {
  * });
  * ```
  */
-export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesVersionResult> {
+export function getKubernetesVersionOutput(args?: GetKubernetesVersionOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesVersionResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getKubernetesVersion:getKubernetesVersion", {

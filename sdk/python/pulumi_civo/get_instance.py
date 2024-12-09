@@ -358,7 +358,7 @@ def get_instance(hostname: Optional[str] = None,
 def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
                         id: Optional[pulumi.Input[Optional[str]]] = None,
                         region: Optional[pulumi.Input[Optional[str]]] = None,
-                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstanceResult]:
+                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstanceResult]:
     """
     Get information on an instance for use in other resources. This data source provides all of the instance's properties as configured on your Civo account.
 
@@ -383,7 +383,7 @@ def get_instance_output(hostname: Optional[pulumi.Input[Optional[str]]] = None,
     __args__['hostname'] = hostname
     __args__['id'] = id
     __args__['region'] = region
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getInstance:getInstance', __args__, opts=opts, typ=GetInstanceResult)
     return __ret__.apply(lambda __response__: GetInstanceResult(
         cpu_cores=pulumi.get(__response__, 'cpu_cores'),

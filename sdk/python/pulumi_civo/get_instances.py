@@ -139,7 +139,7 @@ def get_instances(filters: Optional[Sequence[Union['GetInstancesFilterArgs', 'Ge
 def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesFilterArgs', 'GetInstancesFilterArgsDict']]]]] = None,
                          region: Optional[pulumi.Input[Optional[str]]] = None,
                          sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetInstancesSortArgs', 'GetInstancesSortArgsDict']]]]] = None,
-                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetInstancesResult]:
+                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetInstancesResult]:
     """
     Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
 
@@ -167,7 +167,7 @@ def get_instances_output(filters: Optional[pulumi.Input[Optional[Sequence[Union[
     __args__['filters'] = filters
     __args__['region'] = region
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getInstances:getInstances', __args__, opts=opts, typ=GetInstancesResult)
     return __ret__.apply(lambda __response__: GetInstancesResult(
         filters=pulumi.get(__response__, 'filters'),

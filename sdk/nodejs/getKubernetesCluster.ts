@@ -143,7 +143,7 @@ export interface GetKubernetesClusterResult {
  * export const kubernetesClusterOutput = my_cluster.then(my_cluster => my_cluster.masterIp);
  * ```
  */
-export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubernetesClusterResult> {
+export function getKubernetesClusterOutput(args?: GetKubernetesClusterOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetKubernetesClusterResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getKubernetesCluster:getKubernetesCluster", {

@@ -123,7 +123,7 @@ def get_kubernetes_version(filters: Optional[Sequence[Union['GetKubernetesVersio
         versions=pulumi.get(__ret__, 'versions'))
 def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionFilterArgs', 'GetKubernetesVersionFilterArgsDict']]]]] = None,
                                   sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetKubernetesVersionSortArgs', 'GetKubernetesVersionSortArgsDict']]]]] = None,
-                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesVersionResult]:
+                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKubernetesVersionResult]:
     """
     Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
 
@@ -150,7 +150,7 @@ def get_kubernetes_version_output(filters: Optional[pulumi.Input[Optional[Sequen
     __args__ = dict()
     __args__['filters'] = filters
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getKubernetesVersion:getKubernetesVersion', __args__, opts=opts, typ=GetKubernetesVersionResult)
     return __ret__.apply(lambda __response__: GetKubernetesVersionResult(
         filters=pulumi.get(__response__, 'filters'),

@@ -97,7 +97,7 @@ def get_ssh_key(id: Optional[str] = None,
         name=pulumi.get(__ret__, 'name'))
 def get_ssh_key_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                        name: Optional[pulumi.Input[Optional[str]]] = None,
-                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSshKeyResult]:
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSshKeyResult]:
     """
     Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
 
@@ -110,7 +110,7 @@ def get_ssh_key_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getSshKey:getSshKey', __args__, opts=opts, typ=GetSshKeyResult)
     return __ret__.apply(lambda __response__: GetSshKeyResult(
         fingerprint=pulumi.get(__response__, 'fingerprint'),
