@@ -159,7 +159,7 @@ export interface GetInstanceResult {
  * export const instanceOutput = myhostaname.then(myhostaname => myhostaname.publicIp);
  * ```
  */
-export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetInstanceResult> {
+export function getInstanceOutput(args?: GetInstanceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetInstanceResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getInstance:getInstance", {

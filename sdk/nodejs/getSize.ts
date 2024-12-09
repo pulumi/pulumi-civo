@@ -53,7 +53,7 @@ export interface GetSizeResult {
 /**
  * Retrieves information about the sizes that Civo supports, with the ability to filter the results.
  */
-export function getSizeOutput(args?: GetSizeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSizeResult> {
+export function getSizeOutput(args?: GetSizeOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSizeResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getSize:getSize", {

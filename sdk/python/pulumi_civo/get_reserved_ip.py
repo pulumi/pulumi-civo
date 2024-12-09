@@ -133,7 +133,7 @@ def get_reserved_ip(id: Optional[str] = None,
         region=pulumi.get(__ret__, 'region'))
 def get_reserved_ip_output(id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
-                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetReservedIpResult]:
+                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetReservedIpResult]:
     """
     Use this data source to access information about an existing resource.
 
@@ -143,7 +143,7 @@ def get_reserved_ip_output(id: Optional[pulumi.Input[Optional[str]]] = None,
     __args__ = dict()
     __args__['id'] = id
     __args__['name'] = name
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getReservedIp:getReservedIp', __args__, opts=opts, typ=GetReservedIpResult)
     return __ret__.apply(lambda __response__: GetReservedIpResult(
         id=pulumi.get(__response__, 'id'),

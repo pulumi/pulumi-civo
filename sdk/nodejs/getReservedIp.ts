@@ -56,7 +56,7 @@ export interface GetReservedIpResult {
      */
     readonly region: string;
 }
-export function getReservedIpOutput(args?: GetReservedIpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetReservedIpResult> {
+export function getReservedIpOutput(args?: GetReservedIpOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetReservedIpResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getReservedIp:getReservedIp", {

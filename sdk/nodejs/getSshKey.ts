@@ -54,7 +54,7 @@ export interface GetSshKeyResult {
  *
  * An error will be raised if the provided SSH key name does not exist in your Civo account.
  */
-export function getSshKeyOutput(args?: GetSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSshKeyResult> {
+export function getSshKeyOutput(args?: GetSshKeyOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSshKeyResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("civo:index/getSshKey:getSshKey", {

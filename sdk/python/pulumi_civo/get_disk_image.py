@@ -124,7 +124,7 @@ def get_disk_image(filters: Optional[Sequence[Union['GetDiskImageFilterArgs', 'G
 def get_disk_image_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetDiskImageFilterArgs', 'GetDiskImageFilterArgsDict']]]]] = None,
                           region: Optional[pulumi.Input[Optional[str]]] = None,
                           sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetDiskImageSortArgs', 'GetDiskImageSortArgsDict']]]]] = None,
-                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDiskImageResult]:
+                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDiskImageResult]:
     """
     Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
 
@@ -137,7 +137,7 @@ def get_disk_image_output(filters: Optional[pulumi.Input[Optional[Sequence[Union
     __args__['filters'] = filters
     __args__['region'] = region
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getDiskImage:getDiskImage', __args__, opts=opts, typ=GetDiskImageResult)
     return __ret__.apply(lambda __response__: GetDiskImageResult(
         diskimages=pulumi.get(__response__, 'diskimages'),

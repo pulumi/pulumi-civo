@@ -107,7 +107,7 @@ def get_database_version(filters: Optional[Sequence[Union['GetDatabaseVersionFil
         versions=pulumi.get(__ret__, 'versions'))
 def get_database_version_output(filters: Optional[pulumi.Input[Optional[Sequence[Union['GetDatabaseVersionFilterArgs', 'GetDatabaseVersionFilterArgsDict']]]]] = None,
                                 sorts: Optional[pulumi.Input[Optional[Sequence[Union['GetDatabaseVersionSortArgs', 'GetDatabaseVersionSortArgsDict']]]]] = None,
-                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDatabaseVersionResult]:
+                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseVersionResult]:
     """
     Retrieves information about the database versions that Civo supports, with the ability to filter the results.
 
@@ -118,7 +118,7 @@ def get_database_version_output(filters: Optional[pulumi.Input[Optional[Sequence
     __args__ = dict()
     __args__['filters'] = filters
     __args__['sorts'] = sorts
-    opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
+    opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('civo:index/getDatabaseVersion:getDatabaseVersion', __args__, opts=opts, typ=GetDatabaseVersionResult)
     return __ret__.apply(lambda __response__: GetDatabaseVersionResult(
         filters=pulumi.get(__response__, 'filters'),
