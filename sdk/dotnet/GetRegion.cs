@@ -22,6 +22,12 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetRegionResult> Invoke(GetRegionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieves information about the region that Civo supports, with the ability to filter the results.
+        /// </summary>
+        public static Output<GetRegionResult> Invoke(GetRegionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetRegionResult>("civo:index/getRegion:getRegion", args ?? new GetRegionInvokeArgs(), options.WithDefaults());
     }
 
 

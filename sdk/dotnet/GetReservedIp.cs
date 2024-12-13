@@ -16,6 +16,9 @@ namespace Pulumi.Civo
 
         public static Output<GetReservedIpResult> Invoke(GetReservedIpInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetReservedIpResult>("civo:index/getReservedIp:getReservedIp", args ?? new GetReservedIpInvokeArgs(), options.WithDefaults());
+
+        public static Output<GetReservedIpResult> Invoke(GetReservedIpInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetReservedIpResult>("civo:index/getReservedIp:getReservedIp", args ?? new GetReservedIpInvokeArgs(), options.WithDefaults());
     }
 
 

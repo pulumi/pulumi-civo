@@ -42,21 +42,11 @@ type GetDatabaseVersionResult struct {
 }
 
 func GetDatabaseVersionOutput(ctx *pulumi.Context, args GetDatabaseVersionOutputArgs, opts ...pulumi.InvokeOption) GetDatabaseVersionResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetDatabaseVersionResultOutput, error) {
 			args := v.(GetDatabaseVersionArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetDatabaseVersionResult
-			secret, err := ctx.InvokePackageRaw("civo:index/getDatabaseVersion:getDatabaseVersion", args, &rv, "", opts...)
-			if err != nil {
-				return GetDatabaseVersionResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetDatabaseVersionResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetDatabaseVersionResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("civo:index/getDatabaseVersion:getDatabaseVersion", args, GetDatabaseVersionResultOutput{}, options).(GetDatabaseVersionResultOutput), nil
 		}).(GetDatabaseVersionResultOutput)
 }
 

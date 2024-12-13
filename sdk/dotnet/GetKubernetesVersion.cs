@@ -108,6 +108,55 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetKubernetesVersionResult> Invoke(GetKubernetesVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var talos = Civo.GetKubernetesVersion.Invoke(new()
+        ///     {
+        ///         Filters = new[]
+        ///         {
+        ///             new Civo.Inputs.GetKubernetesVersionFilterInputArgs
+        ///             {
+        ///                 Key = "type",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "talos",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        ///     var k3s = Civo.GetKubernetesVersion.Invoke(new()
+        ///     {
+        ///         Filters = new[]
+        ///         {
+        ///             new Civo.Inputs.GetKubernetesVersionFilterInputArgs
+        ///             {
+        ///                 Key = "type",
+        ///                 Values = new[]
+        ///                 {
+        ///                     "k3s",
+        ///                 },
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetKubernetesVersionResult> Invoke(GetKubernetesVersionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesVersionResult>("civo:index/getKubernetesVersion:getKubernetesVersion", args ?? new GetKubernetesVersionInvokeArgs(), options.WithDefaults());
     }
 
 

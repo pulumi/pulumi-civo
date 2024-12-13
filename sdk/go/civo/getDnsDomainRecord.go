@@ -92,21 +92,11 @@ type LookupDnsDomainRecordResult struct {
 }
 
 func LookupDnsDomainRecordOutput(ctx *pulumi.Context, args LookupDnsDomainRecordOutputArgs, opts ...pulumi.InvokeOption) LookupDnsDomainRecordResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDnsDomainRecordResultOutput, error) {
 			args := v.(LookupDnsDomainRecordArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDnsDomainRecordResult
-			secret, err := ctx.InvokePackageRaw("civo:index/getDnsDomainRecord:getDnsDomainRecord", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDnsDomainRecordResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDnsDomainRecordResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDnsDomainRecordResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("civo:index/getDnsDomainRecord:getDnsDomainRecord", args, LookupDnsDomainRecordResultOutput{}, options).(LookupDnsDomainRecordResultOutput), nil
 		}).(LookupDnsDomainRecordResultOutput)
 }
 
