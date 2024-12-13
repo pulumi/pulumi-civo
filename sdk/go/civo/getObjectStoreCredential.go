@@ -88,21 +88,11 @@ type LookupObjectStoreCredentialResult struct {
 }
 
 func LookupObjectStoreCredentialOutput(ctx *pulumi.Context, args LookupObjectStoreCredentialOutputArgs, opts ...pulumi.InvokeOption) LookupObjectStoreCredentialResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupObjectStoreCredentialResultOutput, error) {
 			args := v.(LookupObjectStoreCredentialArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupObjectStoreCredentialResult
-			secret, err := ctx.InvokePackageRaw("civo:index/getObjectStoreCredential:getObjectStoreCredential", args, &rv, "", opts...)
-			if err != nil {
-				return LookupObjectStoreCredentialResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupObjectStoreCredentialResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupObjectStoreCredentialResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("civo:index/getObjectStoreCredential:getObjectStoreCredential", args, LookupObjectStoreCredentialResultOutput{}, options).(LookupObjectStoreCredentialResultOutput), nil
 		}).(LookupObjectStoreCredentialResultOutput)
 }
 

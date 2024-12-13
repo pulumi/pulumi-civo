@@ -22,6 +22,12 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetDiskImageResult> Invoke(GetDiskImageInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDiskImageResult>("civo:index/getDiskImage:getDiskImage", args ?? new GetDiskImageInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+        /// </summary>
+        public static Output<GetDiskImageResult> Invoke(GetDiskImageInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDiskImageResult>("civo:index/getDiskImage:getDiskImage", args ?? new GetDiskImageInvokeArgs(), options.WithDefaults());
     }
 
 

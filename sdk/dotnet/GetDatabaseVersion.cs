@@ -22,6 +22,12 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetDatabaseVersionResult> Invoke(GetDatabaseVersionInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseVersionResult>("civo:index/getDatabaseVersion:getDatabaseVersion", args ?? new GetDatabaseVersionInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+        /// </summary>
+        public static Output<GetDatabaseVersionResult> Invoke(GetDatabaseVersionInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseVersionResult>("civo:index/getDatabaseVersion:getDatabaseVersion", args ?? new GetDatabaseVersionInvokeArgs(), options.WithDefaults());
     }
 
 

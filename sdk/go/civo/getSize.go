@@ -42,21 +42,11 @@ type GetSizeResult struct {
 }
 
 func GetSizeOutput(ctx *pulumi.Context, args GetSizeOutputArgs, opts ...pulumi.InvokeOption) GetSizeResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (GetSizeResultOutput, error) {
 			args := v.(GetSizeArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv GetSizeResult
-			secret, err := ctx.InvokePackageRaw("civo:index/getSize:getSize", args, &rv, "", opts...)
-			if err != nil {
-				return GetSizeResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(GetSizeResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(GetSizeResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("civo:index/getSize:getSize", args, GetSizeResultOutput{}, options).(GetSizeResultOutput), nil
 		}).(GetSizeResultOutput)
 }
 

@@ -70,6 +70,36 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetVolumeResult> Invoke(GetVolumeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
+        /// 
+        /// An error will be raised if the provided volume name does not exist in your Civo account.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myvolume = Civo.GetVolume.Invoke(new()
+        ///     {
+        ///         Name = "test-volume-name",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["volumeOutput"] = myvolume,
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetVolumeResult> Invoke(GetVolumeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetVolumeResult>("civo:index/getVolume:getVolume", args ?? new GetVolumeInvokeArgs(), options.WithDefaults());
     }
 
 

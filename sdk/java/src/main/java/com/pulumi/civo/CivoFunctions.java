@@ -65,6 +65,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.deployment.InvokeOutputOptions;
 import java.util.concurrent.CompletableFuture;
 
 public final class CivoFunctions {
@@ -335,6 +336,51 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDatabaseResult> getDatabase(GetDatabaseArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDatabase:getDatabase", TypeShape.of(GetDatabaseResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Database for use in other resources. This data source provides all of the Database&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Database. When specifying a name, an error will be raised if more than one Databases with the same name found.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDatabaseArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getDatabase(GetDatabaseArgs.builder()
+     *             .name("test-database")
+     *             .region("LON1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDatabaseResult> getDatabasePlain(GetDatabasePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getDatabase:getDatabase", TypeShape.of(GetDatabaseResult.class), args, Utilities.withVersion(options));
     }
@@ -377,6 +423,13 @@ public final class CivoFunctions {
      * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
      * 
      */
+    public static Output<GetDatabaseVersionResult> getDatabaseVersion(GetDatabaseVersionArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDatabaseVersion:getDatabaseVersion", TypeShape.of(GetDatabaseVersionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves information about the database versions that Civo supports, with the ability to filter the results.
+     * 
+     */
     public static CompletableFuture<GetDatabaseVersionResult> getDatabaseVersionPlain(GetDatabaseVersionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getDatabaseVersion:getDatabaseVersion", TypeShape.of(GetDatabaseVersionResult.class), args, Utilities.withVersion(options));
     }
@@ -413,6 +466,13 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetDiskImageResult> getDiskImage(GetDiskImageArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDiskImage:getDiskImage", TypeShape.of(GetDiskImageResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on an disk image for use in other resources (e.g. creating a instance) with the ability to filter the results.
+     * 
+     */
+    public static Output<GetDiskImageResult> getDiskImage(GetDiskImageArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getDiskImage:getDiskImage", TypeShape.of(GetDiskImageResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -695,6 +755,52 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetDnsDomainNameResult> getDnsDomainName(GetDnsDomainNameArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDnsDomainName:getDnsDomainName", TypeShape.of(GetDnsDomainNameResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a domain. This data source provides the name and the id.
+     * 
+     * An error will be raised if the provided domain name is not in your Civo account.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDnsDomainNameArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
+     *             .name("domain.com")
+     *             .build());
+     * 
+     *         ctx.export("domainOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.name()));
+     *         ctx.export("domainIdOutput", domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetDnsDomainNameResult> getDnsDomainNamePlain(GetDnsDomainNamePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getDnsDomainName:getDnsDomainName", TypeShape.of(GetDnsDomainNameResult.class), args, Utilities.withVersion(options));
     }
@@ -852,6 +958,58 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetDnsDomainRecordResult> getDnsDomainRecord(GetDnsDomainRecordArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", TypeShape.of(GetDnsDomainRecordResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a DNS record. This data source provides the name, TTL, and zone file as configured on your Civo account.
+     * 
+     * An error will be raised if the provided domain name or record are not in your Civo account.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetDnsDomainNameArgs;
+     * import com.pulumi.civo.inputs.GetDnsDomainRecordArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var domain = CivoFunctions.getDnsDomainName(GetDnsDomainNameArgs.builder()
+     *             .name("domain.com")
+     *             .build());
+     * 
+     *         final var www = CivoFunctions.getDnsDomainRecord(GetDnsDomainRecordArgs.builder()
+     *             .domainId(domain.applyValue(getDnsDomainNameResult -> getDnsDomainNameResult.id()))
+     *             .name("www")
+     *             .build());
+     * 
+     *         ctx.export("recordType", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.type()));
+     *         ctx.export("recordTtl", www.applyValue(getDnsDomainRecordResult -> getDnsDomainRecordResult.ttl()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetDnsDomainRecordResult> getDnsDomainRecord(GetDnsDomainRecordArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getDnsDomainRecord:getDnsDomainRecord", TypeShape.of(GetDnsDomainRecordResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1185,6 +1343,53 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetFirewallResult> getFirewall(GetFirewallArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getFirewall:getFirewall", TypeShape.of(GetFirewallResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information about a firewall for use in other resources.
+     * 
+     * This data source provides all of the firewall&#39;s properties as configured on your Civo account.
+     * 
+     * Firewalls may be looked up by id or name, and you can optionally pass region if you want to make a lookup for a specific firewall inside that region.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetFirewallArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getFirewall(GetFirewallArgs.builder()
+     *             .name("test-firewall")
+     *             .region("LON1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetFirewallResult> getFirewallPlain(GetFirewallPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getFirewall:getFirewall", TypeShape.of(GetFirewallResult.class), args, Utilities.withVersion(options));
     }
@@ -1411,6 +1616,51 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on an instance for use in other resources. This data source provides all of the instance&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single instance. When specifying a hostname, an error will be raised if more than one instances found.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetInstanceArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myhostaname = CivoFunctions.getInstance(GetInstanceArgs.builder()
+     *             .hostname("myhostname.com")
+     *             .build());
+     * 
+     *         ctx.export("instanceOutput", myhostaname.applyValue(getInstanceResult -> getInstanceResult.publicIp()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetInstanceResult> getInstance(GetInstanceArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getInstance:getInstance", TypeShape.of(GetInstanceResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -1743,6 +1993,54 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetInstancesResult> getInstances(GetInstancesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getInstances:getInstances", TypeShape.of(GetInstancesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on instances for use in other resources, with the ability to filter and sort the results. If no filters are specified, all instances will be returned.
+     * 
+     * Note: You can use the `civo.Instance` data source to obtain metadata about a single instance if you already know the id, unique hostname, or unique tag to retrieve.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetInstancesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var small-size = CivoFunctions.getInstances(GetInstancesArgs.builder()
+     *             .region("LON1")
+     *             .filters(GetInstancesFilterArgs.builder()
+     *                 .key("size")
+     *                 .values(small)
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetInstancesResult> getInstancesPlain(GetInstancesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getInstances:getInstances", TypeShape.of(GetInstancesResult.class), args, Utilities.withVersion(options));
     }
@@ -1969,6 +2267,51 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getKubernetesCluster:getKubernetesCluster", TypeShape.of(GetKubernetesClusterResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Provides a Civo Kubernetes cluster data source.
+     * 
+     * Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetKubernetesClusterArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-cluster = CivoFunctions.getKubernetesCluster(GetKubernetesClusterArgs.builder()
+     *             .name("my-super-cluster")
+     *             .build());
+     * 
+     *         ctx.export("kubernetesClusterOutput", my_cluster.masterIp());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetKubernetesClusterResult> getKubernetesCluster(GetKubernetesClusterArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getKubernetesCluster:getKubernetesCluster", TypeShape.of(GetKubernetesClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -2325,6 +2668,58 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetKubernetesVersionResult> getKubernetesVersion(GetKubernetesVersionArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getKubernetesVersion:getKubernetesVersion", TypeShape.of(GetKubernetesVersionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Provides access to the available Civo Kubernetes versions, with the ability to filter the results.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetKubernetesVersionArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var talos = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key("type")
+     *                 .values("talos")
+     *                 .build())
+     *             .build());
+     * 
+     *         final var k3s = CivoFunctions.getKubernetesVersion(GetKubernetesVersionArgs.builder()
+     *             .filters(GetKubernetesVersionFilterArgs.builder()
+     *                 .key("type")
+     *                 .values("k3s")
+     *                 .build())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetKubernetesVersionResult> getKubernetesVersionPlain(GetKubernetesVersionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getKubernetesVersion:getKubernetesVersion", TypeShape.of(GetKubernetesVersionResult.class), args, Utilities.withVersion(options));
     }
@@ -2561,6 +2956,53 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetLoadBalancerResult> getLoadBalancer(GetLoadBalancerArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getLoadBalancer:getLoadBalancer", TypeShape.of(GetLoadBalancerResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a load balancer for use in other resources. This data source provides all of the load balancers properties as configured on your Civo account.
+     * 
+     * An error will be raised if the provided load balancer name does not exist in your Civo account.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetLoadBalancerArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // TODO
+     *         final var my-lb = CivoFunctions.getLoadBalancer(GetLoadBalancerArgs.builder()
+     *             .name("lb-name")
+     *             .region("LON1")
+     *             .build());
+     * 
+     *         ctx.export("civoLoadbalancerOutput", my_lb.publicIp());
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetLoadBalancerResult> getLoadBalancer(GetLoadBalancerArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getLoadBalancer:getLoadBalancer", TypeShape.of(GetLoadBalancerResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -2919,6 +3361,58 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetNetworkResult> getNetwork(GetNetworkArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getNetwork:getNetwork", TypeShape.of(GetNetworkResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieve information about a network for use in other resources.
+     * 
+     * This data source provides all of the network&#39;s properties as configured on your Civo account.
+     * 
+     * Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetNetworkArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = CivoFunctions.getNetwork(GetNetworkArgs.builder()
+     *             .label("test-network")
+     *             .region("LON1")
+     *             .cidrV4("10.0.0.0/24")
+     *             .nameserversV4(            
+     *                 "8.8.8.8",
+     *                 "8.8.4.4",
+     *                 "1.1.1.1")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetNetworkResult> getNetworkPlain(GetNetworkPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getNetwork:getNetwork", TypeShape.of(GetNetworkResult.class), args, Utilities.withVersion(options));
     }
@@ -3140,6 +3634,50 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getObjectStore:getObjectStore", TypeShape.of(GetObjectStoreResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Object Store for use in other resources. This data source provides all of the Object Store&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var backup = CivoFunctions.getObjectStore(GetObjectStoreArgs.builder()
+     *             .name("backup-server")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetObjectStoreResult> getObjectStore(GetObjectStoreArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getObjectStore:getObjectStore", TypeShape.of(GetObjectStoreResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3513,6 +4051,61 @@ public final class CivoFunctions {
      * &lt;!--End PulumiCodeChooser --&gt;
      * 
      */
+    public static Output<GetObjectStoreCredentialResult> getObjectStoreCredential(GetObjectStoreCredentialArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getObjectStoreCredential:getObjectStoreCredential", TypeShape.of(GetObjectStoreCredentialResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information of an Object Store Credential for use in other resources. This data source provides all of the Object Store Credential&#39;s properties as configured on your Civo account.
+     * 
+     * Note: This data source returns a single Object Store Credential. When specifying a name, an error will be raised if more than one Object Store Credentials with the same name found.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetObjectStoreCredentialArgs;
+     * import com.pulumi.civo.ObjectStore;
+     * import com.pulumi.civo.ObjectStoreArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read a credential for the object store
+     *         final var backup = CivoFunctions.getObjectStoreCredential(GetObjectStoreCredentialArgs.builder()
+     *             .name("backup-server")
+     *             .build());
+     * 
+     *         // Use the credential to create a bucket
+     *         var backupObjectStore = new ObjectStore("backupObjectStore", ObjectStoreArgs.builder()
+     *             .name("backup-server")
+     *             .maxSizeGb(500)
+     *             .region("LON1")
+     *             .accessKeyId(backup.applyValue(getObjectStoreCredentialResult -> getObjectStoreCredentialResult.accessKeyId()))
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
     public static CompletableFuture<GetObjectStoreCredentialResult> getObjectStoreCredentialPlain(GetObjectStoreCredentialPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getObjectStoreCredential:getObjectStoreCredential", TypeShape.of(GetObjectStoreCredentialResult.class), args, Utilities.withVersion(options));
     }
@@ -3555,6 +4148,13 @@ public final class CivoFunctions {
      * Retrieves information about the region that Civo supports, with the ability to filter the results.
      * 
      */
+    public static Output<GetRegionResult> getRegion(GetRegionArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getRegion:getRegion", TypeShape.of(GetRegionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves information about the region that Civo supports, with the ability to filter the results.
+     * 
+     */
     public static CompletableFuture<GetRegionResult> getRegionPlain(GetRegionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("civo:index/getRegion:getRegion", TypeShape.of(GetRegionResult.class), args, Utilities.withVersion(options));
     }
@@ -3571,6 +4171,9 @@ public final class CivoFunctions {
         return getReservedIpPlain(args, InvokeOptions.Empty);
     }
     public static Output<GetReservedIpResult> getReservedIp(GetReservedIpArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getReservedIp:getReservedIp", TypeShape.of(GetReservedIpResult.class), args, Utilities.withVersion(options));
+    }
+    public static Output<GetReservedIpResult> getReservedIp(GetReservedIpArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getReservedIp:getReservedIp", TypeShape.of(GetReservedIpResult.class), args, Utilities.withVersion(options));
     }
     public static CompletableFuture<GetReservedIpResult> getReservedIpPlain(GetReservedIpPlainArgs args, InvokeOptions options) {
@@ -3609,6 +4212,13 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetSizeResult> getSize(GetSizeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getSize:getSize", TypeShape.of(GetSizeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Retrieves information about the sizes that Civo supports, with the ability to filter the results.
+     * 
+     */
+    public static Output<GetSizeResult> getSize(GetSizeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getSize:getSize", TypeShape.of(GetSizeResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3661,6 +4271,15 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetSshKeyResult> getSshKey(GetSshKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getSshKey:getSshKey", TypeShape.of(GetSshKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+     * 
+     * An error will be raised if the provided SSH key name does not exist in your Civo account.
+     * 
+     */
+    public static Output<GetSshKeyResult> getSshKey(GetSshKeyArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getSshKey:getSshKey", TypeShape.of(GetSshKeyResult.class), args, Utilities.withVersion(options));
     }
     /**
@@ -3895,6 +4514,51 @@ public final class CivoFunctions {
      * 
      */
     public static Output<GetVolumeResult> getVolume(GetVolumeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("civo:index/getVolume:getVolume", TypeShape.of(GetVolumeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Get information on a volume for use in other resources. This data source provides all of the volumes properties as configured on your Civo account.
+     * 
+     * An error will be raised if the provided volume name does not exist in your Civo account.
+     * 
+     * ## Example Usage
+     * 
+     * &lt;!--Start PulumiCodeChooser --&gt;
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.civo.CivoFunctions;
+     * import com.pulumi.civo.inputs.GetVolumeArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myvolume = CivoFunctions.getVolume(GetVolumeArgs.builder()
+     *             .name("test-volume-name")
+     *             .build());
+     * 
+     *         ctx.export("volumeOutput", myvolume.applyValue(getVolumeResult -> getVolumeResult));
+     *     }
+     * }
+     * }
+     * </pre>
+     * &lt;!--End PulumiCodeChooser --&gt;
+     * 
+     */
+    public static Output<GetVolumeResult> getVolume(GetVolumeArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("civo:index/getVolume:getVolume", TypeShape.of(GetVolumeResult.class), args, Utilities.withVersion(options));
     }
     /**

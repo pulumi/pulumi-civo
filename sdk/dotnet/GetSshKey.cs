@@ -26,6 +26,14 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetSshKeyResult> Invoke(GetSshKeyInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information on a SSH key. This data source provides the name, and fingerprint as configured on your Civo account.
+        /// 
+        /// An error will be raised if the provided SSH key name does not exist in your Civo account.
+        /// </summary>
+        public static Output<GetSshKeyResult> Invoke(GetSshKeyInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSshKeyResult>("civo:index/getSshKey:getSshKey", args ?? new GetSshKeyInvokeArgs(), options.WithDefaults());
     }
 
 

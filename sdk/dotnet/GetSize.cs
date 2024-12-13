@@ -22,6 +22,12 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetSizeResult> Invoke(GetSizeInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieves information about the sizes that Civo supports, with the ability to filter the results.
+        /// </summary>
+        public static Output<GetSizeResult> Invoke(GetSizeInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetSizeResult>("civo:index/getSize:getSize", args ?? new GetSizeInvokeArgs(), options.WithDefaults());
     }
 
 
