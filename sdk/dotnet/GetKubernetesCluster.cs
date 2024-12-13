@@ -70,6 +70,36 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Provides a Civo Kubernetes cluster data source.
+        /// 
+        /// Note: This data source returns a single Kubernetes cluster. When specifying a name, an error will be raised if more than one Kubernetes cluster found.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var my_cluster = Civo.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         Name = "my-super-cluster",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["kubernetesClusterOutput"] = my_cluster.Apply(my_cluster =&gt; my_cluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.MasterIp)),
+        ///     };
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("civo:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
     }
 
 

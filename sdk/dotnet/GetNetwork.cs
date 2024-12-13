@@ -30,6 +30,16 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetNetworkResult> Invoke(GetNetworkInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Retrieve information about a network for use in other resources.
+        /// 
+        /// This data source provides all of the network's properties as configured on your Civo account.
+        /// 
+        /// Networks may be looked up by id or label, and you can optionally pass region if you want to make a lookup for a specific network inside that region.
+        /// </summary>
+        public static Output<GetNetworkResult> Invoke(GetNetworkInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetNetworkResult>("civo:index/getNetwork:getNetwork", args ?? new GetNetworkInvokeArgs(), options.WithDefaults());
     }
 
 

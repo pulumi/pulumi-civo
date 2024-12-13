@@ -69,21 +69,11 @@ type LookupDnsDomainNameResult struct {
 }
 
 func LookupDnsDomainNameOutput(ctx *pulumi.Context, args LookupDnsDomainNameOutputArgs, opts ...pulumi.InvokeOption) LookupDnsDomainNameResultOutput {
-	return pulumi.ToOutputWithContext(context.Background(), args).
+	return pulumi.ToOutputWithContext(ctx.Context(), args).
 		ApplyT(func(v interface{}) (LookupDnsDomainNameResultOutput, error) {
 			args := v.(LookupDnsDomainNameArgs)
-			opts = internal.PkgInvokeDefaultOpts(opts)
-			var rv LookupDnsDomainNameResult
-			secret, err := ctx.InvokePackageRaw("civo:index/getDnsDomainName:getDnsDomainName", args, &rv, "", opts...)
-			if err != nil {
-				return LookupDnsDomainNameResultOutput{}, err
-			}
-
-			output := pulumi.ToOutput(rv).(LookupDnsDomainNameResultOutput)
-			if secret {
-				return pulumi.ToSecret(output).(LookupDnsDomainNameResultOutput), nil
-			}
-			return output, nil
+			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+			return ctx.InvokeOutput("civo:index/getDnsDomainName:getDnsDomainName", args, LookupDnsDomainNameResultOutput{}, options).(LookupDnsDomainNameResultOutput), nil
 		}).(LookupDnsDomainNameResultOutput)
 }
 

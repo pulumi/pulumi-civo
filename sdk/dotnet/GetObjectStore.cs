@@ -62,6 +62,32 @@ namespace Pulumi.Civo
         /// </summary>
         public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
+
+        /// <summary>
+        /// Get information of an Object Store for use in other resources. This data source provides all of the Object Store's properties as configured on your Civo account.
+        /// 
+        /// Note: This data source returns a single Object Store. When specifying a name, an error will be raised if more than one Object Stores with the same name found.
+        /// 
+        /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Civo = Pulumi.Civo;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var backup = Civo.GetObjectStore.Invoke(new()
+        ///     {
+        ///         Name = "backup-server",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
+        public static Output<GetObjectStoreResult> Invoke(GetObjectStoreInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetObjectStoreResult>("civo:index/getObjectStore:getObjectStore", args ?? new GetObjectStoreInvokeArgs(), options.WithDefaults());
     }
 
 
