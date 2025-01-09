@@ -8,7 +8,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/civo/terraform-provider-civo v1.1.3
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.99.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.99.1-0.20250109110907-5616df552557
 )
 
 require (
@@ -23,7 +23,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.2.0 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/ProtonMail/go-crypto v1.1.0-alpha.0 // indirect
+	github.com/ProtonMail/go-crypto v1.1.3 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
 	github.com/apparentlymart/go-cidr v1.1.0 // indirect
@@ -42,7 +42,7 @@ require (
 	github.com/civo/civogo v0.3.85 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
-	github.com/cyphar/filepath-securejoin v0.2.4 // indirect
+	github.com/cyphar/filepath-securejoin v0.3.6 // indirect
 	github.com/deckarep/golang-set/v2 v2.5.0 // indirect
 	github.com/djherbis/times v1.5.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
@@ -51,8 +51,8 @@ require (
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
-	github.com/go-git/go-billy/v5 v5.5.0 // indirect
-	github.com/go-git/go-git/v5 v5.12.0 // indirect
+	github.com/go-git/go-billy/v5 v5.6.1 // indirect
+	github.com/go-git/go-git/v5 v5.13.1 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
@@ -138,8 +138,8 @@ require (
 	github.com/pulumi/inflector v0.1.1 // indirect
 	github.com/pulumi/pulumi-java/pkg v0.19.0 // indirect
 	github.com/pulumi/pulumi-yaml v1.12.0 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.143.0 // indirect
-	github.com/pulumi/pulumi/sdk/v3 v3.143.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.145.0 // indirect
+	github.com/pulumi/pulumi/sdk/v3 v3.145.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
 	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
@@ -151,7 +151,7 @@ require (
 	github.com/segmentio/encoding v0.3.5 // indirect
 	github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
-	github.com/skeema/knownhosts v1.2.2 // indirect
+	github.com/skeema/knownhosts v1.3.0 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.8.0 // indirect
@@ -176,9 +176,9 @@ require (
 	go.opentelemetry.io/otel/trace v1.24.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/exp v0.0.0-20240604190554-fc45aab8b7f8 // indirect
+	golang.org/x/exp v0.0.0-20240719175910-8a7402abbf56 // indirect
 	golang.org/x/mod v0.19.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/oauth2 v0.22.0 // indirect
 	golang.org/x/sync v0.10.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
