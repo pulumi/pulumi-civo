@@ -7,7 +7,7 @@ toolchain go1.22.7
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20240520223432-0c0bf0d65f10
 
 require (
-	github.com/civo/terraform-provider-civo v1.1.3
+	github.com/civo/terraform-provider-civo v1.1.4
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.101.0
 )
 
@@ -39,7 +39,7 @@ require (
 	github.com/charmbracelet/bubbletea v0.25.0 // indirect
 	github.com/charmbracelet/lipgloss v0.7.1 // indirect
 	github.com/cheggaaa/pb v1.0.29 // indirect
-	github.com/civo/civogo v0.3.85 // indirect
+	github.com/civo/civogo v0.3.89 // indirect
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/containerd/console v1.0.4-0.20230313162750-1ae8d489ac81 // indirect
 	github.com/cyphar/filepath-securejoin v0.3.6 // indirect
