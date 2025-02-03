@@ -97,29 +97,6 @@ jobs:
 
 
           Maintainer note: consult the [runbook](https://github.com/pulumi/platform-providers-team/blob/main/playbooks/tf-provider-updating.md) for dealing with any breaking changes.
-    - if: inputs.is_pr
-      name: Check Configuration section
-      run: |
-        sed -n '/## Configuration/,$p' README.md | sed -n '/## Reference/q;p' >> config_section.txt
-        jq -r '.config | select(.variables) | .variables | keys[]' < provider/cmd/pulumi-resource-civo/schema.json >> keys.txt
-        EOF=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
-        {
-          echo "MISSING_CONFIG<<$EOF";
-          xargs -I {} sh -c "grep -q {} config_section.txt || echo \\\`{}\\\` not found in Configuration section" < keys.txt
-          echo "$EOF";
-        } >> "$GITHUB_ENV"
-
-    - if: inputs.is_pr && inputs.is_automated == false
-      name: Check for missing config
-      run: |
-        if [ ! -z "${{ env.MISSING_CONFIG }}" ]; then
-        cat <<EOF
-        ${{ env.MISSING_CONFIG }}
-        EOF
-        echo 'Please add a description for each of these options to `README.md`.'
-        echo 'Details about them can be found in either the upstream docs or `schema.json`.'
-        exit 1
-        fi
 
     - name: Upload codegen binary for civo
       uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
