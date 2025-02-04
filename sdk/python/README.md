@@ -8,71 +8,18 @@
 
 # Civo Resource Provider
 
-The Civo Resource Provider lets you manage Civo resources.
+>[!NOTE] As of v2.4.8, this provider is DEPRECATED and will no longer be maintained by Pulumi.
+> We recommend using the [Local Provider](https://www.pulumi.com/blog/any-terraform-provider/) version of this package, 
+> which can be generated from the  Civo Terraform provider as follows:
+> `pulumi package add terraform-provider registry.opentofu.org/civo/civo <version>`
+> and follow the instructions.
 
-## Installing
+## Migration
 
-This package is available in many languages in the standard packaging formats.
+The currently recommended migration path is to use `pulumi import` to migrate existing Civo Cloud resources onto a
+new stack which uses the local provider package.
 
-### Node.js (Java/TypeScript)
-
-To use from JavaScript or TypeScript in Node.js, install using either `npm`:
-
-    $ npm install @pulumi/civo
-
-or `yarn`:
-
-    $ yarn add @pulumi/civo
-
-### Python
-
-To use from Python, install using `pip`:
-
-    $ pip install pulumi_civo
-
-### Go
-
-To use from Go, use `go get` to grab the latest version of the library
-
-    $ go get github.com/pulumi/pulumi-civo/sdk/v2
-
-### .NET
-
-To use from .NET, install using `dotnet add package`:
-
-    $ dotnet add package Pulumi.Civo
-
-## Configuration
-
-The following configuration points are available:
-
-- `civo:token` - (Required) This is the Civo API token. It can also be sourced from the `CIVO_TOKEN`
-  environment variable.
-- `civo:region` - (Optional) Region in which to create Civo resources.  It can also be sourced from the `CIVO_REGION`
-  environment variable.
-- `civo:credentialsFile - Path to the Civo credentials file. Can be specified using `CIVO_CREDENTIAL_FILE`
-  environment variable.
-
-Other: `apiEndpoint`
-
-### Using credentials file
-
-The format of the credentials file is as follows:
-
-```
-{
-    "apikeys": {
-        "tf_key": "write-your-token-here"
-    },
-    "meta": {
-        "current_apikey": "tf_key"
-    }
-}
-```
-You will then need to configure the credentials_file input to the correct location, for example:
-```
-credentialsFile = "/secure/path/civo.json"
-```
+---
 
 ## Reference
 

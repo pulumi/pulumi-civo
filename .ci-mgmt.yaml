@@ -11,4 +11,4 @@ plugins:
     kind: converter
   - name: std
     version: "1.6.2"
-enableConfigurationCheck: true
+enableConfigurationCheck: false
